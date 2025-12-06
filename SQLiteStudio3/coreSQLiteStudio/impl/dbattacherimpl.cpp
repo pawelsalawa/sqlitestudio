@@ -1,5 +1,6 @@
 #include "dbattacherimpl.h"
 #include "db/db.h"
+#include "db/sqlquery.h"
 #include "services/dbmanager.h"
 #include "parser/parser.h"
 #include "services/notifymanager.h"
@@ -42,11 +43,18 @@ void DbAttacherImpl::detachDatabases()
 bool DbAttacherImpl::attachDatabases()
 {
     dbNameToAttach.clear();
-
     prepareNameToDbMap();
 
-    TokenList dbTokens = getDbTokens();
-    QHash<QString,TokenList> groupedDbTokens = groupDbTokens(dbTokens);
+    BiStrHash nativePathToAttachName = getNativePathToAttachName();
+
+    TokenList dbTokens = filter<TokenPtr>(getDbTokens(), [nativePathToAttachName](const TokenPtr& t) -> bool
+    {
+        return !nativePathToAttachName.containsRight(t->value, Qt::CaseInsensitive);
+    });
+
+    StrHash<TokenList> groupedDbTokens = groupDbTokens(dbTokens);
+    for (QString& nativeName : nativePathToAttachName.rightValues())
+        groupedDbTokens.remove(nativeName, Qt::CaseInsensitive);
 
     if (!attachAllDbs(groupedDbTokens))
         return false;
@@ -60,7 +68,7 @@ bool DbAttacherImpl::attachDatabases()
 TokenList DbAttacherImpl::getDbTokens()
 {
     TokenList dbTokens;
-    for (SqliteQueryPtr query : queries)
+    for (SqliteQueryPtr& query : queries)
         dbTokens += query->getContextDatabaseTokens();
 
     return dbTokens;
@@ -81,12 +89,12 @@ void DbAttacherImpl::prepareNameToDbMap()
         nameToDbMap[db->getName()] = db;
 }
 
-QHash<QString, TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbTokens)
+StrHash<TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbTokens)
 {
     // Filter out tokens of unknown databases and group results by name
-    QHash<QString,TokenList> groupedDbTokens;
+    StrHash<TokenList> groupedDbTokens;
     QString strippedName;
-    for (TokenPtr token : dbTokens)
+    for (const TokenPtr& token : dbTokens)
     {
         strippedName = stripObjName(token->value);
         if (!nameToDbMap.contains(strippedName, Qt::CaseInsensitive))
@@ -97,7 +105,7 @@ QHash<QString, TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbToken
     return groupedDbTokens;
 }
 
-bool DbAttacherImpl::attachAllDbs(const QHash<QString, TokenList>& groupedDbTokens)
+bool DbAttacherImpl::attachAllDbs(const StrHash<TokenList>& groupedDbTokens)
 {
     QString attachName;
     for (const QString& dbName : groupedDbTokens.keys())
@@ -111,7 +119,7 @@ bool DbAttacherImpl::attachAllDbs(const QHash<QString, TokenList>& groupedDbToke
         attachName = db->attach(nameToDbMap[dbName]);
         if (attachName.isNull())
         {
-            notifyError(QObject::tr("Could not attach database %1: %2").arg(dbName).arg(db->getErrorText()));
+            notifyError(QObject::tr("Could not attach database %1: %2").arg(dbName, db->getErrorText()));
             detachAttached();
             return false;
         }
@@ -126,7 +134,7 @@ QHash<TokenPtr, TokenPtr> DbAttacherImpl::getTokenMapping(const TokenList& dbTok
     QHash<TokenPtr, TokenPtr> tokenMapping;
     QString strippedName;
     TokenPtr dstToken;
-    for (TokenPtr srcToken : dbTokens)
+    for (const TokenPtr& srcToken : dbTokens)
     {
         strippedName = stripObjName(srcToken->value);
         if (strippedName.compare("main", Qt::CaseInsensitive) == 0 ||
@@ -152,7 +160,7 @@ void DbAttacherImpl::replaceTokensInQueries(const QHash<TokenPtr, TokenPtr>& tok
     while (it.hasNext())
     {
         it.next();
-        for (SqliteQueryPtr query : queries)
+        for (SqliteQueryPtr& query : queries)
         {
             idx = query->tokens.indexOf(it.key());
             if (idx < 0)
@@ -161,6 +169,34 @@ void DbAttacherImpl::replaceTokensInQueries(const QHash<TokenPtr, TokenPtr>& tok
             query->tokens.replace(idx, it.value());
         }
     }
+}
+
+BiStrHash DbAttacherImpl::getNativePathToAttachName() const
+{
+    BiStrHash nativePathToAttachName;
+    SqlQueryPtr res = db->exec("PRAGMA database_list");
+    if (res->isError())
+    {
+        qCritical() << "Failed to query existing database attachmens with PRAGMA database_list."
+                    << res->getErrorCode()
+                    << res->getErrorText();
+        return nativePathToAttachName;
+    }
+
+    QList<SqlResultsRowPtr> rows = res->getAll();
+    for (SqlResultsRowPtr& row : rows)
+    {
+        QString attName = row->value("name").toString();
+        if (attName == "main" || attName == "temp")
+            continue;
+
+        QString path = row->value("file").toString();
+        if (path.isEmpty())
+            continue;
+
+        nativePathToAttachName.insert(path, attName);
+    }
+    return nativePathToAttachName;
 }
 
 bool DbAttacherImpl::getMainDbNameUsed() const
@@ -176,7 +212,7 @@ BiStrHash DbAttacherImpl::getDbNameToAttach() const
 QString DbAttacherImpl::getQuery() const
 {
     QStringList queryStrings;
-    for (SqliteQueryPtr query : queries)
+    for (const SqliteQueryPtr& query : queries)
         queryStrings << query->detokenize();
 
     return queryStrings.join(";");

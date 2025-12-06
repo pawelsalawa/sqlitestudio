@@ -3,7 +3,7 @@ env:
     QT_VERSION: '6.7.3'
     QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510100'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib

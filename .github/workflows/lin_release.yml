@@ -2,7 +2,7 @@ env:
     TARGET_ARCH: 'x86_64'
     QT_VERSION: '6.7.3'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510100'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -138,9 +138,9 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
-                for f in icu; do
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
-                done
+                #for f in icu; do
+                #    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                #done
                 set +x
                 
                 ls -l ../ext/
@@ -172,6 +172,7 @@ jobs:
                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                    "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
                     ../../../Plugins
                 make -j 1
 

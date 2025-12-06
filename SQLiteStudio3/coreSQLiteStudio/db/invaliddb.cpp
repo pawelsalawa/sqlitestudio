@@ -343,6 +343,13 @@ bool InvalidDb::loadExtension(const QString& filePath, const QString& initFunc)
     return false;
 }
 
+bool InvalidDb::loadExtensionManually(const QString &filePath, const QString &initFunc)
+{
+    UNUSED(filePath);
+    UNUSED(initFunc);
+    return false;
+}
+
 bool InvalidDb::isComplete(const QString& sql) const
 {
     UNUSED(sql);
@@ -357,6 +364,11 @@ Db* InvalidDb::clone() const
 bool InvalidDb::isTransactionActive() const
 {
     return false;
+}
+
+QList<Db::LoadedExtension> InvalidDb::getManuallyLoadedExtensions() const
+{
+    return {};
 }
 
 void InvalidDb::interrupt()

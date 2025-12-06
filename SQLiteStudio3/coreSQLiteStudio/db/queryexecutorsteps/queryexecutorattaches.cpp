@@ -10,6 +10,7 @@ bool QueryExecutorAttaches::exec()
         return false;
 
     context->dbNameToAttach = attacher->getDbNameToAttach();
+    context->nativeDbPathToAttachName = attacher->getNativePathToAttachName();
     updateQueries();
 
     return true;

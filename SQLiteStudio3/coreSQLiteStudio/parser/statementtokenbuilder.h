@@ -83,7 +83,7 @@ class StatementTokenBuilder
          *
          * @overload
          */
-        StatementTokenBuilder& withStringPossiblyOther(const QString& value);
+        StatementTokenBuilder& withStringPossiblyOther(const QString& value, bool preferSingleQuote);
 
         /**
          * @brief Adds list of "other" tokens.

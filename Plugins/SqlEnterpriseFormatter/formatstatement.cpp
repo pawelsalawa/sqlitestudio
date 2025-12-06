@@ -210,9 +210,10 @@ FormatStatement& FormatStatement::withOperator(const QString& oper, FormatToken:
     return *this;
 }
 
-FormatStatement&FormatStatement::withStringOrId(const QString& id)
+FormatStatement&FormatStatement::withStringOrId(const QString& id, FormatToken::Flags flags)
 {
-    withToken(FormatToken::STRING_OR_ID, id);
+    FormatToken* token = withToken(FormatToken::STRING_OR_ID, id);
+    token->flags |= flags;
     return *this;
 }
 
@@ -618,10 +619,12 @@ QString FormatStatement::detokenize()
             {
                 applyIndent();
                 QString val = token->value.toString();
-                if (val.contains("\""))
-                    formatId(token->value.toString(), true);
+                if (token->flags.testFlag(FormatToken::SINGLE_QUOTE_STRING) && !val.contains("'"))
+                    line += wrapString(token->value.toString());
+                else if (val.contains("\""))
+                    formatId(val, true);
                 else
-                    line += wrapObjName(token->value.toString(), NameWrapper::DOUBLE_QUOTE);
+                    line += wrapObjName(val, NameWrapper::DOUBLE_QUOTE);
 
                 break;
             }

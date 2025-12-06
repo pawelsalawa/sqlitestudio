@@ -32,7 +32,7 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(DELETE_ROW,        Qt::Key_Delete,                          QObject::tr("Delete selected data row"))
     CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                          QObject::tr("Insert new data row"))
     CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT | Qt::Key_Return,                QObject::tr("Open contents of selected cell in a separate editor"))
-    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT | Qt::Key_H,                     QObject::tr("Toggle the height adjustment of rows"))
+    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT | Qt::ALT | Qt::Key_H,           QObject::tr("Toggle the height adjustment of rows"))
     CFG_KEY_ENTRY(INCR_FONT_SIZE,    Qt::CTRL | Qt::Key_Plus,                 QObject::tr("Increase font size", "data view"))
     CFG_KEY_ENTRY(DECR_FONT_SIZE,    Qt::CTRL | Qt::Key_Minus,                QObject::tr("Decrease font size", "data view"))
 )
@@ -94,6 +94,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
     protected:
         void scrollContentsBy(int dx, int dy);
+        void keyPressEvent(QKeyEvent *e);
 
     private:
         class Header : public QHeaderView
@@ -133,6 +134,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool simpleBrowserMode = false;
         bool ignoreColumnWidthChanges = false;
         int beforeExecutionHorizontalPosition = -1;
+        int beforeExecutionVerticalPosition = -1;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);

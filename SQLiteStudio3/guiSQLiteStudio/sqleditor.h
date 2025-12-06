@@ -169,6 +169,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             QString dbName;
         };
 
+        typedef QPair<StrHash<QStringList>, Db*> AsyncObjectsRefreshResults;
+
         void setupMenu();
         void updateCompleterPosition();
         void init();
@@ -271,7 +273,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool virtualSqlCompleteSemicolon = false;
         QString createTriggerTable;
         QString loadedFile;
-        QFutureWatcher<QHash<QString,QStringList>>* objectsInNamedDbWatcher = nullptr;
+        QFutureWatcher<AsyncObjectsRefreshResults>* objectsInNamedDbWatcher = nullptr;
         void changeFontSize(int factor);
 
         static const int autoCompleterDelay = 300;

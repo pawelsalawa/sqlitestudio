@@ -19,9 +19,11 @@ StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value, bo
     return with(Token::OTHER, wrapIfNeeded ? wrapObjIfNeeded(value) : value);
 }
 
-StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value)
+StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value, bool preferSingleQuote)
 {
-    if (value.contains("\""))
+    if (preferSingleQuote && !value.contains("'"))
+        return withOther(wrapObjName(value, NameWrapper::QUOTE), false);
+    else if (value.contains("\""))
         return withOther(wrapObjIfNeeded(value));
     else
         return withOther(wrapObjName(value, NameWrapper::DOUBLE_QUOTE), false);

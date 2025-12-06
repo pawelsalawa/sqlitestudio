@@ -1,7 +1,7 @@
 env:
     QT_VERSION: '6.8.2'
     QT_ARCH: 'win64_mingw'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510100'
     PYTHON_VERSION: '3.13'
     ICU_VER: '75'
     ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-75.1-2-any.pkg.tar.zst
@@ -86,7 +86,7 @@ jobs:
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"../Qt" ../mingw.7z
                 echo MINGW_DIR="$(realpath ../Qt/Tools/${{ env.MINGW_DIRNAME }})" >> $GITHUB_ENV
-                
+
             - name: Mingw paths
               shell: bash
               run: |
@@ -165,9 +165,9 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
-                for f in icu; do
-                    $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
-                done
+                # for f in icu; do
+                #     $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
+                # done
                 set +x
                 ls -l ../ext/
 

@@ -90,6 +90,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         static void insertActionAfter(ExtActionPrototype* action, Action afterAction, ToolBar toolbar = TOOLBAR_GRID);
         static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_GRID);
 
+        bool getNavigationState() const;
+
     protected:
         void createActions();
         void setupDefShortcuts();
@@ -172,7 +174,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool uncommittedForm = false;
         WidgetCover* widgetCover = nullptr;
         QList<ExtLineEdit*> filterInputs;
-        QStringList filterValues;
+        QStringList lastColumnFilterValues;
+        QString lastSingleFilterValue;
         QWidget* filterLeftSpacer = nullptr;
         QWidget* filterRightSpacer = nullptr;
 
@@ -180,6 +183,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
 
     public slots:
         void refreshData(bool keepFocus = true);
+        void resetSorting();
 
     private slots:
         void dataLoadingEnded(bool successful);

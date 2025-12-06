@@ -70,6 +70,8 @@ class ParserTest : public QObject
         void testQuotedFunction();
         void testIndexedSelect();
         void testTrueFalseLiterals1();
+        void testDollarInName();
+        void testExprIsString();
 };
 
 ParserTest::ParserTest()
@@ -845,6 +847,41 @@ void ParserTest::testTrueFalseLiterals1()
     QVERIFY(secondRightAfter->tokens.first()->value == "false");
 }
 
+void ParserTest::testDollarInName()
+{
+    QString sql = "select v$test from test;";
+    // parser3->setLemonDebug(true);
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    SqliteQueryPtr query = parser3->getQueries().first();
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+
+    QList<SqliteSelect::Core::ResultColumn*> resCols = select->coreSelects.first()->resultColumns;
+    QVERIFY(resCols.size() == 1);
+
+    SqliteExpr* col = resCols.first()->expr;
+    QVERIFY(col->mode == SqliteExpr::Mode::ID);
+    QVERIFY(col->column == "v$test");
+}
+
+void ParserTest::testExprIsString()
+{
+    QString sql = "select SomeColumn IS 'This literal string with spaces';";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    SqliteQueryPtr query = parser3->getQueries().first();
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+
+    QList<SqliteSelect::Core::ResultColumn*> resCols = select->coreSelects.first()->resultColumns;
+    QVERIFY(resCols.size() == 1);
+
+    SqliteExpr* col = resCols.first()->expr;
+    QVERIFY(col->mode == SqliteExpr::Mode::IS);
+
+    select->rebuildTokens();
+    QString detokenized = select->detokenize();
+    QVERIFY(detokenized.compare("select SomeColumn IS 'This literal string with spaces';", Qt::CaseInsensitive) == 0);
+}
 
 void ParserTest::initTestCase()
 {

@@ -1,6 +1,8 @@
 #ifndef STDSQLITE3DRIVER_H
 #define STDSQLITE3DRIVER_H
 
+#include <utility>
+
 #define STD_SQLITE3_DRIVER(Name, Label, Prefix, UppercasePrefix) \
     struct API_EXPORT Name \
     { \
@@ -25,6 +27,7 @@
         static const int CHECKPOINT_FULL = UppercasePrefix##SQLITE_CHECKPOINT_FULL; \
         static const int CHECKPOINT_RESTART = UppercasePrefix##SQLITE_CHECKPOINT_RESTART; \
         static const int CHECKPOINT_TRUNCATE = UppercasePrefix##SQLITE_CHECKPOINT_TRUNCATE; \
+        static const int DBCONFIG_ENABLE_LOAD_EXTENSION = UppercasePrefix##SQLITE_DBCONFIG_ENABLE_LOAD_EXTENSION; \
         \
         typedef Prefix##sqlite3 handle; \
         typedef Prefix##sqlite3_stmt stmt; \
@@ -83,10 +86,11 @@
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
         static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
         static int threadsafe() {return Prefix##sqlite3_threadsafe();} \
+        template<typename... Args> \
+        static int db_config(handle* arg1, int arg2, Args&&... args) {return Prefix##sqlite3_db_config(arg1, arg2, std::forward<Args>(args)...);} \
         static int get_autocommit(handle* arg) {return Prefix##sqlite3_get_autocommit(arg);} \
         static int wal_checkpoint(handle* arg1, const char* arg2) {return Prefix##sqlite3_wal_checkpoint(arg1, arg2);} \
         static int wal_checkpoint_v2(handle* a1, const char* a2, int a3, int* a4, int* a5) {return Prefix##sqlite3_wal_checkpoint_v2(a1, a2, a3, a4, a5);} \
-        static int enable_load_extension(handle* arg1, int arg2) {return Prefix##sqlite3_enable_load_extension(arg1, arg2);} \
         static int load_extension(handle *arg1, const char *arg2, const char *arg3, char **arg4) {return Prefix##sqlite3_load_extension(arg1, arg2, arg3, arg4);} \
         static void* user_data(context* arg) {return Prefix##sqlite3_user_data(arg);} \
         static void* aggregate_context(context* arg1, int arg2) {return Prefix##sqlite3_aggregate_context(arg1, arg2);} \

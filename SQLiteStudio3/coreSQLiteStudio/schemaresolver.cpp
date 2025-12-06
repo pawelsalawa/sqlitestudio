@@ -653,6 +653,31 @@ StrHash< SqliteCreateViewPtr> SchemaResolver::getAllParsedViews(const QString& d
     return getAllParsedObjectsForType<SqliteCreateView>(database, "view");
 }
 
+QStringList SchemaResolver::getTablePrimaryKeyColumns(const QString &table)
+{
+    return getTablePrimaryKeyColumns("main", table);
+}
+
+QStringList SchemaResolver::getTablePrimaryKeyColumns(const QString &database, const QString &table)
+{
+    static_qstring(query, "PRAGMA %1.table_info(%2)");
+    SqlQueryPtr results = db->exec(query.arg(wrapObjIfNeeded(database), wrapObjIfNeeded(table)));
+    if (results->isError())
+    {
+        qWarning() << "Could not get column list using PRAGMA for table or view:" << table << ", error was:" << results->getErrorText();
+        return QStringList();
+    }
+
+    QStringList cols;
+    for (const SqlResultsRowPtr& row : results->getAll())
+    {
+        if (row->value("pk").toInt() > 0)
+            cols << row->value("name").toString();
+    }
+
+    return cols;
+}
+
 QString SchemaResolver::getSqliteAutoIndexDdl(const QString& database, const QString& index)
 {
     // First, let's try to use cached value

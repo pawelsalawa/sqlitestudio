@@ -292,6 +292,11 @@ class API_EXPORT CompletionHelper : public QObject
          * also in objects from those databases. This list contains those databases.
          */
         QStringList otherDatabasesToLookupFor;
+
+        /**
+         * @brief File path to attached name as seen by PRAGMA database_list at the moment of helper call.
+         */
+        BiStrHash nativePathToAttachName;
 };
 
 #endif // COMPLETIONHELPER_H

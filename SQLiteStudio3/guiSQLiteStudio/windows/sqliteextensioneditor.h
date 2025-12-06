@@ -61,10 +61,11 @@ class SqliteExtensionEditor : public MdiChild
     private:
         void init();
         int getCurrentExtensionRow() const;
-        void extensionDeselected(int row);
-        void extensionSelected(int row);
+        QModelIndex extRowToSrc(const QModelIndex& idx) const;
+        void extensionDeselected(int srcRow);
+        void extensionSelected(int srcRow);
         void clearEdits();
-        void selectExtension(int row);
+        void selectExtension(int srcRow);
         QStringList getCurrentDatabases() const;
         bool tryToLoad(const QString& filePath, const QString& initFunc, QString* resultError);
         bool validateExtension(bool* fileOk = nullptr,

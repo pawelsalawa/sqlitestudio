@@ -1,8 +1,8 @@
 env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.16'
-    SQLITE_VERSION: '3490000'
-    PYTHON_VERSION: '3.9'
+    SQLITE_VERSION: '3510100'
+    PYTHON_VERSION: '3.13'
     ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -31,15 +31,36 @@ jobs:
         runs-on: macos-14
 
         steps:
-            #- name: Debug
-              #shell: bash
-              #run: |
-                # brew search tcl-tk
-                # ls -l /usr/local/
-                # ls -l /usr/local/include
-                # ls -l /usr/local/opt/
-                # ls -l /usr/local/opt/openssl/include/
-                # ls -l /usr/local/opt/expat/include
+            - name: Install MacPorts
+              uses: melusina-org/setup-macports@v1
+
+            - name: Reconfigure MacPorts
+              run: |
+                sudo dscl . -create /Users/macports
+                sudo dscl . -create /Users/macports UserShell /usr/bin/false
+                sudo dscl . -create /Users/macports UniqueID 555
+                sudo dscl . -create /Users/macports PrimaryGroupID 20
+                sudo dscl . -create /Users/macports NFSHomeDirectory /opt/local/var/macports/home
+                sudo mkdir -p /opt/local/var/macports/home
+                sudo chown macports:staff /opt/local/var/macports/home
+
+                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
+                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 11.0/' "$MACPORTS_CONF"
+                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
+                    echo "macosx_deployment_target 11.0" | sudo tee -a "$MACPORTS_CONF"
+                fi
+                sudo port selfupdate
+
+            - name: Install coreutils
+              run: |
+                brew install coreutils
+
+            - name: Initial config
+              run: |
+                echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV
+                echo "CFLAGS=-arch x86_64" >> $GITHUB_ENV
+                echo "CXXFLAGS=-arch x86_64" >> $GITHUB_ENV
+                echo "LDFLAGS=-arch x86_64" >> $GITHUB_ENV
 
             - name: Install MacPorts
               uses: melusina-org/setup-macports@v1
@@ -84,11 +105,6 @@ jobs:
                 ls -l /opt/local/lib/tclConfig.sh
                 cat /opt/local/lib/tclConfig.sh
 
-            - uses: actions/setup-python@v6
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'arm64'
-
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -101,6 +117,20 @@ jobs:
                 host: 'mac'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 extra: '--external 7z'
+
+            - uses: actions/setup-python@v6
+              with:
+                python-version: ${{ env.PYTHON_VERSION }}
+                architecture: 'x64'
+
+            - name: Debug 1
+              run: |
+                echo "Python:"
+                ls -alR /Library/Frameworks/Python.framework/Versions/3.11/lib
+                echo "---"
+                echo "Crypto:"
+                ls -alR /usr/local/opt/openssl/lib
+                echo "---"
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
@@ -126,6 +156,7 @@ jobs:
                 /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
 
             - name: Clone repo
               uses: actions/checkout@v4
@@ -194,10 +225,12 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
                 done
+
                 for f in icu; do
                     ICU_FLAGS="-I/opt/local/include -L/opt/local/lib -licuio -licui18n -licuuc -licudata"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
+
                 set +x
                 ls -l ../ext/
 
@@ -206,6 +239,8 @@ jobs:
                 mkdir ../lib ../include
                 cp /usr/local/lib/libsqlite3* ../lib
                 cp /usr/local/include/sqlite3* ../include
+                cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
+                cp /opt/local/lib/libtcl*.dylib ../lib
 
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
@@ -218,7 +253,7 @@ jobs:
                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
                     CONFIG+=portable \
                     ../../SQLiteStudio3
-                make -j 2
+                make -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
