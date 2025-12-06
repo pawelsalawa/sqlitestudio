@@ -204,6 +204,8 @@ class API_EXPORT ChainExecutor : public QObject
         bool getDisableObjectDropsDetection() const;
         void setDisableObjectDropsDetection(bool value);
 
+        bool isExecuting() const;
+
     private:
         /**
          * @brief Executes query defines as the current one.
@@ -285,6 +287,11 @@ class API_EXPORT ChainExecutor : public QObject
          * query that should be executed.
          */
         int currentSqlIndex = -1;
+
+        /**
+         * @brief A flag indicating whether the executor is currently in process of executing queries.
+         */
+        bool executionInProgress = false;
 
         /**
          * @brief Asynchronous ID of current query execution.

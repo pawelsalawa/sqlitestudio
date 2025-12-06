@@ -272,8 +272,8 @@ void SelectResolver::markGroupedColumns(QList<Column>* columnList)
 
 void SelectResolver::fixColumnNames()
 {
-    QSet<QString> existingDisplayNames;
-    QSet<QString> existingAliasNames;
+    StrHash<bool> existingDisplayNames;
+    StrHash<bool> existingAliasNames;
     QString originalName;
     QString originalAlias;
     QString alias;
@@ -284,10 +284,10 @@ void SelectResolver::fixColumnNames()
     {
         // Display name
         originalName = it.next().displayName;
-        for (i = 1; existingDisplayNames.contains(it.value().displayName); i++)
+        for (i = 1; existingDisplayNames.contains(it.value().displayName, Qt::CaseInsensitive); i++)
             it.value().displayName = originalName + ":" + QString::number(i);
 
-        existingDisplayNames << it.value().displayName;
+        existingDisplayNames.insert(it.value().displayName, true);
 
         // Alias
         // Handled both alias duplicates and name duplicates.
@@ -296,13 +296,13 @@ void SelectResolver::fixColumnNames()
         // made unique with sequenced number - not only for display, but also for data origin.
         alias = it.value().alias.isNull() ? it.value().column : it.value().alias;
         originalAlias = alias;
-        for (i = 1; existingAliasNames.contains(alias); i++)
+        for (i = 1; existingAliasNames.contains(alias, Qt::CaseInsensitive); i++)
             alias = originalAlias + ":" + QString::number(i);
 
         if (alias != originalAlias)
             it.value().alias = alias;
 
-        existingAliasNames << alias;
+        existingAliasNames.insert(alias, true);
     }
 }
 
@@ -331,8 +331,9 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 
 QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect::Core::ResultColumn* resCol)
 {
+    QStringList displayNamesAlreadyAdded;
     QList<SelectResolver::Column> results;
-    for (SelectResolver::Column column : std::as_const(currentCoreSourceColumns))
+    for (SelectResolver::Column column : std::as_const(currentCoreSourceColumns)) // intentionally not a reference - we want to create copies
     {
         if (!resCol->table.isNull())
         {
@@ -367,7 +368,6 @@ QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect:
                 continue;
             }
         }
-
         // If source column name is aliased, use it
         if (column.displayName.isNull())
         {
@@ -377,6 +377,13 @@ QList<SelectResolver::Column> SelectResolver::resolveStarAndReturn(SqliteSelect:
                 column.displayName = column.column;
         }
 
+        if (resCol->table.isNull() && column.joinedWithUsingClause && displayNamesAlreadyAdded.contains(column.displayName, Qt::CaseInsensitive))
+        {
+            // #5314 If duplicated column names from USING join, then only one column should get returned
+            continue;
+        }
+
+        displayNamesAlreadyAdded << column.displayName;
         results << column;
     }
     return results;
@@ -647,7 +654,7 @@ QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Co
 
     SqliteWith::CommonTableExpression* cte = cteList.value(joinSrc->table, Qt::CaseInsensitive);
     QString selectQuery = cte->detokenize();
-    QString theQuery = cteSelectTpl.arg(selectQuery, cte->table);
+    QString theQuery = cteSelectTpl.arg(selectQuery, wrapObjIfNeeded(cte->table));
     QList<Column> columnSources = sqliteResolveColumns(theQuery);
 
     for (Column& column : columnSources)
@@ -740,15 +747,11 @@ QList<SelectResolver::Column> SelectResolver::resolveOtherSource(SqliteSelect::C
     if (!otherSrc->joinConstraint || otherSrc->joinConstraint->expr)
         return joinedColumns;
 
-    // Skip right-hand (aka "other") source column if it matches any of names listed in USING clause.
-    QSet<QString> usingColumns;
-    for (QString& colName : otherSrc->joinConstraint->columnNames)
-        usingColumns << colName.toLower();
+    // JOINing with a USING clause. Marking for later processing if needed.
+    for (SelectResolver::Column& col : joinedColumns)
+        col.joinedWithUsingClause = true;
 
-    return filter<SelectResolver::Column>(joinedColumns, [usingColumns](const SelectResolver::Column& col)
-    {
-        return !usingColumns.contains((col.alias.isNull() ? col.column : col.alias).toLower());
-    });
+    return joinedColumns;
 }
 
 QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *select)

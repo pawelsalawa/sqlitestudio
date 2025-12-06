@@ -588,8 +588,12 @@ void TableWindow::initDbAndTable()
     connect(ui->strictTableCheck, SIGNAL(clicked()), this, SLOT(strictChanged()));
 
     parseDdl();
+
     updateIndexes();
+    ui->indexList->sortByColumn(0, Qt::AscendingOrder);
+
     updateTriggers();
+    ui->triggerList->sortByColumn(0, Qt::AscendingOrder);
 
     // (Re)connect to DB signals
     connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
@@ -916,6 +920,7 @@ void TableWindow::changesSuccessfullyCommitted()
         }
     }
 
+    ui->dataView->resetSorting();
     if (ui->tabWidget->currentIndex() == getDataTabIdx())
         ui->dataView->refreshData();
 }
@@ -1599,6 +1604,7 @@ void TableWindow::updateIndexes()
     resolver.setIgnoreSystemObjects(false);
     QList<SqliteCreateIndexPtr> indexes = resolver.getParsedIndexesForTable(database, table);
 
+    ui->indexList->setSortingEnabled(false);
     ui->indexList->setColumnCount(4);
     ui->indexList->setRowCount(indexes.size());
     ui->indexList->setHorizontalHeaderLabels({
@@ -1637,6 +1643,9 @@ void TableWindow::updateIndexes()
 
     ui->indexList->resizeColumnsToContents();
     ui->indexList->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+    ui->indexList->selectionModel()->clearSelection();
+    ui->indexList->selectionModel()->clearCurrentIndex();
+    ui->indexList->setSortingEnabled(true);
     updateIndexesState();
 }
 
@@ -1648,6 +1657,7 @@ void TableWindow::updateTriggers()
     SchemaResolver resolver(db);
     QList<SqliteCreateTriggerPtr> triggers = resolver.getParsedTriggersForTable(database, table);
 
+    ui->triggerList->setSortingEnabled(false);
     ui->triggerList->setColumnCount(4);
     ui->triggerList->setRowCount(triggers.size());
     ui->triggerList->horizontalHeader()->setMaximumSectionSize(200);
@@ -1685,6 +1695,9 @@ void TableWindow::updateTriggers()
 
     ui->triggerList->resizeColumnsToContents();
     ui->triggerList->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
+    ui->triggerList->selectionModel()->clearSelection();
+    ui->triggerList->selectionModel()->clearCurrentIndex();
+    ui->triggerList->setSortingEnabled(true);
     updateTriggersState();
 }
 
@@ -1790,6 +1803,12 @@ void TableWindow::useCurrentTableAsBaseForNew()
 Db* TableWindow::getAssociatedDb() const
 {
     return db;
+}
+
+bool TableWindow::isWindowClosingBlocked() const
+{
+    return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() ||
+        (ui->tabWidget->currentIndex() == getDataTabIdx() && !ui->dataView->getNavigationState());
 }
 
 void TableWindow::updateFont()

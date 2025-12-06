@@ -69,6 +69,17 @@ class API_EXPORT DbAttacher
         virtual BiStrHash getDbNameToAttach() const = 0;
 
         /**
+         * @brief Provices mapping of databases pre-attached by a user.
+         * @return List of databases attached manually by user with ATTACH statements.
+         *
+         * This is pretty much a convenient method for PRAGMA database_list, that excludes 'main' and 'temp' entries.
+         * It also excludes entries with empty file path (i.e. memory databases, etc).
+         *
+         * Left side values are file paths, while right side values are attached database ID/name.
+         */
+        virtual BiStrHash getNativePathToAttachName() const = 0;
+
+        /**
          * @brief Provides query string updated with attach names.
          * @return Query string.
          */

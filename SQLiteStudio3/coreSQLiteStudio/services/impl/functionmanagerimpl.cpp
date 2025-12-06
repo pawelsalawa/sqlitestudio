@@ -333,6 +333,8 @@ void FunctionManagerImpl::initNativeFunctions()
     registerNativeFunction("import_formats", {}, FunctionManagerImpl::nativeImportFormats);
     registerNativeFunction("import_options", {"format"}, FunctionManagerImpl::nativeImportOptions);
     registerNativeFunction("charsets", {}, FunctionManagerImpl::nativeCharsets);
+    registerNativeFunction("load_extension", {"file", "init"}, FunctionManagerImpl::nativeLoadExtension);
+    registerNativeFunction("load_extension", {"file"}, FunctionManagerImpl::nativeLoadExtension);
 }
 
 void FunctionManagerImpl::refreshFunctionsByKey()
@@ -824,6 +826,20 @@ QVariant FunctionManagerImpl::nativeCharsets(const QList<QVariant> &args, Db *db
     UNUSED(db);
     UNUSED(ok);
     return textCodecNames().join(" ");
+}
+
+QVariant FunctionManagerImpl::nativeLoadExtension(const QList<QVariant> &args, Db *db, bool &ok)
+{
+    if (args.size() < 1 || args.size() > 2)
+    {
+        qDebug() << "load_extension() function misused. Passed" << args.size() << "arguments, while expeted is 1 or 2.";
+        ok = false;
+        return QVariant();
+    }
+
+    QString path = args[0].toString();
+    QString initFunc = args.size() == 2 ? args[1].toString() : QString();
+    return db->loadExtensionManually(path, initFunc);
 }
 
 QStringList FunctionManagerImpl::getArgMarkers(int argCount)

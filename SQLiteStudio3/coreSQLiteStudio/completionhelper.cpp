@@ -380,7 +380,7 @@ bool CompletionHelper::validatePreviousIdForGetObjects(QString* dbName)
     if (previousId)
     {
         localDbName = previousId->value;
-        QStringList databases = schemaResolver->getDatabases().values();
+        QStringList databases = nativePathToAttachName.rightValues();
         databases += DBLIST->getDbNames();
         if (!databases.contains(localDbName, Qt::CaseInsensitive))
             return false; // if db is not on the set, then getObjects() would return empty list anyway;
@@ -437,14 +437,8 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
     results += getExpectedToken(ExpectedToken::DATABASE, "main", "main", tr("Default database"));
     results += getExpectedToken(ExpectedToken::DATABASE, "temp", "temp", tr("Temporary objects database"));
 
-    QSet<QString> databases = schemaResolver->getDatabases();
-    for (QString dbName : databases)
-    {
-        if (dbAttacher->getDbNameToAttach().containsRight(dbName, Qt::CaseInsensitive))
-            continue;
-
-        results += getExpectedToken(ExpectedToken::DATABASE, dbName);
-    }
+    for (QString& attName : nativePathToAttachName.rightValues())
+        results += getExpectedToken(ExpectedToken::DATABASE, attName);
 
     for (Db* otherDb : DBLIST->getValidDbList())
         results += getExpectedToken(ExpectedToken::DATABASE, otherDb->getName());
@@ -785,6 +779,7 @@ TokenPtr CompletionHelper::getPreviousDbOrTable(const TokenList &parsedTokens)
 
 void CompletionHelper::attachDatabases()
 {
+    nativePathToAttachName = dbAttacher->getNativePathToAttachName();
     if (!parsedQuery)
         return;
 
@@ -805,6 +800,9 @@ void CompletionHelper::detachDatabases()
 
 QString CompletionHelper::translateDatabase(const QString& dbName)
 {
+    if (nativePathToAttachName.containsRight(dbName, Qt::CaseInsensitive))
+        return dbName;
+
     if (!dbAttacher->getDbNameToAttach().containsLeft(dbName, Qt::CaseInsensitive))
         return dbName;
 
@@ -1370,7 +1368,7 @@ void CompletionHelper::initFunctions(Db* db)
                      << "abs(X)" << "changes()" << "char(X1,X2,...,XN)" << "coalesce(X,Y,...)"
                      << "glob(X,Y)" << "ifnull(X,Y)" << "instr(X,Y)" << "hex(X)" << "iif(X,Y,Z)"
                      << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "like(X,Y,Z)"
-                     << "load_extension(X,Y)" << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
+                     << "lower(X)" << "ltrim(X)" << "ltrim(X,Y)"
                      << "max(X,Y,...)" << "min(X,Y,...)" << "nullif(X,Y)" << "quote(X)"
                      << "random()" << "randomblob(N)" << "hex(randomblob(16))"
                      << "lower(hex(randomblob(16)))" << "replace(X,Y,Z)" << "round(X)"
@@ -1417,6 +1415,7 @@ void CompletionHelper::initFunctions(Db* db)
     static_qstring(funTpl, "%1(%2)");
     static const QStringList argSymbols = {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"};
     static const int argSymbolCnt = argSymbols.size();
+    static const QStringList overriddenNativeFunctions = {"load_extension"};
 
     SqlQueryPtr res = db->exec("PRAGMA function_list;");
     while (res->hasNext())
@@ -1424,6 +1423,9 @@ void CompletionHelper::initFunctions(Db* db)
         SqlResultsRowPtr row = res->next();
         QVariant nargsVar = row->value("narg");
         QString fnName = row->value("name").toString();
+        if (overriddenNativeFunctions.contains(fnName.toLower()))
+            continue;
+
         QString sig = sigTpl.arg(fnName, nargsVar.toString());
         if (!handledSignatures.contains(sig))
         {

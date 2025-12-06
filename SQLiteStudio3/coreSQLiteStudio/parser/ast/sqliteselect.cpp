@@ -136,7 +136,7 @@ SqliteSelect::Core::Core()
 }
 
 SqliteSelect::Core::Core(const SqliteSelect::Core& other) :
-    SqliteStatement(other), compoundOp(other.compoundOp), distinctKw(other.distinctKw), allKw(other.allKw)
+    SqliteStatement(other), compoundOp(other.compoundOp), distinctKw(other.distinctKw), allKw(other.allKw), valuesMode(other.valuesMode)
 {
     DEEP_COPY_COLLECTION(ResultColumn, resultColumns);
     DEEP_COPY_FIELD(JoinSource, from);
@@ -285,11 +285,12 @@ SqliteSelect::Core::SingleSource::SingleSource()
 }
 
 SqliteSelect::Core::SingleSource::SingleSource(const SqliteSelect::Core::SingleSource& other) :
-    SqliteStatement(other), database(other.database), table(other.table), alias(other.alias), asKw(other.asKw), indexedByKw(other.indexedByKw),
-    notIndexedKw(other.notIndexedKw), indexedBy(other.indexedBy)
+    SqliteStatement(other), database(other.database), table(other.table), alias(other.alias), funcName(other.funcName),
+    asKw(other.asKw), indexedByKw(other.indexedByKw), notIndexedKw(other.notIndexedKw), indexedBy(other.indexedBy)
 {
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(JoinSource, joinSource);
+    DEEP_COPY_COLLECTION(SqliteExpr, funcParams);
 }
 
 SqliteSelect::Core::SingleSource::SingleSource(const QString& name1, const QString& name2, bool asKw, const QString& alias, bool notIndexedKw, const QString& indexedBy)

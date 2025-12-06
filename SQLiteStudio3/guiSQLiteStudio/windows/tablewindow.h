@@ -128,6 +128,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         QString getQuitUncommittedConfirmMessage() const;
         void useCurrentTableAsBaseForNew();
         Db* getAssociatedDb() const;
+        bool isWindowClosingBlocked() const;
 
     protected:
         TableWindow(QWidget *parent, Db* db, const QString& database, const QString& table, bool existingTable);

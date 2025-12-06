@@ -39,6 +39,9 @@ class SelectResolverTest : public QObject
         void testSubselect();
         void testSubselectWithAlias();
         void testIssue4607();
+        void testJoinUsing();
+        void testJoinSameTable();
+        void testJoinSameTableInSubselect();
 };
 
 SelectResolverTest::SelectResolverTest()
@@ -414,6 +417,99 @@ void SelectResolverTest::testIssue4607()
     QVERIFY(coreColumns[3].flags == 0);
 }
 
+void SelectResolverTest::testJoinUsing()
+{
+    QString sql = "select *"
+                  "  from test t1"
+                  "  join test2 t2"
+                  " using (col1)"
+                  " where t1.col1 = 1 and t2.col1 = 1";
+
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    if (resolver.hasErrors()) {
+        for (const QString& err : resolver.getErrors())
+            qWarning() << err;
+    }
+    QVERIFY(!resolver.hasErrors());
+    QVERIFY(columns.first().size() == 3);
+}
+
+void SelectResolverTest::testJoinSameTable()
+{
+    QString sql = "select *"
+                  "  from test2 t1"
+                  "  join test2 t2";
+
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    if (resolver.hasErrors()) {
+        for (const QString& err : resolver.getErrors())
+            qWarning() << err;
+    }
+    QVERIFY(!resolver.hasErrors());
+
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns.size() == 2);
+
+    QVERIFY(coreColumns[0].column == "col1");
+    QVERIFY(coreColumns[0].table == "test2");
+    QVERIFY(coreColumns[0].tableAlias == "t1");
+    QVERIFY(coreColumns[0].alias == "");
+    QVERIFY(coreColumns[0].displayName == "col1");
+
+    QVERIFY(coreColumns[1].column == "col1");
+    QVERIFY(coreColumns[1].table == "test2");
+    QVERIFY(coreColumns[1].tableAlias == "t2");
+    QVERIFY(coreColumns[1].alias == "col1:1");
+    QVERIFY(coreColumns[1].displayName == "col1:1");
+}
+
+void SelectResolverTest::testJoinSameTableInSubselect()
+{
+    QString sql = "select *"
+                  " from ("
+                  "       select *"
+                  "         from test2"
+                  "         join test3"
+                  " )";
+
+    SelectResolver resolver(db, sql);
+    Parser parser;
+    QVERIFY(parser.parse(sql));
+
+    SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    if (resolver.hasErrors()) {
+        for (const QString& err : resolver.getErrors())
+            qWarning() << err;
+    }
+    QVERIFY(!resolver.hasErrors());
+
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns.size() == 2);
+
+    QVERIFY(coreColumns[0].column == "col1");
+    QVERIFY(coreColumns[0].table == "test2");
+    QVERIFY(coreColumns[0].tableAlias.isNull());
+    QVERIFY(coreColumns[0].alias == "");
+    QVERIFY(coreColumns[0].displayName == "col1");
+
+    QVERIFY(coreColumns[1].column == "col1");
+    QVERIFY(coreColumns[1].table == "test3");
+    QVERIFY(coreColumns[1].tableAlias.isNull());
+    QVERIFY(coreColumns[1].alias == "col1:1");
+    QVERIFY(coreColumns[1].displayName == "col1:1");
+}
+
 void SelectResolverTest::initTestCase()
 {
     initKeywords();
@@ -431,6 +527,7 @@ void SelectResolverTest::init()
     db->exec("CREATE TABLE test (col1, col2, col3);");
     db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
     db->exec("CREATE TABLE test2 (col1);");
+    db->exec("CREATE TABLE test3 (col1);");
     db->exec("CREATE TABLE Trip (TripID INTEGER PRIMARY KEY ASC);");
 }
 

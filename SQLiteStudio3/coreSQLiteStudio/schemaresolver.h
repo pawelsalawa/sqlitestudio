@@ -217,6 +217,8 @@ class API_EXPORT SchemaResolver
         StrHash<SqliteCreateTriggerPtr> getAllParsedTriggers(const QString& database);
         StrHash<SqliteCreateViewPtr> getAllParsedViews();
         StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
+        QStringList getTablePrimaryKeyColumns(const QString& table);
+        QStringList getTablePrimaryKeyColumns(const QString& database, const QString& table);
 
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool schema, bool temp = false);

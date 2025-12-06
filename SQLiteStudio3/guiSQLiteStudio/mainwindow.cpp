@@ -317,6 +317,7 @@ void MainWindow::createActions()
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
     ui->dbToolbar->addSeparator();
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::ADD_DB));
+    ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
 
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_TABLE));

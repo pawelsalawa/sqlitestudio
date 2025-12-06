@@ -595,6 +595,7 @@ void DataView::togglePerColumnFiltering()
     perColumnAreaParent->setVisible(enable);
 
     recreateFilterInputs();
+    applyFilter();
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
@@ -730,6 +731,11 @@ void DataView::refreshData(bool keepFocus)
     model->executeQuery(!keepFocus);
 }
 
+void DataView::resetSorting()
+{
+    model->setSortOrder(QueryExecutor::SortList());
+}
+
 void DataView::insertRow()
 {
     if (!model->features().testFlag(SqlQueryModel::INSERT_ROW))
@@ -825,11 +831,15 @@ void DataView::applyFilter()
 
     if (actionMap[FILTER_PER_COLUMN]->isChecked())
     {
-        filterValues.clear();
+        QStringList newValues;
         for (QLineEdit* edit : filterInputs)
-            filterValues << edit->text();
+            newValues << edit->text();
 
-        if (filterValues.join("").isEmpty())
+        if (newValues == lastColumnFilterValues)
+            return;
+
+        lastColumnFilterValues = newValues;
+        if (lastColumnFilterValues.join("").isEmpty())
         {
             model->resetFilter();
             return;
@@ -837,24 +847,26 @@ void DataView::applyFilter()
 
         switch (filterMode)
         {
-            case DataView::FilterMode::STRING:
-                model->applyStringFilter(filterValues);
-                break;
             case DataView::FilterMode::SQL:
-                // Should never happen.
-                qWarning() << "Requested to filter by SQL for filtering per-column. This should not be possible.";
+                // If use had SQL selected prior to enabling per-column filtering, we filter just like it was a STRING.
+            case DataView::FilterMode::STRING:
+                model->applyStringFilter(lastColumnFilterValues);
                 break;
             case DataView::FilterMode::REGEXP:
-                model->applyRegExpFilter(filterValues);
+                model->applyRegExpFilter(lastColumnFilterValues);
                 break;
             case FilterMode::EXACT:
-                model->applyStrictFilter(filterValues);
+                model->applyStrictFilter(lastColumnFilterValues);
                 break;
         }
     }
     else
     {
         QString value = filterEdit->text();
+        if (value == lastSingleFilterValue)
+            return;
+
+        lastSingleFilterValue = value;
         switch (filterMode)
         {
             case DataView::FilterMode::STRING:
@@ -953,7 +965,7 @@ void DataView::recreateFilterInputs()
     if (!model->features().testFlag(SqlQueryModel::FILTERING))
         return;
 
-    qApp->processEvents();
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     for (ExtLineEdit*& edit : filterInputs)
         delete edit;
@@ -970,10 +982,10 @@ void DataView::recreateFilterInputs()
         edit->setClearButtonEnabled(true);
         edit->setFixedWidth(gridView->columnWidth(i));
         edit->setToolTip(tr("Hit Enter key or press \"Apply filter\" button on toolbar to apply new value."));
-        if (filterValues.size() > i)
-            edit->setText(filterValues[i]);
+        if (lastColumnFilterValues.size() > i)
+            edit->setText(lastColumnFilterValues[i]);
 
-        connect(edit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
         perColumnWidget->layout()->addWidget(edit);
         filterInputs << edit;
     }
@@ -990,7 +1002,7 @@ void DataView::recreateFilterInputs()
         perColumnAreaParent->setFixedHeight(hg);
     }
 
-    qApp->processEvents();
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     syncFilterScrollPosition();
 }
@@ -1038,6 +1050,10 @@ void DataView::createFilteringActions()
     gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
 }
 
+bool DataView::getNavigationState() const
+{
+    return navigationState;
+}
 
 void DataView::columnsHeaderDoubleClicked(int columnIdx)
 {

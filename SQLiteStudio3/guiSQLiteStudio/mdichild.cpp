@@ -82,3 +82,8 @@ Db* MdiChild::getAssociatedDb() const
 void MdiChild::dbClosedFinalCleanup()
 {
 }
+
+bool MdiChild::isWindowClosingBlocked() const
+{
+    return false;
+}

@@ -536,7 +536,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void nextPage();
         void lastPage();
         void executeQuery(bool enforcePage0 = false);
-        void interrupt();
+        void interrupt(bool sync = false);
         void commit();
         void rollback();
         void commit(const QList<SqlQueryItem*>& items);

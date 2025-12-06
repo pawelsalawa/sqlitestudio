@@ -63,6 +63,7 @@ void ChainExecutor::exec()
         return;
     }
 
+    executionInProgress = true;
     currentSqlIndex = 0;
     if (async)
         executeCurrentSql();
@@ -142,6 +143,7 @@ void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
     executionErrors << ExecutionError(errorCode, errorText);
     emit finished(lastExecutionResults);
     emit failure(errorCode, errorText);
+    executionInProgress = false;
 }
 
 void ChainExecutor::executionSuccessful(SqlQueryPtr results)
@@ -156,6 +158,7 @@ void ChainExecutor::executionSuccessful(SqlQueryPtr results)
     successfulExecution = true;
     emit finished(results);
     emit success(results);
+    executionInProgress = false;
 }
 
 void ChainExecutor::executeSync()
@@ -204,6 +207,11 @@ void ChainExecutor::restoreFk()
         if (result->isError())
             qCritical() << "Could not restore foreign keys in the database after chain execution. Details:" << db->getErrorText();
     }
+}
+
+bool ChainExecutor::isExecuting() const
+{
+    return executionInProgress;
 }
 
 bool ChainExecutor::getDisableObjectDropsDetection() const

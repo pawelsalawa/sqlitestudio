@@ -654,6 +654,7 @@ QStringList textCodecNames()
 #endif
     QSet<QString> codecSet = QSet<QString>(codecs.begin(), codecs.end());
     QStringList names = QStringList(codecSet.begin(), codecSet.end());
+
     sSort(names);
     return names;
 }
@@ -789,7 +790,7 @@ bool copyRecursively(const QString& src, const QString& dst)
 
         QDir sourceDir(src);
         QStringList fileNames = sourceDir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             const QString newSrcFilePath = src + QLatin1Char('/') + fileName;
             const QString newTgtFilePath = dst + QLatin1Char('/') + fileName;
@@ -833,7 +834,7 @@ bool isWritableRecursively(const QString& dir)
     if (fi.isDir())
     {
         QStringList fileNames = QDir(dir).entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             if (!isWritableRecursively(dir + QLatin1Char('/') + fileName))
                 return false;
@@ -941,7 +942,7 @@ QString readFileContents(const QString& path, QString* err)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         if (err)
-            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path).arg(file.errorString());
+            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path, file.errorString());
 
         return QString();
     }

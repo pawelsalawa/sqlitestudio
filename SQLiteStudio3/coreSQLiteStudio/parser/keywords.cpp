@@ -179,6 +179,7 @@ void initKeywords()
     keywords3["WHERE"] = TK3_WHERE;
     keywords3["WINDOW"] = TK3_WINDOW;
     keywords3["WITH"] = TK3_WITH;
+    keywords3["WITHIN"] = TK3_WITHIN;
     keywords3["WITHOUT"] = TK3_WITHOUT;
 
     rowIdKeywords << "_ROWID_"

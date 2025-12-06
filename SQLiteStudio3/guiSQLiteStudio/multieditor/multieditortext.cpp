@@ -34,7 +34,7 @@ void MultiEditorText::setValue(const QVariant& value)
 
 QVariant MultiEditorText::getValue()
 {
-    return textEdit->toPlainText();
+    return textEdit->document()->toRawText();
 }
 
 void MultiEditorText::setReadOnly(bool value)

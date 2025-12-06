@@ -11,6 +11,7 @@
 #include "syntaxhighlighterplugin.h"
 #include "plugins/scriptingplugin.h"
 #include "uiconfig.h"
+#include "common/userinputfilter.h"
 #include <QDesktopServices>
 #include <QSyntaxHighlighter>
 
@@ -97,6 +98,9 @@ void CollationsEditor::init()
 
     model->setData(COLLATIONS->getAllCollations());
 
+    new UserInputFilter(ui->collationFilterEdit, this, SLOT(applyFilter(QString)));
+    collationFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
     connect(ui->collationList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(collationSelected(QItemSelection,QItemSelection)));
     connect(ui->collationList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
     connect(ui->codeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
@@ -125,7 +129,12 @@ int CollationsEditor::getCurrentCollationRow() const
     if (idxList.size() == 0)
         return -1;
 
-    return idxList.first().row();
+    return collRowToSrc(idxList.first()).row();
+}
+
+QModelIndex CollationsEditor::collRowToSrc(const QModelIndex &idx) const
+{
+    return collationFilterModel->mapToSource(idx);
 }
 
 CollationManager::CollationType CollationsEditor::getCurrentType() const
@@ -134,42 +143,42 @@ CollationManager::CollationType CollationsEditor::getCurrentType() const
                                                 : CollationManager::CollationType::FUNCTION_BASED;
 }
 
-void CollationsEditor::collationDeselected(int row)
+void CollationsEditor::collationDeselected(int srcRow)
 {
-    model->setName(row, ui->nameEdit->text());
-    model->setType(row, getCurrentType());
-    model->setLang(row, ui->langCombo->currentText());
-    model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
-    model->setCode(row, ui->codeEdit->toPlainText());
-    model->setModified(row, currentModified);
+    model->setName(srcRow, ui->nameEdit->text());
+    model->setType(srcRow, getCurrentType());
+    model->setLang(srcRow, ui->langCombo->currentText());
+    model->setAllDatabases(srcRow, ui->allDatabasesRadio->isChecked());
+    model->setCode(srcRow, ui->codeEdit->toPlainText());
+    model->setModified(srcRow, currentModified);
 
     if (ui->selectedDatabasesRadio->isChecked())
-        model->setDatabases(row, getCurrentDatabases());
+        model->setDatabases(srcRow, getCurrentDatabases());
 
     model->validateNames();
 }
 
-void CollationsEditor::collationSelected(int row)
+void CollationsEditor::collationSelected(int srcRow)
 {
     updatesForSelection = true;
-    ui->nameEdit->setText(model->getName(row));
-    ui->codeEdit->setPlainText(model->getCode(row));
-    ui->functionBasedRadio->setChecked(model->getType(row) == CollationManager::CollationType::FUNCTION_BASED);
-    ui->extensionBasedRadio->setChecked(model->getType(row) == CollationManager::CollationType::EXTENSION_BASED);
-    updateLangCombo();
-    ui->langCombo->setCurrentText(model->getLang(row));
+    ui->nameEdit->setText(model->getName(srcRow));
+    ui->codeEdit->setPlainText(model->getCode(srcRow));
+    ui->functionBasedRadio->setChecked(model->getType(srcRow) == CollationManager::CollationType::FUNCTION_BASED);
+    ui->extensionBasedRadio->setChecked(model->getType(srcRow) == CollationManager::CollationType::EXTENSION_BASED);
+    auto l = model->getLang(srcRow);
+    ui->langCombo->setCurrentText(l);
 
     // Databases
-    dbListModel->setDatabases(model->getDatabases(row));
+    dbListModel->setDatabases(model->getDatabases(srcRow));
     ui->databaseList->expandAll();
 
-    if (model->getAllDatabases(row))
+    if (model->getAllDatabases(srcRow))
         ui->allDatabasesRadio->setChecked(true);
     else
         ui->selectedDatabasesRadio->setChecked(true);
 
     updatesForSelection = false;
-    currentModified = model->isModified(row);
+    currentModified = model->isModified(srcRow);
 
     updateCurrentCollationState();
 }
@@ -183,12 +192,12 @@ void CollationsEditor::clearEdits()
     ui->langCombo->setCurrentIndex(-1);
 }
 
-void CollationsEditor::selectCollation(int row)
+void CollationsEditor::selectCollation(int srcRow)
 {
-    if (!model->isValidRowIndex(row))
+    if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->collationList->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->collationList->selectionModel()->setCurrentIndex(collationFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
 QStringList CollationsEditor::getCurrentDatabases() const
@@ -209,9 +218,9 @@ void CollationsEditor::help()
 
 void CollationsEditor::commit()
 {
-    int row = getCurrentCollationRow();
-    if (model->isValidRowIndex(row))
-        collationDeselected(row);
+    int srcRow = getCurrentCollationRow();
+    if (model->isValidRowIndex(srcRow))
+        collationDeselected(srcRow);
 
     QList<CollationManager::CollationPtr> collations = model->getCollations();
 
@@ -219,8 +228,8 @@ void CollationsEditor::commit()
     model->clearModified();
     currentModified = false;
 
-    if (model->isValidRowIndex(row))
-        selectCollation(row);
+    if (model->isValidRowIndex(srcRow))
+        selectCollation(srcRow);
 
     updateState();
 }
@@ -257,13 +266,13 @@ void CollationsEditor::newCollation()
 
 void CollationsEditor::deleteCollation()
 {
-    int row = getCurrentCollationRow();
-    model->deleteCollation(row);
+    int srcRow = getCurrentCollationRow();
+    model->deleteCollation(srcRow);
     clearEdits();
 
-    row = getCurrentCollationRow();
-    if (model->isValidRowIndex(row))
-        collationSelected(row);
+    srcRow = getCurrentCollationRow();
+    if (model->isValidRowIndex(srcRow))
+        collationSelected(srcRow);
 
     updateState();
 }
@@ -350,10 +359,10 @@ void CollationsEditor::collationSelected(const QItemSelection& selected, const Q
     int selCnt = selected.indexes().size();
 
     if (deselCnt > 0)
-        collationDeselected(deselected.indexes().first().row());
+        collationDeselected(collRowToSrc(deselected.indexes().first()).row());
 
     if (selCnt > 0)
-        collationSelected(selected.indexes().first().row());
+        collationSelected(collRowToSrc(selected.indexes().first()).row());
 
     if (deselCnt > 0 && selCnt == 0)
     {
@@ -379,7 +388,7 @@ void CollationsEditor::updateLangCombo()
     }
     else
     {
-        if (!combo->isEnabled())
+        if (!combo->isEnabled() || combo->count() == 0)
         {
             combo->clear();
             for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())

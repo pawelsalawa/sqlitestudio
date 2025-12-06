@@ -58,7 +58,8 @@ class FormatStatement
                 NO_SPACE_BEFORE = 0x01,
                 NO_SPACE_AFTER = 0x02,
                 NO_NEWLINE_BEFORE = 0x04,
-                NO_NEWLINE_AFTER = 0x08
+                NO_NEWLINE_AFTER = 0x08,
+                SINGLE_QUOTE_STRING = 0x10,
             };
 
             Q_DECLARE_FLAGS(Flags, Flag)
@@ -95,7 +96,7 @@ class FormatStatement
         FormatStatement& withId(const QString& id, bool wrapIfNeeded);
         FormatStatement& withIdList(const QStringList& names, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA);
         FormatStatement& withOperator(const QString& oper, FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
-        FormatStatement& withStringOrId(const QString& id);
+        FormatStatement& withStringOrId(const QString& id, FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
         FormatStatement& withIdDot(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
         FormatStatement& withStar(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
         FormatStatement& withFloat(double value);

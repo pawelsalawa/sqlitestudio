@@ -11,6 +11,7 @@ class DbAttacherMock : public DbAttacher
         bool attachDatabases(SqliteQueryPtr);
         void detachDatabases();
         BiStrHash getDbNameToAttach() const;
+        BiStrHash getNativePathToAttachName() const;
         QString getQuery() const;
         bool getMainDbNameUsed() const;
 };

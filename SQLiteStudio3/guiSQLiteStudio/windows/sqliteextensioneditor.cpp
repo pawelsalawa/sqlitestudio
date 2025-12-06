@@ -10,6 +10,7 @@
 #include "db/db.h"
 #include "services/dbmanager.h"
 #include "common/lazytrigger.h"
+#include "common/userinputfilter.h"
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
@@ -101,6 +102,9 @@ void SqliteExtensionEditor::init()
     extensionFilterModel->setSourceModel(model);
     ui->extensionList->setModel(extensionFilterModel);
 
+    new UserInputFilter(ui->extensionFilterEdit, this, SLOT(applyFilter(QString)));
+    extensionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
     dbListModel = new SelectableDbModel(this);
     dbListModel->setSourceModel(DBTREE->getModel());
     ui->databaseList->setModel(dbListModel);
@@ -136,41 +140,46 @@ int SqliteExtensionEditor::getCurrentExtensionRow() const
     if (idxList.size() == 0)
         return -1;
 
-    return idxList.first().row();
+    return extRowToSrc(idxList.first()).row();
 }
 
-void SqliteExtensionEditor::extensionDeselected(int row)
+QModelIndex SqliteExtensionEditor::extRowToSrc(const QModelIndex &idx) const
+{
+    return extensionFilterModel->mapToSource(idx);
+}
+
+void SqliteExtensionEditor::extensionDeselected(int srcRow)
 {
     statusUpdateTrigger->cancel();
 
-    model->setFilePath(row, ui->fileEdit->text());
-    model->setInitFunction(row, ui->initEdit->text());
-    model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
-    model->setModified(row, currentModified);
+    model->setFilePath(srcRow, ui->fileEdit->text());
+    model->setInitFunction(srcRow, ui->initEdit->text());
+    model->setAllDatabases(srcRow, ui->allDatabasesRadio->isChecked());
+    model->setModified(srcRow, currentModified);
 
     if (ui->selectedDatabasesRadio->isChecked())
-        model->setDatabases(row, getCurrentDatabases());
+        model->setDatabases(srcRow, getCurrentDatabases());
 
-    model->setValid(row, validateExtension(row));
+    model->setValid(srcRow, validateExtension(srcRow));
 }
 
-void SqliteExtensionEditor::extensionSelected(int row)
+void SqliteExtensionEditor::extensionSelected(int srcRow)
 {
     updatesForSelection = true;
-    ui->fileEdit->setText(model->getFilePath(row));
-    ui->initEdit->setText(model->getInitFunction(row));
+    ui->fileEdit->setText(model->getFilePath(srcRow));
+    ui->initEdit->setText(model->getInitFunction(srcRow));
 
     // Databases
-    dbListModel->setDatabases(model->getDatabases(row));
+    dbListModel->setDatabases(model->getDatabases(srcRow));
     ui->databaseList->expandAll();
 
-    if (model->getAllDatabases(row))
+    if (model->getAllDatabases(srcRow))
         ui->allDatabasesRadio->setChecked(true);
     else
         ui->selectedDatabasesRadio->setChecked(true);
 
     updatesForSelection = false;
-    currentModified = model->isModified(row);
+    currentModified = model->isModified(srcRow);
 
     updateCurrentExtensionState();
 }
@@ -182,12 +191,12 @@ void SqliteExtensionEditor::clearEdits()
     ui->allDatabasesRadio->setChecked(true);
 }
 
-void SqliteExtensionEditor::selectExtension(int row)
+void SqliteExtensionEditor::selectExtension(int srcRow)
 {
-    if (!model->isValidRowIndex(row))
+    if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->extensionList->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->extensionList->selectionModel()->setCurrentIndex(extensionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
 QStringList SqliteExtensionEditor::getCurrentDatabases() const
@@ -224,14 +233,14 @@ bool SqliteExtensionEditor::validateExtension(int row)
 {
     QString filePath = model->getFilePath(row);
     QString initFunc = model->getInitFunction(row);
-    return validateExtension(filePath, initFunc, nullptr, nullptr, new QString);
+    return validateExtension(filePath, initFunc, nullptr, nullptr, nullptr);
 }
 
 bool SqliteExtensionEditor::validateCurrentExtension()
 {
     QString filePath = ui->fileEdit->text();
     QString initFunc = ui->initEdit->text();
-    return validateExtension(filePath, initFunc, nullptr, nullptr, new QString);
+    return validateExtension(filePath, initFunc, nullptr, nullptr, nullptr);
 }
 
 bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QString& initFunc, bool* fileOk, bool* initOk, QString* fileError)
@@ -243,7 +252,8 @@ bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QSt
     if (!fileInfo.exists() || !fileInfo.isReadable())
     {
         localFileOk = false;
-        *fileError = tr("File with given path does not exist or is not readable.");
+        if (fileError)
+            *fileError = tr("File with given path does not exist or is not readable.");
     }
     else
         localFileOk = tryToLoad(filePath, initFunc, fileError);
@@ -280,9 +290,9 @@ void SqliteExtensionEditor::help()
 
 void SqliteExtensionEditor::commit()
 {
-    int row = getCurrentExtensionRow();
-    if (model->isValidRowIndex(row))
-        extensionDeselected(row);
+    int srcRow = getCurrentExtensionRow();
+    if (model->isValidRowIndex(srcRow))
+        extensionDeselected(srcRow);
 
     QList<SqliteExtensionManager::ExtensionPtr> extensions = model->getExtensions();
 
@@ -290,8 +300,8 @@ void SqliteExtensionEditor::commit()
     model->clearModified();
     currentModified = false;
 
-    if (model->isValidRowIndex(row))
-        selectExtension(row);
+    if (model->isValidRowIndex(srcRow))
+        selectExtension(srcRow);
 
     updateState();
 }
@@ -320,13 +330,13 @@ void SqliteExtensionEditor::newExtension()
 void SqliteExtensionEditor::deleteExtension()
 {
     nameGenerationActive = false;
-    int row = getCurrentExtensionRow();
-    model->deleteExtension(row);
+    int srcRow = getCurrentExtensionRow();
+    model->deleteExtension(srcRow);
     clearEdits();
 
-    row = getCurrentExtensionRow();
-    if (model->isValidRowIndex(row))
-        extensionSelected(row);
+    srcRow = getCurrentExtensionRow();
+    if (model->isValidRowIndex(srcRow))
+        extensionSelected(srcRow);
     else
         updateCurrentExtensionState();
 
@@ -347,8 +357,8 @@ void SqliteExtensionEditor::updateState()
 
 void SqliteExtensionEditor::updateCurrentExtensionState()
 {
-    int row = getCurrentExtensionRow();
-    bool validRow = model->isValidRowIndex(row);
+    int srcRow = getCurrentExtensionRow();
+    bool validRow = model->isValidRowIndex(srcRow);
     ui->rightWidget->setEnabled(validRow);
     if (!validRow)
     {
@@ -366,7 +376,7 @@ void SqliteExtensionEditor::updateCurrentExtensionState()
     setValidState(ui->fileEdit, fileOk, fileError);
     setValidState(ui->initEdit, initOk, tr("Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore."));
     ui->databasesGroup->setEnabled(allOk);
-    model->setValid(row, allOk);
+    model->setValid(srcRow, allOk);
 
     updateState();
 }
@@ -377,10 +387,10 @@ void SqliteExtensionEditor::extensionSelected(const QItemSelection& selected, co
     int selCnt = selected.indexes().size();
 
     if (deselCnt > 0)
-        extensionDeselected(deselected.indexes().first().row());
+        extensionDeselected(extRowToSrc(deselected.indexes().first()).row());
 
     if (selCnt > 0)
-        extensionSelected(selected.indexes().first().row());
+        extensionSelected(extRowToSrc(selected.indexes().first()).row());
 
     if (deselCnt > 0 && selCnt == 0)
     {
@@ -394,13 +404,13 @@ void SqliteExtensionEditor::updateModified()
     if (updatesForSelection)
         return;
 
-    int row = getCurrentExtensionRow();
-    if (model->isValidRowIndex(row))
+    int srcRow = getCurrentExtensionRow();
+    if (model->isValidRowIndex(srcRow))
     {
-        bool fileDiff = model->getFilePath(row) != ui->fileEdit->text();
-        bool initDiff = model->getInitFunction(row) != ui->initEdit->text();
-        bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
-        bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(row)); // QSet to ignore order
+        bool fileDiff = model->getFilePath(srcRow) != ui->fileEdit->text();
+        bool initDiff = model->getInitFunction(srcRow) != ui->initEdit->text();
+        bool allDatabasesDiff = model->getAllDatabases(srcRow) != ui->allDatabasesRadio->isChecked();
+        bool dbDiff = toSet(getCurrentDatabases()) != toSet(model->getDatabases(srcRow)); // QSet to ignore order
 
         currentModified = (fileDiff || initDiff || allDatabasesDiff || dbDiff);
     }
@@ -413,19 +423,19 @@ void SqliteExtensionEditor::generateName()
     if (!nameGenerationActive)
         return;
 
-    int row = getCurrentExtensionRow();
-    if (model->isValidRowIndex(row))
-        model->setName(row, QFileInfo(ui->fileEdit->text()).baseName());
+    int srcRow = getCurrentExtensionRow();
+    if (model->isValidRowIndex(srcRow))
+        model->setName(srcRow, QFileInfo(ui->fileEdit->text()).baseName());
 }
 
 void SqliteExtensionEditor::applyFilter(const QString& value)
 {
-    int row = getCurrentExtensionRow();
+    int srcRow = getCurrentExtensionRow();
     ui->extensionList->selectionModel()->clearSelection();
 
     extensionFilterModel->setFilterFixedString(value);
 
-    selectExtension(row);
+    selectExtension(srcRow);
 }
 
 void SqliteExtensionEditor::browseForFile()

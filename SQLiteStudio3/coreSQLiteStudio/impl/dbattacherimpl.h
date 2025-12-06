@@ -17,6 +17,7 @@ class DbAttacherImpl : public DbAttacher
         bool attachDatabases(SqliteQueryPtr query);
         void detachDatabases();
         BiStrHash getDbNameToAttach() const;
+        BiStrHash getNativePathToAttachName() const;
         QString getQuery() const;
         bool getMainDbNameUsed() const;
 
@@ -52,7 +53,7 @@ class DbAttacherImpl : public DbAttacher
          * This method is used to learn if some database is used more than once in the query,
          * so we attach it only once, then replace all tokens referring to it by the attach name.
          */
-        QHash<QString,TokenList> groupDbTokens(const TokenList& dbTokens);
+        StrHash<TokenList> groupDbTokens(const TokenList& dbTokens);
 
         /**
          * @brief Tries to attach all required databases.
@@ -62,7 +63,7 @@ class DbAttacherImpl : public DbAttacher
          * Major problem that can happen is when "<tt>ATTACH 'path to file'</tt>" fails for any reason. In that case
          * detachAttached() is called and false is returned.
          */
-        bool attachAllDbs(const QHash<QString,TokenList>& groupedDbTokens);
+        bool attachAllDbs(const StrHash<TokenList> &groupedDbTokens);
 
         /**
          * @brief Creates token-to-token replace map to update the query.

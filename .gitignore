@@ -1,9 +1,135 @@
-/output*
-*.user
+# ---- General OS junk --------------------------------------------------------
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+
+# ---- Qt / Qt Creator --------------------------------------------------------
+# Qt Creator user/project files
 *.pro.user
-**/Makefile
-**/.qmake.stash
-**/qrc_*
-SQLiteStudio3/SQLiteStudio3.pro.user.4.8-pre1
-SQLiteStudio-installer.xml.backup
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+CMakeLists.txt.user
+*.creator
+*.creator.user
+*.files
+*.includes
+*.config
+
+# Qt build artifacts (qmake / moc / rcc / uic)
+moc_*
+ui_*.h
+qrc_*.cpp
+*.qmlc
+*.jsc
+*.qrc.dep
+
+# If using QML cache/build dirs
+.qmlcache/
+.qmake.stash
+.qmake.cache
+
+# ---- Build outputs ----------------------------------------------------------
+# Common out-of-source build dirs
+build/
+build-*/
+bin/
+lib/
+obj/
+out/
+output/
+dist/
+tmp/
+temp/
+
+# Compiled objects / libs
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.dll
+*.dylib
+*.so
+*.so.*
+*.exp
+*.pdb
+*.idb
+
+# Executables / app bundles
+*.exe
+*.app/
+*.apk
+*.ipa
+*.msi
+
+# Debug / coverage
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+*.coverage
+lcov.info
+
+# ---- Logs -------------------------------------------------------------------
+*.log
+logs/
+*.trace
+
+# ---- IDEs -------------------------------------------------------------------
+# VS Code
+.vscode/
+.history/
+.code-workspace
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+
+# Visual Studio (in case of Windows builds)
+.vs/
+[Bb]uild*/
+[Bb]in/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+ipch/
+*_i.c
+*_p.c
+
+# ---- Packaging / installers -------------------------------------------------
+*.pkg
+*.deb
+*.rpm
+*.tar
+*.tar.*
+*.zip
+*.7z
+
+# ---- Test & temp data -------------------------------------------------------
+coverage/
+.cache/
+pytest_cache/
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# ---- Misc -------------------------------------------------------------------
+# If the project generates translation caches or resources
+*.qm
+translations/*.qm
+
+# Ignore local env/config overrides
+.env
+.env.*
+.local/

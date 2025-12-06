@@ -1,13 +1,16 @@
 #include "sqliteraise.h"
 #include "parser/statementtokenbuilder.h"
+#include "common/global.h"
+#include "sqliteexpr.h"
 
 SqliteRaise::SqliteRaise()
 {
 }
 
 SqliteRaise::SqliteRaise(const SqliteRaise& other) :
-    SqliteStatement(other), type(other.type), message(other.message)
+    SqliteStatement(other), type(other.type)
 {
+    DEEP_COPY_FIELD(SqliteExpr, expr);
 }
 
 SqliteRaise::SqliteRaise(const QString &type)
@@ -15,10 +18,10 @@ SqliteRaise::SqliteRaise(const QString &type)
     this->type = raiseType(type);
 }
 
-SqliteRaise::SqliteRaise(const QString &type, const QString &text)
+SqliteRaise::SqliteRaise(const QString &type, SqliteExpr *value)
 {
     this->type = raiseType(type);
-    message = text;
+    this->expr = value;
 }
 
 SqliteStatement*SqliteRaise::clone()
@@ -63,7 +66,7 @@ TokenList SqliteRaise::rebuildTokensFromContents()
     StatementTokenBuilder builder;
     builder.withKeyword("RAISE").withSpace().withParLeft().withKeyword(raiseType(type));
     if (type != Type::IGNORE)
-        builder.withOperator(",").withSpace().withString(message);
+        builder.withOperator(",").withSpace().withStatement(expr);
 
     builder.withParRight();
     return builder.build();
