@@ -14,6 +14,7 @@ class ErdChange
         };
 
         ErdChange() = delete;
+        virtual ~ErdChange() {}
 
         /**
          * @param skipSaveoints Pass true if committing all changes to actual database, as there is no need to keep savepoint marks in that case.
@@ -34,6 +35,11 @@ class ErdChange
         virtual QStringList getChangeDdl() = 0;
 
         Category category;
+
+        /**
+         * @brief transactionId Savepoint name marked just before executing this change,
+         *        so undoing this change can be one by rolling back to this savepoint.
+         */
         QString transactionId;
 };
 

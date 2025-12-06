@@ -41,6 +41,11 @@ QString ErdTableWindow::getQuitUncommittedConfirmMessage() const
     return "";
 }
 
+bool ErdTableWindow::commitErdChange()
+{
+    return commitStructure(true);
+}
+
 bool ErdTableWindow::resolveCreateTableStatement()
 {
     createTable = SqliteCreateTablePtr::create(*entity->getTableModel());
@@ -87,8 +92,8 @@ void ErdTableWindow::rollbackStructure()
 void ErdTableWindow::executeStructureChanges()
 {
     ErdChange* change = entity->isExistingTable() ?
-                static_cast<ErdChange*>(new ErdChangeEntity(entity, db, originalCreateTable, createTable)) :
-                static_cast<ErdChange*>(new ErdChangeNewEntity(entity, db, createTable));
+                static_cast<ErdChange*>(new ErdChangeEntity(db, originalCreateTable, createTable)) :
+                static_cast<ErdChange*>(new ErdChangeNewEntity(db, createTable));
 
     structureExecutor->setAsync(false);
     structureExecutor->setDb(db);

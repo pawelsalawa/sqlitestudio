@@ -200,7 +200,7 @@ void ErdView::applyConfig(const QHash<QString, QVariant> &erdConfig)
     if (!centerPoint.isNull())
     {
         centerOn(centerPoint);
-        QTimer::singleShot(0, [this]() {
+        QTimer::singleShot(1000, [this]() {
             centerPointRestored = true;
         });
     }

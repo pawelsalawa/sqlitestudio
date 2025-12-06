@@ -58,7 +58,7 @@ int ErdEntity::rowIndexAt(const QPointF& point)
 {
     QPointF localCoords = mapFromScene(point);
     int idx = 0;
-    for (Row* row : rows)
+    for (Row*& row : rows)
     {
         if (row->topRect->contains(localCoords))
             return idx;
@@ -144,7 +144,7 @@ void ErdEntity::updateConnectionIndexes()
     }
 
     int connectionInEntityIndex = 0;
-    for (ErdConnection* conn : radialSortedConnections)
+    for (ErdConnection*& conn : radialSortedConnections)
     {
         if (conn->getStartEntity() == this)
             conn->setIndexInStartEntity(connectionInEntityIndex++);
@@ -185,20 +185,20 @@ void ErdEntity::rebuild()
         addColumn(col, (++colIdx == tableModel->columns.size()));
 
     qreal iconsWd = 0;
-    for (Row* row : rows)
+    for (Row*& row : rows)
         iconsWd = qMax(iconsWd, row->calcIconsWidth());
 
     qreal nameWd = 0;
-    for (Row* row : rows.mid(1)) // skip header, as it has no distinct name & datatype columns
+    for (Row*& row : rows.mid(1)) // skip header, as it has no distinct name & datatype columns
         nameWd = qMax(nameWd, row->calcNameWidth());
 
     // Total width calculated afterwards, because text width must be added only after total icon column width is known
     qreal totalWd = 0;
-    for (Row* row : rows)
+    for (Row*& row : rows)
         totalWd = qMax(totalWd, row->calcWidth(iconsWd, nameWd));
 
     qreal y = 0;
-    for (Row* row : rows)
+    for (Row*& row : rows)
         y += row->updateLayout(iconsWd, nameWd, totalWd, y);
 
     disableChildSelection(this);
@@ -251,7 +251,7 @@ void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
 {
     Row* row = new Row(this);
 
-    for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
+    for (SqliteCreateTable::Column::Constraint*& constr : column->constraints)
     {
         QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
         iconItem->setToolTip(constr->detokenize().trimmed());
@@ -328,7 +328,7 @@ void ErdEntity::modelUpdated()
         cornerIcon = nullptr;
     }
 
-    for (Row* row : rows)
+    for (Row*& row : rows)
     {
         scene()->removeItem(row->topRect);
         delete row;
@@ -395,7 +395,7 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal nameColumn, qreal glo
 {
     // Calculate max height of all items + paddings
     qreal hg = 0;
-    for (QGraphicsItem* iconItem : icons)
+    for (QGraphicsItem*& iconItem : icons)
         hg = qMax(iconItem->boundingRect().height(), hg);
 
     hg = qMax(text->boundingRect().height(), hg);
@@ -411,7 +411,7 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal nameColumn, qreal glo
     // Since we have pre-calculated max width of icons in all rows, we need to align icons to the right here
     qreal x = CELL_PADDING + iconColumn;
 
-    for (QGraphicsItem* iconItem : icons)
+    for (QGraphicsItem*& iconItem : icons)
     {
         auto iconRect = iconItem->boundingRect();
         qreal iconY = hg / 2 - iconRect.height() / 2;

@@ -10,16 +10,14 @@ class Db;
 class ErdChangeNewEntity : public ErdChange
 {
     public:
-        ErdChangeNewEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& createTable);
+        ErdChangeNewEntity(Db* db, const SqliteCreateTablePtr& createTable);
 
-        ErdEntity *getEntity() const;
         QString getTableName() const;
 
     protected:
         QStringList getChangeDdl();
 
     private:
-        ErdEntity* entity = nullptr;
         Db* db = nullptr;
         SqliteCreateTablePtr createTable;
 };

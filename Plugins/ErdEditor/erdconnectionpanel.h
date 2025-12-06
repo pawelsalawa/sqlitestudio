@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "common/extactioncontainer.h"
+#include "erdpropertiespanel.h"
+#include "parser/ast/sqlitecreatetable.h"
 
 namespace Ui {
     class ErdConnectionPanel;
@@ -12,8 +14,10 @@ class ErdChange;
 class Db;
 class ErdEntity;
 class ErdConnection;
+class ConstraintPanel;
+class ChainExecutor;
 
-class GUI_API_EXPORT ErdConnectionPanel : public QWidget, public ExtActionContainer
+class ErdConnectionPanel : public QWidget, public ExtActionContainer, public ErdPropertiesPanel
 {
         Q_OBJECT
 
@@ -34,6 +38,7 @@ class GUI_API_EXPORT ErdConnectionPanel : public QWidget, public ExtActionContai
         ~ErdConnectionPanel();
 
         QString getStartEntityTable() const;
+        bool commitErdChange();
 
     protected:
         void createActions();
@@ -47,7 +52,15 @@ class GUI_API_EXPORT ErdConnectionPanel : public QWidget, public ExtActionContai
 
         Ui::ErdConnectionPanel *ui;
         Db* db = nullptr;
+        ConstraintPanel* constraintPanel = nullptr;
         ErdConnection* connection = nullptr;
+        SqliteCreateTablePtr originalCreateTable;
+        SqliteCreateTablePtr createTable;
+        ChainExecutor* ddlExecutor = nullptr;
+
+    private slots:
+        bool commit();
+        void rollback();
 
     signals:
         void changeCreated(ErdChange* change);

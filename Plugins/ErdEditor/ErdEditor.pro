@@ -47,6 +47,7 @@ HEADERS += \
     erdgraphvizlayoutplanner.h \
     erditem.h \
     erdlinearrowitem.h \
+    erdpropertiespanel.h \
     erdscene.h \
     erdsquarearrowitem.h \
     erdtablefkpanel.h \

@@ -370,10 +370,10 @@ QVariant ErdWindow::saveSession()
 
 bool ErdWindow::storeEntityModifications(QWidget* sidePanelWidget)
 {
-    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(sidePanelWidget);
-    if (tableWin)
+    ErdPropertiesPanel* propertiesPanel = dynamic_cast<ErdPropertiesPanel*>(sidePanelWidget);
+    if (propertiesPanel)
     {
-        if (!tableWin->commitStructure(true))
+        if (!propertiesPanel->commitErdChange())
             return false;
     }
     return true;

@@ -11,10 +11,10 @@ class ErdEntity;
 class ErdChangeEntity : public ErdChange
 {
     public:
-        ErdChangeEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after);
+        ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after);
+        ~ErdChangeEntity();
 
         TableModifier *getTableModifier() const;
-        ErdEntity *getEntity() const;
         QString getTableNameBefore() const;
         QString getTableNameAfter() const;
 
@@ -22,7 +22,6 @@ class ErdChangeEntity : public ErdChange
         QStringList getChangeDdl();
 
     private:
-        ErdEntity* entity = nullptr;
         Db* db = nullptr;
         SqliteCreateTablePtr before;
         SqliteCreateTablePtr after;

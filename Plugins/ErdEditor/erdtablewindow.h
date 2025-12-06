@@ -2,12 +2,13 @@
 #define ERDTABLEWINDOW_H
 
 #include "windows/tablewindow.h"
+#include "erdpropertiespanel.h"
 #include <QObject>
 
 class ErdEntity;
 class ErdChange;
 
-class ErdTableWindow : public TableWindow
+class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
 {
         Q_OBJECT
 
@@ -16,6 +17,7 @@ class ErdTableWindow : public TableWindow
         ~ErdTableWindow();
 
         QString getQuitUncommittedConfirmMessage() const;
+        bool commitErdChange();
 
     protected:
         bool resolveCreateTableStatement();

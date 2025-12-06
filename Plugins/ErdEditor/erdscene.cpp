@@ -71,9 +71,10 @@ void ErdScene::refreshSchema(Db *db, ErdChangeEntity* entityChange)
 void ErdScene::refreshSchema(Db* db, ErdChangeNewEntity* newEntityChange)
 {
     StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
+    ErdEntity* entity = entitiesByTable.value(newEntityChange->getTableName(), Qt::CaseInsensitive);
 
     SchemaResolver resolver(db);
-    refreshEntityFromTableName(resolver, entitiesByTable, newEntityChange->getEntity(), newEntityChange->getTableName());
+    refreshEntityFromTableName(resolver, entitiesByTable, entity, newEntityChange->getTableName());
 }
 
 void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName)

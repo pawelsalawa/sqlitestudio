@@ -4,9 +4,14 @@
 #include "tablemodifier.h"
 #include "erdentity.h"
 
-ErdChangeEntity::ErdChangeEntity(ErdEntity* entity, Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after) :
-    ErdChange(Category::ENTITY_CHANGE, true), entity(entity), db(db), before(before), after(after)
+ErdChangeEntity::ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after) :
+    ErdChange(Category::ENTITY_CHANGE, true), db(db), before(before), after(after)
 {
+}
+
+ErdChangeEntity::~ErdChangeEntity()
+{
+    safe_delete(tableModifier);
 }
 
 QStringList ErdChangeEntity::getChangeDdl()
@@ -21,11 +26,6 @@ QStringList ErdChangeEntity::getChangeDdl()
 TableModifier* ErdChangeEntity::getTableModifier() const
 {
     return tableModifier;
-}
-
-ErdEntity* ErdChangeEntity::getEntity() const
-{
-    return entity;
 }
 
 QString ErdChangeEntity::getTableNameBefore() const

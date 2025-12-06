@@ -85,6 +85,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         bool initMemDb();
         bool storeCurrentSidePanelModifications();
         bool handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName);
+        /**
+         * @return true if modifications storing operation was successful and view is allowed to change item selection.
+         */
         bool storeEntityModifications(QWidget* sidePanelWidget);
         QString getCurrentSidePanelModificationsEntity() const;
 

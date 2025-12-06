@@ -1,12 +1,14 @@
 #include "erdconnectionpanel.h"
 #include "ui_erdconnectionpanel.h"
 #include "db/db.h"
+#include "db/chainexecutor.h"
 #include "erdentity.h"
 #include "erdchangeentity.h"
 #include "erdconnection.h"
 #include "erdcolumnfkpanel.h"
 #include "erdtablefkpanel.h"
 #include "common/unused.h"
+#include "iconmanager.h"
 #include <QDebug>
 
 ErdConnectionPanel::ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent) :
@@ -21,6 +23,7 @@ ErdConnectionPanel::ErdConnectionPanel(Db* db, ErdConnection* connection, QWidge
 
 ErdConnectionPanel::~ErdConnectionPanel()
 {
+    safe_delete(ddlExecutor);
     delete ui;
 }
 
@@ -29,9 +32,15 @@ QString ErdConnectionPanel::getStartEntityTable() const
     return connection->getStartEntity()->getTableName();
 }
 
+bool ErdConnectionPanel::commitErdChange()
+{
+    return commit();
+}
+
 void ErdConnectionPanel::createActions()
 {
-
+    createAction(COMMIT, ICONS.COMMIT, tr("Apply changes to diagram", "ERD editor"), this, SLOT(commit()), ui->toolBar, this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Abort changes", "ERD editor"), this, SLOT(rollback()), ui->toolBar, this);
 }
 
 void ErdConnectionPanel::setupDefShortcuts()
@@ -46,20 +55,24 @@ QToolBar *ErdConnectionPanel::getToolBar(int toolbar) const
 
 void ErdConnectionPanel::init()
 {
+    initActions();
 
+    ddlExecutor = new ChainExecutor();
+
+    ErdEntity* childEntity = connection->getStartEntity();
+    originalCreateTable = childEntity->getTableModel();
+    createTable.reset(childEntity->getTableModel()->typeClone<SqliteCreateTable>());
 
     if (connection->isCompoundConnection())
-    {
         initTableLevelFk();
-        ui->bottomSpacer->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Minimum);
-        ui->topLevelLayout->invalidate();
-    }
     else
         initColumnLevelFk();
 }
 
 void ErdConnectionPanel::initColumnLevelFk()
 {
+    ui->tableLevelFkLabel->setVisible(false);
+
     ErdEntity* childEntity = connection->getStartEntity();
     ErdEntity* parentEntity = connection->getEndEntity();
     ui->childTableName->setText(childEntity->getTableName());
@@ -67,7 +80,7 @@ void ErdConnectionPanel::initColumnLevelFk()
     ErdColumnFkPanel* fkPanel = new ErdColumnFkPanel();
     ui->fkPanelContainer->layout()->addWidget(fkPanel);
 
-    SqliteCreateTable* childCreateTable = childEntity->getTableModel().data();
+    SqliteCreateTable* childCreateTable = createTable.data();
     SqliteCreateTable::Column* childColumnStmt = childCreateTable->columns[connection->getStartEntityRow() - 1]; // -1 to respect entity header
 
     SqliteCreateTable* parentCreateTable = parentEntity->getTableModel().data();
@@ -96,10 +109,14 @@ void ErdConnectionPanel::initColumnLevelFk()
     fkPanel->setCreateTableStmt(childCreateTable);
     fkPanel->setColumnStmt(childColumnStmt);
     fkPanel->setConstraint(matchedFk);
+    constraintPanel = fkPanel;
 }
 
 void ErdConnectionPanel::initTableLevelFk()
 {
+    ui->bottomSpacer->changeSize(0, 0, QSizePolicy::Minimum, QSizePolicy::Minimum);
+    ui->topLevelLayout->invalidate();
+
     ErdEntity* childEntity = connection->getStartEntity();
     ErdEntity* parentEntity = connection->getEndEntity();
     ui->childTableName->setText(childEntity->getTableName());
@@ -107,7 +124,7 @@ void ErdConnectionPanel::initTableLevelFk()
     ErdTableFkPanel* fkPanel = new ErdTableFkPanel();
     ui->fkPanelContainer->layout()->addWidget(fkPanel);
 
-    SqliteCreateTable* childCreateTable = childEntity->getTableModel().data();
+    SqliteCreateTable* childCreateTable = createTable.data();
     QList<SqliteCreateTable::Column*> childColumnStmts;
     childColumnStmts << childCreateTable->columns[connection->getStartEntityRow() - 1]; // -1 to respect entity header
     for (ErdConnection* assocConn : connection->getAssociatedConnections())
@@ -150,4 +167,27 @@ void ErdConnectionPanel::initTableLevelFk()
     fkPanel->setDb(db);
     fkPanel->setCreateTableStmt(childCreateTable);
     fkPanel->setConstraint(matchedFk);
+    constraintPanel = fkPanel;
+}
+
+bool ErdConnectionPanel::commit()
+{
+    constraintPanel->storeDefinition();
+
+    ErdChange* change = new ErdChangeEntity(db, originalCreateTable, createTable);
+
+    ddlExecutor->setAsync(false);
+    ddlExecutor->setDb(db);
+    ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setDisableObjectDropsDetection(true);
+    ddlExecutor->exec();
+
+    emit changeCreated(change);
+    return true;
+}
+
+void ErdConnectionPanel::rollback()
+{
+
 }
