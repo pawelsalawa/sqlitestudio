@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="351"/>
-      <location filename="../db/abstractdb.cpp" line="368"/>
+      <location filename="../db/abstractdb.cpp" line="374"/>
+      <location filename="../db/abstractdb.cpp" line="391"/>
       <source>Cannot execute query on closed database.</source>
       <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="708"/>
+      <location filename="../db/abstractdb.cpp" line="731"/>
       <source>Error attaching database %1: %2</source>
       <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="950"/>
+      <location filename="../db/abstractdb.cpp" line="973"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>无法在数据库 &apos;%1&apos; 设置完整的 WAL 检查点。从 SQLite 引擎返回错误︰ %2</translation>
     </message>
@@ -47,13 +47,13 @@
       <translation>未能启动数据库事务。详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="89"/>
+      <location filename="../db/chainexecutor.cpp" line="90"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>中断</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="151"/>
+      <location filename="../db/chainexecutor.cpp" line="153"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>未能提交数据库事务。详情：%1</translation>
@@ -379,38 +379,38 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无效的参数个数。对于函数 %1，需要 %2 个，但得到 %3 个。</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>SQLiteStudio 中没有注册该函数：%1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="414"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>函数 %1(%2) 以 %3 语言注册，但是支持该语言的插件没有被正确加载。</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="432"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>无效的正则表达式模式：%1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="451"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="484"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="506"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="526"/>
       <source>Error while writting to file %1: %2</source>
       <translation>写入文件 %1 时发生错误：%2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="544"/>
       <source>Unsupported scripting language: %1</source>
       <translation>不支持的脚本语言：%1</translation>
     </message>
@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="944"/>
+      <location filename="../common/utils.cpp" line="945"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
@@ -816,7 +816,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法关闭数据库：%1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="114"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
       <source>Could not attach database %1: %2</source>
       <translation>无法附加数据库 %1：%2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>不完整的查询。</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
       <source>Parser stack overflow</source>
       <translation>解析堆栈溢出</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
       <source>Syntax error</source>
       <translation>语法错误</translation>
     </message>
@@ -897,7 +897,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>无法解析该列的数据源：%1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="455"/>
+      <location filename="../selectresolver.cpp" line="462"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>无法解析表的列 &apos;%1&apos;。</translation>
     </message>
@@ -1021,9 +1021,9 @@ The view will remain as it is.</source>
       <translation>只能同时执行一个查询。</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="344"/>
-      <location filename="../db/queryexecutor.cpp" line="358"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="364"/>
+      <location filename="../db/queryexecutor.cpp" line="422"/>
+      <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation type="unfinished"/>
     </message>
@@ -1032,7 +1032,7 @@ The view will remain as it is.</source>
       <translation type="vanished">执行 count(*) 查询时出错，因此将禁用数据分页。数据库错误详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="527"/>
+      <location filename="../db/queryexecutor.cpp" line="611"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio 无法从查询中提取元数据。结果将不可编辑。</translation>
     </message>
@@ -1076,22 +1076,22 @@ The view will remain as it is.</source>
       <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="150"/>
+      <location filename="../sqlfileexecutor.cpp" line="148"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>应用程序提交事务失败，因此无法执行 SQL：%1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="155"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。其中 %3 个由于错误未被执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="161"/>
+      <location filename="../sqlfileexecutor.cpp" line="159"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>在 %2 秒内完成了 %1 个查询的执行。</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="168"/>
+      <location filename="../sqlfileexecutor.cpp" line="166"/>
       <source>Could not execute SQL due to error.</source>
       <translation>由于错误无法执行 SQL。</translation>
     </message>
