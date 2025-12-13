@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="351"/>
-      <location filename="../db/abstractdb.cpp" line="368"/>
+      <location filename="../db/abstractdb.cpp" line="374"/>
+      <location filename="../db/abstractdb.cpp" line="391"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Kapalı veritabanında sorgu çalıştırılamaz.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="708"/>
+      <location filename="../db/abstractdb.cpp" line="731"/>
       <source>Error attaching database %1: %2</source>
       <translation>Veritabanına eklenirken hata %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="950"/>
+      <location filename="../db/abstractdb.cpp" line="973"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation type="unfinished">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
     </message>
@@ -47,13 +47,13 @@
       <translation>Veritabanı işlemi başlatılamadı. Detaylar: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="89"/>
+      <location filename="../db/chainexecutor.cpp" line="90"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Yarıda kesildi</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="151"/>
+      <location filename="../db/chainexecutor.cpp" line="153"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Veritabanı işlemi başarılı bitirilemedi. Detaylar: %1</translation>
@@ -379,38 +379,38 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation type="unfinished">No such function registered in SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="414"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="432"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation type="unfinished">Invalid regular expression pattern: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="451"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="484"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>%1 dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="506"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>%1 dosyası yazılmak üzere açılamadı: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="526"/>
       <source>Error while writting to file %1: %2</source>
       <translation>%1 dosyasına yazılırken hata: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="544"/>
       <source>Unsupported scripting language: %1</source>
       <translation type="unfinished">Unsupported scripting language: %1</translation>
     </message>
@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="944"/>
+      <location filename="../common/utils.cpp" line="945"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
@@ -816,7 +816,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>Veritabanı kapanamadı: %1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="114"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
       <source>Could not attach database %1: %2</source>
       <translation type="unfinished">Could not attach database %1: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Incomplete query.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
       <source>Parser stack overflow</source>
       <translation type="unfinished">Parser stack overflow</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
       <source>Syntax error</source>
       <translation>Sözdizimi hatası</translation>
     </message>
@@ -897,7 +897,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not resolve data source for column: %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="455"/>
+      <location filename="../selectresolver.cpp" line="462"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
@@ -1021,9 +1021,9 @@ The view will remain as it is.</translation>
       <translation type="unfinished">Only one query can be executed simultaneously.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="344"/>
-      <location filename="../db/queryexecutor.cpp" line="358"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="364"/>
+      <location filename="../db/queryexecutor.cpp" line="422"/>
+      <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation type="unfinished"/>
     </message>
@@ -1032,7 +1032,7 @@ The view will remain as it is.</translation>
       <translation type="obsolete">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="527"/>
+      <location filename="../db/queryexecutor.cpp" line="611"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio sorgudan üstveri çıkaramadı. Sonuçlar düzenlenemeyecektir.</translation>
     </message>
@@ -1076,22 +1076,22 @@ The view will remain as it is.</translation>
       <translation>&apos;%1&apos; dosyası okunmak üzere açılamadı: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="150"/>
+      <location filename="../sqlfileexecutor.cpp" line="148"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="155"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="161"/>
+      <location filename="../sqlfileexecutor.cpp" line="159"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="168"/>
+      <location filename="../sqlfileexecutor.cpp" line="166"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>
