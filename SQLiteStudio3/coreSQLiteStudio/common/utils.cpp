@@ -4,6 +4,8 @@
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
 #include <QJsonDocument>
+#include <QJsonValue>
+#include <QUuid>
 #include <QLine>
 #include <QString>
 #include <QStringConverter>
