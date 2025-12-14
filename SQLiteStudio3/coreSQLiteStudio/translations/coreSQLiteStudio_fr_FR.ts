@@ -785,7 +785,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="945"/>
+      <location filename="../common/utils.cpp" line="947"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
