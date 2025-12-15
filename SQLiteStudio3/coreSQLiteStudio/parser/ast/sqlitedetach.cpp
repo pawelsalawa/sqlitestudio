@@ -33,7 +33,7 @@ SqliteStatement*SqliteDetach::clone()
     return new SqliteDetach(*this);
 }
 
-TokenList SqliteDetach::rebuildTokensFromContents()
+TokenList SqliteDetach::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

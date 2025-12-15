@@ -17,7 +17,17 @@ ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
 {
 }
 
-QSet<QString> ErdScene::parseSchema(Db* db)
+void ErdScene::setDb(Db *db)
+{
+    this->db = db;
+}
+
+Db* ErdScene::getDb() const
+{
+    return db;
+}
+
+QSet<QString> ErdScene::parseSchema()
 {
     if (!db)
         return QSet<QString>();
@@ -49,7 +59,7 @@ QSet<QString> ErdScene::parseSchema(Db* db)
     return tableNames;
 }
 
-void ErdScene::refreshSchema(Db *db, ErdChangeEntity* entityChange)
+void ErdScene::refreshSchema(ErdChangeEntity* entityChange)
 {
     StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
 
@@ -61,14 +71,14 @@ void ErdScene::refreshSchema(Db *db, ErdChangeEntity* entityChange)
         modifiedTables << OldNewName(tableName, tableName);
 
     SchemaResolver resolver(db);
-    for (const OldNewName& oldNewTableName : modifiedTables)
+    for (OldNewName& oldNewTableName : modifiedTables)
     {
         ErdEntity* entity = entitiesByTable[oldNewTableName.first];
         refreshEntityFromTableName(resolver, entitiesByTable, entity, oldNewTableName.second);
     }
 }
 
-void ErdScene::refreshSchema(Db* db, ErdChangeNewEntity* newEntityChange)
+void ErdScene::refreshSchema(ErdChangeNewEntity* newEntityChange)
 {
     StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
     ErdEntity* entity = entitiesByTable.value(newEntityChange->getTableName(), Qt::CaseInsensitive);
@@ -264,6 +274,11 @@ void ErdScene::refreshSceneRect()
     setSceneRect(boundingRect);
 }
 
+void ErdScene::notify(ErdChange *change)
+{
+    emit changeReceived(change);
+}
+
 void ErdScene::removeEntityFromScene(ErdEntity* entity)
 {
     removeItem(entity);
@@ -281,10 +296,7 @@ void ErdScene::removeEntityFromScene(ErdEntity* entity)
 void ErdScene::removeEntityFromSceneByName(const QString& tableName)
 {
     QString lowerName = tableName.toLower();
-    ErdEntity* entity = findFirst<ErdEntity>(entities, [&lowerName](ErdEntity* e)
-    {
-        return (e->getTableName().toLower() == lowerName);
-    });
+    ErdEntity* entity = entities | FIND_FIRST(e, {return (e->getTableName().toLower() == lowerName);});
 
     if (!entity)
     {

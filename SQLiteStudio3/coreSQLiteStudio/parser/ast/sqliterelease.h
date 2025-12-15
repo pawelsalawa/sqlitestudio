@@ -20,7 +20,7 @@ class API_EXPORT SqliteRelease : public SqliteQuery
         bool savepointKw = false;
 
     protected:
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteRelease> SqliteReleasePtr;

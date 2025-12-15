@@ -4,11 +4,13 @@
 #include <QObject>
 #include <QPointF>
 #include "erdarrowitem.h"
+#include "parser/ast/sqlitecreatetable.h"
 
 class ErdEntity;
 class ErdScene;
 class ErdCurvyArrowItem;
 class QGraphicsScene;
+class Db;
 
 class ErdConnection
 {
@@ -26,6 +28,8 @@ class ErdConnection
         ErdEntity* getEndEntity() const;
         int getStartEntityRow() const;
         int getEndEntityRow() const;
+        SqliteCreateTable::Column* getStartEntityColumn() const;
+        SqliteCreateTable::Column* getEndEntityColumn() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         void select(bool changeFocusToo = true);
         bool isOwnerOf(ErdArrowItem* arrow);
@@ -48,6 +52,7 @@ class ErdConnection
 
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
+        void commitChange();
 
         ErdEntity* startEntity = nullptr;
         ErdEntity* endEntity = nullptr;

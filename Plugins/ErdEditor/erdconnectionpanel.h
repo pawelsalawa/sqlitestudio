@@ -46,21 +46,23 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
         QToolBar *getToolBar(int toolbar) const;
 
     private:
-        void init();
-        void initColumnLevelFk();
-        void initTableLevelFk();
+        void init(ErdConnection *connection);
+        void initColumnLevelFk(ErdConnection *connection);
+        void initTableLevelFk(ErdConnection *connection);
 
         Ui::ErdConnectionPanel *ui;
         Db* db = nullptr;
         ConstraintPanel* constraintPanel = nullptr;
-        ErdConnection* connection = nullptr;
         SqliteCreateTablePtr originalCreateTable;
         SqliteCreateTablePtr createTable;
+        QString originalContent;
         ChainExecutor* ddlExecutor = nullptr;
+        SqliteStatement* matchedFk = nullptr;
 
     private slots:
         bool commit();
         void rollback();
+        void validate();
 
     signals:
         void changeCreated(ErdChange* change);

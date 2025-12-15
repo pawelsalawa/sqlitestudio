@@ -316,7 +316,7 @@ bool TableModifier::handleColumnNames(QStringList& columnsToUpdate)
         }
 
         // It wasn't modified, but it's not on existing columns list? Remove it.
-        if (indexOf(existingColumns, it.value(), Qt::CaseInsensitive) == -1)
+        if (!existingColumns.contains(it.value(), Qt::CaseInsensitive))
         {
             it.remove();
             modified = true;
@@ -346,7 +346,7 @@ bool TableModifier::handleColumnTokens(TokenList& columnsToUpdate)
         // It wasn't modified, but it's not on existing columns list?
         // In case of SELECT it's complicated to remove that token from anywhere
         // in the statement. Replacing it with NULL is a kind of compromise.
-        if (indexOf(existingColumns, lowerName, Qt::CaseInsensitive) == -1)
+        if (!existingColumns.contains(lowerName, Qt::CaseInsensitive))
         {
             token->value = "NULL";
             modified = true;
@@ -422,7 +422,7 @@ QString TableModifier::handleUpdateColumn(const QString& colName, bool& modified
     }
 
     // It wasn't modified, but it's not on existing columns list? Remove it.
-    if (indexOf(existingColumns, colName, Qt::CaseInsensitive) == -1)
+    if (!existingColumns.contains(colName, Qt::CaseInsensitive))
     {
         modified = true;
         return QString();

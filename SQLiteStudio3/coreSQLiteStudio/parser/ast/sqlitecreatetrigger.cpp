@@ -243,7 +243,7 @@ SqliteStatement*SqliteCreateTrigger::Event::clone()
     return new SqliteCreateTrigger::Event(*this);
 }
 
-TokenList SqliteCreateTrigger::Event::rebuildTokensFromContents()
+TokenList SqliteCreateTrigger::Event::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -303,7 +303,7 @@ SqliteCreateTrigger::Event::Type SqliteCreateTrigger::Event::stringToType(const 
     return Event::null;
 }
 
-TokenList SqliteCreateTrigger::rebuildTokensFromContents()
+TokenList SqliteCreateTrigger::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

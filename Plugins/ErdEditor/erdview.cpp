@@ -6,6 +6,7 @@
 #include "common/unused.h"
 #include "mainwindow.h"
 #include "erdeditorplugin.h"
+#include "db/db.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
@@ -35,6 +36,14 @@ void ErdView::setScene(ErdScene* scene)
 ErdScene* ErdView::scene() const
 {
     return qobject_cast<ErdScene*>(QGraphicsView::scene());
+}
+
+Db *ErdView::getDb() const
+{
+    if (!QGraphicsView::scene())
+        return nullptr;
+
+    return scene()->getDb();
 }
 
 bool ErdView::isSpacePressed() const
@@ -228,9 +237,8 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
 
             if (draftConnection)
             {
-                ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection->finalizeConnection(entity, mapToScene(pos));
-                draftConnection->select();
+                // draftConnection->select();
                 draftConnection = nullptr;
                 draftingConnectionMode = false;
                 emit draftConnectionRemoved();
@@ -238,7 +246,6 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
             }
             else if (draftingConnectionMode)
             {
-                ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
                 draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
                 draftConnection->addToScene(scene());
                 return true;
@@ -321,10 +328,7 @@ void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
         return; // button relesed over selected item - no deselection
 
     selectedItems = scene()->selectedItems();
-    selectedMovableItems = filter<QGraphicsItem*>(selectedItems, [](QGraphicsItem* item) -> bool
-    {
-       return item->flags().testFlag(QGraphicsItem::ItemIsMovable);
-    });
+    selectedMovableItems = selectedItems | FILTER(item, {return item->flags().testFlag(QGraphicsItem::ItemIsMovable);});
 }
 
 void ErdView::clearSelectedItems()

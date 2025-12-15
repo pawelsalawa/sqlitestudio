@@ -47,8 +47,7 @@ bool DbAttacherImpl::attachDatabases()
 
     BiStrHash nativePathToAttachName = getNativePathToAttachName();
 
-    TokenList dbTokens = filter<TokenPtr>(getDbTokens(), [nativePathToAttachName](const TokenPtr& t) -> bool
-    {
+    TokenList dbTokens = getDbTokens() | FILTER(t, {
         return !nativePathToAttachName.containsRight(t->value, Qt::CaseInsensitive);
     });
 

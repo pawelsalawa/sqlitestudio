@@ -30,7 +30,7 @@ class API_EXPORT SqliteIndexedColumn : public SqliteStatement, public SqliteExte
     protected:
         QStringList getColumnsInStatement();
         TokenList getColumnTokensInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteIndexedColumn> SqliteIndexedColumnPtr;

@@ -88,7 +88,7 @@ void SqliteCreateVirtualTable::initName(const QString &name1, const QString &nam
         table = name1;
 }
 
-TokenList SqliteCreateVirtualTable::rebuildTokensFromContents()
+TokenList SqliteCreateVirtualTable::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

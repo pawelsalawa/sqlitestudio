@@ -189,7 +189,7 @@ class StatementTokenBuilder
          * @param stmt Statement to add tokens for.
          * @return Reference to the builder for the further building.
          */
-        StatementTokenBuilder& withStatement(SqliteStatement* stmt);
+        StatementTokenBuilder& withStatement(const SqliteStatement *stmt);
 
         /**
          * @brief Adds already defined list of tokens to this builder.

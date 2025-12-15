@@ -475,10 +475,7 @@ void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)
 
 QList<Db*> DbManagerImpl::getInvalidDatabases() const
 {
-    return filter<Db*>(dbList, [](Db* db) -> bool
-    {
-        return !db->isValid();
-    });
+    return dbList | FILTER(db, {return !db->isValid();});
 }
 
 Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
@@ -515,7 +512,7 @@ Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHas
     else
         normalizedPath = path;
 
-    for (DbPlugin* dbPlugin : dbPlugins)
+    for (DbPlugin*& dbPlugin : dbPlugins)
     {
         if (options.contains("plugin") && options["plugin"] != dbPlugin->getName())
             continue;

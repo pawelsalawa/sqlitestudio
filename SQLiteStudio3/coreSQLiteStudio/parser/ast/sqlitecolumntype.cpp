@@ -45,7 +45,7 @@ bool SqliteColumnType::isScaleDouble()
     return !isNull(scale) && scale.toString().indexOf(".") > -1;
 }
 
-TokenList SqliteColumnType::rebuildTokensFromContents()
+TokenList SqliteColumnType::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (name.isEmpty())

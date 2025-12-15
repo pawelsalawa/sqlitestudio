@@ -48,7 +48,7 @@ QString SqliteBeginTrans::typeToString(SqliteBeginTrans::Type type)
     return QString();
 }
 
-TokenList SqliteBeginTrans::rebuildTokensFromContents()
+TokenList SqliteBeginTrans::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

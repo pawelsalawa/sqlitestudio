@@ -44,7 +44,7 @@ SqliteStatement* SqliteAttach::clone()
     return new SqliteAttach(*this);
 }
 
-TokenList SqliteAttach::rebuildTokensFromContents()
+TokenList SqliteAttach::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

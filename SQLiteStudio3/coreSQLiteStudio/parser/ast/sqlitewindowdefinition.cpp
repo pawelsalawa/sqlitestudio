@@ -29,7 +29,7 @@ SqliteStatement* SqliteWindowDefinition::clone()
     return new SqliteWindowDefinition(*this);
 }
 
-TokenList SqliteWindowDefinition::rebuildTokensFromContents()
+TokenList SqliteWindowDefinition::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -79,7 +79,7 @@ void SqliteWindowDefinition::Window::init(const QString& name, SqliteWindowDefin
     initFrame(frame);
 }
 
-TokenList SqliteWindowDefinition::Window::rebuildTokensFromContents()
+TokenList SqliteWindowDefinition::Window::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -222,7 +222,7 @@ SqliteStatement* SqliteWindowDefinition::Window::Frame::clone()
     return new Frame(*this);
 }
 
-TokenList SqliteWindowDefinition::Window::Frame::rebuildTokensFromContents()
+TokenList SqliteWindowDefinition::Window::Frame::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -281,7 +281,7 @@ SqliteStatement* SqliteWindowDefinition::Window::Frame::Bound::clone()
     return new Bound(*this);
 }
 
-TokenList SqliteWindowDefinition::Window::Frame::Bound::rebuildTokensFromContents()
+TokenList SqliteWindowDefinition::Window::Frame::Bound::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 

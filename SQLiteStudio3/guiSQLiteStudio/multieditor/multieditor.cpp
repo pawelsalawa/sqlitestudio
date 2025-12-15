@@ -211,7 +211,7 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
 
     if (addTabMenu)
     {
-        QAction* addTabAction = findFirst<QAction>(addTabMenu->actions(), [editorWidget](QAction* a)
+        QAction* addTabAction = addTabMenu->actions() | FIND_FIRST(a,
         {
             return a->data().toString() == editorWidget->getTabLabel();
         });
@@ -501,10 +501,8 @@ void MultiEditor::removeTab(int idx)
     tabs->removeTab(idx);
 
     // Re-add it to menu
-    MultiEditorWidgetPlugin* plugin = findFirst<MultiEditorWidgetPlugin>(
-                PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>(),
-                [label](MultiEditorWidgetPlugin* p) {return p->getTabLabel() == label;}
-            );
+    MultiEditorWidgetPlugin* plugin = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>() |
+                                      FIND_FIRST(p, {return p->getTabLabel() == label;});
 
     if (!plugin)
     {

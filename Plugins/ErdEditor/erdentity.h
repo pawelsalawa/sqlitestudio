@@ -25,6 +25,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         ErdEntity(const SqliteCreateTablePtr& tableModel);
 
         SqliteCreateTablePtr getTableModel() const;
+        SqliteStatement* getStatementAtRowIndex(int rowIdx) const;
         void setTableModel(const SqliteCreateTablePtr& tableModel);
         void modelUpdated();
         int rowIndexAt(const QPointF& point);
@@ -53,6 +54,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
             QGraphicsLineItem* bottomLine = nullptr;
             QList<QGraphicsItem*> icons;
             bool isHeader = false;
+            SqliteStatement* sqliteStatement = nullptr;
 
             qreal calcWidth(qreal iconColumn, qreal nameColumn) const;
             qreal height() const;

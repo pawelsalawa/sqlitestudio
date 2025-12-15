@@ -23,7 +23,7 @@ class API_EXPORT SqliteAnalyze : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteAnalyze> SqliteAnalyzePtr;

@@ -150,19 +150,19 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
         void evaluatePostParsing();
 
     private:
         bool doubleQuotesChecked = false;
-        TokenList rebuildId();
-        TokenList rebuildLike();
-        TokenList rebuildNotNull();
-        TokenList rebuildIs();
-        TokenList rebuildDistinct();
-        TokenList rebuildBetween();
-        TokenList rebuildIn();
-        TokenList rebuildCase();
+        TokenList rebuildId() const;
+        TokenList rebuildLike() const;
+        TokenList rebuildNotNull() const;
+        TokenList rebuildIs() const;
+        TokenList rebuildDistinct() const;
+        TokenList rebuildBetween() const;
+        TokenList rebuildIn() const;
+        TokenList rebuildCase() const;
         void initDistinct(int distinct);
 };
 

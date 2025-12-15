@@ -66,7 +66,7 @@ SqliteStatement* SqliteUpsert::clone()
     return new SqliteUpsert(*this);
 }
 
-TokenList SqliteUpsert::rebuildTokensFromContents()
+TokenList SqliteUpsert::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 

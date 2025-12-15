@@ -19,7 +19,7 @@ class API_EXPORT SqliteSavepoint : public SqliteQuery
         QString name = QString();
 
     protected:
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteSavepoint> SqliteSavepointPtr;

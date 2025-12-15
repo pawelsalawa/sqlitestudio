@@ -111,7 +111,7 @@ class API_EXPORT TableModifier
                 }
 
                 // It wasn't modified, but it's not on existing columns list? Remove it.
-                if (indexOf(existingColumns, colName, Qt::CaseInsensitive) == -1)
+                if (!existingColumns.contains(colName, Qt::CaseInsensitive))
                 {
                     it.remove();
                     modified = true;

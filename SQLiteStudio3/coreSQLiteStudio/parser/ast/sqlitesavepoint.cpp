@@ -24,7 +24,7 @@ SqliteStatement*SqliteSavepoint::clone()
     return new SqliteSavepoint(*this);
 }
 
-TokenList SqliteSavepoint::rebuildTokensFromContents()
+TokenList SqliteSavepoint::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

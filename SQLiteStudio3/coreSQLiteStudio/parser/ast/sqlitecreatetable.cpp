@@ -233,7 +233,7 @@ QList<SqliteStatement::FullObject> SqliteCreateTable::getFullObjectsInStatement(
     return result;
 }
 
-TokenList SqliteCreateTable::rebuildTokensFromContents()
+TokenList SqliteCreateTable::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
@@ -672,7 +672,7 @@ QString SqliteCreateTable::Constraint::typeString() const
     return QString();
 }
 
-TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents()
+TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -850,14 +850,14 @@ TokenList SqliteCreateTable::Column::getColumnTokensInStatement()
     return getTokenListFromNamedKey("columnid");
 }
 
-TokenList SqliteCreateTable::Column::rebuildTokensFromContents()
+TokenList SqliteCreateTable::Column::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withOther(name).withStatement(type).withStatementList(constraints, "");
     return builder.build();
 }
 
-TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
+TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (!name.isNull())

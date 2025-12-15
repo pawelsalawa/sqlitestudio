@@ -140,7 +140,7 @@ void SqliteDelete::init(const QString &name1, const QString &name2, const QStrin
         limit->setParent(this);
 }
 
-TokenList SqliteDelete::rebuildTokensFromContents()
+TokenList SqliteDelete::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
@@ -166,7 +166,7 @@ TokenList SqliteDelete::rebuildTokensFromContents()
     if (!returning.isEmpty())
     {
         builder.withKeyword("RETURNING");
-        for (SqliteResultColumn*& retCol : returning)
+        for (auto&& retCol : returning)
             builder.withSpace().withStatement(retCol);
     }
 

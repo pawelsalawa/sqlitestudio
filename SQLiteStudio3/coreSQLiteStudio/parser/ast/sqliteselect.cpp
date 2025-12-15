@@ -83,7 +83,7 @@ SqliteStatement*SqliteSelect::clone()
     return new SqliteSelect(*this);
 }
 
-QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op)
+QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op) const
 {
     switch (op)
     {
@@ -101,7 +101,7 @@ QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op)
     return QString();
 }
 
-SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op)
+SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op) const
 {
     QString upStr = op.toUpper();
     if (upStr == "UNION")
@@ -584,7 +584,7 @@ SqliteStatement*SqliteSelect::Core::JoinSource::clone()
 }
 
 
-TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (star)
@@ -609,7 +609,7 @@ TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents()
     return builder.build();
 }
 
-TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (!table.isNull())
@@ -666,7 +666,7 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
     return builder.build();
 }
 
-TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (comma)
@@ -703,7 +703,7 @@ TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents()
 }
 
 
-TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (expr)
@@ -715,7 +715,7 @@ TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents()
 }
 
 
-TokenList SqliteSelect::Core::JoinSourceOther::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::JoinSourceOther::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(joinOp).withStatement(singleSource).withStatement(joinConstraint);
@@ -723,7 +723,7 @@ TokenList SqliteSelect::Core::JoinSourceOther::rebuildTokensFromContents()
 }
 
 
-TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(singleSource).withStatementList(otherSources, "");
@@ -731,7 +731,7 @@ TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents()
 }
 
 
-TokenList SqliteSelect::Core::rebuildTokensFromContents()
+TokenList SqliteSelect::Core::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (valuesMode)
@@ -776,14 +776,14 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents()
     return builder.build();
 }
 
-TokenList SqliteSelect::rebuildTokensFromContents()
+TokenList SqliteSelect::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     if (with)
         builder.withStatement(with);
 
-    for (SqliteSelect::Core*& core : coreSelects)
+    for (auto&& core : coreSelects)
     {
         if (core->compoundOp == CompoundOperator::UNION_ALL)
         {

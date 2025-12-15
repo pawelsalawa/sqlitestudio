@@ -31,7 +31,7 @@ class API_EXPORT SqliteBeginTrans : public SqliteQuery
         static QString typeToString(Type type);
 
     protected:
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteBeginTrans> SqliteBeginTransPtr;

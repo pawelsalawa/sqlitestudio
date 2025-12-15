@@ -25,7 +25,7 @@ SqliteStatement*SqliteRelease::clone()
     return new SqliteRelease(*this);
 }
 
-TokenList SqliteRelease::rebuildTokensFromContents()
+TokenList SqliteRelease::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

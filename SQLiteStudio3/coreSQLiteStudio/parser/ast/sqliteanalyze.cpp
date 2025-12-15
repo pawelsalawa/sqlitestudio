@@ -66,7 +66,7 @@ QList<SqliteStatement::FullObject> SqliteAnalyze::getFullObjectsInStatement()
 }
 
 
-TokenList SqliteAnalyze::rebuildTokensFromContents()
+TokenList SqliteAnalyze::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

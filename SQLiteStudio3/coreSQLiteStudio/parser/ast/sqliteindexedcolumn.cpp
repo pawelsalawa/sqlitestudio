@@ -55,7 +55,7 @@ TokenList SqliteIndexedColumn::getColumnTokensInStatement()
 }
 
 
-TokenList SqliteIndexedColumn::rebuildTokensFromContents()
+TokenList SqliteIndexedColumn::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withOther(name);

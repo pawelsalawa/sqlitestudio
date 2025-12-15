@@ -211,7 +211,7 @@ QList<SqliteStatement::FullObject> SqliteUpdate::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteUpdate::rebuildTokensFromContents()
+TokenList SqliteUpdate::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
@@ -237,7 +237,7 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
     builder.withKeyword("SET").withSpace();
 
     bool first = true;
-    for (ColumnAndValue& keyVal : keyValueMap)
+    for (const ColumnAndValue& keyVal : keyValueMap)
     {
         if (!first)
             builder.withOperator(",").withSpace();
@@ -260,7 +260,7 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
     if (!returning.isEmpty())
     {
         builder.withKeyword("RETURNING");
-        for (SqliteResultColumn*& retCol : returning)
+        for (auto&& retCol : returning)
             builder.withSpace().withStatement(retCol);
     }
 

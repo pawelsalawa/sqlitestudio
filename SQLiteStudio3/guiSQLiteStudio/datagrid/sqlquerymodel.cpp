@@ -455,7 +455,7 @@ void SqlQueryModel::refreshGeneratedColumns(const QList<SqlQueryItem*>& items, Q
     QHash<AliasedTable, QVector<SqlQueryModelColumn*>> columnsByTable = groupColumnsByTable(generatedColumns);
 
     // Filter out deleted items - we won't update generated values for them
-    QList<SqlQueryItem*> insertedOrAlteredItems = filter<SqlQueryItem*>(items, [&](SqlQueryItem* item) -> bool
+    QList<SqlQueryItem*> insertedOrAlteredItems = items | FILTER(item,
     {
         if (item->isNewRow())
             return !insertedRowId.isEmpty();
@@ -1153,7 +1153,7 @@ RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQuery
         {
             if (rowIdColumns.contains(item->getColumn()->column, Qt::CaseInsensitive))
             {
-                idx = indexOf(rowIdColumns, item->getColumn()->column, Qt::CaseInsensitive);
+                idx = rowIdColumns | INDEX_OF_STR(item->getColumn()->column, Qt::CaseInsensitive);
                 newRowIdCandidate[rowIdColumns[idx]] = item->getValue();
             }
         }

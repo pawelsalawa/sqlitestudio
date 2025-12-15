@@ -108,6 +108,7 @@ void ErdWindow::init()
     escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
 
     scene = new ErdScene(arrowType, this);
+    connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange);
     ui->graphView->setScene(scene);
 
     initActions();
@@ -222,11 +223,11 @@ void ErdWindow::handleCreatedChange(ErdChange* change)
 
     ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
     if (entityChange)
-        scene->refreshSchema(memDb, entityChange);
+        scene->refreshSchema(entityChange);
 
     ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
     if (newEntityChange)
-        scene->refreshSchema(memDb, newEntityChange);
+        scene->refreshSchema(newEntityChange);
 }
 
 void ErdWindow::updateState()
@@ -362,8 +363,11 @@ QVariant ErdWindow::saveSession()
     erdConfig.insert(ui->graphView->getConfig());
     erdConfig[CFG_KEY_SPLITTER] = ui->splitter->saveState();
 
-    CFG->set(ERD_CFG_GROUP, db->getPath(), erdConfig);
-    CFG->set(ERD_CFG_GROUP, db->getName(), erdConfig);
+    if (db)
+    {
+        CFG->set(ERD_CFG_GROUP, db->getPath(), erdConfig);
+        CFG->set(ERD_CFG_GROUP, db->getName(), erdConfig);
+    }
 
     return sessionValue;
 }
@@ -404,7 +408,7 @@ void ErdWindow::parseAndRestore()
     if (!initMemDb())
         return;
 
-    QSet<QString> tableNames = scene->parseSchema(memDb);
+    QSet<QString> tableNames = scene->parseSchema();
     QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
     if (!tryToApplyConfig(erdConfig, tableNames))
     {
@@ -432,11 +436,11 @@ bool ErdWindow::clearSidePanel()
 
 bool ErdWindow::setSidePanelWidget(QWidget* widget)
 {
-    if (currentSideWidget)
-    {
-        if (!storeEntityModifications(currentSideWidget))
-            return false;
+    if (currentSideWidget && !storeEntityModifications(currentSideWidget))
+        return false;
 
+    if (currentSideWidget) // if still in place after storing (or not) entity updates & refreshing schema
+    {
         ui->sidePanel->layout()->removeWidget(currentSideWidget);
         currentSideWidget->deleteLater();
     }
@@ -458,8 +462,8 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
     if (entity)
     {
         ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
-        connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange);
-        connect(tableMdiChild, &ErdTableWindow::editedEntityShouldBeDeleted, scene, &ErdScene::removeEntityFromScene);
+        connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
+        connect(tableMdiChild, &ErdTableWindow::editedEntityShouldBeDeleted, scene, &ErdScene::removeEntityFromScene, Qt::QueuedConnection);
         return setSidePanelWidget(tableMdiChild);
     }
     else if (arrow)
@@ -487,7 +491,7 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
         }
 
         ErdConnectionPanel* panel = new ErdConnectionPanel(memDb, connection);
-        connect(panel, &ErdConnectionPanel::changeCreated, this, &ErdWindow::handleCreatedChange);
+        connect(panel, &ErdConnectionPanel::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
         return setSidePanelWidget(panel);
     }
     return true;
@@ -508,6 +512,7 @@ bool ErdWindow::initMemDb()
         qCritical() << "Failed to open in-memory database required for ERD editor! Db error:" << memDb->getErrorText();
         return false;
     }
+    scene->setDb(memDb);
 
     // Now copy schema to memdb
     // Order must be: tables, views, triggers, other. It's because they can be created "on" tables" and "on views".
@@ -589,7 +594,7 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     // Is it applicable config for this db?
     StrHash<QVariant> cfgEntities = erdConfig[ErdScene::CFG_KEY_ENTITIES].toHash();
     int matched = 0;
-    for (QString configTable : cfgEntities.lowerKeys())
+    for (const QString& configTable : cfgEntities.lowerKeys())
     {
         if (tableNames.contains(configTable))
             matched++;

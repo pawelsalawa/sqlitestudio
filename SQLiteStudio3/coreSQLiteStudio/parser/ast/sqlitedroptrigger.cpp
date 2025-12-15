@@ -61,7 +61,7 @@ QList<SqliteStatement::FullObject> SqliteDropTrigger::getFullObjectsInStatement(
 }
 
 
-TokenList SqliteDropTrigger::rebuildTokensFromContents()
+TokenList SqliteDropTrigger::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

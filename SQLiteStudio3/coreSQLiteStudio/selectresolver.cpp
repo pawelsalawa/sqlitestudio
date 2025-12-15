@@ -790,9 +790,8 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
     else
     {
         static_qstring(colTpl, "%1.%2 AS %3");
-        auto fn = [](const Column& c) {return colTpl.arg(c.table, c.column, c.alias);};
-        QStringList resolverColumns = map<Column, QString>(columnSourcesFromInternal, fn);
-        QStringList sqliteColumns = map<Column, QString>(columnSources, fn);
+        QStringList resolverColumns = columnSourcesFromInternal | MAP(c, {return colTpl.arg(c.table, c.column, c.alias);});
+        QStringList sqliteColumns = columnSources | MAP(c, {return colTpl.arg(c.table, c.column, c.alias);});
         qCritical() << "Number of columns resolved by internal SchemaResolver is different than resolved by SQLite API:"
                     << columnSourcesFromInternal.size() << "!=" << columnSources.size()
                     << ", therefore table alias may be identified incorrectly (from resolver, but not by SQLite API)"

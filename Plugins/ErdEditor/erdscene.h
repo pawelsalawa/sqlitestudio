@@ -22,9 +22,11 @@ class ErdScene : public QGraphicsScene
     public:
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
 
-        QSet<QString> parseSchema(Db* db);
-        void refreshSchema(Db* db, ErdChangeEntity* entityChange);
-        void refreshSchema(Db* db, ErdChangeNewEntity* newEntityChange);
+        void setDb(Db* db);
+        Db* getDb() const;
+        QSet<QString> parseSchema();
+        void refreshSchema(ErdChangeEntity* entityChange);
+        void refreshSchema(ErdChangeNewEntity* newEntityChange);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
@@ -55,6 +57,7 @@ class ErdScene : public QGraphicsScene
 
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;
+        Db* db = nullptr;
 
         static constexpr qreal sceneMargin = 200;
 
@@ -62,6 +65,7 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesNeato(bool skipConfirm = false);
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
+        void notify(ErdChange* change);
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
@@ -74,6 +78,7 @@ class ErdScene : public QGraphicsScene
     signals:
         void showEntityToUser(ErdEntity* entity);
         void requiresImmediateViewUpdate();
+        void changeReceived(ErdChange* change);
 };
 
 #endif // ERDSCENE_H

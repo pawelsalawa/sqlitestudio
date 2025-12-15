@@ -45,7 +45,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery, SqliteQueryWithAliasedTable
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 
     private:
         void init(const QString& name1, const QString& name2, const QString& alias, bool replace,

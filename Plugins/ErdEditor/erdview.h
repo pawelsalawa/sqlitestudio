@@ -9,6 +9,7 @@
 
 class ErdConnection;
 class ErdScene;
+class Db;
 
 class ErdView : public QGraphicsView
 {
@@ -20,6 +21,7 @@ class ErdView : public QGraphicsView
 
         void setScene(ErdScene *scene);
         ErdScene *scene() const;
+        Db* getDb() const;
         bool isSpacePressed() const;
         qreal getZoom() const;
         void applyConfig(const QHash<QString, QVariant>& erdConfig);

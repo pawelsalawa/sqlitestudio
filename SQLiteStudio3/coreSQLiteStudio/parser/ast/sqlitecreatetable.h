@@ -102,7 +102,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         SqliteInitially initially = SqliteInitially::null;
 
                     protected:
-                        TokenList rebuildTokensFromContents();
+                        TokenList rebuildTokensFromContents() const;
 
                 };
 
@@ -136,7 +136,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
             protected:
                 QStringList getColumnsInStatement();
                 TokenList getColumnTokensInStatement();
-                TokenList rebuildTokensFromContents();
+                TokenList rebuildTokensFromContents() const;
 
             private:
                 static const QRegularExpression GENERATED_ALWAYS_REGEXP;
@@ -186,7 +186,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 bool afterComma = false;
 
             protected:
-                TokenList rebuildTokensFromContents();
+                TokenList rebuildTokensFromContents() const;
         };
 
         typedef QSharedPointer<Constraint> ConstraintPtr;
@@ -235,7 +235,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 
     private:
         void init(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2);

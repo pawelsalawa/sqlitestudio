@@ -51,7 +51,7 @@ bool SqliteQuery::isReadOnly()
     return readOnly;
 }
 
-TokenList SqliteQuery::rebuildTokensFromContents()
+TokenList SqliteQuery::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     if (explain)

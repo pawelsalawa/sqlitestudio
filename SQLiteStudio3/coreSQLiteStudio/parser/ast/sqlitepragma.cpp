@@ -134,7 +134,7 @@ bool SqlitePragma::handleBoolValue(const QVariant &value)
     return true;
 }
 
-TokenList SqlitePragma::rebuildTokensFromContents()
+TokenList SqlitePragma::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

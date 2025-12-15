@@ -19,7 +19,7 @@ SqliteStatement*SqliteEmptyQuery::clone()
     return new SqliteEmptyQuery(*this);
 }
 
-TokenList SqliteEmptyQuery::rebuildTokensFromContents()
+TokenList SqliteEmptyQuery::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withOperator(";");

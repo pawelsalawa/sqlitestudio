@@ -185,7 +185,7 @@ void SqliteInsert::init(const QString& name1, const QString& name2, const QStrin
         retCol->setParent(this);
 }
 
-TokenList SqliteInsert::rebuildTokensFromContents()
+TokenList SqliteInsert::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());
@@ -232,7 +232,7 @@ TokenList SqliteInsert::rebuildTokensFromContents()
     if (!returning.isEmpty())
     {
         builder.withKeyword("RETURNING");
-        for (SqliteResultColumn*& retCol : returning)
+        for (auto&& retCol : returning)
             builder.withSpace().withStatement(retCol);
     }
 

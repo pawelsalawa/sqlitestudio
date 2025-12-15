@@ -87,7 +87,7 @@ SqliteStatement*SqliteForeignKey::clone()
 
 QStringList SqliteForeignKey::getColumnNames() const
 {
-    return map<SqliteIndexedColumn*, QString>(indexedColumns, [](SqliteIndexedColumn* idxCol) {return idxCol->getColumnName();});
+    return indexedColumns | MAP(idxCol, {return idxCol->getColumnName();});
 }
 
 QStringList SqliteForeignKey::getTablesInStatement()
@@ -116,7 +116,7 @@ QList<SqliteStatement::FullObject> SqliteForeignKey::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteForeignKey::rebuildTokensFromContents()
+TokenList SqliteForeignKey::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -143,7 +143,7 @@ TokenList SqliteForeignKey::rebuildTokensFromContents()
 }
 
 
-TokenList SqliteForeignKey::Condition::rebuildTokensFromContents()
+TokenList SqliteForeignKey::Condition::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -169,7 +169,7 @@ TokenList SqliteForeignKey::Condition::rebuildTokensFromContents()
     return builder.build();
 }
 
-void SqliteForeignKey::Condition::applyReactionToBuilder(StatementTokenBuilder& builder)
+void SqliteForeignKey::Condition::applyReactionToBuilder(StatementTokenBuilder& builder) const
 {
     switch (reaction)
     {

@@ -27,8 +27,7 @@ const QList<QPageSize::PageSizeId> pageSizeIds = {
     QPageSize::Custom
 };
 
-const QStringList pageSizes = map<QPageSize::PageSizeId, QString>(pageSizeIds, [](QPageSize::PageSizeId id) -> QString
-{
+const QStringList pageSizes = pageSizeIds | MAP_NO_CAP(id, {
     return QPageSize::name(id);
 });
 
@@ -115,7 +114,7 @@ QString convertPageSize(QPageSize::PageSizeId size)
 
 QPageSize convertPageSize(const QString& size)
 {
-    return QPageSize(static_cast<QPageSize::PageSizeId>(indexOf(pageSizes, size, Qt::CaseInsensitive)));
+    return QPageSize(static_cast<QPageSize::PageSizeId>(pageSizes | INDEX_OF_STR(size, Qt::CaseInsensitive)));
 }
 
 const QStringList& getAllPageSizes()

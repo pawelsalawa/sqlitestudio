@@ -36,7 +36,7 @@ SqliteStatement*SqliteRollback::clone()
     return new SqliteRollback(*this);
 }
 
-TokenList SqliteRollback::rebuildTokensFromContents()
+TokenList SqliteRollback::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

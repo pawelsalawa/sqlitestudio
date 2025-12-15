@@ -56,7 +56,7 @@ QStringList SchemaResolver::getIndexes(const QString &database)
 
     QStringList indexes;
     QString value;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value(0).toString();
         if (isFilteredOut(value, "index"))
@@ -258,7 +258,7 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
 StrHash<QStringList> SchemaResolver::getAllTableColumns(const QString &database)
 {
     StrHash< QStringList> tableColumns;
-    for (QString table : getTables(database))
+    for (QString& table : getTables(database))
         tableColumns[table] = getTableColumns(database, table);
 
     return tableColumns;
@@ -485,7 +485,7 @@ StrHash<QString> SchemaResolver::getIndexesWithTables(const QString& database)
     StrHash<QString> indexes;
     QString tabName;
     QString idxName;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         tabName = row->value("tbl_name").toString();
         idxName = row->value("name").toString();
@@ -796,7 +796,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
     SqlQueryPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type}, dbFlags);
 
     QString value;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value(0).toString();
         if (!isFilteredOut(value, type))
@@ -828,7 +828,7 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
 
     QString value;
     QString type;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value("name").toString();
         type = row->value("type").toString();
@@ -885,7 +885,7 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& database, cons
     }
 
     QStringList resList;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
         resList << row->value(0).toString();
 
     return resList;
@@ -908,7 +908,7 @@ QStringList SchemaResolver::getFkReferencedTables(const QString& database, const
     }
 
     QStringList resList;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
         resList << row->value(0).toString();
 
     return resList;
@@ -964,7 +964,7 @@ QStringList SchemaResolver::getIndexesForTable(const QString& database, const QS
 
     QStringList indexes;
     QString value;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value(0).toString();
         if (isFilteredOut(value, "index"))
@@ -989,7 +989,7 @@ QStringList SchemaResolver::getTriggersForTable(const QString& database, const Q
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList names;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
         names << row->value(0).toString();
 
     return names;
@@ -1003,7 +1003,7 @@ QStringList SchemaResolver::getTriggersForTable(const QString& table)
 QStringList SchemaResolver::getTriggersForView(const QString& database, const QString& view)
 {
     QStringList names;
-    for (SqliteCreateTriggerPtr trig : getParsedTriggersForView(database, view))
+    for (SqliteCreateTriggerPtr& trig : getParsedTriggersForView(database, view))
         names << trig->trigger;
 
     return names;
@@ -1017,7 +1017,7 @@ QStringList SchemaResolver::getTriggersForView(const QString& view)
 QStringList SchemaResolver::getViewsForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    for (SqliteCreateViewPtr view : getParsedViewsForTable(database, table))
+    for (SqliteCreateViewPtr& view : getParsedViewsForTable(database, table))
         names << view->view;
 
     return names;
@@ -1223,7 +1223,7 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     SqlQueryPtr results = db->exec(query, {table}, dbFlags);
 
     QList<SqliteCreateIndexPtr> createIndexList;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         QString ddl = row->value(0).toString();
         QString name = row->value(1).toString();
@@ -1283,7 +1283,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
 
     QStringList alreadyProcessed;
     QList<SqliteCreateTriggerPtr> createTriggerList;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         alreadyProcessed << wrapString(escapeString(row->value(1).toString().toLower()));
         SqliteQueryPtr parsedDdl = getParsedDdl(row->value(0).toString());
@@ -1304,7 +1304,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
         query = allTrigTpl.arg(wrapObjName(database), alreadyProcessed.join(", "));
         results = db->exec(query, dbFlags);
 
-        for (SqlResultsRowPtr row : results->getAll())
+        for (SqlResultsRowPtr& row : results->getAll())
         {
             SqliteQueryPtr parsedDdl = getParsedDdl(row->value(0).toString());
             if (!parsedDdl)
@@ -1316,7 +1316,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
                 qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers.";
                 continue;
             }
-            if (indexOf(createTrigger->getContextTables(), tableOrView, Qt::CaseInsensitive) > -1)
+            if (createTrigger->getContextTables().contains(tableOrView, Qt::CaseInsensitive))
                 createTriggerList << createTrigger;
         }
     }
@@ -1433,7 +1433,7 @@ QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString&
             continue;
         }
 
-        if (indexOf(createView->getContextTables(), table, Qt::CaseInsensitive) > -1)
+        if (createView->getContextTables().contains(table, Qt::CaseInsensitive))
             createViewList << createView;
     }
     return createViewList;
@@ -1630,7 +1630,7 @@ QStringList SchemaResolver::getObjectDdlsReferencingTableOrView(const QString& d
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList ddls;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (SqlResultsRowPtr& row : results->getAll())
     {
         QString objName = row->value("name").toString();
         if (isFilteredOut(objName, typeStr))

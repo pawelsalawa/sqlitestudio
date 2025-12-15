@@ -568,24 +568,14 @@ QString TableStructureModel::getToolTip(int row, Columns modelColumn) const
             return QString();
     }
 
-    SqliteCreateTable::Column::Constraint* constraint = findFirst<SqliteCreateTable::Column::Constraint>(
-            col->constraints,
-            [lookFor](SqliteCreateTable::Column::Constraint* constr) -> bool
-            {
-                return constr->type == lookFor;
-            }
-        );
+    SqliteCreateTable::Column::Constraint* constraint = col->constraints |
+                                                        FIND_FIRST(constr, {return constr->type == lookFor;});
 
     SqliteCreateTable::Constraint* tableConstraint = nullptr;
     if (tableConstrDefined)
     {
-        tableConstraint = findFirst<SqliteCreateTable::Constraint>(
-                createTable->constraints,
-                [lookForTableType](SqliteCreateTable::Constraint* constr) -> bool
-                {
-                    return constr->type == lookForTableType;
-                }
-            );
+        tableConstraint = createTable->constraints |
+                          FIND_FIRST(constr, {return constr->type == lookForTableType;});
     }
 
     if (!constraint && !tableConstraint)

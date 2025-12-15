@@ -804,7 +804,7 @@ QVariant FunctionManagerImpl::nativeImportOptions(const QList<QVariant> &args, D
     QString type = args[0].toString();
 
     QList<ImportPlugin*> importPlugins = PLUGINS->getLoadedPlugins<ImportPlugin>();
-    ImportPlugin* thePlugin = findFirst<ImportPlugin>(importPlugins, [type](ImportPlugin* plugin) -> bool {return plugin->getDataSourceTypeName() == type;});
+    ImportPlugin* thePlugin = importPlugins | FIND_FIRST(plugin, {return plugin->getDataSourceTypeName() == type;});
     if (!thePlugin)
     {
         ok = false;

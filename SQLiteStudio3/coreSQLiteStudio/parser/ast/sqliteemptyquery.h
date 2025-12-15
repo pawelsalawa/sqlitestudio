@@ -12,8 +12,8 @@ class API_EXPORT SqliteEmptyQuery : public SqliteQuery
         SqliteEmptyQuery(const SqliteEmptyQuery& other);
 
         SqliteStatement* clone();
-
-        TokenList rebuildTokensFromContents();
+        
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteEmptyQuery> SqliteEmptyQueryPtr;

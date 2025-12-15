@@ -105,7 +105,7 @@ QList<SqliteStatement::FullObject> SqliteCreateIndex::getFullObjectsInStatement(
     return result;
 }
 
-TokenList SqliteCreateIndex::rebuildTokensFromContents()
+TokenList SqliteCreateIndex::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

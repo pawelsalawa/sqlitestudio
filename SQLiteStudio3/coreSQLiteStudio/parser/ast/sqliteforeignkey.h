@@ -47,10 +47,10 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
                 Reaction reaction = NO_ACTION;
 
             protected:
-                TokenList rebuildTokensFromContents();
+                TokenList rebuildTokensFromContents() const;
 
             private:
-                void applyReactionToBuilder(StatementTokenBuilder& builder);
+                void applyReactionToBuilder(StatementTokenBuilder& builder) const;
         };
 
         SqliteForeignKey();
@@ -70,7 +70,7 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
         QStringList getTablesInStatement();
         TokenList getTableTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteForeignKey> SqliteForeignKeyPtr;

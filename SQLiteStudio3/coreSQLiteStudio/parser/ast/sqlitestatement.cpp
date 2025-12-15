@@ -225,7 +225,7 @@ QList<SqliteStatement::FullObject> SqliteStatement::getFullObjectsInStatement()
     return QList<SqliteStatement::FullObject>();
 }
 
-TokenList SqliteStatement::rebuildTokensFromContents()
+TokenList SqliteStatement::rebuildTokensFromContents() const
 {
     qCritical() << "called rebuildTokensFromContents() for SqliteStatement that has no implementation for it.";
     return TokenList();
@@ -265,35 +265,48 @@ void SqliteStatement::prepareDbNames()
     validDbNames = DBLIST->getValidDbNames();
 }
 
+bool SqliteStatement::isPrintableToken(const TokenPtr &token, bool skipMeaningless)
+{
+    switch (token->type)
+    {
+        case Token::OTHER:
+        case Token::STRING:
+        case Token::FLOAT:
+        case Token::INTEGER:
+        case Token::BIND_PARAM:
+        case Token::OPERATOR:
+        case Token::PAR_LEFT:
+        case Token::PAR_RIGHT:
+        case Token::BLOB:
+        case Token::KEYWORD:
+            return true;
+        case Token::COMMENT:
+        case Token::SPACE:
+            if (!skipMeaningless)
+                return true;
+        default:
+            break;
+    }
+    return false;
+}
+
 TokenList SqliteStatement::extractPrintableTokens(const TokenList &tokens, bool skipMeaningless)
 {
-    TokenList list;
-    for (TokenPtr token : tokens)
+    return tokens | FILTER(token, {return isPrintableToken(token, skipMeaningless);});
+}
+
+TokenPtr SqliteStatement::extractPrintableToken(const TokenList &tokens, int idx, bool skipMeaningless)
+{
+    int currIdx = -1;
+    for (auto&& token : tokens)
     {
-        switch (token->type)
-        {
-            case Token::OTHER:
-            case Token::STRING:
-            case Token::FLOAT:
-            case Token::INTEGER:
-            case Token::BIND_PARAM:
-            case Token::OPERATOR:
-            case Token::PAR_LEFT:
-            case Token::PAR_RIGHT:
-            case Token::BLOB:
-            case Token::KEYWORD:
-                list << token;
-                break;
-            case Token::COMMENT:
-            case Token::SPACE:
-                if (!skipMeaningless)
-                    list << token;
-                break;
-            default:
-                break;
-        }
+        if (isPrintableToken(token, skipMeaningless))
+            currIdx++;
+
+        if (currIdx >= idx)
+            return token;
     }
-    return list;
+    return TokenPtr();
 }
 
 QStringList SqliteStatement::getStrListFromValue(const QString &value)
@@ -313,7 +326,7 @@ TokenList SqliteStatement::getTokenListFromNamedKey(const QString &tokensMapKey,
         if (idx < 0)
             list += extractPrintableTokens(tokensMap[tokensMapKey]);
         else if (tokensMap[tokensMapKey].size() > idx)
-            list << extractPrintableTokens(tokensMap[tokensMapKey])[idx];
+            list << extractPrintableToken(tokensMap[tokensMapKey], idx);
     }
     else
         qCritical() << "No '" << tokensMapKey << "' in tokens map when asked for it in getTokenListFromNamedKey().";
@@ -390,7 +403,7 @@ TokenPtr SqliteStatement::getDbTokenFromNmDbnm(const QString &tokensMapKey1, con
         return TokenPtr();
     }
 
-    return extractPrintableTokens(listForKey1)[0];
+    return extractPrintableToken(listForKey1, 0);
 }
 
 TokenPtr SqliteStatement::getObjectTokenFromNmDbnm(const QString &tokensMapKey1, const QString &tokensMapKey2)
@@ -409,10 +422,15 @@ TokenPtr SqliteStatement::getObjectTokenFromNmDbnm(const QString &tokensMapKey1,
 
     TokenList listForKey1 = extractPrintableTokens(tokensMap[tokensMapKey1]);
     TokenList listForKey2 = extractPrintableTokens(tokensMap[tokensMapKey2]);
-    if (listForKey2.size() == 0)
-        return extractPrintableTokens(listForKey1)[0];
+    if (listForKey2.size() <= 1)
+    {
+        if (listForKey1.isEmpty())
+            return TokenPtr();
 
-    return extractPrintableTokens(listForKey2)[1];
+        return listForKey1[0];
+    }
+
+    return listForKey2[1];
 }
 
 TokenList SqliteStatement::getDbTokenListFromFullname(const QString &tokensMapKey)
@@ -532,7 +550,7 @@ SqliteStatement *SqliteStatement::findStatementWithPosition(quint64 cursorPositi
     return findStatementWithToken(token);
 }
 
-SqliteStatement *SqliteStatement::parentStatement()
+SqliteStatement *SqliteStatement::parentStatement() const
 {
     if (!parent())
         return nullptr;
@@ -557,6 +575,11 @@ void SqliteStatement::rebuildTokens()
     // TODO rebuild tokensMap as well
     // It shouldn't be hard to write unit tests that parse a query, remembers it tokensMap, then rebuilds tokens from contents
     // and then compare new tokens map with previous one. This way we should be able to get all maps correctly.
+}
+
+TokenList SqliteStatement::produceTokens() const
+{
+    return rebuildTokensFromContents();
 }
 
 void SqliteStatement::attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach)

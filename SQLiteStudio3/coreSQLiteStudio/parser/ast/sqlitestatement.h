@@ -214,7 +214,7 @@ class API_EXPORT SqliteStatement : public QObject
         Range getRange();
         SqliteStatement* findStatementWithToken(TokenPtr token);
         SqliteStatement* findStatementWithPosition(quint64 cursorPosition);
-        SqliteStatement* parentStatement();
+        SqliteStatement* parentStatement() const;
         QList<SqliteStatement*> childStatements();
         QStringList getContextColumns(bool checkParent = true, bool checkChilds = true);
         QStringList getContextTables(bool checkParent = true, bool checkChilds = true);
@@ -224,6 +224,13 @@ class API_EXPORT SqliteStatement : public QObject
         TokenList getContextDatabaseTokens(bool checkParent = true, bool checkChilds = true);
         QList<FullObject> getContextFullObjects(bool checkParent = true, bool checkChilds = true);
         void rebuildTokens();
+        /**
+         * @brief Generates tokens according to statement's current state.
+         * @return Generated tokens.
+         *
+         * This differs from rebuildTokens() by not replacing internal token list.
+         */
+        TokenList produceTokens() const;
         void attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach);
         SqliteStatementPtr detach();
         void processPostParsing();
@@ -307,10 +314,11 @@ class API_EXPORT SqliteStatement : public QObject
         virtual TokenList getTableTokensInStatement();
         virtual TokenList getDatabaseTokensInStatement();
         virtual QList<FullObject> getFullObjectsInStatement();
-        virtual TokenList rebuildTokensFromContents();
+        virtual TokenList rebuildTokensFromContents() const;
         virtual void evaluatePostParsing();
 
         static TokenList extractPrintableTokens(const TokenList& tokens, bool skipMeaningless = true);
+        static TokenPtr extractPrintableToken(const TokenList& tokens, int idx, bool skipMeaningless = true);
         QStringList getStrListFromValue(const QString& value);
         TokenList getTokenListFromNamedKey(const QString& tokensMapKey, int idx = 0);
         TokenPtr getDbTokenFromFullname(const QString& tokensMapKey = "fullname");
@@ -347,6 +355,7 @@ class API_EXPORT SqliteStatement : public QObject
     private:
         QList<SqliteStatement*> getContextStatements(SqliteStatement* caller, bool checkParent, bool checkChilds);
         void prepareDbNames();
+        static bool isPrintableToken(const TokenPtr& token, bool skipMeaningless);
 };
 
 #endif // SQLITESTATEMENT_H

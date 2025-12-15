@@ -78,7 +78,7 @@ bool ParserTermOrLiteral::isLiteral() const
 
 ParserStubCreateTableOption* parserStubFindCreateTableOption(const QList<ParserStubCreateTableOption*>& options, ParserStubCreateTableOption::Type type)
 {
-    return findFirst<ParserStubCreateTableOption>(options, [type](auto opt) -> bool {return opt->type == type;});
+    return options | FIND_FIRST(opt, {return opt->type == type;});
 }
 
 ParserStubCreateTableOption::ParserStubCreateTableOption(Type type) :

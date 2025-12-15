@@ -1156,7 +1156,7 @@ void ConfigDialog::highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin)
     }
 
     QTextDocument* document = editor->document();
-    QSyntaxHighlighter* highlighter = findFirst<QSyntaxHighlighter>(colorPreviewHighlighters, [document](auto highlighter) {return highlighter->document() == document;});
+    QSyntaxHighlighter* highlighter = colorPreviewHighlighters | FIND_FIRST(highlighter, {return highlighter->document() == document;});
 
     ui->codeColorsPreviewTabWidget->removeTab(ui->codeColorsPreviewTabWidget->indexOf(editor));
     colorPreviewHighlighters.removeOne(highlighter);

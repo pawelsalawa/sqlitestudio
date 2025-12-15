@@ -114,18 +114,18 @@ StatementTokenBuilder& StatementTokenBuilder::withSortOrder(SqliteSortOrder sort
     return *this;
 }
 
-StatementTokenBuilder& StatementTokenBuilder::withStatement(SqliteStatement* stmt)
+StatementTokenBuilder& StatementTokenBuilder::withStatement(const SqliteStatement* stmt)
 {
     if (!stmt)
         return *this;
 
-    stmt->rebuildTokens();
-    if (stmt->tokens.size() > 0)
+    TokenList stmtTokens = stmt->produceTokens();
+    if (stmtTokens.size() > 0)
     {
         if (tokens.size() > 0 && !tokens.last()->isWhitespace() && tokens.last()->type != Token::PAR_LEFT)
             withSpace();
 
-        tokens += stmt->tokens;
+        tokens += stmtTokens;
         tokens.trimRight(Token::OPERATOR, ";");
     }
     return *this;

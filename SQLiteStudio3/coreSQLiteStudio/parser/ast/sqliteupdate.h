@@ -56,7 +56,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery, SqliteQueryWithAliasedTable
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteUpdate> SqliteUpdatePtr;

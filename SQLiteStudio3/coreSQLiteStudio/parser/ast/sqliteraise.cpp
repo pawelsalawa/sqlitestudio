@@ -61,7 +61,7 @@ QString SqliteRaise::raiseType(SqliteRaise::Type value)
     }
 }
 
-TokenList SqliteRaise::rebuildTokensFromContents()
+TokenList SqliteRaise::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withKeyword("RAISE").withSpace().withParLeft().withKeyword(raiseType(type));

@@ -61,7 +61,7 @@ SqliteStatement*SqliteLimit::clone()
 }
 
 
-TokenList SqliteLimit::rebuildTokensFromContents()
+TokenList SqliteLimit::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withKeyword("LIMIT").withStatement(limit);

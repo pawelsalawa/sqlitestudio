@@ -4,6 +4,9 @@
 #include "erdentity.h"
 #include "erdscene.h"
 #include "erdeditorplugin.h"
+#include "erdchangeentity.h"
+#include "db/db.h"
+#include "db/chainexecutor.h"
 #include <QDebug>
 #include <QGraphicsScene>
 
@@ -60,6 +63,7 @@ void ErdConnection::finalizeConnection(ErdEntity* entity, const QPointF& endPos)
     startEntity->updateConnectionIndexes();
     endEntity->updateConnectionIndexes();
     refreshPosition();
+    commitChange();
 }
 
 bool ErdConnection::isFinalized() const
@@ -104,6 +108,58 @@ QPointF ErdConnection::findThisPosAgainstOther(ErdEntity* thisEntity, int thisRo
     return pos;
 }
 
+void ErdConnection::commitChange()
+{
+    SqliteCreateTablePtr originalCreateTable = startEntity->getTableModel();
+    SqliteCreateTablePtr createTable = SqliteCreateTablePtr(originalCreateTable->typeClone<SqliteCreateTable>());
+
+    SqliteCreateTable::Column* startEntityColumn = getStartEntityColumn();
+    if (!startEntityColumn)
+    {
+        qCritical() << "startEntityColumn is null while trying to commit ERD connection.";
+        return;
+    }
+
+    SqliteCreateTable::Column* endEntityColumn = getEndEntityColumn();
+    if (!endEntityColumn)
+    {
+        qCritical() << "endEntityColumn is null while trying to commit ERD connection.";
+        return;
+    }
+
+    SqliteCreateTable::Column* column = createTable->columns | FIND_FIRST(col,
+    {
+        return col->name.compare(startEntityColumn->name, Qt::CaseInsensitive) == 0;
+    });
+
+    SqliteCreateTable::Column::Constraint* fk = new SqliteCreateTable::Column::Constraint();
+    fk->setParent(column);
+    column->constraints << fk;
+
+    SqliteIndexedColumn* idxCol = new SqliteIndexedColumn(endEntityColumn->name);
+    fk->initFk(endEntity->getTableName(), {idxCol}, {});
+
+    createTable->rebuildTokens(); // needed for TableModifier when executing changes
+    qDebug() << "dll:" << createTable->detokenize();
+
+    ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable);
+
+    ChainExecutor* ddlExecutor = new ChainExecutor();
+    ddlExecutor->setAsync(false);
+    ddlExecutor->setDb(scene->getDb());
+    ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setDisableObjectDropsDetection(true);
+    ddlExecutor->exec();
+
+    if (ddlExecutor->getSuccessfulExecution())
+        scene->notify(change);
+    else
+        qDebug() << "ErdConnection failed to execute DDL change for finalized connection. Errors:" << ddlExecutor->getErrorsMessages();
+
+    delete ddlExecutor;
+}
+
 ErdEntity* ErdConnection::getEndEntity() const
 {
     return endEntity;
@@ -117,6 +173,22 @@ int ErdConnection::getStartEntityRow() const
 int ErdConnection::getEndEntityRow() const
 {
     return endEntityRow;
+}
+
+SqliteCreateTable::Column* ErdConnection::getStartEntityColumn() const
+{
+    if (!startEntity || startEntityRow < 0)
+        return nullptr;
+
+    return dynamic_cast<SqliteCreateTable::Column*>(startEntity->getStatementAtRowIndex(startEntityRow));
+}
+
+SqliteCreateTable::Column* ErdConnection::getEndEntityColumn() const
+{
+    if (!endEntity || endEntityRow < 0)
+        return nullptr;
+
+    return dynamic_cast<SqliteCreateTable::Column*>(endEntity->getStatementAtRowIndex(endEntityRow));
 }
 
 void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)

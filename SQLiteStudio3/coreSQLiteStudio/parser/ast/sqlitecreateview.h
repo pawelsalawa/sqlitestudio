@@ -39,7 +39,7 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         QStringList getDatabasesInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 typedef QSharedPointer<SqliteCreateView> SqliteCreateViewPtr;

@@ -159,6 +159,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
         void changeFontSize(int factor);
+        void deleteSelected(ItemFilterFunc filterFunc);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
@@ -221,7 +222,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void editColumn(DbTreeItem* item);
         void delColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
-        void deleteSelected(ItemFilterFunc filterFunc = nullptr);
+        void deleteSelected();
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);
         void refreshSchema();
         void dbConnected(Db* db);

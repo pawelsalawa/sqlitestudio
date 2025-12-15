@@ -26,7 +26,7 @@ SqliteStatement* SqliteCommitTrans::clone()
     return new SqliteCommitTrans(*this);
 }
 
-TokenList SqliteCommitTrans::rebuildTokensFromContents()
+TokenList SqliteCommitTrans::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

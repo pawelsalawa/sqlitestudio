@@ -47,10 +47,7 @@ void CodeSnippetManager::saveToConfig()
 
 QString CodeSnippetManager::getCodeByName(const QString& name) const
 {
-    CodeSnippet* snippet = findFirst<CodeSnippet>(allSnippets, [name](CodeSnippet* snippet) -> bool
-    {
-        return snippet->name == name;
-    });
+    CodeSnippet* snippet = allSnippets | FIND_FIRST(snippet, {return snippet->name == name;});
     return snippet ? snippet->code : QString();
 }
 
@@ -75,10 +72,7 @@ void CodeSnippetManager::loadFromConfig()
 
 void CodeSnippetManager::refreshNames()
 {
-    names = map<CodeSnippet*, QString>(allSnippets, [](CodeSnippet* snippet) -> QString
-    {
-        return snippet->name;
-    });
+    names = allSnippets | MAP(snippet, {return snippet->name;});
 }
 
 void CodeSnippetManager::clearSnippets()

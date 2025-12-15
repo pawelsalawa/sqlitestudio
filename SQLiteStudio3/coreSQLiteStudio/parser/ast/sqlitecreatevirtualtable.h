@@ -26,7 +26,7 @@ class API_EXPORT SqliteCreateVirtualTable : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 
     private:
         void initName(const QString& name1, const QString& name2);

@@ -603,7 +603,7 @@ void SqliteExpr::initId(const QString& column)
     }
 }
 
-TokenList SqliteExpr::rebuildTokensFromContents()
+TokenList SqliteExpr::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -762,7 +762,7 @@ void SqliteExpr::evaluatePostParsing()
     detectDoubleQuotes(false); // not recursively, as SqliteStatement will take care of recursiveness
 }
 
-TokenList SqliteExpr::rebuildId()
+TokenList SqliteExpr::rebuildId() const
 {
     StatementTokenBuilder builder;
     if (!database.isNull())
@@ -779,7 +779,7 @@ TokenList SqliteExpr::rebuildId()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildLike()
+TokenList SqliteExpr::rebuildLike() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr1).withSpace();
@@ -793,7 +793,7 @@ TokenList SqliteExpr::rebuildLike()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildNotNull()
+TokenList SqliteExpr::rebuildNotNull() const
 {
     StatementTokenBuilder builder;
     switch (notNull)
@@ -813,7 +813,7 @@ TokenList SqliteExpr::rebuildNotNull()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildIs()
+TokenList SqliteExpr::rebuildIs() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr1).withSpace().withKeyword("IS");
@@ -824,7 +824,7 @@ TokenList SqliteExpr::rebuildIs()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildDistinct()
+TokenList SqliteExpr::rebuildDistinct() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr1).withSpace().withKeyword("IS");
@@ -835,7 +835,7 @@ TokenList SqliteExpr::rebuildDistinct()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildBetween()
+TokenList SqliteExpr::rebuildBetween() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr1);
@@ -847,7 +847,7 @@ TokenList SqliteExpr::rebuildBetween()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildIn()
+TokenList SqliteExpr::rebuildIn() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr1);
@@ -874,7 +874,7 @@ TokenList SqliteExpr::rebuildIn()
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildCase()
+TokenList SqliteExpr::rebuildCase() const
 {
     StatementTokenBuilder builder;
     builder.withKeyword("CASE");

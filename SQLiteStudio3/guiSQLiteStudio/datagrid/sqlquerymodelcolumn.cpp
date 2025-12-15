@@ -246,11 +246,8 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const Q
 
             constr = new ConstraintPk();
             constr->type = Type::PRIMARY_KEY;
-            dynamic_cast<ConstraintPk*>(constr)->multiColumns =
-                map<SqliteIndexedColumn*, QString>(tableConstraint->indexedColumns, [](SqliteIndexedColumn* idxCol) -> QString
-                {
-                    return idxCol->detokenize().trimmed();
-                });
+            dynamic_cast<ConstraintPk*>(constr)->multiColumns = tableConstraint->indexedColumns |
+                                                                MAP(idxCol, {return idxCol->detokenize().trimmed();});
             break;
         }
         case SqliteCreateTable::Constraint::UNIQUE:

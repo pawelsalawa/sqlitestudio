@@ -31,7 +31,7 @@ class SqliteFilterOver : public SqliteStatement
                 Mode mode = Mode::WINDOW;
 
             protected:
-                TokenList rebuildTokensFromContents();
+                TokenList rebuildTokensFromContents() const;
         };
 
         class Filter : public SqliteStatement
@@ -47,7 +47,7 @@ class SqliteFilterOver : public SqliteStatement
                 SqliteExpr* expr;
 
             protected:
-                TokenList rebuildTokensFromContents();
+                TokenList rebuildTokensFromContents() const;
         };
 
         SqliteFilterOver();
@@ -61,7 +61,7 @@ class SqliteFilterOver : public SqliteStatement
         Over* over = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents();
+        TokenList rebuildTokensFromContents() const;
 };
 
 #endif // SQLITEFILTEROVER_H

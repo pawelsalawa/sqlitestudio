@@ -1678,6 +1678,11 @@ void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previ
     updateActionStates(treeModel->itemFromIndex(current));
 }
 
+void DbTree::deleteSelected()
+{
+    deleteSelected(nullptr);
+}
+
 void DbTree::deleteSelected(ItemFilterFunc filterFunc)
 {
     deleteItems(getSelectedItems(filterFunc));

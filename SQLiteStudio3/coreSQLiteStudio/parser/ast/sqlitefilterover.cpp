@@ -36,7 +36,7 @@ SqliteStatement* SqliteFilterOver::clone()
     return new SqliteFilterOver(*this);
 }
 
-TokenList SqliteFilterOver::rebuildTokensFromContents()
+TokenList SqliteFilterOver::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -85,7 +85,7 @@ SqliteStatement* SqliteFilterOver::Over::clone()
     return new SqliteFilterOver::Over(*this);
 }
 
-TokenList SqliteFilterOver::Over::rebuildTokensFromContents()
+TokenList SqliteFilterOver::Over::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 
@@ -123,7 +123,7 @@ SqliteStatement* SqliteFilterOver::Filter::clone()
     return new SqliteFilterOver::Filter(*this);
 }
 
-TokenList SqliteFilterOver::Filter::rebuildTokensFromContents()
+TokenList SqliteFilterOver::Filter::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
 

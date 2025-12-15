@@ -92,7 +92,7 @@ QList<SqliteStatement::FullObject> SqliteCreateView::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteCreateView::rebuildTokensFromContents()
+TokenList SqliteCreateView::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withTokens(SqliteQuery::rebuildTokensFromContents());

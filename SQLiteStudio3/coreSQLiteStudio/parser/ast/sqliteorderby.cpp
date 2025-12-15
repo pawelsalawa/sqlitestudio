@@ -104,7 +104,7 @@ void SqliteOrderBy::setCollation(const QString& name)
     expr = collationExpr;
 }
 
-TokenList SqliteOrderBy::rebuildTokensFromContents()
+TokenList SqliteOrderBy::rebuildTokensFromContents() const
 {
     StatementTokenBuilder builder;
     builder.withStatement(expr);

@@ -347,24 +347,6 @@ QHash<QString,QVariant> bytesToHash(const QByteArray& bytes)
     return deserializedValue.toHash();
 }
 
-int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs)
-{
-    return indexOf(list, value, 0, cs);
-}
-
-int indexOf(const QStringList& list, const QString& value, int from, Qt::CaseSensitivity cs)
-{
-    if (cs == Qt::CaseSensitive)
-        return list.indexOf(value, from);
-
-    int cnt = list.size();
-    for (int i = from; i < cnt; i++)
-        if (list[i].compare(value, cs) == 0)
-            return i;
-
-    return -1;
-}
-
 QString pad(const QString& str, int length, const QChar& fillChar)
 {
     if (str.length() >= abs(length))
@@ -888,8 +870,8 @@ void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& ref
 {
     sSort(listToSort, [referenceList, cs](const QString& s1, const QString& s2) -> bool
     {
-        int idx1 = indexOf(referenceList, s1, cs);
-        int idx2 = indexOf(referenceList, s2, cs);
+        int idx1 = referenceList | INDEX_OF_STR(s1, cs);
+        int idx2 = referenceList | INDEX_OF_STR(s2, cs);
         if (idx1 == -1 || idx2 == -1)
         {
             if (idx1 == -1 && idx2 == -1)

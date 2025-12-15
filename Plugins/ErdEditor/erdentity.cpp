@@ -49,6 +49,14 @@ SqliteCreateTablePtr ErdEntity::getTableModel() const
     return tableModel;
 }
 
+SqliteStatement* ErdEntity::getStatementAtRowIndex(int rowIdx) const
+{
+    if (rowIdx < 0 || rowIdx >= rows.size())
+        return nullptr;
+
+    return rows[rowIdx]->sqliteStatement;
+}
+
 void ErdEntity::setTableModel(const SqliteCreateTablePtr& tableModel)
 {
     this->tableModel = tableModel;
@@ -121,7 +129,7 @@ void ErdEntity::updateConnectionIndexes()
     if (rows.size() <= 1)
         return; // only the table header
 
-    QHash<int, QList<ErdConnection*>> connsByRowIdx = groupToHash<int, ErdConnection*>(connections, [this](ErdConnection* conn) -> bool
+    QHash<int, QList<ErdConnection*>> connsByRowIdx = connections | GROUP_BY(conn,
     {
         if (conn->getStartEntity() == this)
             return conn->getStartEntityRow();
@@ -217,6 +225,7 @@ void ErdEntity::addTableTitle()
 {
     Row* row = new Row(this);
     row->isHeader = true;
+    row->sqliteStatement = tableModel.data();
 
     QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
     iconItem->setPixmap(ICONS.TABLE.toQPixmap());
@@ -250,6 +259,7 @@ void ErdEntity::setExistingTable(bool newExistingTable)
 void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
 {
     Row* row = new Row(this);
+    row->sqliteStatement = column;
 
     for (SqliteCreateTable::Column::Constraint*& constr : column->constraints)
     {
