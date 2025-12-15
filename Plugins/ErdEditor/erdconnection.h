@@ -50,6 +50,9 @@ class ErdConnection
          */
         void setIndexInEndEntity(int idx);
 
+        bool isTableLevelFk() const;
+        void setTableLevelFk(bool value);
+
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
         void commitChange();
@@ -60,6 +63,7 @@ class ErdConnection
         int endEntityRow = -1;
         int indexInStartEntity = 0;
         int indexInEndEntity = 0;
+        bool tableLevelFk = false;
         QPointF volatileEndPosition;
         ErdArrowItem* arrow = nullptr;
         ErdScene* scene = nullptr;

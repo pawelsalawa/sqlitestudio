@@ -160,6 +160,16 @@ void ErdConnection::commitChange()
     delete ddlExecutor;
 }
 
+bool ErdConnection::isTableLevelFk() const
+{
+    return tableLevelFk;
+}
+
+void ErdConnection::setTableLevelFk(bool value)
+{
+    tableLevelFk = value;
+}
+
 ErdEntity* ErdConnection::getEndEntity() const
 {
     return endEntity;

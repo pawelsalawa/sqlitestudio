@@ -49,6 +49,8 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
         void init(ErdConnection *connection);
         void initColumnLevelFk(ErdConnection *connection);
         void initTableLevelFk(ErdConnection *connection);
+        void createColumnLevelPanel();
+        void createTableLevelPanel();
 
         Ui::ErdConnectionPanel *ui;
         Db* db = nullptr;
@@ -58,6 +60,7 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
         QString originalContent;
         ChainExecutor* ddlExecutor = nullptr;
         SqliteStatement* matchedFk = nullptr;
+        SqliteCreateTable::Column* childColumnStmt = nullptr;
 
     private slots:
         bool commit();

@@ -179,9 +179,10 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
 
     // Table-level FKs
     auto constraints = tableModel->getConstraints(SqliteCreateTable::Constraint::FOREIGN_KEY);
-    QList<ErdConnection*> tableLevelFks;
+    QList<QList<ErdConnection*>> tableLevelFks;
     for (auto constr : constraints)
     {
+        QList<ErdConnection*> singleFkConnections;
         int srcColNum = 0;
         for (SqliteIndexedColumn*& idxCol : constr->indexedColumns)
         {
@@ -193,17 +194,23 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
                 constr->foreignKey
                 );
 
+            conn->setTableLevelFk(true);
             if (conn)
-                tableLevelFks << conn;
+                singleFkConnections << conn;
         }
+        if (!singleFkConnections.isEmpty())
+            tableLevelFks << singleFkConnections;
     }
 
     // Make table-level FK connections aware of other connections that make the compound FK.
-    for (ErdConnection* tableFk : tableLevelFks)
+    for (QList<ErdConnection*>& singleFkConnections : tableLevelFks)
     {
-        QList<ErdConnection*> associatedConnections = tableLevelFks;
-        associatedConnections.removeOne(tableFk);
-        tableFk->setAssociatedConnections(associatedConnections);
+        for (ErdConnection*& conn: singleFkConnections)
+        {
+            QList<ErdConnection*> associatedConnections = singleFkConnections;
+            associatedConnections.removeOne(conn);
+            conn->setAssociatedConnections(associatedConnections);
+        }
     }
 
     // Column-level FKs
@@ -219,13 +226,14 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
     auto constraints = srcColumn->getConstraints(SqliteCreateTable::Column::Constraint::FOREIGN_KEY);
     for (auto constr : constraints)
     {
-        setupEntityConnection(
+        ErdConnection* conn = setupEntityConnection(
             entitiesByTable,
             srcEntity,
             srcColumn->name,
             0,
             constr->foreignKey
             );
+        conn->setTableLevelFk(false);
     }
 }
 

@@ -63,12 +63,11 @@ void ErdConnectionPanel::init(ErdConnection* connection)
     createTable.reset(originalCreateTable->typeClone<SqliteCreateTable>());
     originalContent = originalCreateTable->produceTokens().detokenize();
 
-    if (connection->isCompoundConnection())
+    if (connection->isTableLevelFk())
         initTableLevelFk(connection);
     else
         initColumnLevelFk(connection);
 
-    connect(constraintPanel, SIGNAL(updateValidation()), this, SLOT(validate()));
     actionMap[COMMIT]->setEnabled(false);
     actionMap[ROLLBACK]->setEnabled(false);
 }
@@ -81,11 +80,8 @@ void ErdConnectionPanel::initColumnLevelFk(ErdConnection* connection)
     ErdEntity* parentEntity = connection->getEndEntity();
     ui->childTableName->setText(childEntity->getTableName());
 
-    ErdColumnFkPanel* fkPanel = new ErdColumnFkPanel();
-    ui->fkPanelContainer->layout()->addWidget(fkPanel);
-
     SqliteCreateTable* childCreateTable = createTable.data();
-    SqliteCreateTable::Column* childColumnStmt = childCreateTable->columns[connection->getStartEntityRow() - 1]; // -1 to respect entity header
+    childColumnStmt = childCreateTable->columns[connection->getStartEntityRow() - 1]; // -1 to respect entity header
     ui->childColumnName->setText(childColumnStmt->name);
 
     SqliteCreateTable* parentCreateTable = parentEntity->getTableModel().data();
@@ -103,18 +99,7 @@ void ErdConnectionPanel::initColumnLevelFk(ErdConnection* connection)
             break;
         }
     }
-
-    if (!matchedFk)
-    {
-        qCritical() << "ErdConnectionPanel failed to match FK constraint!";
-        return;
-    }
-
-    fkPanel->setDb(db);
-    fkPanel->setCreateTableStmt(childCreateTable);
-    fkPanel->setColumnStmt(childColumnStmt);
-    fkPanel->setConstraint(matchedFk);
-    constraintPanel = fkPanel;
+    createColumnLevelPanel();
 }
 
 void ErdConnectionPanel::initTableLevelFk(ErdConnection* connection)
@@ -127,9 +112,6 @@ void ErdConnectionPanel::initTableLevelFk(ErdConnection* connection)
     ErdEntity* childEntity = connection->getStartEntity();
     ErdEntity* parentEntity = connection->getEndEntity();
     ui->childTableName->setText(childEntity->getTableName());
-
-    ErdTableFkPanel* fkPanel = new ErdTableFkPanel();
-    ui->fkPanelContainer->layout()->addWidget(fkPanel);
 
     SqliteCreateTable* childCreateTable = createTable.data();
     QList<SqliteCreateTable::Column*> childColumnStmts;
@@ -168,11 +150,35 @@ void ErdConnectionPanel::initTableLevelFk(ErdConnection* connection)
         matchedFk = fk;
         break;
     }
+    createTableLevelPanel();
+}
 
+void ErdConnectionPanel::createColumnLevelPanel()
+{
+    ErdColumnFkPanel* fkPanel = new ErdColumnFkPanel();
+    ui->fkPanelContainer->layout()->addWidget(fkPanel);
+    if (!matchedFk)
+    {
+        qCritical() << "ErdConnectionPanel failed to match FK constraint!";
+        return;
+    }
     fkPanel->setDb(db);
-    fkPanel->setCreateTableStmt(childCreateTable);
+    fkPanel->setCreateTableStmt(createTable.data());
+    fkPanel->setColumnStmt(childColumnStmt);
     fkPanel->setConstraint(matchedFk);
     constraintPanel = fkPanel;
+    connect(constraintPanel, SIGNAL(updateValidation()), this, SLOT(validate()));
+}
+
+void ErdConnectionPanel::createTableLevelPanel()
+{
+    ErdTableFkPanel* fkPanel = new ErdTableFkPanel();
+    ui->fkPanelContainer->layout()->addWidget(fkPanel);
+    fkPanel->setDb(db);
+    fkPanel->setCreateTableStmt(createTable.data());
+    fkPanel->setConstraint(matchedFk);
+    constraintPanel = fkPanel;
+    connect(constraintPanel, SIGNAL(updateValidation()), this, SLOT(validate()));
 }
 
 bool ErdConnectionPanel::commit()
@@ -203,14 +209,24 @@ bool ErdConnectionPanel::commit()
     ddlExecutor->setDisableObjectDropsDetection(true);
     ddlExecutor->exec();
 
-    qDebug() << "storing connection change for panel" << this;
+    actionMap[COMMIT]->setEnabled(false);
+    actionMap[ROLLBACK]->setEnabled(false);
     emit changeCreated(change);
     return true;
 }
 
 void ErdConnectionPanel::rollback()
 {
-    constraintPanel->setConstraint(matchedFk);
+    ui->fkPanelContainer->layout()->removeWidget(constraintPanel);
+    safe_delete(constraintPanel);
+
+    if (ui->tableLevelFkLabel->isVisible())
+        createTableLevelPanel();
+    else
+        createColumnLevelPanel();
+
+    actionMap[COMMIT]->setEnabled(false);
+    actionMap[ROLLBACK]->setEnabled(false);
 }
 
 void ErdConnectionPanel::validate()

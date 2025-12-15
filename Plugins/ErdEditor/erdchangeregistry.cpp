@@ -1,4 +1,6 @@
 #include "erdchangeregistry.h"
+#include "erdchange.h"
+#include <QDebug>
 
 ErdChangeRegistry::ErdChangeRegistry(QObject *parent)
     : QObject{parent}
