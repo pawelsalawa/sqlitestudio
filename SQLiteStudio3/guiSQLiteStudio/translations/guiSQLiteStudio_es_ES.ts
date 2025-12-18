@@ -2112,7 +2112,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="194"/>
       <source>Delete view</source>
-      <translation type="unfinished">Delete view</translation>
+      <translation>Borrar vista</translation>
     </message>
     <message>
       <location filename="../dbobjectdialogs.cpp" line="195"/>
@@ -2608,7 +2608,7 @@ Todos los objetos de este grupo se moverán al grupo superior.</translation>
       <location filename="../dbtree/dbtreemodel.cpp" line="519"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Indexes (%1):</translation>
+      <translation>Índices (%1):</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="522"/>
