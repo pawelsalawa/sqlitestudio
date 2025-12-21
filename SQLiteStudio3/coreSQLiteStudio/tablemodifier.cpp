@@ -72,6 +72,7 @@ void TableModifier::dropTable()
         TableModifier parentTabMod(db, database, parTable);
         parentTabMod.removeFks(table);
         importResultsFromSubmodier(parentTabMod);
+        modifiedTables << parTable;
     }
 
     static_qstring(delTpl, "DROP TABLE %1.%2;");

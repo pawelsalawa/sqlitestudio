@@ -2,26 +2,27 @@
 #include "icon.h"
 #include "iconmanager.h"
 #include "ui_erdwindow.h"
-#include "erdscene.h"
+#include "scene/erdscene.h"
 #include "common/unused.h"
 #include "services/dbmanager.h"
 #include "mdiwindow.h"
 #include "style.h"
 #include "erdeditorplugin.h"
 #include "services/config.h"
-#include "erdentity.h"
-#include "erdtablewindow.h"
-#include "erdchange.h"
-#include "erdchangeregistry.h"
-#include "erdchangeentity.h"
+#include "scene/erdentity.h"
+#include "panel/erdtablewindow.h"
+#include "changes/erdchange.h"
+#include "changes/erdchangeregistry.h"
+#include "changes/erdchangeentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
-#include "erdchangecomposite.h"
-#include "erdchangedeleteconnection.h"
-#include "erdchangedeleteentity.h"
-#include "erdchangenewentity.h"
-#include "erdconnection.h"
-#include "erdconnectionpanel.h"
+#include "changes/erdchangecomposite.h"
+#include "changes/erdchangedeleteconnection.h"
+#include "changes/erdchangedeleteentity.h"
+#include "changes/erdchangenewentity.h"
+#include "changes/erdchangeregistrydialog.h"
+#include "scene/erdconnection.h"
+#include "panel/erdconnectionpanel.h"
 #include "tablemodifier.h"
 #include <QDebug>
 #include <QMdiSubWindow>
@@ -294,7 +295,7 @@ void ErdWindow::handleSingleChange(ErdChange* change)
 
 void ErdWindow::updateState()
 {
-    updateToolbarState(changeRegistry->getPandingChangesCount());
+    updateToolbarState(changeRegistry->getPendingChangesCount());
 }
 
 void ErdWindow::updateToolbarState(int effectiveChangeCount)
@@ -312,6 +313,12 @@ void ErdWindow::abortSidePanel()
         propertiesPanel->abortErdChange();
 
     clearSidePanel();
+}
+
+void ErdWindow::showChangeRegistry()
+{
+    ErdChangeRegistryDialog dialog(memDb, changeRegistry, this);
+    dialog.exec();
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -398,6 +405,7 @@ void ErdWindow::createActions()
     changeCountLabel->setFont(bold);
     changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
     changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
+    connect(changeCountLabel, &QToolButton::clicked, this, &ErdWindow::showChangeRegistry);
     ui->toolBar->addWidget(changeCountLabel);
 
     ui->toolBar->addSeparator();

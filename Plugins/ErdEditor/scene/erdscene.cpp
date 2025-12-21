@@ -1,17 +1,17 @@
 #include "erdscene.h"
 #include "erdentity.h"
-#include "erdchangedeleteentity.h"
+#include "changes/erdchangedeleteentity.h"
 #include "erdwindow.h"
 #include "schemaresolver.h"
 #include "erdlinearrowitem.h"
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
-#include "erdchangeentity.h"
+#include "changes/erdchangeentity.h"
 #include "tablemodifier.h"
-#include "erdchangenewentity.h"
+#include "changes/erdchangenewentity.h"
 #include "erdview.h"
-#include "erdchangedeleteconnection.h"
-#include "erdchangecomposite.h"
+#include "changes/erdchangedeleteconnection.h"
+#include "changes/erdchangecomposite.h"
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
 #include <QApplication>
@@ -125,6 +125,9 @@ StrHash<ErdEntity*> ErdScene::refreshSchemaForTableNames(const QStringList& tabl
     for (const QString& tableName : tables)
     {
         ErdEntity* entity = entitiesByTable[tableName];
+        if (entity->isBeingDeleted())
+            continue;
+
         refreshEntityFromTableName(resolver, entitiesByTable, entity, tableName);
     }
     return entitiesByTable;
@@ -339,6 +342,9 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
 
     emit sidePanelAbortRequested();
 
+    for (auto&& item : items)
+        item->setSelected(false);
+
     QList<ErdEntity*> entitiesToDelete = entities | FILTER(entity, {return items.contains(entity);});
     QList<ErdConnection*> connectionsToDelete = toList(getConnections()) |
         FILTER(conn,
@@ -355,18 +361,12 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
             return true;
         });
 
-    // Should be handled by TableModifier::dropTable
-    // for (ErdEntity*& e : entitiesToDelete)
-    // {
-    //     connectionsToDelete += e->getConnections() | FILTER(conn,
-    //         {
-    //             // If this connection is owned by another entity, which is not marked for deletion,
-    //             // while this connection also not marked for deletion yet - then mark it for deletion.
-    //             return conn->getStartEntity() != e &&
-    //                    !entitiesToDelete.contains(conn->getStartEntity()) &&
-    //                    !connectionsToDelete.contains(conn);
-    //         });
-    // }
+    // Sort by least connections per entity first, so they get deleted first,
+    // so that resulting DDL is the simplest possible.
+    sSort(entitiesToDelete, [](ErdEntity*& e1, ErdEntity*& e2)
+    {
+        return e1->getConnections().size() >= e2->getConnections().size();
+    });
 
     QList<ErdChange*> changes;
     for (ErdEntity*& e : entitiesToDelete)
@@ -407,7 +407,6 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
 {
     QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
     ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), changeDesc);
-    qDebug() << change->toDdl();
     ddlExecutor->setQueries(change->toDdl());
     ddlExecutor->exec();
     if (!ddlExecutor->getSuccessfulExecution())
@@ -418,6 +417,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
         return nullptr;
     }
 
+    entity->markAsBeingDeleted();
     return change;
 }
 
@@ -436,6 +436,7 @@ ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
         return nullptr;
     }
 
+    connection->markAsBeingDeleted();
     return change;
 }
 
@@ -444,11 +445,13 @@ void ErdScene::removeEntityFromScene(ErdEntity* entity)
     removeItem(entity);
     entities.removeOne(entity);
 
-    // The line below is necessary to avoid app crash after deleting the entity object.
-    // Apparently without it Qt does not update the items in the internal tree of nodes
-    // and because of that the deferred repaint event causes crash.
+    // 3 lines below is necessary to avoid app crash after deleting the entity object.
+    // Apparently without it Qt doesn't properly keep track of remove item an crashes soon afterwards.
     // At least that's what it looks like from debugging (crash happens in the Qt's internal BSP Tree).
+    // I've tried to nail down the actual root cause of it, but with no luck.
     refreshSceneRect();
+    setItemIndexMethod(QGraphicsScene::NoIndex);
+    setItemIndexMethod(QGraphicsScene::BspTreeIndex); // rebuild the tree
 
     delete entity;
 }
@@ -463,6 +466,15 @@ void ErdScene::removeEntityFromSceneByName(const QString& tableName)
         qWarning() << "Requested to remoe entity" << tableName << "from scene, but no such entity was found!";
         return;
     }
+
+    for (ErdConnection* conn : entity->getConnections())
+    {
+        if (conn->getStartEntity() != entity)
+            continue;
+
+        delete conn;
+    }
+
     removeEntityFromScene(entity);
 }
 

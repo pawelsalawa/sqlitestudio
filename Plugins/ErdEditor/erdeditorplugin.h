@@ -6,7 +6,7 @@
 #include "plugins/generalpurposeplugin.h"
 #include "plugins/uiconfiguredplugin.h"
 #include "config_builder.h"
-#include "erdarrowitem.h"
+#include "scene/erdarrowitem.h"
 
 CFG_CATEGORIES(ErdConfig,
     CFG_CATEGORY(Erd,

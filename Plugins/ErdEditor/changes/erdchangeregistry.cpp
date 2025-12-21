@@ -11,6 +11,7 @@ ErdChangeRegistry::ErdChangeRegistry(QObject *parent)
 void ErdChangeRegistry::compact()
 {
     // make the change list compact
+    // possibly it will be done on the fly in addChange()
 }
 
 void ErdChangeRegistry::addChange(ErdChange* change)
@@ -25,7 +26,7 @@ void ErdChangeRegistry::addChange(ErdChange* change)
     notifyChangesUpdated();
 }
 
-int ErdChangeRegistry::getPandingChangesCount() const
+int ErdChangeRegistry::getPendingChangesCount() const
 {
     return currentIndex + 1;
 }
@@ -77,5 +78,5 @@ ErdChange* ErdChangeRegistry::peekRedo() const
 
 void ErdChangeRegistry::notifyChangesUpdated()
 {
-    emit effectiveChangeCountUpdated(getPandingChangesCount());
+    emit effectiveChangeCountUpdated(getPendingChangesCount());
 }

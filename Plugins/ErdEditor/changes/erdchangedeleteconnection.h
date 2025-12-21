@@ -23,7 +23,6 @@ class ErdChangeDeleteConnection : public ErdChange
     private:
         Db* db = nullptr;
         SqliteCreateTablePtr createTable;
-        QString startEntityName;
         QString endEntityName;
         QList<QPair<QString, QString>> columnPairs;
         TableModifier* tableModifier = nullptr;

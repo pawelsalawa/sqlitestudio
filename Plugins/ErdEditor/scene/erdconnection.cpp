@@ -1,10 +1,10 @@
-#include "erdconnection.h"
-#include "erdlinearrowitem.h"
-#include "erdcurvyarrowitem.h"
-#include "erdentity.h"
-#include "erdscene.h"
+#include "scene/erdconnection.h"
+#include "scene/erdlinearrowitem.h"
+#include "scene/erdcurvyarrowitem.h"
+#include "scene/erdentity.h"
+#include "scene/erdscene.h"
 #include "erdeditorplugin.h"
-#include "erdchangeentity.h"
+#include "changes/erdchangeentity.h"
 #include "db/db.h"
 #include "db/chainexecutor.h"
 #include <QDebug>
@@ -40,6 +40,7 @@ ErdConnection::~ErdConnection()
     if (endEntity)
         endEntity->removeConnection(this);
 
+    scene->removeItem(arrow);
     delete arrow;
 }
 
@@ -222,6 +223,21 @@ void ErdConnection::select(bool changeFocusToo)
     arrow->setSelected(true);
     if (changeFocusToo)
         arrow->setFocus();
+}
+
+void ErdConnection::deselect()
+{
+    arrow->setSelected(false);
+}
+
+void ErdConnection::markAsBeingDeleted()
+{
+    arrow->markAsBeingDeleted();
+}
+
+bool ErdConnection::isBeingDeleted() const
+{
+    return arrow->isBeingDeleted();
 }
 
 bool ErdConnection::isOwnerOf(ErdArrowItem* arrow)

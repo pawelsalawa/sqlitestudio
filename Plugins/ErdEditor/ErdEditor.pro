@@ -8,57 +8,59 @@ TARGET = ErdEditor
 DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
-    erdarrowitem.cpp \
-    erdchange.cpp \
-    erdchangecomposite.cpp \
-    erdchangedeleteconnection.cpp \
-    erdchangedeleteentity.cpp \
-    erdchangeentity.cpp \
-    erdchangelayout.cpp \
-    erdchangenewentity.cpp \
-    erdchangeregistry.cpp \
-    erdcolumnfkpanel.cpp \
-    erdconnection.cpp \
-    erdconnectionpanel.cpp \
-    erdcurvyarrowitem.cpp \
+    scene/erdarrowitem.cpp \
+    changes/erdchange.cpp \
+    changes/erdchangecomposite.cpp \
+    changes/erdchangedeleteconnection.cpp \
+    changes/erdchangedeleteentity.cpp \
+    changes/erdchangeentity.cpp \
+    changes/erdchangelayout.cpp \
+    changes/erdchangenewentity.cpp \
+    changes/erdchangeregistry.cpp \
+    changes/erdchangeregistrydialog.cpp \
+    panel/erdcolumnfkpanel.cpp \
+    scene/erdconnection.cpp \
+    panel/erdconnectionpanel.cpp \
+    scene/erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
-    erdentity.cpp \
+    scene/erdentity.cpp \
     erdgraphvizlayoutplanner.cpp \
-    erditem.cpp \
-    erdlinearrowitem.cpp \
-    erdscene.cpp \
-    erdsquarearrowitem.cpp \
-    erdtablefkpanel.cpp \
-    erdtablewindow.cpp \
-    erdview.cpp \
+    scene/erditem.cpp \
+    scene/erdlinearrowitem.cpp \
+    scene/erdscene.cpp \
+    scene/erdsquarearrowitem.cpp \
+    panel/erdtablefkpanel.cpp \
+    panel/erdtablewindow.cpp \
+    scene/erdview.cpp \
     erdwindow.cpp
 
 HEADERS += \
-    erdarrowitem.h \
-    erdchange.h \
-    erdchangecomposite.h \
-    erdchangedeleteconnection.h \
-    erdchangedeleteentity.h \
-    erdchangeentity.h \
-    erdchangelayout.h \
-    erdchangenewentity.h \
-    erdchangeregistry.h \
-    erdcolumnfkpanel.h \
-    erdconnection.h \
-    erdconnectionpanel.h \
-    erdcurvyarrowitem.h \
+    scene/erdarrowitem.h \
+    changes/erdchange.h \
+    changes/erdchangecomposite.h \
+    changes/erdchangedeleteconnection.h \
+    changes/erdchangedeleteentity.h \
+    changes/erdchangeentity.h \
+    changes/erdchangelayout.h \
+    changes/erdchangenewentity.h \
+    changes/erdchangeregistry.h \
+    changes/erdchangeregistrydialog.h \
+    panel/erdcolumnfkpanel.h \
+    scene/erdconnection.h \
+    panel/erdconnectionpanel.h \
+    scene/erdcurvyarrowitem.h \
     erdeditor_global.h \
     erdeditorplugin.h \
-    erdentity.h \
+    scene/erdentity.h \
     erdgraphvizlayoutplanner.h \
-    erditem.h \
-    erdlinearrowitem.h \
-    erdpropertiespanel.h \
-    erdscene.h \
-    erdsquarearrowitem.h \
-    erdtablefkpanel.h \
-    erdtablewindow.h \
-    erdview.h \
+    scene/erditem.h \
+    scene/erdlinearrowitem.h \
+    panel/erdpropertiespanel.h \
+    scene/erdscene.h \
+    scene/erdsquarearrowitem.h \
+    panel/erdtablefkpanel.h \
+    panel/erdtablewindow.h \
+    scene/erdview.h \
     erdwindow.h
 
 OTHER_FILES += \
@@ -67,8 +69,9 @@ OTHER_FILES += \
 LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
+    changes/erdchangeregistrydialog.ui \
     erdconfig.ui \
-    erdconnectionpanel.ui \
+    panel/erdconnectionpanel.ui \
     erdwindow.ui
 
 RESOURCES += \

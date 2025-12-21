@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "db/db.h"
 #include "tablemodifier.h"
-#include "erdentity.h"
+#include "scene/erdentity.h"
 
 ErdChangeEntity::ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description) :
     ErdChange(Category::ENTITY_CHANGE, description, true), db(db), before(before), after(after)

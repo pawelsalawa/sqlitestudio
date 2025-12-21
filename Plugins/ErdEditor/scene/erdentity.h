@@ -42,6 +42,8 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         bool isExistingTable() const;
         void setExistingTable(bool newExistingTable);
 
+        QString getTheName() const;
+
     private:
         struct Row
         {
@@ -78,6 +80,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         QList<Row*> rows;
         QGraphicsPixmapItem* cornerIcon = nullptr;
         bool existingTable = true;
+        QString theName;
 };
 
 #endif // ERDENTITY_H

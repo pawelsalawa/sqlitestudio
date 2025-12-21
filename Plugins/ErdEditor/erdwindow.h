@@ -3,7 +3,7 @@
 
 #include "mdichild.h"
 #include "erdeditor_global.h"
-#include "erdarrowitem.h"
+#include "scene/erdarrowitem.h"
 #include <QWidget>
 
 
@@ -134,6 +134,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void updateState();
         void updateToolbarState(int effectiveChangeCount);
         void abortSidePanel();
+        void showChangeRegistry();
 };
 
 #endif // ERDWINDOW_H

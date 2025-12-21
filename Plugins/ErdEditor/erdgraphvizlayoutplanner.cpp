@@ -1,7 +1,7 @@
-#include "erdscene.h"
+#include "scene/erdscene.h"
 #include "erdgraphvizlayoutplanner.h"
-#include "erdentity.h"
-#include "erdconnection.h"
+#include "scene/erdentity.h"
+#include "scene/erdconnection.h"
 #include <QGuiApplication>
 #include <QScreen>
 #include <graphviz/gvc.h>

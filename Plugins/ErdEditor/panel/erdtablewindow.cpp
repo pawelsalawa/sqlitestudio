@@ -1,8 +1,8 @@
 #include "erdtablewindow.h"
-#include "erdentity.h"
+#include "scene/erdentity.h"
 #include "ui_tablewindow.h"
-#include "erdchangeentity.h"
-#include "erdchangenewentity.h"
+#include "changes/erdchangeentity.h"
+#include "changes/erdchangenewentity.h"
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),

@@ -1,7 +1,7 @@
 #include "erdchangedeleteconnection.h"
-#include "erdconnection.h"
+#include "scene/erdconnection.h"
 #include "tablemodifier.h"
-#include "erdentity.h"
+#include "scene/erdentity.h"
 
 ErdChangeDeleteConnection::ErdChangeDeleteConnection(Db* db, ErdConnection* connection, const QString& description) :
     ErdChange(Category::CONNECTION_DELETE, description, true), db(db)

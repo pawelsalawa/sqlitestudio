@@ -32,6 +32,9 @@ class ErdConnection
         SqliteCreateTable::Column* getEndEntityColumn() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         void select(bool changeFocusToo = true);
+        void deselect();
+        void markAsBeingDeleted();
+        bool isBeingDeleted() const;
         bool isOwnerOf(ErdArrowItem* arrow);
         const ErdArrowItem* getArrowItem() const;
         bool isCompoundConnection() const;

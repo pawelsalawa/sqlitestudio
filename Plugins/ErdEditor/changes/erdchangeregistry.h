@@ -14,7 +14,7 @@ class ErdChangeRegistry : public QObject
 
         void compact();
         void addChange(ErdChange* change);
-        int getPandingChangesCount() const;
+        int getPendingChangesCount() const;
         QList<ErdChange*> getEffectiveChanges() const;
         ErdChange* undo();
         ErdChange* redo();
