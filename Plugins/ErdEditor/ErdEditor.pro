@@ -10,6 +10,9 @@ DEFINES += ERDEDITOR_LIBRARY
 SOURCES += \
     erdarrowitem.cpp \
     erdchange.cpp \
+    erdchangecomposite.cpp \
+    erdchangedeleteconnection.cpp \
+    erdchangedeleteentity.cpp \
     erdchangeentity.cpp \
     erdchangelayout.cpp \
     erdchangenewentity.cpp \
@@ -33,6 +36,9 @@ SOURCES += \
 HEADERS += \
     erdarrowitem.h \
     erdchange.h \
+    erdchangecomposite.h \
+    erdchangedeleteconnection.h \
+    erdchangedeleteentity.h \
     erdchangeentity.h \
     erdchangelayout.h \
     erdchangenewentity.h \

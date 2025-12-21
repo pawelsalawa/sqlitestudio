@@ -4,8 +4,8 @@
 #include "tablemodifier.h"
 #include "erdentity.h"
 
-ErdChangeEntity::ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after) :
-    ErdChange(Category::ENTITY_CHANGE, true), db(db), before(before), after(after)
+ErdChangeEntity::ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description) :
+    ErdChange(Category::ENTITY_CHANGE, description, true), db(db), before(before), after(after)
 {
 }
 
@@ -16,12 +16,12 @@ ErdChangeEntity::~ErdChangeEntity()
 
 QStringList ErdChangeEntity::getChangeDdl()
 {
-    after->rebuildTokens();
-    tableModifier = new TableModifier(db, before->database, before->table);
-    // TODO defer data copying, retain original table with data as renamed
-    // Coming back to above after some time - it seems that it's no longer relevant, since ERD uses memDb without data in it for live-editing.
-    // This comment should be implemented or removed when ERD plugin is complete.
-    tableModifier->alterTable(after);
+    if (!tableModifier)
+    {
+        after->rebuildTokens();
+        tableModifier = new TableModifier(db, before->database, before->table);
+        tableModifier->alterTable(after);
+    }
     return tableModifier->generateSqls();
 }
 

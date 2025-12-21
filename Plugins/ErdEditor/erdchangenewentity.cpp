@@ -1,8 +1,8 @@
 #include "erdchangenewentity.h"
 #include "erdentity.h"
 
-ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const SqliteCreateTablePtr& createTable) :
-    ErdChange(Category::ENTITY_NEW, true), db(db), createTable(createTable)
+ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description) :
+    ErdChange(Category::ENTITY_NEW, description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable)
 {
 }
 
@@ -10,6 +10,11 @@ QStringList ErdChangeNewEntity::getChangeDdl()
 {
     createTable->rebuildTokens();
     return {createTable->detokenize()};
+}
+
+QString ErdChangeNewEntity::getTemporaryEntityName() const
+{
+    return temporaryEntityName;
 }
 
 QString ErdChangeNewEntity::getTableName() const

@@ -208,7 +208,6 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
         void checkIfIndexDeleted(const QString& object);
         void checkIfTriggerDeleted(const QString& object);
-        void refreshStructure();
         virtual bool commitStructure(bool skipWarning = false);
         virtual void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
@@ -259,6 +258,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void dbChanged();
 
     public slots:
+        void refreshStructure();
         void updateIndexes();
         void updateTriggers();
         void addColumn();

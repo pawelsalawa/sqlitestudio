@@ -65,6 +65,7 @@ void ChainExecutor::exec()
 
     executionInProgress = true;
     currentSqlIndex = 0;
+    executionErrors.clear();
     if (async)
         executeCurrentSql();
     else

@@ -63,7 +63,7 @@ void ErdConnection::finalizeConnection(ErdEntity* entity, const QPointF& endPos)
     startEntity->updateConnectionIndexes();
     endEntity->updateConnectionIndexes();
     refreshPosition();
-    commitChange();
+    commitFinalizationChange();
 }
 
 bool ErdConnection::isFinalized() const
@@ -108,7 +108,7 @@ QPointF ErdConnection::findThisPosAgainstOther(ErdEntity* thisEntity, int thisRo
     return pos;
 }
 
-void ErdConnection::commitChange()
+void ErdConnection::commitFinalizationChange()
 {
     SqliteCreateTablePtr originalCreateTable = startEntity->getTableModel();
     SqliteCreateTablePtr createTable = SqliteCreateTablePtr(originalCreateTable->typeClone<SqliteCreateTable>());
@@ -140,9 +140,10 @@ void ErdConnection::commitChange()
     fk->initFk(endEntity->getTableName(), {idxCol}, {});
 
     createTable->rebuildTokens(); // needed for TableModifier when executing changes
-    qDebug() << "dll:" << createTable->detokenize();
+    //qDebug() << "dll:" << createTable->detokenize();
 
-    ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable);
+    QString desc = QObject::tr("Create relationship between \"%1\" and \"%2\".").arg(createTable->table, fk->foreignKey->foreignTable);
+    ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable, desc);
 
     ChainExecutor* ddlExecutor = new ChainExecutor();
     ddlExecutor->setAsync(false);
@@ -226,6 +227,11 @@ void ErdConnection::select(bool changeFocusToo)
 bool ErdConnection::isOwnerOf(ErdArrowItem* arrow)
 {
     return arrow == this->arrow;
+}
+
+const ErdArrowItem* ErdConnection::getArrowItem() const
+{
+    return this->arrow;
 }
 
 bool ErdConnection::isCompoundConnection() const

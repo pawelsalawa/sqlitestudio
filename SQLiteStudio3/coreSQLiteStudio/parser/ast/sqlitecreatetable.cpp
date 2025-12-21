@@ -138,6 +138,54 @@ int SqliteCreateTable::getColumnIndex(const QString& colName)
     return -1;
 }
 
+QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeignKeysByTable(const QString& foreignTable, const QString& srcCol, const QString& trgCol) const
+{
+    QList<SqliteCreateTable::Column::Constraint*> results;
+    for (auto&& col : columns)
+    {
+        if (col->name.compare(srcCol, Qt::CaseInsensitive) != 0)
+            continue;
+
+        auto fks = col->getForeignKeysByTable(foreignTable);
+        for (SqliteCreateTable::Column::Constraint*& constr : fks)
+        {
+            QStringList fkCols = constr->foreignKey->getColumnNames();
+            if (fkCols.size() != 1 || fkCols.first().compare(trgCol, Qt::CaseInsensitive) != 0)
+                continue;
+
+            results << constr;
+        }
+    }
+    return results;
+}
+
+QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(const QString& foreignTable, const QList<QPair<QString, QString> >& tableColumnPairs) const
+{
+    static_qstring(pairTpl, "%1 -> %2");
+    QSet<QString> comparablePairs = toSet(
+            tableColumnPairs |
+                MAP(pair, {return pairTpl.arg(pair.first.toLower(), pair.second.toLower());})
+        );
+
+    QList<SqliteCreateTable::Constraint*> results;
+    for (SqliteCreateTable::Constraint*& constr : getForeignKeysByTable(foreignTable))
+    {
+        QSet<QString> constrPairs;
+        for (int idx = 0; idx < constr->indexedColumns.size(); idx++)
+        {
+            QString colName = constr->indexedColumns[idx]->name;
+            QString refColName = constr->foreignKey->indexedColumns[idx]->name;
+            constrPairs << pairTpl.arg(colName.toLower(), refColName.toLower());
+        }
+
+        if (comparablePairs == constrPairs)
+            continue;
+
+        results << constr;
+    }
+    return results;
+}
+
 QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(const QString& foreignTable) const
 {
     QList<Constraint*> results;
@@ -670,6 +718,11 @@ QString SqliteCreateTable::Constraint::typeString() const
             return QString();
     }
     return QString();
+}
+
+QStringList SqliteCreateTable::Constraint::getColumnNames() const
+{
+    return indexedColumns | MAP(idxCol, {return idxCol->getColumnName();});
 }
 
 TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents() const

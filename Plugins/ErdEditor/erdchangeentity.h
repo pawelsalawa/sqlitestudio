@@ -11,7 +11,7 @@ class ErdEntity;
 class ErdChangeEntity : public ErdChange
 {
     public:
-        ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after);
+        ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description);
         ~ErdChangeEntity();
 
         TableModifier *getTableModifier() const;

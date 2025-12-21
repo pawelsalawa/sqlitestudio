@@ -83,6 +83,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
+        void refreshTableWindowPanel();
         bool storeCurrentSidePanelModifications();
         bool handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName);
         /**
@@ -90,6 +91,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool storeEntityModifications(QWidget* sidePanelWidget);
         QString getCurrentSidePanelModificationsEntity() const;
+        void handleSingleChange(ErdChange* change);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -105,7 +107,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Db* db = nullptr;
         Db* memDb = nullptr; // a volatile copy of the db, excluding data, just schema - for immediate modifications
         ErdScene* scene = nullptr;
-        QShortcut* escHotkey = nullptr;
         ErdChangeRegistry* changeRegistry = nullptr;
         QWidget* currentSideWidget = nullptr;
         QWidget* noSideWidgetContents = nullptr;
@@ -118,8 +119,11 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
         void useStraightLine();
+        void useStraightLineHotKey();
         void useCurvyLine();
+        void useCurvyLineHotKey();
         void useSquareLine();
+        void useSquareLineHotKey();
         void cancelCurrentAction();
         void newTable();
         void itemSelectionChanged();
@@ -129,6 +133,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void handleCreatedChange(ErdChange* change);
         void updateState();
         void updateToolbarState(int effectiveChangeCount);
+        void abortSidePanel();
 };
 
 #endif // ERDWINDOW_H

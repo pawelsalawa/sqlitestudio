@@ -16,6 +16,9 @@
 #include "erdchangeentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
+#include "erdchangecomposite.h"
+#include "erdchangedeleteconnection.h"
+#include "erdchangedeleteentity.h"
 #include "erdchangenewentity.h"
 #include "erdconnection.h"
 #include "erdconnectionpanel.h"
@@ -105,10 +108,14 @@ void ErdWindow::init()
 
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
-    escHotkey = new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
+    new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
+    new QShortcut(Qt::CTRL|Qt::Key_1, this, SLOT(useStraightLineHotKey()), SLOT(useStraightLineHotKey()), Qt::WidgetWithChildrenShortcut);
+    new QShortcut(Qt::CTRL|Qt::Key_2, this, SLOT(useCurvyLineHotKey()), SLOT(useCurvyLineHotKey()), Qt::WidgetWithChildrenShortcut);
+    new QShortcut(Qt::CTRL|Qt::Key_3, this, SLOT(useSquareLineHotKey()), SLOT(useSquareLineHotKey()), Qt::WidgetWithChildrenShortcut);
 
     scene = new ErdScene(arrowType, this);
-    connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange);
+    connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
+    connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
     ui->graphView->setScene(scene);
 
     initActions();
@@ -151,14 +158,29 @@ void ErdWindow::useStraightLine()
     applyArrowType(ErdArrowItem::STRAIGHT);
 }
 
+void ErdWindow::useStraightLineHotKey()
+{
+    actionMap[LINE_STRAIGHT]->trigger();
+}
+
 void ErdWindow::useCurvyLine()
 {
     applyArrowType(ErdArrowItem::CURVY);
 }
 
+void ErdWindow::useCurvyLineHotKey()
+{
+    actionMap[LINE_CURVY]->trigger();
+}
+
 void ErdWindow::useSquareLine()
 {
     applyArrowType(ErdArrowItem::SQUARE);
+}
+
+void ErdWindow::useSquareLineHotKey()
+{
+    actionMap[LINE_SQUARE]->trigger();
 }
 
 void ErdWindow::cancelCurrentAction()
@@ -167,6 +189,11 @@ void ErdWindow::cancelCurrentAction()
     {
         ui->graphView->abortDraftConnection();
         return;
+    }
+    else if (currentSideWidget)
+    {
+        abortSidePanel();
+        scene->clearSelection();
     }
 }
 
@@ -220,14 +247,49 @@ void ErdWindow::rollbackPendingChanges()
 void ErdWindow::handleCreatedChange(ErdChange* change)
 {
     changeRegistry->addChange(change);
+    handleSingleChange(change);
+}
+
+void ErdWindow::handleSingleChange(ErdChange* change)
+{
+    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
+    if (compositeChange)
+    {
+        for (auto&& singleChange : compositeChange->getChanges())
+            handleSingleChange(singleChange);
+
+        return;
+    }
 
     ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
     if (entityChange)
+    {
         scene->refreshSchema(entityChange);
+        refreshTableWindowPanel();
+        return;
+    }
 
     ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
     if (newEntityChange)
+    {
         scene->refreshSchema(newEntityChange);
+        refreshTableWindowPanel();
+        return;
+    }
+
+    ErdChangeDeleteEntity* deleteEntityChange = dynamic_cast<ErdChangeDeleteEntity*>(change);
+    if (deleteEntityChange)
+    {
+        scene->refreshSchema(deleteEntityChange);
+        return;
+    }
+
+    ErdChangeDeleteConnection* deleteConnectionChange = dynamic_cast<ErdChangeDeleteConnection*>(change);
+    if (deleteConnectionChange)
+    {
+        scene->refreshSchema(deleteConnectionChange);
+        return;
+    }
 }
 
 void ErdWindow::updateState()
@@ -241,6 +303,15 @@ void ErdWindow::updateToolbarState(int effectiveChangeCount)
     actionMap[COMMIT]->setEnabled(hasPendingChanges);
     actionMap[ROLLBACK]->setEnabled(hasPendingChanges);
     changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, effectiveChangeCount));
+}
+
+void ErdWindow::abortSidePanel()
+{
+    ErdPropertiesPanel* propertiesPanel = dynamic_cast<ErdPropertiesPanel*>(currentSideWidget);
+    if (propertiesPanel)
+        propertiesPanel->abortErdChange();
+
+    clearSidePanel();
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -532,6 +603,18 @@ bool ErdWindow::initMemDb()
         memDb->exec(ddl);
 
     return true;
+}
+
+void ErdWindow::refreshTableWindowPanel()
+{
+    if (!currentSideWidget)
+        return;
+
+    ErdTableWindow* tableWindow = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (!tableWindow)
+        return;
+
+    tableWindow->refreshStructure();
 }
 
 bool ErdWindow::storeCurrentSidePanelModifications()

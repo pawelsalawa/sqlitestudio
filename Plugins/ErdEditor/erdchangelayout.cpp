@@ -1,8 +1,8 @@
 #include "erdchangelayout.h"
 
 
-ErdChangeLayout::ErdChangeLayout() :
-    ErdChange(Category::LAYOUT)
+ErdChangeLayout::ErdChangeLayout(const QString& description) :
+    ErdChange(Category::LAYOUT, description)
 {
 }
 

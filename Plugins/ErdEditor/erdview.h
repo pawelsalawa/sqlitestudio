@@ -78,6 +78,7 @@ class ErdView : public QGraphicsView
     private slots:
         void resetZoom();
         void showItemToUser(QGraphicsItem* item);
+        void deleteSelectedItem();
 
     signals:
         void draftConnectionRemoved();

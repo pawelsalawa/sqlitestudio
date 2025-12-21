@@ -63,6 +63,83 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     sqls << "PRAGMA foreign_keys = 1;";
 }
 
+void TableModifier::dropTable()
+{
+    SchemaResolver resolver(db);
+    QStringList parentTables = resolver.getFkReferencingTables(database, table);
+    for (QString& parTable : parentTables)
+    {
+        TableModifier parentTabMod(db, database, parTable);
+        parentTabMod.removeFks(table);
+        importResultsFromSubmodier(parentTabMod);
+    }
+
+    static_qstring(delTpl, "DROP TABLE %1.%2;");
+    QString dbName = database.isEmpty() ? "main" : database;
+    sqls << delTpl.arg(wrapObjIfNeeded(dbName), wrapObjIfNeeded(table));
+}
+
+void TableModifier::removeFks(const QString& referencedTable)
+{
+    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    for (auto&& constr : newCreateTable->getForeignKeysByTable(referencedTable))
+    {
+        newCreateTable->constraints.removeOne(constr);
+        delete constr;
+    }
+
+    for (auto&& constr : newCreateTable->getColumnForeignKeysByTable(referencedTable))
+    {
+        newCreateTable->removeColumnConstraint(constr);
+        delete constr;
+    }
+
+    alterTable(newCreateTable);
+}
+
+void TableModifier::removeColumnFk(const QString& referencedTable, const QString& srcColumn, const QString& trgColumn)
+{
+    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    processColumnFkRemoval(newCreateTable, referencedTable, srcColumn, trgColumn);
+    alterTable(newCreateTable);
+}
+
+void TableModifier::removeCompoundFk(const QString& referencedTable, const QList<QPair<QString, QString>>& tableColumnPairs)
+{
+    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    processCompoundFkRemoval(newCreateTable, referencedTable, tableColumnPairs);
+    alterTable(newCreateTable);
+}
+
+
+void TableModifier::removeFk(const QString& referencedTable, const QList<QPair<QString, QString>>& tableColumnPairs)
+{
+    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    processCompoundFkRemoval(newCreateTable, referencedTable, tableColumnPairs);
+    for (auto&& pair : tableColumnPairs)
+        processColumnFkRemoval(newCreateTable, referencedTable, pair.first, pair.second);
+
+    alterTable(newCreateTable);
+}
+
+void TableModifier::processColumnFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QString& srcColumn, const QString& trgColumn)
+{
+    for (auto&& constr : newCreateTable->getColumnForeignKeysByTable(referencedTable, srcColumn, trgColumn))
+    {
+        newCreateTable->removeColumnConstraint(constr);
+        delete constr;
+    }
+}
+
+void TableModifier::processCompoundFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QList<QPair<QString, QString> >& tableColumnPairs)
+{
+    for (auto&& constr : newCreateTable->getForeignKeysByTable(referencedTable, tableColumnPairs))
+    {
+        newCreateTable->constraints.removeOne(constr);
+        delete constr;
+    }
+}
+
 void TableModifier::renameTo(const QString& newName, bool doCopyData)
 {
     if (!createTable)
@@ -173,21 +250,27 @@ void TableModifier::handleFks()
         subModifier.newName = fkTable;
         subModifier.tablesHandledForFk = tablesHandledForFk;
         subModifier.handleFkAsSubModifier(originalTable, newName);
-        sqls += subModifier.generateSqls();
         modifiedTables << fkTable;
 
-        triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
-        tablesHandledForFk = subModifier.tablesHandledForFk;
-        usedTempTableNames = subModifier.usedTempTableNames;
-
-        modifiedTables += subModifier.getModifiedTables();
-        modifiedIndexes += subModifier.getModifiedIndexes();
-        modifiedTriggers += subModifier.getModifiedTriggers();
-        modifiedViews += subModifier.getModifiedViews();
-
-        warnings += subModifier.getWarnings();
-        errors += subModifier.getErrors();
+        importResultsFromSubmodier(subModifier);
     }
+}
+
+void TableModifier::importResultsFromSubmodier(TableModifier& subModifier)
+{
+    sqls += subModifier.generateSqls();
+
+    triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
+    tablesHandledForFk = subModifier.tablesHandledForFk;
+    usedTempTableNames = subModifier.usedTempTableNames;
+
+    modifiedTables += subModifier.getModifiedTables();
+    modifiedIndexes += subModifier.getModifiedIndexes();
+    modifiedTriggers += subModifier.getModifiedTriggers();
+    modifiedViews += subModifier.getModifiedViews();
+
+    warnings += subModifier.getWarnings();
+    errors += subModifier.getErrors();
 }
 
 void TableModifier::handleFkAsSubModifier(const QString& oldName, const QString& theNewName)

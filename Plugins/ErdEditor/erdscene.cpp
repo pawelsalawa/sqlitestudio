@@ -1,5 +1,6 @@
 #include "erdscene.h"
 #include "erdentity.h"
+#include "erdchangedeleteentity.h"
 #include "erdwindow.h"
 #include "schemaresolver.h"
 #include "erdlinearrowitem.h"
@@ -9,17 +10,26 @@
 #include "tablemodifier.h"
 #include "erdchangenewentity.h"
 #include "erdview.h"
+#include "erdchangedeleteconnection.h"
+#include "erdchangecomposite.h"
+#include "db/chainexecutor.h"
+#include "services/notifymanager.h"
 #include <QApplication>
 #include <QMessageBox>
 
 ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     : QGraphicsScene{parent}, arrowType(arrowType)
 {
+    ddlExecutor = new ChainExecutor(this);
+    ddlExecutor->setAsync(false);
+    ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setDisableObjectDropsDetection(true);
 }
 
 void ErdScene::setDb(Db *db)
 {
     this->db = db;
+    ddlExecutor->setDb(db);
 }
 
 Db* ErdScene::getDb() const
@@ -81,10 +91,43 @@ void ErdScene::refreshSchema(ErdChangeEntity* entityChange)
 void ErdScene::refreshSchema(ErdChangeNewEntity* newEntityChange)
 {
     StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
-    ErdEntity* entity = entitiesByTable.value(newEntityChange->getTableName(), Qt::CaseInsensitive);
+    ErdEntity* entity = entitiesByTable.value(newEntityChange->getTemporaryEntityName(), Qt::CaseInsensitive);
 
     SchemaResolver resolver(db);
     refreshEntityFromTableName(resolver, entitiesByTable, entity, newEntityChange->getTableName());
+
+    QStringList referencingTables = resolver.getFkReferencingTables(newEntityChange->getTableName());
+    for (const QString& tableName : referencingTables)
+    {
+        ErdEntity* entity = entitiesByTable[tableName];
+        refreshEntityFromTableName(resolver, entitiesByTable, entity, tableName);
+    }
+}
+
+void ErdScene::refreshSchema(ErdChangeDeleteEntity* deleteEntityChange)
+{
+    QStringList tables = deleteEntityChange->getTableModifier()->getModifiedTables();
+    refreshSchemaForTableNames(tables);
+    removeEntityFromSceneByName(deleteEntityChange->getTableName());
+}
+
+void ErdScene::refreshSchema(ErdChangeDeleteConnection* deleteConnectionChange)
+{
+    QStringList tables = deleteConnectionChange->getTableModifier()->getModifiedTables();
+    tables << deleteConnectionChange->getStartEntityName();
+    refreshSchemaForTableNames(tables);
+}
+
+StrHash<ErdEntity*> ErdScene::refreshSchemaForTableNames(const QStringList& tables)
+{
+    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
+    SchemaResolver resolver(db);
+    for (const QString& tableName : tables)
+    {
+        ErdEntity* entity = entitiesByTable[tableName];
+        refreshEntityFromTableName(resolver, entitiesByTable, entity, tableName);
+    }
+    return entitiesByTable;
 }
 
 void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName)
@@ -233,7 +276,9 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
             0,
             constr->foreignKey
             );
-        conn->setTableLevelFk(false);
+
+        if (conn) // it may be null in case of invalid FK (inconsistent schema, referenced table does not exist)
+            conn->setTableLevelFk(false);
     }
 }
 
@@ -285,6 +330,113 @@ void ErdScene::refreshSceneRect()
 void ErdScene::notify(ErdChange *change)
 {
     emit changeReceived(change);
+}
+
+void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
+{
+    if (items.isEmpty())
+        return;
+
+    emit sidePanelAbortRequested();
+
+    QList<ErdEntity*> entitiesToDelete = entities | FILTER(entity, {return items.contains(entity);});
+    QList<ErdConnection*> connectionsToDelete = toList(getConnections()) |
+        FILTER(conn,
+        {
+            if (!items.contains(conn->getArrowItem()))
+                return false;
+
+            if (entitiesToDelete.contains(conn->getStartEntity()))
+                return false;
+
+            if (entitiesToDelete.contains(conn->getEndEntity()))
+                return false;
+
+            return true;
+        });
+
+    // Should be handled by TableModifier::dropTable
+    // for (ErdEntity*& e : entitiesToDelete)
+    // {
+    //     connectionsToDelete += e->getConnections() | FILTER(conn,
+    //         {
+    //             // If this connection is owned by another entity, which is not marked for deletion,
+    //             // while this connection also not marked for deletion yet - then mark it for deletion.
+    //             return conn->getStartEntity() != e &&
+    //                    !entitiesToDelete.contains(conn->getStartEntity()) &&
+    //                    !connectionsToDelete.contains(conn);
+    //         });
+    // }
+
+    QList<ErdChange*> changes;
+    for (ErdEntity*& e : entitiesToDelete)
+    {
+        ErdChange* change = deleteEntity(e);
+        if (change)
+            changes << change;
+    }
+
+    // Reduce compound connections to single connection per compound fk
+    QList<ErdConnection*> handled;
+    connectionsToDelete = connectionsToDelete | FILTER(conn,
+        {
+            if (handled.contains(conn))
+                return false;
+
+            handled << conn;
+            handled += conn->getAssociatedConnections();
+            return true;
+        });
+
+    for (ErdConnection*& c : connectionsToDelete)
+    {
+        ErdChange* change = deleteConnection(c);
+        if (change)
+            changes << change;
+    }
+
+    if (changes.isEmpty())
+        return;
+    else if (changes.size() > 1)
+        emit changeReceived(new ErdChangeComposite(changes, tr("Delete multiple diagram elements.")));
+    else
+        emit changeReceived(changes.first());
+}
+
+ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
+{
+    QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
+    ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), changeDesc);
+    qDebug() << change->toDdl();
+    ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->exec();
+    if (!ddlExecutor->getSuccessfulExecution())
+    {
+        delete change;
+        notifyError(tr("Failed to execute DDL required for entity deletion. Details: %1")
+                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
+        return nullptr;
+    }
+
+    return change;
+}
+
+ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
+{
+    QString changeDesc = tr("Delete relation between \"%1\" and \"%2\".")
+            .arg(connection->getStartEntity()->getTableName(), connection->getEndEntity()->getTableName());
+    ErdChange* change = new ErdChangeDeleteConnection(db, connection, changeDesc);
+    ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->exec();
+    if (!ddlExecutor->getSuccessfulExecution())
+    {
+        delete change;
+        notifyError(tr("Failed to execute DDL required for relation deletion. Details: %1")
+                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
+        return nullptr;
+    }
+
+    return change;
 }
 
 void ErdScene::removeEntityFromScene(ErdEntity* entity)

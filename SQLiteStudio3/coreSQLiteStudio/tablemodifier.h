@@ -19,6 +19,11 @@ class API_EXPORT TableModifier
         TableModifier(Db* db, const QString& database, const QString& table);
 
         void alterTable(SqliteCreateTablePtr newCreateTable);
+        void dropTable();
+        void removeFks(const QString& referencedTable);
+        void removeColumnFk(const QString& referencedTable, const QString& srcColumn, const QString& trgColumn);
+        void removeCompoundFk(const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
+        void removeFk(const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
 
         QStringList generateSqls() const;
         bool isValid() const;
@@ -40,6 +45,8 @@ class API_EXPORT TableModifier
         void copyDataTo(const QString& table);
         void copyDataTo(SqliteCreateTablePtr newCreateTable);
 
+        void processColumnFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QString& srcColumn, const QString& trgColumn);
+        void processCompoundFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
         void handleIndexes();
         void handleIndex(SqliteCreateIndexPtr index);
         void handleTriggers();
@@ -70,6 +77,7 @@ class API_EXPORT TableModifier
          * Finds all tables referencing currently modified table and updates their referenced table name and columns.
          */
         void handleFks();
+        void importResultsFromSubmodier(TableModifier& subModifier);
         void handleFkAsSubModifier(const QString& oldName, const QString& theNewName);
         bool handleFkStmt(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName);
         bool handleFkConstrains(SqliteCreateTable* stmt, const QString& oldName, const QString& theNewName);

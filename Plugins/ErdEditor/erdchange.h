@@ -9,8 +9,11 @@ class ErdChange
         enum class Category
         {
             LAYOUT,
+            COMPOSITE,
             ENTITY_CHANGE,
-            ENTITY_NEW
+            ENTITY_NEW,
+            ENTITY_DELETE,
+            CONNECTION_DELETE,
         };
 
         ErdChange() = delete;
@@ -28,19 +31,20 @@ class ErdChange
 
         Category getCategory() const;
         QString getTransactionId() const;
+        QString getDescription() const;
 
     protected:
-        ErdChange(Category category, bool generateTransactionId = false);
+        ErdChange(Category category, const QString& description, bool generateTransactionId = false);
 
         virtual QStringList getChangeDdl() = 0;
 
         Category category;
-
         /**
          * @brief transactionId Savepoint name marked just before executing this change,
          *        so undoing this change can be one by rolling back to this savepoint.
          */
         QString transactionId;
+        QString description;
 };
 
 #endif // ERDCHANGE_H

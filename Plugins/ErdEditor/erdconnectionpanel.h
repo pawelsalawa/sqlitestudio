@@ -39,6 +39,7 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
 
         QString getStartEntityTable() const;
         bool commitErdChange();
+        void abortErdChange();
 
     protected:
         void createActions();
@@ -61,6 +62,7 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
         ChainExecutor* ddlExecutor = nullptr;
         SqliteStatement* matchedFk = nullptr;
         SqliteCreateTable::Column* childColumnStmt = nullptr;
+        QString originalReferencedTable;
 
     private slots:
         bool commit();

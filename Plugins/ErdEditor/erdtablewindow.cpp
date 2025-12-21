@@ -46,6 +46,11 @@ bool ErdTableWindow::commitErdChange()
     return commitStructure(true);
 }
 
+void ErdTableWindow::abortErdChange()
+{
+    rollbackStructure();
+}
+
 bool ErdTableWindow::resolveCreateTableStatement()
 {
     createTable = SqliteCreateTablePtr::create(*entity->getTableModel());
@@ -91,9 +96,17 @@ void ErdTableWindow::rollbackStructure()
 
 void ErdTableWindow::executeStructureChanges()
 {
-    ErdChange* change = entity->isExistingTable() ?
-                static_cast<ErdChange*>(new ErdChangeEntity(db, originalCreateTable, createTable)) :
-                static_cast<ErdChange*>(new ErdChangeNewEntity(db, createTable));
+    ErdChange* change;
+    if (entity->isExistingTable())
+    {
+        QString desc = tr("Update entity \"%1\".").arg(createTable->table);
+        change = new ErdChangeEntity(db, originalCreateTable, createTable, desc);
+    }
+    else
+    {
+        QString desc = tr("Create entity \"%1\".").arg(createTable->table);
+        change = new ErdChangeNewEntity(db, originalCreateTable->table, createTable, desc);
+    }
 
     structureExecutor->setAsync(false);
     structureExecutor->setDb(db);
@@ -102,5 +115,8 @@ void ErdTableWindow::executeStructureChanges()
     structureExecutor->setDisableObjectDropsDetection(true);
     structureExecutor->exec();
 
-    emit changeCreated(change);
+    if (structureExecutor->getSuccessfulExecution())
+        emit changeCreated(change);
+    else
+        qWarning() << "Failed to execute entity changes on in-memory database:" << structureExecutor->getErrorsMessages();
 }

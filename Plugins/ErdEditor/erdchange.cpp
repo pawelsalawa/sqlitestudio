@@ -2,11 +2,16 @@
 #include "common/global.h"
 #include <QUuid>
 
-ErdChange::ErdChange(Category category, bool generateTransactionId) :
-    category(category)
+ErdChange::ErdChange(Category category, const QString& description, bool generateTransactionId) :
+    category(category), description(description)
 {
     if (generateTransactionId)
         transactionId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+}
+
+QString ErdChange::getDescription() const
+{
+    return description;
 }
 
 QStringList ErdChange::toDdl(bool skipSaveoints)

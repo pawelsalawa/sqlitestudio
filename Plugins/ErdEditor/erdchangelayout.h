@@ -7,7 +7,7 @@
 class ErdChangeLayout : public ErdChange
 {
     public:
-        ErdChangeLayout();
+        ErdChangeLayout(const QString& description);
 
         QStringList toDdl();
 };

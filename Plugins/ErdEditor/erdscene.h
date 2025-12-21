@@ -12,8 +12,11 @@ class ErdEntity;
 class ErdChange;
 class ErdChangeEntity;
 class ErdChangeNewEntity;
+class ErdChangeDeleteEntity;
+class ErdChangeDeleteConnection;
 class ErdConnection;
 class Db;
+class ChainExecutor;
 
 class ErdScene : public QGraphicsScene
 {
@@ -27,6 +30,8 @@ class ErdScene : public QGraphicsScene
         QSet<QString> parseSchema();
         void refreshSchema(ErdChangeEntity* entityChange);
         void refreshSchema(ErdChangeNewEntity* newEntityChange);
+        void refreshSchema(ErdChangeDeleteEntity* deleteEntityChange);
+        void refreshSchema(ErdChangeDeleteConnection* deleteConnectionChange);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
@@ -54,10 +59,14 @@ class ErdScene : public QGraphicsScene
         StrHash<ErdEntity*> collectEntitiesByTable() const;
         void refreshConnections(const QList<ErdEntity*>& forEntities = {});
         void refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName);
+        ErdChange* deleteEntity(ErdEntity*& entity);
+        ErdChange* deleteConnection(ErdConnection*& connection);
+        StrHash<ErdEntity*> refreshSchemaForTableNames(const QStringList& tables);
 
         QList<ErdEntity*> entities;
         ErdArrowItem::Type arrowType;
         Db* db = nullptr;
+        ChainExecutor* ddlExecutor = nullptr;
 
         static constexpr qreal sceneMargin = 200;
 
@@ -66,6 +75,7 @@ class ErdScene : public QGraphicsScene
         void arrangeEntitiesFdp(bool skipConfirm = false);
         void refreshSceneRect();
         void notify(ErdChange* change);
+        void deleteItems(const QList<QGraphicsItem *> &items);
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
@@ -79,6 +89,7 @@ class ErdScene : public QGraphicsScene
         void showEntityToUser(ErdEntity* entity);
         void requiresImmediateViewUpdate();
         void changeReceived(ErdChange* change);
+        void sidePanelAbortRequested();
 };
 
 #endif // ERDSCENE_H

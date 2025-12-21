@@ -20,6 +20,8 @@ ErdView::ErdView(QWidget* parent) :
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     keyFilter = new KeyPressFilter(this);
     MAINWINDOW->installEventFilter(keyFilter);
+
+    new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedItem()), SLOT(deleteSelectedItem()), Qt::WidgetWithChildrenShortcut);
 }
 
 ErdView::~ErdView()
@@ -306,6 +308,11 @@ void ErdView::resetZoom()
 void ErdView::showItemToUser(QGraphicsItem* item)
 {
     centerOn(item);
+}
+
+void ErdView::deleteSelectedItem()
+{
+    scene()->deleteItems(selectedItems);
 }
 
 void ErdView::abortDraftConnection()

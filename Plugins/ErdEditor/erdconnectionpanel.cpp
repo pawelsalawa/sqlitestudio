@@ -9,6 +9,7 @@
 #include "erdtablefkpanel.h"
 #include "common/unused.h"
 #include "iconmanager.h"
+#include "services/notifymanager.h"
 #include <QDebug>
 
 ErdConnectionPanel::ErdConnectionPanel(Db* db, ErdConnection* connection, QWidget *parent) :
@@ -36,6 +37,11 @@ bool ErdConnectionPanel::commitErdChange()
     return commit();
 }
 
+void ErdConnectionPanel::abortErdChange()
+{
+    rollback();
+}
+
 void ErdConnectionPanel::createActions()
 {
     createAction(COMMIT, ICONS.COMMIT, tr("Apply changes to diagram", "ERD editor"), this, SLOT(commit()), ui->toolBar, this);
@@ -57,6 +63,12 @@ void ErdConnectionPanel::init(ErdConnection* connection)
     initActions();
 
     ddlExecutor = new ChainExecutor();
+    ddlExecutor->setAsync(false);
+    ddlExecutor->setDb(db);
+    ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setDisableObjectDropsDetection(true);
+
+    originalReferencedTable = connection->getEndEntity()->getTableName();
 
     ErdEntity* childEntity = connection->getStartEntity();
     originalCreateTable = childEntity->getTableModel();
@@ -200,14 +212,22 @@ bool ErdConnectionPanel::commit()
     if (originalContent == newContent)
         return true;
 
-    ErdChange* change = new ErdChangeEntity(db, originalCreateTable, createTable);
+    QString changeDesc = (originalReferencedTable == createTable->table) ?
+              tr("Modify relationship between \"%1\" and \"%2\".")
+                .arg(originalCreateTable->table, originalReferencedTable) :
+              tr("Modify relationship between \"%1\" and \"%2\" - change target to \"%3\".")
+                .arg(originalCreateTable->table, originalReferencedTable, createTable->table);
 
-    ddlExecutor->setAsync(false);
-    ddlExecutor->setDb(db);
+    ErdChange* change = new ErdChangeEntity(db, originalCreateTable, createTable, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
-    ddlExecutor->setDisableForeignKeys(true);
-    ddlExecutor->setDisableObjectDropsDetection(true);
     ddlExecutor->exec();
+    if (!ddlExecutor->getSuccessfulExecution())
+    {
+        delete change;
+        notifyError(tr("Failed to execute DDL required for relation modification. Details: %1")
+                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
+        return false;
+    }
 
     actionMap[COMMIT]->setEnabled(false);
     actionMap[ROLLBACK]->setEnabled(false);

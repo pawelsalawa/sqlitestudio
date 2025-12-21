@@ -33,6 +33,7 @@ class ErdConnection
         void setArrowType(ErdArrowItem::Type arrowType);
         void select(bool changeFocusToo = true);
         bool isOwnerOf(ErdArrowItem* arrow);
+        const ErdArrowItem* getArrowItem() const;
         bool isCompoundConnection() const;
         QList<ErdConnection*> getAssociatedConnections() const;
         void setAssociatedConnections(const QList<ErdConnection*>& connections);
@@ -55,7 +56,7 @@ class ErdConnection
 
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
-        void commitChange();
+        void commitFinalizationChange();
 
         ErdEntity* startEntity = nullptr;
         ErdEntity* endEntity = nullptr;

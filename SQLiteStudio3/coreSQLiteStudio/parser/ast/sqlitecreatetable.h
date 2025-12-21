@@ -175,6 +175,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 bool doesAffectColumn(const QString& columnName);
                 int getAffectedColumnIdx(const QString& columnName);
                 QString typeString() const;
+                QStringList getColumnNames() const;
 
                 Type type;
                 QString name = QString();
@@ -209,7 +210,9 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         Column* getColumn(const QString& colName);
         int getColumnIndex(const QString& colName);
         QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
+        QList<Constraint*> getForeignKeysByTable(const QString& foreignTable, const QList<QPair<QString, QString>>& tableColumnPairs) const;
         QList<Column::Constraint*> getColumnForeignKeysByTable(const QString& foreignTable) const;
+        QList<Column::Constraint*> getColumnForeignKeysByTable(const QString& foreignTable, const QString& srcCol, const QString& trgCol) const;
         void removeColumnConstraint(Column::Constraint* constr);
         QStringList getColumnNames() const;
         QHash<QString,QString> getModifiedColumnsMap(bool lowercaseKeys = false, Qt::CaseSensitivity cs = Qt::CaseInsensitive) const;

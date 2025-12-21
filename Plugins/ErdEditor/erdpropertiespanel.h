@@ -5,6 +5,7 @@ class ErdPropertiesPanel
 {
     public:
         virtual bool commitErdChange() = 0;
+        virtual void abortErdChange() = 0;
 };
 
 #endif // ERDPROPERTIESPANEL_H
