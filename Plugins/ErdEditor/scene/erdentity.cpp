@@ -119,6 +119,11 @@ QList<ErdConnection*> ErdEntity::getConnections() const
     return connections;
 }
 
+QList<ErdConnection*> ErdEntity::getOwningConnections() const
+{
+    return connections | FILTER(conn, {return conn->getStartEntity() == this;});
+}
+
 QString ErdEntity::getTableName() const
 {
     return tableModel->table;

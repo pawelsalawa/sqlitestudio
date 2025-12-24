@@ -14,6 +14,7 @@
 #include "services/config.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <tablemodifier.h>
 
 DbObjectDialogs::DbObjectDialogs(Db* db) :
     db(db)
@@ -163,10 +164,6 @@ bool DbObjectDialogs::dropObject(Type type, const QString& name)
 
 bool DbObjectDialogs::dropObject(Type type, const QString& database, const QString& name)
 {
-    static const QString dropSql3 = "DROP %1 %2.%3;";
-
-    QString dbName = wrapObjIfNeeded(database);
-
     if (type == Type::UNKNOWN)
         type = getObjectType(database, name);
 
@@ -209,19 +206,16 @@ bool DbObjectDialogs::dropObject(Type type, const QString& database, const QStri
             return false;
     }
 
-    SqlQueryPtr results;
 
-    QString finalSql = dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name));
-
-    results = db->exec(finalSql);
-    if (results->isError())
+    QStringList finalSql = buildDropSql(typeForSql, database, wrapObjIfNeeded(name));
+    ChainExecutor* executor = executeSql(db, finalSql);
+    if (!executor->getSuccessfulExecution())
     {
-        notifyError(tr("Error while dropping %1: %2").arg(name, results->getErrorText()));
-        qCritical() << "Error while dropping object " << database << "." << name << ":" << results->getErrorText();
+        notifyError(tr("Error while dropping %1: %2").arg(name, executor->getErrorsMessages().join(",\n")));
         return false;
     }
 
-    CFG->addDdlHistory(finalSql, db->getName(), db->getPath());
+    CFG->addDdlHistory(finalSql.join("\n"), db->getName(), db->getPath());
     if (!noSchemaRefreshing)
         DBTREE->refreshSchema(db);
 
@@ -237,13 +231,14 @@ bool DbObjectDialogs::dropObjects(const QStringList& names)
 
 QHash<QString, QHash<QString, QStringList>> DbObjectDialogs::groupObjects(const QHash<QString, QStringList>& objects)
 {
+    SchemaResolver resolver(db);
     QHash<QString, QHash<QString, QStringList>> groupedObjects;
-    for (QHash<QString, QStringList>::const_iterator it = objects.begin(); it != objects.end(); ++it)
+    for (QHash<QString, QStringList>::const_iterator dbIt = objects.begin(); dbIt != objects.end(); ++dbIt)
     {
-        for (const QString& name : it.value())
+        for (const QString& name : dbIt.value())
         {
             QString typeForSql;
-            switch (getObjectType(it.key(), name))
+            switch (getObjectType(dbIt.key(), name))
             {
                 case Type::TABLE:
                     typeForSql = "TABLE";
@@ -259,21 +254,67 @@ QHash<QString, QHash<QString, QStringList>> DbObjectDialogs::groupObjects(const 
                     break;
                 default:
                 {
-                    qCritical() << "Unknown object type while trying to drop object. Object name:" << it.key() << "." << name;
+                    qCritical() << "Unknown object type while trying to drop object. Object name:" << dbIt.key() << "." << name;
                     return QHash<QString, QHash<QString, QStringList>>();
                 }
             }
-            groupedObjects[it.key()][typeForSql] << name;
+            groupedObjects[dbIt.key()][typeForSql] << name;
+        }
+
+        if (groupedObjects[dbIt.key()]["TABLE"].size() > 1)
+        {
+            // Sort by most owned FKs per table (children/referencing tables) first, so they get deleted first.
+            // There will be less FK maintenance/renaming, so that resulting DDL is the simplest possible.
+            QStringList tables = groupedObjects[dbIt.key()]["TABLE"];
+            QHash<QString, int> fkTableCount;
+            for (QString& table : tables)
+                fkTableCount[table] = resolver.getFkReferencedTables(table).size();
+
+            sSort(tables, [fkTableCount](const QString& t1, const QString& t2)
+            {
+                return fkTableCount[t1] >= fkTableCount[t2];
+            });
+
+            groupedObjects[dbIt.key()]["TABLE"] = tables;
         }
     }
     return groupedObjects;
 }
 
+QStringList DbObjectDialogs::buildDropSql(const QString& type, const QString& database, const QString& name)
+{
+    if (type == "TABLE")
+    {
+        TableModifier tabMod(db, database, name);
+        tabMod.dropTable();
+        for (auto&& err : tabMod.getErrors())
+            qCritical() << err;
+
+        for (auto&& warn : tabMod.getWarnings())
+            qWarning() << warn;
+
+        return tabMod.generateSqls();
+    }
+
+    static_qstring(dropSql, "DROP %1 IF EXISTS %2.%3;");
+    return {dropSql.arg(type, wrapObjIfNeeded(database), wrapObjIfNeeded(name))};
+}
+
+ChainExecutor* DbObjectDialogs::executeSql(Db* db, const QStringList& sqls)
+{
+    ChainExecutor* executor = new ChainExecutor(this);
+    executor->setDb(db);
+    executor->setAsync(false);
+    executor->setDisableForeignKeys(false);
+    executor->setDisableObjectDropsDetection(true);
+    executor->setQueries(sqls);
+    executor->exec();
+    executor->deleteLater();
+    return executor;
+}
+
 bool DbObjectDialogs::dropObjects(const QHash<QString, QStringList>& objects)
 {
-    static const QString dropSql2 = "DROP %1 IF EXISTS %2;";
-    static const QString dropSql3 = "DROP %1 IF EXISTS %2.%3;";
-
     QStringList names = concat(objects.values());
     QHash<QString, QHash<QString, QStringList>> groupedObjects = groupObjects(objects);
 
@@ -292,29 +333,22 @@ bool DbObjectDialogs::dropObjects(const QHash<QString, QStringList>& objects)
     }
 
     // Iterate through dbNames, then through db object types and finally through object names. Drop them.
-    SqlQueryPtr results;
-    QString finalSql;
-    QString dbName;
-    QHash<QString, QStringList> typeToNames;
-    for (QHash<QString, QHash<QString, QStringList>>::const_iterator dbIt = groupedObjects.begin(); dbIt != groupedObjects.end(); ++dbIt)
+    for (auto dbIt = groupedObjects.begin(); dbIt != groupedObjects.end(); ++dbIt)
     {
-        dbName = wrapObjIfNeeded(dbIt.key());
-        typeToNames = dbIt.value();
-        for (QHash<QString, QStringList>::const_iterator typeIt = typeToNames.begin(); typeIt != typeToNames.end(); ++typeIt)
+        QHash<QString, QStringList> typeToNames = dbIt.value();
+        for (auto typeIt = typeToNames.begin(); typeIt != typeToNames.end(); ++typeIt)
         {
             for (const QString& name : typeIt.value())
             {
-                finalSql = dropSql3.arg(typeIt.key(), dbName, wrapObjIfNeeded(name));
-
-                results = db->exec(finalSql);
-                if (results->isError())
+                QStringList finalSql = buildDropSql(typeIt.key(), dbIt.key(), name);
+                ChainExecutor* executor = executeSql(db, finalSql);
+                if (!executor->getSuccessfulExecution())
                 {
-                    notifyError(tr("Error while dropping %1: %2").arg(name).arg(results->getErrorText()));
-                    qCritical() << "Error while dropping object " << dbIt.key() << "." << name << ":" << results->getErrorText();
+                    notifyError(tr("Error while dropping %1: %2").arg(name, executor->getErrorsMessages().join(",\n")));
                     return false;
                 }
 
-                CFG->addDdlHistory(finalSql, db->getName(), db->getPath());
+                CFG->addDdlHistory(finalSql.join("\n"), db->getName(), db->getPath());
             }
         }
     }

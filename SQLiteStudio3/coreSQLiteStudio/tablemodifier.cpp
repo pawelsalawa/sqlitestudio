@@ -75,9 +75,12 @@ void TableModifier::dropTable()
         modifiedTables << parTable;
     }
 
-    static_qstring(delTpl, "DROP TABLE %1.%2;");
-    QString dbName = database.isEmpty() ? "main" : database;
-    sqls << delTpl.arg(wrapObjIfNeeded(dbName), wrapObjIfNeeded(table));
+    static_qstring(delTpl, "DROP TABLE IF EXISTS %1;");
+    static_qstring(delFullTpl, "DROP TABLE IF EXISTS %1.%2;");
+    if (database.isEmpty())
+        sqls << delTpl.arg(wrapObjIfNeeded(table));
+    else
+        sqls << delFullTpl.arg(wrapObjIfNeeded(database), wrapObjIfNeeded(table));
 }
 
 void TableModifier::removeFks(const QString& referencedTable)

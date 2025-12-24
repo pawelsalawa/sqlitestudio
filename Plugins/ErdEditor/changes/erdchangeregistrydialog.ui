@@ -70,11 +70,6 @@
               <string notr="true">1</string>
              </property>
             </column>
-            <column>
-             <property name="text">
-              <string>2</string>
-             </property>
-            </column>
            </widget>
           </item>
          </layout>

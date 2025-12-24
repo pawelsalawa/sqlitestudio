@@ -361,11 +361,11 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
             return true;
         });
 
-    // Sort by least connections per entity first, so they get deleted first,
-    // so that resulting DDL is the simplest possible.
+    // Sort by most owned connections per entity (children entities) first, so they get deleted first.
+    // There will be less FK maintenance/renaming, so that resulting DDL is the simplest possible.
     sSort(entitiesToDelete, [](ErdEntity*& e1, ErdEntity*& e2)
     {
-        return e1->getConnections().size() >= e2->getConnections().size();
+        return e1->getOwningConnections().size() >= e2->getOwningConnections().size();
     });
 
     QList<ErdChange*> changes;

@@ -6,6 +6,7 @@
 #include <QString>
 #include <QStringList>
 
+class ChainExecutor;
 class QWidget;
 class MainWindow;
 class MdiArea;
@@ -60,6 +61,8 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
     private:
         Type getObjectType(const QString& database, const QString& name);
         QHash<QString, QHash<QString, QStringList> > groupObjects(const QHash<QString, QStringList>& objects);
+        QStringList buildDropSql(const QString& type, const QString& database, const QString& name);
+        ChainExecutor* executeSql(Db* db, const QStringList& sqls);
 
         Db* db = nullptr;
         QWidget* parentWidget = nullptr;

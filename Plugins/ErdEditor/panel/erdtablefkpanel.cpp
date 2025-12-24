@@ -1,6 +1,7 @@
 #include "erdtablefkpanel.h"
 
-ErdTableFkPanel::ErdTableFkPanel(QWidget* parent)
+ErdTableFkPanel::ErdTableFkPanel(QWidget* parent) :
+    TableForeignKeyPanel(parent)
 {
 
 }

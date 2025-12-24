@@ -1,6 +1,7 @@
 #include "erdcolumnfkpanel.h"
 
-ErdColumnFkPanel::ErdColumnFkPanel(QWidget* parent)
+ErdColumnFkPanel::ErdColumnFkPanel(QWidget* parent) :
+    ColumnForeignKeyPanel(parent)
 {
 
 }

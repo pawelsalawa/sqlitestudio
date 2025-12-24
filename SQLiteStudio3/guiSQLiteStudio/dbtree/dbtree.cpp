@@ -1764,13 +1764,40 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     // Deleting items
     QSet<Db*> deletedDatabases;
     QSet<Db*> databasesToRefresh;
+    QHash<Db*, QList<DbTreeItem*>> tableItemsByDb;
     for (DbTreeItem* item : items)
     {
         if (item->getType() == DbTreeItem::Type::DB)
             deletedDatabases << item->getDb();
 
         databasesToRefresh << item->getDb();
-        deleteItem(item);
+
+        if (item->getType() == DbTreeItem::Type::TABLE)
+            tableItemsByDb[item->getDb()] << item; // tables need preliminary sorting to ensure simplest DDL possible
+        else
+            deleteItem(item);
+    }
+
+    // Sort by most owned FKs per table (children/referencing tables) first, so they get deleted first.
+    // There will be less FK maintenance/renaming, so that resulting DDL is the simplest possible.
+    for (auto dbIt = tableItemsByDb.begin(); dbIt != tableItemsByDb.end(); ++dbIt)
+    {
+        SchemaResolver resolver(dbIt.key());
+        QList<DbTreeItem*>& tableItems = dbIt.value();
+        if (tableItems.size() <= 1)
+            continue;
+
+        QHash<DbTreeItem*, int> fkTableCount;
+        for (DbTreeItem*& tableItem : tableItems)
+            fkTableCount[tableItem] = resolver.getFkReferencedTables(tableItem->text()).size();
+
+        sSort(tableItems, [fkTableCount](DbTreeItem*& i1, DbTreeItem*& i2)
+        {
+            return fkTableCount[i1] >= fkTableCount[i2];
+        });
+
+        for (DbTreeItem*& tableItem : tableItems)
+            deleteItem(tableItem);
     }
 
     for (Db* dbToRefresh : databasesToRefresh)

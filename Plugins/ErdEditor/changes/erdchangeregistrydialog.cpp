@@ -51,21 +51,25 @@ void ErdChangeRegistryDialog::populateTree()
     }
     ui->tree->header()->resizeSections(QHeaderView::ResizeToContents);
     if (firstItem)
-        ui->tree->setCurrentItem(firstItem, 1, QItemSelectionModel::Select);
+        ui->tree->setCurrentItem(firstItem, 0, QItemSelectionModel::Select);
 }
 
 QTreeWidgetItem* ErdChangeRegistryDialog::createItemFromChange(int rowIdx, ErdChange* change)
 {
+    static_qstring(topLabelTpl, "%1. %2");
+
     QString ddl = FORMATTER->format("sql", change->toDdl(true).join("\n\n"), db);
+    QString label = rowIdx >= 0 ?
+                topLabelTpl.arg(rowIdx + 1).arg(change->getDescription()) :
+                change->getDescription();
 
     QTreeWidgetItem* item = new QTreeWidgetItem();
-    item->setText(0, rowIdx >= 0 ? QString::number(rowIdx + 1) : QString());
-    item->setText(1, change->getDescription());
-    item->setText(2, ddl);
+    item->setText(0, label);
+    item->setText(1, ddl);
     return item;
 }
 
 void ErdChangeRegistryDialog::handleItemSelected(QTreeWidgetItem* item)
 {
-    ui->previewEdit->setContents(item->text(2));
+    ui->previewEdit->setContents(item->text(1));
 }
