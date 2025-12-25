@@ -119,6 +119,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         QList<Interruptable*> interruptables;
         bool ignoreDbLoadedSignal = false;
         QString currentFilter;
+        QString queuedFilterValue;
         ItemFiltering* filteringInProgress = nullptr;
 
     private slots:

@@ -135,16 +135,24 @@ void DbTreeModel::applyFilter(const QString &filter)
 
 void DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
 {
-    if (filteringInProgress) // already processing the (possibly interrupted) filtering - ssubsequent call is possible after filter edit field is cleared
+    queuedFilterValue.clear();
+    if (filteringInProgress) // already processing the (possibly interrupted) filtering - subsequent call is possible after filter edit field is cleared
+    {
+        if (filter != currentFilter)
+        {
+            queuedFilterValue = filter;
+            filteringInProgress->interrupt();
+        }
         return;
+    }
 
     filteringInProgress = new ItemFiltering();
     interruptableStarted(filteringInProgress);
 
-    applyFilterRecursively(parentItem, filter);
     currentFilter = filter;
+    applyFilterRecursively(parentItem, filter);
 
-    if (filteringInProgress->interrupted)
+    if (filteringInProgress->interrupted && queuedFilterValue.isNull())
     {
         applyFilterRecursively(parentItem, "");
         currentFilter = "";
@@ -153,6 +161,14 @@ void DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
     interruptableFinished(filteringInProgress);
 
     safe_delete(filteringInProgress);
+
+    // Subsequent filtering is user modified filter value during filtering in progress
+    while (!queuedFilterValue.isNull())
+    {
+        QString newFilterValue = queuedFilterValue;
+        queuedFilterValue.clear();
+        applyFilter(root(), newFilterValue);
+    }
 }
 
 bool DbTreeModel::applyFilterRecursively(QStandardItem *parentItem, const QString &filter)
@@ -186,7 +202,7 @@ bool DbTreeModel::applyFilterRecursively(QStandardItem *parentItem, const QStrin
         if (matched)
             visibilityForParent = true;
 
-        if (i % 10 == 9)
+        if (i % 100 == 99)
             qApp->processEvents();
     }
     return visibilityForParent;
@@ -693,7 +709,7 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
     DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
     DbTreeItem* triggersItem = tableItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
-    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getTableColumns(table));
+    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getColumnsUsingPragma(table));
     QList<QStandardItem*> indexItems = refreshSchemaIndexes(resolver.getIndexesForTable(table), sort);
     QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForTable(table), sort);
 

@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.19
+- BUGFIX: #5447 Database object filtering improved - both speed (3x) and reliability (i.e. typing while filtering is in progress).
 - BUGFIX: Fixed manual updates checking in case when automatic on-startup checking is disabled.
 
 ### 3.4.18
