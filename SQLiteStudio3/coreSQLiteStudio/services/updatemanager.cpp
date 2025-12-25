@@ -26,18 +26,18 @@ UpdateManager::~UpdateManager()
 
 }
 
-void UpdateManager::checkForUpdates()
+void UpdateManager::checkForUpdates(bool enforce)
 {
-    if (!CFG_CORE.General.CheckUpdatesOnStartup.get())
+    if (!CFG_CORE.General.CheckUpdatesOnStartup.get() && !enforce)
         return;
 
     static_qstring(url, "https://sqlitestudio.pl/rest/updates");
     QNetworkRequest request(url);
     QNetworkReply* response = netManager->get(request);
-    connect(response, &QNetworkReply::finished, [this, response]()
+    connect(response, &QNetworkReply::finished, [this, response, enforce]()
     {
         response->deleteLater();
-        handleUpdatesResponse(response);
+        handleUpdatesResponse(response, enforce);
     });
 }
 
@@ -46,7 +46,7 @@ bool UpdateManager::isPlatformEligibleForUpdate() const
     return getDistributionType() != DistributionType::OS_MANAGED;
 }
 
-void UpdateManager::handleUpdatesResponse(QNetworkReply* response)
+void UpdateManager::handleUpdatesResponse(QNetworkReply* response, bool enforced)
 {
     if (response->error() != QNetworkReply::NoError)
     {
@@ -70,7 +70,7 @@ void UpdateManager::handleUpdatesResponse(QNetworkReply* response)
 
     if (SQLITESTUDIO->getVersion() >= versionNumber)
     {
-        emit noUpdatesAvailable();
+        emit noUpdatesAvailable(enforced);
         return;
     }
 
