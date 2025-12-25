@@ -8,10 +8,22 @@ ErdChangeRegistry::ErdChangeRegistry(QObject *parent)
 
 }
 
-void ErdChangeRegistry::compact()
+QList<ErdChange*> ErdChangeRegistry::compactedEffectiveChanges()
 {
-    // make the change list compact
-    // possibly it will be done on the fly in addChange()
+    // TODO
+    /*
+     * Changes can be compacted only at the final commit stage, because we need to maintain the
+     * undo/redo capability until then.
+     *
+     * TODO planned compacting optimalizations:
+     *
+     * - after creating table X and deleting the same table X - remove both changes
+     * - after modifying same table multiple times - generate single aggregated change between 1st and last
+     * - if multiple editions reduce to no changes - remove all these changes entirely
+     * - multiple changes and drop of table at the end - just drop the end table, but only if there are
+     *   no referring views, otherwise we won't be able to reflect actual changes to views
+     */
+    return QList<ErdChange*>{};
 }
 
 void ErdChangeRegistry::addChange(ErdChange* change)
@@ -76,7 +88,17 @@ ErdChange* ErdChangeRegistry::peekRedo() const
     return changes[currentIndex + 1];
 }
 
+bool ErdChangeRegistry::isUndoAvailable() const
+{
+    return currentIndex >= 0;
+}
+
+bool ErdChangeRegistry::isRedoAvailable() const
+{
+    return changes.size() > 0 && currentIndex < (changes.size() - 1);
+}
+
 void ErdChangeRegistry::notifyChangesUpdated()
 {
-    emit effectiveChangeCountUpdated(getPendingChangesCount());
+    emit effectiveChangeCountUpdated(getPendingChangesCount(), isUndoAvailable(), isRedoAvailable());
 }

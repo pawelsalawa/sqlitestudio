@@ -47,6 +47,19 @@ void ExtActionContainer::createAction(int action, const QString& text, const QOb
     createAction(action, qAction, receiver, slot, container, owner);
 }
 
+void ExtActionContainer::createAction(int action, QAction* qAction, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
+{
+    if (!owner)
+        owner = container;
+    else
+        owner->addAction(qAction);
+
+    qAction->setParent(owner);
+    actionMap[action] = qAction;
+    QObject::connect(qAction, SIGNAL(triggered(bool)), receiver, slot);
+    container->addAction(qAction);
+}
+
 void ExtActionContainer::bindShortcutsToEnum(CfgCategory &cfgCategory, const QMetaEnum &actionsEnum)
 {
     QHash<QString, CfgEntry *>& cfgEntries = cfgCategory.getEntries();
@@ -114,19 +127,6 @@ void ExtActionContainer::updateShortcutTips()
 {
 }
 
-void ExtActionContainer::createAction(int action, QAction* qAction, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
-{
-    if (!owner)
-        owner = container;
-    else
-        owner->addAction(qAction);
-
-    qAction->setParent(owner);
-    actionMap[action] = qAction;
-    QObject::connect(qAction, SIGNAL(triggered(bool)), receiver, slot);
-    container->addAction(qAction);
-}
-
 void ExtActionContainer::deleteActions()
 {
     for (QAction* action : actionMap.values())
@@ -151,12 +151,14 @@ void ExtActionContainer::refreshShortcuts()
 
 void ExtActionContainer::refreshShortcut(int action)
 {
+    static_qstring(tooltipTpl, "%1 (%2)");
+
     actionMap[action]->removeEventFilter(&keySeqFilter);
 
     QKeySequence seq(shortcuts[action]->get());
     QString txt = seq.toString(QKeySequence::NativeText);
     actionMap[action]->setShortcut(seq);
-    actionMap[action]->setToolTip(actionMap[action]->text() + QString(" (%1)").arg(txt));
+    actionMap[action]->setToolTip(tooltipTpl.arg(actionMap[action]->text(), txt));
     actionMap[action]->installEventFilter(&keySeqFilter);
 }
 

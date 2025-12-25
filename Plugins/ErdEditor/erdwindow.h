@@ -37,7 +37,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             LINE_STRAIGHT,
             LINE_CURVY,
             LINE_SQUARE,
-            CANCEL_CURRENT
+            CANCEL_CURRENT,
+            UNDO,
+            REDO,
         };
         Q_ENUM(Action)
 
@@ -132,9 +134,11 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void rollbackPendingChanges();
         void handleCreatedChange(ErdChange* change);
         void updateState();
-        void updateToolbarState(int effectiveChangeCount);
+        void updateToolbarState(int effectiveChangeCount, bool undoAvailable, bool redoAvailable);
         void abortSidePanel();
         void showChangeRegistry();
+        void undo();
+        void redo();
 };
 
 #endif // ERDWINDOW_H

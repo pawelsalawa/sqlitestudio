@@ -54,6 +54,7 @@ class ErdView : public QGraphicsView
 
         bool viewClicked(const QPoint& pos, Qt::MouseButton button);
         QGraphicsItem* clickableItemAt(const QPoint& pos);
+        bool handleConnectionClick(const QPoint& pos, bool enableConnectionDrafting = false);
         void spacePressed();
         void spaceReleased();
         void handleSelectionOnMouseEvent(const QPoint& pos);

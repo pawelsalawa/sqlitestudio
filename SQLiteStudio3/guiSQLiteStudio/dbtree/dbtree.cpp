@@ -602,7 +602,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     actions += ActionEntry(REFRESH_SCHEMAS);
 
     QMenu* subMenu = nullptr;
-    for (ActionEntry actionEntry : actions)
+    for (ActionEntry& actionEntry : actions)
     {
         switch (actionEntry.type)
         {
@@ -1118,7 +1118,7 @@ void DbTree::createGroup()
            (name.isEmpty() && !name.isNull()))
     {
         QMessageBox::information(this, tr("Create group"), tr("Entry with name %1 already exists in group %2.")
-                                 .arg(name).arg(currItem->text()), QMessageBox::Ok);
+                                 .arg(name, currItem->text()), QMessageBox::Ok);
     }
 
     if (name.isNull())
@@ -1734,7 +1734,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     int groupItems = 0;
     for (DbTreeItem* item : items)
     {
-        itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text().left(ITEM_TEXT_LIMIT));
+        itemStr = itemTmp.arg(item->getIcon()->toUrl(), item->text().left(ITEM_TEXT_LIMIT));
 
         if (item->getType() == DbTreeItem::Type::DB)
             databasesToRemove << itemStr;

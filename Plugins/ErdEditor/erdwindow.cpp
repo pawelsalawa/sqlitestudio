@@ -109,11 +109,6 @@ void ErdWindow::init()
 
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
-    new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
-    new QShortcut(Qt::CTRL|Qt::Key_1, this, SLOT(useStraightLineHotKey()), SLOT(useStraightLineHotKey()), Qt::WidgetWithChildrenShortcut);
-    new QShortcut(Qt::CTRL|Qt::Key_2, this, SLOT(useCurvyLineHotKey()), SLOT(useCurvyLineHotKey()), Qt::WidgetWithChildrenShortcut);
-    new QShortcut(Qt::CTRL|Qt::Key_3, this, SLOT(useSquareLineHotKey()), SLOT(useSquareLineHotKey()), Qt::WidgetWithChildrenShortcut);
-
     scene = new ErdScene(arrowType, this);
     connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
@@ -140,6 +135,71 @@ void ErdWindow::init()
 
     parseAndRestore();
     updateState();
+}
+
+void ErdWindow::createActions()
+{
+    createAction(CANCEL_CURRENT, tr("Cancels ongoing action", "ERD editor"), this, SLOT(cancelCurrentAction()), this);
+
+    QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
+    lineGroup->setExclusive(true);
+    actionMap[ADD_CONNECTION] = new QAction(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add relation (foreign key)"), this);
+    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
+    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
+    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
+
+    actionMap[ADD_CONNECTION]->setCheckable(true);
+    actionMap[LINE_STRAIGHT]->setCheckable(true);
+    actionMap[LINE_CURVY]->setCheckable(true);
+    actionMap[LINE_SQUARE]->setCheckable(true);
+    updateArrowTypeButtons();
+
+    connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
+    connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
+    connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
+
+    createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
+
+    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "ERD editor"), this, SLOT(undo()), ui->toolBar, ui->graphView);
+    createAction(REDO, ICONS.ACT_REDO, tr("Redo", "ERD editor"), this, SLOT(redo()), ui->toolBar, ui->graphView);
+
+    ui->toolBar->addSeparator();
+    changeCountLabel = new QToolButton(this);
+    QFont bold = changeCountLabel->font();
+    bold.setBold(true);
+    changeCountLabel->setFont(bold);
+    changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
+    changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
+    connect(changeCountLabel, &QToolButton::clicked, this, &ErdWindow::showChangeRegistry);
+    ui->toolBar->addWidget(changeCountLabel);
+
+    ui->toolBar->addAction(actionMap[UNDO]);
+    ui->toolBar->addAction(actionMap[REDO]);
+    ui->toolBar->addSeparator();
+    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(newTable()), ui->toolBar);
+    ui->toolBar->addAction(actionMap[ADD_CONNECTION]);
+    ui->toolBar->addSeparator();
+    ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
+    ui->toolBar->addAction(actionMap[LINE_CURVY]);
+    ui->toolBar->addAction(actionMap[LINE_SQUARE]);
+    ui->toolBar->addSeparator();
+    createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
+    createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
+}
+
+void ErdWindow::setupDefShortcuts()
+{
+    new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
+
+    actionMap[LINE_STRAIGHT]->setShortcut(Qt::CTRL|Qt::Key_1);
+    actionMap[LINE_CURVY]->setShortcut(Qt::CTRL|Qt::Key_2);
+    actionMap[LINE_SQUARE]->setShortcut(Qt::CTRL|Qt::Key_3);
+    actionMap[UNDO]->setShortcut(QKeySequence::Undo);
+    actionMap[REDO]->setShortcut(QKeySequence::Redo);
+
+    setShortcutContext({UNDO, REDO}, Qt::WidgetWithChildrenShortcut);
 }
 
 void ErdWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
@@ -232,17 +292,17 @@ void ErdWindow::itemSelectionChanged()
 
 void ErdWindow::reloadSchema()
 {
-
+    // TODO
 }
 
 void ErdWindow::commitPendingChanges()
 {
-
+    // TODO
 }
 
 void ErdWindow::rollbackPendingChanges()
 {
-
+    // TODO
 }
 
 void ErdWindow::handleCreatedChange(ErdChange* change)
@@ -295,14 +355,18 @@ void ErdWindow::handleSingleChange(ErdChange* change)
 
 void ErdWindow::updateState()
 {
-    updateToolbarState(changeRegistry->getPendingChangesCount());
+    updateToolbarState(changeRegistry->getPendingChangesCount(),
+                       changeRegistry->isUndoAvailable(),
+                       changeRegistry->isRedoAvailable());
 }
 
-void ErdWindow::updateToolbarState(int effectiveChangeCount)
+void ErdWindow::updateToolbarState(int effectiveChangeCount, bool undoAvailable, bool redoAvailable)
 {
     bool hasPendingChanges = effectiveChangeCount > 0;
     actionMap[COMMIT]->setEnabled(hasPendingChanges);
     actionMap[ROLLBACK]->setEnabled(hasPendingChanges);
+    actionMap[UNDO]->setEnabled(undoAvailable);
+    actionMap[REDO]->setEnabled(redoAvailable);
     changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, effectiveChangeCount));
 }
 
@@ -319,6 +383,18 @@ void ErdWindow::showChangeRegistry()
 {
     ErdChangeRegistryDialog dialog(memDb, changeRegistry, this);
     dialog.exec();
+}
+
+void ErdWindow::undo()
+{
+    // TODO
+    qDebug() << "undo";
+}
+
+void ErdWindow::redo()
+{
+    // TODO
+    qDebug() << "redo";
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -370,59 +446,6 @@ void ErdWindow::updateArrowTypeButtons()
             actionMap[LINE_SQUARE]->setChecked(true);
             break;
     }
-}
-
-void ErdWindow::createActions()
-{
-    actionMap[CANCEL_CURRENT] = new QAction(tr("Cancels ongoing action"), this);
-    connect(actionMap[CANCEL_CURRENT], &QAction::triggered, this, &ErdWindow::cancelCurrentAction);
-
-    QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
-    lineGroup->setExclusive(true);
-    actionMap[ADD_CONNECTION] = new QAction(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add foreign key"), this);
-    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
-    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
-    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
-
-    actionMap[ADD_CONNECTION]->setCheckable(true);
-    actionMap[LINE_STRAIGHT]->setCheckable(true);
-    actionMap[LINE_CURVY]->setCheckable(true);
-    actionMap[LINE_SQUARE]->setCheckable(true);
-    updateArrowTypeButtons();
-
-    connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
-    connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
-    connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
-
-    createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
-    createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
-
-    ui->toolBar->addSeparator();
-    changeCountLabel = new QToolButton(this);
-    QFont bold = changeCountLabel->font();
-    bold.setBold(true);
-    changeCountLabel->setFont(bold);
-    changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
-    changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
-    connect(changeCountLabel, &QToolButton::clicked, this, &ErdWindow::showChangeRegistry);
-    ui->toolBar->addWidget(changeCountLabel);
-
-    ui->toolBar->addSeparator();
-    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(newTable()), ui->toolBar);
-    ui->toolBar->addSeparator();
-    ui->toolBar->addAction(actionMap[ADD_CONNECTION]);
-    ui->toolBar->addSeparator();
-    ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
-    ui->toolBar->addAction(actionMap[LINE_CURVY]);
-    ui->toolBar->addAction(actionMap[LINE_SQUARE]);
-    ui->toolBar->addSeparator();
-    createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
-    createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
-}
-
-void ErdWindow::setupDefShortcuts()
-{
 }
 
 QToolBar* ErdWindow::getToolBar(int toolbar) const

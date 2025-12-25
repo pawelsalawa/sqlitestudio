@@ -12,7 +12,7 @@ class ErdChangeRegistry : public QObject
     public:
         explicit ErdChangeRegistry(QObject *parent = nullptr);
 
-        void compact();
+        QList<ErdChange*> compactedEffectiveChanges();
         void addChange(ErdChange* change);
         int getPendingChangesCount() const;
         QList<ErdChange*> getEffectiveChanges() const;
@@ -20,17 +20,20 @@ class ErdChangeRegistry : public QObject
         ErdChange* redo();
         ErdChange* peekUndo() const;
         ErdChange* peekRedo() const;
+        bool isUndoAvailable() const;
+        bool isRedoAvailable() const;
 
     private:
         static constexpr int UNDO_LIMIT = 1000;
 
         void notifyChangesUpdated();
+        void notifyUndoRedoState();
 
         QList<ErdChange*> changes;
         int currentIndex = -1; // points last element, until undo is done
 
     signals:
-        void effectiveChangeCountUpdated(int count);
+        void effectiveChangeCountUpdated(int count, bool undoAvailable, bool redoAvailable);
 
 };
 

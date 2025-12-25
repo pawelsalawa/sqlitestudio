@@ -73,6 +73,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
                 for (QGraphicsItem* movableItem : selectedMovableItems)
                     dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
 
+                QGraphicsView::mousePressEvent(event);
                 return;
             }
             else
@@ -94,6 +95,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     }
     else
     {
+        abortDraftConnection();
         clearSelectedItems();
     }
 
@@ -229,31 +231,11 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
 {
     if (button == Qt::LeftButton)
     {
-        QGraphicsItem* item = clickableItemAt(pos);
-        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-        if (entity)
-        {
-            int rowIdx = entity->rowIndexAt(mapToScene(pos));
-            if (rowIdx <= 0)
-                return false;
-
-            if (draftConnection)
-            {
-                draftConnection->finalizeConnection(entity, mapToScene(pos));
-                // draftConnection->select();
-                draftConnection = nullptr;
-                draftingConnectionMode = false;
-                emit draftConnectionRemoved();
-                return true;
-            }
-            else if (draftingConnectionMode)
-            {
-                draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
-                draftConnection->addToScene(scene());
-                return true;
-            }
-        }
-        return false;
+        handleConnectionClick(pos);
+    }
+    if (button == Qt::MiddleButton)
+    {
+        handleConnectionClick(pos, true);
     }
     else if (button == Qt::RightButton)
     {
@@ -280,6 +262,35 @@ QGraphicsItem* ErdView::clickableItemAt(const QPoint& pos)
             return *it;
     }
     return nullptr;
+}
+
+bool ErdView::handleConnectionClick(const QPoint& pos, bool enableConnectionDrafting)
+{
+    QGraphicsItem* item = clickableItemAt(pos);
+    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    if (entity)
+    {
+        int rowIdx = entity->rowIndexAt(mapToScene(pos));
+        if (rowIdx <= 0)
+            return false;
+
+        draftingConnectionMode |= enableConnectionDrafting;
+        if (draftConnection)
+        {
+            draftConnection->finalizeConnection(entity, mapToScene(pos));
+            draftConnection = nullptr;
+            draftingConnectionMode = false;
+            emit draftConnectionRemoved();
+            return true;
+        }
+        else if (draftingConnectionMode)
+        {
+            draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
+            draftConnection->addToScene(scene());
+            return true;
+        }
+    }
+    return false;
 }
 
 void ErdView::spacePressed()
@@ -343,6 +354,8 @@ void ErdView::clearSelectedItems()
     selectedItems.clear();
     selectedMovableItems.clear();
     dragOffset.clear();
+    scene()->clearSelection();
+    scene()->clearFocus();
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :
@@ -352,22 +365,23 @@ ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :
 
 bool ErdView::KeyPressFilter::eventFilter(QObject* obj, QEvent* event)
 {
-    if (event->type() == QEvent::KeyPress) {
+    if (event->type() == QEvent::KeyPress)
+    {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->isAutoRepeat())
             return QObject::eventFilter(obj, event);
 
-        if (keyEvent->key() == Qt::Key_Space) {
+        if (keyEvent->key() == Qt::Key_Space)
             view->spacePressed();
-        }
-    } else if (event->type() == QEvent::KeyRelease) {
+    }
+    else if (event->type() == QEvent::KeyRelease)
+    {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         if (keyEvent->isAutoRepeat())
             return QObject::eventFilter(obj, event);
 
-        if (keyEvent->key() == Qt::Key_Space) {
+        if (keyEvent->key() == Qt::Key_Space)
             view->spaceReleased();
-        }
     }
     return QObject::eventFilter(obj, event);
 }
