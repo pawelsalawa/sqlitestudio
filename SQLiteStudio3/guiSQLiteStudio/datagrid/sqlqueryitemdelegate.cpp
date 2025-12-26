@@ -95,12 +95,7 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
     UNUSED(locale);
 
     if (value.type() == QVariant::Double)
-    {
-        if (CFG_UI.General.UseSciFormatForDoubles.get())
-            return value.toString();
-        else
-            return doubleToString(value);
-    }
+        return doubleToString(value, CFG_UI.General.UseSciFormatForDoubles.get());
 
     return QStyledItemDelegate::displayText(value, locale);
 }
@@ -207,9 +202,9 @@ void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractI
 void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const
 {
     QVariant value = index.data(Qt::EditRole);
-    if (value.userType() == QVariant::Double && !CFG_UI.General.UseSciFormatForDoubles.get())
+    if (value.userType() == QVariant::Double)
     {
-        le->setText(doubleToString(value));
+        le->setText(doubleToString(value, !CFG_UI.General.UseSciFormatForDoubles.get()));
         return;
     }
 

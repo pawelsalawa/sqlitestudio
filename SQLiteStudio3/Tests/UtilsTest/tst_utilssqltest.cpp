@@ -80,10 +80,14 @@ void UtilsSqlTest::testDoubleToString()
 {
     QVERIFY(doubleToString(QVariant(5.001)) == "5.001");
     QVERIFY(doubleToString(QVariant(5.0000001)) == "5.0000001");
-    QVERIFY(doubleToString(QVariant(5.000000000000000000000000001)) == "5.0"); // too big, considered as round 5
+    QVERIFY(doubleToString(QVariant(5.000000000000000000000000001)) == "5.0"); // spread of information is too big, considered as round 5
     QVERIFY(doubleToString(QVariant(0.0000001)) == "0.0000001");
     QVERIFY(doubleToString(QVariant(9.99999999999998)) == "9.99999999999998");
     QVERIFY(doubleToString(QVariant(0.1 + 0.1 + 0.1)) == "0.3");
+    QVERIFY(doubleToString(QVariant(1e-10)) == "0.0000000001");
+    QVERIFY(doubleToString(QVariant(1e-15)) == "0.000000000000001");
+    QVERIFY(doubleToString(QVariant(1e-17)) == "1e-17");
+    QVERIFY(doubleToString(QVariant(1e+20)) == "100000000000000000000.0");
 }
 
 QTEST_APPLESS_MAIN(UtilsSqlTest)
