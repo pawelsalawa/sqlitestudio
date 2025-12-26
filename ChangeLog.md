@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 3.4.19
+- BUGFIX: #5443 Fixed data entering in Grid View after it has got broken in 3.4.18 (entering editing mode by starting to type jumped to wrong cell).
 - BUGFIX: #5447 Database object filtering improved - both speed (3x) and reliability (i.e. typing while filtering is in progress).
 - BUGFIX: #5450 Increased precision for very small decimal numbers (like 1e-15).
 - BUGFIX: #5440 Fixed formatting string literals in WITH-CTE clause.
