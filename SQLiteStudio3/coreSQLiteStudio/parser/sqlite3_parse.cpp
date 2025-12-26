@@ -5835,18 +5835,16 @@ static void yy_reduce(
         break;
       case 461: /* with ::= WITH wqlist */
 {
-                                                yygotominor.yy91 = new SqliteWith();
-												yygotominor.yy91->cteList = *(yymsp[0].minor.yy114);
-												delete yymsp[0].minor.yy114;
+                                                yygotominor.yy91 = new SqliteWith(*(yymsp[0].minor.yy114));
+                                                delete yymsp[0].minor.yy114;
                                                 objectForTokens = yygotominor.yy91;
                                             }
         break;
       case 462: /* with ::= WITH RECURSIVE wqlist */
 {
-                                                yygotominor.yy91 = new SqliteWith();
-												yygotominor.yy91->cteList = *(yymsp[0].minor.yy114);
+                                                yygotominor.yy91 = new SqliteWith(*(yymsp[0].minor.yy114));
                                                 yygotominor.yy91->recursive = true;
-												delete yymsp[0].minor.yy114;
+                                                delete yymsp[0].minor.yy114;
                                                 objectForTokens = yygotominor.yy91;
                                             }
         break;

@@ -2755,16 +2755,14 @@ anylist(X) ::= anylist(L) ANY(A).           {
 
 with(X) ::= .                               {X = nullptr;}
 with(X) ::= WITH wqlist(W).                 {
-                                                X = new SqliteWith();
-												X->cteList = *(W);
-												delete W;
+                                                X = new SqliteWith(*(W));
+                                                delete W;
                                                 objectForTokens = X;
                                             }
 with(X) ::= WITH RECURSIVE wqlist(W).       {
-                                                X = new SqliteWith();
-												X->cteList = *(W);
+                                                X = new SqliteWith(*(W));
                                                 X->recursive = true;
-												delete W;
+                                                delete W;
                                                 objectForTokens = X;
                                             }
 
