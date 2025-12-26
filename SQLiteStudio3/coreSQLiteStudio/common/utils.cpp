@@ -966,14 +966,16 @@ QStringList concat(const QList<QStringList>& list)
 
 QString doubleToString(const QVariant& val)
 {
-    QString str = val.toString();
-    if (str.contains("e") || str.midRef(str.indexOf('.') + 1).length() > 14)
-    {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
-        if (str.endsWith("."))
-            str += "0";
-    }
-    else if (!str.contains('.'))
+    double d = val.toDouble();
+    QString str = QString::number(d, 'f', 17);
+
+    while (str.contains('.') && str.endsWith('0'))
+        str.chop(1);
+
+    if (str.endsWith('.'))
+        str.chop(1);
+
+    if (!str.contains('.'))
         str += ".0";
 
     return str;
