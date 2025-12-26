@@ -898,6 +898,14 @@ selectnowith(X) ::= selectnowith(S1)
                                                 delete O;
                                                 objectForTokens = X;
                                             }
+selectnowith(X) ::= selectnowith(S1)
+                    multiselect_op(O)
+                    values(V).              {
+                                                X = SqliteSelect::append(S1, *(O), *(V));
+                                                delete O;
+                                                delete V;
+                                                objectForTokens = X;
+                                            }
 selectnowith(X) ::= values(V).              {
                                                 X = SqliteSelect::append(*(V));
                                                 delete V;
@@ -906,7 +914,7 @@ selectnowith(X) ::= values(V).              {
 selectnowith(X) ::= selectnowith(S1)
                     COMMA
                     values(V).              {
-                                                X = SqliteSelect::append(S1, SqliteSelect::CompoundOperator::UNION_ALL, *(V));
+                                                X = SqliteSelect::append(S1, SqliteSelect::CompoundOperator::COMMA, *(V));
                                                 delete V;
                                                 objectForTokens = X;
                                             }

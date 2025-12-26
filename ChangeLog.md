@@ -4,6 +4,7 @@
 - BUGFIX: #5447 Database object filtering improved - both speed (3x) and reliability (i.e. typing while filtering is in progress).
 - BUGFIX: #5450 Increased precision for very small decimal numbers (like 1e-15).
 - BUGFIX: #5440 Fixed formatting string literals in WITH-CTE clause.
+- BUGFIX: #5436 Updated syntax definitions to support VALUES clause after UNION ALL.
 - BUGFIX: Fixed manual updates checking in case when automatic on-startup checking is disabled.
 
 ### 3.4.18

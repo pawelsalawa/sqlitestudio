@@ -480,23 +480,23 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
     if (url.scheme().isEmpty() || url.scheme() == "file")
         fileSize = QFile(db->getPath()).size();
 
-    rows << toolTipHdrRowTmp.arg(iconPath).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
-    rows << toolTipRowTmp.arg(tr("URI:", "dbtree tooltip")).arg(toNativePath(db->getPath()));
+    rows << toolTipHdrRowTmp.arg(iconPath, tr("Database: %1", "dbtree tooltip").arg(db->getName()));
+    rows << toolTipRowTmp.arg(tr("URI:", "dbtree tooltip"), toNativePath(db->getPath()));
 
     if (db->isValid())
     {
-        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
+        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip"), QString("SQLite %1").arg(db->getVersion()));
 
         if (fileSize > -1)
-            rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(fileSize));
+            rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip"), formatFileSize(fileSize));
 
         if (db->isOpen())
-            rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
+            rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip"), db->getEncoding());
     }
     else
     {
         InvalidDb* idb = dynamic_cast<InvalidDb*>(db);
-        rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip")).arg(idb->getError());
+        rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip"), idb->getError());
     }
 
     return toolTipTableTmp.arg(rows.join(""));
@@ -507,7 +507,7 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
     const_cast<DbTreeModel*>(this)->loadTableSchema(item); // not nice to const_cast, but nothing better we can do about this
 
     QStringList rows;
-    rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath()).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
+    rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath(), tr("Table : %1", "dbtree tooltip").arg(item->text()));
 
     QStandardItem* columnsItem = item->child(0);
     QStandardItem* indexesItem = item->child(1);
@@ -529,15 +529,15 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
     for (int i = 0; i < triggersCount; i++)
         triggers << triggersItem->child(i)->text();
 
-    rows << toolTipIconRowTmp.arg(ICONS.COLUMN.getPath())
-                             .arg(tr("Columns (%1):", "dbtree tooltip").arg(columnCnt))
-                             .arg(columns.join(", "));
-    rows << toolTipIconRowTmp.arg(ICONS.INDEX.getPath())
-                             .arg(tr("Indexes (%1):", "dbtree tooltip").arg(indexesCount))
-                             .arg(indexes.join(", "));
-    rows << toolTipIconRowTmp.arg(ICONS.TRIGGER.getPath())
-                             .arg(tr("Triggers (%1):", "dbtree tooltip").arg(triggersCount))
-                             .arg(triggers.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.COLUMN.getPath(),
+                                  tr("Columns (%1):", "dbtree tooltip").arg(columnCnt),
+                                  columns.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.INDEX.getPath(),
+                                  tr("Indexes (%1):", "dbtree tooltip").arg(indexesCount),
+                                  indexes.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.TRIGGER.getPath(),
+                                  tr("Triggers (%1):", "dbtree tooltip").arg(triggersCount),
+                                  triggers.join(", "));
 
     return toolTipTableTmp.arg(rows.join(""));
 }

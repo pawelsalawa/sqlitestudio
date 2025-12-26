@@ -258,7 +258,7 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
 StrHash<QStringList> SchemaResolver::getAllTableColumns(const QString &database)
 {
     StrHash< QStringList> tableColumns;
-    for (QString table : getTables(database))
+    for (const QString& table : getTables(database))
         tableColumns[table] = getTableColumns(database, table);
 
     return tableColumns;
