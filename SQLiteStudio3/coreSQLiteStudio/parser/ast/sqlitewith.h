@@ -38,6 +38,7 @@ class API_EXPORT SqliteWith : public SqliteStatement
 
         SqliteWith();
         SqliteWith(const SqliteWith& other);
+        SqliteWith(const QList<CommonTableExpression*>& cteList);
 
         SqliteStatement* clone();
 

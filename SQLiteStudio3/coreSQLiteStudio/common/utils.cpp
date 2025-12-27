@@ -871,19 +871,39 @@ QStringList concat(const QList<QStringList>& list)
 }
 
 
-QString doubleToString(const QVariant& val)
+QString doubleToString(const QVariant& val, bool enforceDecimal)
 {
-    QString str = val.toString();
-    if (str.contains("e") || str.length() - (str.indexOf('.') + 1) > 14)
-    {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
-        if (str.endsWith("."))
-            str += "0";
-    }
-    else if (!str.contains('.'))
-        str += ".0";
+    double d = val.toDouble();
+    if (std::isnan(d) || std::isinf(d))
+        return QString();
 
-    return str;
+    double absd = std::fabs(d);
+    if (absd == 0.0)
+        return "0.0";
+
+    int k = static_cast<int>(std::floor(std::log10(absd)));
+    QString result;
+    if (k < -16 && !enforceDecimal)
+    {
+        // Scientific notation
+        result = QString::number(d, 'g', 15);
+    }
+    else
+    {
+        // Decimal notation
+        int decimals = std::max(0, 15 - (k + 1));
+        result = QString::number(d, 'f', decimals);
+        while (result.contains('.') && result.endsWith('0'))
+            result.chop(1);
+
+        if (result.endsWith('.'))
+            result.chop(1);
+    }
+
+    if (!result.contains('.') && !result.contains('e'))
+        result += ".0";
+
+    return result;
 }
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)
