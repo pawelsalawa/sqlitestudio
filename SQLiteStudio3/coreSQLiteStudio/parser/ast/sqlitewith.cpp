@@ -13,6 +13,14 @@ SqliteWith::SqliteWith(const SqliteWith& other) :
     DEEP_COPY_COLLECTION(CommonTableExpression, cteList);
 }
 
+SqliteWith::SqliteWith(const QList<CommonTableExpression*>& cteList) :
+    SqliteWith()
+{
+    this->cteList = cteList;
+    for (CommonTableExpression*& cte : this->cteList)
+        cte->setParent(this);
+}
+
 SqliteStatement*SqliteWith::clone()
 {
     return new SqliteWith(*this);

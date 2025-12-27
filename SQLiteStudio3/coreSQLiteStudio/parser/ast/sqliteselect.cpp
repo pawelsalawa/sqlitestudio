@@ -55,13 +55,13 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
     {
         Core* core = new Core();
         core->setParent(select);
-        core->compoundOp = op;
         core->valuesMode = true;
         if (first)
-        {
-            op = CompoundOperator::UNION_ALL;
             first = false;
-        }
+        else
+            op = SqliteSelect::CompoundOperator::COMMA;
+
+        core->compoundOp = op;
         select->coreSelects << core;
 
         resColList.clear();
@@ -91,6 +91,8 @@ QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op) const
             return "UNION";
         case SqliteSelect::CompoundOperator::UNION_ALL:
             return "UNION ALL";
+        case SqliteSelect::CompoundOperator::COMMA:
+            return ",";
         case SqliteSelect::CompoundOperator::INTERSECT:
             return "INTERSECT";
         case SqliteSelect::CompoundOperator::EXCEPT:
@@ -108,6 +110,8 @@ SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op)
         return CompoundOperator::UNION;
     else if (upStr == "UNION ALL")
         return CompoundOperator::UNION_ALL;
+    else if (upStr == ",")
+        return CompoundOperator::COMMA;
     else if (upStr == "EXCEPT")
         return CompoundOperator::EXCEPT;
     else if (upStr == "INTERSECT")
@@ -737,7 +741,8 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents() const
     if (valuesMode)
     {
         SqliteSelect* select = dynamic_cast<SqliteSelect*>(parentStatement());
-        if (select->coreSelects.indexOf(this) == 0) // this is first core in series of cores of values mode of the SELECT
+        QList<SqliteSelect::Core*> valueCores = filter<SqliteSelect::Core*>(select->coreSelects, [](auto core) {return core->valuesMode;});
+        if (valueCores.indexOf(this) == 0) // this is first core in series of cores of values mode of the SELECT
             builder.withKeyword("VALUES").withSpace();
 
         builder.withParLeft().withStatementList(resultColumns).withParRight();
@@ -786,12 +791,7 @@ TokenList SqliteSelect::rebuildTokensFromContents() const
     for (auto&& core : coreSelects)
     {
         if (core->compoundOp == CompoundOperator::UNION_ALL)
-        {
-            if (core->valuesMode)
-                builder.withSpace().withOperator(",");
-            else
-                builder.withSpace().withKeyword("UNION").withSpace().withKeyword("ALL");
-        }
+            builder.withSpace().withKeyword("UNION").withSpace().withKeyword("ALL");
         else if (core->compoundOp != CompoundOperator::null)
             builder.withSpace().withKeyword(compoundOperator(core->compoundOp));
 

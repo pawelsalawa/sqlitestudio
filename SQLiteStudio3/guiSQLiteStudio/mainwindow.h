@@ -193,7 +193,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QPointer<NewVersionDialog> newVersionDialog;
 #endif
         WidgetCover* widgetCover = nullptr;
-        bool manualUpdatesChecking = false;
         QTimer* saveSessionTimer = nullptr;
 
     public slots:
@@ -237,7 +236,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void aboutSqlitestudio();
 #ifdef PORTABLE_CONFIG
         void updateAvailable(const QString& version, const QString& url);
-        void noUpdatesAvailable();
+        void noUpdatesAvailable(bool enforced);
         void checkForUpdates();
 #endif
         void statusFieldLinkClicked(const QString& link);

@@ -18,7 +18,7 @@ SqliteExpr::SqliteExpr(const SqliteExpr& other) :
     mode(other.mode), literalValue(other.literalValue), literalNull(other.literalNull), bindParam(other.bindParam), database(other.database), table(other.table),
     column(other.column), unaryOp(other.unaryOp), binaryOp(other.binaryOp), function(other.function), collation(other.collation),
     ctime(other.ctime), distinctKw(other.distinctKw), allKw(other.allKw), star(other.star), notKw(other.notKw), like(other.like),
-    notNull(other.notNull), possibleDoubleQuotedString(other.possibleDoubleQuotedString)
+    notNull(other.notNull), possibleDoubleQuotedString(other.possibleDoubleQuotedString), originallySingleQuoteString(other.originallySingleQuoteString)
 {
     DEEP_COPY_FIELD(SqliteColumnType, columnType);
     DEEP_COPY_FIELD(SqliteExpr, expr1);

@@ -22,15 +22,12 @@ void FormatSelect::formatInternal()
             case SqliteSelect::CompoundOperator::UNION:
                 withNewLine().withKeyword("UNION").withNewLine();
                 break;
-            case SqliteSelect::CompoundOperator::UNION_ALL:
-            {
-                if (core->valuesMode)
-                    withListComma(FormatToken::Flag::NO_NEWLINE_BEFORE);
-                else
-                    withNewLine().withKeyword("UNION ALL").withNewLine();
-
+            case SqliteSelect::CompoundOperator::COMMA:
+                withListComma(FormatToken::Flag::NO_NEWLINE_BEFORE);
                 break;
-            }
+            case SqliteSelect::CompoundOperator::UNION_ALL:
+                withNewLine().withKeyword("UNION ALL").withNewLine();
+                break;
             case SqliteSelect::CompoundOperator::INTERSECT:
                 withNewLine().withKeyword("INTERSECT").withNewLine();
                 break;
@@ -59,7 +56,8 @@ void FormatSelectCore::formatInternal()
     if (core->valuesMode)
     {
         SqliteSelect* select = dynamic_cast<SqliteSelect*>(core->parentStatement());
-        if (select->coreSelects.indexOf(core) == 0) // this is first core in series of cores of values mode of the SELECT
+        QList<SqliteSelect::Core*> valueCores = filter<SqliteSelect::Core*>(select->coreSelects, [](auto core) {return core->valuesMode;});
+        if (valueCores.indexOf(core) == 0) // this is first core in series of cores of values mode of the SELECT
             withKeyword("VALUES");
 
         withParDefLeft().withStatementList(core->resultColumns).withParDefRight();

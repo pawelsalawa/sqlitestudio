@@ -16,7 +16,7 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="463"/>
       <source>Error from Tcl&apos;s &apos;%1&apos; command: %2</source>
-      <translation type="unfinished">Error from Tcl&apos;s &apos;%1&apos; command: %2</translation>
+      <translation>Error del comando de Tcls&apos; &apos;%1&apos;: %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="594"/>

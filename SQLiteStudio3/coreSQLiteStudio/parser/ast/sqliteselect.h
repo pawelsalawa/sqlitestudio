@@ -26,6 +26,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
             UNION_ALL,
             INTERSECT,
             EXCEPT,
+            COMMA,
             null
         };
 

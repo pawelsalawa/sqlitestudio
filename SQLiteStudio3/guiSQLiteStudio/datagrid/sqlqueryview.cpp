@@ -48,8 +48,7 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-    // setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
-    setEditTriggers(QAbstractItemView::NoEditTriggers);
+    setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
@@ -712,12 +711,11 @@ void SqlQueryView::keyPressEvent(QKeyEvent *e)
     {
         if (state() != QAbstractItemView::EditingState)
             shouldOpenEditor = true;
-            // edit(currentIndex());
     }
 
     QTableView::keyPressEvent(e);
 
-    if (shouldOpenEditor)
+    if (shouldOpenEditor && state() != QAbstractItemView::EditingState)
     {
         edit(currentIndex());
         QApplication::sendEvent(focusWidget(), e);
