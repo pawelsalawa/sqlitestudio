@@ -221,7 +221,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void editColumn(DbTreeItem* item);
         void delColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
-        void deleteSelected(ItemFilterFunc filterFunc = nullptr);
+        void deleteSelected();
+        void deleteSelected(ItemFilterFunc filterFunc);
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);
         void refreshSchema();
         void dbConnected(Db* db);
