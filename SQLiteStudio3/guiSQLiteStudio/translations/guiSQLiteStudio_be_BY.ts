@@ -2917,7 +2917,11 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
       <source>Following errors occurred:</source>
-      <translation type="unfinished">Following errors occurred:</translation>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Following errors occured:</source>
+      <translation type="obsolete">Following errors occured:</translation>
     </message>
     <message>
       <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
@@ -4666,7 +4670,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Edit selected database</source>
-      <translation type="unfinished">Edit selected database</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>

@@ -27,22 +27,22 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
         return;
     }
 
-    // #4871 is caused by this. On one hand it doesn't make sense to disable FK for script execution
-    // (after all we're trying to execute script just like from SQL Editor, but we do it directly from file),
-    // but on the other hand, it was introduced probably for some reason. It's kept commented for now to see
-    // if good reason for it reappears. It's a subject for removal in future (until end of 2025).
-    //
-    // fkWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
-    // if (fkWasEnabled)
-    // {
-    //     SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 0");
-    //     if (res->isError())
-    //     {
-    //         qDebug() << "Failed to temporarily disable foreign keys enforcement:" << db->getErrorText();
-    //         emit execEnded();
-    //         return;
-    //     }
-    // }
+    // Initially the #4871 was caused by this FK disabling, but when this code is commented out,
+    // then sample file from #5395     // won't execute (order of insertions requires disabled FK).
+    // The thing is that FK cannot be toggled on/off when there is an active transaction (or savepoint).
+    // That was the initial root cause in #4871, as the FK state was restored (attempted to)
+    // before the transaction was commited/rolled back. It's fixed now.
+    fkWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+    if (fkWasEnabled)
+    {
+        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 0");
+        if (res->isError())
+        {
+            qDebug() << "Failed to temporarily disable foreign keys enforcement:" << db->getErrorText();
+            emit execEnded();
+            return;
+        }
+    }
 
     // Exec file
     executionInProgress = 1;
@@ -119,23 +119,21 @@ void SqlFileExecutor::execInThread()
     QList<QPair<QString, QString>> errors = executeFromStream(stream, executed, attemptedExecutions, ok, fileSize);
     int millis = timer.elapsed();
 
-    // See comment about fkWasEnabled above.
-    //
-    // if (fkWasEnabled)
-    // {
-    //     SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 1");
-    //     if (res->isError())
-    //         qDebug() << "Failed to restore foreign keys enforcement after execution SQL from file:" << res->getErrorText();
-    // }
-
     if (executionInProgress.loadAcquire())
     {
         handleExecutionResults(db, executed, attemptedExecutions, ok, ignoreErrors, millis);
         if (!errors.isEmpty())
             emit execErrors(errors, !ok && !ignoreErrors);
     }
-
     file.close();
+
+    if (fkWasEnabled)
+    {
+        SqlQueryPtr res = db->exec("PRAGMA foreign_keys = 1");
+        if (res->isError())
+            qDebug() << "Failed to restore foreign keys enforcement after execution SQL from file:" << res->getErrorText();
+    }
+
     emit execEnded();
     executionInProgress = 0;
 }

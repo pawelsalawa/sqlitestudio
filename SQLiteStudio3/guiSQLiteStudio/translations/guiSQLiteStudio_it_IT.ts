@@ -4666,7 +4666,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Edit selected database</source>
-      <translation type="unfinished">Edit selected database</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>

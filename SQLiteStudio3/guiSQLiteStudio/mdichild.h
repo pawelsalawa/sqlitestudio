@@ -28,6 +28,7 @@ class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, publi
         virtual bool handleInitialFocus();
         virtual Db* getAssociatedDb() const;
         virtual void dbClosedFinalCleanup();
+        virtual bool isWindowClosingBlocked() const;
 
     protected:
 

@@ -176,7 +176,8 @@ class API_EXPORT SchemaResolver
         QString getObjectDdl(const QString& database, const QString& name, ObjectType type);
 
         QStringList getColumnsFromDdlUsingPragma(const QString& ddl);
-        QStringList getColumnsUsingPragma(const QString& tableOrView);
+        QStringList getColumnsUsingPragma(const QString& tableOrView, bool onlyReal = false);
+        QStringList getColumnsUsingPragma(const QString& database, const QString& tableOrView, bool onlyReal = false);
         QStringList getColumnsUsingPragma(SqliteCreateTable* createTable);
         QStringList getColumnsUsingPragma(SqliteCreateView* createView);
 
@@ -208,6 +209,8 @@ class API_EXPORT SchemaResolver
         StrHash<SqliteCreateTriggerPtr> getAllParsedTriggers(const QString& database);
         StrHash<SqliteCreateViewPtr> getAllParsedViews();
         StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
+        QStringList getTablePrimaryKeyColumns(const QString& table);
+        QStringList getTablePrimaryKeyColumns(const QString& database, const QString& table);
 
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool schema, bool temp = false);

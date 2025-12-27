@@ -199,11 +199,24 @@ embed_libtcl() {
     fi
 }
 
+# < HEAD
 debug "in frameworks - 1:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 embed_libsqlite3 SQLiteStudio.app
 debug "in frameworks - 2:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
 embed_libtcl SQLiteStudio.app
 debug "in frameworks - 3:" "$(ls -l SQLiteStudio.app/Contents/Frameworks)"
+# =======
+# cp -RP ../../../lib/libsqlite3.0.dylib SQLiteStudio.app/Contents/Frameworks
+# cp -RP ../../../lib/libtcl8.6.dylib SQLiteStudio.app/Contents/Frameworks
+# cp -RP ../../../lib/libcrypto.3.dylib SQLiteStudio.app/Contents/Frameworks
+# cd SQLiteStudio.app/Contents/Frameworks
+# ln -s libsqlite3.0.dylib libsqlite3.dylib
+# ln -s libcrypto.3.dylib libcrypto.dylib
+# cd ../../..
+#
+# echo "in frameworks - 2:"
+# ls -l SQLiteStudio.app/Contents/Frameworks
+# > 3.4.18
 
 # Plugin paths
 fixPluginPaths() {

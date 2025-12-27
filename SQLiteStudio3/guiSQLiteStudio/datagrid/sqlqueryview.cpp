@@ -701,6 +701,27 @@ void SqlQueryView::scrollContentsBy(int dx, int dy)
     emit scrolledBy(dx, dy);
 }
 
+void SqlQueryView::keyPressEvent(QKeyEvent *e)
+{
+    // Overriden EditTrigger, so it works consistently across platforms.
+    // Default implementation caused problem with Polish characters under Windows (#5364)
+    const QString txt = e->text();
+    bool shouldOpenEditor = false;
+    if (!txt.isEmpty() && txt.at(0).isPrint())
+    {
+        if (state() != QAbstractItemView::EditingState)
+            shouldOpenEditor = true;
+    }
+
+    QTableView::keyPressEvent(e);
+
+    if (shouldOpenEditor && state() != QAbstractItemView::EditingState)
+    {
+        edit(currentIndex());
+        QApplication::sendEvent(focusWidget(), e);
+    }
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -771,15 +792,21 @@ void SqlQueryView::updateFont()
 void SqlQueryView::executionStarted()
 {
     beforeExecutionHorizontalPosition = horizontalScrollBar()->sliderPosition();
+    beforeExecutionVerticalPosition = verticalScrollBar()->sliderPosition();
     widgetCover->show();
 }
 
 void SqlQueryView::executionEnded()
 {
-    if (beforeExecutionHorizontalPosition > -1)
+    if (beforeExecutionHorizontalPosition > -1 || beforeExecutionVerticalPosition > -1)
     {
-        horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
-        emit scrolledBy(beforeExecutionHorizontalPosition, 0);
+        if (beforeExecutionHorizontalPosition > -1)
+            horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
+
+        if (beforeExecutionVerticalPosition > -1)
+            verticalScrollBar()->setSliderPosition(beforeExecutionVerticalPosition);
+
+        emit scrolledBy(beforeExecutionHorizontalPosition > -1 ? beforeExecutionHorizontalPosition : 0, beforeExecutionVerticalPosition > -1 ? beforeExecutionVerticalPosition : 0);
     }
 
     widgetCover->hide();
@@ -787,7 +814,9 @@ void SqlQueryView::executionEnded()
 
 void SqlQueryView::setCurrentRow(int row)
 {
-    setCurrentIndex(model()->index(row, 0));
+    auto idx = model()->index(row, 0);
+    setCurrentIndex(idx);
+    scrollTo(idx);
 }
 
 void SqlQueryView::copy()

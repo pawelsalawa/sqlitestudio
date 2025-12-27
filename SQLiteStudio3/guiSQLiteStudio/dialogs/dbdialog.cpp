@@ -307,7 +307,7 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
                         cb->setCurrentText(it.key());
                 }
             }
-            connect(cb, SIGNAL(currentIndexChanged(QString)), this, SLOT(propertyChanged()));
+            connect(cb, SIGNAL(currentTextChanged(QString)), this, SLOT(propertyChanged()));
             break;
         }
         case DbPluginOption::INT:

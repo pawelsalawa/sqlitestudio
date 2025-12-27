@@ -4,6 +4,8 @@
 #include "sqlitestatement.h"
 #include <QString>
 
+class SqliteExpr;
+
 class API_EXPORT SqliteRaise : public SqliteStatement
 {
     Q_OBJECT
@@ -21,7 +23,7 @@ class API_EXPORT SqliteRaise : public SqliteStatement
         SqliteRaise();
         SqliteRaise(const SqliteRaise& other);
         explicit SqliteRaise(const QString& type);
-        SqliteRaise(const QString& type, const QString& text);
+        SqliteRaise(const QString& type, SqliteExpr* value);
 
         SqliteStatement* clone();
 
@@ -29,7 +31,7 @@ class API_EXPORT SqliteRaise : public SqliteStatement
         static QString raiseType(Type value);
 
         Type type = Type::null;
-        QString message = QString();
+        SqliteExpr* expr = nullptr;
 
     protected:
         TokenList rebuildTokensFromContents();

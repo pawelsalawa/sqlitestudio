@@ -8,6 +8,7 @@
 #include "services/functionmanager.h"
 #include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
+#include "services/sqliteextensionmanager.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -85,6 +86,7 @@ class API_EXPORT AbstractDb : public Db
         int getTimeout() const;
         bool isValid() const;
         void loadExtensions();
+        QList<LoadedExtension> getManuallyLoadedExtensions() const;
 
     protected:
         struct FunctionUserData
@@ -447,6 +449,20 @@ class API_EXPORT AbstractDb : public Db
         void registerBuiltInFunctions();
 
         /**
+         * @brief Loads given extension and remembers it (when closing/opening quietly, etc).
+         * @param filePath Path to extension file.
+         * @param initFunc Initialization entry point. Optional.
+         * @return true on success, false on failure.
+         *
+         * Tracking of loaded extensions is used for example in the QueryExecutor,
+         * specifially in the Counting query.
+         *
+         * It is called from implementation of load_extension() (which replaces SQLite's original one).
+         * Internally it calls Db::loadExtension().
+         */
+        bool loadExtensionManually(const QString& filePath, const QString& initFunc = QString());
+
+        /**
          * @brief Connection state lock.
          *
          * It's locked whenever the connection state is changed or tested.
@@ -475,6 +491,13 @@ class API_EXPORT AbstractDb : public Db
          * @brief List of all collations currently registered in this database.
          */
         QStringList registeredCollations;
+
+        /**
+         * @brief Registry of extensions loaded with load_extension() SQL function.
+         *
+         * It is populated from loadExtensionManually() and used in loadExtensions().
+         */
+        QList<LoadedExtension> manuallyLoadedExtensions;
 
         int loadedExtensionCount = 0;
 

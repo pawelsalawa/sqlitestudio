@@ -179,9 +179,12 @@ void SqlQueryModel::internalExecutionStopped()
     emit loadingEnded(false);
 }
 
-void SqlQueryModel::interrupt()
+void SqlQueryModel::interrupt(bool sync)
 {
-    queryExecutor->interrupt();
+    if (sync)
+        queryExecutor->interruptSync();
+    else
+        queryExecutor->interrupt();
 }
 
 qint64 SqlQueryModel::getExecutionTime()
@@ -1441,6 +1444,12 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
     requiredDbAttaches = queryExecutor->getRequiredDbAttaches();
     reloadAvailable = true;
 
+    if (queryExecutor->isInterrupted())
+    {
+        emit executionFailed(tr("Error while executing SQL query on database '%1': %2").arg(db->getName(), "execution interrupted"));
+        return;
+    }
+
     emit loadingEnded(true);
     restoreNumbersToQueryExecutor();
     if (!reloading)
@@ -1765,7 +1774,7 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     if (rowIdx == 0) // when adding first row, we need to update header
         updateColumnHeaderLabels();
 
-    view->selectionModel()->clear();;
+    view->selectionModel()->clear();
     view->setCurrentRow(rowIdx);
     view->setFocus();
 }

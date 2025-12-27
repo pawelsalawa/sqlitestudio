@@ -134,16 +134,24 @@ void DbTreeModel::applyFilter(const QString &filter)
 
 void DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
 {
-    if (filteringInProgress) // already processing the (possibly interrupted) filtering - ssubsequent call is possible after filter edit field is cleared
+    queuedFilterValue.clear();
+    if (filteringInProgress) // already processing the (possibly interrupted) filtering - subsequent call is possible after filter edit field is cleared
+    {
+        if (filter != currentFilter)
+        {
+            queuedFilterValue = filter;
+            filteringInProgress->interrupt();
+        }
         return;
+    }
 
     filteringInProgress = new ItemFiltering();
     interruptableStarted(filteringInProgress);
 
-    applyFilterRecursively(parentItem, filter);
     currentFilter = filter;
+    applyFilterRecursively(parentItem, filter);
 
-    if (filteringInProgress->interrupted)
+    if (filteringInProgress->interrupted && queuedFilterValue.isNull())
     {
         applyFilterRecursively(parentItem, "");
         currentFilter = "";
@@ -152,6 +160,14 @@ void DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
     interruptableFinished(filteringInProgress);
 
     safe_delete(filteringInProgress);
+
+    // Subsequent filtering is user modified filter value during filtering in progress
+    while (!queuedFilterValue.isNull())
+    {
+        QString newFilterValue = queuedFilterValue;
+        queuedFilterValue.clear();
+        applyFilter(root(), newFilterValue);
+    }
 }
 
 bool DbTreeModel::applyFilterRecursively(QStandardItem *parentItem, const QString &filter)
@@ -185,7 +201,7 @@ bool DbTreeModel::applyFilterRecursively(QStandardItem *parentItem, const QStrin
         if (matched)
             visibilityForParent = true;
 
-        if (i % 10 == 9)
+        if (i % 100 == 99)
             qApp->processEvents();
     }
     return visibilityForParent;
@@ -463,23 +479,23 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
     if (url.scheme().isEmpty() || url.scheme() == "file")
         fileSize = QFile(db->getPath()).size();
 
-    rows << toolTipHdrRowTmp.arg(iconPath).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
-    rows << toolTipRowTmp.arg(tr("URI:", "dbtree tooltip")).arg(toNativePath(db->getPath()));
+    rows << toolTipHdrRowTmp.arg(iconPath, tr("Database: %1", "dbtree tooltip").arg(db->getName()));
+    rows << toolTipRowTmp.arg(tr("URI:", "dbtree tooltip"), toNativePath(db->getPath()));
 
     if (db->isValid())
     {
-        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
+        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip"), QString("SQLite %1").arg(db->getVersion()));
 
         if (fileSize > -1)
-            rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(fileSize));
+            rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip"), formatFileSize(fileSize));
 
         if (db->isOpen())
-            rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
+            rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip"), db->getEncoding());
     }
     else
     {
         InvalidDb* idb = dynamic_cast<InvalidDb*>(db);
-        rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip")).arg(idb->getError());
+        rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip"), idb->getError());
     }
 
     return toolTipTableTmp.arg(rows.join(""));
@@ -490,7 +506,7 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
     const_cast<DbTreeModel*>(this)->loadTableSchema(item); // not nice to const_cast, but nothing better we can do about this
 
     QStringList rows;
-    rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath()).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
+    rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath(), tr("Table : %1", "dbtree tooltip").arg(item->text()));
 
     QStandardItem* columnsItem = item->child(0);
     QStandardItem* indexesItem = item->child(1);
@@ -512,15 +528,15 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
     for (int i = 0; i < triggersCount; i++)
         triggers << triggersItem->child(i)->text();
 
-    rows << toolTipIconRowTmp.arg(ICONS.COLUMN.getPath())
-                             .arg(tr("Columns (%1):", "dbtree tooltip").arg(columnCnt))
-                             .arg(columns.join(", "));
-    rows << toolTipIconRowTmp.arg(ICONS.INDEX.getPath())
-                             .arg(tr("Indexes (%1):", "dbtree tooltip").arg(indexesCount))
-                             .arg(indexes.join(", "));
-    rows << toolTipIconRowTmp.arg(ICONS.TRIGGER.getPath())
-                             .arg(tr("Triggers (%1):", "dbtree tooltip").arg(triggersCount))
-                             .arg(triggers.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.COLUMN.getPath(),
+                                  tr("Columns (%1):", "dbtree tooltip").arg(columnCnt),
+                                  columns.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.INDEX.getPath(),
+                                  tr("Indexes (%1):", "dbtree tooltip").arg(indexesCount),
+                                  indexes.join(", "));
+    rows << toolTipIconRowTmp.arg(ICONS.TRIGGER.getPath(),
+                                  tr("Triggers (%1):", "dbtree tooltip").arg(triggersCount),
+                                  triggers.join(", "));
 
     return toolTipTableTmp.arg(rows.join(""));
 }
@@ -692,7 +708,7 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
     DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
     DbTreeItem* triggersItem = tableItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
-    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getTableColumns(table));
+    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getColumnsUsingPragma(table));
     QList<QStandardItem*> indexItems = refreshSchemaIndexes(resolver.getIndexesForTable(table), sort);
     QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForTable(table), sort);
 

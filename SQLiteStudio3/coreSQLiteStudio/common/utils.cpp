@@ -4,6 +4,8 @@
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
 #include <QJsonDocument>
+#include <QJsonValue>
+#include <QUuid>
 #include <QLine>
 #include <QString>
 #include <QStringConverter>
@@ -654,6 +656,7 @@ QStringList textCodecNames()
 #endif
     QSet<QString> codecSet = QSet<QString>(codecs.begin(), codecs.end());
     QStringList names = QStringList(codecSet.begin(), codecSet.end());
+
     sSort(names);
     return names;
 }
@@ -789,7 +792,7 @@ bool copyRecursively(const QString& src, const QString& dst)
 
         QDir sourceDir(src);
         QStringList fileNames = sourceDir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             const QString newSrcFilePath = src + QLatin1Char('/') + fileName;
             const QString newTgtFilePath = dst + QLatin1Char('/') + fileName;
@@ -833,7 +836,7 @@ bool isWritableRecursively(const QString& dir)
     if (fi.isDir())
     {
         QStringList fileNames = QDir(dir).entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-        for (const QString &fileName : fileNames)
+        for (QString &fileName : fileNames)
         {
             if (!isWritableRecursively(dir + QLatin1Char('/') + fileName))
                 return false;
@@ -868,19 +871,39 @@ QStringList concat(const QList<QStringList>& list)
 }
 
 
-QString doubleToString(const QVariant& val)
+QString doubleToString(const QVariant& val, bool enforceDecimal)
 {
-    QString str = val.toString();
-    if (str.contains("e") || str.length() - (str.indexOf('.') + 1) > 14)
-    {
-        str = QString::number(val.toDouble(), 'f', 14).remove(QRegularExpression("0*$"));
-        if (str.endsWith("."))
-            str += "0";
-    }
-    else if (!str.contains('.'))
-        str += ".0";
+    double d = val.toDouble();
+    if (std::isnan(d) || std::isinf(d))
+        return QString();
 
-    return str;
+    double absd = std::fabs(d);
+    if (absd == 0.0)
+        return "0.0";
+
+    int k = static_cast<int>(std::floor(std::log10(absd)));
+    QString result;
+    if (k < -16 && !enforceDecimal)
+    {
+        // Scientific notation
+        result = QString::number(d, 'g', 15);
+    }
+    else
+    {
+        // Decimal notation
+        int decimals = std::max(0, 15 - (k + 1));
+        result = QString::number(d, 'f', decimals);
+        while (result.contains('.') && result.endsWith('0'))
+            result.chop(1);
+
+        if (result.endsWith('.'))
+            result.chop(1);
+    }
+
+    if (!result.contains('.') && !result.contains('e'))
+        result += ".0";
+
+    return result;
 }
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)
@@ -941,7 +964,7 @@ QString readFileContents(const QString& path, QString* err)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         if (err)
-            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path).arg(file.errorString());
+            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path, file.errorString());
 
         return QString();
     }

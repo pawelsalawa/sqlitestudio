@@ -59,9 +59,10 @@ class CodeSnippetEditor : public MdiChild
     private:
         void init();
         int getCurrentSnippetRow() const;
-        void snippetDeselected(int row);
-        void snippetSelected(int row);
-        void selectSnippet(int row, bool forRowMovement = false);
+        QModelIndex snipRowToSrc(const QModelIndex& idx) const;
+        void snippetDeselected(int srcRow);
+        void snippetSelected(int srcRow);
+        void selectSnippet(int srcRow, bool forRowMovement = false);
         void clearEdits();
 
         Ui::CodeSnippetEditor *ui;

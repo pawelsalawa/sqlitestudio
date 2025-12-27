@@ -3,6 +3,7 @@
 #include "sqliteselect.h"
 #include "sqlitecolumntype.h"
 #include "sqlitefilterover.h"
+#include "sqliteorderby.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -17,7 +18,7 @@ SqliteExpr::SqliteExpr(const SqliteExpr& other) :
     mode(other.mode), literalValue(other.literalValue), literalNull(other.literalNull), bindParam(other.bindParam), database(other.database), table(other.table),
     column(other.column), unaryOp(other.unaryOp), binaryOp(other.binaryOp), function(other.function), collation(other.collation),
     ctime(other.ctime), distinctKw(other.distinctKw), allKw(other.allKw), star(other.star), notKw(other.notKw), like(other.like),
-    notNull(other.notNull), possibleDoubleQuotedString(other.possibleDoubleQuotedString)
+    notNull(other.notNull), possibleDoubleQuotedString(other.possibleDoubleQuotedString), originallySingleQuoteString(other.originallySingleQuoteString)
 {
     DEEP_COPY_FIELD(SqliteColumnType, columnType);
     DEEP_COPY_FIELD(SqliteExpr, expr1);
@@ -27,6 +28,7 @@ SqliteExpr::SqliteExpr(const SqliteExpr& other) :
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(SqliteRaise, raiseFunction);
     DEEP_COPY_FIELD(SqliteFilterOver, filterOver);
+    DEEP_COPY_COLLECTION(SqliteOrderBy, sortColumns);
 }
 
 SqliteExpr::~SqliteExpr()
@@ -176,6 +178,21 @@ void SqliteExpr::initFunction(const QString& fnName, int distinct, const QList<S
         expr->setParent(this);
 }
 
+void SqliteExpr::initFunction(const QString &fnName, int distinct, const QList<SqliteExpr *> &exprList, const QList<SqliteOrderBy*>& columns)
+{
+    mode = SqliteExpr::Mode::FUNCTION;
+    function = fnName;
+    this->exprList = exprList;
+    initDistinct(distinct);
+    this->sortColumns = columns;
+
+    for (SqliteOrderBy* orderBy : columns)
+        orderBy->setParent(this);
+
+    for (SqliteExpr* expr : exprList)
+        expr->setParent(this);
+}
+
 void SqliteExpr::initFunction(const QString& fnName, bool star)
 {
     mode = SqliteExpr::Mode::FUNCTION;
@@ -198,6 +215,25 @@ void SqliteExpr::initWindowFunction(const QString& fnName, int distinct, const Q
         filterOver->setParent(this);
 }
 
+void SqliteExpr::initWindowFunction(const QString &fnName, int distinct, const QList<SqliteExpr *> &exprList, const QList<SqliteOrderBy*>& columns, SqliteFilterOver *filterOver)
+{
+    mode = SqliteExpr::Mode::WINDOW_FUNCTION;
+    this->function = fnName;
+    this->exprList = exprList;
+    initDistinct(distinct);
+    this->sortColumns = columns;
+    this->filterOver = filterOver;
+
+    for (SqliteOrderBy* orderBy : columns)
+        orderBy->setParent(this);
+
+    for (SqliteExpr* expr : exprList)
+        expr->setParent(this);
+
+    if (filterOver)
+        filterOver->setParent(this);
+}
+
 void SqliteExpr::initWindowFunction(const QString& fnName, SqliteFilterOver* filterOver)
 {
     mode = SqliteExpr::Mode::WINDOW_FUNCTION;
@@ -207,6 +243,15 @@ void SqliteExpr::initWindowFunction(const QString& fnName, SqliteFilterOver* fil
 
     if (filterOver)
         filterOver->setParent(this);
+}
+
+void SqliteExpr::initOrderedSetAggregate(const QString &fnName, int distinct, const QList<SqliteExpr *> &exprList, SqliteExpr *expr)
+{
+    mode = SqliteExpr::Mode::ORDERED_SET_AGGREGATE;
+    this->function = fnName;
+    this->exprList = exprList;
+    initDistinct(distinct);
+    this->expr1 = expr;
 }
 
 void SqliteExpr::initBinOp(SqliteExpr *expr1, const QString& op, SqliteExpr *expr2)
@@ -386,10 +431,10 @@ void SqliteExpr::initCase(SqliteExpr *expr1, const QList<SqliteExpr*>& exprList,
         expr->setParent(this);
 }
 
-void SqliteExpr::initRaise(const QString& type, const QString& text)
+void SqliteExpr::initRaise(const QString& type, SqliteExpr *expr)
 {
     mode = SqliteExpr::Mode::RAISE;
-    raiseFunction = new SqliteRaise(type, text);
+    raiseFunction = new SqliteRaise(type, expr);
 }
 
 void SqliteExpr::detectDoubleQuotes(bool recursively)
@@ -404,6 +449,8 @@ void SqliteExpr::detectDoubleQuotes(bool recursively)
         QString val = tokens.first()->value;
         if (val[0] == '"' && val[0] == val[val.length() - 1])
             possibleDoubleQuotedString = true;
+        else if (val[0] == '\'' && val[0] == val[val.length() - 1])
+            originallySingleQuoteString = true;
     }
 
     for (SqliteStatement* stmt : childStatements())
@@ -595,12 +642,22 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
             else if (allKw)
-                builder.withKeyword("DISTINCT");
+                builder.withKeyword("ALL");
 
             if (star)
                 builder.withOperator("*").withParRight();
             else
-                builder.withStatementList(exprList).withParRight();
+            {
+                builder.withStatementList(exprList);
+                if (!sortColumns.isEmpty())
+                {
+                    builder
+                        .withSpace().withKeyword("ORDER")
+                        .withSpace().withKeyword("BY")
+                        .withSpace().withStatementList(sortColumns);
+                }
+                builder.withParRight();
+            }
 
             break;
         case SqliteExpr::Mode::WINDOW_FUNCTION:
@@ -608,14 +665,46 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
             else if (allKw)
-                builder.withKeyword("DISTINCT");
+                builder.withKeyword("ALL");
 
             if (star)
                 builder.withOperator("*").withParRight();
             else
-                builder.withStatementList(exprList).withParRight();
-
+            {
+                builder.withStatementList(exprList);
+                if (!sortColumns.isEmpty())
+                {
+                    builder
+                        .withSpace().withKeyword("ORDER")
+                        .withSpace().withKeyword("BY")
+                        .withSpace().withStatementList(sortColumns);
+                }
+                builder.withParRight();
+            }
             builder.withSpace().withStatement(filterOver);
+            break;
+        case SqliteExpr::Mode::ORDERED_SET_AGGREGATE:
+            builder.withOther(function).withParLeft();
+            if (distinctKw)
+                builder.withKeyword("DISTINCT");
+            else if (allKw)
+                builder.withKeyword("ALL");
+
+            builder
+                .withStatementList(exprList)
+                .withParRight()
+                .withSpace()
+                .withKeyword("WITHIN")
+                .withSpace()
+                .withKeyword("GROUP")
+                .withSpace()
+                .withParLeft()
+                .withKeyword("ORDER")
+                .withSpace()
+                .withKeyword("BY")
+                .withSpace()
+                .withStatement(expr1)
+                .withParRight();
             break;
         case SqliteExpr::Mode::SUB_EXPR:
             builder.withParLeft().withStatement(expr1).withParRight();
@@ -682,8 +771,8 @@ TokenList SqliteExpr::rebuildId()
     if (!table.isNull())
         builder.withOther(table).withOperator(".");
 
-    if (table.isNull() && possibleDoubleQuotedString)
-        builder.withStringPossiblyOther(column);
+    if (table.isNull() && (possibleDoubleQuotedString || originallySingleQuoteString))
+        builder.withStringPossiblyOther(column, originallySingleQuoteString);
     else
         builder.withOther(column);
 

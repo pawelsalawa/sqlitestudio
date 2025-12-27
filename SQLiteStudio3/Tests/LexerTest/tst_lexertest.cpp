@@ -17,6 +17,7 @@ class LexerTest : public QObject
         void testHex2();
         void testBindParam1();
         void testBlobLiteral();
+        void testDollarId();
 };
 
 LexerTest::LexerTest()
@@ -98,6 +99,17 @@ void LexerTest::testBlobLiteral()
     TokenList tokens = lex.tokenize(sql);
     QCOMPARE(tokens.size(), 3);
     QCOMPARE(tokens[2]->value, "X'010f0E'");
+}
+
+void LexerTest::testDollarId()
+{
+    QString sql = "SELECT v$test";
+
+    Lexer lex;
+    TokenList tokens = lex.tokenize(sql);
+    QCOMPARE(tokens.size(), 3);
+    QCOMPARE(tokens[2]->value, "v$test");
+    QCOMPARE(tokens[2]->type, Token::OTHER);
 }
 
 QTEST_APPLESS_MAIN(LexerTest)

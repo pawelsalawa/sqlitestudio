@@ -133,10 +133,10 @@ void MainWindow::init()
     }
 
 #ifdef PORTABLE_CONFIG
-    connect(UPDATES, SIGNAL(updateAvailable(QString, QString)), this, SLOT(updateAvailable(QString, QString)));
-    connect(UPDATES, SIGNAL(noUpdatesAvailable()), this, SLOT(noUpdatesAvailable()));
+    connect(UPDATES, &UpdateManager::updateAvailable, this, &MainWindow::updateAvailable);
+    connect(UPDATES, &UpdateManager::noUpdatesAvailable, this, &MainWindow::noUpdatesAvailable);
 #endif
-    connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
+    connect(statusField, &StatusField::linkActivated, this, &MainWindow::statusFieldLinkClicked);
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
     connect(CFG_UI.General.AllowMultipleSessions, SIGNAL(changed(QVariant)), this, SLOT(updateMultipleSessionsSetting(QVariant)));
@@ -317,6 +317,7 @@ void MainWindow::createActions()
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
     ui->dbToolbar->addSeparator();
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::ADD_DB));
+    ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
 
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_TABLE));
@@ -884,27 +885,21 @@ void MainWindow::updateMultipleSessionsSetting()
 #ifdef PORTABLE_CONFIG
 void MainWindow::updateAvailable(const QString& version, const QString& url)
 {
-    manualUpdatesChecking = false;
     newVersionDialog = new NewVersionDialog(this);
     newVersionDialog->setUpdate(version, url);
     notifyInfo(tr("New updates are available. <a href=\"%1\">Click here for details</a>.").arg(openUpdatesUrl));
 }
 
-void MainWindow::noUpdatesAvailable()
+void MainWindow::noUpdatesAvailable(bool enforced)
 {
-    if (!manualUpdatesChecking)
-        return;
-
-    notifyInfo(tr("You're running the most recent version. No updates are available."));
-    manualUpdatesChecking = false;
+    if (enforced)
+        notifyInfo(tr("You're running the most recent version. No updates are available."));
 }
 
 void MainWindow::checkForUpdates()
 {
-    manualUpdatesChecking = true;
-    UPDATES->checkForUpdates();
+    UPDATES->checkForUpdates(true);
 }
-
 #endif
 
 void MainWindow::updateCornerDocking()

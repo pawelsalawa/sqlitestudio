@@ -4,18 +4,18 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="351"/>
-      <location filename="../db/abstractdb.cpp" line="368"/>
+      <location filename="../db/abstractdb.cpp" line="374"/>
+      <location filename="../db/abstractdb.cpp" line="391"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Impossible d’exécuter la requête sur une base de données fermée.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="708"/>
+      <location filename="../db/abstractdb.cpp" line="731"/>
       <source>Error attaching database %1: %2</source>
       <translation>Erreur base de données attachée %1 : %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="950"/>
+      <location filename="../db/abstractdb.cpp" line="973"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
       <translation>Impossible de faire le point de vérification complet des journaux de transactions sur la base de données &apos;%1&apos;. Erreur retournée par le moteur SQLite : %2</translation>
     </message>
@@ -47,13 +47,13 @@
       <translation>Impossible d’initialiser une transaction de la base de données : %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="89"/>
+      <location filename="../db/chainexecutor.cpp" line="90"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Interrompu</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="151"/>
+      <location filename="../db/chainexecutor.cpp" line="153"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Impossible d’enregistrer la transaction de la base de données : %1</translation>
@@ -379,38 +379,38 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Nombre de paramètres invalide de la fonction « %1 ». Attendu %2, obtenu %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="406"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Fonction inconnue avec SQLiteStudio : %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="412"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="414"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>La fonction %1(%2) est référencée avec le langage %3, mais le plugin supportant ce langage n’est actuellement pas chargé.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="430"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="432"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Expression invalide : %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="449"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="482"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="451"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="484"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Impossible d’ouvrir en lecture le ficher %1 : %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="504"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="506"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Impossible d’ouvrir en écriture le ficher %1 : %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="524"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="526"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Erreur lors de l’écriture du fichier %1 : %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="542"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="544"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Langage script non supporté : %1</translation>
     </message>
@@ -785,7 +785,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="944"/>
+      <location filename="../common/utils.cpp" line="947"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
@@ -816,7 +816,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Impossible de clore la base de bonnées : %1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="114"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
       <source>Could not attach database %1: %2</source>
       <translation>Impossible d’attacher la base de données %1 : %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Requête imcomplète.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2640"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
       <source>Parser stack overflow</source>
       <translation>Analyse dépassement pile</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6172"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
       <source>Syntax error</source>
       <translation>Erreur de syntaxe</translation>
     </message>
@@ -897,7 +897,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Impossible de résoudre la source de données pour la colonnes : %1</translation>
     </message>
     <message>
-      <location filename="../selectresolver.cpp" line="455"/>
+      <location filename="../selectresolver.cpp" line="462"/>
       <source>Could not resolve table for column &apos;%1&apos;.</source>
       <translation>Impossible de résoudre la table pour la colonne &apos;%1&apos;.</translation>
     </message>
@@ -1021,14 +1021,18 @@ La vue restera telle quelle.</translation>
       <translation>Une seule requête peut être exécutée à la fois.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="344"/>
-      <location filename="../db/queryexecutor.cpp" line="358"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="364"/>
+      <location filename="../db/queryexecutor.cpp" line="422"/>
+      <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="527"/>
+      <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
+      <translation type="vanished">Une erreur s’est produite à l’exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données : %1</translation>
+    </message>
+    <message>
+      <location filename="../db/queryexecutor.cpp" line="611"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio ne peut extraire des métadonnées d’une requête. Les résultats ne peut être affichés.</translation>
     </message>
@@ -1072,22 +1076,22 @@ La vue restera telle quelle.</translation>
       <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="150"/>
+      <location filename="../sqlfileexecutor.cpp" line="148"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation>Impossible d&apos;exécuter SQL, car l&apos;application n&apos;a pas pu valider la transaction : %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="155"/>
+      <location filename="../sqlfileexecutor.cpp" line="153"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation>Fin de l&apos;exécution de %1 requêtes en %2 secondes. %3 n&apos;ont pas été exécutées en raison d&apos;erreurs.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="161"/>
+      <location filename="../sqlfileexecutor.cpp" line="159"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation>Fin de l&apos;exécution de %1 requêtes en %2 secondes.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="168"/>
+      <location filename="../sqlfileexecutor.cpp" line="166"/>
       <source>Could not execute SQL due to error.</source>
       <translation>Impossible d&apos;exécuter SQL en raison d&apos;une erreur.</translation>
     </message>

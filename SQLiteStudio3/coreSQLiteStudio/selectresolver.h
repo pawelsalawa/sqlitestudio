@@ -112,6 +112,7 @@ class API_EXPORT SelectResolver
             QString alias;
             QString displayName;
             bool aliasDefinedInSubQuery = false;
+            bool joinedWithUsingClause = false;
 
             int operator==(const Column& other);
             Table getTable() const;

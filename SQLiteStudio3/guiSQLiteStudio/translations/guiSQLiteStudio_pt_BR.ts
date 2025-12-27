@@ -4667,7 +4667,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Edit selected database</source>
-      <translation type="unfinished">Edit selected database</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>

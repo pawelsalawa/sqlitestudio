@@ -163,55 +163,55 @@ int FunctionsEditor::getCurrentFunctionRow() const
     if (idxList.size() == 0)
         return -1;
 
-    return idxList.first().row();
+    return fnRowToSrc(idxList.first()).row();
 }
 
-void FunctionsEditor::functionDeselected(int row)
+void FunctionsEditor::functionDeselected(int srcRow)
 {
-    model->setName(row, ui->nameEdit->text());
-    model->setUndefinedArgs(row, ui->undefArgsCheck->isChecked());
+    model->setName(srcRow, ui->nameEdit->text());
+    model->setUndefinedArgs(srcRow, ui->undefArgsCheck->isChecked());
     if (!ui->undefArgsCheck->isChecked())
-        model->setArguments(row, getCurrentArgList());
+        model->setArguments(srcRow, getCurrentArgList());
 
-    model->setLang(row, ui->langCombo->currentText());
-    model->setType(row, getCurrentFunctionType());
-    model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
-    model->setCode(row, ui->mainCodeEdit->toPlainText());
-    model->setDeterministic(row, ui->deterministicCheck->isChecked());
-    model->setModified(row, currentModified);
+    model->setLang(srcRow, ui->langCombo->currentText());
+    model->setType(srcRow, getCurrentFunctionType());
+    model->setAllDatabases(srcRow, ui->allDatabasesRadio->isChecked());
+    model->setCode(srcRow, ui->mainCodeEdit->toPlainText());
+    model->setDeterministic(srcRow, ui->deterministicCheck->isChecked());
+    model->setModified(srcRow, currentModified);
 
-    if (model->isAggregate(row))
+    if (model->isAggregate(srcRow))
     {
-        model->setInitCode(row, ui->initCodeEdit->toPlainText());
-        model->setFinalCode(row, ui->finalCodeEdit->toPlainText());
+        model->setInitCode(srcRow, ui->initCodeEdit->toPlainText());
+        model->setFinalCode(srcRow, ui->finalCodeEdit->toPlainText());
     }
     else
     {
-        model->setInitCode(row, QString());
-        model->setFinalCode(row, QString());
+        model->setInitCode(srcRow, QString());
+        model->setFinalCode(srcRow, QString());
     }
 
     if (ui->selDatabasesRadio->isChecked())
-        model->setDatabases(row, getCurrentDatabases());
+        model->setDatabases(srcRow, getCurrentDatabases());
 
     model->validateNames();
 }
 
-void FunctionsEditor::functionSelected(int row)
+void FunctionsEditor::functionSelected(int srcRow)
 {
     updatesForSelection = true;
-    ui->nameEdit->setText(model->getName(row));
-    ui->initCodeEdit->setPlainText(model->getInitCode(row));
-    ui->mainCodeEdit->setPlainText(model->getCode(row));
-    ui->finalCodeEdit->setPlainText(model->getFinalCode(row));
-    ui->undefArgsCheck->setChecked(model->getUndefinedArgs(row));
-    ui->langCombo->setCurrentText(model->getLang(row));
-    ui->deterministicCheck->setChecked(model->isDeterministic(row));
+    ui->nameEdit->setText(model->getName(srcRow));
+    ui->initCodeEdit->setPlainText(model->getInitCode(srcRow));
+    ui->mainCodeEdit->setPlainText(model->getCode(srcRow));
+    ui->finalCodeEdit->setPlainText(model->getFinalCode(srcRow));
+    ui->undefArgsCheck->setChecked(model->getUndefinedArgs(srcRow));
+    ui->langCombo->setCurrentText(model->getLang(srcRow));
+    ui->deterministicCheck->setChecked(model->isDeterministic(srcRow));
 
     // Arguments
     ui->argsList->clear();
     QListWidgetItem* item = nullptr;
-    for (const QString& arg : model->getArguments(row))
+    for (const QString& arg : model->getArguments(srcRow))
     {
         item = new QListWidgetItem(arg);
         item->setFlags(item->flags() | Qt::ItemIsEditable);
@@ -219,16 +219,16 @@ void FunctionsEditor::functionSelected(int row)
     }
 
     // Databases
-    dbListModel->setDatabases(model->getDatabases(row));
+    dbListModel->setDatabases(model->getDatabases(srcRow));
     ui->databasesList->expandAll();
 
-    if (model->getAllDatabases(row))
+    if (model->getAllDatabases(srcRow))
         ui->allDatabasesRadio->setChecked(true);
     else
         ui->selDatabasesRadio->setChecked(true);
 
     // Type
-    FunctionManager::ScriptFunction::Type type = model->getType(row);
+    FunctionManager::ScriptFunction::Type type = model->getType(srcRow);
     for (int i = 0; i < ui->typeCombo->count(); i++)
     {
         if (ui->typeCombo->itemData(i).toInt() == type)
@@ -239,7 +239,7 @@ void FunctionsEditor::functionSelected(int row)
     }
 
     updatesForSelection = false;
-    currentModified = model->isModified(row);
+    currentModified = model->isModified(srcRow);
 
     updateCurrentFunctionState();
 }
@@ -257,12 +257,12 @@ void FunctionsEditor::clearEdits()
     ui->deterministicCheck->setChecked(false);
 }
 
-void FunctionsEditor::selectFunction(int row)
+void FunctionsEditor::selectFunction(int srcRow)
 {
-    if (!model->isValidRowIndex(row))
+    if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->list->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->list->selectionModel()->setCurrentIndex(functionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
 void FunctionsEditor::setFont(const QFont& font)
@@ -270,6 +270,11 @@ void FunctionsEditor::setFont(const QFont& font)
     ui->initCodeEdit->setFont(font);
     ui->mainCodeEdit->setFont(font);
     ui->finalCodeEdit->setFont(font);
+}
+
+QModelIndex FunctionsEditor::fnRowToSrc(const QModelIndex &idx) const
+{
+    return functionFilterModel->mapToSource(idx);
 }
 
 QModelIndex FunctionsEditor::getSelectedArg() const
@@ -304,9 +309,9 @@ FunctionManager::ScriptFunction::Type FunctionsEditor::getCurrentFunctionType() 
 
 void FunctionsEditor::commit()
 {
-    int row = getCurrentFunctionRow();
-    if (model->isValidRowIndex(row))
-        functionDeselected(row);
+    int srcRow = getCurrentFunctionRow();
+    if (model->isValidRowIndex(srcRow))
+        functionDeselected(srcRow);
 
     QList<FunctionManager::ScriptFunction*> functions = model->generateFunctions();
 
@@ -314,8 +319,8 @@ void FunctionsEditor::commit()
     model->clearModified();
     currentModified = false;
 
-    if (model->isValidRowIndex(row))
-        selectFunction(row);
+    if (model->isValidRowIndex(srcRow))
+        selectFunction(srcRow);
 
     updateState();
 }
@@ -352,13 +357,13 @@ void FunctionsEditor::newFunction()
 
 void FunctionsEditor::deleteFunction()
 {
-    int row = getCurrentFunctionRow();
-    model->deleteFunction(row);
+    int srcRow = getCurrentFunctionRow();
+    model->deleteFunction(srcRow);
     clearEdits();
 
-    row = getCurrentFunctionRow();
-    if (model->isValidRowIndex(row))
-        functionSelected(row);
+    srcRow = getCurrentFunctionRow();
+    if (model->isValidRowIndex(srcRow))
+        functionSelected(srcRow);
 
     updateState();
 }
@@ -405,8 +410,8 @@ void FunctionsEditor::updateState()
 
 void FunctionsEditor::updateCurrentFunctionState()
 {
-    int row = getCurrentFunctionRow();
-    bool validRow = model->isValidRowIndex(row);
+    int srcRow = getCurrentFunctionRow();
+    bool validRow = model->isValidRowIndex(srcRow);
     ui->rightWidget->setEnabled(validRow);
     if (!validRow)
     {
@@ -420,7 +425,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     QString name = ui->nameEdit->text();
     QStringList argList = getCurrentArgList();
     bool undefArgs = ui->undefArgsCheck->isChecked();
-    bool nameOk = model->isAllowedName(row, name, argList, undefArgs) && !name.trimmed().isEmpty();
+    bool nameOk = model->isAllowedName(srcRow, name, argList, undefArgs) && !name.trimmed().isEmpty();
     setValidState(ui->nameEdit, nameOk, tr("Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs."));
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
@@ -493,7 +498,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     }
 
     bool argsOk = updateArgsState();
-    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk && argsOk);
+    model->setValid(srcRow, langOk && codeOk && finalCodeOk && nameOk && argsOk);
     updateState();
 }
 
@@ -503,10 +508,10 @@ void FunctionsEditor::functionSelected(const QItemSelection& selected, const QIt
     int selCnt = selected.indexes().size();
 
     if (deselCnt > 0)
-        functionDeselected(deselected.indexes().first().row());
+        functionDeselected(fnRowToSrc(deselected.indexes().first()).row());
 
     if (selCnt > 0)
-        functionSelected(selected.indexes().first().row());
+        functionSelected(fnRowToSrc(selected.indexes().first()).row());
 
     if (deselCnt > 0 && selCnt == 0)
     {
@@ -637,12 +642,12 @@ void FunctionsEditor::applyFilter(const QString& value)
     // but for now I don't really know what is that.
     // I have tested simple Qt application with the same routine, but the underlying model was QStandardItemModel
     // and everything worked fine.
-    int row = getCurrentFunctionRow();
+    int srcRow = getCurrentFunctionRow();
     ui->list->selectionModel()->clearSelection();
 
     functionFilterModel->setFilterFixedString(value);
 
-    selectFunction(row);
+    selectFunction(srcRow);
 }
 
 void FunctionsEditor::help()

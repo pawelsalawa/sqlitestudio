@@ -51,6 +51,7 @@ bool AbstractDb::close()
         flushWal();
 
     bool res = !open || closeQuiet();
+    manuallyLoadedExtensions.clear();
     if (res)
         emit disconnected();
 
@@ -135,6 +136,22 @@ void AbstractDb::registerBuiltInFunctions()
     }
 }
 
+bool AbstractDb::loadExtensionManually(const QString &filePath, const QString &initFunc)
+{
+    bool res = loadExtension(filePath, initFunc);
+    if (res)
+    {
+        loadedExtensionCount++;
+        manuallyLoadedExtensions << LoadedExtension{filePath, initFunc};
+    }
+    return res;
+}
+
+QList<Db::LoadedExtension> AbstractDb::getManuallyLoadedExtensions() const
+{
+    return manuallyLoadedExtensions;
+}
+
 void AbstractDb::registerUserCollations()
 {
     for (QString& name : registeredCollations)
@@ -165,7 +182,7 @@ void AbstractDb::reloadExtensions()
     if (!isOpen())
         return;
 
-    bool doOpen = false;
+    bool reopenDb = false;
     if (loadedExtensionCount > 0)
     {
         if (!closeQuiet())
@@ -174,18 +191,24 @@ void AbstractDb::reloadExtensions()
             return;
         }
 
-        doOpen = true;
+        reopenDb = true;
         loadedExtensionCount = 0;
         disconnect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(reloadExtensions()));
     }
 
-    if (doOpen && !openQuiet())
+    if (reopenDb)
     {
-        qCritical() << "Failed to re-open database for extension reloading.";
-        return;
+        if (!openQuiet())
+        {
+            qCritical() << "Failed to re-open database for extension reloading.";
+            return;
+        }
     }
+    else
+        loadExtensions();
 
-    loadExtensions();
+    for (LoadedExtension& ext : manuallyLoadedExtensions)
+        loadedExtensionCount += loadExtension(ext.path, ext.init) ? 1 : 0;
 }
 
 bool AbstractDb::isOpen()

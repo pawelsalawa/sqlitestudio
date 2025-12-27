@@ -2,8 +2,8 @@
 #define FKCOMBOBOX_H
 
 #include <QComboBox>
+#include "datagrid/sqlquerymodelcolumn.h"
 
-class SqlQueryModelColumn;
 class SqlQueryModel;
 class SqlQueryView;
 class Db;
@@ -38,6 +38,8 @@ class FkComboBox : public QComboBox
         void updateCurrentItemIndex(const QString& value = QString());
         int getFkViewHeaderWidth(bool includeScrollBar) const;
         QString getSql() const;
+
+        static QString resolveImplicitColumn(Db *db, SqlQueryModelColumn* columnModel, SqlQueryModelColumn::ConstraintFk*& fk, QHash<QString, int>& implicitFkColumnIdxByTable, QHash<QString, QStringList>& implicitFkColumnsByTable);
 
         int dropDownViewMinWidth;
         SqlQueryView* comboView = nullptr;

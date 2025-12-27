@@ -8,8 +8,47 @@
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 
+### 3.4.19
+- BUGFIX: #5443 Fixed data entering in Grid View after it has got broken in 3.4.18 (entering editing mode by starting to type jumped to wrong cell).
+- BUGFIX: #5447 Database object filtering improved - both speed (3x) and reliability (i.e. typing while filtering is in progress).
+- BUGFIX: #5450 Increased precision for very small decimal numbers (like 1e-15).
+- BUGFIX: #5440 Fixed formatting string literals in WITH-CTE clause.
+- BUGFIX: #5436 Updated syntax definitions to support VALUES clause after UNION ALL.
+- BUGFIX: Fixed manual updates checking in case when automatic on-startup checking is disabled.
+
 ### 3.4.18
-- BUGFIX: #5308 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
+- CHANGE: #5407 SQLite updated to 3.51.1 (except for SQLCipher, which stays at 3.46.1 due to conflicting OpenSSL requirements against Qt 5). Updated syntax files, AST and formatter to support syntax updates.
+- CHANGE: ICU SQLite extension removed from binary packages. Maintaining ICU dependencies in GitHub workflows became an issue, while building SQLiteStudio is primary focus.
+- BUGFIX: #5308 #5358 Fixed handling true/false literals in expressions and on/off/yes/no literals in PRAGMA values.
+- BUGFIX: #5386 Fixed vertical scroll position when refreshing grid data view.
+- BUGFIX: #5348 Fix name-based filtering in Functions/Collations editors and repair Implementation Language dropdown in Collations Editor.
+- BUGFIX: #5348 Fix name-based filtering in Code Snippet/SQLite Extension editors.
+- BUGFIX: #5355 Fixed SQL Enterprise formatter for CASE-WHEN-THEN-END statement.
+- BUGFIX: #5288 Fixed crash when closing all tabs in the Bind Parameter and Value Editor dialogs.
+- BUGFIX: #5305 Fixed result counting and syntax assistant in case of manually - by a user - attached databases (using explicit ATTACH statement).
+- BUGFIX: #5311 Trigger list and Index list in Table Window are now sortable and initially sorted by name. Editing them does not change their order (unless it reflects current sortig order).
+- BUGFIX: #5333 Fixed handling dollar sign in object names.
+- BUGFIX: #5314 Fixed proper handling od the USING clause in queries with JOINs.
+- BUGFIX: #5319 Fixed query results for count(ALL column).
+- BUGFIX: #5363 Fixed crash when closing View window while data was still being read from database.
+- BUGFIX: #5318 Fixed consuming some of UTF-8 spacing characters (U+00A0, U+2029, U+2028) by Form View text input.
+- BUGFIX: #5339 Changed per-column filter inputs, so they always apply modified values when user finishes editing value (moves focus elwhere).
+- BUGFIX: #5381 Fixed per-column filter when it was enabled after SQL filtering mode was set.
+- BUGFIX: #5342 Fixed broken filtering in View data, when the View's source table name requires quoting (i.e. has whitespaces, etc.).
+- BUGFIX: #5347 Fixed SQL formatter to keep single-quote wrapper around string literals.
+- BUGFIX: #5370 Fixed cell inline editor context menu actions for Copy, Cut and Delete.
+- BUGFIX: #5364 Fixed triggering inline cell editor with polish characters.
+- BUGFIX: #5379 Shorthand form of foreign key constraint now works correctly in cell inline editor.
+- BUGFIX: #5378 Default hotkey to toggle Rows Height Adjusting is changed from Alt+H to Ctrl+Alt+H to avoid hoteky conflict with the Help menu hotkey
+- BUGFIX: #5373 Make sure to always scroll data view to a newly inserted row, wherever in the data grid it is.
+- BUGFIX: #5395 Fixed SQL From File executor to handle properly temporar FK disabling.
+- BUGFIX: #5395 Fixed loading trigger condition if it starts with the NOT keyword.
+- BUGFIX: #5398 Fixed Smart Executor for queries, where two joined, unaliased tables return column of the same name, but different case-wise.
+- BUGFIX: #5406 Tracking calls to load_extension() SQL function and loading the same extensions in the Results Counting connection.
+- BUGFIX: #5411 Data View sorting is reset upon modifying table structure.
+- BUGFIX: #5410 Fixed AST token rebuilding for joined data sources being functions.
+- BUGFIX: #5412 Removed ICU extension from Linux binary packages in 3.4.x, as icu.c uses recent ICU API, while Qt 5 comes with older ICU. Users need to provide theirn own icu extension if they want to use it in SQLite under Linux.
+- BUGFIX: Fixed arbitrary crashes when opening SQL Editor, while having non-thread-safe SQLite extensions loaded in the active database.
 
 ### 3.4.17
 - BUGFIX: #5274 Fixed crash when invoking tooltip over the Foreign Key icon in Table Structure view in case of FK without explicit parent columns specified.

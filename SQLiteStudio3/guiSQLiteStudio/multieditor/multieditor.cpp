@@ -127,6 +127,8 @@ void MultiEditor::tabChanged(int idx)
 {
     int prevTab = currentTab;
     currentTab = idx;
+    if (idx < 0)
+        return;
 
     MultiEditorWidget* newEditor = editors[idx];
     newEditor->setFocus();
@@ -449,6 +451,9 @@ void MultiEditor::updateLabel()
 
 QVariant MultiEditor::getValueOmmitNull() const
 {
+    if (!tabs->currentWidget())
+        return QVariant(QString());
+
     return dynamic_cast<MultiEditorWidget*>(tabs->currentWidget())->getValue();
 }
 

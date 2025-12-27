@@ -95,7 +95,7 @@ int sqlite3ParserFallback(int iToken) {
   CONFLICT CURRENT DATABASE DEFERRED DESC DETACH DO EACH END EXCLUDE EXCLUSIVE EXPLAIN FAIL FIRST FOLLOWING FOR
   GROUPS IGNORE IMMEDIATE INITIALLY INSTEAD LAST LIKE_KW MATCH MATERIALIZED NO NULLS OTHERS PLAN
   QUERY KEY OF OFFSET PARTITION PRAGMA PRECEDING RAISE RANGE RECURSIVE RELEASE REPLACE RESTRICT ROW ROWS ROLLBACK
-  SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHOUT
+  SAVEPOINT TEMP TIES TRIGGER UNBOUNDED VACUUM VIEW VIRTUAL WITH WITHIN WITHOUT
   REINDEX RENAME CTIME_KW IF FILTER
   .
 %wildcard ANY.
@@ -901,6 +901,14 @@ selectnowith(X) ::= selectnowith(S1)
                                                 delete O;
                                                 objectForTokens = X;
                                             }
+selectnowith(X) ::= selectnowith(S1)
+                    multiselect_op(O)
+                    values(V).              {
+                                                X = SqliteSelect::append(S1, *(O), *(V));
+                                                delete O;
+                                                delete V;
+                                                objectForTokens = X;
+                                            }
 selectnowith(X) ::= values(V).              {
                                                 X = SqliteSelect::append(*(V));
                                                 delete V;
@@ -909,7 +917,7 @@ selectnowith(X) ::= values(V).              {
 selectnowith(X) ::= selectnowith(S1)
                     COMMA
                     values(V).              {
-                                                X = SqliteSelect::append(S1, SqliteSelect::CompoundOperator::UNION_ALL, *(V));
+                                                X = SqliteSelect::append(S1, SqliteSelect::CompoundOperator::COMMA, *(V));
                                                 delete V;
                                                 objectForTokens = X;
                                             }
@@ -1776,21 +1784,21 @@ exprx(X) ::= LP nexprlist(L) RP.            {
                                             }
 exprx(X) ::= tnm(N1).                       {
                                                 X = new SqliteExpr();
-												if (N1->isLiteral())
-													X->initLiteral(N1->toLiteral());
-												else
-													X->initId(N1->toName());
-													//parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
+                                                if (N1->isLiteral())
+                                                    X->initLiteral(N1->toLiteral());
+                                                else
+                                                    X->initId(N1->toName());
+                                                    //parserContext->errorBeforeLastToken("Syntax error <expected literal value>");
 
                                                 delete N1;
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= tnm(N1) DOT nm(N2).            {
                                                 X = new SqliteExpr();
-												if (N1->isName())
-													X->initId(N1->toName(), *(N2));
-												else
-													parserContext->errorAtToken("Syntax error <expected name>", -3);
+                                                if (N1->isName())
+                                                    X->initId(N1->toName(), *(N2));
+                                                else
+                                                    parserContext->errorAtToken("Syntax error <expected name>", -3);
 
                                                 delete N1;
                                                 delete N2;
@@ -1859,6 +1867,17 @@ exprx(X) ::= id(I) LP distinct(D)
                                                 delete I;
                                                 delete D;
                                                 delete L;
+                                                objectForTokens = X;
+                                            }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) ORDER BY sortlist(O)
+            RP.                             {
+                                                X = new SqliteExpr();
+                                                X->initFunction(stripObjName(*(I)), *(D), *(L), *(O));
+                                                delete I;
+                                                delete D;
+                                                delete L;
+                                                delete O;
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= id(I) LP STAR RP.              {
@@ -1961,6 +1980,7 @@ exprx(X) ::= expr(E1) IS DISTINCT FROM
 exprx(X) ::= NOT(O) expr(E).                {
                                                 X = new SqliteExpr();
                                                 X->initUnaryOp(E, O->value);
+                                                objectForTokens = X;
                                             }
 exprx(X) ::= BITNOT(O) expr(E).             {
                                                 X = new SqliteExpr();
@@ -2048,10 +2068,9 @@ exprx(X) ::= RAISE LP IGNORE(R) RP.         {
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= RAISE LP raisetype(R) COMMA
-                        nm(N) RP.           {
+                        expr(E) RP.         {
                                                 X = new SqliteExpr();
-                                                X->initRaise(R->value, *(N));
-                                                delete N;
+                                                X->initRaise(R->value, E);
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= id(I) LP distinct(D)
@@ -2063,11 +2082,32 @@ exprx(X) ::= id(I) LP distinct(D)
                                                 delete E;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) ORDER BY sortlist(O)
+            RP filter_over(F).              {
+                                                X = new SqliteExpr();
+                                                X->initWindowFunction(stripObjName(*(I)), *(D), *(L), *(O), F);
+                                                delete I;
+                                                delete D;
+                                                delete L;
+                                                delete O;
+                                                objectForTokens = X;
+                                            }
 exprx(X) ::= id(I) LP STAR RP
             filter_over(F).                 {
                                                 X = new SqliteExpr();
                                                 X->initWindowFunction(stripObjName(*(I)), F);
                                                 delete I;
+                                                objectForTokens = X;
+                                            }
+exprx(X) ::= id(I) LP distinct(D)
+            exprlist(L) RP WITHIN GROUP LP
+            ORDER BY expr(E) RP.            {
+                                                X = new SqliteExpr();
+                                                X->initOrderedSetAggregate(stripObjName(*(I)), *(D), *(L), E);
+                                                delete I;
+                                                delete D;
+                                                delete L;
                                                 objectForTokens = X;
                                             }
 
@@ -2726,16 +2766,14 @@ anylist(X) ::= anylist(L) ANY(A).           {
 
 with(X) ::= .                               {X = nullptr;}
 with(X) ::= WITH wqlist(W).                 {
-                                                X = new SqliteWith();
-												X->cteList = *(W);
-												delete W;
+                                                X = new SqliteWith(*(W));
+                                                delete W;
                                                 objectForTokens = X;
                                             }
 with(X) ::= WITH RECURSIVE wqlist(W).       {
-                                                X = new SqliteWith();
-												X->cteList = *(W);
+                                                X = new SqliteWith(*(W));
                                                 X->recursive = true;
-												delete W;
+                                                delete W;
                                                 objectForTokens = X;
                                             }
 

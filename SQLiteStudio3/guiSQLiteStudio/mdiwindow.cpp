@@ -156,6 +156,12 @@ void MdiWindow::changeEvent(QEvent* event)
 
 void MdiWindow::closeEvent(QCloseEvent* e)
 {
+    if (getMdiChild()->isWindowClosingBlocked())
+    {
+        e->ignore();
+        return;
+    }
+
     if (dbBeingClosed || MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommitted())
     {
         QMdiSubWindow::closeEvent(e);
