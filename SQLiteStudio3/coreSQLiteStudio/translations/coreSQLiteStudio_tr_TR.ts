@@ -135,7 +135,7 @@
       <location filename="../completionhelper.cpp" line="262"/>
       <location filename="../completionhelper.cpp" line="265"/>
       <source>Number</source>
-      <translation type="unfinished">Number</translation>
+      <translation>Sayı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="277"/>

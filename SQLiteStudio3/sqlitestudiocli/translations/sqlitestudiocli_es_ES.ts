@@ -97,7 +97,7 @@
     <message>
       <location filename="../commands/clicommandcd.cpp" line="22"/>
       <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-      <translation>Comando conocido en sistemas Unix y Windows muy parecido a &apos;cd&apos;. Requiere pasar un argumento &lt;ruta&gt;, por lo que llamar a %1 ocasionará siempre un cambio del directorio. Para saber cuál es el directorio de trabajo actual usa el comando %2, y para listar los contenidos del directorio de trabajo actual usa el comando %3.</translation>
+      <translation/>
     </message>
     <message>
       <location filename="../commands/clicommandcd.cpp" line="33"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../commands/clicommandclose.cpp" line="40"/>
       <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
-      <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
+      <translation>Cierra la conexión a la base de datos. Si la base de datos ya estaba cerrada, nada sucede. Si se indica un &lt;nombre&gt;, debería ser el nombre de la base de datos a cerrar (como lo muestra el comando %1). Si no se proporciona el &lt;nombre&gt;, entonces se cierra la base de datos actual (mirar la ayuda para %2 para más detalles).</translation>
     </message>
     <message>
       <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -257,7 +257,7 @@ Ejecuta %2 para ver una lista de todas las bases de datos.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="109"/>
       <source>Construction arguments:</source>
-      <translation type="unfinished">Construction arguments:</translation>
+      <translation>Argumentos de construcción:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="114"/>
@@ -492,7 +492,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
       <source>opens database connection</source>
-      <translation type="unfinished">opens database connection</translation>
+      <translation>abre conexión a la base de datos</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="71"/>
@@ -545,7 +545,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
       <location filename="../commands/clicommandremove.cpp" line="35"/>
       <source>removes database from the list</source>
-      <translation type="unfinished">removes database from the list</translation>
+      <translation>elimina la base de datos de la lista</translation>
     </message>
     <message>
       <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -600,7 +600,7 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="253"/>
       <source>Row %1</source>
-      <translation type="unfinished">Row %1</translation>
+      <translation>Fila %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="403"/>
@@ -740,17 +740,17 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-      <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+      <translation>Cambia la actual base de datos en uso a &lt;name&gt;. Si el &lt;name&gt; de la base de datos no está está registrado en la aplicación, entonces el mensaje de error se imprime y no se produce ningún cambio.
 
-What is current working database?
-When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
+¿Qué es al actual base de datos en uso?
+Cuando escribes una consulta SQL para que se ejecute, lo hace en la base de datos por defecto, que también se conoce como la actual base de datos en uso. La mayoría de los comandos relacionados con bases de datos también pueden funcionar con la base de datos predeterminada si no se proporcionó ninguna base de datos en sus argumentos. La base de datos actual siempre se identifica mediante el símbolo del sistema. La base de datos predeterminada siempre está definida (a menos que no haya ninguna base de datos en la lista).
 
-The default database can be selected in various ways:
-- using %1 command,
-- by passing database file name to the application startup parameters,
-- by passing registered database name to the application startup parameters,
-- by restoring previously selected default database from saved configuration,
-- or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</translation>
+La base de datos por defecto se puede seleccionar can be selected de varias maneras:
+- Usando el comando %1.
+- Pasando el nombre del archivo de la base de datos a los parámetros de inicio de la aplicación.
+- Pasando el nombre de la base de datos registrada a los parámetros de inicio de la aplicación.
+- Restaurando la base de datos predeterminada previamente seleccionada desde la configuración que se haya guardado.
+- Si la base de datos predeterminada no se hubiera seleccionado por ninguno de los métodos anteriores, la base de datos que esté la primera en la lista de bases de datos registradas pasa a convertirse en la predeterminada.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanduse.cpp" line="63"/>
@@ -775,14 +775,14 @@ The default database can be selected in various ways:
       <location filename="../clicommandsyntax.cpp" line="347"/>
       <source>Invalid argument value: %1.
 Expected one of: %2</source>
-      <translation type="unfinished">Invalid argument value: %1.
-Expected one of: %2</translation>
+      <translation>Valor de argumento inválido: %1.
+Se esperaba uno de: %2</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="383"/>
       <source>Unknown option: %1</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">Unknown option: %1</translation>
+      <translation>Opción desconocida: %1</translation>
     </message>
     <message>
       <location filename="../clicommandsyntax.cpp" line="394"/>

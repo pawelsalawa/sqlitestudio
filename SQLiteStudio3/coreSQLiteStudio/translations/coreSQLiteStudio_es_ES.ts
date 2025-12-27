@@ -386,12 +386,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="414"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-      <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
+      <translation>La función %1(%2) fue registrada con el idioma %3, pero el plugin que soporta ese idioma no está cargado actualmente.</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="432"/>
       <source>Invalid regular expression pattern: %1</source>
-      <translation type="unfinished">Invalid regular expression pattern: %1</translation>
+      <translation>Patrón de expresión regular inválido: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="451"/>
@@ -649,12 +649,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="20"/>
       <source>Use characters from common sets:</source>
-      <translation type="unfinished">Use characters from common sets:</translation>
+      <translation>Usar caracteres de conjuntos comunes:</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="36"/>
       <source>Minimum length</source>
-      <translation type="unfinished">Minimum length</translation>
+      <translation>Longitud mínima</translation>
     </message>
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="64"/>
@@ -818,7 +818,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="122"/>
       <source>Could not attach database %1: %2</source>
-      <translation type="unfinished">Could not attach database %1: %2</translation>
+      <translation>No se pudo adjuntar la base de datos %1: %2</translation>
     </message>
     <message>
       <location filename="../parser/parsercontext.cpp" line="108"/>
@@ -884,7 +884,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populatescript.cpp" line="138"/>
       <source>Select implementation language.</source>
-      <translation type="unfinished">Select implementation language.</translation>
+      <translation>Seleccionar el idioma de implementación.</translation>
     </message>
     <message>
       <location filename="../plugins/populatescript.cpp" line="139"/>
@@ -1088,7 +1088,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="159"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
-      <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+      <translation>Se terminó de ejecutar %1 consultas en %2 segundos.</translation>
     </message>
     <message>
       <location filename="../sqlfileexecutor.cpp" line="166"/>
@@ -1134,7 +1134,7 @@ The view will remain as it is.</translation>
     <message>
       <location filename="../db/abstractdb3.h" line="860"/>
       <source>Registered default collation on demand, under name: %1</source>
-      <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+      <translation>Colación predeterminada en la demanda registrada bajo el nombre: %1</translation>
     </message>
   </context>
   <context>
