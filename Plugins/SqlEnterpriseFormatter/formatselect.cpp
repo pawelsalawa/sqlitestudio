@@ -56,7 +56,7 @@ void FormatSelectCore::formatInternal()
     if (core->valuesMode)
     {
         SqliteSelect* select = dynamic_cast<SqliteSelect*>(core->parentStatement());
-        QList<SqliteSelect::Core*> valueCores = filter<SqliteSelect::Core*>(select->coreSelects, [](auto core) {return core->valuesMode;});
+        QList<SqliteSelect::Core*> valueCores = select->coreSelects | FILTER(core, {return core->valuesMode;});
         if (valueCores.indexOf(core) == 0) // this is first core in series of cores of values mode of the SELECT
             withKeyword("VALUES");
 

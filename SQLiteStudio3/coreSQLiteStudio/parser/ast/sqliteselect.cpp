@@ -741,7 +741,7 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents() const
     if (valuesMode)
     {
         SqliteSelect* select = dynamic_cast<SqliteSelect*>(parentStatement());
-        QList<SqliteSelect::Core*> valueCores = filter<SqliteSelect::Core*>(select->coreSelects, [](auto core) {return core->valuesMode;});
+        QList<SqliteSelect::Core*> valueCores = select->coreSelects | FILTER(core, {return core->valuesMode;});
         if (valueCores.indexOf(this) == 0) // this is first core in series of cores of values mode of the SELECT
             builder.withKeyword("VALUES").withSpace();
 

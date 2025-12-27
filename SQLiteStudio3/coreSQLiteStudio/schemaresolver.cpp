@@ -56,7 +56,7 @@ QStringList SchemaResolver::getIndexes(const QString &database)
 
     QStringList indexes;
     QString value;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value(0).toString();
         if (isFilteredOut(value, "index"))
@@ -257,8 +257,8 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
 
 StrHash<QStringList> SchemaResolver::getAllTableColumns(const QString &database)
 {
-    StrHash< QStringList> tableColumns;
-    for (QString& table : getTables(database))
+    StrHash<QStringList> tableColumns;
+    for (const QString& table : getTables(database))
         tableColumns[table] = getTableColumns(database, table);
 
     return tableColumns;
@@ -485,7 +485,7 @@ StrHash<QString> SchemaResolver::getIndexesWithTables(const QString& database)
     StrHash<QString> indexes;
     QString tabName;
     QString idxName;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
     {
         tabName = row->value("tbl_name").toString();
         idxName = row->value("name").toString();
@@ -833,7 +833,7 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
 
     QString value;
     QString type;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
     {
         value = row->value("name").toString();
         type = row->value("type").toString();
@@ -890,7 +890,7 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& database, cons
     }
 
     QStringList resList;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
         resList << row->value(0).toString();
 
     return resList;
@@ -913,7 +913,7 @@ QStringList SchemaResolver::getFkReferencedTables(const QString& database, const
     }
 
     QStringList resList;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
         resList << row->value(0).toString();
 
     return resList;
@@ -993,7 +993,7 @@ QStringList SchemaResolver::getTriggersForTable(const QString& database, const Q
     SqlQueryPtr results = db->exec(query, dbFlags);
 
     QStringList names;
-    for (SqlResultsRowPtr& row : results->getAll())
+    for (const SqlResultsRowPtr& row : results->getAll())
         names << row->value(0).toString();
 
     return names;
@@ -1018,7 +1018,7 @@ QStringList SchemaResolver::getTriggersForView(const QString& view)
 QStringList SchemaResolver::getViewsForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    for (SqliteCreateViewPtr& view : getParsedViewsForTable(database, table))
+    for (const SqliteCreateViewPtr& view : getParsedViewsForTable(database, table))
         names << view->view;
 
     return names;
