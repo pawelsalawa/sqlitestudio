@@ -785,7 +785,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="947"/>
+      <location filename="../common/utils.cpp" line="967"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Requête imcomplète.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
       <source>Parser stack overflow</source>
       <translation>Analyse dépassement pile</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
       <source>Syntax error</source>
       <translation>Erreur de syntaxe</translation>
     </message>

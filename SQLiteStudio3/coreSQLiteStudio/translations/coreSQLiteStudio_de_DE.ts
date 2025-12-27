@@ -785,7 +785,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="947"/>
+      <location filename="../common/utils.cpp" line="967"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Unvollständige Abfrage.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
       <source>Parser stack overflow</source>
       <translation>Stacküberlauf bei Verarbeitung</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
       <source>Syntax error</source>
       <translation>Syntaxfehler</translation>
     </message>

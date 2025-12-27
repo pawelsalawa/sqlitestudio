@@ -1045,6 +1045,16 @@
       <translation>表填充設定檔中的預設填充行數</translation>
     </message>
     <message>
+      <location filename="../dialogs/configdialog.ui" line="551"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="554"/>
+      <source>Use scientific notation for very small real numbers in the grid view</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>Data column width</source>
       <translation type="unfinished">Data column width</translation>
@@ -1252,14 +1262,12 @@
       <translation>預設的查詢引數數量</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="554"/>
       <source>Use scientific notation for real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for real numbers in the grid view</translation>
+      <translation type="obsolete">Use scientific notation for real numbers in the grid view</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="611"/>
@@ -2502,27 +2510,27 @@ All objects from this group will be moved to parent group.</source>
       <translation>表“%1”中的全部資料已被刪除。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1745"/>
+      <location filename="../dbtree/dbtree.cpp" line="1750"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>下列物件將被刪除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1748"/>
+      <location filename="../dbtree/dbtree.cpp" line="1753"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>下列資料庫將從清單中移除：%1。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1751"/>
+      <location filename="../dbtree/dbtree.cpp" line="1756"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation>已刪除分組中的剩餘物件將被移開。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1753"/>
+      <location filename="../dbtree/dbtree.cpp" line="1758"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;確定繼續？</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1755"/>
+      <location filename="../dbtree/dbtree.cpp" line="1760"/>
       <source>Delete objects</source>
       <translation>刪除物件</translation>
     </message>
@@ -2557,136 +2565,136 @@ All objects from this group will be moved to parent group.</source>
   <context>
     <name>DbTreeModel</name>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="466"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
       <translation>資料庫：%1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="467"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="483"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
       <translation>網址：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="487"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
       <translation>版本：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="490"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
       <translation>檔案大小：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
       <source>Encoding:</source>
       <comment>dbtree tooltip</comment>
       <translation>編碼：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="498"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
       <translation>錯誤：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="509"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
       <translation>表：%1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="516"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="532"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>列 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="519"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="535"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>索引 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="522"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="538"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>觸發器 (%1)：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1266"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1282"/>
       <source>Copy</source>
       <translation>複製</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1267"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1283"/>
       <source>Move</source>
       <translation>移動</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1285"/>
       <source>Include data</source>
       <translation>包含資料</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1270"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1286"/>
       <source>Include indexes</source>
       <translation>包含索引</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1271"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1287"/>
       <source>Include triggers</source>
       <translation>包含觸發器</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1273"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1289"/>
       <source>Abort</source>
       <translation>中止</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1332"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1348"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation>無法自動新增拖放的資料庫檔案 &apos;%1&apos;。需要手動設定。</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1396"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1412"/>
       <source>Referenced tables</source>
       <translation>引用的表</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1397"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1413"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation>是否要包含以下引用的表：
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1406"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1422"/>
       <source>Name conflict</source>
       <translation>名稱衝突</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1407"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1423"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>下列物件已存在於目標資料庫。
 請輸入一個新的不重複的名稱，或按下 &apos;%1&apos; 中止操作：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1420"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1436"/>
       <source>SQL statements conversion</source>
       <translation>SQL 語句轉換</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1428"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1444"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation>將 SQL 語句轉換為目標 SQLite 版本時發生以下錯誤：</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1429"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1445"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation>是否忽略錯誤並繼續？</translation>
     </message>
@@ -4071,27 +4079,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>請輸入視窗的新名稱：</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="891"/>
+      <location filename="../mainwindow.cpp" line="890"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;點此檢視更新詳情&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="899"/>
+      <location filename="../mainwindow.cpp" line="896"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1028"/>
+      <location filename="../mainwindow.cpp" line="1022"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>命令列引數傳遞的資料庫 (%1) 已在清單中，名為：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1035"/>
+      <location filename="../mainwindow.cpp" line="1029"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>命令列引數傳遞的資料庫 (%1) 已臨時新增到清單中，名為：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1040"/>
+      <location filename="../mainwindow.cpp" line="1034"/>
       <source>Could not add database %1 to list.</source>
       <translation>未能將資料 %1 新增到清單</translation>
     </message>
@@ -5579,7 +5587,7 @@ find next</source>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="59"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="71"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="257"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="251"/>
       <source>Cannot edit this cell. Details: %1</source>
       <translation>無法編輯此單元格。詳情：%1</translation>
     </message>
@@ -5590,17 +5598,17 @@ find next</source>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="71"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="257"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="251"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>在上次載入資料後，此表的結構已更改。重新載入資料以繼續。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="219"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="213"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
       <translation type="unfinished">Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="249"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="243"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
       <translation>列 %2 的外來鍵有超過 %1 個可能的值。這太多而不能顯示在下拉清單。您需要手動編輯值。</translation>
     </message>
@@ -5711,200 +5719,200 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
   <context>
     <name>SqlQueryView</name>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="56"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
       <source>Go to referenced row in...</source>
       <translation>轉到引用的行...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy</source>
       <translation>複製</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
       <source>Copy with headers</source>
       <translation>帶表頭複製</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Copy as...</source>
       <translation>複製為...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Paste</source>
       <translation>貼上</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Paste as...</source>
       <translation>貼上為...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Set NULL values</source>
       <translation>設為 NULL 值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Erase values</source>
       <translation>擦除值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit</source>
       <translation>提交</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Rollback</source>
       <translation>回滾</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Commit selected cells</source>
       <translation>提交選中單元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Rollback selected cells</source>
       <translation>回滾選中單元格</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
       <translation type="unfinished">Edit current cell inline</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
       <source>Define columns to sort by</source>
       <translation>定義列排序方式</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
       <source>Remove custom sorting</source>
       <translation>移除自訂排序</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Insert row</source>
       <translation>插入行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Insert multiple rows</source>
       <translation>插入多行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Delete selected row</source>
       <translation>刪除已選行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Adjust height of rows</source>
       <translation type="unfinished">Adjust height of rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>提升字型大小</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>降低字型大小</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation>反向選取</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="170"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Edit value in editor</source>
       <translation>在編輯器中編輯數值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="170"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Show value in a viewer</source>
       <translation>在檢視器中顯示值</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="188"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
       <source>Generate query for selected cells</source>
       <translation>為選中單元格生成查詢</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="454"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation>沒有選擇用來貼上剪貼簿內容的項。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="461"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
       <source>Cannot paste data. Details: %1</source>
       <translation>無法貼上資料。詳情：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="461"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>至少一個表的結構在上次的資料載入後已變更。重新載入資料以繼續。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="531"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation>無法貼上到單元格。詳情：%1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="531"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
       <source>The row is marked for deletion.</source>
       <translation>該行已被標記為刪除。</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="542"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="541"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation>無法貼上到列 %1。詳情：%2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="560"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="559"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation>轉至表 &apos;%1&apos; 中的引用的行</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="572"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="571"/>
       <source>table &apos;%1&apos;</source>
       <translation>表“%1”</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="595"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="594"/>
       <source>Referenced row (%1)</source>
       <translation>引用的行 (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="872"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="870"/>
       <source>Trim pasted text?</source>
       <translation>移除貼上文字兩端的空白？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="873"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="871"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>貼上的文字兩端含有空白符號。自動移除？</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="881"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="882"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="990"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="988"/>
       <source>Edit value</source>
       <translation>編輯值</translation>
     </message>

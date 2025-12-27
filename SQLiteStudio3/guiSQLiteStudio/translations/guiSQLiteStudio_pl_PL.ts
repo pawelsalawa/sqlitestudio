@@ -1045,6 +1045,16 @@
       <translation>Liczba zapamiętanych konfiguracji zaludniania tabeli</translation>
     </message>
     <message>
+      <location filename="../dialogs/configdialog.ui" line="551"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="554"/>
+      <source>Use scientific notation for very small real numbers in the grid view</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="567"/>
       <source>Data column width</source>
       <translation>Szerokość kolumny danych</translation>
@@ -1252,14 +1262,12 @@
       <translation>Liczba zapamiętanych parametrów zapytania</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default (when this option is disabled) a real number is displayed in the format of decimals with decimal point. In some cases, when the number is really small (several places after decimal point), the default representation may appear inaccurate. In such case you may want to enable this option to use the scientific notation (i.e. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Domyślnie (gdy ta opcja jest wyłączona) rzeczywista liczba jest wyświetlana w formacie dziesiętnym z przecinkiem. W niektórych przypadkach, gdy liczba jest naprawdę mała (kilka miejsc po przecinku), domyślna reprezentacja może wydawać się niedokładna. W takim przypadku możesz włączyć tę opcję do użycia notacji naukowej (np. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Domyślnie (gdy ta opcja jest wyłączona) rzeczywista liczba jest wyświetlana w formacie dziesiętnym z przecinkiem. W niektórych przypadkach, gdy liczba jest naprawdę mała (kilka miejsc po przecinku), domyślna reprezentacja może wydawać się niedokładna. W takim przypadku możesz włączyć tę opcję do użycia notacji naukowej (np. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="554"/>
       <source>Use scientific notation for real numbers in the grid view</source>
-      <translation>Użyj notacji naukowej dla liczb rzeczywistych w widoku siatki</translation>
+      <translation type="vanished">Użyj notacji naukowej dla liczb rzeczywistych w widoku siatki</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="611"/>
@@ -2502,27 +2510,27 @@ Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</trans
       <translation>Wszystkie dane z tabeli &apos;%1&apos; zostały usunięte.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1745"/>
+      <location filename="../dbtree/dbtree.cpp" line="1750"/>
       <source>Following objects will be deleted: %1.</source>
       <translation>Następujące obiekty zostaną usunięte: %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1748"/>
+      <location filename="../dbtree/dbtree.cpp" line="1753"/>
       <source>Following databases will be removed from list: %1.</source>
       <translation>Następujące bazy danych zostaną usunięte z listy: %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1751"/>
+      <location filename="../dbtree/dbtree.cpp" line="1756"/>
       <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
       <translation>Pozostałe obiekty z usuniętej grupy będą przeniesione w miejsce, gdzie dotychczas była ta grupa.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1753"/>
+      <location filename="../dbtree/dbtree.cpp" line="1758"/>
       <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
       <translation>%1&lt;br&gt;&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="1755"/>
+      <location filename="../dbtree/dbtree.cpp" line="1760"/>
       <source>Delete objects</source>
       <translation>Usuń obiekty</translation>
     </message>
@@ -2557,136 +2565,136 @@ Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</trans
   <context>
     <name>DbTreeModel</name>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="466"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
       <source>Database: %1</source>
       <comment>dbtree tooltip</comment>
       <translation>Baza danych: %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="467"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="483"/>
       <source>URI:</source>
       <comment>dbtree tooltip</comment>
       <translation>URI:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="487"/>
       <source>Version:</source>
       <comment>dbtree tooltip</comment>
       <translation>Wersja:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="490"/>
       <source>File size:</source>
       <comment>dbtree tooltip</comment>
       <translation>Rozmiar pliku:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
       <source>Encoding:</source>
       <comment>dbtree tooltip</comment>
       <translation>Kodowanie:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="482"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="498"/>
       <source>Error:</source>
       <comment>dbtree tooltip</comment>
       <translation>Błąd:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="509"/>
       <source>Table : %1</source>
       <comment>dbtree tooltip</comment>
       <translation>Tablela: : %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="516"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="532"/>
       <source>Columns (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Kolumny (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="519"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="535"/>
       <source>Indexes (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Indeksy (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="522"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="538"/>
       <source>Triggers (%1):</source>
       <comment>dbtree tooltip</comment>
       <translation>Wyzwalacze (%1):</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1266"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1282"/>
       <source>Copy</source>
       <translation>Kopiuj</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1267"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1283"/>
       <source>Move</source>
       <translation>Przenieś</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1269"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1285"/>
       <source>Include data</source>
       <translation>Również dane</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1270"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1286"/>
       <source>Include indexes</source>
       <translation>Również indeksy</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1271"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1287"/>
       <source>Include triggers</source>
       <translation>Również wyzwalacze</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1273"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1289"/>
       <source>Abort</source>
       <translation>Przerwij</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1332"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1348"/>
       <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
       <translation>Nie udało się automatycznie dodać upuszczonego pliku bazy &apos;%1&apos;. Niezbędna ręczna ingerencja.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1396"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1412"/>
       <source>Referenced tables</source>
       <translation>Tabele powiązane</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1397"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1413"/>
       <source>Do you want to include following referenced tables as well:
 %1</source>
       <translation>Czy chcesz zawrzeć również powiązane tabele:
 %1</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1406"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1422"/>
       <source>Name conflict</source>
       <translation>Konflikt nazwy</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1407"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1423"/>
       <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
       <translation>Następująy obiekt istnieje już w docelowej bazie danych.
 Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przerwać operację.</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1420"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1436"/>
       <source>SQL statements conversion</source>
       <translation>Konwersja zapytań SQL</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1428"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1444"/>
       <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
       <translation>Następujące błędy wystąpiły podczas konwersji zapytań SQL do docelowej wersji SQLite:</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtreemodel.cpp" line="1429"/>
+      <location filename="../dbtree/dbtreemodel.cpp" line="1445"/>
       <source>Would you like to ignore those errors and proceed?</source>
       <translation>Czy chcesz zignorować te błędy i kontynuować?</translation>
     </message>
@@ -4072,27 +4080,27 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="891"/>
+      <location filename="../mainwindow.cpp" line="890"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="899"/>
+      <location filename="../mainwindow.cpp" line="896"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1028"/>
+      <location filename="../mainwindow.cpp" line="1022"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1035"/>
+      <location filename="../mainwindow.cpp" line="1029"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1040"/>
+      <location filename="../mainwindow.cpp" line="1034"/>
       <source>Could not add database %1 to list.</source>
       <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -5581,7 +5589,7 @@ znajdź następny</translation>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="59"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="71"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="257"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="251"/>
       <source>Cannot edit this cell. Details: %1</source>
       <translation>Nie można edytować tej komórki. Szczegóły: %1</translation>
     </message>
@@ -5592,17 +5600,17 @@ znajdź następny</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="71"/>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="257"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="251"/>
       <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>Struktura tej tabeli zmieniła się od ostatniego ładowania danych. Przeładuj dane, aby kontynuować.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="219"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="213"/>
       <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
       <translation>Edytowanie ogromnych ilości danych w podręcznym edytorze nie jest dobrym pomysłem. Może być on powolny i nieporęczny. Lepiej edytować takie duże ilości danych w Widoku Formularza, lub w osobnym oknie edytora (dostępnym w menu prawego kliknięcia myszy).</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="249"/>
+      <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="243"/>
       <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
       <translation>Klucz obcy dla kolumny %2 ma więcej niż %1 możliwych wartości. To zbyt wiele, by wyświetlić w liście rozwijanej. Musisz edytować wartość ręcznie.</translation>
     </message>
@@ -5713,200 +5721,200 @@ Takie usunięcie będzie trwałe. Czy na pewno chcesz je usunąć?</translation>
   <context>
     <name>SqlQueryView</name>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="56"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
       <source>Go to referenced row in...</source>
       <translation>Idź do powiązanego wiersza w...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
       <source>Copy</source>
       <translation>Kopiuj</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
       <source>Copy with headers</source>
       <translation>Kopiuj z nagłówkami</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Copy as...</source>
       <translation>Kopiuj jako...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Paste</source>
       <translation>Wklej</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Paste as...</source>
       <translation>Wklej jako...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Set NULL values</source>
       <translation>Ustaw wartości NULL</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Erase values</source>
       <translation>Wymaż wartości</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Commit</source>
       <translation>Zatwierdź</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Rollback</source>
       <translation>Wycofaj</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Commit selected cells</source>
       <translation>Zatwierdź zaznaczone komórki</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Rollback selected cells</source>
       <translation>Wycofaj zaznaczone komórki</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Edit current cell inline</source>
       <translation>Edytuj bieżącą komórkę na miejscu</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
       <source>Define columns to sort by</source>
       <translation>Zdefiniuj kolumny po których sortować</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
       <source>Remove custom sorting</source>
       <translation>Wycofaj własne sortowanie</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Insert row</source>
       <translation>Wstaw wiersz</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Insert multiple rows</source>
       <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Delete selected row</source>
       <translation>Usuń zaznaczony wiersz</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Adjust height of rows</source>
       <translation>Dostosuj wysokość wierszy</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>Zwiększ rozmiar czcionki</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>Zmniejsz rozmiar czcionki</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation>Odwróć zaznaczenie</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="170"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Edit value in editor</source>
       <translation>Edytuj wartość w edytorze</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="170"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
       <source>Show value in a viewer</source>
       <translation>Pokaż wartość w przeglądarce</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="188"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
       <source>Generate query for selected cells</source>
       <translation>Generuj zapytanie dla wybranych komórek</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="455"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="454"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation>Nie wybrano elementów do których należy wkleić zawartość schowka.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="461"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
       <source>Cannot paste data. Details: %1</source>
       <translation>Nie można wkleić danych. Szczegóły: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="461"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>Zmieniła się struktura przynajmniej jednej tabeli od czasu ostatniego wczytania danych. Odśwież dane, aby kontynuować.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="531"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation>Nie można wkleić do komórki. Szczegóły: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="531"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
       <source>The row is marked for deletion.</source>
       <translation>Wiersz jest zaznaczony do usunięcia.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="542"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="541"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation>Nie można wkleić do kolumny %1. Szczegóły: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="560"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="559"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation>Idź do powiązanego wiersza w tabeli &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="572"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="571"/>
       <source>table &apos;%1&apos;</source>
       <translation>tabela &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="595"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="594"/>
       <source>Referenced row (%1)</source>
       <translation>Powiązany wiersz (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="872"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="870"/>
       <source>Trim pasted text?</source>
       <translation>Przyciąć wklejany tekst?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="873"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="871"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>Wklejany tekst zawiera spacje na początku lub końcu. Czy przyciąć go automatycznie?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="881"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>Wkleić &quot;NULL&quot; jako wartość zerową?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="882"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>Wklejony tekst zawiera literały &quot;NULL&quot;. Czy chcesz je uznać za wartości NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="990"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="988"/>
       <source>Edit value</source>
       <translation>Edytuj wartość</translation>
     </message>

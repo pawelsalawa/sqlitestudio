@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="947"/>
+      <location filename="../common/utils.cpp" line="967"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>無法開啟檔案 &apos;%1&apos; 為了讀取: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>不完整的查詢</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
       <source>Parser stack overflow</source>
       <translation>Parser 溢位</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
       <source>Syntax error</source>
       <translation>語法錯誤</translation>
     </message>

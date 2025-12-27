@@ -785,7 +785,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="947"/>
+      <location filename="../common/utils.cpp" line="967"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
       <source>Parser stack overflow</source>
       <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
       <source>Syntax error</source>
       <translation>Błąd składni</translation>
     </message>

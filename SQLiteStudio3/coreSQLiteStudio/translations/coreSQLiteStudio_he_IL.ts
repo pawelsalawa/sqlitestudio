@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="947"/>
+      <location filename="../common/utils.cpp" line="967"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>לא ניתן לפתוח קובץ &apos;%1&apos; לקריאה: %2</translation>
     </message>
@@ -827,12 +827,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>שאילתה חלקית.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2667"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
       <source>Parser stack overflow</source>
       <translation>הצפת מערום מנתח</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6228"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
       <source>Syntax error</source>
       <translation>שגיאת תחביר</translation>
     </message>
