@@ -112,6 +112,7 @@ void ErdWindow::init()
     scene = new ErdScene(arrowType, this);
     connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
+    connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
     ui->graphView->setScene(scene);
 
     initActions();
@@ -308,50 +309,50 @@ void ErdWindow::rollbackPendingChanges()
 void ErdWindow::handleCreatedChange(ErdChange* change)
 {
     changeRegistry->addChange(change);
-    handleSingleChange(change);
+    scene->handleChange(change);
 }
 
-void ErdWindow::handleSingleChange(ErdChange* change)
-{
-    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
-    if (compositeChange)
-    {
-        for (auto&& singleChange : compositeChange->getChanges())
-            handleSingleChange(singleChange);
+// void ErdWindow::handleChange(ErdChange* change)
+// {
+//     ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
+//     if (compositeChange)
+//     {
+//         for (auto&& singleChange : compositeChange->getChanges())
+//             handleChange(singleChange);
 
-        return;
-    }
+//         return;
+//     }
 
-    ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
-    if (entityChange)
-    {
-        scene->refreshSchema(entityChange);
-        refreshTableWindowPanel();
-        return;
-    }
+//     ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
+//     if (entityChange)
+//     {
+//         scene->refreshSchema(entityChange);
+//         refreshTableWindowPanel();
+//         return;
+//     }
 
-    ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
-    if (newEntityChange)
-    {
-        scene->refreshSchema(newEntityChange);
-        refreshTableWindowPanel();
-        return;
-    }
+//     ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
+//     if (newEntityChange)
+//     {
+//         scene->refreshSchema(newEntityChange);
+//         refreshTableWindowPanel();
+//         return;
+//     }
 
-    ErdChangeDeleteEntity* deleteEntityChange = dynamic_cast<ErdChangeDeleteEntity*>(change);
-    if (deleteEntityChange)
-    {
-        scene->refreshSchema(deleteEntityChange);
-        return;
-    }
+//     ErdChangeDeleteEntity* deleteEntityChange = dynamic_cast<ErdChangeDeleteEntity*>(change);
+//     if (deleteEntityChange)
+//     {
+//         scene->refreshSchema(deleteEntityChange);
+//         return;
+//     }
 
-    ErdChangeDeleteConnection* deleteConnectionChange = dynamic_cast<ErdChangeDeleteConnection*>(change);
-    if (deleteConnectionChange)
-    {
-        scene->refreshSchema(deleteConnectionChange);
-        return;
-    }
-}
+//     ErdChangeDeleteConnection* deleteConnectionChange = dynamic_cast<ErdChangeDeleteConnection*>(change);
+//     if (deleteConnectionChange)
+//     {
+//         scene->refreshSchema(deleteConnectionChange);
+//         return;
+//     }
+// }
 
 void ErdWindow::updateState()
 {
@@ -387,14 +388,16 @@ void ErdWindow::showChangeRegistry()
 
 void ErdWindow::undo()
 {
-    // TODO
-    qDebug() << "undo";
+    ErdChange* change = changeRegistry->peekUndo();
+    if (scene->undoChange(change))
+        changeRegistry->undo();
 }
 
 void ErdWindow::redo()
 {
-    // TODO
-    qDebug() << "redo";
+    ErdChange* change = changeRegistry->peekRedo();
+    if (scene->redoChange(change))
+        changeRegistry->redo();
 }
 
 void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
@@ -636,16 +639,20 @@ bool ErdWindow::initMemDb()
     return true;
 }
 
-void ErdWindow::refreshTableWindowPanel()
+void ErdWindow::refreshSidePanel()
 {
     if (!currentSideWidget)
         return;
 
     ErdTableWindow* tableWindow = qobject_cast<ErdTableWindow*>(currentSideWidget);
-    if (!tableWindow)
+    if (tableWindow)
+    {
+        tableWindow->refreshStructure();
         return;
+    }
 
-    tableWindow->refreshStructure();
+    // Connection Panel will be destroyed upon entity refresh, because its connection item will be recreated.
+    // No need to refresh that panel.
 }
 
 bool ErdWindow::storeCurrentSidePanelModifications()

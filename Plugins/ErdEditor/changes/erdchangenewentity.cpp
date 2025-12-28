@@ -17,6 +17,11 @@ QString ErdChangeNewEntity::getTemporaryEntityName() const
     return temporaryEntityName;
 }
 
+QStringList ErdChangeNewEntity::provideUndoEntitiesToRefresh() const
+{
+    return {getTableName()};
+}
+
 QString ErdChangeNewEntity::getTableName() const
 {
     return createTable->table;

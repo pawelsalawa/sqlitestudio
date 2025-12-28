@@ -1,5 +1,6 @@
 #include "erdchange.h"
 #include "common/global.h"
+#include "common/utils.h"
 #include <QUuid>
 
 ErdChange::ErdChange(Category category, const QString& description, bool generateTransactionId) :
@@ -34,6 +35,22 @@ QStringList ErdChange::getUndoDdl()
         return QStringList();
 
     return {rollbackTpl.arg(transactionId)};
+}
+
+QStringList ErdChange::getEntitiesToRefreshAfterUndo() const
+{
+    // Instead of converting list->set->list, we do manual uniqueness processing,
+    // because order of returned names do matter.
+    QSet<QString> set;
+    return provideUndoEntitiesToRefresh() | FILTER(name,
+    {
+        QString lower = name.toLower();
+        if (set.contains(lower))
+            return false;
+
+        set << lower;
+        return true;
+    });
 }
 
 QString ErdChange::getTransactionId() const

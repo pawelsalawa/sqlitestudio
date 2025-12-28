@@ -14,10 +14,11 @@ class ErdChangeComposite : public ErdChange
         void addChange(ErdChange* change);
         ErdChangeComposite& operator<<(ErdChange* change);
         ErdChangeComposite& operator+=(const QList<ErdChange*>& changeList);
-
         QList<ErdChange*> getChanges() const;
+        QStringList getUndoDdl();
 
     protected:
+        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

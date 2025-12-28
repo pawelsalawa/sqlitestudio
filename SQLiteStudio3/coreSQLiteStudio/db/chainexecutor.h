@@ -205,6 +205,7 @@ class API_EXPORT ChainExecutor : public QObject
         void setDisableObjectDropsDetection(bool value);
 
         bool isExecuting() const;
+        void setRollbackOnErrorTo(const QString& savepoint);
 
     private:
         /**
@@ -334,6 +335,7 @@ class API_EXPORT ChainExecutor : public QObject
 
         bool disableForeignKeys = false;
         bool disableObjectDropsDetection = false;
+        QString errorSavepoint;
 
         SqlQueryPtr lastExecutionResults;
 

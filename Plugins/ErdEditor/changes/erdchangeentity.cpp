@@ -39,3 +39,13 @@ QString ErdChangeEntity::getTableNameAfter() const
 {
     return after->table;
 }
+
+QStringList ErdChangeEntity::provideUndoEntitiesToRefresh() const
+{
+    QStringList modifiedTables;
+    modifiedTables << getTableNameBefore() << getTableNameAfter();
+    if (tableModifier)
+        modifiedTables += tableModifier->getModifiedTables();
+
+    return modifiedTables;
+}

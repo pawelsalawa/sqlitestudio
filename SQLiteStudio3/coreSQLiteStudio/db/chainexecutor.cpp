@@ -27,6 +27,7 @@ void ChainExecutor::setQueries(const QStringList& value)
 {
     sqls = value;
     queryParams.clear();
+    errorSavepoint.clear();
 }
 
 void ChainExecutor::exec()
@@ -136,8 +137,11 @@ void ChainExecutor::handleAsyncResults(quint32 asyncId, SqlQueryPtr results)
 
 void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
 {
+    static_qstring(rollbackTpl, "ROLLBACK TO '%1'");
     if (transaction)
         db->rollback();
+    else if (!errorSavepoint.isEmpty())
+        db->exec(rollbackTpl.arg(errorSavepoint));
 
     restoreFk();
     successfulExecution = false;
@@ -213,6 +217,11 @@ void ChainExecutor::restoreFk()
 bool ChainExecutor::isExecuting() const
 {
     return executionInProgress;
+}
+
+void ChainExecutor::setRollbackOnErrorTo(const QString& savepoint)
+{
+    errorSavepoint = savepoint;
 }
 
 bool ChainExecutor::getDisableObjectDropsDetection() const

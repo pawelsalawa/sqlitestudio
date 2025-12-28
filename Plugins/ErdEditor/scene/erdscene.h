@@ -14,6 +14,7 @@ class ErdChangeEntity;
 class ErdChangeNewEntity;
 class ErdChangeDeleteEntity;
 class ErdChangeDeleteConnection;
+class ErdChangeComposite;
 class ErdConnection;
 class Db;
 class ChainExecutor;
@@ -28,10 +29,6 @@ class ErdScene : public QGraphicsScene
         void setDb(Db* db);
         Db* getDb() const;
         QSet<QString> parseSchema();
-        void refreshSchema(ErdChangeEntity* entityChange);
-        void refreshSchema(ErdChangeNewEntity* newEntityChange);
-        void refreshSchema(ErdChangeDeleteEntity* deleteEntityChange);
-        void refreshSchema(ErdChangeDeleteConnection* deleteConnectionChange);
         QList<ErdEntity*> getAllEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
@@ -39,6 +36,8 @@ class ErdScene : public QGraphicsScene
         QHash<QString, QVariant> getConfig();
         void placeNewEntity(ErdEntity* entity);
         ErdConnection* getConnectionForArrow(ErdArrowItem* arrow);
+        bool undoChange(ErdChange* change);
+        bool redoChange(ErdChange* change);
 
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
         static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";
@@ -47,23 +46,35 @@ class ErdScene : public QGraphicsScene
         static constexpr const char* CFG_KEY_COLOR = "color";
 
     private:
-        void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable);
-        void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity);
-        void setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn);
-        ErdConnection* setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn,
-                                   int sourceReferenceIdx, SqliteForeignKey* fk);
+        void setupEntityConnections();
+        void setupEntityConnections(ErdEntity* srcEntity);
+        void setupEntityConnections(ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn);
+        ErdConnection* setupEntityConnection(ErdEntity* srcEntity, const QString& srcColumn,
+                                             int sourceReferenceIdx, SqliteForeignKey* fk);
         void arrangeEntities(int algo);
         QPointF getPosForNewEntity() const;
         QSet<ErdConnection*> getConnections() const;
         bool confirmLayoutChange() const;
-        StrHash<ErdEntity*> collectEntitiesByTable() const;
         void refreshConnections(const QList<ErdEntity*>& forEntities = {});
-        void refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName);
+        void refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* entity, const QString& tableName);
         ErdChange* deleteEntity(ErdEntity*& entity);
         ErdChange* deleteConnection(ErdConnection*& connection);
-        StrHash<ErdEntity*> refreshSchemaForTableNames(const QStringList& tables);
+        void refreshSchemaForTableNames(const QStringList& tables);
+        void entityCreated(ErdEntity* entity);
+        void entityToBeDeleted(ErdEntity* entity);
+
+        void handleChangeByType(ErdChange* change);
+        void handleSingleChange(ErdChangeEntity* entityChange);
+        void handleSingleChange(ErdChangeNewEntity* newEntityChange);
+        void handleSingleChange(ErdChangeDeleteEntity* deleteEntityChange);
+        void handleSingleChange(ErdChangeDeleteConnection* deleteConnectionChange);
+
+        void handleChangeUndo(ErdChange* change);
+        void handleChangeUndoByType(ErdChange* change);
+        void handleSingleChangeUndo(ErdChangeDeleteEntity* change);
 
         QList<ErdEntity*> entities;
+        StrHash<ErdEntity*> entityMap;
         ErdArrowItem::Type arrowType;
         Db* db = nullptr;
         ChainExecutor* ddlExecutor = nullptr;
@@ -76,6 +87,7 @@ class ErdScene : public QGraphicsScene
         void refreshSceneRect();
         void notify(ErdChange* change);
         void deleteItems(const QList<QGraphicsItem *> &items);
+        void handleChange(ErdChange* change);
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
@@ -90,6 +102,7 @@ class ErdScene : public QGraphicsScene
         void requiresImmediateViewUpdate();
         void changeReceived(ErdChange* change);
         void sidePanelAbortRequested();
+        void sidePanelRefreshRequested();
 };
 
 #endif // ERDSCENE_H

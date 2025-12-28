@@ -40,3 +40,20 @@ QList<ErdChange*> ErdChangeComposite::getChanges() const
 {
     return changes;
 }
+
+QStringList ErdChangeComposite::getUndoDdl()
+{
+    if (!changes.isEmpty())
+        return changes.first()->getUndoDdl();
+
+    return ErdChange::getUndoDdl();
+}
+
+QStringList ErdChangeComposite::provideUndoEntitiesToRefresh() const
+{
+    QStringList results;
+    for (auto chg : reverse(changes))
+        results += chg->provideUndoEntitiesToRefresh();
+
+    return results;
+}

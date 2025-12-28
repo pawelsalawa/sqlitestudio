@@ -22,6 +22,7 @@ ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
 {
     ddlExecutor = new ChainExecutor(this);
     ddlExecutor->setAsync(false);
+    ddlExecutor->setTransaction(false);
     ddlExecutor->setDisableForeignKeys(true);
     ddlExecutor->setDisableObjectDropsDetection(true);
 }
@@ -45,7 +46,6 @@ QSet<QString> ErdScene::parseSchema()
     QSet<QString> tableNames;
     SchemaResolver resolver(db);
     StrHash<SqliteCreateTablePtr> tables = resolver.getAllParsedTables();
-    StrHash<ErdEntity*> entitiesByTable;
     for (SqliteCreateTablePtr& table : tables.values())
     {
         if (isSystemTable(table->table))
@@ -55,12 +55,10 @@ QSet<QString> ErdScene::parseSchema()
 
         ErdEntity* entityItem = new ErdEntity(table);
         entityItem->setPos(getPosForNewEntity());
+        entityCreated(entityItem);
         addItem(entityItem);
-
-        entitiesByTable[table->table] = entityItem;
-        entities << entityItem;
     }
-    setupEntityConnections(entitiesByTable);
+    setupEntityConnections();
 
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
     for (ErdEntity*& entity : entities)
@@ -69,10 +67,40 @@ QSet<QString> ErdScene::parseSchema()
     return tableNames;
 }
 
-void ErdScene::refreshSchema(ErdChangeEntity* entityChange)
+void ErdScene::handleChange(ErdChange* change)
 {
-    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
+    handleChangeByType(change);
+    emit sidePanelRefreshRequested();
+}
 
+#define HANDLE_CHANGE_BY_TYPE(type, arg) {\
+    type* chg = dynamic_cast<type*>(arg);\
+        if (chg)\
+        {\
+            handleSingleChange(chg);\
+            return;\
+        }\
+    }
+
+void ErdScene::handleChangeByType(ErdChange* change)
+{
+    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
+    if (compositeChange)
+    {
+        for (auto&& singleChange : compositeChange->getChanges())
+            handleChangeByType(singleChange);
+
+        return;
+    }
+
+    HANDLE_CHANGE_BY_TYPE(ErdChangeEntity, change);
+    HANDLE_CHANGE_BY_TYPE(ErdChangeNewEntity, change);
+    HANDLE_CHANGE_BY_TYPE(ErdChangeDeleteEntity, change);
+    HANDLE_CHANGE_BY_TYPE(ErdChangeDeleteConnection, change);
+}
+
+void ErdScene::handleSingleChange(ErdChangeEntity* entityChange)
+{
     typedef QPair<QString, QString> OldNewName;
     QList<OldNewName> modifiedTables = {
         OldNewName(entityChange->getTableNameBefore(), entityChange->getTableNameAfter())
@@ -83,71 +111,133 @@ void ErdScene::refreshSchema(ErdChangeEntity* entityChange)
     SchemaResolver resolver(db);
     for (OldNewName& oldNewTableName : modifiedTables)
     {
-        ErdEntity* entity = entitiesByTable[oldNewTableName.first];
-        refreshEntityFromTableName(resolver, entitiesByTable, entity, oldNewTableName.second);
+        ErdEntity* entity = entityMap[oldNewTableName.first];
+        refreshEntityFromTableName(resolver, entity, oldNewTableName.second);
     }
 }
 
-void ErdScene::refreshSchema(ErdChangeNewEntity* newEntityChange)
+void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
 {
-    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
-    ErdEntity* entity = entitiesByTable.value(newEntityChange->getTemporaryEntityName(), Qt::CaseInsensitive);
+    ErdEntity* entity = entityMap.value(newEntityChange->getTemporaryEntityName(), Qt::CaseInsensitive);
 
     SchemaResolver resolver(db);
-    refreshEntityFromTableName(resolver, entitiesByTable, entity, newEntityChange->getTableName());
+    refreshEntityFromTableName(resolver, entity, newEntityChange->getTableName());
 
     QStringList referencingTables = resolver.getFkReferencingTables(newEntityChange->getTableName());
     for (const QString& tableName : referencingTables)
     {
-        ErdEntity* entity = entitiesByTable[tableName];
-        refreshEntityFromTableName(resolver, entitiesByTable, entity, tableName);
+        ErdEntity* entity = entityMap[tableName];
+        refreshEntityFromTableName(resolver, entity, tableName);
     }
 }
 
-void ErdScene::refreshSchema(ErdChangeDeleteEntity* deleteEntityChange)
+void ErdScene::handleSingleChange(ErdChangeDeleteEntity* deleteEntityChange)
 {
     QStringList tables = deleteEntityChange->getTableModifier()->getModifiedTables();
     refreshSchemaForTableNames(tables);
     removeEntityFromSceneByName(deleteEntityChange->getTableName());
 }
 
-void ErdScene::refreshSchema(ErdChangeDeleteConnection* deleteConnectionChange)
+void ErdScene::handleSingleChange(ErdChangeDeleteConnection* deleteConnectionChange)
 {
     QStringList tables = deleteConnectionChange->getTableModifier()->getModifiedTables();
     tables << deleteConnectionChange->getStartEntityName();
     refreshSchemaForTableNames(tables);
 }
 
-StrHash<ErdEntity*> ErdScene::refreshSchemaForTableNames(const QStringList& tables)
+void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
 {
-    StrHash<ErdEntity*> entitiesByTable = collectEntitiesByTable();
     SchemaResolver resolver(db);
     for (const QString& tableName : tables)
     {
-        ErdEntity* entity = entitiesByTable[tableName];
+        ErdEntity* entity = entityMap[tableName];
+        if (!entity)
+        {
+            SqliteCreateTablePtr createTable = SqliteCreateTablePtr::create();
+            createTable->table = tableName;
+            entity = new ErdEntity(createTable);
+            entity->setPos(getPosForNewEntity());
+            entityCreated(entity);
+            addItem(entity);
+        }
+
         if (entity->isBeingDeleted())
             continue;
 
-        refreshEntityFromTableName(resolver, entitiesByTable, entity, tableName);
+        refreshEntityFromTableName(resolver, entity, tableName);
     }
-    return entitiesByTable;
 }
 
-void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, StrHash<ErdEntity*>& entitiesByTable, ErdEntity* entity, const QString& tableName)
+void ErdScene::handleChangeUndo(ErdChange* change)
+{
+    refreshSchemaForTableNames(change->getEntitiesToRefreshAfterUndo());
+    handleChangeUndoByType(change);
+    emit sidePanelRefreshRequested();
+}
+
+#define HANDLE_CHANGE_UNDO_BY_TYPE(type, arg) {\
+    type* chg = dynamic_cast<type*>(arg);\
+        if (chg)\
+        {\
+            handleSingleChangeUndo(chg);\
+            return;\
+        }\
+    }
+
+void ErdScene::handleChangeUndoByType(ErdChange* change)
+{
+    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
+    if (compositeChange)
+    {
+        for (auto&& singleChange : compositeChange->getChanges())
+            handleChangeUndoByType(singleChange);
+    }
+
+    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeDeleteEntity, change);
+}
+
+void ErdScene::handleSingleChangeUndo(ErdChangeDeleteEntity* change)
+{
+    ErdEntity* entity = entityMap[change->getTableName()];
+    entity->setPos(change->getLastPosition());
+    entity->updateConnectionsGeometry();
+    refreshSceneRect();
+    emit showEntityToUser(entity);
+}
+
+void ErdScene::entityCreated(ErdEntity* entity)
+{
+    entities << entity;
+    entityMap[entity->getTableName()] = entity;
+}
+
+void ErdScene::entityToBeDeleted(ErdEntity* entity)
+{
+    entities.removeOne(entity);
+    entityMap.remove(entity->getTableName());
+}
+
+void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* entity, const QString& tableName)
 {
     entity->clearConnections();
 
     QString oldTableName = entity->getTableName();
 
     SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
+    if (createTable.isNull())
+    {
+        removeEntityFromScene(entity);
+        return;
+    }
+
     entity->setTableModel(createTable);
     entity->setExistingTable(true);
     entity->modelUpdated();
 
-    entitiesByTable.remove(oldTableName);
-    entitiesByTable.insert(tableName, entity);
+    entityMap.remove(oldTableName);
+    entityMap.insert(tableName, entity);
 
-    setupEntityConnections(entitiesByTable, entity);
+    setupEntityConnections(entity);
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -213,13 +303,13 @@ QHash<QString, QVariant> ErdScene::getConfig()
     return erdConfig;
 }
 
-void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable)
+void ErdScene::setupEntityConnections()
 {
     for (ErdEntity*& srcEntity : entities)
-        setupEntityConnections(entitiesByTable, srcEntity);
+        setupEntityConnections(srcEntity);
 }
 
-void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity)
+void ErdScene::setupEntityConnections(ErdEntity* srcEntity)
 {
     auto tableModel = srcEntity->getTableModel();
 
@@ -233,7 +323,6 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
         for (SqliteIndexedColumn*& idxCol : constr->indexedColumns)
         {
             ErdConnection* conn = setupEntityConnection(
-                entitiesByTable,
                 srcEntity,
                 idxCol->name,
                 srcColNum++,
@@ -261,19 +350,18 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
 
     // Column-level FKs
     for (SqliteCreateTable::Column*& column : srcEntity->getTableModel()->columns)
-        setupEntityConnections(entitiesByTable, srcEntity, column);
+        setupEntityConnections(srcEntity, column);
 
     // Regenerate connection indexes for connection types that make use of it (i.e. square lines connection)
     srcEntity->updateConnectionIndexes();
 }
 
-void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn)
+void ErdScene::setupEntityConnections(ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn)
 {
     auto constraints = srcColumn->getConstraints(SqliteCreateTable::Column::Constraint::FOREIGN_KEY);
     for (auto constr : constraints)
     {
         ErdConnection* conn = setupEntityConnection(
-            entitiesByTable,
             srcEntity,
             srcColumn->name,
             0,
@@ -285,17 +373,18 @@ void ErdScene::setupEntityConnections(const StrHash<ErdEntity*>& entitiesByTable
     }
 }
 
-ErdConnection* ErdScene::setupEntityConnection(const StrHash<ErdEntity*>& entitiesByTable, ErdEntity* srcEntity, const QString& srcColumn, int sourceReferenceIdx, SqliteForeignKey* fk)
+ErdConnection* ErdScene::setupEntityConnection(ErdEntity* srcEntity, const QString& srcColumn, int sourceReferenceIdx, SqliteForeignKey* fk)
 {
     auto tableModel = srcEntity->getTableModel();
     QString fkTable = fk->foreignTable;
-    if (!entitiesByTable.contains(fkTable, Qt::CaseInsensitive))
+    if (!entityMap.contains(fkTable, Qt::CaseInsensitive))
     {
         qWarning() << "Foreign table" << fkTable << "is not known while parsing db schema for ERD.";
+        qDebug() << "Known entities:" << entityMap.keys();
         return nullptr;
     }
 
-    ErdEntity* trgEntity = entitiesByTable.value(fkTable, Qt::CaseInsensitive);
+    ErdEntity* trgEntity = entityMap.value(fkTable, Qt::CaseInsensitive);
 
     if (sourceReferenceIdx >= fk->indexedColumns.size())
     {
@@ -403,11 +492,50 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
         emit changeReceived(changes.first());
 }
 
+bool ErdScene::undoChange(ErdChange* change)
+{
+    if (!change)
+        return false;
+
+    QStringList undoDdl = change->getUndoDdl();
+    ddlExecutor->setQueries(undoDdl);
+    ddlExecutor->exec();
+    if (!ddlExecutor->getSuccessfulExecution())
+    {
+        notifyError(tr("Failed to execute the undo DDL. Details: %1")
+                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
+        return false;
+    }
+    handleChangeUndo(change);
+    return true;
+}
+
+bool ErdScene::redoChange(ErdChange* change)
+{
+    if (!change)
+        return false;
+
+    QStringList ddl = change->toDdl();
+    ddlExecutor->setQueries(ddl);
+    ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
+    ddlExecutor->exec();
+    if (!ddlExecutor->getSuccessfulExecution())
+    {
+        notifyError(tr("Failed to execute the redo DDL. Details: %1")
+                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
+        return false;
+    }
+    // Change handling should go through event queue
+    QTimer::singleShot(0, this, [change, this]() {handleChange(change);});
+    return true;
+}
+
 ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
 {
     QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
-    ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), changeDesc);
+    ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), entity->pos(), changeDesc);
     ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
     ddlExecutor->exec();
     if (!ddlExecutor->getSuccessfulExecution())
     {
@@ -427,6 +555,7 @@ ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
             .arg(connection->getStartEntity()->getTableName(), connection->getEndEntity()->getTableName());
     ErdChange* change = new ErdChangeDeleteConnection(db, connection, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
     ddlExecutor->exec();
     if (!ddlExecutor->getSuccessfulExecution())
     {
@@ -442,8 +571,11 @@ ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
 
 void ErdScene::removeEntityFromScene(ErdEntity* entity)
 {
+    for (ErdConnection* conn : entity->getOwningConnections())
+        delete conn;
+
     removeItem(entity);
-    entities.removeOne(entity);
+    entityToBeDeleted(entity);
 
     // 3 lines below is necessary to avoid app crash after deleting the entity object.
     // Apparently without it Qt doesn't properly keep track of remove item an crashes soon afterwards.
@@ -460,19 +592,10 @@ void ErdScene::removeEntityFromSceneByName(const QString& tableName)
 {
     QString lowerName = tableName.toLower();
     ErdEntity* entity = entities | FIND_FIRST(e, {return (e->getTableName().toLower() == lowerName);});
-
     if (!entity)
     {
         qWarning() << "Requested to remoe entity" << tableName << "from scene, but no such entity was found!";
         return;
-    }
-
-    for (ErdConnection* conn : entity->getConnections())
-    {
-        if (conn->getStartEntity() != entity)
-            continue;
-
-        delete conn;
     }
 
     removeEntityFromScene(entity);
@@ -548,15 +671,6 @@ bool ErdScene::confirmLayoutChange() const
             );
 
     return res == QMessageBox::Yes;
-}
-
-StrHash<ErdEntity*> ErdScene::collectEntitiesByTable() const
-{
-    StrHash<ErdEntity*> hash;
-    for (ErdEntity* entity : entities)
-        hash[entity->getTableName()] = entity;
-
-    return hash;
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

@@ -22,6 +22,7 @@ class ErdChangeRegistry : public QObject
         ErdChange* peekRedo() const;
         bool isUndoAvailable() const;
         bool isRedoAvailable() const;
+        void clear();
 
     private:
         static constexpr int UNDO_LIMIT = 1000;

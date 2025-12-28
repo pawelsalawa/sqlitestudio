@@ -3,8 +3,8 @@
 #include "common/utils_sql.h"
 #include "tablemodifier.h"
 
-ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QString& description) :
-    ErdChange(Category::ENTITY_DELETE, description, true), db(db), tableName(tableName)
+ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QString& description) :
+    ErdChange(Category::ENTITY_DELETE, description, true), db(db), tableName(tableName), lastPosition(pos)
 {
 }
 
@@ -23,6 +23,11 @@ QStringList ErdChangeDeleteEntity::getChangeDdl()
     return tableModifier->generateSqls();
 }
 
+QPointF ErdChangeDeleteEntity::getLastPosition() const
+{
+    return lastPosition;
+}
+
 QString ErdChangeDeleteEntity::getTableName() const
 {
     return tableName;
@@ -31,4 +36,14 @@ QString ErdChangeDeleteEntity::getTableName() const
 TableModifier* ErdChangeDeleteEntity::getTableModifier() const
 {
     return tableModifier;
+}
+
+QStringList ErdChangeDeleteEntity::provideUndoEntitiesToRefresh() const
+{
+    QStringList modifiedTables;
+    modifiedTables << tableName;
+    if (tableModifier)
+        modifiedTables += tableModifier->getModifiedTables();
+
+    return modifiedTables;
 }

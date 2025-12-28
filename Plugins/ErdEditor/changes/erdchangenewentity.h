@@ -16,6 +16,7 @@ class ErdChangeNewEntity : public ErdChange
         QString getTemporaryEntityName() const;
 
     protected:
+        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

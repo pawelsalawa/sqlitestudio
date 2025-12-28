@@ -67,7 +67,7 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
     private slots:
         bool commit();
         void rollback();
-        void validate();
+        void modified();
 
     signals:
         void changeCreated(ErdChange* change);

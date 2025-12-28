@@ -108,9 +108,11 @@ void ErdTableWindow::executeStructureChanges()
         change = new ErdChangeNewEntity(db, originalCreateTable->table, createTable, desc);
     }
 
+    structureExecutor->setTransaction(false);
     structureExecutor->setAsync(false);
     structureExecutor->setDb(db);
     structureExecutor->setQueries(change->toDdl());
+    structureExecutor->setRollbackOnErrorTo(change->getTransactionId());
     structureExecutor->setDisableForeignKeys(true);
     structureExecutor->setDisableObjectDropsDetection(true);
     structureExecutor->exec();

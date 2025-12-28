@@ -3,6 +3,8 @@
 
 #include <QStringList>
 
+class ErdChangeComposite;
+
 class ErdChange
 {
     public:
@@ -16,6 +18,8 @@ class ErdChange
             CONNECTION_DELETE,
         };
 
+        friend class ErdChangeComposite;
+
         ErdChange() = delete;
         virtual ~ErdChange() {}
 
@@ -27,7 +31,9 @@ class ErdChange
         /**
          * @return Savepoint rollback statement according to this change transactionId.
          */
-        QStringList getUndoDdl();
+        virtual QStringList getUndoDdl();
+
+        QStringList getEntitiesToRefreshAfterUndo() const;
 
         Category getCategory() const;
         QString getTransactionId() const;
@@ -37,6 +43,7 @@ class ErdChange
         ErdChange(Category category, const QString& description, bool generateTransactionId = false);
 
         virtual QStringList getChangeDdl() = 0;
+        virtual QStringList provideUndoEntitiesToRefresh() const = 0;
 
         Category category;
         /**

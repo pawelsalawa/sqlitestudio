@@ -19,6 +19,7 @@ class ErdChangeEntity : public ErdChange
         QString getTableNameAfter() const;
 
     protected:
+        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

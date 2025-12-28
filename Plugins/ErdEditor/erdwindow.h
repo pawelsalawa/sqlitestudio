@@ -85,7 +85,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
-        void refreshTableWindowPanel();
         bool storeCurrentSidePanelModifications();
         bool handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName);
         /**
@@ -93,7 +92,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool storeEntityModifications(QWidget* sidePanelWidget);
         QString getCurrentSidePanelModificationsEntity() const;
-        void handleSingleChange(ErdChange* change);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -137,6 +135,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void updateToolbarState(int effectiveChangeCount, bool undoAvailable, bool redoAvailable);
         void abortSidePanel();
         void showChangeRegistry();
+        void refreshSidePanel();
         void undo();
         void redo();
 };

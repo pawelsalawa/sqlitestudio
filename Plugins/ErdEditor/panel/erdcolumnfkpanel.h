@@ -10,6 +10,9 @@ class ErdColumnFkPanel : public ColumnForeignKeyPanel
     public:
         explicit ErdColumnFkPanel(QWidget *parent = 0);
 
+    signals:
+        void modified();
+
 };
 
 #endif // ERDCOLUMNFKPANEL_H

@@ -63,6 +63,7 @@ void ErdConnectionPanel::init(ErdConnection* connection)
     initActions();
 
     ddlExecutor = new ChainExecutor();
+    ddlExecutor->setTransaction(false);
     ddlExecutor->setAsync(false);
     ddlExecutor->setDb(db);
     ddlExecutor->setDisableForeignKeys(true);
@@ -179,7 +180,7 @@ void ErdConnectionPanel::createColumnLevelPanel()
     fkPanel->setColumnStmt(childColumnStmt);
     fkPanel->setConstraint(matchedFk);
     constraintPanel = fkPanel;
-    connect(constraintPanel, SIGNAL(updateValidation()), this, SLOT(validate()));
+    connect(fkPanel, SIGNAL(modified()), this, SLOT(modified()));
 }
 
 void ErdConnectionPanel::createTableLevelPanel()
@@ -190,7 +191,7 @@ void ErdConnectionPanel::createTableLevelPanel()
     fkPanel->setCreateTableStmt(createTable.data());
     fkPanel->setConstraint(matchedFk);
     constraintPanel = fkPanel;
-    connect(constraintPanel, SIGNAL(updateValidation()), this, SLOT(validate()));
+    connect(fkPanel, SIGNAL(updateValidation()), this, SLOT(modified()));
 }
 
 bool ErdConnectionPanel::commit()
@@ -220,6 +221,7 @@ bool ErdConnectionPanel::commit()
 
     ErdChange* change = new ErdChangeEntity(db, originalCreateTable, createTable, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
+    ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
     ddlExecutor->exec();
     if (!ddlExecutor->getSuccessfulExecution())
     {
@@ -249,7 +251,7 @@ void ErdConnectionPanel::rollback()
     actionMap[ROLLBACK]->setEnabled(false);
 }
 
-void ErdConnectionPanel::validate()
+void ErdConnectionPanel::modified()
 {
     actionMap[COMMIT]->setEnabled(constraintPanel->validate());
     actionMap[ROLLBACK]->setEnabled(true);

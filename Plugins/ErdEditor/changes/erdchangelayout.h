@@ -10,6 +10,10 @@ class ErdChangeLayout : public ErdChange
         ErdChangeLayout(const QString& description);
 
         QStringList toDdl();
+        QStringList provideUndoEntitiesToRefresh() const;
+
+    protected:
+        QStringList getChangeDdl();
 };
 
 #endif // ERDCHANGELAYOUT_H

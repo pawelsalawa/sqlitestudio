@@ -30,7 +30,12 @@ void ErdChangeRegistry::addChange(ErdChange* change)
 {
     // First discard any redo's if exist
     if (currentIndex < changes.size() - 1)
+    {
+        for (auto chg : changes.mid(currentIndex + 1))
+            delete chg;
+
         changes.resize(currentIndex + 1);
+    }
 
     // Then add new change at the end
     changes << change;
@@ -96,6 +101,14 @@ bool ErdChangeRegistry::isUndoAvailable() const
 bool ErdChangeRegistry::isRedoAvailable() const
 {
     return changes.size() > 0 && currentIndex < (changes.size() - 1);
+}
+
+void ErdChangeRegistry::clear()
+{
+    for (ErdChange*& chg : changes)
+        delete chg;
+
+    changes.clear();
 }
 
 void ErdChangeRegistry::notifyChangesUpdated()
