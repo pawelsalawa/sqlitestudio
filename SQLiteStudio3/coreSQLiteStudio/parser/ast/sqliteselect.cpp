@@ -336,7 +336,7 @@ SqliteSelect::Core::SingleSource::SingleSource(SqliteSelect *select, bool asKw, 
 {
     this->select = select;
     this->asKw = asKw;
-    this-> alias = alias;
+    this->alias = alias;
     if (select)
         select->setParent(this);
 }
