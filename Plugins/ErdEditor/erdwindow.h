@@ -56,6 +56,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void setMdiWindow(MdiWindow* value) override;
         bool shouldReuseForArgs(int argCount, ...) override;
 
+        static Icon* cursorAddTableIcon;
+        static Icon* cursorFkIcon;
+
     protected:
         void createActions() override;
         void setupDefShortcuts() override;
@@ -138,6 +141,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void refreshSidePanel();
         void undo();
         void redo();
+        void createNewEntityAt(const QPointF& pos);
 };
 
 #endif // ERDWINDOW_H

@@ -39,18 +39,7 @@ QStringList ErdChange::getUndoDdl()
 
 QStringList ErdChange::getEntitiesToRefreshAfterUndo() const
 {
-    // Instead of converting list->set->list, we do manual uniqueness processing,
-    // because order of returned names do matter.
-    QSet<QString> set;
-    return provideUndoEntitiesToRefresh() | FILTER(name,
-    {
-        QString lower = name.toLower();
-        if (set.contains(lower))
-            return false;
-
-        set << lower;
-        return true;
-    });
+    return provideUndoEntitiesToRefresh();
 }
 
 QString ErdChange::getTransactionId() const

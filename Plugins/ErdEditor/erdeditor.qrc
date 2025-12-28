@@ -6,6 +6,8 @@
         <file>icons/erdeditor_line_straight.svg</file>
         <file>icons/erdlayout_fdp.svg</file>
         <file>icons/erdlayout_neato.svg</file>
+        <file>icons/cursor_table_add.svg</file>
+        <file>icons/cursor_fk.svg</file>
     </qresource>
     <qresource prefix="/forms">
         <file>erdconfig.ui</file>

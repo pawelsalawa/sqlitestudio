@@ -70,6 +70,7 @@ QSet<QString> ErdScene::parseSchema()
 void ErdScene::handleChange(ErdChange* change)
 {
     handleChangeByType(change);
+    refreshScheduledConnections();
     emit sidePanelRefreshRequested();
 }
 
@@ -148,7 +149,7 @@ void ErdScene::handleSingleChange(ErdChangeDeleteConnection* deleteConnectionCha
 void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
 {
     SchemaResolver resolver(db);
-    for (const QString& tableName : tables)
+    for (const QString& tableName : unique(tables))
     {
         ErdEntity* entity = entityMap[tableName];
         if (!entity)
@@ -172,6 +173,7 @@ void ErdScene::handleChangeUndo(ErdChange* change)
 {
     refreshSchemaForTableNames(change->getEntitiesToRefreshAfterUndo());
     handleChangeUndoByType(change);
+    refreshScheduledConnections();
     emit sidePanelRefreshRequested();
 }
 
@@ -217,6 +219,18 @@ void ErdScene::entityToBeDeleted(ErdEntity* entity)
     entityMap.remove(entity->getTableName());
 }
 
+void ErdScene::refreshScheduledConnections()
+{
+    for (ErdEntity*& entity : connectionRefreshScheduled)
+    {
+        if (entity->isBeingDeleted())
+            continue;
+
+        setupEntityConnections(entity);
+    }
+    connectionRefreshScheduled.clear();
+}
+
 void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* entity, const QString& tableName)
 {
     entity->clearConnections();
@@ -233,11 +247,10 @@ void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* e
     entity->setTableModel(createTable);
     entity->setExistingTable(true);
     entity->modelUpdated();
+    connectionRefreshScheduled << entity;
 
     entityMap.remove(oldTableName);
     entityMap.insert(tableName, entity);
-
-    setupEntityConnections(entity);
 }
 
 QList<ErdEntity*> ErdScene::getAllEntities() const
@@ -576,6 +589,7 @@ void ErdScene::removeEntityFromScene(ErdEntity* entity)
 
     removeItem(entity);
     entityToBeDeleted(entity);
+    connectionRefreshScheduled.removeOne(entity);
 
     // 3 lines below is necessary to avoid app crash after deleting the entity object.
     // Apparently without it Qt doesn't properly keep track of remove item an crashes soon afterwards.
@@ -601,15 +615,14 @@ void ErdScene::removeEntityFromSceneByName(const QString& tableName)
     removeEntityFromScene(entity);
 }
 
-void ErdScene::placeNewEntity(ErdEntity* entity)
+void ErdScene::placeNewEntity(ErdEntity* entity, const QPointF& pos)
 {
-    entity->setPos(getPosForNewEntity());
+    entity->setPos(pos);
     addItem(entity);
 
-    entities << entity;
+    entityCreated(entity);
 
     refreshSceneRect();
-    emit showEntityToUser(entity);
 }
 
 ErdConnection* ErdScene::getConnectionForArrow(ErdArrowItem* arrow)

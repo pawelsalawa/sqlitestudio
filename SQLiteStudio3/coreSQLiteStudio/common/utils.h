@@ -111,6 +111,8 @@ QSet<T> concat(const QSet<QSet<T>>& list)
 
 API_EXPORT QStringList concat(const QList<QStringList>& list);
 
+API_EXPORT QStringList unique(const QStringList& list, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+
 template <class T>
 inline QSet<T> toSet(const QList<T>& list)
 {

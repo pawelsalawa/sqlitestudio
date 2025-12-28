@@ -32,6 +32,8 @@
 #include <QToolButton>
 #include <QMessageBox>
 
+Icon* ErdWindow::cursorAddTableIcon = nullptr;
+Icon* ErdWindow::cursorFkIcon = nullptr;
 Icon* ErdWindow::windowIcon = nullptr;
 Icon* ErdWindow::fdpIcon = nullptr;
 Icon* ErdWindow::neatoIcon = nullptr;
@@ -69,6 +71,8 @@ void ErdWindow::staticInit()
 {
     qRegisterMetaType<ErdWindow>("ErdWindow");
 
+    cursorAddTableIcon = new Icon("ERD_CURSOR_TABLE_ADD", "cursor_table_add");
+    cursorFkIcon = new Icon("ERD_CURSOR_FK", "cursor_fk");
     windowIcon = new Icon("ERD_EDITOR", "erdeditor");
     fdpIcon = new Icon("ERDLAYOUT_FDP", "erdlayout_fdp");
     neatoIcon = new Icon("ERDLAYOUT_NEATO", "erdlayout_neato");
@@ -85,13 +89,16 @@ void ErdWindow::staticCleanup()
     delete windowIcon;
     delete fdpIcon;
     delete neatoIcon;
+    delete cursorAddTableIcon;
+    delete cursorFkIcon;
 }
 
 void ErdWindow::init()
 {
     ui->setupUi(this);
 
-    for (auto icon : {windowIcon, fdpIcon, neatoIcon, lineStraightIcon, lineCurvyIcon, lineSquareIcon})
+    for (auto icon : {cursorAddTableIcon, cursorFkIcon, windowIcon, fdpIcon, neatoIcon,
+                    lineStraightIcon, lineCurvyIcon, lineSquareIcon})
         icon->load();
 
 #ifdef Q_OS_MACOS
@@ -113,7 +120,7 @@ void ErdWindow::init()
     connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
     connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
-    ui->graphView->setScene(scene);
+    ui->view->setScene(scene);
 
     initActions();
 
@@ -124,12 +131,13 @@ void ErdWindow::init()
         if (enabled && !storeCurrentSidePanelModifications())
             return;
 
-        ui->graphView->setDraftingConnectionMode(enabled);
+        ui->view->setDraftingConnectionMode(enabled);
     });
-    connect(ui->graphView, &ErdView::draftConnectionRemoved, [this]()
+    connect(ui->view, &ErdView::draftConnectionRemoved, [this]()
     {
         actionMap[ADD_CONNECTION]->setChecked(false);
     });
+    connect(ui->view, &ErdView::newEntityPositionPicked, this, &ErdWindow::createNewEntityAt);
 
     changeRegistry = new ErdChangeRegistry(this);
     connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);
@@ -163,8 +171,8 @@ void ErdWindow::createActions()
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
 
-    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "ERD editor"), this, SLOT(undo()), ui->toolBar, ui->graphView);
-    createAction(REDO, ICONS.ACT_REDO, tr("Redo", "ERD editor"), this, SLOT(redo()), ui->toolBar, ui->graphView);
+    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "ERD editor"), this, SLOT(undo()), ui->toolBar, ui->view);
+    createAction(REDO, ICONS.ACT_REDO, tr("Redo", "ERD editor"), this, SLOT(redo()), ui->toolBar, ui->view);
 
     ui->toolBar->addSeparator();
     changeCountLabel = new QToolButton(this);
@@ -206,7 +214,7 @@ void ErdWindow::setupDefShortcuts()
 void ErdWindow::checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState)
 {
     if (!oldState.testFlag(Qt::WindowActive) && newState.testFlag(Qt::WindowActive))
-        ui->graphView->setFocus();
+        ui->view->setFocus();
 }
 
 void ErdWindow::uiPaletteChanged()
@@ -249,7 +257,7 @@ void ErdWindow::cancelCurrentAction()
 {
     if (actionMap[ADD_CONNECTION]->isChecked())
     {
-        ui->graphView->abortDraftConnection();
+        ui->view->abortDraftConnection();
         return;
     }
     else if (currentSideWidget)
@@ -264,12 +272,17 @@ void ErdWindow::newTable()
     if (!storeCurrentSidePanelModifications())
         return;
 
+    ui->view->insertNewEntity();
+}
+
+void ErdWindow::createNewEntityAt(const QPointF& pos)
+{
     SqliteCreateTable* tableModel = new SqliteCreateTable();
     tableModel->table = tr("table name", "ERD editor");
 
     ErdEntity* entity = new ErdEntity(tableModel);
     entity->setExistingTable(false);
-    scene->placeNewEntity(entity);
+    scene->placeNewEntity(entity, pos);
 
     focusItem(entity);
 }
@@ -311,48 +324,6 @@ void ErdWindow::handleCreatedChange(ErdChange* change)
     changeRegistry->addChange(change);
     scene->handleChange(change);
 }
-
-// void ErdWindow::handleChange(ErdChange* change)
-// {
-//     ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
-//     if (compositeChange)
-//     {
-//         for (auto&& singleChange : compositeChange->getChanges())
-//             handleChange(singleChange);
-
-//         return;
-//     }
-
-//     ErdChangeEntity* entityChange = dynamic_cast<ErdChangeEntity*>(change);
-//     if (entityChange)
-//     {
-//         scene->refreshSchema(entityChange);
-//         refreshTableWindowPanel();
-//         return;
-//     }
-
-//     ErdChangeNewEntity* newEntityChange = dynamic_cast<ErdChangeNewEntity*>(change);
-//     if (newEntityChange)
-//     {
-//         scene->refreshSchema(newEntityChange);
-//         refreshTableWindowPanel();
-//         return;
-//     }
-
-//     ErdChangeDeleteEntity* deleteEntityChange = dynamic_cast<ErdChangeDeleteEntity*>(change);
-//     if (deleteEntityChange)
-//     {
-//         scene->refreshSchema(deleteEntityChange);
-//         return;
-//     }
-
-//     ErdChangeDeleteConnection* deleteConnectionChange = dynamic_cast<ErdChangeDeleteConnection*>(change);
-//     if (deleteConnectionChange)
-//     {
-//         scene->refreshSchema(deleteConnectionChange);
-//         return;
-//     }
-// }
 
 void ErdWindow::updateState()
 {
@@ -465,7 +436,7 @@ QVariant ErdWindow::saveSession()
 
     QHash<QString, QVariant> erdConfig;
     erdConfig.insert(scene->getConfig());
-    erdConfig.insert(ui->graphView->getConfig());
+    erdConfig.insert(ui->view->getConfig());
     erdConfig[CFG_KEY_SPLITTER] = ui->splitter->saveState();
 
     if (db)
@@ -727,7 +698,7 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     // Config is applicable.
     ui->splitter->restoreState(erdConfig[CFG_KEY_SPLITTER].toByteArray());
     scene->applyConfig(erdConfig);
-    ui->graphView->applyConfig(erdConfig);
+    ui->view->applyConfig(erdConfig);
     updateArrowTypeButtons();
 
     return true;

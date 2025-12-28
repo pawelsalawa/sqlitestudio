@@ -1128,3 +1128,17 @@ bool isNull(const QVariant &v)
             return false;
     }
 }
+
+QStringList unique(const QStringList& list, Qt::CaseSensitivity cs)
+{
+    QSet<QString> set;
+    return list | FILTER(name,
+    {
+        QString lower = cs == Qt::CaseSensitive ? name : name.toLower();
+        if (set.contains(lower))
+            return false;
+
+        set << lower;
+        return true;
+    });
+}

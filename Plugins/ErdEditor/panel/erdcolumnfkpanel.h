@@ -12,7 +12,6 @@ class ErdColumnFkPanel : public ColumnForeignKeyPanel
 
     signals:
         void modified();
-
 };
 
 #endif // ERDCOLUMNFKPANEL_H

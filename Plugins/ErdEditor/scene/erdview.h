@@ -70,10 +70,11 @@ class ErdView : public QGraphicsView
         void clearSelectedItems();
         bool isDragging() const;
         bool isDraftingConnection() const;
-        bool isPlacingNewConnection() const;
+        bool isPlacingNewEntity() const;
         void setOperatingMode(Mode mode);
         void pushOperatingMode(Mode mode);
         void popOperatingMode();
+        void applyCursor(QIcon* icon);
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
@@ -90,6 +91,7 @@ class ErdView : public QGraphicsView
     public slots:
         void abortDraftConnection();
         void setDraftingConnectionMode(bool enabled);
+        void insertNewEntity();
 
     private slots:
         void resetZoom();
@@ -100,6 +102,7 @@ class ErdView : public QGraphicsView
 
     signals:
         void draftConnectionRemoved();
+        void newEntityPositionPicked(const QPointF& pos);
 };
 
 QDebug operator<<(QDebug dbg, ErdView::Mode value);

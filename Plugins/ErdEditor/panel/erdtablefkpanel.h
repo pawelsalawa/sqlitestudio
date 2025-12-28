@@ -9,6 +9,9 @@ class ErdTableFkPanel : public TableForeignKeyPanel
 
     public:
         explicit ErdTableFkPanel(QWidget *parent = 0);
+
+    signals:
+        void modified();
 };
 
 #endif // ERDTABLEFKPANEL_H

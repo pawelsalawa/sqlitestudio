@@ -147,6 +147,7 @@ void ErdConnection::commitFinalizationChange()
     ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable, desc);
 
     ChainExecutor* ddlExecutor = new ChainExecutor();
+    ddlExecutor->setTransaction(false);
     ddlExecutor->setAsync(false);
     ddlExecutor->setDb(scene->getDb());
     ddlExecutor->setQueries(change->toDdl());

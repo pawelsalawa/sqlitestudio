@@ -34,7 +34,7 @@ class ErdScene : public QGraphicsScene
         ErdArrowItem::Type getArrowType() const;
         void applyConfig(const QHash<QString, QVariant>& erdLayout);
         QHash<QString, QVariant> getConfig();
-        void placeNewEntity(ErdEntity* entity);
+        void placeNewEntity(ErdEntity* entity, const QPointF& pos);
         ErdConnection* getConnectionForArrow(ErdArrowItem* arrow);
         bool undoChange(ErdChange* change);
         bool redoChange(ErdChange* change);
@@ -62,6 +62,7 @@ class ErdScene : public QGraphicsScene
         void refreshSchemaForTableNames(const QStringList& tables);
         void entityCreated(ErdEntity* entity);
         void entityToBeDeleted(ErdEntity* entity);
+        void refreshScheduledConnections();
 
         void handleChangeByType(ErdChange* change);
         void handleSingleChange(ErdChangeEntity* entityChange);
@@ -74,6 +75,7 @@ class ErdScene : public QGraphicsScene
         void handleSingleChangeUndo(ErdChangeDeleteEntity* change);
 
         QList<ErdEntity*> entities;
+        QList<ErdEntity*> connectionRefreshScheduled;
         StrHash<ErdEntity*> entityMap;
         ErdArrowItem::Type arrowType;
         Db* db = nullptr;

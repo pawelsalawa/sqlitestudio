@@ -7,10 +7,13 @@
 #include "mainwindow.h"
 #include "erdeditorplugin.h"
 #include "db/db.h"
+#include "erdwindow.h"
+#include "icon.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
 #include <QTimer>
+#include <QWindow>
 
 ErdView::ErdView(QWidget* parent) :
     QGraphicsView(parent)
@@ -56,7 +59,18 @@ void ErdView::mousePressEvent(QMouseEvent* event)
         return;
     }
 
-    clickPos = event->pos();
+    clickPos = event->position().toPoint();
+
+    if (isPlacingNewEntity())
+    {
+        if (event->button() == Qt::LeftButton)
+        {
+            // All good. Proceed to further events for complete click.
+            return;
+        }
+        else
+            popOperatingMode();
+    }
 
     if (event->button() == Qt::LeftButton)
     {
@@ -109,11 +123,14 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
         return;
     }
 
+    if (isPlacingNewEntity())
+        return;
+
     if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton))
     {
         for (QGraphicsItem* item : selectedMovableItems)
         {
-            item->setPos(mapToScene(event->pos()) - dragOffset[item]);
+            item->setPos(mapToScene(event->position().toPoint()) - dragOffset[item]);
             ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
             if (entity)
                 entity->updateConnectionsGeometry();
@@ -121,7 +138,7 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
         dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
     }
     else if (draftConnection)
-        draftConnection->updatePosition(mapToScene(event->pos()));
+        draftConnection->updatePosition(mapToScene(event->position().toPoint()));
 
     clickPos = QPoint();
 
@@ -138,15 +155,25 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
 
     dragOffset.clear();
 
-    if (!clickPos.isNull() && event->pos() == clickPos)
+    if (isPlacingNewEntity())
+    {
+        popOperatingMode();
+        if (event->button() == Qt::LeftButton)
+        {
+            emit newEntityPositionPicked(mapToScene(event->pos()));
+            return;
+        }
+    }
+
+    if (!clickPos.isNull() && event->position().toPoint() == clickPos)
     {
         clickPos = QPoint();
-        if (viewClicked(event->pos(), event->button()))
+        if (viewClicked(event->position().toPoint(), event->button()))
             return;
     }
 
     setDragMode(QGraphicsView::NoDrag);
-    handleSelectionOnMouseEvent(event->pos());
+    handleSelectionOnMouseEvent(event->position().toPoint());
 
     QGraphicsView::mouseReleaseEvent(event);
 }
@@ -333,9 +360,11 @@ void ErdView::leavingOperatingMode(Mode mode)
                 item->setAcceptedMouseButtons(Qt::AllButtons);
             break;
         case ErdView::Mode::CONNECTION_DRAFTING:
+            applyCursor(nullptr);
             abortDraftConnection();
             break;
         case ErdView::Mode::PLACING_NEW_ENTITY:
+            applyCursor(nullptr);
             break;
     }
 }
@@ -352,8 +381,10 @@ void ErdView::enteringOperatingMode(Mode mode)
                 item->setAcceptedMouseButtons(Qt::NoButton);
             break;
         case ErdView::Mode::CONNECTION_DRAFTING:
+            applyCursor(ErdWindow::cursorFkIcon->toQIconPtr());
             break;
         case ErdView::Mode::PLACING_NEW_ENTITY:
+            applyCursor(ErdWindow::cursorAddTableIcon->toQIconPtr());
             break;
     }
 }
@@ -370,6 +401,11 @@ void ErdView::setDraftingConnectionMode(bool enabled)
         setOperatingMode(Mode::CONNECTION_DRAFTING);
     else
         setOperatingMode(Mode::NORMAL);
+}
+
+void ErdView::insertNewEntity()
+{
+    setOperatingMode(Mode::PLACING_NEW_ENTITY);
 }
 
 void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
@@ -401,7 +437,7 @@ bool ErdView::isDraftingConnection() const
     return operatingMode == Mode::CONNECTION_DRAFTING;
 }
 
-bool ErdView::isPlacingNewConnection() const
+bool ErdView::isPlacingNewEntity() const
 {
     return operatingMode == Mode::PLACING_NEW_ENTITY;
 }
@@ -434,6 +470,28 @@ void ErdView::popOperatingMode()
         leavingOperatingMode(operatingMode);
         operatingMode = priorOperatingModeStack.pop();
     }
+}
+
+void ErdView::applyCursor(QIcon* icon)
+{
+    if (!icon)
+    {
+        setCursor(QCursor());
+        return;
+    }
+
+    QWindow *w = window()->windowHandle();
+    qreal dpr = w ? w->devicePixelRatio() : qApp->devicePixelRatio();
+
+    const int logicalSize = 32;
+    QSize logical(logicalSize, logicalSize);
+    QSize physical = logical * dpr;
+
+    QPixmap pm = icon->pixmap(physical);
+    pm.setDevicePixelRatio(dpr);
+
+    QCursor cursor(pm, 1 * dpr, 1 * dpr);
+    setCursor(cursor);
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :
