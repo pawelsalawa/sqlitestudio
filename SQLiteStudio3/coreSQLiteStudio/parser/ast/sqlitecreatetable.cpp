@@ -179,9 +179,7 @@ QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(c
         }
 
         if (comparablePairs == constrPairs)
-            continue;
-
-        results << constr;
+            results << constr;
     }
     return results;
 }
