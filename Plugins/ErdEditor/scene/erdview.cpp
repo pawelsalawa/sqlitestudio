@@ -108,8 +108,9 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     }
     else
     {
-        abortDraftConnection();
-        clearSelectedItems();
+        // RightButton click
+        if (isDraftingConnection() || isPlacingNewEntity())
+            popOperatingMode();
     }
 
     QGraphicsView::mousePressEvent(event);
@@ -178,10 +179,28 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
     QGraphicsView::mouseReleaseEvent(event);
 }
 
+bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
+{
+    if (button == Qt::LeftButton)
+    {
+        handleConnectionClick(pos);
+    }
+    if (button == Qt::MiddleButton)
+    {
+        handleConnectionClick(pos, true);
+    }
+    else if (button == Qt::RightButton)
+    {
+        // TODO if clicked on item, show entity/connection/other context menu
+        // TODO if clicked on empty space, show creational menu, having "add this and that, rearrange, select all" entries
+        return true;
+    }
+    return false;
+}
+
 void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     UNUSED(event);
-    abortDraftConnection();
 }
 
 void ErdView::focusOutEvent(QFocusEvent* event)
@@ -251,31 +270,6 @@ QHash<QString, QVariant> ErdView::getConfig()
     erdConfig[CFG_KEY_CENTER_POINT] = mapToScene(viewport()->rect().center());
     erdConfig[CFG_KEY_ZOOM] = getZoom();
     return erdConfig;
-}
-
-bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
-{
-    if (button == Qt::LeftButton)
-    {
-        handleConnectionClick(pos);
-    }
-    if (button == Qt::MiddleButton)
-    {
-        handleConnectionClick(pos, true);
-    }
-    else if (button == Qt::RightButton)
-    {
-        if (draftConnection)
-        {
-            abortDraftConnection();
-        }
-        else
-        {
-            // TODO if clicked on item, show entity/connection/other context menu
-            // TODO if clicked on empty space, show creational menu, having "add this and that, rearrange, select all" entries
-        }
-    }
-    return false;
 }
 
 QGraphicsItem* ErdView::clickableItemAt(const QPoint& pos)
@@ -365,6 +359,7 @@ void ErdView::leavingOperatingMode(Mode mode)
             break;
         case ErdView::Mode::PLACING_NEW_ENTITY:
             applyCursor(nullptr);
+            emit tableInsertionAborted();
             break;
     }
 }

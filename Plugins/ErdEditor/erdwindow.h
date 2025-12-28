@@ -128,7 +128,10 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void useSquareLine();
         void useSquareLineHotKey();
         void cancelCurrentAction();
-        void newTable();
+        void newTableToggled(bool enable);
+        void addConnectionToggled(bool enable);
+        void handleDraftConnectionRemoved();
+        void handleTableInsertionAborted();
         void itemSelectionChanged();
         void reloadSchema();
         void commitPendingChanges();

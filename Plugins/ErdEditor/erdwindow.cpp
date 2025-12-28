@@ -126,17 +126,8 @@ void ErdWindow::init()
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
     connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
-    connect(actionMap[ADD_CONNECTION], &QAction::toggled, [this](bool enabled)
-    {
-        if (enabled && !storeCurrentSidePanelModifications())
-            return;
-
-        ui->view->setDraftingConnectionMode(enabled);
-    });
-    connect(ui->view, &ErdView::draftConnectionRemoved, [this]()
-    {
-        actionMap[ADD_CONNECTION]->setChecked(false);
-    });
+    connect(ui->view, &ErdView::draftConnectionRemoved, this, &ErdWindow::handleDraftConnectionRemoved, Qt::QueuedConnection);
+    connect(ui->view, &ErdView::tableInsertionAborted, this, &ErdWindow::handleTableInsertionAborted, Qt::QueuedConnection);
     connect(ui->view, &ErdView::newEntityPositionPicked, this, &ErdWindow::createNewEntityAt);
 
     changeRegistry = new ErdChangeRegistry(this);
@@ -152,12 +143,10 @@ void ErdWindow::createActions()
 
     QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
     lineGroup->setExclusive(true);
-    actionMap[ADD_CONNECTION] = new QAction(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add relation (foreign key)"), this);
     actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
     actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
     actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
 
-    actionMap[ADD_CONNECTION]->setCheckable(true);
     actionMap[LINE_STRAIGHT]->setCheckable(true);
     actionMap[LINE_CURVY]->setCheckable(true);
     actionMap[LINE_SQUARE]->setCheckable(true);
@@ -187,7 +176,8 @@ void ErdWindow::createActions()
     ui->toolBar->addAction(actionMap[UNDO]);
     ui->toolBar->addAction(actionMap[REDO]);
     ui->toolBar->addSeparator();
-    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(newTable()), ui->toolBar);
+    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a table (%1)").arg("T"), this, SLOT(newTableToggled(bool)), ui->toolBar, ui->view);
+    createAction(ADD_CONNECTION, ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add a foreign key (%1)").arg("F"), this, SLOT(addConnectionToggled(bool)), ui->toolBar, ui->view);
     ui->toolBar->addAction(actionMap[ADD_CONNECTION]);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
@@ -207,6 +197,8 @@ void ErdWindow::setupDefShortcuts()
     actionMap[LINE_SQUARE]->setShortcut(Qt::CTRL|Qt::Key_3);
     actionMap[UNDO]->setShortcut(QKeySequence::Undo);
     actionMap[REDO]->setShortcut(QKeySequence::Redo);
+    actionMap[NEW_TABLE]->setShortcut(Qt::Key_T);
+    actionMap[ADD_CONNECTION]->setShortcut(Qt::Key_R);
 
     setShortcutContext({UNDO, REDO}, Qt::WidgetWithChildrenShortcut);
 }
@@ -255,10 +247,9 @@ void ErdWindow::useSquareLineHotKey()
 
 void ErdWindow::cancelCurrentAction()
 {
-    if (actionMap[ADD_CONNECTION]->isChecked())
+    if (ui->view->isDraftingConnection() || ui->view->isPlacingNewEntity())
     {
-        ui->view->abortDraftConnection();
-        return;
+        ui->view->popOperatingMode();
     }
     else if (currentSideWidget)
     {
@@ -267,12 +258,33 @@ void ErdWindow::cancelCurrentAction()
     }
 }
 
-void ErdWindow::newTable()
+void ErdWindow::newTableToggled(bool enable)
 {
-    if (!storeCurrentSidePanelModifications())
+    if (enable && !storeCurrentSidePanelModifications())
         return;
 
-    ui->view->insertNewEntity();
+    if (enable)
+        ui->view->insertNewEntity();
+    else if (ui->view->isPlacingNewEntity())
+        ui->view->popOperatingMode();
+}
+
+void ErdWindow::addConnectionToggled(bool enable)
+{
+    if (enable && !storeCurrentSidePanelModifications())
+        return;
+
+    ui->view->setDraftingConnectionMode(enable);
+}
+
+void ErdWindow::handleDraftConnectionRemoved()
+{
+    actionMap[ADD_CONNECTION]->setChecked(false);
+}
+
+void ErdWindow::handleTableInsertionAborted()
+{
+    actionMap[NEW_TABLE]->setChecked(false);
 }
 
 void ErdWindow::createNewEntityAt(const QPointF& pos)
@@ -285,6 +297,7 @@ void ErdWindow::createNewEntityAt(const QPointF& pos)
     scene->placeNewEntity(entity, pos);
 
     focusItem(entity);
+    entity->editName();
 }
 
 void ErdWindow::itemSelectionChanged()
@@ -638,8 +651,8 @@ bool ErdWindow::handleSidePanelModificationsResult(bool successfullyStored, cons
     if (!sidePanelEntityName.isNull() && !successfullyStored)
     {
         QMessageBox::critical(this,
-              tr("Entity modification failed"),
-              tr("There was a problem applying changes to the entity '%1'. Check the messages panel for details. "
+              tr("Table modification failed"),
+              tr("There was a problem applying changes to the table '%1'. Check the messages panel for details. "
                  "Please either roll back the changes in the side panel or fix them. "
                  "You cannot continue editing the diagram until this issue is resolved.")
                               .arg(sidePanelEntityName)

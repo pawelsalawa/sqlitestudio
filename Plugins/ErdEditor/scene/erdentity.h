@@ -42,6 +42,8 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
         bool isExistingTable() const;
         void setExistingTable(bool newExistingTable);
+        bool edit(const QPointF& point);
+        void editName();
 
     private:
         struct Row
@@ -64,6 +66,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
             qreal updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY);
         };
 
+        void editRow(int rowIdx);
         void rebuild();
         void addColumn(SqliteCreateTable::Column* column, bool isLast);
         void addTableTitle();

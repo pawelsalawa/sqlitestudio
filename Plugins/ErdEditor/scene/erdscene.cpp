@@ -553,7 +553,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
     if (!ddlExecutor->getSuccessfulExecution())
     {
         delete change;
-        notifyError(tr("Failed to execute DDL required for entity deletion. Details: %1")
+        notifyError(tr("Failed to execute DDL required for table deletion. Details: %1")
                     .arg(ddlExecutor->getErrorsMessages().join("; ")));
         return nullptr;
     }
@@ -564,7 +564,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
 
 ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
 {
-    QString changeDesc = tr("Delete relation between \"%1\" and \"%2\".")
+    QString changeDesc = tr("Delete foreign key between \"%1\" and \"%2\".")
             .arg(connection->getStartEntity()->getTableName(), connection->getEndEntity()->getTableName());
     ErdChange* change = new ErdChangeDeleteConnection(db, connection, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
@@ -573,7 +573,7 @@ ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
     if (!ddlExecutor->getSuccessfulExecution())
     {
         delete change;
-        notifyError(tr("Failed to execute DDL required for relation deletion. Details: %1")
+        notifyError(tr("Failed to execute DDL required for foreign key deletion. Details: %1")
                     .arg(ddlExecutor->getErrorsMessages().join("; ")));
         return nullptr;
     }
@@ -608,7 +608,7 @@ void ErdScene::removeEntityFromSceneByName(const QString& tableName)
     ErdEntity* entity = entities | FIND_FIRST(e, {return (e->getTableName().toLower() == lowerName);});
     if (!entity)
     {
-        qWarning() << "Requested to remoe entity" << tableName << "from scene, but no such entity was found!";
+        qWarning() << "Requested to remove table" << tableName << "from scene, but no such table was found!";
         return;
     }
 

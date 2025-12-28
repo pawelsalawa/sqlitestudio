@@ -121,6 +121,10 @@ class GUI_API_EXPORT ExtActionContainer
         virtual void setupDefShortcuts() = 0;
 
         void initActions();
+        /**
+         * If slot contains "toggled" (case-insensitive), the action will automatically be converted to checkable action
+         * and instead of connecting "triggered()" signal, the "toggled()" signal will be used.
+         */
         void createAction(int action, const Icon& icon, const QString& text, const QObject* receiver, const char* slot, QWidget* container,
                           QWidget* owner = 0);
         void createAction(int action, const QString& text, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner = 0);

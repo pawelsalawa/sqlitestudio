@@ -17,6 +17,8 @@
 #include <QGraphicsScene>
 #include <QStyleOptionGraphicsItem>
 #include <QPainter>
+#include <QGraphicsProxyWidget>
+#include <QLineEdit>
 
 ErdEntity::ErdEntity(SqliteCreateTable* tableModel) :
     ErdEntity(SqliteCreateTablePtr(tableModel))
@@ -259,6 +261,34 @@ bool ErdEntity::isExistingTable() const
 void ErdEntity::setExistingTable(bool newExistingTable)
 {
     existingTable = newExistingTable;
+}
+
+bool ErdEntity::edit(const QPointF& point)
+{
+    int idx = rowIndexAt(point);
+    if (idx < 0)
+        return false;
+
+    editRow(idx);
+    return true;
+}
+
+void ErdEntity::editName()
+{
+    editRow(0);
+}
+
+void ErdEntity::editRow(int rowIdx)
+{
+    Row* row = rows[rowIdx];
+    QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget(row->topRect);
+
+    QLineEdit* edit = new QLineEdit();
+    edit->setText(row->text->text());
+    proxy->setWidget(edit);
+    proxy->setGeometry(row->topRect->boundingRect());
+    edit->selectAll();
+    edit->setFocus();
 }
 
 void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)

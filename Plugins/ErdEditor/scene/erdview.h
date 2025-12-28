@@ -37,6 +37,13 @@ class ErdView : public QGraphicsView
         QHash<QString, QVariant> getConfig();
         void applyZoomRatio(qreal ratio);
 
+        bool isDragging() const;
+        bool isDraftingConnection() const;
+        bool isPlacingNewEntity() const;
+        void setOperatingMode(Mode mode);
+        void pushOperatingMode(Mode mode);
+        void popOperatingMode();
+
         static constexpr const char* CFG_KEY_ZOOM = "zoom";
         static constexpr const char* CFG_KEY_CENTER_POINT = "centerPoint";
 
@@ -68,12 +75,6 @@ class ErdView : public QGraphicsView
         void spaceReleased();
         void handleSelectionOnMouseEvent(const QPoint& pos);
         void clearSelectedItems();
-        bool isDragging() const;
-        bool isDraftingConnection() const;
-        bool isPlacingNewEntity() const;
-        void setOperatingMode(Mode mode);
-        void pushOperatingMode(Mode mode);
-        void popOperatingMode();
         void applyCursor(QIcon* icon);
 
         QList<QGraphicsItem*> selectedItems;
@@ -102,6 +103,7 @@ class ErdView : public QGraphicsView
 
     signals:
         void draftConnectionRemoved();
+        void tableInsertionAborted();
         void newEntityPositionPicked(const QPointF& pos);
 };
 
