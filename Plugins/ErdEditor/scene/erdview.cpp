@@ -48,14 +48,9 @@ Db *ErdView::getDb() const
     return scene()->getDb();
 }
 
-bool ErdView::isSpacePressed() const
-{
-    return spaceIsPressed;
-}
-
 void ErdView::mousePressEvent(QMouseEvent* event)
 {
-    if (spaceIsPressed)
+    if (isDragging())
     {
         QGraphicsView::mousePressEvent(event);
         return;
@@ -80,18 +75,22 @@ void ErdView::mousePressEvent(QMouseEvent* event)
             {
                 dragOffset.clear();
                 dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
-                if (draftingConnectionMode)
+                if (isDraftingConnection())
                     return;
 
                 selectedItems = {item};
                 selectedMovableItems = {item};
             }
         }
-        else if (!spaceIsPressed)
+        else if (!isDragging())
         {
             clearSelectedItems();
             setDragMode(QGraphicsView::RubberBandDrag);
         }
+    }
+    else if (event->button() == Qt::MiddleButton)
+    {
+        clearSelectedItems();
     }
     else
     {
@@ -104,7 +103,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
 
 void ErdView::mouseMoveEvent(QMouseEvent* event)
 {
-    if (spaceIsPressed)
+    if (isDragging())
     {
         QGraphicsView::mouseMoveEvent(event);
         return;
@@ -131,7 +130,7 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
 
 void ErdView::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (spaceIsPressed)
+    if (isDragging())
     {
         QGraphicsView::mouseReleaseEvent(event);
         return;
@@ -274,16 +273,18 @@ bool ErdView::handleConnectionClick(const QPoint& pos, bool enableConnectionDraf
         if (rowIdx <= 0)
             return false;
 
-        draftingConnectionMode |= enableConnectionDrafting;
+        if (enableConnectionDrafting && !isDraftingConnection())
+            setOperatingMode(Mode::CONNECTION_DRAFTING);
+
         if (draftConnection)
         {
             draftConnection->finalizeConnection(entity, mapToScene(pos));
             draftConnection = nullptr;
-            draftingConnectionMode = false;
-            emit draftConnectionRemoved();
+
+            setOperatingMode(Mode::NORMAL);
             return true;
         }
-        else if (draftingConnectionMode)
+        else if (isDraftingConnection())
         {
             draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
             draftConnection->addToScene(scene());
@@ -295,19 +296,13 @@ bool ErdView::handleConnectionClick(const QPoint& pos, bool enableConnectionDraf
 
 void ErdView::spacePressed()
 {
-    spaceIsPressed = true;
-    setDragMode(QGraphicsView::ScrollHandDrag);
-    for (QGraphicsItem* item : scene()->items())
-        item->setAcceptedMouseButtons(Qt::NoButton);
+    pushOperatingMode(Mode::DRAGGING);
 }
 
 void ErdView::spaceReleased()
 {
-    spaceIsPressed = false;
-    setDragMode(QGraphicsView::NoDrag);
-
-    for (QGraphicsItem* item : scene()->items())
-        item->setAcceptedMouseButtons(Qt::AllButtons);
+    if (isDragging())
+        popOperatingMode();
 }
 
 void ErdView::resetZoom()
@@ -326,6 +321,43 @@ void ErdView::deleteSelectedItem()
     scene()->deleteItems(selectedItems);
 }
 
+void ErdView::leavingOperatingMode(Mode mode)
+{
+    switch (mode)
+    {
+        case ErdView::Mode::NORMAL:
+            break;
+        case ErdView::Mode::DRAGGING:
+            setDragMode(QGraphicsView::NoDrag);
+            for (QGraphicsItem* item : scene()->items())
+                item->setAcceptedMouseButtons(Qt::AllButtons);
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            abortDraftConnection();
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            break;
+    }
+}
+
+void ErdView::enteringOperatingMode(Mode mode)
+{
+    switch (mode)
+    {
+        case ErdView::Mode::NORMAL:
+            break;
+        case ErdView::Mode::DRAGGING:
+            setDragMode(QGraphicsView::ScrollHandDrag);
+            for (QGraphicsItem* item : scene()->items())
+                item->setAcceptedMouseButtons(Qt::NoButton);
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            break;
+    }
+}
+
 void ErdView::abortDraftConnection()
 {
     safe_delete(draftConnection);
@@ -334,9 +366,10 @@ void ErdView::abortDraftConnection()
 
 void ErdView::setDraftingConnectionMode(bool enabled)
 {
-    draftingConnectionMode = enabled;
-    if (!enabled)
-        abortDraftConnection();
+    if (enabled)
+        setOperatingMode(Mode::CONNECTION_DRAFTING);
+    else
+        setOperatingMode(Mode::NORMAL);
 }
 
 void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
@@ -356,6 +389,51 @@ void ErdView::clearSelectedItems()
     dragOffset.clear();
     scene()->clearSelection();
     scene()->clearFocus();
+}
+
+bool ErdView::isDragging() const
+{
+    return operatingMode == Mode::DRAGGING;
+}
+
+bool ErdView::isDraftingConnection() const
+{
+    return operatingMode == Mode::CONNECTION_DRAFTING;
+}
+
+bool ErdView::isPlacingNewConnection() const
+{
+    return operatingMode == Mode::PLACING_NEW_ENTITY;
+}
+
+void ErdView::setOperatingMode(Mode mode)
+{
+    priorOperatingModeStack.clear();
+
+    if (operatingMode == mode)
+        return;
+
+    leavingOperatingMode(operatingMode);
+    operatingMode = mode;
+    enteringOperatingMode(mode);
+}
+
+void ErdView::pushOperatingMode(Mode mode)
+{
+    priorOperatingModeStack.push(operatingMode);
+    operatingMode = mode;
+    enteringOperatingMode(mode);
+}
+
+void ErdView::popOperatingMode()
+{
+    if (priorOperatingModeStack.isEmpty())
+        setOperatingMode(Mode::NORMAL);
+    else
+    {
+        leavingOperatingMode(operatingMode);
+        operatingMode = priorOperatingModeStack.pop();
+    }
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :
@@ -384,4 +462,25 @@ bool ErdView::KeyPressFilter::eventFilter(QObject* obj, QEvent* event)
             view->spaceReleased();
     }
     return QObject::eventFilter(obj, event);
+}
+
+QDebug operator<<(QDebug dbg, ErdView::Mode value)
+{
+    QDebugStateSaver saver(dbg);
+    switch (value)
+    {
+        case ErdView::Mode::NORMAL:
+            dbg << "NORMAL";
+            break;
+        case ErdView::Mode::DRAGGING:
+            dbg << "DRAGGING";
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            dbg << "CONNECTION_DRAFTING";
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            dbg << "PLACING_NEW_ENTITY";
+            break;
+    }
+    return dbg;
 }

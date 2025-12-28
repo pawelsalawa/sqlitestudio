@@ -6,6 +6,8 @@
 #include <QPoint>
 #include <QObject>
 #include <QHash>
+#include <QStack>
+#include <QDebug>
 
 class ErdConnection;
 class ErdScene;
@@ -16,13 +18,20 @@ class ErdView : public QGraphicsView
     Q_OBJECT
 
     public:
+        enum class Mode
+        {
+            NORMAL,
+            DRAGGING,
+            CONNECTION_DRAFTING,
+            PLACING_NEW_ENTITY,
+        };
+
         ErdView(QWidget *parent = nullptr);
         ~ErdView();
 
         void setScene(ErdScene *scene);
         ErdScene *scene() const;
         Db* getDb() const;
-        bool isSpacePressed() const;
         qreal getZoom() const;
         void applyConfig(const QHash<QString, QVariant>& erdConfig);
         QHash<QString, QVariant> getConfig();
@@ -59,18 +68,24 @@ class ErdView : public QGraphicsView
         void spaceReleased();
         void handleSelectionOnMouseEvent(const QPoint& pos);
         void clearSelectedItems();
+        bool isDragging() const;
+        bool isDraftingConnection() const;
+        bool isPlacingNewConnection() const;
+        void setOperatingMode(Mode mode);
+        void pushOperatingMode(Mode mode);
+        void popOperatingMode();
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
         QHash<QGraphicsItem*, QPoint> dragOffset;
         ErdConnection* draftConnection = nullptr;
-        bool draftingConnectionMode = false;
         QPoint clickPos;
         qreal zoom = 1.0;
-        bool spaceIsPressed = false;
         KeyPressFilter* keyFilter = nullptr;
         bool centerPointRestored = false;
         QPointF centerPoint;
+        Mode operatingMode = Mode::NORMAL;
+        QStack<Mode> priorOperatingModeStack;
 
     public slots:
         void abortDraftConnection();
@@ -80,9 +95,13 @@ class ErdView : public QGraphicsView
         void resetZoom();
         void showItemToUser(QGraphicsItem* item);
         void deleteSelectedItem();
+        void leavingOperatingMode(ErdView::Mode mode);
+        void enteringOperatingMode(ErdView::Mode mode);
 
     signals:
         void draftConnectionRemoved();
 };
+
+QDebug operator<<(QDebug dbg, ErdView::Mode value);
 
 #endif // ERDVIEW_H
