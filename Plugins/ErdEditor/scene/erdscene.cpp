@@ -605,6 +605,9 @@ ErdChange* ErdScene::deleteConnection(ErdConnection*& connection)
 
 void ErdScene::removeEntityFromScene(ErdEntity* entity)
 {
+    for (ErdConnection* conn : entity->getForeignConnections())
+        conn->endEntityAboutToBeDeleted();
+
     for (ErdConnection* conn : entity->getOwningConnections())
         delete conn;
 
@@ -629,7 +632,8 @@ void ErdScene::removeEntityFromSceneByName(const QString& tableName)
     ErdEntity* entity = entities | FIND_FIRST(e, {return (e->getTableName().toLower() == lowerName);});
     if (!entity)
     {
-        qWarning() << "Requested to remove table" << tableName << "from scene, but no such table was found!";
+        // Requested to remove table tableName from scene, but no such table was found.
+        // It was most likely removed by the schema refresh for tables affected by the particular ErdChange.
         return;
     }
 

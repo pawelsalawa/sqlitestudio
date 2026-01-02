@@ -24,7 +24,7 @@ ErdView::ErdView(QWidget* parent) :
     keyFilter = new KeyPressFilter(this);
     MAINWINDOW->installEventFilter(keyFilter);
 
-    new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedItem()), SLOT(deleteSelectedItem()), Qt::WidgetWithChildrenShortcut);
+    //new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedItem()), SLOT(deleteSelectedItem()), Qt::WidgetWithChildrenShortcut);
 }
 
 ErdView::~ErdView()

@@ -173,6 +173,11 @@ void ErdConnection::setTableLevelFk(bool value)
     tableLevelFk = value;
 }
 
+void ErdConnection::endEntityAboutToBeDeleted()
+{
+    endEntity = nullptr;
+}
+
 ErdEntity* ErdConnection::getEndEntity() const
 {
     return endEntity;

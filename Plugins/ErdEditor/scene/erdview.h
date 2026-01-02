@@ -95,11 +95,11 @@ class ErdView : public QGraphicsView
         void abortDraftConnection();
         void setDraftingConnectionMode(bool enabled);
         void insertNewEntity();
+        void deleteSelectedItem();
 
     private slots:
         void resetZoom();
         void showItemToUser(QGraphicsItem* item);
-        void deleteSelectedItem();
         void leavingOperatingMode(ErdView::Mode mode);
         void enteringOperatingMode(ErdView::Mode mode);
 

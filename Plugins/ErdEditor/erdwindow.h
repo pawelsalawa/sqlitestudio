@@ -40,6 +40,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             CANCEL_CURRENT,
             UNDO,
             REDO,
+            DELETE_SELECTED,
         };
         Q_ENUM(Action)
 
@@ -147,6 +148,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void createNewEntityAt(const QPointF& pos);
         void handleEntityNameEditedInline(ErdEntity* entity, const QString& newName);
         void handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
+        void updateSelectionBasedActionsState();
 };
 
 #endif // ERDWINDOW_H

@@ -56,6 +56,7 @@ class ErdConnection
 
         bool isTableLevelFk() const;
         void setTableLevelFk(bool value);
+        void endEntityAboutToBeDeleted();
 
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);

@@ -127,6 +127,11 @@ QList<ErdConnection*> ErdEntity::getOwningConnections() const
     return connections | FILTER(conn, {return conn->getStartEntity() == this;});
 }
 
+QList<ErdConnection*> ErdEntity::getForeignConnections() const
+{
+    return connections | FILTER(conn, {return conn->getEndEntity() == this;});
+}
+
 QString ErdEntity::getTableName() const
 {
     return tableModel->table;
@@ -262,60 +267,6 @@ bool ErdEntity::isExistingTable() const
 void ErdEntity::setExistingTable(bool newExistingTable)
 {
     existingTable = newExistingTable;
-}
-
-bool ErdEntity::edit(const QPointF& point)
-{
-    int idx = rowIndexAt(point);
-    if (idx < 0)
-        return false;
-
-    editRow(idx);
-    return true;
-}
-
-void ErdEntity::editName()
-{
-    editRow(0);
-}
-
-bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
-{
-    if (event->type() == QEvent::KeyPress && qobject_cast<QLineEdit*>(obj))
-    {
-        auto *keyEvent = static_cast<QKeyEvent*>(event);
-        if (keyEvent->key() == Qt::Key_Tab)
-        {
-            tabKeyPressed();
-            return true;
-        }
-
-        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
-        {
-            enterKeyPressed();
-            return true;
-        }
-    }
-    return QObject::eventFilter(obj, event);
-}
-
-void ErdEntity::editRow(int rowIdx)
-{
-    Row* row = rows[rowIdx];
-    QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget(row->topRect);
-
-    QLineEdit* edit = new QLineEdit();
-    edit->setText(row->text->text());
-    proxy->setWidget(edit);
-    proxy->setGeometry(row->topRect->boundingRect());
-    edit->selectAll();
-    edit->setFocus();
-
-    auto *deletionFilter = new DeleteOnFocusOutFilter(edit);
-    edit->installEventFilter(deletionFilter);
-    edit->installEventFilter(this);
-
-    connect(edit, &QLineEdit::textEdited, [this, rowIdx](const QString &value) {applyRowEdition(rowIdx, value);});
 }
 
 void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
@@ -542,6 +493,60 @@ void ErdEntity::enableChildFocusing(QGraphicsItem* parent)
         child->setFlag(QGraphicsItem::ItemIsFocusable, true);
         enableChildFocusing(child);
     }
+}
+
+bool ErdEntity::edit(const QPointF& point)
+{
+    int idx = rowIndexAt(point);
+    if (idx < 0)
+        return false;
+
+    editRow(idx);
+    return true;
+}
+
+void ErdEntity::editName()
+{
+    editRow(0);
+}
+
+void ErdEntity::editRow(int rowIdx)
+{
+    Row* row = rows[rowIdx];
+    QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget(row->topRect);
+
+    QLineEdit* edit = new QLineEdit();
+    edit->setText(row->text->text());
+    proxy->setWidget(edit);
+    proxy->setGeometry(row->topRect->boundingRect());
+    edit->selectAll();
+    edit->setFocus();
+
+    auto *deletionFilter = new DeleteOnFocusOutFilter(edit);
+    edit->installEventFilter(deletionFilter);
+    edit->installEventFilter(this);
+
+    connect(edit, &QLineEdit::textEdited, [this, rowIdx](const QString &value) {applyRowEdition(rowIdx, value);});
+}
+
+bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
+{
+    if (event->type() == QEvent::KeyPress && qobject_cast<QLineEdit*>(obj))
+    {
+        auto *keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Tab)
+        {
+            tabKeyPressed();
+            return true;
+        }
+
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
+        {
+            enterKeyPressed();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 void ErdEntity::tabKeyPressed()
