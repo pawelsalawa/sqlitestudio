@@ -16,6 +16,7 @@ class ErdChangeComposite : public ErdChange
         ErdChangeComposite& operator+=(const QList<ErdChange*>& changeList);
         QList<ErdChange*> getChanges() const;
         QStringList getUndoDdl();
+        QString getTransactionId() const;
 
     protected:
         QStringList provideUndoEntitiesToRefresh() const;

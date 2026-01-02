@@ -20,8 +20,8 @@ QStringList ErdChange::toDdl(bool skipSaveoints)
     static_qstring(savepointTpl, "SAVEPOINT '%1'");
 
     QStringList ddl;
-    if (!skipSaveoints && !transactionId.isNull())
-        ddl << savepointTpl.arg(transactionId);
+    if (!skipSaveoints && !getTransactionId().isNull())
+        ddl << savepointTpl.arg(getTransactionId());
 
     ddl += getChangeDdl();
     return ddl;
@@ -31,10 +31,10 @@ QStringList ErdChange::getUndoDdl()
 {
     static_qstring(rollbackTpl, "ROLLBACK TO '%1'");
 
-    if (transactionId.isNull())
+    if (getTransactionId().isNull())
         return QStringList();
 
-    return {rollbackTpl.arg(transactionId)};
+    return {rollbackTpl.arg(getTransactionId())};
 }
 
 QStringList ErdChange::getEntitiesToRefreshAfterUndo() const

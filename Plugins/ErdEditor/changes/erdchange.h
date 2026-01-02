@@ -36,7 +36,7 @@ class ErdChange
         QStringList getEntitiesToRefreshAfterUndo() const;
 
         Category getCategory() const;
-        QString getTransactionId() const;
+        virtual QString getTransactionId() const;
         QString getDescription() const;
 
     protected:

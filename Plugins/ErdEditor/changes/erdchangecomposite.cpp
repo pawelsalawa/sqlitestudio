@@ -49,6 +49,14 @@ QStringList ErdChangeComposite::getUndoDdl()
     return ErdChange::getUndoDdl();
 }
 
+QString ErdChangeComposite::getTransactionId() const
+{
+    if (!changes.isEmpty())
+        return changes.first()->getTransactionId();
+
+    return ErdChange::getTransactionId();
+}
+
 QStringList ErdChangeComposite::provideUndoEntitiesToRefresh() const
 {
     QStringList results;
