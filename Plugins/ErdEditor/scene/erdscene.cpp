@@ -211,6 +211,15 @@ void ErdScene::entityCreated(ErdEntity* entity)
 {
     entities << entity;
     entityMap[entity->getTableName()] = entity;
+
+    connect(entity, &ErdEntity::nameEdited, [this, entity](const QString& newName)
+    {
+        emit entityNameEditedInline(entity, newName);
+    });
+    connect(entity, &ErdEntity::fieldEdited, [this, entity](int colIdx, const QString& newName)
+    {
+        emit entityFieldEditedInline(entity, colIdx, newName);
+    });
 }
 
 void ErdScene::entityToBeDeleted(ErdEntity* entity)
@@ -442,12 +451,17 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
     if (items.isEmpty())
         return;
 
+    // Mark entities as being deleted first to avoid persisting
+    // "new entity yet to be commited" upon clearing side panel
+    QList<ErdEntity*> entitiesToDelete = entities | FILTER(entity, {return items.contains(entity);});
+    for (ErdEntity* entity : entitiesToDelete)
+        entity->markAsBeingDeleted();
+
     emit sidePanelAbortRequested();
 
     for (auto&& item : items)
         item->setSelected(false);
 
-    QList<ErdEntity*> entitiesToDelete = entities | FILTER(entity, {return items.contains(entity);});
     QList<ErdConnection*> connectionsToDelete = toList(getConnections()) |
         FILTER(conn,
         {
@@ -545,6 +559,13 @@ bool ErdScene::redoChange(ErdChange* change)
 
 ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
 {
+    if (!entity->isExistingTable())
+    {
+        entity->markAsBeingDeleted();
+        QTimer::singleShot(0, [this, entity]() {removeEntityFromScene(entity);});
+        return nullptr;
+    }
+
     QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
     ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), entity->pos(), changeDesc);
     ddlExecutor->setQueries(change->toDdl());

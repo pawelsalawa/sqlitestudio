@@ -141,7 +141,8 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
     else if (draftConnection)
         draftConnection->updatePosition(mapToScene(event->position().toPoint()));
 
-    clickPos = QPoint();
+    if (!tolerateMicroMovesForClick())
+        clickPos = QPoint();
 
     QGraphicsView::mouseMoveEvent(event);
 }
@@ -166,10 +167,11 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
         }
     }
 
-    if (!clickPos.isNull() && event->position().toPoint() == clickPos)
+    if (!clickPos.isNull() && (event->position().toPoint() == clickPos || sameItemOnPositions(clickPos, event->position().toPoint())))
     {
+        QPoint pressPos = clickPos;
         clickPos = QPoint();
-        if (viewClicked(event->position().toPoint(), event->button()))
+        if (viewClicked(pressPos, event->button()))
             return;
     }
 
@@ -471,7 +473,7 @@ void ErdView::applyCursor(QIcon* icon)
 {
     if (!icon)
     {
-        setCursor(QCursor());
+        viewport()->unsetCursor();
         return;
     }
 
@@ -486,7 +488,27 @@ void ErdView::applyCursor(QIcon* icon)
     pm.setDevicePixelRatio(dpr);
 
     QCursor cursor(pm, 1 * dpr, 1 * dpr);
-    setCursor(cursor);
+    viewport()->setCursor(cursor);
+}
+
+bool ErdView::sameItemOnPositions(const QPoint& pos1, const QPoint& pos2)
+{
+    QList<QGraphicsItem*> list1 = items(pos1);
+    QList<QGraphicsItem*> list2 = items(pos2);
+    for (QGraphicsItem*& it1 : list1)
+        if (list2.contains(it1))
+            return true;
+
+    return false;
+}
+
+bool ErdView::tolerateMicroMovesForClick()
+{
+    // Even if not started the arrow yet, we want initial click to be tolerant for micro-moves
+    if (isDraftingConnection())
+        return true;
+
+    return false;
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :

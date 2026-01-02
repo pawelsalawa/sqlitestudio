@@ -36,6 +36,8 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
         void changesSuccessfullyCommitted();
         bool commitStructure(bool skipWarning = false);
         void rollbackStructure();
+        void nameEditedInline(const QString& newName);
+        void columnEditedInline(int columnIdx, const QString& newName);
 
     protected slots:
         void executeStructureChanges();

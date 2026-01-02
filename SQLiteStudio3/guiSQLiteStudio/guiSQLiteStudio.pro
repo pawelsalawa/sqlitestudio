@@ -34,6 +34,7 @@ DEFINES += GUISQLITESTUDIO_LIBRARY
 SOURCES +=\
     common/customsplitter.cpp \
     common/dbcombobox.cpp \
+    common/deleteonfocusoutfilter.cpp \
     common/dialogsizehandler.cpp \
     common/immediatetooltip.cpp \
     common/mouseshortcut.cpp \
@@ -196,6 +197,7 @@ SOURCES +=\
 HEADERS  += mainwindow.h \
     common/customsplitter.h \
     common/dbcombobox.h \
+    common/deleteonfocusoutfilter.h \
     common/dialogsizehandler.h \
     common/immediatetooltip.h \
     common/mouseshortcut.h \

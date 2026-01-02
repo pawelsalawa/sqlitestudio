@@ -5,6 +5,7 @@
 #include "style.h"
 #include "common/unused.h"
 #include "common/global.h"
+#include "common/deleteonfocusoutfilter.h"
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsTextItem>
 #include <QGraphicsLineItem>
@@ -278,6 +279,26 @@ void ErdEntity::editName()
     editRow(0);
 }
 
+bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
+{
+    if (event->type() == QEvent::KeyPress && qobject_cast<QLineEdit*>(obj))
+    {
+        auto *keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Tab)
+        {
+            tabKeyPressed();
+            return true;
+        }
+
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
+        {
+            enterKeyPressed();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}
+
 void ErdEntity::editRow(int rowIdx)
 {
     Row* row = rows[rowIdx];
@@ -289,6 +310,12 @@ void ErdEntity::editRow(int rowIdx)
     proxy->setGeometry(row->topRect->boundingRect());
     edit->selectAll();
     edit->setFocus();
+
+    auto *deletionFilter = new DeleteOnFocusOutFilter(edit);
+    edit->installEventFilter(deletionFilter);
+    edit->installEventFilter(this);
+
+    connect(edit, &QLineEdit::textEdited, [this, rowIdx](const QString &value) {applyRowEdition(rowIdx, value);});
 }
 
 void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
@@ -515,4 +542,25 @@ void ErdEntity::enableChildFocusing(QGraphicsItem* parent)
         child->setFlag(QGraphicsItem::ItemIsFocusable, true);
         enableChildFocusing(child);
     }
+}
+
+void ErdEntity::tabKeyPressed()
+{
+    qDebug() << "tab pressed";
+}
+
+void ErdEntity::enterKeyPressed()
+{
+    qDebug() << "enter pressed";
+}
+
+void ErdEntity::applyRowEdition(int rowIdx, const QString& value)
+{
+    if (!existingTable)
+        rows[rowIdx]->text->setText(value);
+
+    if (rowIdx == 0)
+        emit nameEdited(value);
+    else
+        emit fieldEdited(rowIdx - 1, value);
 }

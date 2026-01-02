@@ -120,6 +120,8 @@ void ErdWindow::init()
     connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
     connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
+    connect(scene, &ErdScene::entityNameEditedInline, this, &ErdWindow::handleEntityNameEditedInline);
+    connect(scene, &ErdScene::entityFieldEditedInline, this, &ErdWindow::handleEntityFieldEditedInline);
     ui->view->setScene(scene);
 
     initActions();
@@ -292,12 +294,42 @@ void ErdWindow::createNewEntityAt(const QPointF& pos)
     SqliteCreateTable* tableModel = new SqliteCreateTable();
     tableModel->table = tr("table name", "ERD editor");
 
+    SqliteCreateTable::Column* column = new SqliteCreateTable::Column(tr("column name", "ERD editor"), nullptr, {});
+    column->setParent(tableModel);
+    tableModel->columns << column;
+
     ErdEntity* entity = new ErdEntity(tableModel);
     entity->setExistingTable(false);
     scene->placeNewEntity(entity, pos);
 
     focusItem(entity);
     entity->editName();
+}
+
+void ErdWindow::handleEntityNameEditedInline(ErdEntity* entity, const QString& newName)
+{
+    UNUSED(entity);
+    if (!currentSideWidget)
+        return;
+
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (!tableWin)
+        return;
+
+    tableWin->nameEditedInline(newName);
+}
+
+void ErdWindow::handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName)
+{
+    UNUSED(entity);
+    if (!currentSideWidget)
+        return;
+
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (!tableWin)
+        return;
+
+    tableWin->columnEditedInline(colIdx, newName);
 }
 
 void ErdWindow::itemSelectionChanged()

@@ -3,6 +3,7 @@
 #include "ui_tablewindow.h"
 #include "changes/erdchangeentity.h"
 #include "changes/erdchangenewentity.h"
+#include "windows/tablestructuremodel.h"
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),
@@ -43,6 +44,9 @@ QString ErdTableWindow::getQuitUncommittedConfirmMessage() const
 
 bool ErdTableWindow::commitErdChange()
 {
+    if (entity->isBeingDeleted())
+        return true;
+
     return commitStructure(true);
 }
 
@@ -66,6 +70,32 @@ void ErdTableWindow::defineCurrentContextDb()
 {
     // No-op, as we use in-memory db for this window and it's not on the dropdown list.
     // The dropdown list is hidden anyway.
+}
+
+void ErdTableWindow::nameEditedInline(const QString& newName)
+{
+    createTable->table = newName;
+    ui->tableNameEdit->setText(newName);
+    updateStructureCommitState();
+    updateDdlTab();
+}
+
+void ErdTableWindow::columnEditedInline(int columnIdx, const QString& newName)
+{
+    while (createTable->columns.size() <= columnIdx)
+    {
+        SqliteCreateTable::Column* column = new SqliteCreateTable::Column("", nullptr, {});
+        structureModel->appendColumn(column);
+    }
+
+    createTable->columns[columnIdx]->name = newName;
+
+    ui->structureView->resizeColumnToContents(0);
+    resizeStructureViewColumns();
+
+    updateStructureCommitState();
+    updateStructureToolbarState();
+    updateDdlTab();
 }
 
 void ErdTableWindow::changesSuccessfullyCommitted()

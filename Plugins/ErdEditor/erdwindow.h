@@ -145,6 +145,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void undo();
         void redo();
         void createNewEntityAt(const QPointF& pos);
+        void handleEntityNameEditedInline(ErdEntity* entity, const QString& newName);
+        void handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
 };
 
 #endif // ERDWINDOW_H

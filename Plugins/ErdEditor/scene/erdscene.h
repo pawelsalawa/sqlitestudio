@@ -105,6 +105,8 @@ class ErdScene : public QGraphicsScene
         void changeReceived(ErdChange* change);
         void sidePanelAbortRequested();
         void sidePanelRefreshRequested();
+        void entityNameEditedInline(ErdEntity* entity, const QString& newName);
+        void entityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
 };
 
 #endif // ERDSCENE_H

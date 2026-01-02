@@ -44,6 +44,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void setExistingTable(bool newExistingTable);
         bool edit(const QPointF& point);
         void editName();
+        bool eventFilter(QObject *obj, QEvent *event);
 
     private:
         struct Row
@@ -72,6 +73,8 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void addTableTitle();
         void disableChildSelection(QGraphicsItem* parent);
         void enableChildFocusing(QGraphicsItem* parent);
+        void tabKeyPressed();
+        void enterKeyPressed();
 
         static constexpr qreal CELL_PADDING = 7.0;
         static constexpr qreal TEXT_GAP = 8.0;
@@ -82,6 +85,13 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         QList<Row*> rows;
         QGraphicsPixmapItem* cornerIcon = nullptr;
         bool existingTable = true;
+
+    private slots:
+        void applyRowEdition(int rowIdx, const QString& value);
+
+    signals:
+        void nameEdited(const QString& newName);
+        void fieldEdited(int rowIdx, const QString& newName);
 };
 
 #endif // ERDENTITY_H

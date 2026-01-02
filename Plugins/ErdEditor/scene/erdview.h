@@ -76,6 +76,8 @@ class ErdView : public QGraphicsView
         void handleSelectionOnMouseEvent(const QPoint& pos);
         void clearSelectedItems();
         void applyCursor(QIcon* icon);
+        bool sameItemOnPositions(const QPoint& pos1, const QPoint& pos2);
+        bool tolerateMicroMovesForClick();
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
