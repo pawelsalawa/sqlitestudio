@@ -138,6 +138,22 @@ int SqliteCreateTable::getColumnIndex(const QString& colName)
     return -1;
 }
 
+QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getTableConstraintsOnColumn(const QString& column) const
+{
+    QList<SqliteCreateTable::Constraint*> results;
+    for (auto&& constr : constraints)
+    {
+        if (constr->indexedColumns | CONTAINS(idxCol, {return idxCol->name.compare(column, Qt::CaseInsensitive) == 0;}))
+            results << constr;
+    }
+    return results;
+}
+
+QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getTableConstraintsOnColumn(Column* column) const
+{
+    return getTableConstraintsOnColumn(column->name);
+}
+
 QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeignKeysByTable(const QString& foreignTable, const QString& srcCol, const QString& trgCol) const
 {
     QList<SqliteCreateTable::Column::Constraint*> results;

@@ -41,6 +41,16 @@ bool StatusField::hasMessages() const
     return ui->tableWidget->rowCount() > 0;
 }
 
+void StatusField::suspend()
+{
+    suspended = true;
+}
+
+void StatusField::resume()
+{
+    suspended = false;
+}
+
 StatusField::~StatusField()
 {
     delete ui;
@@ -60,16 +70,25 @@ void StatusField::changeEvent(QEvent *e)
 
 void StatusField::info(const QString &text)
 {
+    if (suspended)
+        return;
+
     addEntry(ICONS.STATUS_INFO, text, style()->standardPalette().text().color(), INFO);
 }
 
 void StatusField::warn(const QString &text)
 {
+    if (suspended)
+        return;
+
     addEntry(ICONS.STATUS_WARNING, text, style()->standardPalette().text().color(), WARN);
 }
 
 void StatusField::error(const QString &text)
 {
+    if (suspended)
+        return;
+
     addEntry(ICONS.STATUS_ERROR, text, QColor(Qt::red), ERROR);
 }
 

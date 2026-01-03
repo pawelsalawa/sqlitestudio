@@ -71,7 +71,8 @@ int ErdEntity::rowIndexAt(const QPointF& point)
     int idx = 0;
     for (Row*& row : rows)
     {
-        if (row->topRect->contains(localCoords))
+        QPointF rowPoint = row->topRect->mapFromItem(this, localCoords);
+        if (row->topRect->contains(rowPoint))
             return idx;
 
         idx++;
@@ -82,7 +83,7 @@ int ErdEntity::rowIndexAt(const QPointF& point)
 QRectF ErdEntity::rowRect(int rowIndex)
 {
     if (rowIndex > -1 && rowIndex < rows.size())
-        return rows[rowIndex]->topRect->boundingRect();
+        return mapRectFromItem(rows[rowIndex]->topRect, rows[rowIndex]->topRect->boundingRect());
 
     return QRectF();
 }
@@ -203,8 +204,19 @@ void ErdEntity::rebuild()
     int colIdx = 0;
     addTableTitle();
     for (SqliteCreateTable::Column*& col : tableModel->columns)
-        addColumn(col, (++colIdx == tableModel->columns.size()));
+    {
+        auto tableConstraints = tableModel->getTableConstraintsOnColumn(col);
+        addColumn(col, tableConstraints, (++colIdx == tableModel->columns.size()));
+    }
 
+    updateGeometry();
+
+    disableChildSelection(this);
+    setFlag(QGraphicsItem::ItemIsFocusable, true);
+}
+
+void ErdEntity::updateGeometry()
+{
     qreal iconsWd = 0;
     for (Row*& row : rows)
         iconsWd = qMax(iconsWd, row->calcIconsWidth());
@@ -222,16 +234,7 @@ void ErdEntity::rebuild()
     for (Row*& row : rows)
         y += row->updateLayout(iconsWd, nameWd, totalWd, y);
 
-    disableChildSelection(this);
-    // enableChildFocusing(this);
-    setFlag(QGraphicsItem::ItemIsFocusable, true);
-
     setRect(0, 0, totalWd, y);
-
-    // cornerIcon = new QGraphicsPixmapItem(this);
-    // cornerIcon->setPixmap(ICONS.INDICATOR_WARN.toQPixmap(12));
-    // cornerIcon->setToolTip(QObject::tr(""));
-    // cornerIcon->setPos(-6, -6);
 }
 
 void ErdEntity::addTableTitle()
@@ -246,7 +249,7 @@ void ErdEntity::addTableTitle()
 
     row->text = new QGraphicsSimpleTextItem(row->topRect);
     row->text->setBrush(STYLE->standardPalette().text());
-    row->text->setText(tableModel->table);
+    row->setText(tableModel->table);
 
     auto bold = row->text->font();
     bold.setWeight(QFont::ExtraBold);
@@ -269,9 +272,10 @@ void ErdEntity::setExistingTable(bool newExistingTable)
     existingTable = newExistingTable;
 }
 
-void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
+void ErdEntity::addColumn(SqliteCreateTable::Column* column, QList<SqliteCreateTable::Constraint*> tableConstraints, bool isLast)
 {
-    Row* row = new Row(this);
+    QString type = column->type ? column->type->detokenize().trimmed() : QString();
+    Row* row = addColumn(column->name, type, isLast);
     row->sqliteStatement = column;
 
     for (SqliteCreateTable::Column::Constraint*& constr : column->constraints)
@@ -318,28 +322,61 @@ void ErdEntity::addColumn(SqliteCreateTable::Column* column, bool isLast)
         }
     }
 
+    for (SqliteCreateTable::Constraint*& constr : tableConstraints)
+    {
+        QGraphicsPixmapItem* iconItem = new QGraphicsPixmapItem(row->topRect);
+        iconItem->setToolTip(constr->detokenize().trimmed());
+        Icon* icon = nullptr;
+        switch (constr->type)
+        {
+            case SqliteCreateTable::Constraint::PRIMARY_KEY:
+                icon = &(ICONS.CONSTRAINT_PRIMARY_KEY);
+                break;
+            case SqliteCreateTable::Constraint::UNIQUE:
+                icon = &(ICONS.CONSTRAINT_UNIQUE);
+                break;
+            case SqliteCreateTable::Constraint::CHECK:
+                icon = &(ICONS.CONSTRAINT_CHECK);
+                break;
+            case SqliteCreateTable::Constraint::FOREIGN_KEY:
+                icon = &(ICONS.CONSTRAINT_FOREIGN_KEY);
+                break;
+            case SqliteCreateTable::Constraint::NAME_ONLY:
+                break;
+        }
+
+        if (icon)
+        {
+            iconItem->setPixmap(icon->toQPixmap());
+            row->icons << iconItem;
+        }
+    }
+}
+
+ErdEntity::Row* ErdEntity::addColumn(const QString& columnName, const QString& typeName, bool isLast)
+{
+    Row* row = new Row(this);
+
     row->text = new QGraphicsSimpleTextItem(row->topRect);
     row->text->setBrush(STYLE->standardPalette().text());
-    row->text->setText(column->name);
+    row->setText(columnName);
 
     auto bold = row->text->font();
     bold.setWeight(QFont::Bold);
     row->text->setFont(bold);
 
-    if (column->type)
+    if (!typeName.isNull())
     {
         row->datatype = new QGraphicsSimpleTextItem(row->topRect);
         row->datatype->setBrush(STYLE->standardPalette().text());
-        row->datatype->setText(column->type->detokenize().trimmed());
+        row->datatype->setText(typeName);
     }
 
     if (!isLast)
-    {
-        row->bottomLine = new QGraphicsLineItem(row->topRect);
-        row->bottomLine->setPen(QPen(STYLE->standardPalette().text().color(), 0.3));
-    }
+        row->notLastAnymore();
 
     rows << row;
+    return row;
 }
 
 void ErdEntity::modelUpdated()
@@ -472,9 +509,26 @@ qreal ErdEntity::Row::updateLayout(qreal iconColumn, qreal nameColumn, qreal glo
 
     // Knowing all dimensions, let's update top-level rect of this row
     topRect->setPos(0, globalY);
-    topRect->setRect(0, globalY, globalWidth, hg);
+    topRect->setRect(0, 0, globalWidth, hg);
 
     return hg;
+}
+
+void ErdEntity::Row::notLastAnymore()
+{
+    bottomLine = new QGraphicsLineItem(topRect);
+    bottomLine->setPen(QPen(STYLE->standardPalette().text().color(), 0.3));
+}
+
+void ErdEntity::Row::setText(const QString& value)
+{
+    emptyTextValue = value.isEmpty();
+    text->setText(emptyTextValue ? " " : value);
+}
+
+QString ErdEntity::Row::getText() const
+{
+    return emptyTextValue ? "" : text->text();
 }
 
 void ErdEntity::disableChildSelection(QGraphicsItem* parent)
@@ -497,6 +551,9 @@ void ErdEntity::enableChildFocusing(QGraphicsItem* parent)
 
 bool ErdEntity::edit(const QPointF& point)
 {
+    if (!isSelected()) // forbid editing this if other entity edition is not finished (and blocked due to invalid state)
+        return false;
+
     int idx = rowIndexAt(point);
     if (idx < 0)
         return false;
@@ -512,25 +569,39 @@ void ErdEntity::editName()
 
 void ErdEntity::editRow(int rowIdx)
 {
+    lastInlineEditedRow = rowIdx;
     Row* row = rows[rowIdx];
-    QRectF rect = row->topRect->boundingRect();
-    rect.moveTop(0);
 
-    QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget(row->topRect);
+    QLineEdit* inlineEdit = new QLineEdit();
+    inlineEdit->setContextMenuPolicy(Qt::NoContextMenu);
+    inlineEdit->setText(row->getText());
+    inlineEdit->installEventFilter(this);
 
-    QLineEdit* edit = new QLineEdit();
-    edit->setContextMenuPolicy(Qt::NoContextMenu);
-    edit->setText(row->text->text());
-    proxy->setWidget(edit);
-    proxy->setGeometry(rect);
-    edit->selectAll();
-    edit->setFocus();
+    QGraphicsProxyWidget* inlineProxy = new QGraphicsProxyWidget(row->topRect);
+    inlineProxy->setWidget(inlineEdit);
+    updateInlineEditorGeometry(row, inlineProxy);
 
-    auto *deletionFilter = new DeleteOnFocusOutFilter(edit);
-    edit->installEventFilter(deletionFilter);
-    edit->installEventFilter(this);
+    row->topRect->setFocus();
 
-    connect(edit, &QLineEdit::textEdited, [this, rowIdx](const QString &value) {applyRowEdition(rowIdx, value);});
+    auto *deletionFilter = new DeleteOnFocusOutFilter(inlineProxy);
+    inlineProxy->installEventFilter(deletionFilter);
+    connect(deletionFilter, &DeleteOnFocusOutFilter::aboutToDelete, this, [this](auto, Qt::FocusReason reason)
+    {
+        if (reason == Qt::TabFocusReason || reason == Qt::BacktabFocusReason)
+            return;
+
+        inlineEditionCheckIfFieldDeleted();
+    }, Qt::QueuedConnection);
+
+    connect(inlineEdit, &QLineEdit::textEdited, [this, rowIdx, inlineProxy](const QString &value)
+    {
+        applyRowEdition(rowIdx, value, inlineProxy);
+    });
+
+    requestRowVisibility(row);
+
+    inlineEdit->selectAll();
+    inlineEdit->setFocus();
 }
 
 bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
@@ -540,33 +611,118 @@ bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
         auto *keyEvent = static_cast<QKeyEvent*>(event);
         if (keyEvent->key() == Qt::Key_Tab)
         {
-            tabKeyPressed();
+            inlineEditTabKeyPressed();
+            return true;
+        }
+        if (keyEvent->key() == Qt::Key_Backtab)
+        {
+            inlineEditTabKeyPressed(true);
             return true;
         }
 
         if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter)
         {
-            enterKeyPressed();
+            inlineEditEnterKeyPressed();
             return true;
         }
     }
     return QObject::eventFilter(obj, event);
 }
 
-void ErdEntity::tabKeyPressed()
+void ErdEntity::keyPressEvent(QKeyEvent* event)
 {
-    qDebug() << "tab pressed";
+    if (lastInlineEditedRow > -1 && (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter))
+        editRow(lastInlineEditedRow);
 }
 
-void ErdEntity::enterKeyPressed()
+void ErdEntity::inlineEditTabKeyPressed(bool backward)
 {
-    qDebug() << "enter pressed";
+    setFocus(backward ? Qt::BacktabFocusReason : Qt::TabFocusReason);
+    bool justDeleted = inlineEditionCheckIfFieldDeleted();
+
+    if (lastInlineEditedRow > -1)
+    {
+        int shift = backward ? (justDeleted ? 0 : -1) : 1;
+        int nextRow = lastInlineEditedRow + shift;
+        if (nextRow < 0)
+            return;
+
+        if (rows.size() <= nextRow)
+        {
+            if (justDeleted) // about to create one, but just deleted one? stop.
+                return;
+
+            rows[rows.size() - 1]->notLastAnymore();
+            addColumn("", QString(), true);
+            updateGeometry();
+            disableChildSelection(this);
+            emit fieldEdited(nextRow - 1, rows[nextRow]->getText());
+            emit requestSceneGeomUpdate();
+        }
+        editRow(nextRow);
+    }
 }
 
-void ErdEntity::applyRowEdition(int rowIdx, const QString& value)
+void ErdEntity::inlineEditEnterKeyPressed()
 {
-    if (!existingTable)
-        rows[rowIdx]->text->setText(value);
+    setFocus(Qt::ShortcutFocusReason);
+    inlineEditionCheckIfFieldDeleted();
+}
+
+void ErdEntity::updateInlineEditorGeometry(Row* row, QGraphicsProxyWidget* inlineProxy)
+{
+    if (!inlineProxy || !row)
+        return;
+
+    QRectF rect = row->topRect->boundingRect();
+    rect.moveTop(0);
+    inlineProxy->setGeometry(rect);
+}
+
+void ErdEntity::requestRowVisibility(Row* row)
+{
+    QRectF rect = row->topRect->boundingRect();
+    rect.moveTo(row->topRect->pos());
+    emit requestVisibilityOf(mapRectToScene(rect));
+}
+
+bool ErdEntity::inlineEditionCheckIfFieldDeleted()
+{
+    if (lastInlineEditedRow == -1 || lastInlineEditedRow >= rows.size())
+        return false;
+
+    if (lastInlineEditedRow == 0)
+        return false; // no inline deletion if table title is empty
+
+    if (existingTable && (lastInlineEditedRow - 1) < tableModel->columns.size()) // -1 for table name row index
+        return false; // inline deletion of pre-existing columns is forbidden to avoid ErdConnection issues
+
+    Row* row = rows[lastInlineEditedRow];
+    if (row->getText().isEmpty())
+    {
+        rows.removeOne(row);
+        delete row;
+
+        updateGeometry();
+        emit fieldDeleted(lastInlineEditedRow - 1);
+        emit requestSceneGeomUpdate();
+
+        if (lastInlineEditedRow >= rows.size())
+            lastInlineEditedRow--;
+
+        return true;
+    }
+    return false;
+}
+
+void ErdEntity::applyRowEdition(int rowIdx, const QString& value, QGraphicsProxyWidget* inlineProxy)
+{
+    Row* row = rows[rowIdx];
+    row->setText(value);
+    updateGeometry();
+    updateInlineEditorGeometry(row, inlineProxy);
+    for (auto&& conn : connections)
+        conn->refreshPosition();
 
     if (rowIdx == 0)
         emit nameEdited(value);

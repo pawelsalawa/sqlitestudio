@@ -18,6 +18,9 @@ class DeleteOnFocusOutFilter : public QObject
 
     private:
         QSet<Qt::FocusReason> ignoredFocusReasons;
+
+    signals:
+        void aboutToDelete(QObject* object, Qt::FocusReason reason);
 };
 
 #endif // DELETEONFOCUSOUTFILTER_H

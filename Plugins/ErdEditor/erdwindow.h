@@ -90,7 +90,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         bool showSidePanelPropertiesFor(QGraphicsItem* item);
         bool initMemDb();
         bool storeCurrentSidePanelModifications();
-        bool handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName);
         /**
          * @return true if modifications storing operation was successful and view is allowed to change item selection.
          */
@@ -116,7 +115,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QWidget* noSideWidgetContents = nullptr;
         QGraphicsOpacityEffect* noSideWidgetEffect = nullptr;
         QToolButton* changeCountLabel = nullptr;
-        QList<QGraphicsItem*> previouslySelectedItems;
         bool ignoreSelectionChangeEvents = false;
         
     private slots:
@@ -148,7 +146,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void createNewEntityAt(const QPointF& pos);
         void handleEntityNameEditedInline(ErdEntity* entity, const QString& newName);
         void handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
+        void handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx);
         void updateSelectionBasedActionsState();
+        void failedChangeReEditRequested(ErdEntity* entity);
 };
 
 #endif // ERDWINDOW_H

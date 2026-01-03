@@ -14,8 +14,11 @@ bool DeleteOnFocusOutFilter::eventFilter(QObject* obj, QEvent* event)
         if (ignoredFocusReasons.contains(fe->reason()))
             return QObject::eventFilter(obj, event);
 
-        if (auto w = qobject_cast<QObject*>(obj))
-            w->deleteLater();
+        if (obj)
+        {
+            emit aboutToDelete(obj, fe->reason());
+            obj->deleteLater();
+        }
     }
     return QObject::eventFilter(obj, event);
 }

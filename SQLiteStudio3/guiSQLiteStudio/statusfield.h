@@ -22,6 +22,8 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         ~StatusField();
 
         bool hasMessages() const;
+        void suspend();
+        void resume();
 
     protected:
         void changeEvent(QEvent *e);
@@ -44,6 +46,7 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         QMenu* menu = nullptr;
         QAction* copyAction = nullptr;
         QAction* clearAction = nullptr;
+        bool suspended = false;
         QList<QAbstractAnimation*> itemAnimations;
 
         static const int timeStampColumnWidth = 70;

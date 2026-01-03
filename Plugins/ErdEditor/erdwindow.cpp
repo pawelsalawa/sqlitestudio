@@ -123,6 +123,7 @@ void ErdWindow::init()
     connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
     connect(scene, &ErdScene::entityNameEditedInline, this, &ErdWindow::handleEntityNameEditedInline);
     connect(scene, &ErdScene::entityFieldEditedInline, this, &ErdWindow::handleEntityFieldEditedInline);
+    connect(scene, &ErdScene::entityFieldDeletedInline, this, &ErdWindow::handleEntityFieldDeletedInline);
     ui->view->setScene(scene);
 
     initActions();
@@ -133,6 +134,7 @@ void ErdWindow::init()
     connect(ui->view, &ErdView::draftConnectionRemoved, this, &ErdWindow::handleDraftConnectionRemoved, Qt::QueuedConnection);
     connect(ui->view, &ErdView::tableInsertionAborted, this, &ErdWindow::handleTableInsertionAborted, Qt::QueuedConnection);
     connect(ui->view, &ErdView::newEntityPositionPicked, this, &ErdWindow::createNewEntityAt);
+    connect(scene, &ErdScene::requestVisibilityOf, ui->view, &ErdView::handleVisibilityRequest);
 
     changeRegistry = new ErdChangeRegistry(this);
     connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);
@@ -345,26 +347,62 @@ void ErdWindow::handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, con
     tableWin->columnEditedInline(colIdx, newName);
 }
 
+void ErdWindow::handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx)
+{
+    UNUSED(entity);
+    if (!currentSideWidget)
+        return;
+
+    ErdTableWindow* tableWin = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (!tableWin)
+        return;
+
+    tableWin->columnDeletedInline(colIdx);
+}
+
 void ErdWindow::updateSelectionBasedActionsState()
 {
     actionMap[DELETE_SELECTED]->setEnabled(!scene->selectedItems().isEmpty());
 }
+
+void ErdWindow::failedChangeReEditRequested(ErdEntity* entity)
+{
+    ignoreSelectionChangeEvents = true;
+    scene->clearSelection();
+    entity->setSelected(true);
+    ignoreSelectionChangeEvents = false;
+}
+// if (!sidePanelEntityName.isNull() && !successfullyStored)
+// {
+//     QMessageBox::critical(this,
+//           tr("Table modification failed"),
+//           tr("There was a problem applying changes to the table '%1'. Check the messages panel for details. "
+//              "Please either roll back the changes in the side panel or fix them. "
+//              "You cannot continue editing the diagram until this issue is resolved.")
+//                           .arg(sidePanelEntityName)
+//         );
+
+//     ignoreSelectionChangeEvents = true;
+//     scene->clearSelection();
+//     for (QGraphicsItem*& item : previouslySelectedItems)
+//         item->setSelected(true);
+
+//     ignoreSelectionChangeEvents = false;
+//     return false;
+// }
+// return true;
 
 void ErdWindow::itemSelectionChanged()
 {
     if (ignoreSelectionChangeEvents)
         return;
 
-    QString sidePanelEntityName = getCurrentSidePanelModificationsEntity();
     QList<QGraphicsItem*> selItems = scene->selectedItems();
-    bool successfullyStoredChanges = selItems.size() == 1 ?
-        showSidePanelPropertiesFor(selItems[0]) :
-        clearSidePanel();
-
-    if (!handleSidePanelModificationsResult(successfullyStoredChanges, sidePanelEntityName))
+    if (!clearSidePanel())
         return;
 
-    previouslySelectedItems = selItems;
+    if (selItems.size() == 1)
+        showSidePanelPropertiesFor(selItems[0]);
 }
 
 void ErdWindow::reloadSchema()
@@ -603,6 +641,7 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
         ErdTableWindow* tableMdiChild = new ErdTableWindow(memDb, entity);
         connect(tableMdiChild, &ErdTableWindow::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
         connect(tableMdiChild, &ErdTableWindow::editedEntityShouldBeDeleted, scene, &ErdScene::removeEntityFromScene, Qt::QueuedConnection);
+        connect(tableMdiChild, &ErdTableWindow::requestReEditForEntity, this, &ErdWindow::failedChangeReEditRequested, Qt::QueuedConnection);
         return setSidePanelWidget(tableMdiChild);
     }
     else if (arrow)
@@ -691,32 +730,7 @@ void ErdWindow::refreshSidePanel()
 
 bool ErdWindow::storeCurrentSidePanelModifications()
 {
-    QString sidePanelEntityName = getCurrentSidePanelModificationsEntity();
-    bool successfullyStoredChanges = clearSidePanel();
-    return handleSidePanelModificationsResult(successfullyStoredChanges, sidePanelEntityName);
-}
-
-bool ErdWindow::handleSidePanelModificationsResult(bool successfullyStored, const QString& sidePanelEntityName)
-{
-    if (!sidePanelEntityName.isNull() && !successfullyStored)
-    {
-        QMessageBox::critical(this,
-              tr("Table modification failed"),
-              tr("There was a problem applying changes to the table '%1'. Check the messages panel for details. "
-                 "Please either roll back the changes in the side panel or fix them. "
-                 "You cannot continue editing the diagram until this issue is resolved.")
-                              .arg(sidePanelEntityName)
-            );
-
-        ignoreSelectionChangeEvents = true;
-        scene->clearSelection();
-        for (QGraphicsItem*& item : previouslySelectedItems)
-            item->setSelected(true);
-
-        ignoreSelectionChangeEvents = false;
-        return false;
-    }
-    return true;
+    return clearSidePanel();
 }
 
 bool ErdWindow::restoreSession(const QVariant& sessionValue)

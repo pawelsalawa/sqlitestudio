@@ -707,7 +707,7 @@ void AbstractDb::asyncQueryFinished(AsyncQueryRunner *runner)
 
 void AbstractDb::appIsAboutToQuit()
 {
-    if (isOpen())
+    if (isOpen() && path != ":memory:")
         flushWal();
 }
 
@@ -728,9 +728,9 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
     if (results->isError())
     {
         if (!silent)
-            notifyError(tr("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText()));
+            notifyError(tr("Error attaching database %1: %2").arg(otherDb->getName(), results->getErrorText()));
         else
-            qDebug() << QString("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText());
+            qDebug() << QString("Error attaching database %1: %2").arg(otherDb->getName(), results->getErrorText());
 
         return QString();
     }

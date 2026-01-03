@@ -31,6 +31,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         void insertColumn(int colIdx, SqliteCreateTable::Column* column);
         void appendColumn(SqliteCreateTable::Column* column);
         void delColumn(int colIdx);
+        void renameColumn(int colIdx, const QString& newName);
         void moveColumnUp(int colIdx);
         void moveColumnDown(int colIdx);
         void moveColumnTo(int colIdx, int newIdx);
@@ -52,6 +53,7 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         };
 
         Columns getHeaderColumn(int colIdx) const;
+        int getHeaderColumnIdx(Columns headerColumn) const;
         bool isValidColumnIdx(int colIdx) const;
         bool doesColumnHasConstraint(SqliteCreateTable::Column* column, SqliteCreateTable::Column::Constraint::Type type);
         QString columnLabel(int column) const;

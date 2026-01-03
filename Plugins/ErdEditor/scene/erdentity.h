@@ -15,6 +15,8 @@ class QGraphicsSipmleTextItem;
 class QGraphicsTextItem;
 class QGraphicsLineItem;
 class QGraphicsItem;
+class QGraphicsProxyWidget;
+class QLineEdit;
 
 class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
 {
@@ -47,6 +49,9 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void editName();
         bool eventFilter(QObject *obj, QEvent *event);
 
+    protected:
+        void keyPressEvent(QKeyEvent* event);
+
     private:
         struct Row
         {
@@ -60,22 +65,33 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
             QList<QGraphicsItem*> icons;
             bool isHeader = false;
             SqliteStatement* sqliteStatement = nullptr;
+            bool emptyTextValue = false;
 
             qreal calcWidth(qreal iconColumn, qreal nameColumn) const;
             qreal height() const;
             qreal calcIconsWidth() const;
             qreal calcNameWidth() const;
             qreal updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY);
+            void notLastAnymore();
+            void setText(const QString& value);
+            QString getText() const;
         };
 
         void editRow(int rowIdx);
         void rebuild();
-        void addColumn(SqliteCreateTable::Column* column, bool isLast);
+        void addColumn(SqliteCreateTable::Column* column, QList<SqliteCreateTable::Constraint*> tableConstraints, bool isLast);
+        Row* addColumn(const QString& columnName, const QString& typeName, bool isLast);
         void addTableTitle();
         void disableChildSelection(QGraphicsItem* parent);
         void enableChildFocusing(QGraphicsItem* parent);
-        void tabKeyPressed();
-        void enterKeyPressed();
+        void updateGeometry();
+        void inlineEditTabKeyPressed(bool backward = false);
+        void inlineEditEnterKeyPressed();
+        void updateInlineEditorGeometry(Row* row, QGraphicsProxyWidget* inlineProxy);
+        void requestRowVisibility(Row* row);
+        bool inlineEditionCheckIfFieldDeleted();
+        void handleFieldEditedInline(int rowIdx, const QString& newName);
+        void handleFieldDeleted(int rowIdx);
 
         static constexpr qreal CELL_PADDING = 7.0;
         static constexpr qreal TEXT_GAP = 8.0;
@@ -86,13 +102,17 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         QList<Row*> rows;
         QGraphicsPixmapItem* cornerIcon = nullptr;
         bool existingTable = true;
+        int lastInlineEditedRow = -1;
 
     private slots:
-        void applyRowEdition(int rowIdx, const QString& value);
+        void applyRowEdition(int rowIdx, const QString& value, QGraphicsProxyWidget* inlineProxy);
 
     signals:
         void nameEdited(const QString& newName);
         void fieldEdited(int rowIdx, const QString& newName);
+        void fieldDeleted(int rowIdx);
+        void requestVisibilityOf(const QRectF& rect);
+        void requestSceneGeomUpdate();
 };
 
 #endif // ERDENTITY_H

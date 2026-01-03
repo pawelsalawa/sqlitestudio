@@ -96,6 +96,7 @@ class ErdView : public QGraphicsView
         void setDraftingConnectionMode(bool enabled);
         void insertNewEntity();
         void deleteSelectedItem();
+        void handleVisibilityRequest(const QRectF& rect);
 
     private slots:
         void resetZoom();

@@ -26,11 +26,11 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
         void defineCurrentContextDb();
 
     private:
-        ErdEntity* entity = nullptr;
+        bool handleFailedStructureChanges(bool skipWarning);
+        void setErrorRecording(bool enabled);
 
-    signals:
-        void changeCreated(ErdChange* change);
-        void editedEntityShouldBeDeleted(ErdEntity* entity);
+        ErdEntity* entity = nullptr;
+        QStringList recordedErrors;
 
     public slots:
         void changesSuccessfullyCommitted();
@@ -38,9 +38,16 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
         void rollbackStructure();
         void nameEditedInline(const QString& newName);
         void columnEditedInline(int columnIdx, const QString& newName);
+        void columnDeletedInline(int columnIdx);
 
     protected slots:
         void executeStructureChanges();
+        void errorRecorded(const QString& msg);
+
+    signals:
+        void changeCreated(ErdChange* change);
+        void editedEntityShouldBeDeleted(ErdEntity* entity);
+        void requestReEditForEntity(ErdEntity* entity);
 };
 
 #endif // ERDTABLEWINDOW_H

@@ -289,6 +289,12 @@ void ErdScene::entityCreated(ErdEntity* entity)
     {
         emit entityFieldEditedInline(entity, colIdx, newName);
     });
+    connect(entity, &ErdEntity::fieldDeleted, [this, entity](int colIdx)
+    {
+        emit entityFieldDeletedInline(entity, colIdx);
+    });
+    connect(entity, &ErdEntity::requestVisibilityOf, this, &ErdScene::requestVisibilityOf);
+    connect(entity, &ErdEntity::requestSceneGeomUpdate, this, &ErdScene::refreshSceneRect);
 }
 
 void ErdScene::entityToBeDeleted(ErdEntity* entity)
@@ -420,9 +426,11 @@ void ErdScene::setupEntityConnections(ErdEntity* srcEntity)
                 constr->foreignKey
                 );
 
-            conn->setTableLevelFk(true);
             if (conn)
+            {
+                conn->setTableLevelFk(true);
                 singleFkConnections << conn;
+            }
         }
         if (!singleFkConnections.isEmpty())
             tableLevelFks << singleFkConnections;

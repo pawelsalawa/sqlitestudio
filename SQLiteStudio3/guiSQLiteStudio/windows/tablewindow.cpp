@@ -1387,7 +1387,7 @@ void TableWindow::createSimilarTable()
 
 void TableWindow::tabChanged(int newTab)
 {
-    if (tabsMoving)
+    if (disableCommitOnTabChange || tabsMoving)
         return;
 
     if (newTab == getDataTabIdx())

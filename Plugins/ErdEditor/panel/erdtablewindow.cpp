@@ -4,6 +4,12 @@
 #include "changes/erdchangeentity.h"
 #include "changes/erdchangenewentity.h"
 #include "windows/tablestructuremodel.h"
+#include "services/notifymanager.h"
+#include "mainwindow.h"
+#include "statusfield.h"
+#include <QMessageBox>
+#include <QTimer>
+#include <QPushButton>
 
 ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     : TableWindow(parent, db, QString(), entity->getTableName(), entity->isExistingTable()),
@@ -35,6 +41,8 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
 
     initDbAndTable();
     updateAfterInit();
+
+    disableCommitOnTabChange = true;
 }
 
 ErdTableWindow::~ErdTableWindow()
@@ -77,6 +85,59 @@ void ErdTableWindow::defineCurrentContextDb()
     // The dropdown list is hidden anyway.
 }
 
+bool ErdTableWindow::handleFailedStructureChanges(bool skipWarning)
+{
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setWindowTitle(tr("Invalid table changes", "ERD editor"));
+    msgBox.setTextFormat(Qt::RichText);
+    msgBox.setText(tr("<b>The table contains invalid changes</b>", "ERD editor"));
+    msgBox.setInformativeText(tr(
+                                  "Some of the changes you made cannot be applied because they contain errors.<br><br>"
+                                  "<b>Errors:</b><br>"
+                                  "<code>%1</code><br><br>"
+                                  "You can <b>return to editing</b> and fix the problems, "
+                                  "or <b>discard your changes</b> and restore the previous state of the table.",
+                                  "ERD editor"
+                                 ).arg(recordedErrors.join("\n")));
+
+    auto* fixBtn = msgBox.addButton(tr("Fix errors", "ERD editor"), QMessageBox::AcceptRole);
+    msgBox.addButton(QMessageBox::Discard);
+    msgBox.setDefaultButton(fixBtn);
+    msgBox.setEscapeButton(fixBtn);
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == fixBtn)
+    {
+        emit requestReEditForEntity(entity);
+        return false;
+    }
+
+    if (entity->isExistingTable())
+    {
+        entity->modelUpdated();
+        return true;
+    }
+
+    emit editedEntityShouldBeDeleted(entity);
+    return true;
+}
+
+void ErdTableWindow::setErrorRecording(bool enabled)
+{
+    if (enabled)
+    {
+        recordedErrors.clear();
+        connect(NOTIFY_MANAGER, SIGNAL(notifyError(QString)), this, SLOT(errorRecorded(QString)));
+        MAINWINDOW->getStatusField()->suspend();
+    }
+    else
+    {
+        MAINWINDOW->getStatusField()->resume();
+        disconnect(NOTIFY_MANAGER, SIGNAL(notifyError(QString)), this, SLOT(errorRecorded(QString)));
+    }
+}
+
 void ErdTableWindow::nameEditedInline(const QString& newName)
 {
     createTable->table = newName;
@@ -93,14 +154,20 @@ void ErdTableWindow::columnEditedInline(int columnIdx, const QString& newName)
         structureModel->appendColumn(column);
     }
 
-    createTable->columns[columnIdx]->name = newName;
+    structureModel->renameColumn(columnIdx, newName);
+}
 
-    ui->structureView->resizeColumnToContents(0);
-    resizeStructureViewColumns();
+void ErdTableWindow::columnDeletedInline(int columnIdx)
+{
+    if (createTable->columns.size() <= columnIdx)
+    {
+        qCritical() << "Column indexed" << columnIdx << "of entity" << entity->getTableName()
+                    << "deleted inline, but this index is out of range for ErdTableWindow, which has"
+                    << createTable->columns.size() << "columns.";
+        return;
+    }
 
-    updateStructureCommitState();
-    updateStructureToolbarState();
-    updateDdlTab();
+    structureModel->delColumn(columnIdx);
 }
 
 void ErdTableWindow::changesSuccessfullyCommitted()
@@ -114,13 +181,14 @@ bool ErdTableWindow::commitStructure(bool skipWarning)
     if (!isModified())
         return true;
 
-    if (skipWarning && createTable->columns.isEmpty() && !entity->isExistingTable())
-    {
-        emit editedEntityShouldBeDeleted(entity);
-        return true;
-    }
+    setErrorRecording(true);
+    bool result = TableWindow::commitStructure(skipWarning);
+    result &= structureExecutor->getSuccessfulExecution();
+    setErrorRecording(false);
+    if (!result)
+        return handleFailedStructureChanges(skipWarning);
 
-    return TableWindow::commitStructure(skipWarning);
+    return true;
 }
 
 void ErdTableWindow::rollbackStructure()
@@ -156,4 +224,9 @@ void ErdTableWindow::executeStructureChanges()
         emit changeCreated(change);
     else
         qWarning() << "Failed to execute entity changes on in-memory database:" << structureExecutor->getErrorsMessages();
+}
+
+void ErdTableWindow::errorRecorded(const QString& msg)
+{
+    recordedErrors << msg;
 }

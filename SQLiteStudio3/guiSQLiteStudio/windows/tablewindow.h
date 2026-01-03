@@ -198,6 +198,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool modifyingThisTable = false;
         CenteredIconItemDelegate* constraintColumnsDelegate = nullptr;
         bool tabsMoving = false;
+        bool disableCommitOnTabChange = false;
         DbComboBox* dbCombo = nullptr;
         QHash<Action, QAction*> separatorAfterAction;
         

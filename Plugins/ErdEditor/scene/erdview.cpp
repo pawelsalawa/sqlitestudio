@@ -349,6 +349,11 @@ void ErdView::deleteSelectedItem()
     scene()->deleteItems(selectedItems);
 }
 
+void ErdView::handleVisibilityRequest(const QRectF& rect)
+{
+    ensureVisible(rect);
+}
+
 void ErdView::leavingOperatingMode(Mode mode)
 {
     switch (mode)

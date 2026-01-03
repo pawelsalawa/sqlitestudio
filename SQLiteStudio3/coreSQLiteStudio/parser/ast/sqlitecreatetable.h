@@ -209,6 +209,8 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         QStringList getPrimaryKeyColumns() const;
         Column* getColumn(const QString& colName);
         int getColumnIndex(const QString& colName);
+        QList<Constraint*> getTableConstraintsOnColumn(Column* column) const;
+        QList<Constraint*> getTableConstraintsOnColumn(const QString& column) const;
         QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
         QList<Constraint*> getForeignKeysByTable(const QString& foreignTable, const QList<QPair<QString, QString>>& tableColumnPairs) const;
         QList<Column::Constraint*> getColumnForeignKeysByTable(const QString& foreignTable) const;

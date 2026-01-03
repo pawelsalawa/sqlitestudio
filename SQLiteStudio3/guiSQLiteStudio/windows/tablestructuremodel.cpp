@@ -227,6 +227,22 @@ void TableStructureModel::delColumn(int colIdx)
     emit columnDeleted(name);
 }
 
+void TableStructureModel::renameColumn(int colIdx, const QString& newName)
+{
+    if (createTable.isNull())
+        return;
+
+    SqliteCreateTable::Column* column = createTable->columns[colIdx];
+    QString oldColumnName = column->name;
+    column->name = newName;
+    modified = true;
+
+    QModelIndex idx = createIndex(colIdx, getHeaderColumnIdx(Columns::NAME));
+    emit modifiyStateChanged();
+    emit dataChanged(idx, idx);
+    emit columnModified(oldColumnName, column);
+}
+
 void TableStructureModel::moveColumnUp(int colIdx)
 {
     moveColumnTo(colIdx, colIdx-1);
@@ -286,6 +302,11 @@ QModelIndex TableStructureModel::findColumn(const QString& columnName, Qt::CaseS
         row++;
     }
     return QModelIndex();
+}
+
+int TableStructureModel::getHeaderColumnIdx(Columns headerColumn) const
+{
+    return static_cast<int>(headerColumn);
 }
 
 QString TableStructureModel::columnLabel(int column) const
