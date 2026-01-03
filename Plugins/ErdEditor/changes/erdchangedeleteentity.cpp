@@ -37,13 +37,3 @@ TableModifier* ErdChangeDeleteEntity::getTableModifier() const
 {
     return tableModifier;
 }
-
-QStringList ErdChangeDeleteEntity::provideUndoEntitiesToRefresh() const
-{
-    QStringList modifiedTables;
-    modifiedTables << tableName;
-    if (tableModifier)
-        modifiedTables += tableModifier->getModifiedTables();
-
-    return modifiedTables;
-}

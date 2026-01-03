@@ -18,7 +18,6 @@ class ErdChangeDeleteEntity : public ErdChange
         QPointF getLastPosition() const;
 
     protected:
-        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

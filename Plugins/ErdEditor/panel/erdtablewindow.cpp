@@ -12,9 +12,14 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     ui->dbCombo->setEnabled(false);
     ui->dbCombo->setVisible(false);
     ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->dataTab), false);
+    ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->indexesTab), false);
+    ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->triggersTab), false);
 
     ui->structureToolBar->removeAction(actionMap[REFRESH_STRUCTURE]);
     ui->structureToolBar->removeAction(separatorAfterAction[REFRESH_STRUCTURE]);
+    ui->structureToolBar->removeAction(separatorAfterAction[MOVE_COLUMN_DOWN]);
+    ui->structureToolBar->removeAction(actionMap[ADD_INDEX_STRUCT]);
+    ui->structureToolBar->removeAction(actionMap[ADD_TRIGGER_STRUCT]);
 
     QString commitText = tr("Apply changes to diagram", "ERD editor");
     QString cancelText = tr("Abort changes", "ERD editor");

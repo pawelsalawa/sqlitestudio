@@ -18,7 +18,6 @@ class ErdChangeDeleteConnection : public ErdChange
         QString getStartEntityName() const;
 
     protected:
-        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

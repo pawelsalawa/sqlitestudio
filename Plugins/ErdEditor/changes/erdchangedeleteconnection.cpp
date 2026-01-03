@@ -41,16 +41,6 @@ QString ErdChangeDeleteConnection::getStartEntityName() const
     return createTable->table;
 }
 
-QStringList ErdChangeDeleteConnection::provideUndoEntitiesToRefresh() const
-{
-    QStringList modifiedTables;
-    if (tableModifier)
-        modifiedTables += tableModifier->getModifiedTables();
-
-    modifiedTables << getStartEntityName();
-    return modifiedTables;
-}
-
 QStringList ErdChangeDeleteConnection::getChangeDdl()
 {
     if (!tableModifier)

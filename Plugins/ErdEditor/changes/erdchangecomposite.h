@@ -19,7 +19,6 @@ class ErdChangeComposite : public ErdChange
         QString getTransactionId() const;
 
     protected:
-        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:

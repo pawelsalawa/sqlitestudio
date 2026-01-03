@@ -67,12 +67,23 @@ class ErdScene : public QGraphicsScene
         void handleChangeByType(ErdChange* change);
         void handleSingleChange(ErdChangeEntity* entityChange);
         void handleSingleChange(ErdChangeNewEntity* newEntityChange);
-        void handleSingleChange(ErdChangeDeleteEntity* deleteEntityChange);
-        void handleSingleChange(ErdChangeDeleteConnection* deleteConnectionChange);
+        void handleSingleChange(ErdChangeDeleteEntity* change);
+        void handleSingleChange(ErdChangeDeleteConnection* change);
 
         void handleChangeUndo(ErdChange* change);
         void handleChangeUndoByType(ErdChange* change);
+        void handleSingleChangeUndo(ErdChangeEntity* change);
+        void handleSingleChangeUndo(ErdChangeNewEntity* change);
         void handleSingleChangeUndo(ErdChangeDeleteEntity* change);
+        void handleSingleChangeUndo(ErdChangeDeleteConnection* change);
+
+        /**
+         * @param forwardExecution true if executing new change/redoing change, or false if undoing change.
+         */
+        void handleSingleChange(ErdChangeEntity* change, bool forwardExecution);
+        void handleSingleChange(ErdChangeDeleteConnection* change, bool forwardExecution);
+
+        void restoreEntityPosition(const QString& tableName, const QPointF& pos);
 
         QList<ErdEntity*> entities;
         QList<ErdEntity*> connectionRefreshScheduled;

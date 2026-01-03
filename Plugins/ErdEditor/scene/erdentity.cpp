@@ -513,12 +513,16 @@ void ErdEntity::editName()
 void ErdEntity::editRow(int rowIdx)
 {
     Row* row = rows[rowIdx];
+    QRectF rect = row->topRect->boundingRect();
+    rect.moveTop(0);
+
     QGraphicsProxyWidget* proxy = new QGraphicsProxyWidget(row->topRect);
 
     QLineEdit* edit = new QLineEdit();
+    edit->setContextMenuPolicy(Qt::NoContextMenu);
     edit->setText(row->text->text());
     proxy->setWidget(edit);
-    proxy->setGeometry(row->topRect->boundingRect());
+    proxy->setGeometry(rect);
     edit->selectAll();
     edit->setFocus();
 

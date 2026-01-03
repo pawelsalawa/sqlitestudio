@@ -33,8 +33,6 @@ class ErdChange
          */
         virtual QStringList getUndoDdl();
 
-        QStringList getEntitiesToRefreshAfterUndo() const;
-
         Category getCategory() const;
         virtual QString getTransactionId() const;
         QString getDescription() const;
@@ -43,7 +41,6 @@ class ErdChange
         ErdChange(Category category, const QString& description, bool generateTransactionId = false);
 
         virtual QStringList getChangeDdl() = 0;
-        virtual QStringList provideUndoEntitiesToRefresh() const = 0;
 
         Category category;
         /**

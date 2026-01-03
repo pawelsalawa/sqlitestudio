@@ -12,14 +12,19 @@ QStringList ErdChangeNewEntity::getChangeDdl()
     return {createTable->detokenize()};
 }
 
+void ErdChangeNewEntity::setLastPositionBeforeUndo(QPointF pos)
+{
+    lastPositionBeforeUndo = pos;
+}
+
+QPointF ErdChangeNewEntity::getLastPositionBeforeUndo() const
+{
+    return lastPositionBeforeUndo;
+}
+
 QString ErdChangeNewEntity::getTemporaryEntityName() const
 {
     return temporaryEntityName;
-}
-
-QStringList ErdChangeNewEntity::provideUndoEntitiesToRefresh() const
-{
-    return {getTableName()};
 }
 
 QString ErdChangeNewEntity::getTableName() const

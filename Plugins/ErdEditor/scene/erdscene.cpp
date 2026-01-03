@@ -14,6 +14,7 @@
 #include "changes/erdchangecomposite.h"
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
+#include "common/unused.h"
 #include <QApplication>
 #include <QMessageBox>
 
@@ -102,27 +103,28 @@ void ErdScene::handleChangeByType(ErdChange* change)
 
 void ErdScene::handleSingleChange(ErdChangeEntity* entityChange)
 {
-    typedef QPair<QString, QString> OldNewName;
-    QList<OldNewName> modifiedTables = {
-        OldNewName(entityChange->getTableNameBefore(), entityChange->getTableNameAfter())
-    };
-    for (const QString& tableName : entityChange->getTableModifier()->getModifiedTables())
-        modifiedTables << OldNewName(tableName, tableName);
-
-    SchemaResolver resolver(db);
-    for (OldNewName& oldNewTableName : modifiedTables)
-    {
-        ErdEntity* entity = entityMap[oldNewTableName.first];
-        refreshEntityFromTableName(resolver, entity, oldNewTableName.second);
-    }
+    handleSingleChange(entityChange, true);
 }
 
 void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
 {
     ErdEntity* entity = entityMap.value(newEntityChange->getTemporaryEntityName(), Qt::CaseInsensitive);
-
     SchemaResolver resolver(db);
-    refreshEntityFromTableName(resolver, entity, newEntityChange->getTableName());
+
+    if (entity)
+    {
+        refreshEntityFromTableName(resolver, entity, newEntityChange->getTableName());
+    }
+    else
+    {
+        // If this is a redo execution, then there is no temporary entity, just the target entity already
+        if (newEntityChange->getLastPositionBeforeUndo().isNull())
+            qWarning() << "Redoing ErdChangeNewEntity for table" << newEntityChange->getTableName()
+                       << "but lastPositionBeforeUndo was not set.";
+
+        refreshSchemaForTableNames({newEntityChange->getTableName()});
+        restoreEntityPosition(newEntityChange->getTableName(), newEntityChange->getLastPositionBeforeUndo());
+    }
 
     QStringList referencingTables = resolver.getFkReferencingTables(newEntityChange->getTableName());
     for (const QString& tableName : referencingTables)
@@ -132,18 +134,16 @@ void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
     }
 }
 
-void ErdScene::handleSingleChange(ErdChangeDeleteEntity* deleteEntityChange)
+void ErdScene::handleSingleChange(ErdChangeDeleteEntity* change)
 {
-    QStringList tables = deleteEntityChange->getTableModifier()->getModifiedTables();
+    QStringList tables = change->getTableModifier()->getModifiedTables();
     refreshSchemaForTableNames(tables);
-    removeEntityFromSceneByName(deleteEntityChange->getTableName());
+    removeEntityFromSceneByName(change->getTableName());
 }
 
-void ErdScene::handleSingleChange(ErdChangeDeleteConnection* deleteConnectionChange)
+void ErdScene::handleSingleChange(ErdChangeDeleteConnection* change)
 {
-    QStringList tables = deleteConnectionChange->getTableModifier()->getModifiedTables();
-    tables << deleteConnectionChange->getStartEntityName();
-    refreshSchemaForTableNames(tables);
+    handleSingleChange(change, true);
 }
 
 void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
@@ -171,7 +171,6 @@ void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
 
 void ErdScene::handleChangeUndo(ErdChange* change)
 {
-    refreshSchemaForTableNames(change->getEntitiesToRefreshAfterUndo());
     handleChangeUndoByType(change);
     refreshScheduledConnections();
     emit sidePanelRefreshRequested();
@@ -193,15 +192,85 @@ void ErdScene::handleChangeUndoByType(ErdChange* change)
     {
         for (auto&& singleChange : compositeChange->getChanges())
             handleChangeUndoByType(singleChange);
+
+        return;
     }
 
     HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeDeleteEntity, change);
+    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeEntity, change);
+    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeNewEntity, change);
+    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeDeleteConnection, change);
+
+    if (change)
+        qWarning() << "ErdChange" << change << "not handled in Undo";
 }
 
 void ErdScene::handleSingleChangeUndo(ErdChangeDeleteEntity* change)
 {
+    QStringList modifiedTables;
+    modifiedTables << change->getTableName();
+    if (change->getTableModifier())
+        modifiedTables += change->getTableModifier()->getModifiedTables();
+
+    refreshSchemaForTableNames(modifiedTables);
+    restoreEntityPosition(change->getTableName(), change->getLastPosition());
+}
+
+void ErdScene::handleSingleChangeUndo(ErdChangeDeleteConnection* change)
+{
+    handleSingleChange(change, false);
+}
+
+void ErdScene::handleSingleChangeUndo(ErdChangeEntity* change)
+{
+    handleSingleChange(change, false);
+}
+
+void ErdScene::handleSingleChangeUndo(ErdChangeNewEntity* change)
+{
     ErdEntity* entity = entityMap[change->getTableName()];
-    entity->setPos(change->getLastPosition());
+    if (!entity)
+    {
+        qWarning() << "No entity while handling ErdChangeNewEntity undo action for table named" << change->getTableName();
+        return;
+    }
+    change->setLastPositionBeforeUndo(entity->pos());
+    refreshSchemaForTableNames({change->getTableName()});
+}
+
+void ErdScene::handleSingleChange(ErdChangeEntity* change, bool forwardExecution)
+{
+    typedef QPair<QString, QString> OldNewName;
+    QList<OldNewName> modifiedTables = {
+        forwardExecution ?
+        OldNewName(change->getTableNameBefore(), change->getTableNameAfter()) :
+        OldNewName(change->getTableNameAfter(), change->getTableNameBefore())
+    };
+
+    for (const QString& tableName : change->getTableModifier()->getModifiedTables())
+        modifiedTables << OldNewName(tableName, tableName);
+
+    SchemaResolver resolver(db);
+    for (OldNewName& oldNewTableName : modifiedTables)
+    {
+        ErdEntity* entity = entityMap[oldNewTableName.first];
+        refreshEntityFromTableName(resolver, entity, oldNewTableName.second);
+    }
+}
+
+void ErdScene::handleSingleChange(ErdChangeDeleteConnection* change, bool forwardExecution)
+{
+    UNUSED(forwardExecution);
+    QStringList tables = change->getTableModifier()->getModifiedTables();
+    tables << change->getStartEntityName();
+    refreshSchemaForTableNames(tables);
+}
+
+void ErdScene::restoreEntityPosition(const QString& tableName, const QPointF& pos)
+{
+    // Restore position, connections, etc
+    ErdEntity* entity = entityMap[tableName];
+    entity->setPos(pos);
     entity->updateConnectionsGeometry();
     refreshSceneRect();
     emit showEntityToUser(entity);

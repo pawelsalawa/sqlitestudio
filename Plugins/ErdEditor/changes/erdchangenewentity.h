@@ -3,6 +3,7 @@
 
 #include "erdchange.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include <QPointF>
 
 class ErdEntity;
 class Db;
@@ -15,14 +16,17 @@ class ErdChangeNewEntity : public ErdChange
         QString getTableName() const;
         QString getTemporaryEntityName() const;
 
+        QPointF getLastPositionBeforeUndo() const;
+        void setLastPositionBeforeUndo(QPointF pos);
+
     protected:
-        QStringList provideUndoEntitiesToRefresh() const;
         QStringList getChangeDdl();
 
     private:
         Db* db = nullptr;
         QString temporaryEntityName;
         SqliteCreateTablePtr createTable;
+        QPointF lastPositionBeforeUndo;
 };
 
 #endif // ERDCHANGENEWENTITY_H

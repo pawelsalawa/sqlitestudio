@@ -37,11 +37,6 @@ QStringList ErdChange::getUndoDdl()
     return {rollbackTpl.arg(getTransactionId())};
 }
 
-QStringList ErdChange::getEntitiesToRefreshAfterUndo() const
-{
-    return provideUndoEntitiesToRefresh();
-}
-
 QString ErdChange::getTransactionId() const
 {
     return transactionId;

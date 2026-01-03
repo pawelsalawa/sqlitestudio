@@ -6,11 +6,6 @@ ErdChangeLayout::ErdChangeLayout(const QString& description) :
 {
 }
 
-QStringList ErdChangeLayout::provideUndoEntitiesToRefresh() const
-{
-    return {};
-}
-
 QStringList ErdChangeLayout::getChangeDdl()
 {
     return {};

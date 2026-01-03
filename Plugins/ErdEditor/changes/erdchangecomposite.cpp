@@ -56,12 +56,3 @@ QString ErdChangeComposite::getTransactionId() const
 
     return ErdChange::getTransactionId();
 }
-
-QStringList ErdChangeComposite::provideUndoEntitiesToRefresh() const
-{
-    QStringList results;
-    for (auto chg : reverse(changes))
-        results += chg->provideUndoEntitiesToRefresh();
-
-    return results;
-}

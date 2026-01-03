@@ -147,9 +147,9 @@ void ErdWindow::createActions()
 
     QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
     lineGroup->setExclusive(true);
-    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line (%1)").arg(QKeySequence(Qt::CTRL|Qt::Key_1).toString()), lineGroup);
-    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line (%1)").arg(QKeySequence(Qt::CTRL|Qt::Key_2).toString()), lineGroup);
-    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line (%1)").arg(QKeySequence(Qt::CTRL|Qt::Key_3).toString()), lineGroup);
+    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
+    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
+    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
 
     actionMap[LINE_STRAIGHT]->setCheckable(true);
     actionMap[LINE_CURVY]->setCheckable(true);
@@ -164,8 +164,8 @@ void ErdWindow::createActions()
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
 
-    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo (%1)", "ERD editor").arg(QKeySequence(QKeySequence::Undo).toString()), this, SLOT(undo()), ui->toolBar, ui->view);
-    createAction(REDO, ICONS.ACT_REDO, tr("Redo (%2)", "ERD editor").arg(QKeySequence(QKeySequence::Redo).toString()), this, SLOT(redo()), ui->toolBar, ui->view);
+    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "ERD editor"), this, SLOT(undo()), ui->toolBar, ui->view);
+    createAction(REDO, ICONS.ACT_REDO, tr("Redo", "ERD editor"), this, SLOT(redo()), ui->toolBar, ui->view);
 
     ui->toolBar->addSeparator();
     changeCountLabel = new QToolButton(this);
@@ -180,10 +180,10 @@ void ErdWindow::createActions()
     ui->toolBar->addAction(actionMap[UNDO]);
     ui->toolBar->addAction(actionMap[REDO]);
     ui->toolBar->addSeparator();
-    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a table (%1)").arg("T"), this, SLOT(newTableToggled(bool)), ui->toolBar, ui->view);
-    createAction(ADD_CONNECTION, ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add a foreign key (%1)").arg("F"), this, SLOT(addConnectionToggled(bool)), ui->toolBar, ui->view);
+    createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(newTableToggled(bool)), ui->toolBar, ui->view);
+    createAction(ADD_CONNECTION, ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add a foreign key"), this, SLOT(addConnectionToggled(bool)), ui->toolBar, ui->view);
     ui->toolBar->addSeparator();
-    createAction(DELETE_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items (%1)").arg(QKeySequence(QKeySequence::Delete).toString()), ui->view, SLOT(deleteSelectedItem()), ui->toolBar, ui->view);
+    createAction(DELETE_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), ui->view, SLOT(deleteSelectedItem()), ui->toolBar, ui->view);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
     ui->toolBar->addAction(actionMap[LINE_CURVY]);
@@ -205,8 +205,15 @@ void ErdWindow::setupDefShortcuts()
     actionMap[UNDO]->setShortcut(QKeySequence::Undo);
     actionMap[REDO]->setShortcut(QKeySequence::Redo);
     actionMap[NEW_TABLE]->setShortcut(Qt::Key_T);
-    actionMap[ADD_CONNECTION]->setShortcut(Qt::Key_R);
+    actionMap[ADD_CONNECTION]->setShortcut(Qt::Key_F);
     actionMap[DELETE_SELECTED]->setShortcut(QKeySequence::Delete);
+
+    static_qstring(shortcutTpl, "%1 (%2)");
+    for (QAction*& act : actionMap.values())
+    {
+        if (!act->shortcut().isEmpty())
+            act->setText(shortcutTpl.arg(act->text(), act->shortcut().toString()));
+    }
 
     setShortcutContext({UNDO, REDO, DELETE_SELECTED}, Qt::WidgetWithChildrenShortcut);
 }

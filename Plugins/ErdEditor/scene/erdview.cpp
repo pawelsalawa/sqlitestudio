@@ -23,8 +23,6 @@ ErdView::ErdView(QWidget* parent) :
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     keyFilter = new KeyPressFilter(this);
     MAINWINDOW->installEventFilter(keyFilter);
-
-    //new QShortcut(QKeySequence::Delete, this, SLOT(deleteSelectedItem()), SLOT(deleteSelectedItem()), Qt::WidgetWithChildrenShortcut);
 }
 
 ErdView::~ErdView()
@@ -127,7 +125,7 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
     if (isPlacingNewEntity())
         return;
 
-    if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton))
+    if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton) && !dragOffset.isEmpty())
     {
         for (QGraphicsItem* item : selectedMovableItems)
         {
@@ -202,7 +200,14 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
 
 void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
 {
-    UNUSED(event);
+    dragOffset.clear();
+    if (event->button() == Qt::LeftButton)
+    {
+        QGraphicsItem* item = clickableItemAt(event->pos());
+        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+        if (entity)
+            entity->edit(mapToScene(event->pos()));
+    }
 }
 
 void ErdView::focusOutEvent(QFocusEvent* event)
