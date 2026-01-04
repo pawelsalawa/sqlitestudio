@@ -42,6 +42,17 @@ void ErdConnectionPanel::abortErdChange()
     rollback();
 }
 
+bool ErdConnectionPanel::isUncommitted() const
+{
+    return actionMap[COMMIT]->isEnabled();
+}
+
+QString ErdConnectionPanel::getQuitUncommittedConfirmMessage() const
+{
+    return tr("ERD side panel for relation between tables \"%1\" and \"%2\" has uncommitted modifications.")
+            .arg(createTable->table, originalReferencedTable);
+}
+
 void ErdConnectionPanel::createActions()
 {
     createAction(COMMIT, ICONS.COMMIT, tr("Apply changes to diagram", "ERD editor"), this, SLOT(commit()), ui->toolBar, this);
@@ -203,7 +214,7 @@ bool ErdConnectionPanel::commit()
             // Not modified at all.
             return true;
         }
-        // TODO ask
+        // TODO commitable, but invalid state - ask
         return false;
     }
 

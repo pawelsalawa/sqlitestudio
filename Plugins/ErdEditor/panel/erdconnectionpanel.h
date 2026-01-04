@@ -1,10 +1,11 @@
 #ifndef ERDCONNECTIONPANEL_H
 #define ERDCONNECTIONPANEL_H
 
-#include <QWidget>
+#include "committable.h"
 #include "common/extactioncontainer.h"
 #include "erdpropertiespanel.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include <QWidget>
 
 namespace Ui {
     class ErdConnectionPanel;
@@ -17,7 +18,7 @@ class ErdConnection;
 class ConstraintPanel;
 class ChainExecutor;
 
-class ErdConnectionPanel : public QWidget, public ExtActionContainer, public ErdPropertiesPanel
+class ErdConnectionPanel : public QWidget, public ExtActionContainer, public ErdPropertiesPanel, public Committable
 {
         Q_OBJECT
 
@@ -40,6 +41,8 @@ class ErdConnectionPanel : public QWidget, public ExtActionContainer, public Erd
         QString getStartEntityTable() const;
         bool commitErdChange();
         void abortErdChange();
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
 
     protected:
         void createActions();

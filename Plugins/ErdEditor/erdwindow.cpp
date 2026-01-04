@@ -480,12 +480,12 @@ void ErdWindow::applyArrowType(ErdArrowItem::Type arrowType)
 
 bool ErdWindow::isUncommitted() const
 {
-    return false;
+    return changeRegistry->getPendingChangesCount() > 0;
 }
 
 QString ErdWindow::getQuitUncommittedConfirmMessage() const
 {
-    return "";
+    return tr("ERD window \"%1\" has uncommitted changes.").arg(getMdiWindow()->windowTitle());
 }
 
 void ErdWindow::setMdiWindow(MdiWindow* value)

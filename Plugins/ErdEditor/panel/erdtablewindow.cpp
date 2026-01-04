@@ -52,8 +52,11 @@ ErdTableWindow::~ErdTableWindow()
 
 QString ErdTableWindow::getQuitUncommittedConfirmMessage() const
 {
-    // TODO
-    return "";
+    if (isModified())
+        return tr("ERD side panel for table \"%1\" has uncommitted modifications.").arg(entity->getTableName());
+
+    qCritical() << "Unhandled message case in ErdTableWindow::getQuitUncommittedConfirmMessage().";
+    return QString();
 }
 
 bool ErdTableWindow::commitErdChange()
@@ -196,9 +199,12 @@ bool ErdTableWindow::commitStructure(bool skipWarning)
     if (!isModified())
         return true;
 
-    QString newContent = createTable->produceTokens().detokenize();
-    if (originalContent == newContent)
-        return true;
+    if (entity->isExistingTable())
+    {
+        QString newContent = createTable->produceTokens().detokenize();
+        if (originalContent == newContent)
+            return true;
+    }
 
     setErrorRecording(true);
     bool result = TableWindow::commitStructure(skipWarning);
