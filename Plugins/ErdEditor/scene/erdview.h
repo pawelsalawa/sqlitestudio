@@ -21,7 +21,7 @@ class ErdView : public QGraphicsView
         enum class Mode
         {
             NORMAL,
-            DRAGGING,
+            DRAGGING_VIEW,
             CONNECTION_DRAFTING,
             PLACING_NEW_ENTITY,
         };
@@ -37,7 +37,7 @@ class ErdView : public QGraphicsView
         QHash<QString, QVariant> getConfig();
         void applyZoomRatio(qreal ratio);
 
-        bool isDragging() const;
+        bool isDraggingView() const;
         bool isDraftingConnection() const;
         bool isPlacingNewEntity() const;
         void setOperatingMode(Mode mode);
@@ -82,6 +82,7 @@ class ErdView : public QGraphicsView
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
         QHash<QGraphicsItem*, QPoint> dragOffset;
+        QPointF lastDragScenePos;
         ErdConnection* draftConnection = nullptr;
         QPoint clickPos;
         qreal zoom = 1.0;

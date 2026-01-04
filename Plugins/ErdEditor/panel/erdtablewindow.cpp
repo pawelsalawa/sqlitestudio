@@ -7,6 +7,7 @@
 #include "services/notifymanager.h"
 #include "mainwindow.h"
 #include "statusfield.h"
+#include "common/unused.h"
 #include <QMessageBox>
 #include <QTimer>
 #include <QPushButton>
@@ -68,6 +69,15 @@ void ErdTableWindow::abortErdChange()
     rollbackStructure();
 }
 
+bool ErdTableWindow::resolveOriginalCreateTableStatement()
+{
+    bool res = TableWindow::resolveOriginalCreateTableStatement();
+    if (res)
+        originalContent = originalCreateTable->produceTokens().detokenize();
+
+    return res;
+}
+
 bool ErdTableWindow::resolveCreateTableStatement()
 {
     createTable = SqliteCreateTablePtr::create(*entity->getTableModel());
@@ -87,6 +97,8 @@ void ErdTableWindow::defineCurrentContextDb()
 
 bool ErdTableWindow::handleFailedStructureChanges(bool skipWarning)
 {
+    UNUSED(skipWarning);
+
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setWindowTitle(tr("Invalid table changes", "ERD editor"));
@@ -155,6 +167,7 @@ void ErdTableWindow::columnEditedInline(int columnIdx, const QString& newName)
     }
 
     structureModel->renameColumn(columnIdx, newName);
+    resizeStructureViewColumns();
 }
 
 void ErdTableWindow::columnDeletedInline(int columnIdx)
@@ -168,6 +181,7 @@ void ErdTableWindow::columnDeletedInline(int columnIdx)
     }
 
     structureModel->delColumn(columnIdx);
+    resizeStructureViewColumns();
 }
 
 void ErdTableWindow::changesSuccessfullyCommitted()
@@ -178,7 +192,12 @@ void ErdTableWindow::changesSuccessfullyCommitted()
 
 bool ErdTableWindow::commitStructure(bool skipWarning)
 {
+    entity->stopInlineEditing();
     if (!isModified())
+        return true;
+
+    QString newContent = createTable->produceTokens().detokenize();
+    if (originalContent == newContent)
         return true;
 
     setErrorRecording(true);

@@ -21,6 +21,8 @@ ErdView::ErdView(QWidget* parent) :
     setMouseTracking(true);
     setRenderHints(QPainter::Antialiasing);
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     keyFilter = new KeyPressFilter(this);
     MAINWINDOW->installEventFilter(keyFilter);
 }
@@ -51,7 +53,7 @@ Db *ErdView::getDb() const
 
 void ErdView::mousePressEvent(QMouseEvent* event)
 {
-    if (isDragging())
+    if (isDraggingView())
     {
         QGraphicsView::mousePressEvent(event);
         return;
@@ -79,9 +81,6 @@ void ErdView::mousePressEvent(QMouseEvent* event)
             {
                 for (QGraphicsItem* movableItem : selectedMovableItems)
                     dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
-
-                QGraphicsView::mousePressEvent(event);
-                return;
             }
             else
             {
@@ -93,8 +92,12 @@ void ErdView::mousePressEvent(QMouseEvent* event)
                 selectedItems = {item};
                 selectedMovableItems = {item};
             }
+            lastDragScenePos = mapToScene(clickPos);
+            QGraphicsView::mousePressEvent(event);
+            return;
         }
-        else if (!isDragging())
+
+        if (!isDraggingView())
         {
             clearSelectedItems();
             setDragMode(QGraphicsView::RubberBandDrag);
@@ -116,7 +119,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
 
 void ErdView::mouseMoveEvent(QMouseEvent* event)
 {
-    if (isDragging())
+    if (isDraggingView())
     {
         QGraphicsView::mouseMoveEvent(event);
         return;
@@ -127,14 +130,33 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
 
     if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton) && !dragOffset.isEmpty())
     {
+        // The code below sets position for same items twice: before and after scene rect is updated.
+        // The scene rect is resized to reflect currently needed area - it's just nice for UX.
+        // Unfortunately updating scene rect messes up positions updated for items just a moment before,
+        // probably because moved items are still in some kind of "dirty" state according to the scene,
+        // so updating scene rect messes up their positions.
+        // Setting same positions afterwards fixes the issue of flickering during items D&D.
+
+        // Set new positions initially
+        QPointF scenePos = mapToScene(event->position().toPoint());
+        for (QGraphicsItem* item : selectedMovableItems)
+            item->setPos(scenePos - dragOffset[item]);
+
+        // Update scene rect to expand/shrink it
+        dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
+
+        // Set new positions once again, cause new scene rect could break positioning
+        for (QGraphicsItem* item : selectedMovableItems)
+            item->setPos(scenePos - dragOffset[item]);
+
+        // Update connection arrows
         for (QGraphicsItem* item : selectedMovableItems)
         {
-            item->setPos(mapToScene(event->position().toPoint()) - dragOffset[item]);
             ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
             if (entity)
                 entity->updateConnectionsGeometry();
         }
-        dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
+        return;
     }
     else if (draftConnection)
         draftConnection->updatePosition(mapToScene(event->position().toPoint()));
@@ -147,7 +169,7 @@ void ErdView::mouseMoveEvent(QMouseEvent* event)
 
 void ErdView::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (isDragging())
+    if (isDraggingView())
     {
         QGraphicsView::mouseReleaseEvent(event);
         return;
@@ -324,12 +346,12 @@ bool ErdView::handleConnectionClick(const QPoint& pos, bool enableConnectionDraf
 
 void ErdView::spacePressed()
 {
-    pushOperatingMode(Mode::DRAGGING);
+    pushOperatingMode(Mode::DRAGGING_VIEW);
 }
 
 void ErdView::spaceReleased()
 {
-    if (isDragging())
+    if (isDraggingView())
         popOperatingMode();
 }
 
@@ -360,7 +382,7 @@ void ErdView::leavingOperatingMode(Mode mode)
     {
         case ErdView::Mode::NORMAL:
             break;
-        case ErdView::Mode::DRAGGING:
+        case ErdView::Mode::DRAGGING_VIEW:
             setDragMode(QGraphicsView::NoDrag);
             for (QGraphicsItem* item : scene()->items())
                 item->setAcceptedMouseButtons(Qt::AllButtons);
@@ -382,7 +404,7 @@ void ErdView::enteringOperatingMode(Mode mode)
     {
         case ErdView::Mode::NORMAL:
             break;
-        case ErdView::Mode::DRAGGING:
+        case ErdView::Mode::DRAGGING_VIEW:
             setDragMode(QGraphicsView::ScrollHandDrag);
             for (QGraphicsItem* item : scene()->items())
                 item->setAcceptedMouseButtons(Qt::NoButton);
@@ -434,9 +456,9 @@ void ErdView::clearSelectedItems()
     scene()->clearFocus();
 }
 
-bool ErdView::isDragging() const
+bool ErdView::isDraggingView() const
 {
-    return operatingMode == Mode::DRAGGING;
+    return operatingMode == Mode::DRAGGING_VIEW;
 }
 
 bool ErdView::isDraftingConnection() const
@@ -557,7 +579,7 @@ QDebug operator<<(QDebug dbg, ErdView::Mode value)
         case ErdView::Mode::NORMAL:
             dbg << "NORMAL";
             break;
-        case ErdView::Mode::DRAGGING:
+        case ErdView::Mode::DRAGGING_VIEW:
             dbg << "DRAGGING";
             break;
         case ErdView::Mode::CONNECTION_DRAFTING:

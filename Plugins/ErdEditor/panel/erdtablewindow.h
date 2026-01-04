@@ -21,6 +21,7 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
         void abortErdChange();
 
     protected:
+        bool resolveOriginalCreateTableStatement();
         bool resolveCreateTableStatement();
         void applyInitialTab();
         void defineCurrentContextDb();
@@ -31,6 +32,7 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
 
         ErdEntity* entity = nullptr;
         QStringList recordedErrors;
+        QString originalContent;
 
     public slots:
         void changesSuccessfullyCommitted();

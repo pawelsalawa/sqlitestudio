@@ -520,6 +520,11 @@ void ErdEntity::Row::notLastAnymore()
     bottomLine->setPen(QPen(STYLE->standardPalette().text().color(), 0.3));
 }
 
+void ErdEntity::Row::becomeLast()
+{
+    safe_delete(bottomLine);
+}
+
 void ErdEntity::Row::setText(const QString& value)
 {
     emptyTextValue = value.isEmpty();
@@ -629,6 +634,12 @@ bool ErdEntity::eventFilter(QObject* obj, QEvent* event)
     return QObject::eventFilter(obj, event);
 }
 
+void ErdEntity::stopInlineEditing()
+{
+    // If inline editor is active, then Enter key handler is the one that finishes it.
+    inlineEditEnterKeyPressed();
+}
+
 void ErdEntity::keyPressEvent(QKeyEvent* event)
 {
     if (lastInlineEditedRow > -1 && (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter))
@@ -638,11 +649,11 @@ void ErdEntity::keyPressEvent(QKeyEvent* event)
 void ErdEntity::inlineEditTabKeyPressed(bool backward)
 {
     setFocus(backward ? Qt::BacktabFocusReason : Qt::TabFocusReason);
-    bool justDeleted = inlineEditionCheckIfFieldDeleted();
+    bool justDeleted = inlineEditionCheckIfFieldDeleted(false);
 
     if (lastInlineEditedRow > -1)
     {
-        int shift = backward ? (justDeleted ? 0 : -1) : 1;
+        int shift = backward ? -1 : 1;
         int nextRow = lastInlineEditedRow + shift;
         if (nextRow < 0)
             return;
@@ -652,7 +663,7 @@ void ErdEntity::inlineEditTabKeyPressed(bool backward)
             if (justDeleted) // about to create one, but just deleted one? stop.
                 return;
 
-            rows[rows.size() - 1]->notLastAnymore();
+            rows.last()->notLastAnymore();
             addColumn("", QString(), true);
             updateGeometry();
             disableChildSelection(this);
@@ -686,7 +697,7 @@ void ErdEntity::requestRowVisibility(Row* row)
     emit requestVisibilityOf(mapRectToScene(rect));
 }
 
-bool ErdEntity::inlineEditionCheckIfFieldDeleted()
+bool ErdEntity::inlineEditionCheckIfFieldDeleted(bool indexAutocorrection)
 {
     if (lastInlineEditedRow == -1 || lastInlineEditedRow >= rows.size())
         return false;
@@ -702,12 +713,13 @@ bool ErdEntity::inlineEditionCheckIfFieldDeleted()
     {
         rows.removeOne(row);
         delete row;
+        rows.last()->becomeLast();
 
         updateGeometry();
         emit fieldDeleted(lastInlineEditedRow - 1);
         emit requestSceneGeomUpdate();
 
-        if (lastInlineEditedRow >= rows.size())
+        if (indexAutocorrection && lastInlineEditedRow >= rows.size())
             lastInlineEditedRow--;
 
         return true;

@@ -48,6 +48,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         bool edit(const QPointF& point);
         void editName();
         bool eventFilter(QObject *obj, QEvent *event);
+        void stopInlineEditing();
 
     protected:
         void keyPressEvent(QKeyEvent* event);
@@ -73,6 +74,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
             qreal calcNameWidth() const;
             qreal updateLayout(qreal iconColumn, qreal nameColumn, qreal globalWidth, qreal globalY);
             void notLastAnymore();
+            void becomeLast();
             void setText(const QString& value);
             QString getText() const;
         };
@@ -89,7 +91,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void inlineEditEnterKeyPressed();
         void updateInlineEditorGeometry(Row* row, QGraphicsProxyWidget* inlineProxy);
         void requestRowVisibility(Row* row);
-        bool inlineEditionCheckIfFieldDeleted();
+        bool inlineEditionCheckIfFieldDeleted(bool indexAutocorrection = true);
         void handleFieldEditedInline(int rowIdx, const QString& newName);
         void handleFieldDeleted(int rowIdx);
 
