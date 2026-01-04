@@ -52,6 +52,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
 
     protected:
         void keyPressEvent(QKeyEvent* event);
+        void keyReleaseEvent(QKeyEvent* event);
 
     private:
         struct Row

@@ -644,6 +644,25 @@ void ErdEntity::keyPressEvent(QKeyEvent* event)
 {
     if (lastInlineEditedRow > -1 && (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter))
         editRow(lastInlineEditedRow);
+
+    if (event->key() == Qt::Key_Space)
+    {
+        event->ignore();
+        return;
+    }
+
+    QGraphicsRectItem::keyPressEvent(event);
+}
+
+void ErdEntity::keyReleaseEvent(QKeyEvent* event)
+{
+    if (event->key() == Qt::Key_Space)
+    {
+        event->ignore();
+        return;
+    }
+
+    QGraphicsRectItem::keyReleaseEvent(event);
 }
 
 void ErdEntity::inlineEditTabKeyPressed(bool backward)
