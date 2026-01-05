@@ -110,6 +110,10 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors);
         void highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin);
         void highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin);
+        void rememberLastUsedPage();
+        void restoreLastUsedPage();
+
+        static QString lastUsedCategory;
 
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;

@@ -67,6 +67,8 @@ class ConfigDialogItemDelegate : public QItemDelegate
         }
 };
 
+QString ConfigDialog::lastUsedCategory;
+
 ConfigDialog::ConfigDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigDialog)
@@ -76,6 +78,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
 ConfigDialog::~ConfigDialog()
 {
+    rememberLastUsedPage();
     rollbackColorsConfig();
 
     // Cancel transaction on CfgMain objects from plugins
@@ -261,6 +264,7 @@ void ConfigDialog::init()
     colorChanged();
     updateStylePreview();
     updateColorsAfterLoad();
+    restoreLastUsedPage();
 
     ui->categoriesTree->expandAll();
 }
@@ -1164,6 +1168,29 @@ void ConfigDialog::highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin)
     delete editor;
 
     highlightingPluginForPreviewEditor.removeRight(plugin);
+}
+
+void ConfigDialog::rememberLastUsedPage()
+{
+    lastUsedCategory = ui->categoriesTree->currentItem()->statusTip(0);
+}
+
+void ConfigDialog::restoreLastUsedPage()
+{
+    if (!lastUsedCategory.isEmpty())
+    {
+        QTreeWidgetItemIterator it(ui->categoriesTree);
+        while (*it)
+        {
+            QTreeWidgetItem* item = *it;
+            if (item->statusTip(0) == lastUsedCategory)
+            {
+                ui->categoriesTree->setCurrentItem(item);
+                break;
+            }
+            ++it;
+        }
+    }
 }
 
 QList<QWidget*> ConfigDialog::prepareCodeSyntaxColorsForStyle()
