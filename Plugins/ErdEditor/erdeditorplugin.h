@@ -12,6 +12,7 @@ CFG_CATEGORIES(ErdConfig,
     CFG_CATEGORY(Erd,
         CFG_ENTRY(ErdArrowItem::Type, ArrowType,     ErdArrowItem::CURVY)
         CFG_ENTRY(long,               MaxTableLimit, 200)
+        CFG_ENTRY(bool,               DragBySpace,   false)
     )
 )
 

@@ -78,6 +78,8 @@ class ErdView : public QGraphicsView
         void applyCursor(QIcon* icon);
         bool sameItemOnPositions(const QPoint& pos1, const QPoint& pos2);
         bool tolerateMicroMovesForClick();
+        void startDragBySpace();
+        void endDragBySpace();
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;

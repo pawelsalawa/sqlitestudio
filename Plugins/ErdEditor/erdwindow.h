@@ -4,9 +4,8 @@
 #include "mdichild.h"
 #include "erdeditor_global.h"
 #include "scene/erdarrowitem.h"
+#include "erdeditorplugin.h"
 #include <QWidget>
-
-
 
 namespace Ui {
     class ErdWindow;

@@ -383,6 +383,7 @@ void ErdView::leavingOperatingMode(Mode mode)
         case ErdView::Mode::NORMAL:
             break;
         case ErdView::Mode::DRAGGING_VIEW:
+            endDragBySpace();
             setDragMode(QGraphicsView::NoDrag);
             for (QGraphicsItem* item : scene()->items())
                 item->setAcceptedMouseButtons(Qt::AllButtons);
@@ -408,6 +409,7 @@ void ErdView::enteringOperatingMode(Mode mode)
             setDragMode(QGraphicsView::ScrollHandDrag);
             for (QGraphicsItem* item : scene()->items())
                 item->setAcceptedMouseButtons(Qt::NoButton);
+            startDragBySpace();
             break;
         case ErdView::Mode::CONNECTION_DRAFTING:
             applyCursor(ErdWindow::cursorFkIcon->toQIconPtr());
@@ -541,6 +543,28 @@ bool ErdView::tolerateMicroMovesForClick()
         return true;
 
     return false;
+}
+
+void ErdView::startDragBySpace()
+{
+    if (CFG_ERD.Erd.DragBySpace.get())
+    {
+        QPoint globalPos = QCursor::pos();
+        QPoint pos = viewport()->mapFromGlobal(globalPos);
+        QMouseEvent press(QEvent::MouseButtonPress, pos, globalPos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+        QCoreApplication::sendEvent(viewport(), &press);
+    }
+}
+
+void ErdView::endDragBySpace()
+{
+    if (CFG_ERD.Erd.DragBySpace.get())
+    {
+        QPoint globalPos = QCursor::pos();
+        QPoint pos = viewport()->mapFromGlobal(globalPos);
+        QMouseEvent release(QEvent::MouseButtonRelease, pos, globalPos, Qt::LeftButton, Qt::NoButton, Qt::NoModifier);
+        QCoreApplication::sendEvent(viewport(), &release);
+    }
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :

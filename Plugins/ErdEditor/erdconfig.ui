@@ -13,33 +13,8 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Maximum number of tables for ERD editor</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QSpinBox" name="spinBox">
-        <property name="toolTip">
-         <string>Setting this value too high may cause the application to slow down or become unresponsive when opening the ERD editor.</string>
-        </property>
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>99999</number>
-        </property>
-        <property name="cfg" stdset="0">
-         <string>Erd.MaxTableLimit</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0" colspan="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Orientation::Vertical</enum>
@@ -51,6 +26,42 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="maxTablesLabel">
+     <property name="text">
+      <string>Maximum number of tables for ERD editor</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="maxTablesSpin">
+     <property name="toolTip">
+      <string>Setting this value too high may cause the application to slow down or become unresponsive when opening the ERD editor.</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>99999</number>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>Erd.MaxTableLimit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="dragBySpaceCheck">
+     <property name="toolTip">
+      <string>Starts panning as soon as the Space key is pressed, without requiring a mouse button press.</string>
+     </property>
+     <property name="text">
+      <string>Pan view with Space only</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>Erd.DragBySpace</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
