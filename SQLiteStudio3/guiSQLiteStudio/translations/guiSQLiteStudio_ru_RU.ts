@@ -1543,105 +1543,105 @@
       <translation>Автоматически показывать окно автодополнения когда вводится точка после имени объекта</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Описание:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Категория:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="903"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Версия:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="908"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Автор:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="910"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Внутреннее имя:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="907"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Зависимости:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="908"/>
+      <location filename="../dialogs/configdialog.cpp" line="912"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Конфликты:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="912"/>
+      <location filename="../dialogs/configdialog.cpp" line="916"/>
       <source>Plugin details</source>
       <translation>Сведения о модуле</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1480"/>
+      <location filename="../dialogs/configdialog.cpp" line="1507"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Модули загружаются и выгружаются сразу после активации/деактивации, однако изменения в списке загружаемых при старте модулей не будут сохранены пока вы не примените изменения в окне конфигурации.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1544"/>
+      <location filename="../dialogs/configdialog.cpp" line="1571"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (встроенный)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1557"/>
+      <location filename="../dialogs/configdialog.cpp" line="1584"/>
       <source>Details</source>
       <translation>Сведения</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1569"/>
+      <location filename="../dialogs/configdialog.cpp" line="1596"/>
       <source>No plugins in this category.</source>
       <translation>В этой категории модулей нет.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1671"/>
+      <location filename="../dialogs/configdialog.cpp" line="1698"/>
       <source>Add new data type</source>
       <translation>Добавить новый тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1675"/>
+      <location filename="../dialogs/configdialog.cpp" line="1702"/>
       <source>Rename selected data type</source>
       <translation>Переименовать выбранный тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1679"/>
+      <location filename="../dialogs/configdialog.cpp" line="1706"/>
       <source>Delete selected data type</source>
       <translation>Удалить выбранный тип данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1683"/>
+      <location filename="../dialogs/configdialog.cpp" line="1710"/>
       <source>Help for configuring data type editors</source>
       <translation>Справка по настройке редакторов типов данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1774"/>
+      <location filename="../dialogs/configdialog.cpp" line="1801"/>
       <source>Clear hotkey for this action</source>
       <translation>Удалить сочетание клавиш для данного действия</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1786"/>
+      <location filename="../dialogs/configdialog.cpp" line="1813"/>
       <source>Restore original hotkey for this action</source>
       <translation>Восстановить сочетание клавиш по умолчанию для данного действия</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1829"/>
+      <location filename="../dialogs/configdialog.cpp" line="1856"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
       <translation>Здесь вы можете настроить цвета для подсветки синтаксиса кода. Они едины для разных языков – не только для SQL, но и для JavaScript и других. По умолчанию используется цвет, установленный в теме. Для задания произвольного цвета установите флажок редактирования рядом с нужным цветом.</translation>
     </message>

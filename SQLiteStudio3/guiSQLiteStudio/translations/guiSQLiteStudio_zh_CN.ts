@@ -1543,105 +1543,105 @@
       <translation>在对象名称后输入点后自动触发助手</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>描述：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>分类：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="903"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>版本：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="908"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>作者：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="910"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>内部名称：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="907"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>依赖：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="908"/>
+      <location filename="../dialogs/configdialog.cpp" line="912"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>冲突：</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="912"/>
+      <location filename="../dialogs/configdialog.cpp" line="916"/>
       <source>Plugin details</source>
       <translation>插件详情</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1480"/>
+      <location filename="../dialogs/configdialog.cpp" line="1507"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>切换时插件会立即加载/卸载。但此列表的修改仅在点击确定按钮后被保存。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1544"/>
+      <location filename="../dialogs/configdialog.cpp" line="1571"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1（内置）</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1557"/>
+      <location filename="../dialogs/configdialog.cpp" line="1584"/>
       <source>Details</source>
       <translation>详情</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1569"/>
+      <location filename="../dialogs/configdialog.cpp" line="1596"/>
       <source>No plugins in this category.</source>
       <translation>没有此分类下的插件。</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1671"/>
+      <location filename="../dialogs/configdialog.cpp" line="1698"/>
       <source>Add new data type</source>
       <translation>添加新的数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1675"/>
+      <location filename="../dialogs/configdialog.cpp" line="1702"/>
       <source>Rename selected data type</source>
       <translation>重命名所选数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1679"/>
+      <location filename="../dialogs/configdialog.cpp" line="1706"/>
       <source>Delete selected data type</source>
       <translation>删除所选数据类型</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1683"/>
+      <location filename="../dialogs/configdialog.cpp" line="1710"/>
       <source>Help for configuring data type editors</source>
       <translation>配置数据类型编辑器帮助</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1774"/>
+      <location filename="../dialogs/configdialog.cpp" line="1801"/>
       <source>Clear hotkey for this action</source>
       <translation>清除该操作的热键</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1786"/>
+      <location filename="../dialogs/configdialog.cpp" line="1813"/>
       <source>Restore original hotkey for this action</source>
       <translation>恢复此操作的原始热键</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1829"/>
+      <location filename="../dialogs/configdialog.cpp" line="1856"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
       <translation>您可以在此配置代码语法高亮的颜色。这些颜色在不同语言中共享，不仅适用于 SQL，也适用于 JavaScript 和其他语言。默认情况下使用基于主题的颜色。要定义自己的颜色，请选择特定颜色旁边的复选框，启用自定义颜色。</translation>
     </message>

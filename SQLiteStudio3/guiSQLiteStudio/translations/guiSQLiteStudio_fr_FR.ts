@@ -1544,105 +1544,105 @@
       <translation>Déclenche automatiquement l&apos;assistant après qu&apos;un point soit écris après le nom d&apos;un objet</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="901"/>
+      <location filename="../dialogs/configdialog.cpp" line="905"/>
       <source>Description:</source>
       <comment>plugin details</comment>
       <translation>Description :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="902"/>
+      <location filename="../dialogs/configdialog.cpp" line="906"/>
       <source>Category:</source>
       <comment>plugin details</comment>
       <translation>Catégorie :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="903"/>
+      <location filename="../dialogs/configdialog.cpp" line="907"/>
       <source>Version:</source>
       <comment>plugin details</comment>
       <translation>Version :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="904"/>
+      <location filename="../dialogs/configdialog.cpp" line="908"/>
       <source>Author:</source>
       <comment>plugin details</comment>
       <translation>Auteur :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="906"/>
+      <location filename="../dialogs/configdialog.cpp" line="910"/>
       <source>Internal name:</source>
       <comment>plugin details</comment>
       <translation>Nom interne :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="907"/>
+      <location filename="../dialogs/configdialog.cpp" line="911"/>
       <source>Dependencies:</source>
       <comment>plugin details</comment>
       <translation>Dépendances :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="908"/>
+      <location filename="../dialogs/configdialog.cpp" line="912"/>
       <source>Conflicts:</source>
       <comment>plugin details</comment>
       <translation>Conflits :</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="912"/>
+      <location filename="../dialogs/configdialog.cpp" line="916"/>
       <source>Plugin details</source>
       <translation>Détails du plugin</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1480"/>
+      <location filename="../dialogs/configdialog.cpp" line="1507"/>
       <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
       <translation>Les plugins sont chargés/déchargés immédiatement avec vérifié/non vérifié, mais les modifications de la liste de plugins à charger au lancement ne sont pas enregistrées avant l’enregistrement de la configuration entière.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1544"/>
+      <location filename="../dialogs/configdialog.cpp" line="1571"/>
       <source>%1 (built-in)</source>
       <comment>plugins manager in configuration dialog</comment>
       <translation>%1 (intégré)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1557"/>
+      <location filename="../dialogs/configdialog.cpp" line="1584"/>
       <source>Details</source>
       <translation>Détails</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1569"/>
+      <location filename="../dialogs/configdialog.cpp" line="1596"/>
       <source>No plugins in this category.</source>
       <translation>Pas de plugins dans cette catégorie.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1671"/>
+      <location filename="../dialogs/configdialog.cpp" line="1698"/>
       <source>Add new data type</source>
       <translation>Ajouter un nouveau type de données</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1675"/>
+      <location filename="../dialogs/configdialog.cpp" line="1702"/>
       <source>Rename selected data type</source>
       <translation>Renommer le type de données sélectionné</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1679"/>
+      <location filename="../dialogs/configdialog.cpp" line="1706"/>
       <source>Delete selected data type</source>
       <translation>Supprimer le type de données sélectionnées</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1683"/>
+      <location filename="../dialogs/configdialog.cpp" line="1710"/>
       <source>Help for configuring data type editors</source>
       <translation>Aide à la configuration des éditeurs de type de données</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1774"/>
+      <location filename="../dialogs/configdialog.cpp" line="1801"/>
       <source>Clear hotkey for this action</source>
       <translation>Effacer le raccourci clavier pour cette action</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1786"/>
+      <location filename="../dialogs/configdialog.cpp" line="1813"/>
       <source>Restore original hotkey for this action</source>
       <translation>Restaurer le raccourci clavier original pour cette action</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.cpp" line="1829"/>
+      <location filename="../dialogs/configdialog.cpp" line="1856"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
       <translation>Ici, vous pouvez configurer les couleurs pour la coloration syntaxique du code. Elles sont partagées entre les différentes languages - non seulement pour SQL, mais aussi pour JavaScript et autres. Par défaut, les couleurs sont basées sur le thème utilisée. Pour définir vos propres couleurs, activez l&apos;une des couleurs personnalisées en cochant la case située à côté.</translation>
     </message>
