@@ -488,7 +488,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * number of rows. This is when this flag is set (it's done by QueryExecutor,
              * no need to care about it).
              */
-            bool rowsCountingRequired = false;
+            bool rowsManualCountingRequired = false;
 
             /**
              * @brief Executing query in EXPLAIN mode.
@@ -990,7 +990,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * It's okay, because this applies only for EXPLAIN and PRAGMA queries,
          * which will never return any huge row counts.
          */
-        bool isRowCountingRequired() const;
+        bool isRowManualCountingRequired() const;
 
         /**
          * @brief Gets SQL query used for counting results.

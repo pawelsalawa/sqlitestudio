@@ -3,6 +3,7 @@
 ### 3.4.20
 - BUGFIX: #5437 Fixed issue with flushing WAL files when quitting application.
 - BUGFIX: #5455 Added missing syntax support for ALTER TABLE RENAME COLUMN.
+- BUGFIX: #5453 Fixed next/prev page buttons if the data was refreshed while being on the last page.
 
 ### 3.4.19
 - BUGFIX: #5443 Fixed data entering in Grid View after it has got broken in 3.4.18 (entering editing mode by starting to type jumped to wrong cell).

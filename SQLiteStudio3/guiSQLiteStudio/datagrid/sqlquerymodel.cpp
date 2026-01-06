@@ -1431,7 +1431,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 
     reloading = false;
 
-    bool rowsCountedManually = queryExecutor->isRowCountingRequired() || rowCount() < getRowsPerPage();
+    bool rowsCountedManually = page == 0 && (queryExecutor->isRowManualCountingRequired() || rowCount() < getRowsPerPage());
     bool countRes = false;
     if (rowsCountedManually)
     {
@@ -1639,7 +1639,7 @@ void SqlQueryModel::storeStep1NumbersFromExecution()
 
     if (!queryExecutor->getSkipRowCounting())
     {
-        if (!queryExecutor->isRowCountingRequired())
+        if (!queryExecutor->isRowManualCountingRequired())
             totalRowsReturned = queryExecutor->getTotalRowsReturned();
 
         totalPages = (int)qCeil(((double)totalRowsReturned) / ((double)getRowsPerPage()));
@@ -1650,7 +1650,7 @@ void SqlQueryModel::storeStep2NumbersFromExecution()
 {
     if (!queryExecutor->getSkipRowCounting())
     {
-        if (queryExecutor->isRowCountingRequired() || rowCount() < getRowsPerPage())
+        if (queryExecutor->isRowManualCountingRequired() || rowCount() < getRowsPerPage())
             totalRowsReturned = rowCount();
     }
 }
