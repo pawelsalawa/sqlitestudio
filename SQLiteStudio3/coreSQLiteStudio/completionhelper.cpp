@@ -118,6 +118,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
     filterContextKeywords(results, tokens);
     filterOtherId(results, tokens);
     filterDuplicates(results);
+    filterIdDefinitionFallbackKeywords(results);
 
     // ...and sort the output.
     sort(results);
@@ -941,6 +942,35 @@ void CompletionHelper::filterDuplicates(QList<ExpectedTokenPtr>& resultsSoFar)
     resultsSoFar = toSet(resultsSoFar).values();
 }
 
+void CompletionHelper::filterIdDefinitionFallbackKeywords(QList<ExpectedTokenPtr>& results)
+{
+    // Because of explicit fallback for GENERATED/INDEXED keywords in the parser definition file
+    // we need to treat these keywords here, because they have high chance to be in results
+    // as the only keywords, which is wrong. Having exactly this subset of keywords in results
+    // means they falled into the results because of mistreating the "id(X)" parser definition.
+    QSet<QString> idKeywords = getIdFallbackKeywords();
+    QSet<QString> foundKeywords;
+    QList<ExpectedTokenPtr> foundTokens;
+
+    for (ExpectedTokenPtr& et : results)
+    {
+        if (et->type != ExpectedToken::KEYWORD)
+            continue;
+
+        if (idKeywords.contains(et->value.toUpper()))
+        {
+            foundKeywords << et->value;
+            foundTokens << et;
+        }
+    }
+
+    if (foundKeywords.size() != idKeywords.size())
+        return;
+
+    for (ExpectedTokenPtr& et : foundTokens)
+        results.removeOne(et);
+}
+
 void CompletionHelper::applyFilter(QList<ExpectedTokenPtr>& resultsSoFar, const QString& filter)
 {
     if (filter.isEmpty())
@@ -1083,6 +1113,10 @@ void CompletionHelper::extractQueryAdditionalInfo()
     else if (isInInsertColumns())
     {
         context = Context::INSERT_COLUMNS;
+    }
+    else if (isInAlterTable())
+    {
+        context = Context::ALTER_TABLE;
     }
     else if (isInUpdateReturning())
     {
@@ -1229,6 +1263,26 @@ bool CompletionHelper::isInDeleteReturning()
 bool CompletionHelper::isInInsertReturning()
 {
     return isIn(SqliteQueryType::Insert, "returning", "RETURNING");
+}
+
+bool CompletionHelper::isInAlterTable()
+{
+    if (!parsedQuery)
+    {
+        if (testQueryToken(0, Token::KEYWORD, "ALTER") &&
+                (testQueryToken(1, Token::KEYWORD, "TABLE") ||
+                 testQueryToken(2, Token::KEYWORD, "TABLE")))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    if (parsedQuery->queryType != SqliteQueryType::AlterTable)
+        return false;
+
+    return true;
 }
 
 bool CompletionHelper::isInInsertColumns()
