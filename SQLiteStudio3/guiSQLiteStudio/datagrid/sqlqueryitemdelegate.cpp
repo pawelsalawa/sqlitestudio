@@ -97,6 +97,13 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
     if (value.type() == QVariant::Double)
         return doubleToString(value, CFG_UI.General.UseSciFormatForDoubles.get());
 
+    if (value.type() == QVariant::String)
+    {
+        QString newStr = value.toString();
+        newStr.replace(QChar::ParagraphSeparator, '\n');
+        newStr.replace(QChar::LineSeparator, '\n');
+        return QStyledItemDelegate::displayText(newStr, locale);
+    }
     return QStyledItemDelegate::displayText(value, locale);
 }
 
