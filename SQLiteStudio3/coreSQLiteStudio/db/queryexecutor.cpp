@@ -969,13 +969,18 @@ Db* QueryExecutor::getDb() const
 
 void QueryExecutor::setDb(Db* value)
 {
-    db = value;
+    if (value == db)
+        return;
 
+    db = value;
     if (countingDb)
     {
-        countingDb->closeQuiet();
+        if (countingDb->isOpen())
+            countingDb->closeQuiet();
+
         safe_delete(countingDb);
     }
+
     if (db)
         countingDb = db->clone();
 }
