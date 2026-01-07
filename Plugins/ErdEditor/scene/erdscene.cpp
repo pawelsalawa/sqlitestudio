@@ -15,6 +15,7 @@
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
 #include "common/unused.h"
+#include "uiutils.h"
 #include <QApplication>
 #include <QMessageBox>
 
@@ -368,7 +369,16 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
             QPointF pos(singleEntityConfig[CFG_KEY_POS].toPointF());
             entity->setPos(pos);
         }
-        // TODO entity color
+        if (singleEntityConfig.contains(CFG_KEY_COLOR))
+        {
+            QList<QVariant> colorList = singleEntityConfig[CFG_KEY_COLOR].toList();
+            if (colorList.size() == 2)
+            {
+                QColor bg = colorList[0].value<QColor>();
+                QColor fg = colorList[1].value<QColor>();
+                entity->setCustomColor(bg, fg);
+            }
+        }
     }
     QVariant cfgArrowType = erdConfig[ErdScene::CFG_KEY_ARROW_TYPE];
     if (!cfgArrowType.isNull())
@@ -390,9 +400,13 @@ QHash<QString, QVariant> ErdScene::getConfig()
         if (!entity->isExistingTable())
             continue;
 
+        auto colors = entity->getCustomColor();
+
         QHash<QString, QVariant> singleEntityConfig;
         singleEntityConfig[CFG_KEY_POS] = entity->pos();
-        // TODO entity color
+        if (entity->usesCustomColor())
+            singleEntityConfig[CFG_KEY_COLOR] = QList<QVariant>({colors.first, colors.second});
+
         erdEntities[entity->getTableName()] = singleEntityConfig;
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
@@ -786,6 +800,19 @@ bool ErdScene::confirmLayoutChange() const
             );
 
     return res == QMessageBox::Yes;
+}
+
+void ErdScene::applyColorToSelectedEntities(const QColor& color)
+{
+    QColor textColor = color.isValid() ? findContrastingColor(color) : color;
+    for (auto&& item : selectedItems())
+    {
+        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+        if (!entity)
+            continue;
+
+        entity->setCustomColor(color, textColor);
+    }
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

@@ -24,6 +24,7 @@
 #include "scene/erdconnection.h"
 #include "panel/erdconnectionpanel.h"
 #include "tablemodifier.h"
+#include "common/colorpickerpopup.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -31,6 +32,9 @@
 #include <QGraphicsOpacityEffect>
 #include <QToolButton>
 #include <QMessageBox>
+#include <QColorDialog>
+#include <QMenu>
+#include <QWidgetAction>
 
 Icon* ErdWindow::cursorAddTableIcon = nullptr;
 Icon* ErdWindow::cursorFkIcon = nullptr;
@@ -40,6 +44,7 @@ Icon* ErdWindow::neatoIcon = nullptr;
 Icon* ErdWindow::lineCurvyIcon = nullptr;
 Icon* ErdWindow::lineStraightIcon = nullptr;
 Icon* ErdWindow::lineSquareIcon = nullptr;
+Icon* ErdWindow::colorPickerIcon = nullptr;
 
 ErdWindow::ErdWindow() :
     ui(new Ui::ErdWindow)
@@ -80,6 +85,7 @@ void ErdWindow::staticInit()
     lineStraightIcon = new Icon("ERDEDITOR_LINE_STRAIGHT", "erdeditor_line_straight");
     lineCurvyIcon = new Icon("ERDEDITOR_LINE_CURVY", "erdeditor_line_curvy");
     lineSquareIcon = new Icon("ERDEDITOR_LINE_SQUARE", "erdeditor_line_square");
+    colorPickerIcon = new Icon("ERDEDITOR_COLOR_MAP", "config_colors");
 }
 
 void ErdWindow::staticCleanup()
@@ -92,6 +98,7 @@ void ErdWindow::staticCleanup()
     delete neatoIcon;
     delete cursorAddTableIcon;
     delete cursorFkIcon;
+    delete colorPickerIcon;
 }
 
 void ErdWindow::init()
@@ -99,7 +106,7 @@ void ErdWindow::init()
     ui->setupUi(this);
 
     for (auto icon : {cursorAddTableIcon, cursorFkIcon, windowIcon, fdpIcon, neatoIcon,
-                    lineStraightIcon, lineCurvyIcon, lineSquareIcon})
+                    lineStraightIcon, lineCurvyIcon, lineSquareIcon, colorPickerIcon})
         icon->load();
 
 #ifdef Q_OS_MACOS
@@ -147,21 +154,6 @@ void ErdWindow::createActions()
 {
     createAction(CANCEL_CURRENT, tr("Cancels ongoing action", "ERD editor"), this, SLOT(cancelCurrentAction()), this);
 
-    QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
-    lineGroup->setExclusive(true);
-    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), lineGroup);
-    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), lineGroup);
-    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), lineGroup);
-
-    actionMap[LINE_STRAIGHT]->setCheckable(true);
-    actionMap[LINE_CURVY]->setCheckable(true);
-    actionMap[LINE_SQUARE]->setCheckable(true);
-    updateArrowTypeButtons();
-
-    connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
-    connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
-    connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
-
     createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
@@ -187,14 +179,83 @@ void ErdWindow::createActions()
     ui->toolBar->addSeparator();
     createAction(DELETE_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), ui->view, SLOT(deleteSelectedItem()), ui->toolBar, ui->view);
     ui->toolBar->addSeparator();
-    ui->toolBar->addAction(actionMap[LINE_STRAIGHT]);
-    ui->toolBar->addAction(actionMap[LINE_CURVY]);
-    ui->toolBar->addAction(actionMap[LINE_SQUARE]);
+    ui->toolBar->addWidget(createLineStyleAction());
+    ui->toolBar->addSeparator();
+    ui->toolBar->addWidget(createSetTableColorAction());
     ui->toolBar->addSeparator();
     createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
 
+    connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
+    connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
+    connect(actionMap[LINE_SQUARE], &QAction::triggered, this, &ErdWindow::useSquareLine);
+
     updateSelectionBasedActionsState();
+}
+
+QToolButton* ErdWindow::createSetTableColorAction()
+{
+    actionMap[COLOR_PICK] = new QAction(*colorPickerIcon, tr("Set table color"), ui->toolBar);
+
+    QMenu* menu = new QMenu(this);
+    ColorPickerPopup* picker = new ColorPickerPopup();
+
+    QWidgetAction* wa = new QWidgetAction(menu);
+    wa->setDefaultWidget(picker);
+    menu->addAction(wa);
+
+    QToolButton* btn = new QToolButton();
+    btn->setDefaultAction(actionMap[COLOR_PICK]);
+    btn->setMenu(menu);
+    btn->setPopupMode(QToolButton::InstantPopup);
+    btn->setStyleSheet("QToolButton {padding-right: 12px;}");
+
+    actionMap[COLOR_PICK]->setMenu(menu);
+
+    connect(picker, &ColorPickerPopup::colorPicked, this, [this, menu](const QColor& c) {
+        applySelectedEntityColor(c);
+        menu->close();
+    });
+
+    connect(picker, &ColorPickerPopup::resetRequested, this, [this, menu]() {
+        applySelectedEntityColor(QColor());
+        menu->close();
+    });
+
+    return btn;
+}
+
+QToolButton* ErdWindow::createLineStyleAction()
+{
+    QMenu* lineTypeMenu = new QMenu(this);
+    QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
+    lineGroup->setExclusive(true);
+    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), this);
+    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), this);
+    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), this);
+    for (QAction* a : {actionMap[LINE_STRAIGHT], actionMap[LINE_CURVY], actionMap[LINE_SQUARE]})
+    {
+        a->setCheckable(true);
+        lineGroup->addAction(a);
+        lineTypeMenu->addAction(a);
+    }
+    lineTypeButton = new QToolButton();
+    lineTypeButton->setPopupMode(QToolButton::InstantPopup);
+    lineTypeButton->setMenu(lineTypeMenu);
+    lineTypeButton->setStyleSheet("QToolButton {padding-right: 12px;}");
+    lineTypeButton->setToolTip(tr("Choose line type"));
+    connect(lineGroup, &QActionGroup::triggered, this, [this](QAction* action)
+    {
+        lineTypeButton->setIcon(action->icon());
+    });
+    updateArrowTypeButtons();
+
+    return lineTypeButton;
+}
+
+void ErdWindow::applySelectedEntityColor(const QColor& color)
+{
+    scene->applyColorToSelectedEntities(color);
 }
 
 void ErdWindow::setupDefShortcuts()
@@ -363,6 +424,7 @@ void ErdWindow::handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx)
 void ErdWindow::updateSelectionBasedActionsState()
 {
     actionMap[DELETE_SELECTED]->setEnabled(!scene->selectedItems().isEmpty());
+    actionMap[COLOR_PICK]->setEnabled(!scene->selectedItems().isEmpty());
 }
 
 void ErdWindow::failedChangeReEditRequested(ErdEntity* entity)
@@ -372,25 +434,6 @@ void ErdWindow::failedChangeReEditRequested(ErdEntity* entity)
     entity->setSelected(true);
     ignoreSelectionChangeEvents = false;
 }
-// if (!sidePanelEntityName.isNull() && !successfullyStored)
-// {
-//     QMessageBox::critical(this,
-//           tr("Table modification failed"),
-//           tr("There was a problem applying changes to the table '%1'. Check the messages panel for details. "
-//              "Please either roll back the changes in the side panel or fix them. "
-//              "You cannot continue editing the diagram until this issue is resolved.")
-//                           .arg(sidePanelEntityName)
-//         );
-
-//     ignoreSelectionChangeEvents = true;
-//     scene->clearSelection();
-//     for (QGraphicsItem*& item : previouslySelectedItems)
-//         item->setSelected(true);
-
-//     ignoreSelectionChangeEvents = false;
-//     return false;
-// }
-// return true;
 
 void ErdWindow::itemSelectionChanged()
 {
@@ -513,12 +556,15 @@ void ErdWindow::updateArrowTypeButtons()
     {
         case ErdArrowItem::STRAIGHT:
             actionMap[LINE_STRAIGHT]->setChecked(true);
+            lineTypeButton->setIcon(actionMap[LINE_STRAIGHT]->icon());
             break;
         case ErdArrowItem::CURVY:
             actionMap[LINE_CURVY]->setChecked(true);
+            lineTypeButton->setIcon(actionMap[LINE_CURVY]->icon());
             break;
         case ErdArrowItem::SQUARE:
             actionMap[LINE_SQUARE]->setChecked(true);
+            lineTypeButton->setIcon(actionMap[LINE_SQUARE]->icon());
             break;
     }
 }

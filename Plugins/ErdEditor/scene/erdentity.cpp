@@ -180,8 +180,8 @@ void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
     UNUSED(option);
     UNUSED(widget);
     int radius = 4;
-    painter->setBrush(brush());
     painter->setPen(pen());
+    painter->setBrush(brush());
     QRectF rect = boundingRect();
     painter->drawRoundedRect(rect, radius, radius);
 
@@ -207,6 +207,13 @@ void ErdEntity::rebuild()
     {
         auto tableConstraints = tableModel->getTableConstraintsOnColumn(col);
         addColumn(col, tableConstraints, (++colIdx == tableModel->columns.size()));
+    }
+
+    if (customBgColor.isValid())
+    {
+        setBrush(customBgColor);
+        for (Row*& row : rows)
+            row->applyColors(customBgColor, customFgColor);
     }
 
     updateGeometry();
@@ -536,6 +543,18 @@ QString ErdEntity::Row::getText() const
     return emptyTextValue ? "" : text->text();
 }
 
+void ErdEntity::Row::applyColors(const QColor& bg, const QColor& fg)
+{
+    UNUSED(bg);
+    QColor col = fg.isValid() ? fg : STYLE->standardPalette().text().color();
+    text->setBrush(col);
+    if (datatype)
+        datatype->setBrush(col);
+
+    if (bottomLine)
+        bottomLine->setPen(QPen(col, 0.3));
+}
+
 void ErdEntity::disableChildSelection(QGraphicsItem* parent)
 {
     for (QGraphicsItem* child : parent->childItems())
@@ -744,6 +763,26 @@ bool ErdEntity::inlineEditionCheckIfFieldDeleted(bool indexAutocorrection)
         return true;
     }
     return false;
+}
+
+void ErdEntity::setCustomColor(const QColor& bg, const QColor& fg)
+{
+    customBgColor = bg;
+    customFgColor = fg;
+
+    setBrush(customBgColor.isValid() ? customBgColor : STYLE->standardPalette().window());
+    for (Row*& row : rows)
+        row->applyColors(customBgColor, customFgColor);
+}
+
+QPair<QColor, QColor> ErdEntity::getCustomColor() const
+{
+    return QPair<QColor, QColor>(customBgColor, customFgColor);
+}
+
+bool ErdEntity::usesCustomColor() const
+{
+    return customBgColor.isValid();
 }
 
 void ErdEntity::applyRowEdition(int rowIdx, const QString& value, QGraphicsProxyWidget* inlineProxy)

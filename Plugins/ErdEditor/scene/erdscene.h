@@ -38,6 +38,7 @@ class ErdScene : public QGraphicsScene
         ErdConnection* getConnectionForArrow(ErdArrowItem* arrow);
         bool undoChange(ErdChange* change);
         bool redoChange(ErdChange* change);
+        void applyColorToSelectedEntities(const QColor& color);
 
         static constexpr const char* CFG_KEY_ENTITIES = "entities";
         static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";

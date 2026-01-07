@@ -25,6 +25,7 @@
 #include "services/pluginmanager.h"
 #include "singleapplication/singleapplication.h"
 #include "services/impl/configimpl.h"
+#include "common/colorpickerpopup.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -151,6 +152,7 @@ int main(int argc, char *argv[])
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
+    ColorPickerPopup::staticInit();
 
     SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "guiSQLiteStudio", "sqlitestudio"});
     SQLITESTUDIO->init(a.arguments(), true);

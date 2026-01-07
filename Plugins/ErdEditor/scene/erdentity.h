@@ -49,6 +49,9 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void editName();
         bool eventFilter(QObject *obj, QEvent *event);
         void stopInlineEditing();
+        void setCustomColor(const QColor& bg, const QColor& fg);
+        QPair<QColor, QColor> getCustomColor() const;
+        bool usesCustomColor() const;
 
     protected:
         void keyPressEvent(QKeyEvent* event);
@@ -78,6 +81,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
             void becomeLast();
             void setText(const QString& value);
             QString getText() const;
+            void applyColors(const QColor& bg, const QColor& fg);
         };
 
         void editRow(int rowIdx);
@@ -106,6 +110,8 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         QGraphicsPixmapItem* cornerIcon = nullptr;
         bool existingTable = true;
         int lastInlineEditedRow = -1;
+        QColor customBgColor;
+        QColor customFgColor;
 
     private slots:
         void applyRowEdition(int rowIdx, const QString& value, QGraphicsProxyWidget* inlineProxy);

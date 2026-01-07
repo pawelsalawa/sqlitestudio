@@ -24,6 +24,7 @@ GUI_API_EXPORT void fixTextCursorSelectedText(QString& text);
 GUI_API_EXPORT QColor styleSyntaxStringColor();
 GUI_API_EXPORT QBrush styleEditorLineColor();
 GUI_API_EXPORT void fixToolbarTooltips(QToolBar* toolbar);
+GUI_API_EXPORT QColor findContrastingColor(const QColor& input);
 
 #define UI_PROP_COLUMN "column_name"
 

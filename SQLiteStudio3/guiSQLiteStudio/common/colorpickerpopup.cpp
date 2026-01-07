@@ -1,0 +1,166 @@
+#include "colorpickerpopup.h"
+#include "iconmanager.h"
+#include "common/global.h"
+#include <QGridLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QToolButton>
+#include <QColorDialog>
+#include <QMenu>
+#include <QSignalMapper>
+
+QVector<QColor> ColorPickerPopup::baseColors = {
+    // Grayscale
+    "#000000","#434343","#666666","#999999","#b7b7b7","#cccccc","#d9d9d9","#efefef","#f3f3f3","#ffffff",
+    // Base colors
+    "#980000","#ff0000","#ff9900","#ffff00","#00ff00","#00ffff","#4a86e8","#0000ff","#9900ff","#ff00ff"
+};
+
+ColorPickerPopup::ColorPickerPopup(QWidget *parent)
+    : QWidget(parent)
+{
+    setObjectName("ColorPickerPopup");
+    setAutoFillBackground(true);
+    colorButtonMapper = new QSignalMapper(this);
+    connect(colorButtonMapper, &QSignalMapper::mappedInt, this, &ColorPickerPopup::handleColorRgbaClick);
+
+    mainLayout = new QVBoxLayout(this);
+    mainLayout->setContentsMargins(8, 8, 8, 8);
+    mainLayout->setSpacing(8);
+
+    auto *resetBtn = new QPushButton(ICONS.ERASE, tr("Clear"), this);
+    resetBtn->setCursor(Qt::PointingHandCursor);
+    connect(resetBtn, &QPushButton::clicked, this, &ColorPickerPopup::resetRequested);
+    mainLayout->addWidget(resetBtn, 0, Qt::AlignLeft);
+
+    mainLayout->addWidget(createColorGrid(baseColors, 10));
+
+    auto *customLabel = new QLabel(tr("Custom colors"));
+    customLabel->setStyleSheet("font-weight: 600;");
+    mainLayout->addWidget(customLabel);
+
+    customColorsWidget = createColorGrid(customColors, 10);
+    customColorsWidget->setMinimumHeight(cellSize);
+    mainLayout->addWidget(customColorsWidget);
+
+    auto *addCustomColorBtn = new QPushButton(ICONS.PLUS, tr("Add custom color"), this);
+    connect(addCustomColorBtn, &QToolButton::clicked, this, &ColorPickerPopup::pickCustomColor);
+    mainLayout->addWidget(addCustomColorBtn, 0, Qt::AlignLeft);
+}
+
+ColorPickerPopup::~ColorPickerPopup()
+{
+}
+
+QWidget* ColorPickerPopup::createColorGrid(const QVector<QColor>& colors, int columns)
+{
+    auto *w = new QWidget(this);
+    auto *grid = new QGridLayout(w);
+    grid->setSpacing(0);
+    grid->setAlignment(Qt::AlignLeft);
+    grid->setContentsMargins(0, 0, 0, 0);
+
+    for (int i = 0; i < colors.size(); ++i)
+        grid->addWidget(createColorButton(colors[i]), i / columns, i % columns);
+
+    return w;
+}
+
+QToolButton* ColorPickerPopup::createColorButton(const QColor& color)
+{
+    static_qstring(styleTpl,
+                   "QToolButton { background: %1; border: 2px solid transparent; border-radius: 3px; }"
+                   "QToolButton:hover { border-color: palette(highlight); }");
+
+    QToolButton* btn = new QToolButton();
+    btn->setFixedSize(cellSize, cellSize);
+    btn->setAutoRaise(true);
+    btn->setCursor(Qt::PointingHandCursor);
+    btn->setStyleSheet(styleTpl.arg(color.name()));
+    btn->setToolTip(color.name(QColor::HexRgb).toUpper());
+    connect(btn, &QToolButton::pressed, colorButtonMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+    colorButtonMapper->setMapping(btn, static_cast<int>(color.rgb()));
+    return btn;
+}
+
+void ColorPickerPopup::staticInit()
+{
+    QList<QColor> refColors = baseColors.mid(10, 10);
+
+    auto lighter = [](const QColor& c, double factor)
+    {
+        return QColor(
+            c.red()   + (255 - c.red())   * factor,
+            c.green() + (255 - c.green()) * factor,
+            c.blue()  + (255 - c.blue())  * factor
+        );
+    };
+
+    int idx = 10;
+    for (QColor& c : refColors)
+        baseColors.insert(idx++, lighter(c, 0.6));
+
+    for (QColor& c : refColors)
+        baseColors.insert(idx++, lighter(c, 0.3));
+
+    for (QColor& c : refColors)
+        baseColors.append(c.darker(140));
+
+    for (QColor& c : refColors)
+        baseColors.append(c.darker(200));
+
+    for (QColor& c : refColors)
+        baseColors.append(c.darker(300));
+}
+
+void ColorPickerPopup::addCustomColor(const QColor& c)
+{
+    if (customColors.contains(c))
+        return;
+
+    customColors.prepend(c);
+
+    constexpr int maxCustom = 10;
+    if (customColors.size() > maxCustom)
+        customColors.removeLast();
+}
+
+QVector<QColor> ColorPickerPopup::getCustomColors()
+{
+    return customColors;
+}
+
+void ColorPickerPopup::refreshCustomColors()
+{
+    if (!customColorsWidget)
+        return;
+
+    QWidget* newWidget = createColorGrid(customColors, 10);
+    auto *layout = customColorsWidget->parentWidget()->layout();
+    QLayoutItem* oldItem = layout->replaceWidget(customColorsWidget, newWidget);
+    oldItem->widget()->deleteLater();
+    delete oldItem;
+    customColorsWidget = newWidget;
+}
+
+void ColorPickerPopup::pickCustomColor()
+{
+    QColor c = QColorDialog::getColor(Qt::white, this, tr("Select color"));
+    if (!c.isValid())
+        return;
+
+    handleColorClick(c);
+}
+
+void ColorPickerPopup::handleColorRgbaClick(int mappedColor)
+{
+    handleColorClick(QColor::fromRgb(static_cast<uint>(mappedColor)));
+}
+
+void ColorPickerPopup::handleColorClick(const QColor& color)
+{
+    addCustomColor(color);
+    refreshCustomColors();
+    emit colorPicked(color);
+}

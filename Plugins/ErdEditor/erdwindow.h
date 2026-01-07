@@ -36,6 +36,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             LINE_STRAIGHT,
             LINE_CURVY,
             LINE_SQUARE,
+            COLOR_PICK,
             CANCEL_CURRENT,
             UNDO,
             REDO,
@@ -94,6 +95,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          */
         bool storeEntityModifications(QWidget* sidePanelWidget);
         QString getCurrentSidePanelModificationsEntity() const;
+        QToolButton* createSetTableColorAction();
+        QToolButton* createLineStyleAction();
+        void applySelectedEntityColor(const QColor& color);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -104,6 +108,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         static Icon* lineCurvyIcon;
         static Icon* lineStraightIcon;
         static Icon* lineSquareIcon;
+        static Icon* colorPickerIcon;
 
         Ui::ErdWindow *ui;
         Db* db = nullptr;
@@ -115,7 +120,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QGraphicsOpacityEffect* noSideWidgetEffect = nullptr;
         QToolButton* changeCountLabel = nullptr;
         bool ignoreSelectionChangeEvents = false;
-        
+        QToolButton* lineTypeButton = nullptr;
+
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
         void uiPaletteChanged();
