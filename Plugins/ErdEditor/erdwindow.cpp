@@ -198,10 +198,10 @@ QToolButton* ErdWindow::createSetTableColorAction()
     actionMap[COLOR_PICK] = new QAction(*colorPickerIcon, tr("Set table color"), ui->toolBar);
 
     QMenu* menu = new QMenu(this);
-    ColorPickerPopup* picker = new ColorPickerPopup();
+    colorPicker = new ColorPickerPopup();
 
     QWidgetAction* wa = new QWidgetAction(menu);
-    wa->setDefaultWidget(picker);
+    wa->setDefaultWidget(colorPicker);
     menu->addAction(wa);
 
     QToolButton* btn = new QToolButton();
@@ -212,12 +212,12 @@ QToolButton* ErdWindow::createSetTableColorAction()
 
     actionMap[COLOR_PICK]->setMenu(menu);
 
-    connect(picker, &ColorPickerPopup::colorPicked, this, [this, menu](const QColor& c) {
+    connect(colorPicker, &ColorPickerPopup::colorPicked, this, [this, menu](const QColor& c) {
         applySelectedEntityColor(c);
         menu->close();
     });
 
-    connect(picker, &ColorPickerPopup::resetRequested, this, [this, menu]() {
+    connect(colorPicker, &ColorPickerPopup::resetRequested, this, [this, menu]() {
         applySelectedEntityColor(QColor());
         menu->close();
     });
@@ -256,6 +256,37 @@ QToolButton* ErdWindow::createLineStyleAction()
 void ErdWindow::applySelectedEntityColor(const QColor& color)
 {
     scene->applyColorToSelectedEntities(color);
+    for (ErdEntity* entity : (scene->selectedItems() | NNMAP_CAST(ErdEntity*)))
+        colorPicker->markColor(entity->getCustomColor().first);
+}
+
+void ErdWindow::updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems)
+{
+    if (selectedItems.size() == 0)
+        return;
+
+    QList<ErdEntity*> entitiesWithColors = selectedItems |
+            NNMAP_CAST(ErdEntity*) |
+            FILTER(item, {return item->usesCustomColor();});
+
+    if (entitiesWithColors.size() == 0)
+        return;
+
+    if (entitiesWithColors.size() == 1)
+    {
+        colorPicker->markColor(entitiesWithColors[0]->getCustomColor().first);
+        return;
+    }
+
+    QColor theColor = entitiesWithColors[0]->getCustomColor().first;
+    QListIterator<ErdEntity*> it(entitiesWithColors);
+    it.next();
+    while (it.hasNext())
+    {
+        if (theColor != it.next()->getCustomColor().first)
+            return; // at least 2 different colors = no color marking.
+    }
+    colorPicker->markColor(theColor);
 }
 
 void ErdWindow::setupDefShortcuts()
@@ -440,12 +471,16 @@ void ErdWindow::itemSelectionChanged()
     if (ignoreSelectionChangeEvents)
         return;
 
+    colorPicker->clearColorMark();
+
     QList<QGraphicsItem*> selItems = scene->selectedItems();
     if (!clearSidePanel())
         return;
 
     if (selItems.size() == 1)
         showSidePanelPropertiesFor(selItems[0]);
+
+    updatePickerColorFromSelected(selItems);
 }
 
 void ErdWindow::reloadSchema()
@@ -585,6 +620,7 @@ QVariant ErdWindow::saveSession()
     erdConfig.insert(scene->getConfig());
     erdConfig.insert(ui->view->getConfig());
     erdConfig[CFG_KEY_SPLITTER] = ui->splitter->saveState();
+    erdConfig[CFG_CUSTOM_COLORS] = QVariant::fromValue<QVector<QColor>>(colorPicker->getCustomColors());
 
     if (db)
     {
@@ -822,6 +858,7 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
     ui->splitter->restoreState(erdConfig[CFG_KEY_SPLITTER].toByteArray());
     scene->applyConfig(erdConfig);
     ui->view->applyConfig(erdConfig);
+    colorPicker->setCustomColors(erdConfig[CFG_CUSTOM_COLORS].value<QVector<QColor>>());
     updateArrowTypeButtons();
 
     return true;

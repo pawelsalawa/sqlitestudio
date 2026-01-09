@@ -7,6 +7,8 @@
 #include "erdeditorplugin.h"
 #include <QWidget>
 
+
+class ColorPickerPopup;
 namespace Ui {
     class ErdWindow;
 }
@@ -98,10 +100,12 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QToolButton* createSetTableColorAction();
         QToolButton* createLineStyleAction();
         void applySelectedEntityColor(const QColor& color);
+        void updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems);
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
         static constexpr const char* CHANGE_COUNT_DIGITS = "%04d";
+        static constexpr const char* CFG_CUSTOM_COLORS = "customColors";
         static Icon* windowIcon;
         static Icon* fdpIcon;
         static Icon* neatoIcon;
@@ -121,6 +125,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QToolButton* changeCountLabel = nullptr;
         bool ignoreSelectionChangeEvents = false;
         QToolButton* lineTypeButton = nullptr;
+        ColorPickerPopup* colorPicker = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);

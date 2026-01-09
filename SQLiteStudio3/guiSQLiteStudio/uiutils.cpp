@@ -198,3 +198,4 @@ QColor findContrastingColor(const QColor& input)
     bool isDark = inputLum < 0.15;
     return isDark ? QColor(240,240,240) : QColor(30,30,30);
 }
+

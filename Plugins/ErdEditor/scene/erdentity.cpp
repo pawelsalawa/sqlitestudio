@@ -546,13 +546,12 @@ QString ErdEntity::Row::getText() const
 void ErdEntity::Row::applyColors(const QColor& bg, const QColor& fg)
 {
     UNUSED(bg);
-    QColor col = fg.isValid() ? fg : STYLE->standardPalette().text().color();
-    text->setBrush(col);
+    text->setBrush(fg);
     if (datatype)
-        datatype->setBrush(col);
+        datatype->setBrush(fg);
 
     if (bottomLine)
-        bottomLine->setPen(QPen(col, 0.3));
+        bottomLine->setPen(QPen(fg, 0.3));
 }
 
 void ErdEntity::disableChildSelection(QGraphicsItem* parent)
@@ -684,6 +683,22 @@ void ErdEntity::keyReleaseEvent(QKeyEvent* event)
     QGraphicsRectItem::keyReleaseEvent(event);
 }
 
+QVariant ErdEntity::itemChange(GraphicsItemChange change, const QVariant& value)
+{
+    if (change == ItemSelectedHasChanged)
+    {
+        // This is a hacky fix to force foreground layer repainting when selection changes,
+        // because setting custom colors to entity upon session restoring somehow
+        // made Qt forget to repaint this item when it's selected for the first time.
+        // It worked fine after selecting some other items and then going back to this one,
+        // but not on the very first selection.
+        QRectF rect = mapRectToScene(boundingRect());
+        scene()->invalidate(rect, QGraphicsScene::ForegroundLayer);
+    }
+
+    return QGraphicsRectItem::itemChange(change, value);
+}
+
 void ErdEntity::inlineEditTabKeyPressed(bool backward)
 {
     setFocus(backward ? Qt::BacktabFocusReason : Qt::TabFocusReason);
@@ -770,9 +785,12 @@ void ErdEntity::setCustomColor(const QColor& bg, const QColor& fg)
     customBgColor = bg;
     customFgColor = fg;
 
-    setBrush(customBgColor.isValid() ? customBgColor : STYLE->standardPalette().window());
+    QColor actualBg = bg.isValid() ? bg : STYLE->standardPalette().window().color();
+    QColor actualFg = fg.isValid() ? fg : STYLE->standardPalette().text().color();
+
+    setBrush(actualBg);
     for (Row*& row : rows)
-        row->applyColors(customBgColor, customFgColor);
+        row->applyColors(actualBg, actualFg);
 }
 
 QPair<QColor, QColor> ErdEntity::getCustomColor() const

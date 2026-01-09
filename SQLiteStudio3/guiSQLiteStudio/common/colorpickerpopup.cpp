@@ -1,6 +1,7 @@
 #include "colorpickerpopup.h"
 #include "iconmanager.h"
 #include "common/global.h"
+#include "uiconfig.h"
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -9,6 +10,7 @@
 #include <QColorDialog>
 #include <QMenu>
 #include <QSignalMapper>
+#include <QRegularExpression>
 
 QVector<QColor> ColorPickerPopup::baseColors = {
     // Grayscale
@@ -19,6 +21,11 @@ QVector<QColor> ColorPickerPopup::baseColors = {
 
 ColorPickerPopup::ColorPickerPopup(QWidget *parent)
     : QWidget(parent)
+{
+    init();
+}
+
+void ColorPickerPopup::init()
 {
     setObjectName("ColorPickerPopup");
     setAutoFillBackground(true);
@@ -81,7 +88,45 @@ QToolButton* ColorPickerPopup::createColorButton(const QColor& color)
     btn->setToolTip(color.name(QColor::HexRgb).toUpper());
     connect(btn, &QToolButton::pressed, colorButtonMapper, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
     colorButtonMapper->setMapping(btn, static_cast<int>(color.rgb()));
+    colorButtons.insert(color.rgba(), btn);
     return btn;
+}
+
+void ColorPickerPopup::markColor(const QColor& color)
+{
+    clearHighlight();
+
+    auto it = colorButtons.constFind(color.rgba());
+    if (it == colorButtons.constEnd())
+        return;
+
+    highlightButton(it.value());
+}
+
+void ColorPickerPopup::clearColorMark()
+{
+    clearHighlight();
+}
+
+void ColorPickerPopup::clearHighlight()
+{
+    if (!currentHighlighted)
+        return;
+
+    currentHighlighted->setStyleSheet(
+        currentHighlighted->styleSheet().replace(QRegularExpression("border:[^;]+;"), "")
+    );
+
+    currentHighlighted = nullptr;
+}
+
+void ColorPickerPopup::highlightButton(QToolButton* btn)
+{
+    if (!btn)
+        return;
+
+    btn->setStyleSheet(btn->styleSheet() + "QToolButton { border: 2px solid palette(highlight); }");
+    currentHighlighted = btn;
 }
 
 void ColorPickerPopup::staticInit()
@@ -129,6 +174,12 @@ void ColorPickerPopup::addCustomColor(const QColor& c)
 QVector<QColor> ColorPickerPopup::getCustomColors()
 {
     return customColors;
+}
+
+void ColorPickerPopup::setCustomColors(const QVector<QColor>& colors)
+{
+    customColors = colors;
+    refreshCustomColors();
 }
 
 void ColorPickerPopup::refreshCustomColors()

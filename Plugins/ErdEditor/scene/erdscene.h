@@ -25,6 +25,7 @@ class ErdScene : public QGraphicsScene
 
     public:
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
+        ~ErdScene();
 
         void setDb(Db* db);
         Db* getDb() const;
@@ -56,11 +57,10 @@ class ErdScene : public QGraphicsScene
         QPointF getPosForNewEntity() const;
         QSet<ErdConnection*> getConnections() const;
         bool confirmLayoutChange() const;
-        void refreshConnections(const QList<ErdEntity*>& forEntities = {});
-        void refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* entity, const QString& tableName);
+        void refreshEntityFromTableName(ErdEntity* entity, const QString& tableName);
+        void refreshSchemaForTableNames(const QStringList& tables);
         ErdChange* deleteEntity(ErdEntity*& entity);
         ErdChange* deleteConnection(ErdConnection*& connection);
-        void refreshSchemaForTableNames(const QStringList& tables);
         void entityCreated(ErdEntity* entity);
         void entityToBeDeleted(ErdEntity* entity);
         void refreshScheduledConnections();
@@ -92,6 +92,7 @@ class ErdScene : public QGraphicsScene
         ErdArrowItem::Type arrowType;
         Db* db = nullptr;
         ChainExecutor* ddlExecutor = nullptr;
+        SchemaResolver* schemaResolver = nullptr;
 
         static constexpr qreal sceneMargin = 200;
 

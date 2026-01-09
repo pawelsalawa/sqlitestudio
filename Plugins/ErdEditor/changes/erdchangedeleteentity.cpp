@@ -3,8 +3,9 @@
 #include "common/utils_sql.h"
 #include "tablemodifier.h"
 
-ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QString& description) :
-    ErdChange(Category::ENTITY_DELETE, description, true), db(db), tableName(tableName), lastPosition(pos)
+ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QColor& customColor, const QString& description) :
+    ErdChange(Category::ENTITY_DELETE, description, true), db(db), tableName(tableName),
+    lastPosition(pos), lastCustomColor(customColor)
 {
 }
 
@@ -21,6 +22,11 @@ QStringList ErdChangeDeleteEntity::getChangeDdl()
         tableModifier->dropTable();
     }
     return tableModifier->generateSqls();
+}
+
+QColor ErdChangeDeleteEntity::getLastCustomColor() const
+{
+    return lastCustomColor;
 }
 
 QPointF ErdChangeDeleteEntity::getLastPosition() const

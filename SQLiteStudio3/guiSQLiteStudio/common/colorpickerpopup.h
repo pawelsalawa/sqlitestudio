@@ -15,21 +15,31 @@ class ColorPickerPopup : public QWidget
 
         void addCustomColor(const QColor& c);
         QVector<QColor> getCustomColors();
+        void setCustomColors(const QVector<QColor>& colors);
 
         static void staticInit();
 
     private:
+        void init();
         QWidget* createColorGrid(const QVector<QColor>& colors, int columns);
         void refreshCustomColors();
         QToolButton* createColorButton(const QColor& color);
+        void clearHighlight();
+        void highlightButton(QToolButton* btn);
+
+        static QVector<QColor> baseColors;
+        static const int cellSize = 20;
 
         QWidget* customColorsWidget = nullptr;
         QVBoxLayout* mainLayout = nullptr;
         QSignalMapper* colorButtonMapper = nullptr;
         QVector<QColor> customColors;
+        QHash<QRgb, QToolButton*> colorButtons;
+        QToolButton* currentHighlighted = nullptr;
 
-        static QVector<QColor> baseColors;
-        static const int cellSize = 20;
+    public slots:
+        void markColor(const QColor& color);
+        void clearColorMark();
 
     private slots:
         void pickCustomColor();

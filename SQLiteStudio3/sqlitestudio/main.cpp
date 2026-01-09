@@ -143,6 +143,9 @@ int main(int argc, char *argv[])
 
     qInstallMessageHandler(uiMessageHandler);
 
+    qRegisterMetaType<QList<QColor>>("QList<QColor>");
+    qRegisterMetaType<QVector<QColor>>("QVector<QColor>");
+
     Config::setAskUserForConfigDirFunc([]() -> QString
     {
        return QFileDialog::getExistingDirectory(nullptr, QObject::tr("Select configuration directory"), QString(), QFileDialog::ShowDirsOnly);

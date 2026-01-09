@@ -29,10 +29,17 @@ ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     ddlExecutor->setDisableObjectDropsDetection(true);
 }
 
+ErdScene::~ErdScene()
+{
+    safe_delete(schemaResolver);
+}
+
 void ErdScene::setDb(Db *db)
 {
     this->db = db;
     ddlExecutor->setDb(db);
+    safe_delete(schemaResolver);
+    schemaResolver = new SchemaResolver(db);
 }
 
 Db* ErdScene::getDb() const
@@ -46,8 +53,7 @@ QSet<QString> ErdScene::parseSchema()
         return QSet<QString>();
 
     QSet<QString> tableNames;
-    SchemaResolver resolver(db);
-    StrHash<SqliteCreateTablePtr> tables = resolver.getAllParsedTables();
+    StrHash<SqliteCreateTablePtr> tables = schemaResolver->getAllParsedTables();
     for (SqliteCreateTablePtr& table : tables.values())
     {
         if (isSystemTable(table->table))
@@ -109,12 +115,11 @@ void ErdScene::handleSingleChange(ErdChangeEntity* entityChange)
 
 void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
 {
-    ErdEntity* entity = entityMap.value(newEntityChange->getTemporaryEntityName(), Qt::CaseInsensitive);
-    SchemaResolver resolver(db);
+    ErdEntity* entity = entityMap[newEntityChange->getTemporaryEntityName()];
 
     if (entity)
     {
-        refreshEntityFromTableName(resolver, entity, newEntityChange->getTableName());
+        refreshEntityFromTableName(entity, newEntityChange->getTableName());
     }
     else
     {
@@ -127,11 +132,11 @@ void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
         restoreEntityPosition(newEntityChange->getTableName(), newEntityChange->getLastPositionBeforeUndo());
     }
 
-    QStringList referencingTables = resolver.getFkReferencingTables(newEntityChange->getTableName());
+    QStringList referencingTables = schemaResolver->getFkReferencingTables(newEntityChange->getTableName());
     for (const QString& tableName : referencingTables)
     {
         ErdEntity* entity = entityMap[tableName];
-        refreshEntityFromTableName(resolver, entity, tableName);
+        refreshEntityFromTableName(entity, tableName);
     }
 }
 
@@ -149,7 +154,6 @@ void ErdScene::handleSingleChange(ErdChangeDeleteConnection* change)
 
 void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
 {
-    SchemaResolver resolver(db);
     for (const QString& tableName : unique(tables))
     {
         ErdEntity* entity = entityMap[tableName];
@@ -166,7 +170,7 @@ void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
         if (entity->isBeingDeleted())
             continue;
 
-        refreshEntityFromTableName(resolver, entity, tableName);
+        refreshEntityFromTableName(entity, tableName);
     }
 }
 
@@ -215,6 +219,13 @@ void ErdScene::handleSingleChangeUndo(ErdChangeDeleteEntity* change)
 
     refreshSchemaForTableNames(modifiedTables);
     restoreEntityPosition(change->getTableName(), change->getLastPosition());
+    if (change->getLastCustomColor().isValid())
+    {
+        QColor color = change->getLastCustomColor();
+        QColor textColor = findContrastingColor(color);
+        ErdEntity* entity = entityMap[change->getTableName()];
+        entity->setCustomColor(color, textColor);
+    }
 }
 
 void ErdScene::handleSingleChangeUndo(ErdChangeDeleteConnection* change)
@@ -251,11 +262,10 @@ void ErdScene::handleSingleChange(ErdChangeEntity* change, bool forwardExecution
     for (const QString& tableName : change->getTableModifier()->getModifiedTables())
         modifiedTables << OldNewName(tableName, tableName);
 
-    SchemaResolver resolver(db);
     for (OldNewName& oldNewTableName : modifiedTables)
     {
         ErdEntity* entity = entityMap[oldNewTableName.first];
-        refreshEntityFromTableName(resolver, entity, oldNewTableName.second);
+        refreshEntityFromTableName(entity, oldNewTableName.second);
     }
 }
 
@@ -316,13 +326,13 @@ void ErdScene::refreshScheduledConnections()
     connectionRefreshScheduled.clear();
 }
 
-void ErdScene::refreshEntityFromTableName(SchemaResolver& resolver, ErdEntity* entity, const QString& tableName)
+void ErdScene::refreshEntityFromTableName(ErdEntity* entity, const QString& tableName)
 {
     entity->clearConnections();
 
     QString oldTableName = entity->getTableName();
 
-    SqliteCreateTablePtr createTable = resolver.getParsedTable(tableName);
+    SqliteCreateTablePtr createTable = schemaResolver->getParsedTable(tableName);
     if (createTable.isNull())
     {
         removeEntityFromScene(entity);
@@ -658,7 +668,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
     }
 
     QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
-    ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), entity->pos(), changeDesc);
+    ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), entity->pos(), entity->getCustomColor().first, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
     ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
     ddlExecutor->exec();
@@ -805,14 +815,8 @@ bool ErdScene::confirmLayoutChange() const
 void ErdScene::applyColorToSelectedEntities(const QColor& color)
 {
     QColor textColor = color.isValid() ? findContrastingColor(color) : color;
-    for (auto&& item : selectedItems())
-    {
-        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-        if (!entity)
-            continue;
-
+    for (ErdEntity* entity : (selectedItems() | NNMAP_CAST(ErdEntity*)))
         entity->setCustomColor(color, textColor);
-    }
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

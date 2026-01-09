@@ -24,8 +24,31 @@ QList<T> operator|(const QList<T>& list, const ListFilterOp<Predicate>& op)
     return out;
 }
 
+template <typename T, typename Predicate>
+QSet<T> operator|(const QSet<T>& list, const ListFilterOp<Predicate>& op)
+{
+    QSet<T> out;
+    for (const T& value : list)
+        if (op.fn(value))
+            out << value;
+
+    return out;
+}
+
+/**
+ * Filter QList/QSet by given predicate body.
+ * Example:
+ * QList<int> values = {...};
+ * QList<int> filtered = values | FILTER(val, {return val > 5;});
+ */
 #define FILTER(param, body) \
     ListFilterOp{[&](auto&& param) body}
+
+/**
+ * Shortcut for: FILTER(item, {return item != nullptr;})
+ */
+#define FILTER_NON_NULL() \
+    FILTER(filterNonNullItem, {return filterNonNullItem != nullptr;})
 
 // ==============================================
 // MAP: list → mapped list
@@ -57,11 +80,104 @@ auto operator|(const QSet<T>& list, const ListMapOp<Mapper>& op)
     return out;
 }
 
+/**
+ * Map QList/QSet to QList/QSet with template type concluded from implementation body.
+ * Example:
+ * QList<int> values = {...};
+ * QList<QString> mapped = values | MAP(val, {return QString::number(val);});
+ */
 #define MAP(param, body) \
     ListMapOp{[&](auto&& param) body}
 
+/**
+ * Map QList/QSet to QList/QSet with template type concluded from implementation body.
+ * The lambda used here does not capture any variables.
+ */
 #define MAP_NO_CAP(param, body) \
     ListMapOp{[](auto&& param) body}
+
+/**
+ * Cast QList/QSet to QList/QSet with specific template type using dynamic_cast.
+ * Example:
+ * QList<Type*> values = {...};
+ * QList<ExtededType*> mapped = values | MAP_CAST(ExtededType*);
+ */
+#define MAP_CAST(type) \
+    MAP(mapCastItem, {return dynamic_cast<type>(mapCastItem);})
+
+/**
+ * Cast QList/QSet to QList/QSet with specific template type using qobject_cast.
+ */
+#define MAP_QCAST(type) \
+    MAP(mapCastItem, {return qobject_cast<type>(mapCastItem);})
+
+// ==============================================
+// NNMAP: list → mapped list, excluding null results from the map
+// Usuable with pointers.
+
+template <typename Fn>
+struct ListNnMapOp {
+        Fn fn;
+};
+
+template <typename T, typename Mapper>
+auto operator|(const QList<T>& list, const ListNnMapOp<Mapper>& op)
+{
+    using R = decltype(op.fn(std::declval<const T&>()));
+    QList<R> out;
+    for (const T& value : list)
+    {
+        R r = op.fn(value);
+        if (r)
+            out << r;
+    }
+
+    return out;
+}
+
+template <typename T, typename Mapper>
+auto operator|(const QSet<T>& list, const ListNnMapOp<Mapper>& op)
+{
+    using R = decltype(op.fn(std::declval<const T&>()));
+    QSet<R> out;
+    for (const T& value : list)
+    {
+        R r = op.fn(value);
+        if (r)
+            out << r;
+    }
+
+    return out;
+}
+
+/**
+ * Map QList/QSet to QList/QSet with template type concluded from implementation body.
+ * If casted result is null, exclude it from resultsing collection.
+ */
+#define NNMAP(param, body) \
+    ListNnMapOp{[&](auto&& param) body}
+
+/**
+ * Map QList/QSet to QList/QSet with template type concluded from implementation body.
+ * The lambda used here does not capture any variables.
+ * If casted result is null, exclude it from resultsing collection.
+ */
+#define NNMAP_NO_CAP(param, body) \
+    ListNnMapOp{[](auto&& param) body}
+
+/**
+ * Cast QList/QSet to QList/QSet with specific template type using dynamic_cast.
+ * If casted result is null, exclude it from resultsing collection.
+ */
+#define NNMAP_CAST(type) \
+    NNMAP(mapCastItem, {return dynamic_cast<type>(mapCastItem);})
+
+/**
+ * Cast QList/QSet to QList/QSet with specific template type using qobject_cast.
+ * If casted result is null, exclude it from resultsing collection.
+ */
+#define NNMAP_QCAST(type) \
+    NNMAP(mapCastItem, {return qobject_cast<type>(mapCastItem);})
 
 // ==============================================
 // FIND_FIRST: list → optional-like pointer (nullptr = not found)
@@ -80,6 +196,10 @@ T operator|(const QList<T>& list, const ListFindFirstOp<Predicate>& op)
     return nullptr;
 }
 
+/**
+ * Finds first occcurrence of element complying with given predicate body
+ * and returns it, or returns nullptr otherwise.
+ */
 #define FIND_FIRST(param, body) \
     ListFindFirstOp{[&](auto&& param) body}
 
@@ -100,6 +220,10 @@ int operator|(const QList<T>& list, const ListIndexOfOp<Predicate>& op)
     return -1;
 }
 
+/**
+ * Finds first occcurrence of element complying with given predicate body
+ * and returns index of it, or returns -1 otherwise.
+ */
 #define INDEX_OF(param, body) \
     ListIndexOfOp{[&](auto&& param) body}
 
@@ -114,6 +238,12 @@ struct API_EXPORT ListIndexOfStrOp {
 
 API_EXPORT int operator|(const QStringList& list, const ListIndexOfStrOp& op);
 
+/**
+ * Finds first occcurrence of string complying with given predicate body
+ * and returns index of it, or returns -1 otherwise.
+ * Since it's string-oriented, it supports starting index and case sensitivity
+ * as 2nd and 3rd parameters.
+ */
 #define INDEX_OF_STR(value, ...) \
     ListIndexOfStrOp{value, ##__VA_ARGS__}
 
@@ -134,6 +264,10 @@ int operator|(const QList<T>& list, const ListIndexOfLastOp<Predicate>& op)
     return -1;
 }
 
+/**
+ * Finds last occcurrence of element complying with given predicate body
+ * and returns index of it, or returns -1 otherwise.
+ */
 #define LAST_INDEX_OF(param, body) \
     ListIndexOfLastOp{[&](auto&& param) body}
 
@@ -154,6 +288,20 @@ bool operator|(const QList<T>& list, const ListContainsOp<Predicate>& op)
     return false;
 }
 
+template <typename T, typename Predicate>
+bool operator|(const QSet<T>& list, const ListContainsOp<Predicate>& op)
+{
+    for (const T& value : list)
+        if (op.fn(value))
+            return true;
+
+    return false;
+}
+
+/**
+ * Checks whether the list contains an element complying with given predicate body
+ * and then returns true if it does so.
+ */
 #define CONTAINS(param, body) \
     ListContainsOp{[&](auto&& param) body}
 
@@ -187,6 +335,13 @@ auto operator|(const QSet<V>& list, const ListToHashOp<Mapper>& op)
     return result;
 }
 
+/**
+ * Reduces given collection to a QHash, mapping element's to a key by the given body.
+ * If there is a collision on keys, the new one will always replace previos one.
+ * Example:
+ * QList<Type*> values = {...};
+ * QHash<int, Type*> hash = values | TO_HASH(item, {return item->getIntKey();});
+ */
 #define TO_HASH(param, key_mapper_body) \
     ListToHashOp{[&](auto&& param) key_mapper_body}
 
@@ -220,6 +375,15 @@ auto operator|(const QSet<V>& list, const ListGroupByOp<Mapper>& op)
     return result;
 }
 
+/**
+ * Reduces given collection to a QHash, mapping element's to a key by the given body.
+ * Values are stored in sub-collection of same type as input collection.
+ * If there is a collision on keys, the resuling sub-collection for the same key will
+ * contain multiple elements.
+ * Example:
+ * QList<Type*> values = {...};
+ * QHash<int, QList<Type*>> hash = values | TO_HASH(item, {return item->getIntKey();});
+ */
 #define GROUP_BY(param, key_mapper_body) \
     ListGroupByOp{[&](auto&& param) key_mapper_body}
 
