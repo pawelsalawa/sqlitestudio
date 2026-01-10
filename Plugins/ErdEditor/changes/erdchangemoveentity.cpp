@@ -2,7 +2,7 @@
 #include "common/unused.h"
 
 ErdChangeMoveEntity::ErdChangeMoveEntity(const QString& entityName, const QPointF& fromPos, const QPointF& toPos, const QString& description) :
-    ErdChange(Category::LAYOUT, description), entityName(entityName), fromPos(fromPos), toPos(toPos)
+    ErdChange(description), entityName(entityName), fromPos(fromPos), toPos(toPos)
 {
 }
 

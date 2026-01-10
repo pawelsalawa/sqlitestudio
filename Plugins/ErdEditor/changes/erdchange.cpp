@@ -1,10 +1,11 @@
 #include "erdchange.h"
+#include "erdchangecomposite.h"
 #include "common/global.h"
 #include "common/utils.h"
 #include <QUuid>
 
-ErdChange::ErdChange(Category category, const QString& description, bool generateTransactionId) :
-    category(category), description(description)
+ErdChange::ErdChange(const QString& description, bool generateTransactionId) :
+    description(description)
 {
     if (generateTransactionId)
         transactionId = QUuid::createUuid().toString(QUuid::WithoutBraces);
@@ -26,6 +27,17 @@ QString ErdChange::getDescription() const
 bool ErdChange::isDdlChange()
 {
     return !getCachedChangeDdl().isEmpty();
+}
+
+ErdChange* ErdChange::normalizeChanges(const QList<ErdChange*>& changes, const QString& compositeDescription)
+{
+    if (changes.isEmpty())
+        return nullptr;
+
+    if (changes.size() == 1)
+        return changes.first();
+
+    return new ErdChangeComposite(changes, compositeDescription);
 }
 
 QStringList ErdChange::toDdl(bool skipSaveoints)
@@ -58,9 +70,4 @@ void ErdChange::applyRedo(ErdScene::SceneChangeApi& api)
 QString ErdChange::getTransactionId() const
 {
     return transactionId;
-}
-
-ErdChange::Category ErdChange::getCategory() const
-{
-    return category;
 }

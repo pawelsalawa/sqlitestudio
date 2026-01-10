@@ -125,7 +125,7 @@ void ErdWindow::init()
     ErdArrowItem::Type arrowType = (ErdArrowItem::Type)CFG_ERD.Erd.ArrowType.get();
 
     scene = new ErdScene(arrowType, this);
-    connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
+    connect(scene, &ErdScene::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(ui->view, &ErdView::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
     connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
@@ -256,9 +256,9 @@ QToolButton* ErdWindow::createLineStyleAction()
 
 void ErdWindow::applySelectedEntityColor(const QColor& color)
 {
-    scene->applyColorToSelectedEntities(color);
-    for (ErdEntity* entity : (scene->selectedItems() | NNMAP_CAST(ErdEntity*)))
-        colorPicker->markColor(entity->getCustomColor().first);
+    QList<ErdEntity*> appliedEntities = scene->applyColorToSelectedEntities(color);
+    if (!appliedEntities.isEmpty())
+        colorPicker->markColor(color);
 }
 
 void ErdWindow::updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems)

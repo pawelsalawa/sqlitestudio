@@ -2,7 +2,7 @@
 #include "scene/erdentity.h"
 
 ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description) :
-    ErdChange(Category::ENTITY_NEW, description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable)
+    ErdChange(description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable)
 {
 }
 

@@ -4,7 +4,7 @@
 #include "tablemodifier.h"
 
 ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QColor& customColor, const QString& description) :
-    ErdChange(Category::ENTITY_DELETE, description, true), db(db), tableName(tableName),
+    ErdChange(description, true), db(db), tableName(tableName),
     lastPosition(pos), lastCustomColor(customColor)
 {
 }

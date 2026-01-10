@@ -8,6 +8,7 @@ TARGET = ErdEditor
 DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
+    changes/erdchangecolorentity.cpp \
     changes/erdchangemoveentity.cpp \
     scene/erdarrowitem.cpp \
     changes/erdchange.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     erdwindow.cpp
 
 HEADERS += \
+    changes/erdchangecolorentity.h \
     changes/erdchangemoveentity.h \
     scene/erdarrowitem.h \
     changes/erdchange.h \

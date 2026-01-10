@@ -184,6 +184,9 @@ void fixToolbarTooltips(QToolBar* toolbar)
 
 QColor findContrastingColor(const QColor& input)
 {
+    if (!input.isValid())
+        return input;
+
     auto channel = [](int v)
     {
         double c = v / 255.0;

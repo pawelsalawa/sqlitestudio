@@ -4,7 +4,7 @@
 #include "scene/erdentity.h"
 
 ErdChangeDeleteConnection::ErdChangeDeleteConnection(Db* db, ErdConnection* connection, const QString& description) :
-    ErdChange(Category::CONNECTION_DELETE, description, true), db(db)
+    ErdChange(description, true), db(db)
 {
     createTable = connection->getStartEntity()->getTableModel();
     endEntityName = connection->getEndEntity()->getTableName();

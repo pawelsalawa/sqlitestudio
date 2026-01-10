@@ -577,16 +577,25 @@ void ErdView::endDragBySpace()
 
 void ErdView::itemsPotentiallyMoved()
 {
+    QList<ErdChange*> changes;
+    QStringList names;
     for (QGraphicsItem* item : selectedMovableItems)
     {
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
         if (entity)
         {
-            ErdChangeMoveEntity* change = new ErdChangeMoveEntity(entity->getTableName(), dragStartPos[item], item->pos(),
-                                                          tr("Move entity \"%1\"").arg(entity->getTableName()));
-            emit changeCreated(change);
+            if (dragStartPos[item] != item->pos())
+            {
+                changes << new ErdChangeMoveEntity(entity->getTableName(), dragStartPos[item], item->pos(),
+                                                    tr("Move table \"%1\"").arg(entity->getTableName()));
+            }
+            names << entity->getTableName();
         }
     }
+
+    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Move tables: %1").arg(names.join(", ")));
+    if (change)
+        emit changeCreated(change);
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :

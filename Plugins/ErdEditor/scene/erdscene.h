@@ -111,7 +111,7 @@ class ErdScene : public QGraphicsScene
         ErdConnection* getConnectionForArrow(ErdArrowItem* arrow);
         bool undoChange(ErdChange* change);
         bool redoChange(ErdChange* change);
-        void applyColorToSelectedEntities(const QColor& color);
+        QList<ErdEntity*> applyColorToSelectedEntities(const QColor& color);
 
         static constexpr auto CFG_KEY_ENTITIES = "entities";
         static constexpr auto CFG_KEY_VIEW_RECT = "viewRect";
@@ -190,7 +190,7 @@ class ErdScene : public QGraphicsScene
     signals:
         void showEntityToUser(ErdEntity* entity);
         void requiresImmediateViewUpdate();
-        void changeReceived(ErdChange* change);
+        void changeCreated(ErdChange* change);
         void sidePanelAbortRequested();
         void sidePanelRefreshRequested();
         void entityNameEditedInline(ErdEntity* entity, const QString& newName);

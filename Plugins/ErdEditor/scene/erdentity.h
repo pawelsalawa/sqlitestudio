@@ -49,6 +49,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void editName();
         bool eventFilter(QObject *obj, QEvent *event);
         void stopInlineEditing();
+        void setCustomColor(const QColor& bg);
         void setCustomColor(const QColor& bg, const QColor& fg);
         QPair<QColor, QColor> getCustomColor() const;
         bool usesCustomColor() const;

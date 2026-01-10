@@ -12,12 +12,13 @@
 #include "erdview.h"
 #include "changes/erdchangedeleteconnection.h"
 #include "changes/erdchangecomposite.h"
+#include "changes/erdchangecolorentity.h"
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
 #include "common/unused.h"
 #include "uiutils.h"
-#include <QApplication>
 #include <QMessageBox>
+#include <QApplication>
 
 ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     : QGraphicsScene{parent}, arrowType(arrowType)
@@ -389,7 +390,7 @@ void ErdScene::refreshSceneRect()
 
 void ErdScene::notify(ErdChange *change)
 {
-    emit changeReceived(change);
+    emit changeCreated(change);
 }
 
 void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
@@ -457,12 +458,9 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
             changes << change;
     }
 
-    if (changes.isEmpty())
-        return;
-    else if (changes.size() > 1)
-        emit changeReceived(new ErdChangeComposite(changes, tr("Delete multiple diagram elements.")));
-    else
-        emit changeReceived(changes.first());
+    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Delete multiple diagram elements."));
+    if (change)
+        emit changeCreated(change);
 }
 
 bool ErdScene::undoChange(ErdChange* change)
@@ -663,11 +661,27 @@ bool ErdScene::confirmLayoutChange() const
     return res == QMessageBox::Yes;
 }
 
-void ErdScene::applyColorToSelectedEntities(const QColor& color)
+QList<ErdEntity*> ErdScene::applyColorToSelectedEntities(const QColor& color)
 {
     QColor textColor = color.isValid() ? findContrastingColor(color) : color;
-    for (ErdEntity* entity : (selectedItems() | NNMAP_CAST(ErdEntity*)))
+    QList<ErdEntity*> entities = (selectedItems() | NNMAP_CAST(ErdEntity*));
+    QList<ErdChange*> changes;
+    for (ErdEntity* entity : entities)
+    {
+        QString tableName = entity->getTableName();
+        QColor oldColor = entity->getCustomColor().first;
+        QString colorName = color.name(QColor::HexRgb).toUpper();
+        changes << new ErdChangeColorEntity(tableName, oldColor, color,
+                    tr("Change color of table \"%1\" to %2.").arg(tableName, colorName));
+
         entity->setCustomColor(color, textColor);
+    }
+
+    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Change color of multiple tables."));
+    if (change)
+        emit changeCreated(change);
+
+    return entities;
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)
@@ -727,8 +741,7 @@ void ErdScene::SceneChangeApiImpl::setEntityColor(const QString& entityName, con
         qCritical() << "SceneChangeApiImpl::setEntityColor: No entity found for name" << entityName;
         return;
     }
-    QColor textColor = color.isValid() ? findContrastingColor(color) : color;
-    entity->setCustomColor(color, textColor);
+    entity->setCustomColor(color);
 }
 
 QPointF ErdScene::SceneChangeApiImpl::getEntityPosition(const QString& entityName)

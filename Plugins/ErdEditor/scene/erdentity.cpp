@@ -6,6 +6,7 @@
 #include "common/unused.h"
 #include "common/global.h"
 #include "common/deleteonfocusoutfilter.h"
+#include "uiutils.h"
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsTextItem>
 #include <QGraphicsLineItem>
@@ -778,6 +779,12 @@ bool ErdEntity::inlineEditionCheckIfFieldDeleted(bool indexAutocorrection)
         return true;
     }
     return false;
+}
+
+void ErdEntity::setCustomColor(const QColor& bg)
+{
+    QColor textColor = findContrastingColor(bg);
+    setCustomColor(bg, textColor);
 }
 
 void ErdEntity::setCustomColor(const QColor& bg, const QColor& fg)

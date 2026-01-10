@@ -1,12 +1,12 @@
 #include "erdchangecomposite.h"
 
 ErdChangeComposite::ErdChangeComposite(const QString& description) :
-    ErdChange(Category::ENTITY_CHANGE, description, true)
+    ErdChange(description, true)
 {
 }
 
 ErdChangeComposite::ErdChangeComposite(QList<ErdChange*> changes, const QString& description) :
-    ErdChange(Category::ENTITY_CHANGE, description, true), changes(changes)
+    ErdChange(description, true), changes(changes)
 {
 }
 

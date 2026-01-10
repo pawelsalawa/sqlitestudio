@@ -5,7 +5,7 @@
 #include "scene/erdentity.h"
 
 ErdChangeEntity::ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description) :
-    ErdChange(Category::ENTITY_CHANGE, description, true), db(db), before(before), after(after)
+    ErdChange(description, true), db(db), before(before), after(after)
 {
 }
 
