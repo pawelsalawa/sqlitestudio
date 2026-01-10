@@ -471,13 +471,16 @@ bool ErdScene::undoChange(ErdChange* change)
         return false;
 
     QStringList undoDdl = change->getUndoDdl();
-    ddlExecutor->setQueries(undoDdl);
-    ddlExecutor->exec();
-    if (!ddlExecutor->getSuccessfulExecution())
+    if (!undoDdl.isEmpty())
     {
-        notifyError(tr("Failed to execute the undo DDL. Details: %1")
-                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
-        return false;
+        ddlExecutor->setQueries(undoDdl);
+        ddlExecutor->exec();
+        if (!ddlExecutor->getSuccessfulExecution())
+        {
+            notifyError(tr("Failed to execute the undo DDL. Details: %1")
+                        .arg(ddlExecutor->getErrorsMessages().join("; ")));
+            return false;
+        }
     }
     handleChangeUndo(change);
     return true;
@@ -489,14 +492,17 @@ bool ErdScene::redoChange(ErdChange* change)
         return false;
 
     QStringList ddl = change->toDdl();
-    ddlExecutor->setQueries(ddl);
-    ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
-    ddlExecutor->exec();
-    if (!ddlExecutor->getSuccessfulExecution())
+    if (!ddl.isEmpty())
     {
-        notifyError(tr("Failed to execute the redo DDL. Details: %1")
-                    .arg(ddlExecutor->getErrorsMessages().join("; ")));
-        return false;
+        ddlExecutor->setQueries(ddl);
+        ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
+        ddlExecutor->exec();
+        if (!ddlExecutor->getSuccessfulExecution())
+        {
+            notifyError(tr("Failed to execute the redo DDL. Details: %1")
+                        .arg(ddlExecutor->getErrorsMessages().join("; ")));
+            return false;
+        }
     }
     // Change handling should go through event queue
     QTimer::singleShot(0, this, [change, this]() {handleChangeRedo(change);});
@@ -750,4 +756,9 @@ QColor ErdScene::SceneChangeApiImpl::getEntityColor(const QString& entityName)
 SchemaResolver& ErdScene::SceneChangeApiImpl::schemaResolver()
 {
     return *scene.schemaResolver;
+}
+
+void ErdScene::SceneChangeApiImpl::updateScene()
+{
+    QTimer::singleShot(0, [this]() {scene.update();});
 }

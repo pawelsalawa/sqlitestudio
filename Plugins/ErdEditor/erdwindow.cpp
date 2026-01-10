@@ -126,6 +126,7 @@ void ErdWindow::init()
 
     scene = new ErdScene(arrowType, this);
     connect(scene, &ErdScene::changeReceived, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
+    connect(ui->view, &ErdView::changeCreated, this, &ErdWindow::handleCreatedChange, Qt::QueuedConnection);
     connect(scene, &ErdScene::sidePanelAbortRequested, this, &ErdWindow::abortSidePanel);
     connect(scene, &ErdScene::sidePanelRefreshRequested, this, &ErdWindow::refreshSidePanel);
     connect(scene, &ErdScene::entityNameEditedInline, this, &ErdWindow::handleEntityNameEditedInline);

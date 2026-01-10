@@ -50,3 +50,4 @@ void ErdChangeEntity::applyUndo(ErdScene::SceneChangeApi& api)
 {
     executeChange(api, false);
 }
+

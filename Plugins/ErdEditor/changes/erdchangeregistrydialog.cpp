@@ -16,6 +16,8 @@ ErdChangeRegistryDialog::ErdChangeRegistryDialog(Db* db, ErdChangeRegistry* chan
     ui->tree->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(ui->tree, &QTreeWidget::currentItemChanged, this, &ErdChangeRegistryDialog::handleItemSelected);
+    connect(ui->compactCheckBox, &QCheckBox::toggled, this, &ErdChangeRegistryDialog::compactViewToggled);
+    connect(ui->noDdlCheckBox, &QCheckBox::toggled, this, &ErdChangeRegistryDialog::applyFiltering);
 
     populateTree();
 }
@@ -27,49 +29,96 @@ ErdChangeRegistryDialog::~ErdChangeRegistryDialog()
 
 void ErdChangeRegistryDialog::populateTree()
 {
-    QTreeWidgetItem* firstItem = nullptr;
     int rowIdx = 0;
-    for (ErdChange*& chg : changeRegistry->getEffectiveChanges())
+    int labelIdx = 1;
+    for (ErdChange*& chg : changeRegistry->getPendingChanges(true))
     {
-        QTreeWidgetItem* item = createItemFromChange(rowIdx, chg);
+        QTreeWidgetItem* item = createItemFromChange(labelIdx, chg);
         ui->tree->insertTopLevelItem(rowIdx, item);
-        if (!firstItem)
-            firstItem = item;
-
-        ErdChangeComposite* composite = dynamic_cast<ErdChangeComposite*>(chg);
-        if (composite)
-        {
-            int childIdx = 0;
-            for (auto&& childChg : composite->getChanges())
-            {
-                QTreeWidgetItem* childItem = createItemFromChange(-1, childChg);
-                item->insertChild(childIdx++, childItem);
-            }
-        }
-
         rowIdx++;
     }
     ui->tree->header()->resizeSections(QHeaderView::ResizeToContents);
-    if (firstItem)
-        ui->tree->setCurrentItem(firstItem, 0, QItemSelectionModel::Select);
+    applyFiltering();
 }
 
-QTreeWidgetItem* ErdChangeRegistryDialog::createItemFromChange(int rowIdx, ErdChange* change)
+QTreeWidgetItem* ErdChangeRegistryDialog::createItemFromChange(int& labelIdx, ErdChange* change)
 {
     static_qstring(topLabelTpl, "%1. %2");
 
-    QString ddl = FORMATTER->format("sql", change->toDdl(true).join("\n\n"), db);
-    QString label = rowIdx >= 0 ?
-                topLabelTpl.arg(rowIdx + 1).arg(change->getDescription()) :
+    bool ddlChange = change->isDdlChange();
+    QString ddl = ddlChange ?
+                FORMATTER->format("sql", change->toDdl(true).join("\n\n"), db) :
+                tr("-- This is a change applied only to the diagram. It has no database schema efects.", "ERD editor");
+    QString label = labelIdx >= 0 && ddlChange ?
+                topLabelTpl.arg(labelIdx++).arg(change->getDescription()) :
                 change->getDescription();
 
     QTreeWidgetItem* item = new QTreeWidgetItem();
     item->setText(0, label);
-    item->setText(1, ddl);
+    item->setData(0, DDL, ddl);
+    item->setData(0, IS_DDL_CHANGE, ddlChange);
+    if (!ddlChange)
+    {
+        auto f = item->font(0);
+        f.setItalic(true);
+        item->setFont(0, f);
+    }
+
+    ErdChangeComposite* composite = dynamic_cast<ErdChangeComposite*>(change);
+    if (composite)
+    {
+        int childIdx = 0;
+        int childLabelIdx = -1;
+        for (auto&& childChg : composite->getChanges())
+        {
+            QTreeWidgetItem* childItem = createItemFromChange(childLabelIdx, childChg);
+            item->insertChild(childIdx++, childItem);
+        }
+    }
+
     return item;
+}
+
+void ErdChangeRegistryDialog::applyFiltering()
+{
+    if (ui->noDdlCheckBox->isChecked())
+    {
+        for (QTreeWidgetItemIterator it(ui->tree); *it; ++it)
+            (*it)->setHidden(false);
+    }
+    else
+    {
+        for (QTreeWidgetItemIterator it(ui->tree); *it; ++it)
+        {
+            (*it)->setHidden(!(*it)->data(0, IS_DDL_CHANGE).toBool());
+        }
+    }
+
+
+    if (!ui->tree->currentItem() || ui->tree->currentItem()->isHidden())
+    {
+        const int count = ui->tree->topLevelItemCount();
+        for (int i = 0; i < count; ++i) {
+            QTreeWidgetItem* item = ui->tree->topLevelItem(i);
+            if (!item->isHidden())
+            {
+                ui->tree->setCurrentItem(item, 0, QItemSelectionModel::ClearAndSelect);
+                break;
+            }
+        }
+    }
 }
 
 void ErdChangeRegistryDialog::handleItemSelected(QTreeWidgetItem* item)
 {
-    ui->previewEdit->setContents(item->text(1));
+    ui->previewEdit->setContents(item->data(0, DDL).toString());
+}
+
+void ErdChangeRegistryDialog::compactViewToggled(bool enabled)
+{
+    if (enabled)
+        ui->noDdlCheckBox->setChecked(false);
+
+    ui->noDdlCheckBox->setEnabled(!enabled);
+    // TODO
 }

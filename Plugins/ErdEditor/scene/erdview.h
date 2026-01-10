@@ -9,6 +9,7 @@
 #include <QStack>
 #include <QDebug>
 
+class ErdChange;
 class ErdConnection;
 class ErdScene;
 class Db;
@@ -80,10 +81,12 @@ class ErdView : public QGraphicsView
         bool tolerateMicroMovesForClick();
         void startDragBySpace();
         void endDragBySpace();
+        void itemsPotentiallyMoved();
 
         QList<QGraphicsItem*> selectedItems;
         QList<QGraphicsItem*> selectedMovableItems;
         QHash<QGraphicsItem*, QPoint> dragOffset;
+        QHash<QGraphicsItem*, QPointF> dragStartPos;
         QPointF lastDragScenePos;
         ErdConnection* draftConnection = nullptr;
         QPoint clickPos;
@@ -111,6 +114,7 @@ class ErdView : public QGraphicsView
         void draftConnectionRemoved();
         void tableInsertionAborted();
         void newEntityPositionPicked(const QPointF& pos);
+        void changeCreated(ErdChange* change);
 };
 
 QDebug operator<<(QDebug dbg, ErdView::Mode value);

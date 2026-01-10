@@ -45,12 +45,16 @@ void ErdChangeRegistry::addChange(ErdChange* change)
 
 int ErdChangeRegistry::getPendingChangesCount() const
 {
-    return currentIndex + 1;
+    return getPendingChanges().size();
 }
 
-QList<ErdChange*> ErdChangeRegistry::getEffectiveChanges() const
+QList<ErdChange*> ErdChangeRegistry::getPendingChanges(bool includeNonDdl) const
 {
-    return changes.sliced(0, currentIndex + 1);
+    auto result = changes.sliced(0, currentIndex + 1);
+    if (includeNonDdl)
+        return result;
+
+    return result | FILTER(chg, {return chg->isDdlChange();});
 }
 
 ErdChange* ErdChangeRegistry::undo()

@@ -10,9 +10,22 @@ ErdChange::ErdChange(Category category, const QString& description, bool generat
         transactionId = QUuid::createUuid().toString(QUuid::WithoutBraces);
 }
 
+QStringList ErdChange::getCachedChangeDdl()
+{
+    if (cachedDdl.isEmpty())
+        cachedDdl = getChangeDdl();
+
+    return cachedDdl;
+}
+
 QString ErdChange::getDescription() const
 {
     return description;
+}
+
+bool ErdChange::isDdlChange()
+{
+    return !getCachedChangeDdl().isEmpty();
 }
 
 QStringList ErdChange::toDdl(bool skipSaveoints)
@@ -23,7 +36,7 @@ QStringList ErdChange::toDdl(bool skipSaveoints)
     if (!skipSaveoints && !getTransactionId().isNull())
         ddl << savepointTpl.arg(getTransactionId());
 
-    ddl += getChangeDdl();
+    ddl += getCachedChangeDdl();
     return ddl;
 }
 

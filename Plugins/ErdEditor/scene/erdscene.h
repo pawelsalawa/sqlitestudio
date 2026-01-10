@@ -89,6 +89,11 @@ class ErdScene : public QGraphicsScene
                  * @return Reference to schema resolver.
                  */
                 virtual SchemaResolver& schemaResolver() = 0;
+
+                /**
+                 * @brief Requests scene to update its contents visually.
+                 */
+                virtual void updateScene() = 0;
         };
 
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
@@ -119,14 +124,15 @@ class ErdScene : public QGraphicsScene
             public:
                 explicit SceneChangeApiImpl(ErdScene& scene);
 
-                void refreshEntity(const QString& entityName, const QString& actualTableName);
-                void refreshEntitiesByTableNames(const QStringList& tables);
-                void removeEntityFromScene(const QString& entityName);
-                void setEntityPosition(const QString& entityName, const QPointF& pos);
-                void setEntityColor(const QString& entityName, const QColor& color);
-                QPointF getEntityPosition(const QString& entityName);
-                QColor getEntityColor(const QString& entityName);
+                void refreshEntity(const QString& entityName, const QString& actualTableName) override;
+                void refreshEntitiesByTableNames(const QStringList& tables) override;
+                void removeEntityFromScene(const QString& entityName) override;
+                void setEntityPosition(const QString& entityName, const QPointF& pos) override;
+                void setEntityColor(const QString& entityName, const QColor& color) override;
+                QPointF getEntityPosition(const QString& entityName) override;
+                QColor getEntityColor(const QString& entityName) override;
                 SchemaResolver& schemaResolver() override;
+                void updateScene() override;
 
             private:
                 ErdScene& scene;

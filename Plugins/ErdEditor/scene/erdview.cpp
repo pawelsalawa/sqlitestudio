@@ -9,6 +9,7 @@
 #include "db/db.h"
 #include "erdwindow.h"
 #include "icon.h"
+#include "changes/erdchangemoveentity.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
@@ -80,12 +81,16 @@ void ErdView::mousePressEvent(QMouseEvent* event)
             if (selectedItems.contains(item))
             {
                 for (QGraphicsItem* movableItem : selectedMovableItems)
+                {
                     dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
+                    dragStartPos[movableItem] = movableItem->pos();
+                }
             }
             else
             {
                 dragOffset.clear();
                 dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
+                dragStartPos[item] = item->pos();
                 if (isDraftingConnection())
                     return;
 
@@ -186,6 +191,9 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
             return;
         }
     }
+
+    if (event->button() == Qt::LeftButton)
+        itemsPotentiallyMoved();
 
     if (!clickPos.isNull() && (event->position().toPoint() == clickPos || sameItemOnPositions(clickPos, event->position().toPoint())))
     {
@@ -564,6 +572,20 @@ void ErdView::endDragBySpace()
         QPoint pos = viewport()->mapFromGlobal(globalPos);
         QMouseEvent release(QEvent::MouseButtonRelease, pos, globalPos, Qt::LeftButton, Qt::NoButton, Qt::NoModifier);
         QCoreApplication::sendEvent(viewport(), &release);
+    }
+}
+
+void ErdView::itemsPotentiallyMoved()
+{
+    for (QGraphicsItem* item : selectedMovableItems)
+    {
+        ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+        if (entity)
+        {
+            ErdChangeMoveEntity* change = new ErdChangeMoveEntity(entity->getTableName(), dragStartPos[item], item->pos(),
+                                                          tr("Move entity \"%1\"").arg(entity->getTableName()));
+            emit changeCreated(change);
+        }
     }
 }
 

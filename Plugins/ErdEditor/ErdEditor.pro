@@ -8,13 +8,13 @@ TARGET = ErdEditor
 DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
+    changes/erdchangemoveentity.cpp \
     scene/erdarrowitem.cpp \
     changes/erdchange.cpp \
     changes/erdchangecomposite.cpp \
     changes/erdchangedeleteconnection.cpp \
     changes/erdchangedeleteentity.cpp \
     changes/erdchangeentity.cpp \
-    changes/erdchangelayout.cpp \
     changes/erdchangenewentity.cpp \
     changes/erdchangeregistry.cpp \
     changes/erdchangeregistrydialog.cpp \
@@ -35,13 +35,13 @@ SOURCES += \
     erdwindow.cpp
 
 HEADERS += \
+    changes/erdchangemoveentity.h \
     scene/erdarrowitem.h \
     changes/erdchange.h \
     changes/erdchangecomposite.h \
     changes/erdchangedeleteconnection.h \
     changes/erdchangedeleteentity.h \
     changes/erdchangeentity.h \
-    changes/erdchangelayout.h \
     changes/erdchangenewentity.h \
     changes/erdchangeregistry.h \
     changes/erdchangeregistrydialog.h \

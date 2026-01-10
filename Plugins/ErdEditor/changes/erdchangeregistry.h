@@ -15,7 +15,7 @@ class ErdChangeRegistry : public QObject
         QList<ErdChange*> compactedEffectiveChanges();
         void addChange(ErdChange* change);
         int getPendingChangesCount() const;
-        QList<ErdChange*> getEffectiveChanges() const;
+        QList<ErdChange*> getPendingChanges(bool includeNonDdl = false) const;
         ErdChange* undo();
         ErdChange* redo();
         ErdChange* peekUndo() const;

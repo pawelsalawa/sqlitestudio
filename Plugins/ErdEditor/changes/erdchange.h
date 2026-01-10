@@ -62,11 +62,13 @@ class ErdChange
         Category getCategory() const;
         virtual QString getTransactionId() const;
         QString getDescription() const;
+        bool isDdlChange();
 
     protected:
         ErdChange(Category category, const QString& description, bool generateTransactionId = false);
 
         virtual QStringList getChangeDdl() = 0;
+        QStringList getCachedChangeDdl();
 
         Category category;
         /**
@@ -75,6 +77,7 @@ class ErdChange
          */
         QString transactionId;
         QString description;
+        QStringList cachedDdl;
 };
 
 #endif // ERDCHANGE_H

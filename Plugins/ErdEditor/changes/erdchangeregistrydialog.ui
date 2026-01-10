@@ -148,6 +148,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="noDdlCheckBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;body&gt;Shows changes that do not modify the database schema, but only affect the diagram (for example, table position changes). &lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Show non-schema changes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QDialogButtonBox" name="buttonBox">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
