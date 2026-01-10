@@ -31,14 +31,16 @@ ErdChangeDeleteConnection::~ErdChangeDeleteConnection()
     safe_delete(tableModifier);
 }
 
-TableModifier* ErdChangeDeleteConnection::getTableModifier() const
+void ErdChangeDeleteConnection::apply(ErdScene::SceneChangeApi& api)
 {
-    return tableModifier;
+    QStringList tables = tableModifier->getModifiedTables();
+    tables << createTable->table;
+    api.refreshEntitiesByTableNames(tables);
 }
 
-QString ErdChangeDeleteConnection::getStartEntityName() const
+void ErdChangeDeleteConnection::applyUndo(ErdScene::SceneChangeApi& api)
 {
-    return createTable->table;
+    apply(api); // currently exactly the same as apply
 }
 
 QStringList ErdChangeDeleteConnection::getChangeDdl()

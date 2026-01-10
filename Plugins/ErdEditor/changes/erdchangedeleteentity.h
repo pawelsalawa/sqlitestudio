@@ -14,11 +14,8 @@ class ErdChangeDeleteEntity : public ErdChange
         ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QColor& customColor, const QString& description);
         ~ErdChangeDeleteEntity();
 
-        QString getTableName() const;
-        TableModifier *getTableModifier() const;
-        QPointF getLastPosition() const;
-
-        QColor getLastCustomColor() const;
+        void apply(ErdScene::SceneChangeApi& api);
+        void applyUndo(ErdScene::SceneChangeApi& api);
 
     protected:
         QStringList getChangeDdl();

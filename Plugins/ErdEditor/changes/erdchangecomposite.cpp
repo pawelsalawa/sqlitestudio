@@ -56,3 +56,21 @@ QString ErdChangeComposite::getTransactionId() const
 
     return ErdChange::getTransactionId();
 }
+
+void ErdChangeComposite::apply(ErdScene::SceneChangeApi& api)
+{
+    for (auto&& singleChange : changes)
+        singleChange->apply(api);
+}
+
+void ErdChangeComposite::applyUndo(ErdScene::SceneChangeApi& api)
+{
+    for (auto it = changes.crbegin(); it != changes.crend(); ++it) // reverse order
+        (*it)->applyUndo(api);
+}
+
+void ErdChangeComposite::applyRedo(ErdScene::SceneChangeApi& api)
+{
+    for (auto&& singleChange : changes)
+        singleChange->applyRedo(api);
+}

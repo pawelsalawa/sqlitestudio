@@ -14,6 +14,25 @@ ErdChangeDeleteEntity::~ErdChangeDeleteEntity()
     safe_delete(tableModifier);
 }
 
+void ErdChangeDeleteEntity::apply(ErdScene::SceneChangeApi& api)
+{
+    QStringList tables = tableModifier->getModifiedTables();
+    api.refreshEntitiesByTableNames(tables);
+    api.removeEntityFromScene(tableName);
+}
+
+void ErdChangeDeleteEntity::applyUndo(ErdScene::SceneChangeApi& api)
+{
+    QStringList modifiedTables;
+    modifiedTables << tableName;
+    modifiedTables += tableModifier->getModifiedTables();
+
+    api.refreshEntitiesByTableNames(modifiedTables);
+    api.setEntityPosition(tableName, lastPosition);
+    if (lastCustomColor.isValid())
+        api.setEntityColor(tableName, lastCustomColor);
+}
+
 QStringList ErdChangeDeleteEntity::getChangeDdl()
 {
     if (!tableModifier)
@@ -24,22 +43,3 @@ QStringList ErdChangeDeleteEntity::getChangeDdl()
     return tableModifier->generateSqls();
 }
 
-QColor ErdChangeDeleteEntity::getLastCustomColor() const
-{
-    return lastCustomColor;
-}
-
-QPointF ErdChangeDeleteEntity::getLastPosition() const
-{
-    return lastPosition;
-}
-
-QString ErdChangeDeleteEntity::getTableName() const
-{
-    return tableName;
-}
-
-TableModifier* ErdChangeDeleteEntity::getTableModifier() const
-{
-    return tableModifier;
-}

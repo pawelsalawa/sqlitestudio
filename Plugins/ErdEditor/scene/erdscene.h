@@ -24,6 +24,73 @@ class ErdScene : public QGraphicsScene
     Q_OBJECT
 
     public:
+        /**
+         * @brief API provided to ErdChange implementations to apply changes on the scene.
+         */
+        class SceneChangeApi {
+            public:
+                virtual ~SceneChangeApi() = default;
+
+                /**
+                 * @brief Refreshes contents of given entity by parsing DDL of existing table.
+                 * @param entityName Current name of the entity on the scene.
+                 * @param actualTableName Actual table name in the database to parse DDL from. May (but does not must) differ from entityName.
+                 */
+                virtual void refreshEntity(const QString& entityName, const QString& actualTableName) = 0;
+
+                /**
+                 * @brief Refreshes all entities which correspond to given table names.
+                 * @param tables List of table names to refresh entities for.
+                 *
+                 * It expects entity names on the scene to match table names provided.
+                 * If certain entity does not exist on the scene yet, it will be created.
+                 * If certain table does not exist in the database, the corresponding entity will be removed from the scene.
+                 */
+                virtual void refreshEntitiesByTableNames(const QStringList& tables) = 0;
+
+                /**
+                 * @brief Removes entity with given name from the scene.
+                 * @param entityName Name of the entity to remove.
+                 *
+                 * It given entity does not exist on the scene already, the method does nothing.
+                 */
+                virtual void removeEntityFromScene(const QString& entityName) = 0;
+
+                /**
+                 * @brief Sets position of given entity on the scene.
+                 * @param entityName Name of the entity existing on the scene to set position for.
+                 * @param pos New position to set.
+                 */
+                virtual void setEntityPosition(const QString& entityName, const QPointF& pos) = 0;
+
+                /**
+                 * @brief Gets position of given entity on the scene.
+                 * @param entityName Name of the entity existing on the scene to get position for.
+                 * @return Current position of the entity.
+                 */
+                virtual QPointF getEntityPosition(const QString& entityName) = 0;
+
+                /**
+                 * @brief Sets custom color of given entity on the scene.
+                 * @param entityName Name of the entity existing on the scene to set color for.
+                 * @param color New color to set. Invalid color removes custom color.
+                 */
+                virtual void setEntityColor(const QString& entityName, const QColor& color) = 0;
+
+                /**
+                 * @brief Gets custom color of given entity on the scene.
+                 * @param entityName Name of the entity existing on the scene to get color for.
+                 * @return Current custom color of the entity. Invalid color if no custom color is set.
+                 */
+                virtual QColor getEntityColor(const QString& entityName) = 0;
+
+                /**
+                 * @brief Provides schema resolver used by the scene.
+                 * @return Reference to schema resolver.
+                 */
+                virtual SchemaResolver& schemaResolver() = 0;
+        };
+
         ErdScene(ErdArrowItem::Type arrowType, QObject *parent = nullptr);
         ~ErdScene();
 
@@ -41,13 +108,30 @@ class ErdScene : public QGraphicsScene
         bool redoChange(ErdChange* change);
         void applyColorToSelectedEntities(const QColor& color);
 
-        static constexpr const char* CFG_KEY_ENTITIES = "entities";
-        static constexpr const char* CFG_KEY_VIEW_RECT = "viewRect";
-        static constexpr const char* CFG_KEY_ARROW_TYPE = "arrowType";
-        static constexpr const char* CFG_KEY_POS = "pos";
-        static constexpr const char* CFG_KEY_COLOR = "color";
+        static constexpr auto CFG_KEY_ENTITIES = "entities";
+        static constexpr auto CFG_KEY_VIEW_RECT = "viewRect";
+        static constexpr auto CFG_KEY_ARROW_TYPE = "arrowType";
+        static constexpr auto CFG_KEY_POS = "pos";
+        static constexpr auto CFG_KEY_COLOR = "color";
 
     private:
+        class SceneChangeApiImpl : public SceneChangeApi {
+            public:
+                explicit SceneChangeApiImpl(ErdScene& scene);
+
+                void refreshEntity(const QString& entityName, const QString& actualTableName);
+                void refreshEntitiesByTableNames(const QStringList& tables);
+                void removeEntityFromScene(const QString& entityName);
+                void setEntityPosition(const QString& entityName, const QPointF& pos);
+                void setEntityColor(const QString& entityName, const QColor& color);
+                QPointF getEntityPosition(const QString& entityName);
+                QColor getEntityColor(const QString& entityName);
+                SchemaResolver& schemaResolver() override;
+
+            private:
+                ErdScene& scene;
+        };
+
         void setupEntityConnections();
         void setupEntityConnections(ErdEntity* srcEntity);
         void setupEntityConnections(ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn);
@@ -59,32 +143,16 @@ class ErdScene : public QGraphicsScene
         bool confirmLayoutChange() const;
         void refreshEntityFromTableName(ErdEntity* entity, const QString& tableName);
         void refreshSchemaForTableNames(const QStringList& tables);
+        void setEntityPosition(ErdEntity* entity, const QPointF& pos);
         ErdChange* deleteEntity(ErdEntity*& entity);
         ErdChange* deleteConnection(ErdConnection*& connection);
         void entityCreated(ErdEntity* entity);
         void entityToBeDeleted(ErdEntity* entity);
         void refreshScheduledConnections();
 
-        void handleChangeByType(ErdChange* change);
-        void handleSingleChange(ErdChangeEntity* entityChange);
-        void handleSingleChange(ErdChangeNewEntity* newEntityChange);
-        void handleSingleChange(ErdChangeDeleteEntity* change);
-        void handleSingleChange(ErdChangeDeleteConnection* change);
-
         void handleChangeUndo(ErdChange* change);
-        void handleChangeUndoByType(ErdChange* change);
-        void handleSingleChangeUndo(ErdChangeEntity* change);
-        void handleSingleChangeUndo(ErdChangeNewEntity* change);
-        void handleSingleChangeUndo(ErdChangeDeleteEntity* change);
-        void handleSingleChangeUndo(ErdChangeDeleteConnection* change);
-
-        /**
-         * @param forwardExecution true if executing new change/redoing change, or false if undoing change.
-         */
-        void handleSingleChange(ErdChangeEntity* change, bool forwardExecution);
-        void handleSingleChange(ErdChangeDeleteConnection* change, bool forwardExecution);
-
-        void restoreEntityPosition(const QString& tableName, const QPointF& pos);
+        void handleChangeRedo(ErdChange* change);
+        void changeApplied();
 
         QList<ErdEntity*> entities;
         QList<ErdEntity*> connectionRefreshScheduled;
@@ -93,6 +161,7 @@ class ErdScene : public QGraphicsScene
         Db* db = nullptr;
         ChainExecutor* ddlExecutor = nullptr;
         SchemaResolver* schemaResolver = nullptr;
+        SceneChangeApi* sceneChangeApi = nullptr;
 
         static constexpr qreal sceneMargin = 200;
 

@@ -13,16 +13,16 @@ class ErdChangeNewEntity : public ErdChange
     public:
         ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description);
 
-        QString getTableName() const;
-        QString getTemporaryEntityName() const;
-
-        QPointF getLastPositionBeforeUndo() const;
-        void setLastPositionBeforeUndo(QPointF pos);
+        void apply(ErdScene::SceneChangeApi& api);
+        void applyUndo(ErdScene::SceneChangeApi& api);
+        void applyRedo(ErdScene::SceneChangeApi& api);
 
     protected:
         QStringList getChangeDdl();
 
     private:
+        void refreshReferencingTables(ErdScene::SceneChangeApi& api);
+
         Db* db = nullptr;
         QString temporaryEntityName;
         SqliteCreateTablePtr createTable;

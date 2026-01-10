@@ -79,6 +79,11 @@ class API_EXPORT SchemaResolver
         };
 
         explicit SchemaResolver(Db* db);
+        SchemaResolver(const SchemaResolver&) = delete;
+        SchemaResolver& operator=(const SchemaResolver&) = delete;
+
+        SchemaResolver(SchemaResolver&&) = delete;
+        SchemaResolver& operator=(SchemaResolver&&) = delete;
         virtual ~SchemaResolver();
 
         QStringList getTables(const QString& database = QString());

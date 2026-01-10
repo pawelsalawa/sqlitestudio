@@ -27,11 +27,13 @@ ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     ddlExecutor->setTransaction(false);
     ddlExecutor->setDisableForeignKeys(true);
     ddlExecutor->setDisableObjectDropsDetection(true);
+    sceneChangeApi = new SceneChangeApiImpl(*this);
 }
 
 ErdScene::~ErdScene()
 {
     safe_delete(schemaResolver);
+    safe_delete(sceneChangeApi);
 }
 
 void ErdScene::setDb(Db *db)
@@ -77,79 +79,26 @@ QSet<QString> ErdScene::parseSchema()
 
 void ErdScene::handleChange(ErdChange* change)
 {
-    handleChangeByType(change);
+    change->apply(*sceneChangeApi);
+    changeApplied();
+}
+
+void ErdScene::handleChangeRedo(ErdChange* change)
+{
+    change->applyRedo(*sceneChangeApi);
+    changeApplied();
+}
+
+void ErdScene::handleChangeUndo(ErdChange* change)
+{
+    change->applyUndo(*sceneChangeApi);
+    changeApplied();
+}
+
+void ErdScene::changeApplied()
+{
     refreshScheduledConnections();
     emit sidePanelRefreshRequested();
-}
-
-#define HANDLE_CHANGE_BY_TYPE(type, arg) {\
-    type* chg = dynamic_cast<type*>(arg);\
-        if (chg)\
-        {\
-            handleSingleChange(chg);\
-            return;\
-        }\
-    }
-
-void ErdScene::handleChangeByType(ErdChange* change)
-{
-    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
-    if (compositeChange)
-    {
-        for (auto&& singleChange : compositeChange->getChanges())
-            handleChangeByType(singleChange);
-
-        return;
-    }
-
-    HANDLE_CHANGE_BY_TYPE(ErdChangeEntity, change);
-    HANDLE_CHANGE_BY_TYPE(ErdChangeNewEntity, change);
-    HANDLE_CHANGE_BY_TYPE(ErdChangeDeleteEntity, change);
-    HANDLE_CHANGE_BY_TYPE(ErdChangeDeleteConnection, change);
-}
-
-void ErdScene::handleSingleChange(ErdChangeEntity* entityChange)
-{
-    handleSingleChange(entityChange, true);
-}
-
-void ErdScene::handleSingleChange(ErdChangeNewEntity* newEntityChange)
-{
-    ErdEntity* entity = entityMap[newEntityChange->getTemporaryEntityName()];
-
-    if (entity)
-    {
-        refreshEntityFromTableName(entity, newEntityChange->getTableName());
-    }
-    else
-    {
-        // If this is a redo execution, then there is no temporary entity, just the target entity already
-        if (newEntityChange->getLastPositionBeforeUndo().isNull())
-            qWarning() << "Redoing ErdChangeNewEntity for table" << newEntityChange->getTableName()
-                       << "but lastPositionBeforeUndo was not set.";
-
-        refreshSchemaForTableNames({newEntityChange->getTableName()});
-        restoreEntityPosition(newEntityChange->getTableName(), newEntityChange->getLastPositionBeforeUndo());
-    }
-
-    QStringList referencingTables = schemaResolver->getFkReferencingTables(newEntityChange->getTableName());
-    for (const QString& tableName : referencingTables)
-    {
-        ErdEntity* entity = entityMap[tableName];
-        refreshEntityFromTableName(entity, tableName);
-    }
-}
-
-void ErdScene::handleSingleChange(ErdChangeDeleteEntity* change)
-{
-    QStringList tables = change->getTableModifier()->getModifiedTables();
-    refreshSchemaForTableNames(tables);
-    removeEntityFromSceneByName(change->getTableName());
-}
-
-void ErdScene::handleSingleChange(ErdChangeDeleteConnection* change)
-{
-    handleSingleChange(change, true);
 }
 
 void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
@@ -174,113 +123,9 @@ void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
     }
 }
 
-void ErdScene::handleChangeUndo(ErdChange* change)
-{
-    handleChangeUndoByType(change);
-    refreshScheduledConnections();
-    emit sidePanelRefreshRequested();
-}
-
-#define HANDLE_CHANGE_UNDO_BY_TYPE(type, arg) {\
-    type* chg = dynamic_cast<type*>(arg);\
-        if (chg)\
-        {\
-            handleSingleChangeUndo(chg);\
-            return;\
-        }\
-    }
-
-void ErdScene::handleChangeUndoByType(ErdChange* change)
-{
-    ErdChangeComposite* compositeChange = dynamic_cast<ErdChangeComposite*>(change);
-    if (compositeChange)
-    {
-        for (auto&& singleChange : compositeChange->getChanges())
-            handleChangeUndoByType(singleChange);
-
-        return;
-    }
-
-    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeDeleteEntity, change);
-    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeEntity, change);
-    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeNewEntity, change);
-    HANDLE_CHANGE_UNDO_BY_TYPE(ErdChangeDeleteConnection, change);
-
-    if (change)
-        qWarning() << "ErdChange" << change << "not handled in Undo";
-}
-
-void ErdScene::handleSingleChangeUndo(ErdChangeDeleteEntity* change)
-{
-    QStringList modifiedTables;
-    modifiedTables << change->getTableName();
-    if (change->getTableModifier())
-        modifiedTables += change->getTableModifier()->getModifiedTables();
-
-    refreshSchemaForTableNames(modifiedTables);
-    restoreEntityPosition(change->getTableName(), change->getLastPosition());
-    if (change->getLastCustomColor().isValid())
-    {
-        QColor color = change->getLastCustomColor();
-        QColor textColor = findContrastingColor(color);
-        ErdEntity* entity = entityMap[change->getTableName()];
-        entity->setCustomColor(color, textColor);
-    }
-}
-
-void ErdScene::handleSingleChangeUndo(ErdChangeDeleteConnection* change)
-{
-    handleSingleChange(change, false);
-}
-
-void ErdScene::handleSingleChangeUndo(ErdChangeEntity* change)
-{
-    handleSingleChange(change, false);
-}
-
-void ErdScene::handleSingleChangeUndo(ErdChangeNewEntity* change)
-{
-    ErdEntity* entity = entityMap[change->getTableName()];
-    if (!entity)
-    {
-        qWarning() << "No entity while handling ErdChangeNewEntity undo action for table named" << change->getTableName();
-        return;
-    }
-    change->setLastPositionBeforeUndo(entity->pos());
-    refreshSchemaForTableNames({change->getTableName()});
-}
-
-void ErdScene::handleSingleChange(ErdChangeEntity* change, bool forwardExecution)
-{
-    typedef QPair<QString, QString> OldNewName;
-    QList<OldNewName> modifiedTables = {
-        forwardExecution ?
-        OldNewName(change->getTableNameBefore(), change->getTableNameAfter()) :
-        OldNewName(change->getTableNameAfter(), change->getTableNameBefore())
-    };
-
-    for (const QString& tableName : change->getTableModifier()->getModifiedTables())
-        modifiedTables << OldNewName(tableName, tableName);
-
-    for (OldNewName& oldNewTableName : modifiedTables)
-    {
-        ErdEntity* entity = entityMap[oldNewTableName.first];
-        refreshEntityFromTableName(entity, oldNewTableName.second);
-    }
-}
-
-void ErdScene::handleSingleChange(ErdChangeDeleteConnection* change, bool forwardExecution)
-{
-    UNUSED(forwardExecution);
-    QStringList tables = change->getTableModifier()->getModifiedTables();
-    tables << change->getStartEntityName();
-    refreshSchemaForTableNames(tables);
-}
-
-void ErdScene::restoreEntityPosition(const QString& tableName, const QPointF& pos)
+void ErdScene::setEntityPosition(ErdEntity* entity, const QPointF& pos)
 {
     // Restore position, connections, etc
-    ErdEntity* entity = entityMap[tableName];
     entity->setPos(pos);
     entity->updateConnectionsGeometry();
     refreshSceneRect();
@@ -654,7 +499,7 @@ bool ErdScene::redoChange(ErdChange* change)
         return false;
     }
     // Change handling should go through event queue
-    QTimer::singleShot(0, this, [change, this]() {handleChange(change);});
+    QTimer::singleShot(0, this, [change, this]() {handleChangeRedo(change);});
     return true;
 }
 
@@ -829,4 +674,80 @@ void ErdScene::arrangeEntitiesNeato(bool skipConfirm)
 {
     if (skipConfirm || confirmLayoutChange())
         arrangeEntities(ErdGraphvizLayoutPlanner::NEATO);
+}
+
+ErdScene::SceneChangeApiImpl::SceneChangeApiImpl(ErdScene& scene) :
+    scene(scene)
+{
+}
+
+void ErdScene::SceneChangeApiImpl::refreshEntity(const QString& entityName, const QString& actualTableName)
+{
+    ErdEntity* entity = scene.entityMap[entityName];
+    if (!entity)
+    {
+        qCritical() << "SceneChangeApiImpl::refreshEntity: No entity found for name" << entityName;
+        return;
+    }
+    scene.refreshEntityFromTableName(entity, actualTableName);
+}
+
+void ErdScene::SceneChangeApiImpl::refreshEntitiesByTableNames(const QStringList& tables)
+{
+    scene.refreshSchemaForTableNames(tables);
+}
+
+void ErdScene::SceneChangeApiImpl::removeEntityFromScene(const QString& entityName)
+{
+    scene.removeEntityFromSceneByName(entityName);
+}
+
+void ErdScene::SceneChangeApiImpl::setEntityPosition(const QString& entityName, const QPointF& pos)
+{
+    ErdEntity* entity = scene.entityMap[entityName];
+    if (!entity)
+    {
+        qCritical() << "SceneChangeApiImpl::setEntityPosition: No entity found for name" << entityName;
+        return;
+    }
+    scene.setEntityPosition(entity, pos);
+}
+
+void ErdScene::SceneChangeApiImpl::setEntityColor(const QString& entityName, const QColor& color)
+{
+    ErdEntity* entity = scene.entityMap[entityName];
+    if (!entity)
+    {
+        qCritical() << "SceneChangeApiImpl::setEntityColor: No entity found for name" << entityName;
+        return;
+    }
+    QColor textColor = color.isValid() ? findContrastingColor(color) : color;
+    entity->setCustomColor(color, textColor);
+}
+
+QPointF ErdScene::SceneChangeApiImpl::getEntityPosition(const QString& entityName)
+{
+    ErdEntity* entity = scene.entityMap[entityName];
+    if (!entity)
+    {
+        qCritical() << "SceneChangeApiImpl::setEntityPosition: No entity found for name" << entityName;
+        return QPointF();
+    }
+    return entity->pos();
+}
+
+QColor ErdScene::SceneChangeApiImpl::getEntityColor(const QString& entityName)
+{
+    ErdEntity* entity = scene.entityMap[entityName];
+    if (!entity)
+    {
+        qCritical() << "SceneChangeApiImpl::getEntityColor: No entity found for name" << entityName;
+        return QColor();
+    }
+    return entity->getCustomColor().first;
+}
+
+SchemaResolver& ErdScene::SceneChangeApiImpl::schemaResolver()
+{
+    return *scene.schemaResolver;
 }

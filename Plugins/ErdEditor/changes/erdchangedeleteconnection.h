@@ -14,8 +14,8 @@ class ErdChangeDeleteConnection : public ErdChange
         ErdChangeDeleteConnection(Db* db, ErdConnection* connection, const QString& description);
         ~ErdChangeDeleteConnection();
 
-        TableModifier *getTableModifier() const;
-        QString getStartEntityName() const;
+        void apply(ErdScene::SceneChangeApi& api);
+        void applyUndo(ErdScene::SceneChangeApi& api);
 
     protected:
         QStringList getChangeDdl();

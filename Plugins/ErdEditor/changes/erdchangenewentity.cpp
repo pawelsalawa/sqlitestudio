@@ -12,22 +12,33 @@ QStringList ErdChangeNewEntity::getChangeDdl()
     return {createTable->detokenize()};
 }
 
-void ErdChangeNewEntity::setLastPositionBeforeUndo(QPointF pos)
+void ErdChangeNewEntity::refreshReferencingTables(ErdScene::SceneChangeApi& api)
 {
-    lastPositionBeforeUndo = pos;
+    QString t = createTable->table;
+    QStringList referencingTables = api.schemaResolver().getFkReferencingTables(t);
+    for (const QString& tableName : referencingTables)
+        api.refreshEntity(tableName, tableName);
 }
 
-QPointF ErdChangeNewEntity::getLastPositionBeforeUndo() const
+void ErdChangeNewEntity::apply(ErdScene::SceneChangeApi& api)
 {
-    return lastPositionBeforeUndo;
+    api.refreshEntity(temporaryEntityName, createTable->table);
+    refreshReferencingTables(api);
 }
 
-QString ErdChangeNewEntity::getTemporaryEntityName() const
+void ErdChangeNewEntity::applyUndo(ErdScene::SceneChangeApi& api)
 {
-    return temporaryEntityName;
+    lastPositionBeforeUndo = api.getEntityPosition(createTable->table);
+    api.refreshEntitiesByTableNames({createTable->table});
 }
 
-QString ErdChangeNewEntity::getTableName() const
+void ErdChangeNewEntity::applyRedo(ErdScene::SceneChangeApi& api)
 {
-    return createTable->table;
+    if (lastPositionBeforeUndo.isNull())
+        qWarning() << "Redoing ErdChangeNewEntity for table" << createTable->table
+                   << "but lastPositionBeforeUndo was not set.";
+
+    api.refreshEntitiesByTableNames({createTable->table});
+    api.setEntityPosition(createTable->table, lastPositionBeforeUndo);
+    refreshReferencingTables(api);
 }

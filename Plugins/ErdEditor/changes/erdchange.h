@@ -1,6 +1,7 @@
 #ifndef ERDCHANGE_H
 #define ERDCHANGE_H
 
+#include "scene/erdscene.h"
 #include <QStringList>
 
 class ErdChangeComposite;
@@ -32,6 +33,31 @@ class ErdChange
          * @return Savepoint rollback statement according to this change transactionId.
          */
         virtual QStringList getUndoDdl();
+
+        /**
+         * @brief Performs necessary scene updates according to the particular ErdChange implementation.
+         * @param api Specialized API provided by the ErdScene needed to perform scene updates.
+         *
+         * Called after the DDL for this change has been applied in the current context.
+         */
+        virtual void apply(ErdScene::SceneChangeApi& api) = 0;
+
+        /**
+         * @brief Perdorms necessary scene updates after undoing this change.
+         * @param api Specialized API provided by the ErdScene needed to perform scene updates.
+         *
+         * Called after the Undo DDL for this change has been applied in the current context.
+         */
+        virtual void applyUndo(ErdScene::SceneChangeApi& api) = 0;
+
+        /**
+         * @brief Perdorms necessary scene updates after redoing this change.
+         * @param api Specialized API provided by the ErdScene needed to perform scene updates.
+         *
+         * Default implementation just executes the apply() method, but some changes may require
+         * customized behavior in case of Redo vs First Time execution.
+         */
+        virtual void applyRedo(ErdScene::SceneChangeApi& api);
 
         Category getCategory() const;
         virtual QString getTransactionId() const;

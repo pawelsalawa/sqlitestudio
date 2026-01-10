@@ -37,6 +37,11 @@ QStringList ErdChange::getUndoDdl()
     return {rollbackTpl.arg(getTransactionId())};
 }
 
+void ErdChange::applyRedo(ErdScene::SceneChangeApi& api)
+{
+    apply(api);
+}
+
 QString ErdChange::getTransactionId() const
 {
     return transactionId;

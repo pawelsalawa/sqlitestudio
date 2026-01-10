@@ -17,6 +17,9 @@ class ErdChangeComposite : public ErdChange
         QList<ErdChange*> getChanges() const;
         QStringList getUndoDdl();
         QString getTransactionId() const;
+        void apply(ErdScene::SceneChangeApi& api);
+        void applyUndo(ErdScene::SceneChangeApi& api);
+        void applyRedo(ErdScene::SceneChangeApi& api);
 
     protected:
         QStringList getChangeDdl();

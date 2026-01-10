@@ -25,17 +25,28 @@ QStringList ErdChangeEntity::getChangeDdl()
     return tableModifier->generateSqls();
 }
 
-TableModifier* ErdChangeEntity::getTableModifier() const
+void ErdChangeEntity::executeChange(ErdScene::SceneChangeApi& api, bool forwardExecution)
 {
-    return tableModifier;
+    typedef QPair<QString, QString> OldNewName;
+    QList<OldNewName> modifiedTables = {
+        forwardExecution ?
+        OldNewName(before->table, after->table) :
+        OldNewName(after->table, before->table)
+    };
+
+    for (const QString& tableName : tableModifier->getModifiedTables())
+        modifiedTables << OldNewName(tableName, tableName);
+
+    for (OldNewName& oldNewTableName : modifiedTables)
+        api.refreshEntity(oldNewTableName.first, oldNewTableName.second);
 }
 
-QString ErdChangeEntity::getTableNameBefore() const
+void ErdChangeEntity::apply(ErdScene::SceneChangeApi& api)
 {
-    return before->table;
+    executeChange(api, true);
 }
 
-QString ErdChangeEntity::getTableNameAfter() const
+void ErdChangeEntity::applyUndo(ErdScene::SceneChangeApi& api)
 {
-    return after->table;
+    executeChange(api, false);
 }

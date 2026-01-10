@@ -14,9 +14,28 @@
 
 QVector<QColor> ColorPickerPopup::baseColors = {
     // Grayscale
-    "#000000","#434343","#666666","#999999","#b7b7b7","#cccccc","#d9d9d9","#efefef","#f3f3f3","#ffffff",
+    QColor(QRgb(0x000000)),
+    QColor(QRgb(0x434343)),
+    QColor(QRgb(0x666666)),
+    QColor(QRgb(0x999999)),
+    QColor(QRgb(0xB7B7B7)),
+    QColor(QRgb(0xCCCCCC)),
+    QColor(QRgb(0xD9D9D9)),
+    QColor(QRgb(0xEFEFEF)),
+    QColor(QRgb(0xF3F3F3)),
+    QColor(QRgb(0xFFFFFF)),
+
     // Base colors
-    "#980000","#ff0000","#ff9900","#ffff00","#00ff00","#00ffff","#4a86e8","#0000ff","#9900ff","#ff00ff"
+    QColor(QRgb(0x980000)),
+    QColor(QRgb(0xFF0000)),
+    QColor(QRgb(0xFF9900)),
+    QColor(QRgb(0xFFFF00)),
+    QColor(QRgb(0x00FF00)),
+    QColor(QRgb(0x00FFFF)),
+    QColor(QRgb(0x4A86E8)),
+    QColor(QRgb(0x0000FF)),
+    QColor(QRgb(0x9900FF)),
+    QColor(QRgb(0xFF00FF))
 };
 
 ColorPickerPopup::ColorPickerPopup(QWidget *parent)

@@ -14,14 +14,15 @@ class ErdChangeEntity : public ErdChange
         ErdChangeEntity(Db* db, const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description);
         ~ErdChangeEntity();
 
-        TableModifier *getTableModifier() const;
-        QString getTableNameBefore() const;
-        QString getTableNameAfter() const;
+        void apply(ErdScene::SceneChangeApi& api);
+        void applyUndo(ErdScene::SceneChangeApi& api);
 
     protected:
         QStringList getChangeDdl();
 
     private:
+        void executeChange(ErdScene::SceneChangeApi& api, bool forwardExecution);
+
         Db* db = nullptr;
         SqliteCreateTablePtr before;
         SqliteCreateTablePtr after;
