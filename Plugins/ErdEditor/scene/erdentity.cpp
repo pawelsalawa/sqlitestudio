@@ -603,6 +603,7 @@ void ErdEntity::editRow(int rowIdx)
 
     QGraphicsProxyWidget* inlineProxy = new QGraphicsProxyWidget(row->topRect);
     inlineProxy->setWidget(inlineEdit);
+    inlineProxy->setFlag(QGraphicsItem::ItemIgnoresParentOpacity, true);
     updateInlineEditorGeometry(row, inlineProxy);
 
     row->topRect->setFocus();
@@ -718,7 +719,10 @@ void ErdEntity::inlineEditTabKeyPressed(bool backward)
                 return;
 
             rows.last()->notLastAnymore();
-            addColumn("", QString(), true);
+            Row* row = addColumn("", QString(), true);
+            if (customBgColor.isValid())
+                row->applyColors(customBgColor, customFgColor);
+
             updateGeometry();
             disableChildSelection(this);
             emit fieldEdited(nextRow - 1, rows[nextRow]->getText());
@@ -808,6 +812,25 @@ QPair<QColor, QColor> ErdEntity::getCustomColor() const
 bool ErdEntity::usesCustomColor() const
 {
     return customBgColor.isValid();
+}
+
+bool ErdEntity::applyFilter(const QString& value)
+{
+    if (value.isEmpty())
+    {
+        setOpacity(1.0);
+        return true;
+    }
+
+    bool anyVisible = false;
+    QString filter = value.toLower();
+
+    for (Row*& row : rows)
+        anyVisible |= row->getText().toLower().contains(filter);
+
+    setOpacity(anyVisible ? 1.0 : 0.6);
+
+    return anyVisible;
 }
 
 void ErdEntity::applyRowEdition(int rowIdx, const QString& value, QGraphicsProxyWidget* inlineProxy)

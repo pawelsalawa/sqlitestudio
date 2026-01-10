@@ -9,6 +9,8 @@
 
 
 class ColorPickerPopup;
+
+class ExtLineEdit;
 namespace Ui {
     class ErdWindow;
 }
@@ -43,6 +45,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             UNDO,
             REDO,
             DELETE_SELECTED,
+            FILTER_VALUE,
         };
         Q_ENUM(Action)
 
@@ -101,6 +104,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QToolButton* createLineStyleAction();
         void applySelectedEntityColor(const QColor& color);
         void updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems);
+        void initFilter();
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -126,6 +130,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         bool ignoreSelectionChangeEvents = false;
         QToolButton* lineTypeButton = nullptr;
         ColorPickerPopup* colorPicker = nullptr;
+        ExtLineEdit* filterEdit = nullptr;
+        QTimer* filterTimer = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -159,6 +165,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx);
         void updateSelectionBasedActionsState();
         void failedChangeReEditRequested(ErdEntity* entity);
+        void applyItemFiltering();
+        void focusFilterInput();
 };
 
 #endif // ERDWINDOW_H

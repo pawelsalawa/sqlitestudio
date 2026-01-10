@@ -84,6 +84,13 @@ void ErdScene::handleChange(ErdChange* change)
     changeApplied();
 }
 
+void ErdScene::applyItemFiltering(const QString& value)
+{
+    QList<ErdEntity*> entities = items() | NNMAP_CAST(ErdEntity*);
+    for (ErdEntity*& entity : entities)
+        entity->applyFilter(value);
+}
+
 void ErdScene::handleChangeRedo(ErdChange* change)
 {
     change->applyRedo(*sceneChangeApi);

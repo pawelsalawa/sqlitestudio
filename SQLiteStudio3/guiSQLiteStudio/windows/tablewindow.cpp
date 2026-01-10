@@ -499,7 +499,7 @@ void TableWindow::executionSuccessful()
 
 void TableWindow::executionFailed(const QString& errorText)
 {
-    notifyError(tr("Could not load data for table %1. Error details: %2").arg(table).arg(errorText));
+    notifyError(tr("Could not load data for table %1. Error details: %2").arg(table, errorText));
 }
 
 void TableWindow::defineCurrentContextDb()

@@ -25,6 +25,7 @@
 #include "panel/erdconnectionpanel.h"
 #include "tablemodifier.h"
 #include "common/colorpickerpopup.h"
+#include "common/extlineedit.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -109,10 +110,6 @@ void ErdWindow::init()
                     lineStraightIcon, lineCurvyIcon, lineSquareIcon, colorPickerIcon})
         icon->load();
 
-#ifdef Q_OS_MACOS
-    ui->bottomLabel->setText(ui->bottomLabel->text().replace("Ctrl+F", "Cmd+F"));
-#endif
-
     ui->splitter->setSizes({400, 200});
     ui->splitter->setStretchFactor(0, 2);
     ui->splitter->setStretchFactor(1, 1);
@@ -134,6 +131,7 @@ void ErdWindow::init()
     connect(scene, &ErdScene::entityFieldDeletedInline, this, &ErdWindow::handleEntityFieldDeletedInline);
     ui->view->setScene(scene);
 
+    initFilter();
     initActions();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
@@ -186,6 +184,8 @@ void ErdWindow::createActions()
     ui->toolBar->addSeparator();
     createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    actionMap[FILTER_VALUE] = ui->toolBar->addWidget(filterEdit);
 
     connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
@@ -290,9 +290,27 @@ void ErdWindow::updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItem
     colorPicker->markColor(theColor);
 }
 
+void ErdWindow::initFilter()
+{
+    filterTimer = new QTimer(this);
+    filterTimer->setSingleShot(true);
+    filterTimer->setInterval(200);
+
+    filterEdit = new ExtLineEdit();
+    filterEdit->setExpandingMinWidth(100);
+    filterEdit->setExpandingMaxWidth(200);
+    filterEdit->setExpanding(true);
+    filterEdit->setClearButtonEnabled(true);
+    filterEdit->setPlaceholderText(tr("Filter items", "ERD editor"));
+    filterEdit->setToolTip(tr("Items that don’t match the filter will be dimmed.", "ERD editor"));
+    connect(filterEdit, SIGNAL(textChanged(QString)), filterTimer, SLOT(start()));
+    connect(filterTimer, &QTimer::timeout, this, &ErdWindow::applyItemFiltering);
+}
+
 void ErdWindow::setupDefShortcuts()
 {
     new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
+    new QShortcut(QKeySequence::Find, this, SLOT(focusFilterInput()), SLOT(focusFilterInput()), Qt::WidgetWithChildrenShortcut);
 
     actionMap[LINE_STRAIGHT]->setShortcut(Qt::CTRL|Qt::Key_1);
     actionMap[LINE_CURVY]->setShortcut(Qt::CTRL|Qt::Key_2);
@@ -465,6 +483,16 @@ void ErdWindow::failedChangeReEditRequested(ErdEntity* entity)
     scene->clearSelection();
     entity->setSelected(true);
     ignoreSelectionChangeEvents = false;
+}
+
+void ErdWindow::applyItemFiltering()
+{
+    scene->applyItemFiltering(filterEdit->text());
+}
+
+void ErdWindow::focusFilterInput()
+{
+    filterEdit->setFocus();
 }
 
 void ErdWindow::itemSelectionChanged()

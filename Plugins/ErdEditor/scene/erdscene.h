@@ -178,6 +178,7 @@ class ErdScene : public QGraphicsScene
         void notify(ErdChange* change);
         void deleteItems(const QList<QGraphicsItem *> &items);
         void handleChange(ErdChange* change);
+        void applyItemFiltering(const QString& value);
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
