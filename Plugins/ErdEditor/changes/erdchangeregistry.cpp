@@ -22,6 +22,8 @@ QList<ErdChange*> ErdChangeRegistry::compactedEffectiveChanges()
      * - if multiple editions reduce to no changes - remove all these changes entirely
      * - multiple changes and drop of table at the end - just drop the end table, but only if there are
      *   no referring views, otherwise we won't be able to reflect actual changes to views
+     * - composite changes should be flattened - there is no benefit in holding them as composite for this purpose,
+     *   while flattened changes enable them for compating with other changes.
      */
     return QList<ErdChange*>{};
 }

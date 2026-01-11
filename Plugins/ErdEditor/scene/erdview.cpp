@@ -477,6 +477,7 @@ void ErdView::abortDraftConnection()
     if (draftConnection && draftConnection->isEditing())
     {
         draftConnection->restoreFinalState();
+        draftConnection = nullptr;
         return;
     }
 

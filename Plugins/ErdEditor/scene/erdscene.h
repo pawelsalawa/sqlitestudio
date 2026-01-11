@@ -103,6 +103,7 @@ class ErdScene : public QGraphicsScene
         Db* getDb() const;
         QSet<QString> parseSchema();
         QList<ErdEntity*> getAllEntities() const;
+        QList<ErdEntity*> getSelectedEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
         void applyConfig(const QHash<QString, QVariant>& erdLayout);
@@ -112,6 +113,7 @@ class ErdScene : public QGraphicsScene
         bool undoChange(ErdChange* change);
         bool redoChange(ErdChange* change);
         QList<ErdEntity*> applyColorToSelectedEntities(const QColor& color);
+        QString getNewEntityName(const QString& prefix, int startIdx) const;
 
         static constexpr auto CFG_KEY_ENTITIES = "entities";
         static constexpr auto CFG_KEY_VIEW_RECT = "viewRect";
@@ -180,6 +182,7 @@ class ErdScene : public QGraphicsScene
         void handleChange(ErdChange* change);
         void applyItemFiltering(const QString& value);
         void connectionFinalizationFailed();
+        void selectAll();
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.

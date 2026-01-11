@@ -102,6 +102,11 @@ void ErdEntity::updateConnectionsGeometry()
 
 void ErdEntity::addConnection(ErdConnection* conn)
 {
+    // When dbl-click-editing existing connection,
+    // the ErdConnection will attempt to add itself again to the owning entity.
+    if (connections.contains(conn))
+        return;
+
     connections << conn;
 }
 

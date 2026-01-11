@@ -191,6 +191,7 @@ void ErdWindow::createActions()
     createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
     ui->toolBar->addSeparator();
     actionMap[FILTER_VALUE] = ui->toolBar->addWidget(filterEdit);
+    createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), scene, SLOT(selectAll()), this);
 
     connect(actionMap[LINE_STRAIGHT], &QAction::triggered, this, &ErdWindow::useStraightLine);
     connect(actionMap[LINE_CURVY], &QAction::triggered, this, &ErdWindow::useCurvyLine);
@@ -316,6 +317,8 @@ void ErdWindow::initContextMenu()
     sceneContextMenu->addSeparator();
     sceneContextMenu->addAction(actionMap[UNDO]);
     sceneContextMenu->addAction(actionMap[REDO]);
+    sceneContextMenu->addSeparator();
+    sceneContextMenu->addAction(actionMap[SELECT_ALL]);
 }
 
 void ErdWindow::setupDefShortcuts()
@@ -331,6 +334,7 @@ void ErdWindow::setupDefShortcuts()
     actionMap[NEW_TABLE]->setShortcut(Qt::Key_T);
     actionMap[ADD_CONNECTION]->setShortcut(Qt::Key_F);
     actionMap[DELETE_SELECTED]->setShortcut(QKeySequence::Delete);
+    actionMap[SELECT_ALL]->setShortcut(QKeySequence::SelectAll);
 
     static_qstring(shortcutTpl, "%1 (%2)");
     for (QAction*& act : actionMap.values())
@@ -395,6 +399,10 @@ void ErdWindow::cancelCurrentAction()
         abortSidePanel();
         scene->clearSelection();
     }
+    else
+    {
+        scene->clearSelection();
+    }
 }
 
 void ErdWindow::newTableToggled(bool enable)
@@ -429,7 +437,7 @@ void ErdWindow::handleTableInsertionAborted()
 void ErdWindow::createNewEntityAt(const QPointF& pos)
 {
     SqliteCreateTable* tableModel = new SqliteCreateTable();
-    tableModel->table = tr("table name", "ERD editor");
+    tableModel->table = scene->getNewEntityName(tr("table name", "ERD editor"), 2);
 
     SqliteCreateTable::Column* column = new SqliteCreateTable::Column(tr("column name", "ERD editor"), nullptr, {});
     column->setParent(tableModel);
@@ -491,7 +499,7 @@ void ErdWindow::updateSelectionBasedActionsState()
 {
     actionMap[NEW_TABLE_AT_POSITION]->setEnabled(scene->selectedItems().isEmpty());
     actionMap[DELETE_SELECTED]->setEnabled(!scene->selectedItems().isEmpty());
-    actionMap[COLOR_PICK]->setEnabled(!scene->selectedItems().isEmpty());
+    actionMap[COLOR_PICK]->setEnabled(!scene->getSelectedEntities().isEmpty());
 }
 
 void ErdWindow::failedChangeReEditRequested(ErdEntity* entity)

@@ -96,6 +96,14 @@ void ErdScene::connectionFinalizationFailed()
     emit connectionEditAbortRequested();
 }
 
+void ErdScene::selectAll()
+{
+    QPainterPath path;
+    path.addRect(sceneRect());
+
+    setSelectionArea(path);
+}
+
 void ErdScene::handleChangeRedo(ErdChange* change)
 {
     change->applyRedo(*sceneChangeApi);
@@ -209,6 +217,11 @@ void ErdScene::refreshEntityFromTableName(ErdEntity* entity, const QString& tabl
 QList<ErdEntity*> ErdScene::getAllEntities() const
 {
     return entities;
+}
+
+QList<ErdEntity*> ErdScene::getSelectedEntities() const
+{
+    return entities | FILTER(entity, {return entity->isSelected();});
 }
 
 void ErdScene::setArrowType(ErdArrowItem::Type arrowType)
@@ -694,6 +707,17 @@ QList<ErdEntity*> ErdScene::applyColorToSelectedEntities(const QColor& color)
         emit changeCreated(change);
 
     return entities;
+}
+
+QString ErdScene::getNewEntityName(const QString& prefix, int startIdx) const
+{
+    QStringList existingNames = entityMap.keys();
+    QString baseName = prefix;
+    QString name = baseName;
+    for (int i = startIdx; existingNames.contains(name); i++)
+        name = baseName + QString::number(i);
+
+    return name;
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

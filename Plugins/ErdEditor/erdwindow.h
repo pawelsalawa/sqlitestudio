@@ -47,6 +47,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             REDO,
             DELETE_SELECTED,
             FILTER_VALUE,
+            SELECT_ALL
         };
         Q_ENUM(Action)
 
