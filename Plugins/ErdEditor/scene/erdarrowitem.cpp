@@ -55,9 +55,18 @@ ErdArrowItem* ErdArrowItem::create(Type type)
 
 QPainterPath ErdArrowItem::shape() const
 {
-    QPainterPath p = QGraphicsPathItem::shape();
-    p.addPolygon(arrowHead);
-    return p;
+    QPainterPath path = QGraphicsPathItem::path();
+
+    QPainterPathStroker stroker;
+    stroker.setWidth(15.0);
+    stroker.setCapStyle(Qt::RoundCap);
+    stroker.setJoinStyle(Qt::RoundJoin);
+
+    QPainterPath stroked = stroker.createStroke(path);
+    stroked.addPath(path);
+    stroked.addPolygon(arrowHead);
+
+    return stroked;
 }
 
 QRectF ErdArrowItem::boundingRect() const

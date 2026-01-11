@@ -98,8 +98,8 @@ class ErdView : public QGraphicsView
         QStack<Mode> priorOperatingModeStack;
 
     public slots:
-        void abortDraftConnection();
         void setDraftingConnectionMode(bool enabled);
+        void abortDraftConnection();
         void insertNewEntity();
         void deleteSelectedItem();
         void handleVisibilityRequest(const QRectF& rect);

@@ -7,6 +7,7 @@
 #include "changes/erdchangeentity.h"
 #include "db/db.h"
 #include "db/chainexecutor.h"
+#include "services/notifymanager.h"
 #include <QDebug>
 #include <QGraphicsScene>
 
@@ -65,6 +66,35 @@ void ErdConnection::finalizeConnection(ErdEntity* entity, const QPointF& endPos)
     endEntity->updateConnectionIndexes();
     refreshPosition();
     commitFinalizationChange();
+
+    // Flush pre-cancel state
+    preCancelEndEntity = nullptr;
+    preCancelEndEntityRow = -1;
+}
+
+void ErdConnection::cancelFinalState(const QPointF& endPos)
+{
+    endEntity->removeConnection(this);
+    endEntity->updateConnectionIndexes();
+    preCancelEndEntity = endEntity;
+    preCancelEndEntityRow = endEntityRow;
+    endEntity = nullptr;
+    endEntityRow = -1;
+    updatePosition(endPos);
+}
+
+void ErdConnection::restoreFinalState()
+{
+    if (!preCancelEndEntity)
+        return;
+
+    endEntity = preCancelEndEntity;
+    endEntityRow = preCancelEndEntityRow;
+    endEntity->addConnection(this);
+    endEntity->updateConnectionIndexes();
+    preCancelEndEntity = nullptr;
+    preCancelEndEntityRow = -1;
+    refreshPosition();
 }
 
 bool ErdConnection::isFinalized() const
@@ -114,36 +144,21 @@ void ErdConnection::commitFinalizationChange()
     SqliteCreateTablePtr originalCreateTable = startEntity->getTableModel();
     SqliteCreateTablePtr createTable = SqliteCreateTablePtr(originalCreateTable->typeClone<SqliteCreateTable>());
 
-    SqliteCreateTable::Column* startEntityColumn = getStartEntityColumn();
-    if (!startEntityColumn)
+    if (!removeCancelledFk(createTable) || !addFk(createTable))
     {
-        qCritical() << "startEntityColumn is null while trying to commit ERD connection.";
+        notifyError(QObject::tr("Could not commit changes for finalized ERD connection."));
+        scene->connectionFinalizationFailed();
         return;
     }
-
-    SqliteCreateTable::Column* endEntityColumn = getEndEntityColumn();
-    if (!endEntityColumn)
-    {
-        qCritical() << "endEntityColumn is null while trying to commit ERD connection.";
-        return;
-    }
-
-    SqliteCreateTable::Column* column = createTable->columns | FIND_FIRST(col,
-    {
-        return col->name.compare(startEntityColumn->name, Qt::CaseInsensitive) == 0;
-    });
-
-    SqliteCreateTable::Column::Constraint* fk = new SqliteCreateTable::Column::Constraint();
-    fk->setParent(column);
-    column->constraints << fk;
-
-    SqliteIndexedColumn* idxCol = new SqliteIndexedColumn(endEntityColumn->name);
-    fk->initFk(endEntity->getTableName(), {idxCol}, {});
 
     createTable->rebuildTokens(); // needed for TableModifier when executing changes
-    //qDebug() << "dll:" << createTable->detokenize();
 
-    QString desc = QObject::tr("Create relationship between \"%1\" and \"%2\".").arg(createTable->table, fk->foreignKey->foreignTable);
+    QString desc = preCancelEndEntity != nullptr ?
+                QObject::tr("Update relationship from \"%1\"-\"%2\" to \"%1\"-\"%3\".")
+                    .arg(createTable->table, preCancelEndEntity->getTableName(), endEntity->getTableName()) :
+                QObject::tr("Create relationship between \"%1\" and \"%2\".")
+                    .arg(createTable->table, endEntity->getTableName());
+
     ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable, desc);
 
     ChainExecutor* ddlExecutor = new ChainExecutor();
@@ -161,6 +176,67 @@ void ErdConnection::commitFinalizationChange()
         qDebug() << "ErdConnection failed to execute DDL change for finalized connection. Errors:" << ddlExecutor->getErrorsMessages();
 
     delete ddlExecutor;
+}
+
+bool ErdConnection::removeCancelledFk(SqliteCreateTablePtr& createTable)
+{
+    if (!preCancelEndEntity)
+        return true;
+
+    QString referencedTable = preCancelEndEntity->getTableName();
+    QString srcColumn = getStartEntityColumn()->name;
+    QString trgColumn = getPreCancelEndEntityColumn()->name;
+    auto constrList = createTable->getColumnForeignKeysByTable(referencedTable, srcColumn, trgColumn);
+    if (!constrList.isEmpty())
+    {
+        auto constr = constrList.first();
+        createTable->removeColumnConstraint(constr);
+        delete constr;
+        return true;
+    }
+
+    auto tableConstrList = createTable->getForeignKeysByTable(referencedTable, {QPair<QString, QString>(srcColumn, trgColumn)});
+    if (!tableConstrList.isEmpty())
+    {
+        auto constr = tableConstrList.first();
+        createTable->constraints.removeOne(constr);
+        delete constr;
+        return true;
+    }
+
+    qCritical() << "Could not find FK constraint to remove while trying to commit ERD connection cancellation.";
+    return false;
+}
+
+bool ErdConnection::addFk(SqliteCreateTablePtr& createTable)
+{
+    SqliteCreateTable::Column* startEntityColumn = getStartEntityColumn();
+    if (!startEntityColumn)
+    {
+        qCritical() << "startEntityColumn is null while trying to commit ERD connection.";
+        return false;
+    }
+
+    SqliteCreateTable::Column* endEntityColumn = getEndEntityColumn();
+    if (!endEntityColumn)
+    {
+        qCritical() << "endEntityColumn is null while trying to commit ERD connection.";
+        return false;
+    }
+
+    SqliteCreateTable::Column* column = createTable->columns | FIND_FIRST(col,
+    {
+        return col->name.compare(startEntityColumn->name, Qt::CaseInsensitive) == 0;
+    });
+
+    SqliteCreateTable::Column::Constraint* fk = new SqliteCreateTable::Column::Constraint();
+    fk->setParent(column);
+    column->constraints << fk;
+
+    SqliteIndexedColumn* idxCol = new SqliteIndexedColumn(endEntityColumn->name);
+    fk->initFk(endEntity->getTableName(), {idxCol}, {});
+
+    return true;
 }
 
 bool ErdConnection::isTableLevelFk() const
@@ -207,6 +283,14 @@ SqliteCreateTable::Column* ErdConnection::getEndEntityColumn() const
         return nullptr;
 
     return dynamic_cast<SqliteCreateTable::Column*>(endEntity->getStatementAtRowIndex(endEntityRow));
+}
+
+SqliteCreateTable::Column* ErdConnection::getPreCancelEndEntityColumn() const
+{
+    if (!preCancelEndEntity || preCancelEndEntityRow < 0)
+        return nullptr;
+
+    return dynamic_cast<SqliteCreateTable::Column*>(preCancelEndEntity->getStatementAtRowIndex(preCancelEndEntityRow));
 }
 
 void ErdConnection::setArrowType(ErdArrowItem::Type arrowType)
@@ -269,6 +353,11 @@ QList<ErdConnection*> ErdConnection::getAssociatedConnections() const
 void ErdConnection::setAssociatedConnections(const QList<ErdConnection*>& connections)
 {
     associatedConnections = connections;
+}
+
+bool ErdConnection::isEditing() const
+{
+    return preCancelEndEntity != nullptr;
 }
 
 void ErdConnection::setIndexInStartEntity(int idx)

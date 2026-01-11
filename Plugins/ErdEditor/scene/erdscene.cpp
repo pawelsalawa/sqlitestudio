@@ -91,6 +91,11 @@ void ErdScene::applyItemFiltering(const QString& value)
         entity->applyFilter(value);
 }
 
+void ErdScene::connectionFinalizationFailed()
+{
+    emit connectionEditAbortRequested();
+}
+
 void ErdScene::handleChangeRedo(ErdChange* change)
 {
     change->applyRedo(*sceneChangeApi);

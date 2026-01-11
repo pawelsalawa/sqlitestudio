@@ -10,6 +10,7 @@
 #include "erdwindow.h"
 #include "icon.h"
 #include "changes/erdchangemoveentity.h"
+#include "services/notifymanager.h"
 #include <QGraphicsItem>
 #include <QMouseEvent>
 #include <QDebug>
@@ -236,7 +237,29 @@ void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
         QGraphicsItem* item = clickableItemAt(event->pos());
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
         if (entity)
+        {
             entity->edit(mapToScene(event->pos()));
+            return;
+        }
+        ErdArrowItem* arrow = dynamic_cast<ErdArrowItem*>(item);
+        if (arrow)
+        {
+            ErdConnection* conn = scene()->getConnectionForArrow(arrow);
+            if (!conn || !conn->isFinalized())
+                return;
+
+            if (conn->isCompoundConnection())
+            {
+                notifyInfo(tr("Cannot edit compound foreign keys this way. Such connections have to be edited through the side panel.", "ERD editor"));
+                return;
+            }
+
+            conn->cancelFinalState(mapToScene(event->pos()));
+            draftConnection = conn;
+            setOperatingMode(Mode::CONNECTION_DRAFTING);
+
+            return;
+        }
     }
 }
 
@@ -430,6 +453,12 @@ void ErdView::enteringOperatingMode(Mode mode)
 
 void ErdView::abortDraftConnection()
 {
+    if (draftConnection && draftConnection->isEditing())
+    {
+        draftConnection->restoreFinalState();
+        return;
+    }
+
     safe_delete(draftConnection);
     emit draftConnectionRemoved();
 }

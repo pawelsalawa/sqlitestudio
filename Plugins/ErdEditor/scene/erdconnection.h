@@ -22,6 +22,8 @@ class ErdConnection
         void addToScene(ErdScene* scene);
         void updatePosition(const QPointF& endPos);
         void finalizeConnection(ErdEntity* entity, const QPointF& endPos);
+        void cancelFinalState(const QPointF& endPos);
+        void restoreFinalState();
         bool isFinalized() const;
         void refreshPosition();
         ErdEntity* getStartEntity() const;
@@ -30,6 +32,7 @@ class ErdConnection
         int getEndEntityRow() const;
         SqliteCreateTable::Column* getStartEntityColumn() const;
         SqliteCreateTable::Column* getEndEntityColumn() const;
+        SqliteCreateTable::Column* getPreCancelEndEntityColumn() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         void select(bool changeFocusToo = true);
         void deselect();
@@ -40,6 +43,7 @@ class ErdConnection
         bool isCompoundConnection() const;
         QList<ErdConnection*> getAssociatedConnections() const;
         void setAssociatedConnections(const QList<ErdConnection*>& connections);
+        bool isEditing() const;
 
         /**
          * @brief Sets index of connection in the starting entity.
@@ -61,11 +65,15 @@ class ErdConnection
     private:
         static QPointF findThisPosAgainstOther(ErdEntity* thisEntity, int thisRow, const QPointF& otherPosition, ErdArrowItem::Side& entitySide);
         void commitFinalizationChange();
+        bool removeCancelledFk(SqliteCreateTablePtr& createTable);
+        bool addFk(SqliteCreateTablePtr& createTable);
 
         ErdEntity* startEntity = nullptr;
         ErdEntity* endEntity = nullptr;
+        ErdEntity* preCancelEndEntity = nullptr;
         int startEntityRow = -1;
         int endEntityRow = -1;
+        int preCancelEndEntityRow = -1;
         int indexInStartEntity = 0;
         int indexInEndEntity = 0;
         bool tableLevelFk = false;

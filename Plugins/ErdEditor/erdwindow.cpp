@@ -141,6 +141,7 @@ void ErdWindow::init()
     connect(ui->view, &ErdView::tableInsertionAborted, this, &ErdWindow::handleTableInsertionAborted, Qt::QueuedConnection);
     connect(ui->view, &ErdView::newEntityPositionPicked, this, &ErdWindow::createNewEntityAt);
     connect(scene, &ErdScene::requestVisibilityOf, ui->view, &ErdView::handleVisibilityRequest);
+    connect(scene, &ErdScene::connectionEditAbortRequested, ui->view, &ErdView::abortDraftConnection);
 
     changeRegistry = new ErdChangeRegistry(this);
     connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);

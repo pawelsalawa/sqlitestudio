@@ -179,6 +179,7 @@ class ErdScene : public QGraphicsScene
         void deleteItems(const QList<QGraphicsItem *> &items);
         void handleChange(ErdChange* change);
         void applyItemFiltering(const QString& value);
+        void connectionFinalizationFailed();
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.
@@ -194,6 +195,7 @@ class ErdScene : public QGraphicsScene
         void changeCreated(ErdChange* change);
         void sidePanelAbortRequested();
         void sidePanelRefreshRequested();
+        void connectionEditAbortRequested();
         void entityNameEditedInline(ErdEntity* entity, const QString& newName);
         void entityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
         void entityFieldDeletedInline(ErdEntity* entity, int colIdx);
