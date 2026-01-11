@@ -34,6 +34,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
             COMMIT,
             ROLLBACK,
             NEW_TABLE,
+            NEW_TABLE_AT_POSITION,
             ARRANGE_FDP,
             ARRANGE_NEATO,
             ADD_CONNECTION,
@@ -105,6 +106,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void applySelectedEntityColor(const QColor& color);
         void updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems);
         void initFilter();
+        void initContextMenu();
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -132,6 +134,8 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         ColorPickerPopup* colorPicker = nullptr;
         ExtLineEdit* filterEdit = nullptr;
         QTimer* filterTimer = nullptr;
+        QMenu* colorPickerMenu = nullptr;
+        QMenu* sceneContextMenu = nullptr;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -160,6 +164,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void undo();
         void redo();
         void createNewEntityAt(const QPointF& pos);
+        void newTableAtPosition();
         void handleEntityNameEditedInline(ErdEntity* entity, const QString& newName);
         void handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
         void handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx);
@@ -167,6 +172,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void failedChangeReEditRequested(ErdEntity* entity);
         void applyItemFiltering();
         void focusFilterInput();
+        void sceneContextMenuRequested(const QPoint& pos);
+        void colorResetPicked();
+        void colorPicked(const QColor& color);
 };
 
 #endif // ERDWINDOW_H

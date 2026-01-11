@@ -52,7 +52,11 @@
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
-        <widget class="ErdView" name="view"/>
+        <widget class="ErdView" name="view">
+         <property name="contextMenuPolicy">
+          <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+         </property>
+        </widget>
         <widget class="QWidget" name="sidePanel" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="leftMargin">

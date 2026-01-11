@@ -62,6 +62,7 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     }
 
     clickPos = event->position().toPoint();
+    lastClickPos = mapToScene(event->position().toPoint());
 
     if (isPlacingNewEntity())
     {
@@ -71,12 +72,15 @@ void ErdView::mousePressEvent(QMouseEvent* event)
             return;
         }
         else
+        {
             popOperatingMode();
+            return;
+        }
     }
 
-    if (event->button() == Qt::LeftButton)
+    QGraphicsItem* item = clickableItemAt(clickPos);
+    if (event->button() == Qt::LeftButton || event->button() == Qt::RightButton)
     {
-        QGraphicsItem* item = clickableItemAt(clickPos);
         if (item && item->flags() & QGraphicsItem::ItemIsMovable)
         {
             if (selectedItems.contains(item))
@@ -98,6 +102,13 @@ void ErdView::mousePressEvent(QMouseEvent* event)
                 selectedItems = {item};
                 selectedMovableItems = {item};
             }
+        }
+    }
+
+    if (event->button() == Qt::LeftButton)
+    {
+        if (item && item->flags() & QGraphicsItem::ItemIsMovable)
+        {
             lastDragScenePos = mapToScene(clickPos);
             QGraphicsView::mousePressEvent(event);
             return;
@@ -117,9 +128,21 @@ void ErdView::mousePressEvent(QMouseEvent* event)
     {
         // RightButton click
         if (isDraftingConnection() || isPlacingNewEntity())
+        {
             popOperatingMode();
-    }
+        }
+        else
+        {
+            // Fake left-click to force selection
+            QMouseEvent leftBtnEvent(event->type(), event->position(), event->globalPosition(), Qt::LeftButton,
+                Qt::LeftButton | (event->buttons() & ~Qt::RightButton), event->modifiers());
 
+            QGraphicsView::mousePressEvent(&leftBtnEvent);
+            event->ignore();
+
+            emit customContextMenuRequested(event->pos());
+        }
+    }
     QGraphicsView::mousePressEvent(event);
 }
 
@@ -222,8 +245,6 @@ bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
     }
     else if (button == Qt::RightButton)
     {
-        // TODO if clicked on item, show entity/connection/other context menu
-        // TODO if clicked on empty space, show creational menu, having "add this and that, rearrange, select all" entries
         return true;
     }
     return false;
@@ -510,6 +531,11 @@ bool ErdView::isPlacingNewEntity() const
     return operatingMode == Mode::PLACING_NEW_ENTITY;
 }
 
+bool ErdView::isNormalMode() const
+{
+    return operatingMode == Mode::NORMAL;
+}
+
 void ErdView::setOperatingMode(Mode mode)
 {
     priorOperatingModeStack.clear();
@@ -625,6 +651,11 @@ void ErdView::itemsPotentiallyMoved()
     ErdChange* change = ErdChange::normalizeChanges(changes, tr("Move tables: %1").arg(names.join(", ")));
     if (change)
         emit changeCreated(change);
+}
+
+QPointF ErdView::getLastClickPos() const
+{
+    return lastClickPos;
 }
 
 ErdView::KeyPressFilter::KeyPressFilter(ErdView* view) :

@@ -133,6 +133,7 @@ void ErdWindow::init()
 
     initFilter();
     initActions();
+    initContextMenu();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
     connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
@@ -140,6 +141,7 @@ void ErdWindow::init()
     connect(ui->view, &ErdView::draftConnectionRemoved, this, &ErdWindow::handleDraftConnectionRemoved, Qt::QueuedConnection);
     connect(ui->view, &ErdView::tableInsertionAborted, this, &ErdWindow::handleTableInsertionAborted, Qt::QueuedConnection);
     connect(ui->view, &ErdView::newEntityPositionPicked, this, &ErdWindow::createNewEntityAt);
+    connect(ui->view, &QWidget::customContextMenuRequested, this, &ErdWindow::sceneContextMenuRequested);
     connect(scene, &ErdScene::requestVisibilityOf, ui->view, &ErdView::handleVisibilityRequest);
     connect(scene, &ErdScene::connectionEditAbortRequested, ui->view, &ErdView::abortDraftConnection);
 
@@ -153,6 +155,7 @@ void ErdWindow::init()
 void ErdWindow::createActions()
 {
     createAction(CANCEL_CURRENT, tr("Cancels ongoing action", "ERD editor"), this, SLOT(cancelCurrentAction()), this);
+    createAction(NEW_TABLE_AT_POSITION, ICONS.TABLE_ADD, tr("Create a table", "ERD editor"), this, SLOT(newTableAtPosition()), this);
 
     createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
@@ -168,6 +171,7 @@ void ErdWindow::createActions()
     changeCountLabel->setFont(bold);
     changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
     changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
+    changeCountLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     connect(changeCountLabel, &QToolButton::clicked, this, &ErdWindow::showChangeRegistry);
     ui->toolBar->addWidget(changeCountLabel);
 
@@ -199,30 +203,23 @@ QToolButton* ErdWindow::createSetTableColorAction()
 {
     actionMap[COLOR_PICK] = new QAction(*colorPickerIcon, tr("Set table color"), ui->toolBar);
 
-    QMenu* menu = new QMenu(this);
+    colorPickerMenu = new QMenu(this);
     colorPicker = new ColorPickerPopup();
 
-    QWidgetAction* wa = new QWidgetAction(menu);
+    QWidgetAction* wa = new QWidgetAction(colorPickerMenu);
     wa->setDefaultWidget(colorPicker);
-    menu->addAction(wa);
+    colorPickerMenu->addAction(wa);
 
     QToolButton* btn = new QToolButton();
     btn->setDefaultAction(actionMap[COLOR_PICK]);
-    btn->setMenu(menu);
+    btn->setMenu(colorPickerMenu);
     btn->setPopupMode(QToolButton::InstantPopup);
     btn->setStyleSheet("QToolButton {padding-right: 12px;}");
 
-    actionMap[COLOR_PICK]->setMenu(menu);
+    actionMap[COLOR_PICK]->setMenu(colorPickerMenu);
 
-    connect(colorPicker, &ColorPickerPopup::colorPicked, this, [this, menu](const QColor& c) {
-        applySelectedEntityColor(c);
-        menu->close();
-    });
-
-    connect(colorPicker, &ColorPickerPopup::resetRequested, this, [this, menu]() {
-        applySelectedEntityColor(QColor());
-        menu->close();
-    });
+    connect(colorPicker, &ColorPickerPopup::colorPicked, this, &ErdWindow::colorPicked);
+    connect(colorPicker, &ColorPickerPopup::resetRequested, this, &ErdWindow::colorResetPicked);
 
     return btn;
 }
@@ -308,6 +305,19 @@ void ErdWindow::initFilter()
     connect(filterTimer, &QTimer::timeout, this, &ErdWindow::applyItemFiltering);
 }
 
+void ErdWindow::initContextMenu()
+{
+    sceneContextMenu = new QMenu(this);
+    sceneContextMenu->addAction(actionMap[NEW_TABLE_AT_POSITION]);
+    sceneContextMenu->addSeparator();
+    sceneContextMenu->addAction(actionMap[DELETE_SELECTED]);
+    sceneContextMenu->addSeparator();
+    sceneContextMenu->addAction(actionMap[COLOR_PICK]);
+    sceneContextMenu->addSeparator();
+    sceneContextMenu->addAction(actionMap[UNDO]);
+    sceneContextMenu->addAction(actionMap[REDO]);
+}
+
 void ErdWindow::setupDefShortcuts()
 {
     new QShortcut(QKeySequence::Cancel, this, SLOT(cancelCurrentAction()), SLOT(cancelCurrentAction()), Qt::WidgetWithChildrenShortcut);
@@ -326,7 +336,7 @@ void ErdWindow::setupDefShortcuts()
     for (QAction*& act : actionMap.values())
     {
         if (!act->shortcut().isEmpty())
-            act->setText(shortcutTpl.arg(act->text(), act->shortcut().toString()));
+            act->setToolTip(shortcutTpl.arg(act->text(), act->shortcut().toString()));
     }
 
     setShortcutContext({UNDO, REDO, DELETE_SELECTED}, Qt::WidgetWithChildrenShortcut);
@@ -433,6 +443,11 @@ void ErdWindow::createNewEntityAt(const QPointF& pos)
     entity->editName();
 }
 
+void ErdWindow::newTableAtPosition()
+{
+    createNewEntityAt(ui->view->getLastClickPos());
+}
+
 void ErdWindow::handleEntityNameEditedInline(ErdEntity* entity, const QString& newName)
 {
     UNUSED(entity);
@@ -474,6 +489,7 @@ void ErdWindow::handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx)
 
 void ErdWindow::updateSelectionBasedActionsState()
 {
+    actionMap[NEW_TABLE_AT_POSITION]->setEnabled(scene->selectedItems().isEmpty());
     actionMap[DELETE_SELECTED]->setEnabled(!scene->selectedItems().isEmpty());
     actionMap[COLOR_PICK]->setEnabled(!scene->selectedItems().isEmpty());
 }
@@ -494,6 +510,24 @@ void ErdWindow::applyItemFiltering()
 void ErdWindow::focusFilterInput()
 {
     filterEdit->setFocus();
+}
+
+void ErdWindow::sceneContextMenuRequested(const QPoint &pos)
+{
+    sceneContextMenu->popup(ui->view->mapToGlobal(pos));
+}
+
+void ErdWindow::colorResetPicked()
+{
+    colorPicked(QColor());
+}
+
+void ErdWindow::colorPicked(const QColor& color)
+{
+    applySelectedEntityColor(color);
+    colorPickerMenu->close();
+    sceneContextMenu->close();
+    scene->invalidate();
 }
 
 void ErdWindow::itemSelectionChanged()

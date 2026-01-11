@@ -41,12 +41,15 @@ class ErdView : public QGraphicsView
         bool isDraggingView() const;
         bool isDraftingConnection() const;
         bool isPlacingNewEntity() const;
+        bool isNormalMode() const;
         void setOperatingMode(Mode mode);
         void pushOperatingMode(Mode mode);
         void popOperatingMode();
 
         static constexpr const char* CFG_KEY_ZOOM = "zoom";
         static constexpr const char* CFG_KEY_CENTER_POINT = "centerPoint";
+
+        QPointF getLastClickPos() const;
 
     protected:
         void mousePressEvent(QMouseEvent* event) override;
@@ -90,6 +93,7 @@ class ErdView : public QGraphicsView
         QPointF lastDragScenePos;
         ErdConnection* draftConnection = nullptr;
         QPoint clickPos;
+        QPointF lastClickPos;
         qreal zoom = 1.0;
         KeyPressFilter* keyFilter = nullptr;
         bool centerPointRestored = false;
