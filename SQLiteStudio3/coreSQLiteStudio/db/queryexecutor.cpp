@@ -582,7 +582,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
     if (simpleExecIsSelect())
         context->countingQuery = "SELECT count(*) AS cnt FROM ("+trimQueryEnd(queriesForSimpleExecution.last())+");";
     else
-        context->rowsCountingRequired = true;
+        context->rowsManualCountingRequired = true;
 
     ResultColumnPtr resCol;
     context->resultColumns.clear();
@@ -969,13 +969,18 @@ Db* QueryExecutor::getDb() const
 
 void QueryExecutor::setDb(Db* value)
 {
-    db = value;
+    if (value == db)
+        return;
 
+    db = value;
     if (countingDb)
     {
-        countingDb->closeQuiet();
+        if (countingDb->isOpen())
+            countingDb->closeQuiet();
+
         safe_delete(countingDb);
     }
+
     if (db)
         countingDb = db->clone();
 }
@@ -1015,9 +1020,9 @@ void QueryExecutor::setDataLengthLimit(int value)
     dataLengthLimit = value;
 }
 
-bool QueryExecutor::isRowCountingRequired() const
+bool QueryExecutor::isRowManualCountingRequired() const
 {
-    return context->rowsCountingRequired;
+    return context->rowsManualCountingRequired;
 }
 
 QString QueryExecutor::getCountingQuery() const

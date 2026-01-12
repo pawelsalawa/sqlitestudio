@@ -59,7 +59,6 @@ class AbstractDb3 : public AbstractDb
         bool initAfterCreated();
         void initAfterOpen();
         SqlQueryPtr prepare(const QString& query);
-        bool flushWalInternal();
         QString getTypeLabel() const;
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
@@ -411,22 +410,6 @@ int AbstractDb3<T>::getErrorCodeInternal()
 }
 
 template <class T>
-bool AbstractDb3<T>::flushWalInternal()
-{
-    resetError();
-    if (!dbHandle)
-        return false;
-
-    int res = T::wal_checkpoint_v2(dbHandle, nullptr, T::CHECKPOINT_FULL, nullptr, nullptr);
-    if (res != T::OK)
-    {
-        dbErrorMessage = QObject::tr("Could not run WAL checkpoint: %1").arg(extractLastError());
-        dbErrorCode = res;
-    }
-    return res == T::OK;
-}
-
-template <class T>
 bool AbstractDb3<T>::openInternal()
 {
     resetError();
@@ -600,6 +583,8 @@ QString AbstractDb3<T>::extractLastError(typename T::handle* handle)
 template <class T>
 void AbstractDb3<T>::cleanUp()
 {
+    T::wal_checkpoint_v2(dbHandle, nullptr, T::CHECKPOINT_RESTART, nullptr, nullptr);
+
     for (Query* q : queries)
         q->finalize();
 

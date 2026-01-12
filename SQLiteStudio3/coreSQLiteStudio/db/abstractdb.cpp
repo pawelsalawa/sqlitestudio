@@ -46,11 +46,7 @@ bool AbstractDb::close()
     if (deny)
         return false;
 
-    bool open = isOpen();
-    if (open)
-        flushWal();
-
-    bool res = !open || closeQuiet();
+    bool res = !isOpen() || closeQuiet();
     manuallyLoadedExtensions.clear();
     if (res)
         emit disconnected();
@@ -707,8 +703,7 @@ void AbstractDb::asyncQueryFinished(AsyncQueryRunner *runner)
 
 void AbstractDb::appIsAboutToQuit()
 {
-    if (isOpen())
-        flushWal();
+    closeInternal();
 }
 
 QString AbstractDb::attach(Db* otherDb, bool silent)
@@ -957,20 +952,6 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
         registeredFunctions << function;
     else
         qCritical() << "Could not register SQL function:" << function.name << function.argCount << function.type;
-}
-
-void AbstractDb::flushWal()
-{
-    if (flushWalInternal())
-    {
-        if (exec("PRAGMA journal_mode")->getSingleCell().toString() == "wal")
-        {
-            exec("PRAGMA journal_mode = delete;", Flag::ZERO_TIMEOUT);
-            exec("PRAGMA journal_mode = wal;", Flag::ZERO_TIMEOUT);
-        }
-    }
-    else
-        notifyWarn(tr("Failed to make full WAL checkpoint on database '%1'. Error returned from SQLite engine: %2").arg(name, getErrorTextInternal()));
 }
 
 size_t qHash(const AbstractDb::RegisteredFunction& fn)

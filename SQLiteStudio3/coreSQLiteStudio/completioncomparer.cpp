@@ -11,8 +11,8 @@ CompletionComparer::CompletionComparer(CompletionHelper *helper)
 
 bool CompletionComparer::operator ()(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)
 {
-    if (token2->type == ExpectedToken::OTHER  || token1->type == ExpectedToken::OTHER)
-        qDebug() << "";
+    // if (token2->type == ExpectedToken::OTHER  || token1->type == ExpectedToken::OTHER)
+    //     qDebug() << "";
 
     if ((token1->priority > 0 || token2->priority > 0) && token1->priority != token2->priority)
         return token1->priority > token2->priority;
@@ -67,7 +67,7 @@ void CompletionComparer::init()
             contextDatabases = helper->originalParsedQuery->getContextDatabases(false);
         }
 
-        for (SelectResolver::Table table : helper->selectAvailableTables + helper->parentSelectAvailableTables)
+        for (const SelectResolver::Table& table : helper->selectAvailableTables + helper->parentSelectAvailableTables)
             availableTableNames += table.table;
     }
 }
@@ -132,6 +132,9 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
         case CompletionHelper::Context::UPDATE_RETURNING:
         case CompletionHelper::Context::DELETE_RETURNING:
             result = compareColumnsForReturning(token1, token2, &ok);
+            break;
+        case CompletionHelper::Context::ALTER_TABLE:
+            result = compareColumnsForAlterTable(token1, token2, &ok);
             break;
         default:
             return compareValues(token1, token2);
@@ -250,6 +253,15 @@ bool CompletionComparer::compareColumnsForReturning(const ExpectedTokenPtr& toke
 
     *result = false;
     return false;
+}
+
+bool CompletionComparer::compareColumnsForAlterTable(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool* result)
+{
+    *result = true;
+    if (token1->contextInfo == token2->contextInfo)
+        return compareValues(token1->value, token2->value);
+
+    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables, true);
 }
 
 bool CompletionComparer::compareTables(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)

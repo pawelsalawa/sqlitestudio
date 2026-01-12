@@ -10,6 +10,7 @@ QStringList joinKeywords;
 QStringList fkMatchKeywords;
 QStringList conflictAlgoKeywords;
 QStringList generatedColumnKeywords;
+QSet<QString> idFallbackKeywords;
 
 int getKeywordId3(const QString& str)
 {
@@ -191,6 +192,7 @@ void initKeywords()
     fkMatchKeywords << "SIMPLE" << "FULL" << "PARTIAL";
     conflictAlgoKeywords << "ROLLBACK" << "ABORT" << "FAIL" << "IGNORE" << "REPLACE";
     generatedColumnKeywords << "STORED" << "VIRTUAL";
+    idFallbackKeywords << "INDEXED" << "GENERATED";
 
     softKeywords3 << "ABORT" << "ACTION" << "AFTER" << "ALWAYS" << "ANALYZE" << "ASC" << "ATTACH" << "BEFORE" << "BEGIN" << "BY" << "CASCADE"
                   << "CAST" << "COLUMNKW" << "CONFLICT" << "CURRENT" << "DATABASE" << "DEFERRED" << "DESC" << "DETACH" << "DO" << "EACH"
@@ -241,4 +243,9 @@ QStringList getGeneratedColumnTypes()
 bool isSoftKeyword(const QString& str)
 {
     return softKeywords3.contains(str.toUpper());
+}
+
+QSet<QString> getIdFallbackKeywords()
+{
+    return idFallbackKeywords;
 }

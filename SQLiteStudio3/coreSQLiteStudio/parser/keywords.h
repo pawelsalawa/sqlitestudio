@@ -93,6 +93,8 @@ API_EXPORT bool isJoinKeyword(const QString& str);
  */
 API_EXPORT QStringList getFkMatchKeywords();
 
+API_EXPORT QSet<QString> getIdFallbackKeywords();
+
 /**
  * @brief Tests whether the given value is one of match type keywords.
  * @param str String to test.
