@@ -44,7 +44,7 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: /opt/universal
-                key: tcl-${{ env.TCL_VERSION }}-${{ runner.os }}-${{ runner.arch }}
+                key: tcl-${{ env.TCL_VERSION }}-macos-universal
 
             - name: Build Tcl universal
               if: steps.cache-tcl.outputs.cache-hit != 'true'
@@ -52,8 +52,6 @@ jobs:
                 if brew list tcl-tk 2>/dev/null; then
                     brew uninstall tcl-tk r
                 fi
-
-                cd ..
 
                 set -euo pipefail
 
@@ -108,7 +106,7 @@ jobs:
                 cache: true
                 version: ${{ env.QT_VERSION }}
                 host: 'mac'
-                dir: '${{ steps.qt-installation-dir.DIR }}'
+                dir: ${{ steps.qt-installation-dir.outputs.DIR }}
                 extra: '--external 7z'
 
             - name: Detect ICU major from Qt
@@ -117,18 +115,19 @@ jobs:
               run: |
                 set -euo pipefail
 
-                ICU_MAJOR=$(
-                otool -L "$QT_ROOT_DIR/lib/libicui18n.dylib" \
-                    | sed -n 's/.*libicui18n\.\([0-9][0-9]*\)\.dylib/\1/p' \
-                    | head -n1
-                )
+                echo "Qt lib dir contents:"
+                ls "$QT_ROOT_DIR/lib" | grep icu
+                echo "ICU archs:"
+                lipo -archs "$QT_ROOT_DIR/lib"/libicu*.dylib
 
-                if [[ -z "$ICU_MAJOR" ]]; then
-                echo "Failed to detect ICU major from $QT_ROOT_DIR/lib/libicui18n.dylib"
-                exit 1
-                fi
 
-                echo "ICU_MAJOR=$ICU_MAJOR"
+                QT_ICU_LIB=$(ls "$QT_ROOT_DIR/lib"/libicui18n.*.dylib 2>/dev/null | head -n1)
+                [[ -n "$QT_ICU_LIB" ]] || (echo "Qt ICU library not found" && exit 1)
+
+                ICU_MAJOR=$(basename "$QT_ICU_LIB" | sed -n 's/libicui18n\.\([0-9][0-9]*\)\.dylib/\1/p')
+                [[ -n "$ICU_MAJOR" ]] || (echo "Failed to parse ICU major" && exit 1)
+
+                echo "Using Qt ICU major: $ICU_MAJOR"
                 echo "icu_major=$ICU_MAJOR" >> "$GITHUB_OUTPUT"
 
             - name: Cache ICU headers
