@@ -117,7 +117,13 @@ void ErdConnectionPanel::initColumnLevelFk(ErdConnection* connection)
     matchedFk = nullptr;
     for (SqliteCreateTable::Column::Constraint*& fk : fkList)
     {
-        if (fk->foreignKey->foreignTable.toLower() == parentTableName && fk->foreignKey->getColumnNames().contains(parentColumnName, Qt::CaseInsensitive))
+        QStringList fkColumns = fk->foreignKey->getColumnNames();
+        if (fk->foreignKey->foreignTable.toLower() == parentTableName &&
+                (
+                    fkColumns.contains(parentColumnName, Qt::CaseInsensitive) ||
+                    (fkColumns.isEmpty() && childColumnStmt->name.compare(parentColumnName, Qt::CaseInsensitive) == 0)
+                )
+            )
         {
             matchedFk = fk;
             break;
@@ -155,18 +161,22 @@ void ErdConnectionPanel::initTableLevelFk(ErdConnection* connection)
 
     QList<SqliteCreateTable::Constraint*> fkList = childCreateTable->getConstraints(SqliteCreateTable::Constraint::FOREIGN_KEY);
     matchedFk = nullptr;
+    SqliteStatement* matchedFkCandidate = nullptr;
     for (SqliteCreateTable::Constraint*& fk : fkList)
     {
         if (fk->foreignKey->foreignTable.toLower() != parentTableName)
             continue;
 
-        QStringList fkChildColumnNames = fk->indexedColumns | MAP(idxCol, {return idxCol->getColumnName();});
+        QStringList fkChildColumnNames = fk->getColumnNames();
         if (childColumnNames != toSet(fkChildColumnNames))
             continue;
 
         QStringList fkParentColumnNames = fk->foreignKey->getColumnNames();
         if (fkParentColumnNames.isEmpty())
+        {
             fkParentColumnNames = fkChildColumnNames;
+            matchedFkCandidate = fk;
+        }
 
         if (parentColumnNames != toSet(fkParentColumnNames))
             continue;
@@ -174,6 +184,9 @@ void ErdConnectionPanel::initTableLevelFk(ErdConnection* connection)
         matchedFk = fk;
         break;
     }
+    if (!matchedFk && matchedFkCandidate)
+        matchedFk = matchedFkCandidate;
+
     createTableLevelPanel();
 }
 

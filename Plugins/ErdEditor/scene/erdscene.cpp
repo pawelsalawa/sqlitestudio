@@ -380,12 +380,6 @@ ErdConnection* ErdScene::setupEntityConnection(ErdEntity* srcEntity, const QStri
 
     ErdEntity* trgEntity = entityMap.value(fkTable, Qt::CaseInsensitive);
 
-    if (sourceReferenceIdx >= fk->indexedColumns.size())
-    {
-        qWarning() << "More source columns than foreign columns in FK, while parsing schema for ERD. Table:" << tableModel->table;
-        return nullptr;
-    }
-
     int srcRowIdx = tableModel->getColumnIndex(srcColumn);
     if (srcRowIdx == -1)
     {
@@ -393,12 +387,28 @@ ErdConnection* ErdScene::setupEntityConnection(ErdEntity* srcEntity, const QStri
                    << tableModel->table << "while parsing schema for ERD.";
     }
 
-    QString fkCol = fk->indexedColumns[sourceReferenceIdx]->name;
+    QString fkCol;
+    if (fk->indexedColumns.isEmpty())
+    {
+        // Implicit foreign column - same as source column
+        fkCol = srcColumn;
+    }
+    else
+    {
+        if (sourceReferenceIdx >= fk->indexedColumns.size())
+        {
+            qWarning() << "More source columns than foreign columns in FK, while parsing schema for ERD. Table:" << tableModel->table;
+            return nullptr;
+        }
+
+        fkCol = fk->indexedColumns[sourceReferenceIdx]->name;
+    }
     int trgRowIdx = trgEntity->getTableModel()->getColumnIndex(fkCol);
     if (trgRowIdx == -1)
     {
         qWarning() << "Could not find column index of column" << fkCol << "in referenced table"
                    << fkTable << "while parsing schema for ERD.";
+        return nullptr;
     }
 
     ErdConnection* conn = new ErdConnection(srcEntity, srcRowIdx + 1, trgEntity, trgRowIdx + 1, arrowType);
