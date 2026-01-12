@@ -50,8 +50,9 @@ jobs:
                 #     echo "macosx_deployment_target 11.0" | sudo tee -a "$MACPORTS_CONF"
                 # fi
 
-                sudo port configure --macosx_deployment_target=11.0
-                sudo port configure --universal_archs="x86_64 arm64"
+                sudo port configure macosx_deployment_target=11.0
+                sudo port configure universal_archs="x86_64 arm64"
+                grep -E 'macosx_deployment_target|universal_archs' /opt/local/etc/macports/macports.conf
                 sudo port selfupdate
 
             - name: Install coreutils
