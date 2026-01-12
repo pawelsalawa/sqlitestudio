@@ -132,6 +132,7 @@ jobs:
                 cd icu-*/icu4c/source
 
                 GLOBAL_CFLAGS=$CFLAGS
+                GLOBAL_CXXFLAGS=$CXXFLAGS
                 GLOBAL_LDFLAGS=$LDFLAGS
                 BUILD_TRIPLET="$(clang -dumpmachine)"
                 echo "Triplet: $BUILD_TRIPLET"
@@ -140,6 +141,7 @@ jobs:
                 mkdir build-arm64 && cd build-arm64
                 CC="clang -arch arm64" \
                 CFLAGS="-arch arm64 $GLOBAL_CFLAGS" \
+                CXXFLAGS="-arch arm64 $GLOBAL_CXXFLAGS" \
                 LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
                 ../configure \
                     --build="$BUILD_TRIPLET" \
@@ -152,6 +154,7 @@ jobs:
                 mkdir build-x86_64 && cd build-x86_64
                 CC="clang -arch x86_64" \
                 CFLAGS="-arch x86_64 $GLOBAL_CFLAGS" \
+                CXXFLAGS="-arch x86_64 $GLOBAL_CXXFLAGS" \
                 LDFLAGS="-arch x86_64 $GLOBAL_LDFLAGS" \
                 ../configure \
                     --build="$BUILD_TRIPLET" \
@@ -166,11 +169,11 @@ jobs:
                 cp -R build-arm64/install/include/* "$ICU_PREFIX/include/"
 
                 for lib in build-arm64/install/lib/*.dylib; do
-                name=$(basename "$lib")
-                lipo -create \
-                    "build-arm64/install/lib/$name" \
-                    "build-x86_64/install/lib/$name" \
-                    -output "$ICU_PREFIX/lib/$name"
+                    name=$(basename "$lib")
+                    lipo -create \
+                        "build-arm64/install/lib/$name" \
+                        "build-x86_64/install/lib/$name" \
+                        -output "$ICU_PREFIX/lib/$name"
                 done
 
                 # ICU data file
