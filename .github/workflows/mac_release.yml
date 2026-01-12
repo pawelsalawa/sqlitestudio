@@ -177,7 +177,12 @@ jobs:
                 done
 
                 # ICU data file
-                cp build-arm64/install/lib/icu/* "$ICU_PREFIX/lib/"
+                ICU_DATA_FILE=$(find build-arm64/install/lib/icu -name 'icudt*.dat' | head -n1)
+                if [[ -z "$ICU_DATA_FILE" ]]; then
+                    echo "ICU data file not found"
+                    exit 1
+                fi
+                cp "$ICU_DATA_FILE" "$ICU_PREFIX/lib/"
 
                 echo "ICU installed to $ICU_PREFIX"
                 ls "$ICU_PREFIX/include"
