@@ -116,10 +116,12 @@ jobs:
               run: |
                 set -euo pipefail
 
+                echo "Qt deps:"
+                otool -L "$QT_ROOT_DIR/lib/QtCore.framework/QtCore"
+                echo "Findings"
+                find "$QT_ROOT_DIR" -name libicu
                 echo "Qt lib dir contents:"
                 ls -l "$QT_ROOT_DIR/lib"
-                echo "Qt lib dir ICU findings:"
-                find "$QT_ROOT_DIR" -name libicu
                 echo "Qt lib dir ICU contents:"
                 ls -l "$QT_ROOT_DIR/lib" | grep icu
                 echo "ICU archs:"
