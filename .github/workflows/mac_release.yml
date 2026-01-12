@@ -118,6 +118,8 @@ jobs:
 
                 echo "Qt lib dir contents:"
                 ls "$QT_ROOT_DIR/lib" | grep icu
+                echo "Qt lib dir ICU contents:"
+                ls "$QT_ROOT_DIR/lib" | grep icu
                 echo "ICU archs:"
                 lipo -archs "$QT_ROOT_DIR/lib"/libicu*.dylib
 
