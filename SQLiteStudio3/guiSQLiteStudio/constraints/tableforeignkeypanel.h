@@ -5,7 +5,7 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "guiSQLiteStudio_global.h"
 #include "common/strhash.h"
-#include <QStringListModel>
+#include <QStandardItemModel>
 #include <QWidget>
 
 namespace Ui {
@@ -14,6 +14,7 @@ namespace Ui {
 
 class QGridLayout;
 class QSignalMapper;
+class QComboBox;
 
 class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
 {
@@ -45,7 +46,7 @@ class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
         Ui::TableForeignKeyPanel *ui = nullptr;
         QGridLayout* columnsLayout = nullptr;
         int totalColumns = 0;
-        QStringListModel fkColumnsModel;
+        QStandardItemModel fkColumnsModel;
         QSignalMapper* columnSignalMapping = nullptr;
         StrHash<StrHash<DataType>> fkTableTypesCache;
 

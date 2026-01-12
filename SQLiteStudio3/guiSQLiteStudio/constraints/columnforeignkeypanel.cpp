@@ -54,7 +54,10 @@ void ColumnForeignKeyPanel::init()
 {
     setFocusProxy(ui->fkTableCombo);
 
+    ui->fkTableCombo->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+
     ui->fkColumnCombo->setModel(&fkColumnsModel);
+    ui->fkColumnCombo->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     connect(ui->fkColumnCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(updateValidation()));
 
     connect(ui->namedCheckBox, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
@@ -113,14 +116,21 @@ void ColumnForeignKeyPanel::updateFkColumns()
     QStringList columns;
     if (ui->fkTableCombo->currentIndex() == -1)
     {
-        fkColumnsModel.setStringList(columns);
+        fkColumnsModel.clear();
         updateState();
         return;
     }
 
     SchemaResolver resolver(db);
     columns = resolver.getTableColumns(ui->fkTableCombo->currentText()); // TODO named db attach not supported
-    fkColumnsModel.setStringList(columns);
+    for (const QString& col : columns)
+        fkColumnsModel.appendRow(new QStandardItem(col));
+
+    auto item = new QStandardItem(tr("Column with the same name"));
+    QFont font = ui->fkColumnCombo->font();
+    font.setItalic(true);
+    item->setData(font, Qt::FontRole);
+    fkColumnsModel.insertRow(0, item);
 }
 
 void ColumnForeignKeyPanel::readConstraint()
@@ -128,7 +138,6 @@ void ColumnForeignKeyPanel::readConstraint()
     if (constraint.isNull())
         return;
 
-    SqliteCreateTable::Column* column = dynamic_cast<SqliteCreateTable::Column*>(constraint->parent());
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
     if (!constr->foreignKey)
         return;
@@ -159,11 +168,12 @@ void ColumnForeignKeyPanel::readConstraint()
         return;
     }
 
-    QString fkColumn = column->name;
     if (constr->foreignKey->indexedColumns.size() == 1)
-        fkColumn = constr->foreignKey->indexedColumns.first()->name;
-
-    ui->fkColumnCombo->setCurrentText(fkColumn);
+        ui->fkColumnCombo->setCurrentText(constr->foreignKey->indexedColumns.first()->name);
+    else if (fkColumnsModel.rowCount() > 0)
+        ui->fkColumnCombo->setCurrentIndex(0);
+    else
+        ui->fkColumnCombo->setCurrentIndex(-1);
 }
 
 void ColumnForeignKeyPanel::readCondition(SqliteForeignKey::Condition* condition)
@@ -208,9 +218,16 @@ void ColumnForeignKeyPanel::storeConfiguration()
     constr->foreignKey->foreignTable = ui->fkTableCombo->currentText();
 
     // Column
-    SqliteIndexedColumn* idxCol = new SqliteIndexedColumn(ui->fkColumnCombo->currentText());
-    idxCol->setParent(constr->foreignKey);
-    constr->foreignKey->indexedColumns << idxCol;
+    if (fkColumnsModel.rowCount() > 0 && ui->fkColumnCombo->currentIndex() == 0)
+    {
+        // Implicit column - same name as local column.
+    }
+    else
+    {
+        SqliteIndexedColumn* idxCol = new SqliteIndexedColumn(ui->fkColumnCombo->currentText());
+        idxCol->setParent(constr->foreignKey);
+        constr->foreignKey->indexedColumns << idxCol;
+    }
 
     // Actions/reactions
     if (ui->onDeleteCheckBox->isChecked())

@@ -42,6 +42,16 @@ SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, b
     this->dropColumnName = dropColumn;
 }
 
+SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, const QString& oldColumnName, const QString& newColumnName)
+    : SqliteAlterTable()
+{
+    command = Command::RENAME_COLUMN;
+    initName(name1, name2);
+    this->columnKw = columnKw;
+    this->oldColumnName = oldColumnName;
+    this->newColumnName = newColumnName;
+}
+
 SqliteAlterTable::~SqliteAlterTable()
 {
 }
@@ -157,6 +167,15 @@ TokenList SqliteAlterTable::rebuildTokensFromContents() const
                 builder.withKeyword("COLUMN").withSpace();
 
             builder.withOther(dropColumnName);
+            break;
+        }
+        case Command::RENAME_COLUMN:
+        {
+            builder.withKeyword("RENAME").withSpace();
+            if (columnKw)
+                builder.withKeyword("COLUMN").withSpace();
+
+            builder.withOther(oldColumnName).withSpace().withKeyword("TO").withSpace().withOther(newColumnName);
             break;
         }
         case Command::null:

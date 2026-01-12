@@ -232,7 +232,7 @@ QString CompleterWindow::getStatusMsg(const QModelIndex& index)
         case ExpectedToken::OPERATOR:
             return tr("Operator: %1", "completer statusbar").arg(value);
         case ExpectedToken::STRING:
-            return tr("String", "completer statusbar").arg(value);
+            return tr("String", "completer statusbar");
         case ExpectedToken::NUMBER:
             return tr("Number", "completer statusbar");
         case ExpectedToken::BLOB:

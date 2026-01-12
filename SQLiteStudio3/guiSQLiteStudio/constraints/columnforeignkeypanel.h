@@ -4,7 +4,7 @@
 #include "constraintpanel.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "guiSQLiteStudio_global.h"
-#include <QStringListModel>
+#include <QStandardItemModel>
 #include <QWidget>
 
 namespace Ui {
@@ -37,7 +37,7 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         void storeMatchCondition(const QString& reaction);
 
         Ui::ColumnForeignKeyPanel *ui = nullptr;
-        QStringListModel fkColumnsModel;
+        QStandardItemModel fkColumnsModel;
 
     protected slots:
         void updateState();

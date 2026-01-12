@@ -68,7 +68,8 @@ class API_EXPORT CompletionHelper : public QObject
             INSERT_COLUMNS,
             INSERT_RETURNING,
             UPDATE_RETURNING,
-            DELETE_RETURNING
+            DELETE_RETURNING,
+            ALTER_TABLE
         };
 
         static void initFunctions(Db* db);
@@ -122,6 +123,7 @@ class API_EXPORT CompletionHelper : public QObject
         void filterContextKeywords(QList<ExpectedTokenPtr> &results, const TokenList& tokens);
         void filterOtherId(QList<ExpectedTokenPtr> &results, const TokenList& tokens);
         void filterDuplicates(QList<ExpectedTokenPtr> &results);
+        void filterIdDefinitionFallbackKeywords(QList<ExpectedTokenPtr> &results);
         bool isFilterType(Token::Type type);
         void parseFullSql();
         bool tryToParse(Parser* parser, const QString& query);
@@ -149,6 +151,7 @@ class API_EXPORT CompletionHelper : public QObject
         bool isInUpdateReturning();
         bool isInDeleteReturning();
         bool isInInsertReturning();
+        bool isInAlterTable();
         bool isIn(SqliteQueryType queryType, const QString& tokenMapKey, const QString &prefixKeyword);
         bool isInExpr();
         bool testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
@@ -216,7 +219,6 @@ class API_EXPORT CompletionHelper : public QObject
          * @brief aliasToTable
          * Maps table alias to table's real name.
          */
-        //QHash<QString,QString> aliasToTable;
         StrHash<Table> aliasToTable;
 
         /**

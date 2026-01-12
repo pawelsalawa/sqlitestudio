@@ -148,19 +148,10 @@ void TableForeignKeyPanel::updateState()
 void TableForeignKeyPanel::updateColumnState(int rowIdx, bool tableSelected)
 {
     QCheckBox* check = qobject_cast<QCheckBox*>(columnsLayout->itemAtPosition(rowIdx, 0)->widget());
-    bool wasEnabled = check->isEnabled();
     check->setEnabled(tableSelected);
 
     QComboBox* combo = qobject_cast<QComboBox*>(columnsLayout->itemAtPosition(rowIdx, 1)->widget());
     combo->setEnabled(tableSelected && check->isChecked());
-
-    if (!wasEnabled && check->isEnabled())
-    {
-        // Automatically set matching column
-        int idx = fkColumnsModel.stringList().indexOf(check->property(UI_PROP_COLUMN).toString());
-        if (idx > -1)
-            combo->setCurrentIndex(idx);
-    }
 }
 
 void TableForeignKeyPanel::updateColumnState(int rowIdx)
@@ -171,17 +162,31 @@ void TableForeignKeyPanel::updateColumnState(int rowIdx)
 
 void TableForeignKeyPanel::updateFkColumns()
 {
-    QStringList columns;
+    fkColumnsModel.clear();
+
     if (ui->fkTableCombo->currentIndex() == -1)
     {
-        fkColumnsModel.setStringList(columns);
         updateState();
         return;
     }
 
     SchemaResolver resolver(db);
-    columns = resolver.getTableColumns(ui->fkTableCombo->currentText()); // TODO named db attach not supported
-    fkColumnsModel.setStringList(columns);
+    QStringList columns = resolver.getTableColumns(ui->fkTableCombo->currentText()); // TODO named db attach not supported
+    for (const QString& col : columns)
+        fkColumnsModel.appendRow(new QStandardItem(col));
+
+    auto item = new QStandardItem(tr("Column with the same name"));
+    QFont font = ui->fkTableCombo->font();
+    font.setItalic(true);
+    item->setData(font, Qt::FontRole);
+    fkColumnsModel.insertRow(0, item);
+
+    for (int row = 0; row < totalColumns; row++)
+    {
+        QComboBox* combo = qobject_cast<QComboBox*>(columnsLayout->itemAtPosition(row, 1)->widget());
+        if (combo)
+            combo->setCurrentIndex(-1);
+    }
 }
 
 void TableForeignKeyPanel::buildColumns()
@@ -208,13 +213,37 @@ void TableForeignKeyPanel::buildColumn(SqliteCreateTable::Column* column, int ro
     connect(check, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
 
     QComboBox* fkCol = new QComboBox();
+    fkCol->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
     fkCol->setToolTip(tr("Foreign column", "table constraints"));
     fkCol->setModel(&fkColumnsModel);
+    fkCol->setCurrentIndex(-1);
     columnsLayout->addWidget(fkCol, row, col++);
+
+    connect(fkCol, QOverload<int>::of(&QComboBox::activated), this, [this, fkCol](int idx)
+    {
+        // Sync implicit foreign column selection among all combos - it cannot be mixed for compound keys
+        if (idx == 0)
+        {
+            for (int row = 0; row < totalColumns; row++)
+            {
+                QComboBox* combo = qobject_cast<QComboBox*>(columnsLayout->itemAtPosition(row, 1)->widget());
+                if (combo && combo != fkCol)
+                    combo->setCurrentIndex(0);
+            }
+        }
+        else
+        {
+            for (int row = 0; row < totalColumns; row++)
+            {
+                QComboBox* combo = qobject_cast<QComboBox*>(columnsLayout->itemAtPosition(row, 1)->widget());
+                if (combo && combo != fkCol && combo->currentIndex() == 0)
+                    combo->setCurrentIndex(-1);
+            }
+        }
+    });
     connect(fkCol, SIGNAL(currentIndexChanged(int)), this, SIGNAL(updateValidation()));
 
     totalColumns++;
-
     updateColumnState(row);
 }
 
@@ -244,35 +273,29 @@ void TableForeignKeyPanel::readConstraint()
     }
 
     // Columns
-    int idx;
-    QCheckBox* check = nullptr;
-    QComboBox* combo = nullptr;
-    SqliteIndexedColumn* foreignCol = nullptr;
     int i = 0;
     for (SqliteIndexedColumn* localCol : constr->indexedColumns)
     {
         // Foreign col
-        if (i < constr->foreignKey->indexedColumns.size())
-            foreignCol = constr->foreignKey->indexedColumns[i];
-        else
-            foreignCol = nullptr;
-
+        SqliteIndexedColumn* foreignCol = (i < constr->foreignKey->indexedColumns.size()) ?
+            constr->foreignKey->indexedColumns[i] :
+            nullptr;
         i++;
 
         // Column index
-        idx = getColumnIndex(localCol->name);
+        int idx = getColumnIndex(localCol->name);
         if (idx < 0)
             continue;
 
         // Column states
-        check = dynamic_cast<QCheckBox*>(columnsLayout->itemAtPosition(idx, 0)->widget());
+        QCheckBox* check = dynamic_cast<QCheckBox*>(columnsLayout->itemAtPosition(idx, 0)->widget());
         check->setChecked(true);
 
-        combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 1)->widget());
+        QComboBox* combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(idx, 1)->widget());
         if (foreignCol)
             combo->setCurrentText(foreignCol->name);
-        else if (fkColumnsModel.stringList().contains(localCol->name))
-            combo->setCurrentText(localCol->name);
+        else if (fkColumnsModel.rowCount() > 0)
+            combo->setCurrentIndex(0);
         else
             combo->setCurrentIndex(-1);
     }
@@ -342,9 +365,16 @@ void TableForeignKeyPanel::storeConfiguration()
         // Foreign column
         combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
 
-        idxCol = new SqliteIndexedColumn(combo->currentText());
-        idxCol->setParent(constr->foreignKey);
-        constr->foreignKey->indexedColumns << idxCol;
+        if (fkColumnsModel.rowCount() > 0 && combo->currentIndex() == 0)
+        {
+            // Implicit column - same name as local column.
+        }
+        else
+        {
+            idxCol = new SqliteIndexedColumn(combo->currentText());
+            idxCol->setParent(constr->foreignKey);
+            constr->foreignKey->indexedColumns << idxCol;
+        }
     }
 
     // Actions/reactions
