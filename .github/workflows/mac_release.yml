@@ -1,8 +1,8 @@
 env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.17'
-    ICU_VERSION: '78.2'
-    ICU_URL: 'https://github.com/unicode-org/icu/archive/refs/tags/release-78.2.tar.gz'
+    ICU_VERSION: '75.1'
+    ICU_URL: 'https://github.com/unicode-org/icu/archive/refs/tags/release-75-1.tar.gz'
     SQLITE_VERSION: '3510100'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
