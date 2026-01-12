@@ -118,10 +118,10 @@ jobs:
 
                 echo "Qt lib dir contents:"
                 ls -l "$QT_ROOT_DIR/lib"
+                echo "Qt lib dir ICU findings:"
+                find "$QT_ROOT_DIR" -name libicu
                 echo "Qt lib dir ICU contents:"
                 ls -l "$QT_ROOT_DIR/lib" | grep icu
-                echo "Qt lib dir ICU findings:"
-                find "$QT_ROOT_DIR/lib" -name libicu
                 echo "ICU archs:"
                 lipo -archs "$QT_ROOT_DIR/lib"/libicu*.dylib
 
