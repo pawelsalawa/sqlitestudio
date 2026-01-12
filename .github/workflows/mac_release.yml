@@ -114,14 +114,14 @@ jobs:
                 extra: '--external 7z'
 
             - name: Cache ICU
-              id: cache-icu
+              id: cache-icu-tmp-build
               uses: actions/cache@v4
               with:
                 path: ${{ env.ICU_PREFIX }}
-                key: icu-macos-${{ env.ICU_VERSION }}-universal
+                key: icu-macos-${{ env.ICU_VERSION }}-universal-tmp-build
 
             - name: Build ICU universal
-              if: steps.cache-icu.outputs.cache-hit != 'true'
+              if: steps.cache-icu-tmp-build.outputs.cache-hit != 'true'
               shell: bash
               run: |
                 set -euo pipefail
@@ -177,12 +177,14 @@ jobs:
                 done
 
                 # ICU data file
-                ICU_DATA_FILE=$(find build-arm64/install/lib/icu -name 'icudt*.dat' | head -n1)
-                if [[ -z "$ICU_DATA_FILE" ]]; then
-                    echo "ICU data file not found"
-                    exit 1
-                fi
-                cp "$ICU_DATA_FILE" "$ICU_PREFIX/lib/"
+                echo "Files:"
+                find build-arm64/install/lib
+                # ICU_DATA_FILE=$(find build-arm64/install/lib/icu -name 'icudt*.dat' | head -n1)
+                # if [[ -z "$ICU_DATA_FILE" ]]; then
+                #     echo "ICU data file not found"
+                #     exit 1
+                # fi
+                # cp "$ICU_DATA_FILE" "$ICU_PREFIX/lib/"
 
                 echo "ICU installed to $ICU_PREFIX"
                 ls "$ICU_PREFIX/include"
