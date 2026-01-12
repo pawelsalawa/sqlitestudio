@@ -133,6 +133,7 @@ jobs:
                 GLOBAL_CFLAGS=$CFLAGS
                 GLOBAL_LDFLAGS=$LDFLAGS
                 BUILD_TRIPLET="$(clang -dumpmachine)"
+                echo "Triplet: $BUILD_TRIPLET"
 
                 # arm64
                 mkdir build-arm64 && cd build-arm64
