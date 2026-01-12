@@ -1225,13 +1225,18 @@ void TableWindow::editConstraint(const QModelIndex& idx)
     }
 
     SqliteCreateTable::Constraint* constr = structureConstraintsModel->getConstraint(idx.row());
+    QString beforeDdl = constr->detokenize().trimmed();
     ConstraintDialog dialog(ConstraintDialog::EDIT, constr, createTable.data(), db, this);
     if (dialog.exec() != QDialog::Accepted)
         return;
 
-    structureConstraintsModel->constraintModified(idx.row());
-    ui->tableConstraintsView->resizeColumnToContents(0);
-    ui->tableConstraintsView->resizeColumnToContents(1);
+    QString afterDdl = constr->detokenize().trimmed();
+    if (beforeDdl != afterDdl)
+    {
+        structureConstraintsModel->constraintModified(idx.row());
+        ui->tableConstraintsView->resizeColumnToContents(0);
+        ui->tableConstraintsView->resizeColumnToContents(1);
+    }
 }
 
 void TableWindow::delConstraint(const QModelIndex& idx)

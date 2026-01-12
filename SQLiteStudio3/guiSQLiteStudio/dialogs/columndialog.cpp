@@ -296,6 +296,7 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
     else
     {
         panel->setDb(db);
+        panel->setColumnStmt(column.data());
         panel->setConstraint(constraint);
         result = panel->validateOnly();
         delete panel;
