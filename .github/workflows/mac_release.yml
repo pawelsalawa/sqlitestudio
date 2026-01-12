@@ -125,7 +125,29 @@ jobs:
               run: |
                 set -euo pipefail
 
-                curl -fsSL -o icu-src.tgz "https://github.com/unicode-org/icu/archive/refs/tags/release-${ICU_VERSION//./-}.tar.gz"
+                ICU_VERSION="${ICU_VERSION}"
+                echo "Looking for ICU release matching version: $ICU_VERSION"
+                RELEASE_JSON=$(curl -fsSL https://api.github.com/repos/unicode-org/icu/releases)
+                TAG=$(echo "$RELEASE_JSON" | jq -r --arg v "$ICU_VERSION" '
+                    .[]
+                    | select(.tag_name | test("^release-" + $v + "([.-][0-9]+)?$"))
+                    | .tag_name
+                ' | head -n1)
+
+                if [[ -z "$TAG" ]]; then
+                    echo "Failed to find ICU release for version $ICU_VERSION"
+                    exit 1
+                fi
+
+                echo "Matched ICU tag: $TAG"
+                TARBALL_URL=$(echo "$RELEASE_JSON" | jq -r --arg tag "$TAG" '
+                    .[] | select(.tag_name == $tag) | .tarball_url
+                ')
+
+                echo "Downloading ICU sources from:"
+                echo "$TARBALL_URL"
+
+                curl -fsSL -o icu-src.tgz "$TARBALL_URL"
 
                 tar xf icu-src.tgz
                 cd icu-*/icu4c/source
