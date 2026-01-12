@@ -116,8 +116,10 @@ jobs:
               run: |
                 set -euo pipefail
 
+                echo "Qt dir contents:"
+                ls "$QT_ROOT_DIR"
                 echo "Qt lib dir contents:"
-                ls "$QT_ROOT_DIR/lib" | grep icu
+                ls "$QT_ROOT_DIR/lib"
                 echo "Qt lib dir ICU contents:"
                 ls "$QT_ROOT_DIR/lib" | grep icu
                 echo "ICU archs:"
