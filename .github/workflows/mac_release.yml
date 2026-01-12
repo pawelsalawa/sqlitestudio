@@ -1,7 +1,8 @@
 env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.17'
-    ICU_VERSION: '75'
+    ICU_VERSION: 74.2
+    ICU_URL: https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-src.tgz
     SQLITE_VERSION: '3510100'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -125,20 +126,20 @@ jobs:
               run: |
                 set -euo pipefail
 
-                ICU_TAG="release-${ICU_VERSION//./_}"
-                curl -fsSL -o icu-src.tgz \
-                    "https://github.com/unicode-org/icu/archive/refs/tags/${ICU_TAG}.tar.gz"
+                curl -fsSL -o icu-src.tgz "$ICU_URL"
 
                 tar xf icu-src.tgz
                 cd icu-*/icu4c/source
 
+                GLOBAL_CFLAGS=$CFLAGS
+                GLOBAL_LDFLAGS=$LDFLAGS
                 BUILD_TRIPLET="$(clang -dumpmachine)"
 
                 # arm64
                 mkdir build-arm64 && cd build-arm64
                 CC="clang -arch arm64" \
-                CFLAGS="-arch arm64 -mmacosx-version-min=11.0" \
-                LDFLAGS="-arch arm64 -mmacosx-version-min=11.0" \
+                CFLAGS="-arch arm64 $GLOBAL_CFLAGS" \
+                LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
                 ../configure \
                     --build="$BUILD_TRIPLET" \
                     --prefix="$PWD/install"
@@ -149,8 +150,8 @@ jobs:
                 # x86_64
                 mkdir build-x86_64 && cd build-x86_64
                 CC="clang -arch x86_64" \
-                CFLAGS="-arch x86_64 -mmacosx-version-min=11.0" \
-                LDFLAGS="-arch x86_64 -mmacosx-version-min=11.0" \
+                CFLAGS="-arch x86_64 $GLOBAL_CFLAGS" \
+                LDFLAGS="-arch x86_64 $GLOBAL_LDFLAGS" \
                 ../configure \
                     --build="$BUILD_TRIPLET" \
                     --prefix="$PWD/install"
