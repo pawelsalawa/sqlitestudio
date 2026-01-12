@@ -116,12 +116,12 @@ jobs:
               run: |
                 set -euo pipefail
 
-                echo "Qt dir contents:"
-                ls "$QT_ROOT_DIR"
                 echo "Qt lib dir contents:"
-                ls "$QT_ROOT_DIR/lib"
+                ls -l "$QT_ROOT_DIR/lib"
                 echo "Qt lib dir ICU contents:"
-                ls "$QT_ROOT_DIR/lib" | grep icu
+                ls -l "$QT_ROOT_DIR/lib" | grep icu
+                echo "Qt lib dir ICU findings:"
+                find "$QT_ROOT_DIR/lib" -name libicu
                 echo "ICU archs:"
                 lipo -archs "$QT_ROOT_DIR/lib"/libicu*.dylib
 
@@ -140,7 +140,7 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: /opt/icu-headers
-                key: icu-headers-${{ runner.os }}-${{ runner.arch }}-qticu${{ steps.detect-icu.outputs.icu_major }}
+                key: icu-headers-macos-universal-qticu${{ steps.detect-icu.outputs.icu_major }}
 
             - name: Install ICU headers only (matching Qt ICU)
               if: steps.cache-icu.outputs.cache-hit != 'true'
@@ -211,7 +211,7 @@ jobs:
                 echo "LDFLAGS=-arch x86_64 -arch x86_64" >> $GITHUB_ENV
 
             - name: Clone GH scripts
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                 repository: pawelsalawa/gh-action-scripts
                 ref: main
