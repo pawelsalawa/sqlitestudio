@@ -29,10 +29,11 @@ jobs:
         steps:
             - name: Initial config
               run: |
-                echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV
-                echo "CFLAGS=$CFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
-                echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
-                echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
+                MACOSX_DEPLOYMENT_TARGET=11.0
+                echo "CFLAGS=$CFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
+                echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
+                echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
+                echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
