@@ -36,19 +36,22 @@ jobs:
 
             - name: Reconfigure MacPorts
               run: |
-                sudo dscl . -create /Users/macports
-                sudo dscl . -create /Users/macports UserShell /usr/bin/false
-                sudo dscl . -create /Users/macports UniqueID 555
-                sudo dscl . -create /Users/macports PrimaryGroupID 20
-                sudo dscl . -create /Users/macports NFSHomeDirectory /opt/local/var/macports/home
-                sudo mkdir -p /opt/local/var/macports/home
-                sudo chown macports:staff /opt/local/var/macports/home
+                # sudo dscl . -create /Users/macports
+                # sudo dscl . -create /Users/macports UserShell /usr/bin/false
+                # sudo dscl . -create /Users/macports UniqueID 555
+                # sudo dscl . -create /Users/macports PrimaryGroupID 20
+                # sudo dscl . -create /Users/macports NFSHomeDirectory /opt/local/var/macports/home
+                # sudo mkdir -p /opt/local/var/macports/home
+                # sudo chown macports:staff /opt/local/var/macports/home
+                #
+                # MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
+                # sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 11.0/' "$MACPORTS_CONF"
+                # if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
+                #     echo "macosx_deployment_target 11.0" | sudo tee -a "$MACPORTS_CONF"
+                # fi
 
-                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
-                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 11.0/' "$MACPORTS_CONF"
-                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
-                    echo "macosx_deployment_target 11.0" | sudo tee -a "$MACPORTS_CONF"
-                fi
+                sudo port configure --macosx_deployment_target=11.0
+                sudo port configure --universal_archs="x86_64 arm64"
                 sudo port selfupdate
 
             - name: Install coreutils
@@ -62,27 +65,17 @@ jobs:
                 echo "CXXFLAGS=-arch x86_64" >> $GITHUB_ENV
                 echo "LDFLAGS=-arch x86_64" >> $GITHUB_ENV
 
-            - name: Install MacPorts
-              uses: melusina-org/setup-macports@v1
-
-            - name: Reconfigure MacPorts
-              run: |
-                MACPORTS_CONF="/opt/local/etc/macports/macports.conf"
-                sudo sed -i '' 's/^macosx_deployment_target.*/macosx_deployment_target 14.0/' "$MACPORTS_CONF"
-                if ! grep -q "^macosx_deployment_target" "$MACPORTS_CONF"; then
-                    echo "macosx_deployment_target 14.0" | sudo tee -a "$MACPORTS_CONF"
-                fi
-                sudo port selfupdate
-
             - name: Install coreutils
               run: |
                 brew install coreutils
 
-            - name: Install ICU
+            - name: Install ICU ${{ env.ICU_VERSION }}
               run: |
-                sudo port install icu +universal
+                sudo port install icu @${{ env.ICU_VERSION }} +universal
+                port installed icu
+                icu-config --version
         
-            - name: Install Tcl
+            - name: Install Tcl 8.4
               run: |
                 if brew list tcl-tk 2>/dev/null; then
                     brew uninstall tcl-tk r
@@ -121,8 +114,12 @@ jobs:
             - name: Install Python ${{ env.PYTHON_VERSION }}
               run: |
                 PORT_PYTHON="python${PYTHON_VERSION//./}"
-                sudo port install python${PORT_PYTHON} +universal
-                sudo port select --set python3 python${PORT_PYTHON}
+                sudo port install ${PORT_PYTHON} +universal
+                sudo port select --set python3 ${PORT_PYTHON}
+
+                port -v installed | grep python
+                file /opt/local/bin/python3.12
+
 
 #             - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
 #               shell: bash
@@ -201,11 +198,11 @@ jobs:
 #               with:
 #                 ref: ${{ env.BRANCH_NAME }}
 #
-#             # - name: Verify Python arch
-#               # shell: bash
-#               # run: |
-#                 # echo "python arch:"
-#                 # lipo -archs $(which python)
+            - name: Verify Python arch
+              shell: bash
+              run: |
+                echo "python arch:"
+                lipo -archs $(which python)
 #
 #             - name: Prepare ccache
 #               if: inputs.use_ccache || false
