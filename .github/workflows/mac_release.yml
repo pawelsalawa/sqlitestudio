@@ -114,14 +114,14 @@ jobs:
                 extra: '--external 7z'
 
             - name: Cache ICU
-              id: cache-icu-tmp-build
+              id: cache-icu
               uses: actions/cache@v4
               with:
                 path: ${{ env.ICU_PREFIX }}
-                key: icu-macos-${{ env.ICU_VERSION }}-universal-tmp-build
+                key: icu-macos-${{ env.ICU_VERSION }}-universal
 
             - name: Build ICU universal
-              if: steps.cache-icu-tmp-build.outputs.cache-hit != 'true'
+              if: steps.cache-icu.outputs.cache-hit != 'true'
               shell: bash
               run: |
                 set -euo pipefail
@@ -176,19 +176,9 @@ jobs:
                         -output "$ICU_PREFIX/lib/$name"
                 done
 
-                # ICU data file
-                echo "Files:"
-                find build-arm64/install/lib
-                # ICU_DATA_FILE=$(find build-arm64/install/lib/icu -name 'icudt*.dat' | head -n1)
-                # if [[ -z "$ICU_DATA_FILE" ]]; then
-                #     echo "ICU data file not found"
-                #     exit 1
-                # fi
-                # cp "$ICU_DATA_FILE" "$ICU_PREFIX/lib/"
-
                 echo "ICU installed to $ICU_PREFIX"
-                ls "$ICU_PREFIX/include"
-                ls "$ICU_PREFIX/lib"
+                ls -l "$ICU_PREFIX/include"
+                ls -l "$ICU_PREFIX/lib"
 
 #             # - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
 #             #   shell: bash
