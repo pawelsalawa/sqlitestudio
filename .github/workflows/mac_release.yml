@@ -2,7 +2,6 @@ env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.17'
     ICU_VERSION: 74.2
-    ICU_URL: https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-src.tgz
     SQLITE_VERSION: '3510100'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -126,7 +125,7 @@ jobs:
               run: |
                 set -euo pipefail
 
-                curl -fsSL -o icu-src.tgz "$ICU_URL"
+                curl -fsSL -o icu-src.tgz "https://github.com/unicode-org/icu/archive/refs/tags/release-${ICU_VERSION//./-}.tar.gz"
 
                 tar xf icu-src.tgz
                 cd icu-*/icu4c/source
