@@ -59,16 +59,24 @@ jobs:
                 tar xf tcl${TCL_VERSION}-src.tar.gz
                 cd tcl${TCL_VERSION}/unix
 
+                GLOBAL_CFLAGS=$CFLAGS
+                GLOBAL_LDFLAGS=$LDFLAGS
+
                 # arm64
-                ./configure \
+                CC="clang -arch arm64" \
+                    CFLAGS="-arch arm64 $GLOBAL_CFLAGS" \
+                    LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
+                    ./configure \
                     --prefix=$PWD/build-arm64 \
-                    --host=arm-apple-darwin
                 make -j$(sysctl -n hw.ncpu)
                 make install
                 make distclean
 
                 # x86_64
-                ./configure \
+                CC="clang -arch x86_64" \
+                    CFLAGS="-arch x86_64 $GLOBAL_CFLAGS" \
+                    LDFLAGS="-arch x86_64 $GLOBAL_LDFLAGS" \
+                    ./configure \
                     --prefix=$PWD/build-x86_64 \
                     --host=x86_64-apple-darwin
                 make -j$(sysctl -n hw.ncpu)
