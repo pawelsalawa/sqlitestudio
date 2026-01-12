@@ -1,7 +1,8 @@
 env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.17'
-    ICU_VERSION: 78.2
+    ICU_VERSION: '78.2'
+    ICU_URL: 'https://github.com/unicode-org/icu/archive/refs/tags/release-78.2.tar.gz'
     SQLITE_VERSION: '3510100'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -125,32 +126,7 @@ jobs:
               run: |
                 set -euo pipefail
 
-                ICU_VERSION="${ICU_VERSION}"
-                echo "Looking for ICU release matching version: $ICU_VERSION"
-                RELEASE_JSON=$(curl -fsSL \
-                    -H "Authorization: Bearer $GITHUB_TOKEN" \
-                    -H "Accept: application/vnd.github+json" \
-                    https://api.github.com/repos/unicode-org/icu/releases)
-                TAG=$(echo "$RELEASE_JSON" | jq -r --arg v "$ICU_VERSION" '
-                    .[]
-                    | select(.tag_name | test("^release-" + $v + "([.-][0-9]+)?$"))
-                    | .tag_name
-                ' | head -n1)
-
-                if [[ -z "$TAG" ]]; then
-                    echo "Failed to find ICU release for version $ICU_VERSION"
-                    exit 1
-                fi
-
-                echo "Matched ICU tag: $TAG"
-                TARBALL_URL=$(echo "$RELEASE_JSON" | jq -r --arg tag "$TAG" '
-                    .[] | select(.tag_name == $tag) | .tarball_url
-                ')
-
-                echo "Downloading ICU sources from:"
-                echo "$TARBALL_URL"
-
-                curl -fsSL -o icu-src.tgz "$TARBALL_URL"
+                curl -fsSL -o icu-src.tgz "${ICU_URL}"
 
                 tar xf icu-src.tgz
                 cd icu-*/icu4c/source
