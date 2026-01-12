@@ -53,6 +53,8 @@ jobs:
                     brew uninstall tcl-tk r
                 fi
 
+                cd ..
+
                 set -euo pipefail
 
                 curl -fsSL -O https://prdownloads.sourceforge.net/tcl/tcl${TCL_VERSION}-src.tar.gz
@@ -92,9 +94,6 @@ jobs:
                     build-x86_64/lib/libtcl*.dylib \
                     -output /opt/universal/lib/libtcl${TCL_VERSION%.*}.dylib
 
-                cd ../..
-                rm -rf tcl${TCL_VERSION}/unix
-
                 file /opt/universal/lib/libtcl*.dylib
                 echo "lipo archs:"
                 lipo -archs /opt/universal/lib/libtcl*.dylib
@@ -119,13 +118,13 @@ jobs:
                 set -euo pipefail
 
                 ICU_MAJOR=$(
-                otool -L "$QT_PREFIX/lib/libicui18n.dylib" \
+                otool -L "$QT_ROOT_DIR/lib/libicui18n.dylib" \
                     | sed -n 's/.*libicui18n\.\([0-9][0-9]*\)\.dylib/\1/p' \
                     | head -n1
                 )
 
                 if [[ -z "$ICU_MAJOR" ]]; then
-                echo "Failed to detect ICU major from $QT_PREFIX/lib/libicui18n.dylib"
+                echo "Failed to detect ICU major from $QT_ROOT_DIR/lib/libicui18n.dylib"
                 exit 1
                 fi
 
@@ -297,7 +296,7 @@ jobs:
                 done
 
                 for f in icu; do
-                    ICU_FLAGS="-I/opt/icu-headers -L$QT_PREFIX/lib -licuio -licui18n -licuuc -licudata"
+                    ICU_FLAGS="-I/opt/icu-headers -L$QT_ROOT_DIR/lib -licuio -licui18n -licuuc -licudata"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
 
