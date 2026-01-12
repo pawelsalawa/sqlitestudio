@@ -2,11 +2,7 @@ env:
     QT_VERSION: '6.5.3'
     TCL_VERSION: '8.6.17'
     SQLITE_VERSION: '3510100'
-    PYTHON_VERSION: '3.13'
-    ICU_VERSION: '74.2'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
-    # INSTALLBUILDER_DIR: ../ib
-    # INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-osx-installer.dmg
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: MacOSX release build
@@ -34,9 +30,9 @@ jobs:
             - name: Initial config
               run: |
                 echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV
-                echo "CFLAGS=-arch x86_64" >> $GITHUB_ENV
-                echo "CXXFLAGS=-arch x86_64" >> $GITHUB_ENV
-                echo "LDFLAGS=-arch x86_64" >> $GITHUB_ENV
+                echo "CFLAGS=$CFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
+                echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
+                echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
@@ -194,6 +190,12 @@ jobs:
             # ls -alR /usr/local/opt/openssl/lib
             # echo "---"
 
+            - name: Compiler config for our source code
+              run: |
+                echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
+                echo "CXXFLAGS=$CXXFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
+                echo "LDFLAGS=-arch x86_64 -arch x86_64" >> $GITHUB_ENV
+
             - name: Clone GH scripts
               uses: actions/checkout@v3
               with:
@@ -258,11 +260,6 @@ jobs:
                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
-
-            - name: Configure universal binaries compilation flags
-              shell: bash
-              run: |
-                echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64 -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}" >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
