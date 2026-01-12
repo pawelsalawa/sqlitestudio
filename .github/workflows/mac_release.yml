@@ -34,7 +34,7 @@ jobs:
                 echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
-                echo "TCL_PREFIX="$GITHUB_WORKSPACE/.cache/tcl-universal" >> $GITHUB_ENV
+                echo "TCL_PREFIX=$GITHUB_WORKSPACE/.cache/tcl-universal" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
