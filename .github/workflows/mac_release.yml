@@ -66,24 +66,27 @@ jobs:
                 ./configure \
                     --prefix=$PWD/build-arm64 \
                     --host=arm-apple-darwin
-                    make -j$(sysctl -n hw.ncpu)
-                    make install
-                    make distclean
+                make -j$(sysctl -n hw.ncpu)
+                make install
+                make distclean
 
                 # x86_64
                 ./configure \
                     --prefix=$PWD/build-x86_64 \
                     --host=x86_64-apple-darwin
-                    make -j$(sysctl -n hw.ncpu)
-                    make install
+                make -j$(sysctl -n hw.ncpu)
+                make install
 
-                mkdir -p /opt/universal/lib /opt/universal/include
-                cp -R build-arm64/include/* /opt/universal/include/
+                sudo mkdir -p /opt/universal/lib /opt/universal/include
+                sudo cp -R build-arm64/include/* /opt/universal/include/
 
-                lipo -create \
+                sudo lipo -create \
                     build-arm64/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
                     -output /opt/universal/lib/libtcl${TCL_VERSION%.*}.dylib
+
+                cd ../..
+                rm -rf tcl${TCL_VERSION}/unix
 
                 file /opt/universal/lib/libtcl*.dylib
                 echo "lipo archs:"
