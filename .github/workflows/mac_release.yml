@@ -444,7 +444,7 @@ jobs:
                 }}
               uses: owenthereal/action-upterm@v1
               with:
-                wait-timeout-minutes: 30
+                wait-timeout-minutes: 5
               # run: |
               #   set -x
               #   mkdir -p ~/.ssh
