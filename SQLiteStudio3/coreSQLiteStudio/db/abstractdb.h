@@ -205,8 +205,6 @@ class API_EXPORT AbstractDb : public Db
 
         virtual void initAfterOpen();
 
-        virtual bool flushWalInternal() = 0;
-
         void checkForDroppedObject(const QString& query);
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
@@ -430,14 +428,6 @@ class API_EXPORT AbstractDb : public Db
          * it will be overwritten (both in SQLite and in registeredFunctions).
          */
         void registerFunction(const RegisteredFunction& function);
-
-        /**
-         * @brief Flushes any pending WAL log files into the db file.
-         *
-         * It actually makes a 'PRAGMA wal_checkpoint(FULL)' call on the database.
-         * It's called automatically upon closing the database.
-         */
-        void flushWal();
 
         /**
          * @brief Registers SQLiteStudio's built-in functions in the db.

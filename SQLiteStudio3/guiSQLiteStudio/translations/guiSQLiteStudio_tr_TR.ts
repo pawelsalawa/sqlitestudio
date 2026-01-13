@@ -675,7 +675,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="129"/>
       <source>Column with the same name</source>
-      <translation type="unfinished">Column with the same name</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1052,17 +1052,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="538"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="541"/>
       <source>Convert Unicode line separators to LF (\n) in form view editors</source>
-      <translation type="unfinished">Convert Unicode line separators to LF (\n) in form view editors</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
       <source>General.UseLfForMultilineEditors</source>
-      <translation type="unfinished">General.UseLfForMultilineEditors</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="551"/>
@@ -6160,7 +6160,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="178"/>
       <source>Column with the same name</source>
-      <translation type="unfinished">Column with the same name</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="217"/>

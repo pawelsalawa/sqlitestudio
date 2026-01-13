@@ -2648,17 +2648,53 @@ cmd(X) ::= ALTER TABLE fullname(FN) DROP
                                                 delete K;
                                                 delete FN;
                                                 delete N;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) RENAME
+           kwcolumn_opt(K) nm(N2) TO
+           nm(N3).                          {
+                                               X = new SqliteAlterTable(
+                                                       FN->name1,
+                                                       FN->name2,
+                                                       *(K),
+                                                       *(N2),
+                                                       *(N3)
+                                                   );
+                                               delete K;
+                                               delete FN;
+                                               delete N2;
+                                               delete N3;
+                                               objectForTokens = X;
                                             }
 
 cmd ::= ALTER TABLE fullname RENAME TO
-            ID_TAB_NEW.                     {}
+        ID_TAB_NEW.                         {}
+cmd ::= ALTER TABLE fullname RENAME
+        kwcolumn_opt ID_COL.                {}
+cmd(X) ::= ALTER TABLE fullname(FN) RENAME
+        kwcolumn_opt(K).                    {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new SqliteAlterTable(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(K),
+                                                        QString(),
+                                                        QString()
+                                                    );
+                                                delete K;
+                                                delete FN;
+                                                objectForTokens = X;
+                                            }
+cmd ::= ALTER TABLE fullname RENAME
+        kwcolumn_opt nm TO ID_COL_NEW.      {}
 cmd ::= ALTER TABLE nm DOT ID_TAB.          {}
 cmd ::= ALTER TABLE ID_DB|ID_TAB.           {}
 
+
 %type kwcolumn_opt {bool*}
 %destructor kwcolumn_opt {parser_safe_delete($$);}
-kwcolumn_opt(X) ::= .                       {X = new bool(true);}
-kwcolumn_opt(X) ::= COLUMNKW.               {X = new bool(false);}
+kwcolumn_opt(X) ::= .                       {X = new bool(false);}
+kwcolumn_opt(X) ::= COLUMNKW.               {X = new bool(true);}
 
 //////////////////////// CREATE VIRTUAL TABLE ... /////////////////////////////
 cmd(X) ::= create_vtab(C).                  {X = C;}
@@ -2786,11 +2822,11 @@ wqas(X)   ::= AS NOT MATERIALIZED.          {X = new SqliteWith::CommonTableExpr
 %type wqlist {ParserCteList*}
 %destructor wqlist {parser_safe_delete($$);}
 
-wqlist(X) ::= wqcte(C).              		{
-												X = new ParserCteList();
+wqlist(X) ::= wqcte(C).                     {
+                                                X = new ParserCteList();
                                                 X->append(C);
                                             }
-wqlist(X) ::= wqlist(W) COMMA wqcte(C).    {
+wqlist(X) ::= wqlist(W) COMMA wqcte(C).     {
                                                 X = W;
                                                 X->append(C);
                                                 DONT_INHERIT_TOKENS("wqlist");
@@ -2803,13 +2839,13 @@ wqlist ::= ID_TAB_NEW.                      {
 %destructor wqcte {parser_safe_delete($$);}
 
 wqcte(X) ::= nm(N) idxlist_opt(IL) wqas(A)
-              LP select(S) RP.				{
+            LP select(S) RP.                {
                                                 X = new SqliteWith::CommonTableExpression(*(N), *(IL), S, *(A));
                                                 delete N;
                                                 delete IL;
                                                 delete A;
-												objectForTokens = X;
-											}
+                                                objectForTokens = X;
+                                            }
 
 //////////////////////// WINDOW FUNCTION EXPRESSIONS /////////////////////////
 // These must be at the end of this file. Specifically, the rules that
@@ -2821,9 +2857,9 @@ wqcte(X) ::= nm(N) idxlist_opt(IL) wqas(A)
 %destructor windowdefn_list {parser_safe_delete($$);}
 
 windowdefn_list(X) ::= windowdefn(W). 		{
-												X = new ParserWindowDefList();
-												X->append(W);
-											}
+                                                    X = new ParserWindowDefList();
+                                                    X->append(W);
+                                                }
 windowdefn_list(X) ::= windowdefn_list(L)
 					COMMA windowdefn(W). 	{
 												L->append(W);

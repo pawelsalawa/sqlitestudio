@@ -9,6 +9,16 @@
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 
+### 3.4.21
+- ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).
+
+### 3.4.20
+- ADDED: #5452 Option to convert Unicode line/paragraph breaks (U+2028 / U+2029) to LN (\n) when storing value entered in the Form View.
+- BUGFIX: #5437 Fixed issue with flushing WAL files when quitting application.
+- BUGFIX: #5455 Added missing syntax support for ALTER TABLE RENAME COLUMN.
+- BUGFIX: #5453 Fixed next/prev page buttons if the data was refreshed while being on the last page.
+- BUGFIX: #5452 Fixed rendering Unicode line/paragraph breaks in Grid View.
+
 ### 3.4.19
 - BUGFIX: #5443 Fixed data entering in Grid View after it has got broken in 3.4.18 (entering editing mode by starting to type jumped to wrong cell).
 - BUGFIX: #5447 Database object filtering improved - both speed (3x) and reliability (i.e. typing while filtering is in progress).

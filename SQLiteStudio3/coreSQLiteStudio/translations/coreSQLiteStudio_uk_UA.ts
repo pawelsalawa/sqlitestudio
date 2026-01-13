@@ -14,6 +14,10 @@
       <source>Error attaching database %1: %2</source>
       <translation>Помилка підключення бази даних %1: %2</translation>
     </message>
+    <message>
+      <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
+      <translation type="obsolete">Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</translation>
+    </message>
   </context>
   <context>
     <name>ChainExecutor</name>
@@ -799,6 +803,10 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>Не вдалося завантажити розширення %1: %2</translation>
+    </message>
+    <message>
+      <source>Could not run WAL checkpoint: %1</source>
+      <translation type="obsolete">Could not run WAL checkpoint: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="444"/>

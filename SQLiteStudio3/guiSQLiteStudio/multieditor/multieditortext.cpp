@@ -1,6 +1,7 @@
 #include "multieditortext.h"
 #include "common/unused.h"
 #include "iconmanager.h"
+#include "uiconfig.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>
@@ -34,6 +35,13 @@ void MultiEditorText::setValue(const QVariant& value)
 
 QVariant MultiEditorText::getValue()
 {
+    if (CFG_UI.General.UseLfForMultilineEditors.get())
+    {
+        QString newStr = textEdit->document()->toRawText();
+        newStr.replace(QChar::ParagraphSeparator, '\n');
+        newStr.replace(QChar::LineSeparator, '\n');
+        return newStr;
+    }
     return textEdit->document()->toRawText();
 }
 

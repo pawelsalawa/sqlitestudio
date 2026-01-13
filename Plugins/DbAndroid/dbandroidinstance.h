@@ -39,7 +39,6 @@ class DbAndroidInstance : public AbstractDb
         int getErrorCodeInternal();
         bool openInternal();
         bool closeInternal();
-        bool flushWalInternal();
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
 
