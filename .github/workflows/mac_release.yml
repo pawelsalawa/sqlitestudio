@@ -441,6 +441,7 @@ jobs:
                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
                 }}
               run: |
+                set +x
                 mkdir -p ~/.ssh
                 echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
                 chmod 600 ~/.ssh/id_ed25519
