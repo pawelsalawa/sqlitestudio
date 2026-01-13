@@ -110,127 +110,127 @@ jobs:
                 echo "lipo archs:"
                 lipo -archs $TCL_FULL_PATH/lib/libtcl*.dylib
 
-            - name: Qt installation dir
-              id: qt-installation-dir
-              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
-
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v4
-              with:
-                cache: true
-                version: ${{ env.QT_VERSION }}
-                host: 'mac'
-                dir: ${{ steps.qt-installation-dir.outputs.DIR }}
-                extra: '--external 7z'
-
-            - name: Cache ICU
-              id: cache-icu
-              uses: actions/cache@v4
-              with:
-                path: ${{ env.ICU_REL_PATH }}
-                key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-3
-
-            - name: Build ICU universal
-              if: steps.cache-icu.outputs.cache-hit != 'true'
-              shell: bash
-              run: |
-                set -euo pipefail
-
-                curl -fsSL -o icu-src.tgz "${ICU_URL}"
-
-                tar xf icu-src.tgz
-                cd icu-*/icu4c/source
-
-                GLOBAL_CFLAGS=$CFLAGS
-                GLOBAL_CXXFLAGS=$CXXFLAGS
-                GLOBAL_LDFLAGS=$LDFLAGS
-                BUILD_TRIPLET="$(clang -dumpmachine)"
-                echo "Triplet: $BUILD_TRIPLET"
-
-                # arm64
-                mkdir build-arm64 && cd build-arm64
-                CC="clang -arch arm64" \
-                CFLAGS="-arch arm64 $GLOBAL_CFLAGS" \
-                CXXFLAGS="-arch arm64 $GLOBAL_CXXFLAGS" \
-                LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
-                ../configure \
-                    --build="$BUILD_TRIPLET" \
-                    --prefix="$PWD/install"
-                make -j$(sysctl -n hw.ncpu)
-                make install
-                cd ..
-
-                # x86_64
-                mkdir build-x86_64 && cd build-x86_64
-                CC="clang -arch x86_64" \
-                CFLAGS="-arch x86_64 $GLOBAL_CFLAGS" \
-                CXXFLAGS="-arch x86_64 $GLOBAL_CXXFLAGS" \
-                LDFLAGS="-arch x86_64 $GLOBAL_LDFLAGS" \
-                ../configure \
-                    --build="$BUILD_TRIPLET" \
-                    --prefix="$PWD/install"
-                make -j$(sysctl -n hw.ncpu)
-                make install
-                cd ..
-
-                # assemble universal
-                mkdir -p "$ICU_FULL_PATH/lib" "$ICU_FULL_PATH/include"
-
-                cp -R build-arm64/install/include/* "$ICU_FULL_PATH/include/"
-
-                for lib in build-arm64/install/lib/*.dylib; do
-                    name=$(basename "$lib")
-                    lipo -create \
-                        "build-arm64/install/lib/$name" \
-                        "build-x86_64/install/lib/$name" \
-                        -output "$ICU_FULL_PATH/lib/$name"
-                done
-
-                echo "ICU installed to $ICU_FULL_PATH"
-                ls -l "$ICU_FULL_PATH/include"
-                ls -l "$ICU_FULL_PATH/lib"
-
-            # - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
-            #   shell: bash
-            #   run: |
-            #     set -euo pipefail
-            #
-            #     echo "Resolving latest patch version for Python ${{ env.PYTHON_VERSION }}..."
-            #
-            #     VERSION=$(
-            #         curl -fsSL https://www.python.org/ftp/python/ |
-            #             grep -Eo "${SERIES}\.[0-9]+" |
-            #             sort -V |
-            #             uniq |
-            #             tail -n1
-            #     )
-            #
-            #     if [[ -z "$VERSION" ]]; then
-            #         echo "Failed to resolve Python version for series ${{ env.PYTHON_VERSION }}"
-            #         exit 1
-            #     fi
-            #
-            #     echo "Latest Python version: $VERSION"
-            #
-            #     PKG="python-${VERSION}-macos11.pkg"
-            #     URL="https://www.python.org/ftp/python/${{ env.PYTHON_VERSION }}/${PKG}"
-            #
-            #     echo "Downloading $URL"
-            #     curl -fsSL -o "$PKG" "$URL"
-            #
-            #     sudo installer -pkg "$PKG" -target /
-            #
-            #     /usr/local/bin/python${{ env.PYTHON_VERSION }} --version
-
-            # - name: Debug 1
-            #   run: |
-            #     echo "Python:"
-            #     ls -alR /Library/Frameworks/Python.framework/Versions/${{ env.PYTHON_VERSION }}/lib
-            #     echo "---"
-            # echo "Crypto:"
-            # ls -alR /usr/local/opt/openssl/lib
-            # echo "---"
-
+#             - name: Qt installation dir
+#               id: qt-installation-dir
+#               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+#
+#             - name: Install Qt
+#               uses: jurplel/install-qt-action@v4
+#               with:
+#                 cache: true
+#                 version: ${{ env.QT_VERSION }}
+#                 host: 'mac'
+#                 dir: ${{ steps.qt-installation-dir.outputs.DIR }}
+#                 extra: '--external 7z'
+#
+#             - name: Cache ICU
+#               id: cache-icu
+#               uses: actions/cache@v4
+#               with:
+#                 path: ${{ env.ICU_REL_PATH }}
+#                 key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-3
+#
+#             - name: Build ICU universal
+#               if: steps.cache-icu.outputs.cache-hit != 'true'
+#               shell: bash
+#               run: |
+#                 set -euo pipefail
+#
+#                 curl -fsSL -o icu-src.tgz "${ICU_URL}"
+#
+#                 tar xf icu-src.tgz
+#                 cd icu-*/icu4c/source
+#
+#                 GLOBAL_CFLAGS=$CFLAGS
+#                 GLOBAL_CXXFLAGS=$CXXFLAGS
+#                 GLOBAL_LDFLAGS=$LDFLAGS
+#                 BUILD_TRIPLET="$(clang -dumpmachine)"
+#                 echo "Triplet: $BUILD_TRIPLET"
+#
+#                 # arm64
+#                 mkdir build-arm64 && cd build-arm64
+#                 CC="clang -arch arm64" \
+#                 CFLAGS="-arch arm64 $GLOBAL_CFLAGS" \
+#                 CXXFLAGS="-arch arm64 $GLOBAL_CXXFLAGS" \
+#                 LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
+#                 ../configure \
+#                     --build="$BUILD_TRIPLET" \
+#                     --prefix="$PWD/install"
+#                 make -j$(sysctl -n hw.ncpu)
+#                 make install
+#                 cd ..
+#
+#                 # x86_64
+#                 mkdir build-x86_64 && cd build-x86_64
+#                 CC="clang -arch x86_64" \
+#                 CFLAGS="-arch x86_64 $GLOBAL_CFLAGS" \
+#                 CXXFLAGS="-arch x86_64 $GLOBAL_CXXFLAGS" \
+#                 LDFLAGS="-arch x86_64 $GLOBAL_LDFLAGS" \
+#                 ../configure \
+#                     --build="$BUILD_TRIPLET" \
+#                     --prefix="$PWD/install"
+#                 make -j$(sysctl -n hw.ncpu)
+#                 make install
+#                 cd ..
+#
+#                 # assemble universal
+#                 mkdir -p "$ICU_FULL_PATH/lib" "$ICU_FULL_PATH/include"
+#
+#                 cp -R build-arm64/install/include/* "$ICU_FULL_PATH/include/"
+#
+#                 for lib in build-arm64/install/lib/*.dylib; do
+#                     name=$(basename "$lib")
+#                     lipo -create \
+#                         "build-arm64/install/lib/$name" \
+#                         "build-x86_64/install/lib/$name" \
+#                         -output "$ICU_FULL_PATH/lib/$name"
+#                 done
+#
+#                 echo "ICU installed to $ICU_FULL_PATH"
+#                 ls -l "$ICU_FULL_PATH/include"
+#                 ls -l "$ICU_FULL_PATH/lib"
+#
+#             # - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
+#             #   shell: bash
+#             #   run: |
+#             #     set -euo pipefail
+#             #
+#             #     echo "Resolving latest patch version for Python ${{ env.PYTHON_VERSION }}..."
+#             #
+#             #     VERSION=$(
+#             #         curl -fsSL https://www.python.org/ftp/python/ |
+#             #             grep -Eo "${SERIES}\.[0-9]+" |
+#             #             sort -V |
+#             #             uniq |
+#             #             tail -n1
+#             #     )
+#             #
+#             #     if [[ -z "$VERSION" ]]; then
+#             #         echo "Failed to resolve Python version for series ${{ env.PYTHON_VERSION }}"
+#             #         exit 1
+#             #     fi
+#             #
+#             #     echo "Latest Python version: $VERSION"
+#             #
+#             #     PKG="python-${VERSION}-macos11.pkg"
+#             #     URL="https://www.python.org/ftp/python/${{ env.PYTHON_VERSION }}/${PKG}"
+#             #
+#             #     echo "Downloading $URL"
+#             #     curl -fsSL -o "$PKG" "$URL"
+#             #
+#             #     sudo installer -pkg "$PKG" -target /
+#             #
+#             #     /usr/local/bin/python${{ env.PYTHON_VERSION }} --version
+#
+#             # - name: Debug 1
+#             #   run: |
+#             #     echo "Python:"
+#             #     ls -alR /Library/Frameworks/Python.framework/Versions/${{ env.PYTHON_VERSION }}/lib
+#             #     echo "---"
+#             # echo "Crypto:"
+#             # ls -alR /usr/local/opt/openssl/lib
+#             # echo "---"
+#
 #             - name: Compiler config for our source code
 #               run: |
 #                 echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
@@ -440,31 +440,31 @@ jobs:
 #               with:
 #                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 #                 path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-#
-#             - name: Setup debugging SSH
-#               if: >
-#                 ${{
-#                     github.repository_owner == 'pawelsalawa'
-#                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
-#                 }}
-#               uses: owenthereal/action-upterm@v1
-#               with:
-#                 wait-timeout-minutes: 5
-#               # run: |
-#               #   set -x
-#               #   mkdir -p ~/.ssh
-#               #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
-#               #   chmod 600 ~/.ssh/id_ed25519
-#               #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
-#               #
-#               #   ssh -o ExitOnForwardFailure=yes \
-#               #       -o ServerAliveInterval=60 \
-#               #       -o ServerAliveCountMax=3 \
-#               #       -N -R -4 2222:localhost:22 \
-#               #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
-#
-#             # - name: Upload installer artifact
-#             #   uses: actions/upload-artifact@v4
-#             #   with:
-#             #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-#             #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 5
+              # run: |
+              #   set -x
+              #   mkdir -p ~/.ssh
+              #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+              #   chmod 600 ~/.ssh/id_ed25519
+              #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
+              #
+              #   ssh -o ExitOnForwardFailure=yes \
+              #       -o ServerAliveInterval=60 \
+              #       -o ServerAliveCountMax=3 \
+              #       -N -R -4 2222:localhost:22 \
+              #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
+
+            # - name: Upload installer artifact
+            #   uses: actions/upload-artifact@v4
+            #   with:
+            #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+            #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
