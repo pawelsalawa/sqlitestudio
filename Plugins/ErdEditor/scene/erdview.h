@@ -107,9 +107,9 @@ class ErdView : public QGraphicsView
         void insertNewEntity();
         void deleteSelectedItem();
         void handleVisibilityRequest(const QRectF& rect);
+        void resetZoom();
 
     private slots:
-        void resetZoom();
         void showItemToUser(QGraphicsItem* item);
         void leavingOperatingMode(ErdView::Mode mode);
         void enteringOperatingMode(ErdView::Mode mode);

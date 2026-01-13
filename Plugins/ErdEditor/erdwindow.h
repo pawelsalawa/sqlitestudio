@@ -77,12 +77,18 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QString getTitleForMdiWindow() override;
 
     private:
+        enum class MemDbInit {
+            NONE,
+            CACHED,
+            FULL
+        };
+
         void init();
         void applyArrowType(ErdArrowItem::Type arrowType);
         void updateArrowTypeButtons();
-        bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames);
+        bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool initialRun);
         void focusItem(QGraphicsItem* item);
-        void parseAndRestore();
+        void parseAndRestore(bool initialRun, MemDbInit createMemDb);
         /**
          * @return true if panel clear operation was successful and view is allowed to deselect item.
          */
@@ -95,7 +101,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
          * @return true if panel replacement operation was successful and view is allowed to change item selection.
          */
         bool showSidePanelPropertiesFor(QGraphicsItem* item);
-        bool initMemDb();
+        bool initMemDb(MemDbInit createMemDb);
         bool storeCurrentSidePanelModifications();
         /**
          * @return true if modifications storing operation was successful and view is allowed to change item selection.
@@ -124,6 +130,7 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         Ui::ErdWindow *ui;
         Db* db = nullptr;
         Db* memDb = nullptr; // a volatile copy of the db, excluding data, just schema - for immediate modifications
+        QStringList cachedDdls;
         ErdScene* scene = nullptr;
         ErdChangeRegistry* changeRegistry = nullptr;
         QWidget* currentSideWidget = nullptr;

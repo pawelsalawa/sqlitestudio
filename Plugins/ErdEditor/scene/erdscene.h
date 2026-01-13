@@ -183,6 +183,7 @@ class ErdScene : public QGraphicsScene
         void applyItemFiltering(const QString& value);
         void connectionFinalizationFailed();
         void selectAll();
+        void clearScene();
 
         /**
          * Removes entity from the scene only. No db changes nor ChangeRegistry shifts are made.

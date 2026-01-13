@@ -23,6 +23,10 @@
 ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     : QGraphicsScene{parent}, arrowType(arrowType)
 {
+    // Indexing causes significant amount of BSP tree crashes,
+    // while it doesn't seem to have huge performance impact in our case.
+    setItemIndexMethod(QGraphicsScene::NoIndex);
+
     ddlExecutor = new ChainExecutor(this);
     ddlExecutor->setAsync(false);
     ddlExecutor->setTransaction(false);
@@ -102,6 +106,21 @@ void ErdScene::selectAll()
     path.addRect(sceneRect());
 
     setSelectionArea(path);
+}
+
+void ErdScene::clearScene()
+{
+    for (auto&& conn : getConnections())
+        delete conn;
+
+    for (ErdEntity*& entity : entities)
+    {
+        removeItem(entity);
+        entityToBeDeleted(entity);
+        delete entity;
+    }
+
+    refreshSceneRect();
 }
 
 void ErdScene::handleChangeRedo(ErdChange* change)
@@ -599,14 +618,7 @@ void ErdScene::removeEntityFromScene(ErdEntity* entity)
     removeItem(entity);
     entityToBeDeleted(entity);
     connectionRefreshScheduled.removeOne(entity);
-
-    // 3 lines below is necessary to avoid app crash after deleting the entity object.
-    // Apparently without it Qt doesn't properly keep track of remove item an crashes soon afterwards.
-    // At least that's what it looks like from debugging (crash happens in the Qt's internal BSP Tree).
-    // I've tried to nail down the actual root cause of it, but with no luck.
     refreshSceneRect();
-    setItemIndexMethod(QGraphicsScene::NoIndex);
-    setItemIndexMethod(QGraphicsScene::BspTreeIndex); // rebuild the tree
 
     delete entity;
 }

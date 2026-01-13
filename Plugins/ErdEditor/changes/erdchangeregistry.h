@@ -23,6 +23,7 @@ class ErdChangeRegistry : public QObject
         bool isUndoAvailable() const;
         bool isRedoAvailable() const;
         void clear();
+        void moveToBeginning();
 
     private:
         static constexpr int UNDO_LIMIT = 1000;

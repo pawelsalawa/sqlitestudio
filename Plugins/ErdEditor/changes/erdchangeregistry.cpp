@@ -115,6 +115,14 @@ void ErdChangeRegistry::clear()
         delete chg;
 
     changes.clear();
+    currentIndex = -1;
+    notifyChangesUpdated();
+}
+
+void ErdChangeRegistry::moveToBeginning()
+{
+    currentIndex = -1;
+    notifyChangesUpdated();
 }
 
 void ErdChangeRegistry::notifyChangesUpdated()

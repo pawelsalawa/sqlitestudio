@@ -32,10 +32,10 @@
 #include <QShortcut>
 #include <QGraphicsOpacityEffect>
 #include <QToolButton>
-#include <QMessageBox>
 #include <QColorDialog>
 #include <QMenu>
 #include <QWidgetAction>
+#include <QMessageBox>
 
 Icon* ErdWindow::cursorAddTableIcon = nullptr;
 Icon* ErdWindow::cursorFkIcon = nullptr;
@@ -148,7 +148,7 @@ void ErdWindow::init()
     changeRegistry = new ErdChangeRegistry(this);
     connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);
 
-    parseAndRestore();
+    parseAndRestore(true, MemDbInit::FULL);
     updateState();
 }
 
@@ -159,7 +159,7 @@ void ErdWindow::createActions()
 
     createAction(RELOAD, ICONS.RELOAD, tr("Reload schema", "ERD editor"), this, SLOT(reloadSchema()), ui->toolBar);
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all pending changes", "ERD editor"), this, SLOT(commitPendingChanges()), ui->toolBar);
-    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all pending changes", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Revert diagram to initial state", "ERD editor"), this, SLOT(rollbackPendingChanges()), ui->toolBar);
 
     createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "ERD editor"), this, SLOT(undo()), ui->toolBar, ui->view);
     createAction(REDO, ICONS.ACT_REDO, tr("Redo", "ERD editor"), this, SLOT(redo()), ui->toolBar, ui->view);
@@ -557,7 +557,24 @@ void ErdWindow::itemSelectionChanged()
 
 void ErdWindow::reloadSchema()
 {
-    // TODO
+    if (changeRegistry->getPendingChangesCount() > 0)
+    {
+        QMessageBox::StandardButton res = QMessageBox::question(
+                    qobject_cast<QWidget*>(parent()),
+                    tr("Reload schema", "ERD editor"),
+                    tr("This action will discard all your pending changes and "
+                       "reload the diagram from the current database schema. "
+                       "The undo/redo history will be cleared. "
+                       "Do you want to proceed?")
+                );
+
+        if (res != QMessageBox::Yes)
+            return;
+    }
+
+    changeRegistry->clear();
+    scene->clearScene();
+    parseAndRestore(false, MemDbInit::FULL);
 }
 
 void ErdWindow::commitPendingChanges()
@@ -567,7 +584,24 @@ void ErdWindow::commitPendingChanges()
 
 void ErdWindow::rollbackPendingChanges()
 {
-    // TODO
+    if (changeRegistry->getPendingChangesCount() > 0)
+    {
+        QMessageBox::StandardButton res = QMessageBox::question(
+                    qobject_cast<QWidget*>(parent()),
+                    tr("Revert diagram to initial state", "ERD editor"),
+                    tr("This action will revert the diagram to its initial state, "
+                       "discarding all pending changes. "
+                       "You will still be able to restore them using the Redo history. "
+                       "Do you want to proceed?")
+                );
+
+        if (res != QMessageBox::Yes)
+            return;
+    }
+
+    changeRegistry->moveToBeginning();
+    scene->clearScene();
+    parseAndRestore(false, MemDbInit::CACHED);
 }
 
 void ErdWindow::handleCreatedChange(ErdChange* change)
@@ -728,23 +762,22 @@ QString ErdWindow::getCurrentSidePanelModificationsEntity() const
         return connectionPanel->getStartEntityTable();
 
     return QString();
-
 }
 
-void ErdWindow::parseAndRestore()
+void ErdWindow::parseAndRestore(bool initialRun, MemDbInit createMemDb)
 {
     if (!db)
         return;
 
-    if (!initMemDb())
+    if (!initMemDb(createMemDb))
         return;
 
     QSet<QString> tableNames = scene->parseSchema();
     QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
-    if (!tryToApplyConfig(erdConfig, tableNames))
+    if (!tryToApplyConfig(erdConfig, tableNames, initialRun))
     {
         erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
-        if (!tryToApplyConfig(erdConfig, tableNames))
+        if (!tryToApplyConfig(erdConfig, tableNames, initialRun))
             scene->arrangeEntitiesFdp(true);
     }
 }
@@ -829,13 +862,12 @@ bool ErdWindow::showSidePanelPropertiesFor(QGraphicsItem* item)
     return true;
 }
 
-bool ErdWindow::initMemDb()
+bool ErdWindow::initMemDb(MemDbInit createMemDb)
 {
-    if (memDb)
-    {
-        memDb->closeQuiet();
-        delete memDb;
-    }
+    if (createMemDb == MemDbInit::NONE)
+        return true;
+
+    Db* oldMemDb = memDb; // don't delete it yet, as it will be disconnected from in setDb() methods, etc.
 
     memDb = DBLIST->createInMemDb();
     memDb->setName(db->getName()); // same name as original, so that all functions/collations/extensions are loaded when open
@@ -846,20 +878,34 @@ bool ErdWindow::initMemDb()
     }
     scene->setDb(memDb);
 
-    // Now copy schema to memdb
-    // Order must be: tables, views, triggers, other. It's because they can be created "on" tables" and "on views".
-    SqlQueryPtr tableResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'");
-    SqlQueryPtr viewResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'view' AND name NOT LIKE 'sqlite_%'");
-    SqlQueryPtr triggerResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'trigger' AND name NOT LIKE 'sqlite_%'");
-    SqlQueryPtr indexResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'index' AND name NOT LIKE 'sqlite_%'");
-
-    QStringList ddls;
-    for (const SqlQueryPtr& results : {tableResults, viewResults, triggerResults, indexResults})
+    if (oldMemDb)
     {
-        for (SqlResultsRowPtr& row : results->getAll())
-            ddls << row->value("sql").toString();
+        oldMemDb->closeQuiet();
+        delete oldMemDb;
     }
 
+    // Now copy schema to memdb
+    QStringList ddls;
+    if (createMemDb == MemDbInit::FULL || cachedDdls.isEmpty())
+    {
+        // Order must be: tables, views, triggers, other. It's because they can be created "on" tables" and "on views".
+        SqlQueryPtr tableResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'");
+        SqlQueryPtr viewResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'view' AND name NOT LIKE 'sqlite_%'");
+        SqlQueryPtr triggerResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'trigger' AND name NOT LIKE 'sqlite_%'");
+        SqlQueryPtr indexResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'index' AND name NOT LIKE 'sqlite_%'");
+
+        for (const SqlQueryPtr& results : {tableResults, viewResults, triggerResults, indexResults})
+        {
+            for (SqlResultsRowPtr& row : results->getAll())
+                ddls << row->value("sql").toString();
+        }
+
+        cachedDdls = ddls;
+    }
+    else
+    {
+        ddls = cachedDdls;
+    }
     for (QString& ddl : ddls)
         memDb->exec(ddl);
 
@@ -902,12 +948,12 @@ bool ErdWindow::restoreSession(const QVariant& sessionValue)
         return false;
 
     db = sessionDb;
-    parseAndRestore();
+    parseAndRestore(true, MemDbInit::FULL);
 
     return true;
 }
 
-bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames)
+bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool initialRun)
 {
     if (!value.isValid() || value.isNull() || !value.canConvert<QHash<QString, QVariant>>())
         return false;
@@ -927,11 +973,16 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
         return false;
 
     // Config is applicable.
-    ui->splitter->restoreState(erdConfig[CFG_KEY_SPLITTER].toByteArray());
     scene->applyConfig(erdConfig);
-    ui->view->applyConfig(erdConfig);
-    colorPicker->setCustomColors(erdConfig[CFG_CUSTOM_COLORS].value<QVector<QColor>>());
-    updateArrowTypeButtons();
+    if (initialRun)
+    {
+        // UI elements restored only at initial run, because subsequent runs
+        // come from rollback/reload, so UI should remain untouched.
+        ui->splitter->restoreState(erdConfig[CFG_KEY_SPLITTER].toByteArray());
+        ui->view->applyConfig(erdConfig);
+        colorPicker->setCustomColors(erdConfig[CFG_CUSTOM_COLORS].value<QVector<QColor>>());
+        updateArrowTypeButtons();
+    }
 
     return true;
 }

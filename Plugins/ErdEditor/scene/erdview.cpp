@@ -293,7 +293,8 @@ void ErdView::focusOutEvent(QFocusEvent* event)
 void ErdView::applyZoomRatio(qreal ratio)
 {
     zoom *= ratio;
-    if (zoom > 1.0) {
+    if (zoom > 1.0)
+    {
         resetZoom();
         return;
     }
@@ -331,6 +332,7 @@ void ErdView::applyConfig(const QHash<QString, QVariant> &erdConfig)
     if (!cfgZoom.isNull())
     {
         qreal zoom = cfgZoom.toReal();
+        resetZoom();
         if ((1.0 - zoom) > 0.0001 && zoom > 0.01) // excluding any floating-point micro-differences and excluding too far zoom out
             applyZoomRatio(zoom);
     }
