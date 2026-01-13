@@ -335,7 +335,7 @@ jobs:
             - name: Build packages
               working-directory: output/build
               run: |
-                make pkg_verbose
+                DEBUG_LEVEL=3 make pkg
 
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
