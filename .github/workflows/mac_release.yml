@@ -44,10 +44,10 @@ jobs:
                 echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
-                echo "TCL_REL_PATH=.cache/tcl-universal" >> $GITHUB_ENV
-                echo "ICU_REL_PATH=.cache/icu-universal" >> $GITHUB_ENV
-                echo "TCL_FULL_PATH=$GITHUB_WORKSPACE/.cache/tcl-universal" >> $GITHUB_ENV
-                echo "ICU_FULL_PATH=$GITHUB_WORKSPACE/.cache/icu-universal" >> $GITHUB_ENV
+                echo "TCL_REL_PATH=../.cache/tcl-universal" >> $GITHUB_ENV
+                echo "ICU_REL_PATH=../.cache/icu-universal" >> $GITHUB_ENV
+                echo "TCL_FULL_PATH=$GITHUB_WORKSPACE/../.cache/tcl-universal" >> $GITHUB_ENV
+                echo "ICU_FULL_PATH=$GITHUB_WORKSPACE/../.cache/icu-universal" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
