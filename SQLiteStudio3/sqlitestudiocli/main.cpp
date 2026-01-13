@@ -174,10 +174,19 @@ int main(int argc, char *argv[])
         {
             qOut << QObject::tr("You're running the most recent version. No updates are available.") << "\n";
         });
-        QObject::connect(UPDATES, &UpdateManager::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection);
+        QObject::connect(UPDATES, &UpdateManager::updatingError, [](const QString& errorMessage)
+        {
+            qErr << QObject::tr("Error checking for updates: %1").arg(errorMessage) << "\n";
+        });
+        bool hadError = false;
+        QObject::connect(UPDATES, &UpdateManager::finished, &loop, [&hadError, &loop](bool successful)
+        {
+            hadError = !successful;
+            loop.quit();
+        }, Qt::QueuedConnection);
         UPDATES->checkForUpdates(true);
         loop.exec();
-        return 0;
+        return hadError ? 1 : 0;
     }
 #endif
 
