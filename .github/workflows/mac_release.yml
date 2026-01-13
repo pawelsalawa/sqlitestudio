@@ -40,17 +40,12 @@ jobs:
             - name: Initial config
               run: |
                 MACOSX_DEPLOYMENT_TARGET=11.0
-                TCL_REL_PATH="../.cache/tcl-universal"
-                ICU_REL_PATH="../.cache/icu-universal"
                 echo "CFLAGS=$CFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
-                # REL_PATH for cache, FULL_PATH for other cases
-                echo "TCL_REL_PATH=$TCL_REL_PATH" >> $GITHUB_ENV
-                echo "ICU_REL_PATH=$ICU_REL_PATH" >> $GITHUB_ENV
-                echo "TCL_FULL_PATH=$GITHUB_WORKSPACE/$TCL_REL_PATH" >> $GITHUB_ENV
-                echo "ICU_FULL_PATH=$GITHUB_WORKSPACE/$ICU_REL_PATH" >> $GITHUB_ENV
+                echo "TCL_ROOT_DIR=$(realpath $GITHUB_WORKSPACE/../.cache/tcl-universal)" >> $GITHUB_ENV
+                echo "ICU_ROOT_DIR=$(realpath $GITHUB_WORKSPACE/../.cache/icu-universal)" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
@@ -60,7 +55,7 @@ jobs:
               id: cache-tcl
               uses: actions/cache@v4
               with:
-                path: ${{ env.TCL_REL_PATH }}
+                path: ${{ env.TCL_ROOT_DIR }}
                 key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-4
 
             - name: Build Tcl universal
@@ -86,7 +81,7 @@ jobs:
                 LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
                 ./configure \
                     --build="$BUILD_TRIPLET" \
-                    --prefix=$TCL_FULL_PATH
+                    --prefix=$TCL_ROOT_DIR
                 make -j$(sysctl -n hw.ncpu)
                 make install
                 make distclean
@@ -102,20 +97,20 @@ jobs:
                 make install
 
                 lipo -create \
-                    $TCL_FULL_PATH/lib/libtcl*.dylib \
+                    $TCL_ROOT_DIR/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
-                    -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new
-                #rm $TCL_FULL_PATH/$TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
-                mv $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
+                    -output $TCL_ROOT_DIR/lib/libtcl${TCL_VERSION%.*}.dylib.new
+                #rm $TCL_ROOT_DIR/$TCL_ROOT_DIR/lib/libtcl${TCL_VERSION%.*}.dylib
+                mv $TCL_ROOT_DIR/lib/libtcl${TCL_VERSION%.*}.dylib.new $TCL_ROOT_DIR/lib/libtcl${TCL_VERSION%.*}.dylib
 
                 echo "include:"
-                ls -l $TCL_FULL_PATH/include
+                ls -l $TCL_ROOT_DIR/include
                 echo "lib:"
-                ls -l $TCL_FULL_PATH/lib
+                ls -l $TCL_ROOT_DIR/lib
 
-                file $TCL_FULL_PATH/lib/libtcl*.dylib
+                file $TCL_ROOT_DIR/lib/libtcl*.dylib
                 echo "lipo archs:"
-                lipo -archs $TCL_FULL_PATH/lib/libtcl*.dylib
+                lipo -archs $TCL_ROOT_DIR/lib/libtcl*.dylib
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -134,7 +129,7 @@ jobs:
               id: cache-icu
               uses: actions/cache@v4
               with:
-                path: ${{ env.ICU_REL_PATH }}
+                path: ${{ env.ICU_ROOT_DIR }}
                 key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-3
 
             - name: Build ICU universal
@@ -181,21 +176,21 @@ jobs:
                 cd ..
 
                 # assemble universal
-                mkdir -p "$ICU_FULL_PATH/lib" "$ICU_FULL_PATH/include"
+                mkdir -p "$ICU_ROOT_DIR/lib" "$ICU_ROOT_DIR/include"
 
-                cp -R build-arm64/install/include/* "$ICU_FULL_PATH/include/"
+                cp -R build-arm64/install/include/* "$ICU_ROOT_DIR/include/"
 
                 for lib in build-arm64/install/lib/*.dylib; do
                     name=$(basename "$lib")
                     lipo -create \
                         "build-arm64/install/lib/$name" \
                         "build-x86_64/install/lib/$name" \
-                        -output "$ICU_FULL_PATH/lib/$name"
+                        -output "$ICU_ROOT_DIR/lib/$name"
                 done
 
-                echo "ICU installed to $ICU_FULL_PATH"
-                ls -l "$ICU_FULL_PATH/include"
-                ls -l "$ICU_FULL_PATH/lib"
+                echo "ICU installed to $ICU_ROOT_DIR"
+                ls -l "$ICU_ROOT_DIR/include"
+                ls -l "$ICU_ROOT_DIR/lib"
 
             # - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
             #   shell: bash
@@ -334,7 +329,7 @@ jobs:
                 done
 
                 for f in icu; do
-                    ICU_FLAGS="-I$ICU_FULL_PATH/include -L$ICU_FULL_PATH/lib -licuio -licui18n -licuuc -licudata"
+                    ICU_FLAGS="-I$ICU_ROOT_DIR/include -L$ICU_ROOT_DIR/lib -licuio -licui18n -licuuc -licudata"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
 
@@ -346,12 +341,12 @@ jobs:
                 mkdir ../lib ../include
                 cp /usr/local/lib/libsqlite3* ../lib
                 cp /usr/local/include/sqlite3* ../include
-                cp $ICU_FULL_PATH/lib/libicuio.dylib \
-                   $ICU_FULL_PATH/lib/libicui18n.dylib \
-                   $ICU_FULL_PATH/lib/libicuuc.dylib \
-                   $ICU_FULL_PATH/lib/libicudata.dylib \
+                cp $ICU_ROOT_DIR/lib/libicuio.dylib \
+                   $ICU_ROOT_DIR/lib/libicui18n.dylib \
+                   $ICU_ROOT_DIR/lib/libicuuc.dylib \
+                   $ICU_ROOT_DIR/lib/libicudata.dylib \
                    ../lib
-                cp $TCL_FULL_PATH/lib/libtcl*.dylib ../lib
+                cp $TCL_ROOT_DIR/lib/libtcl*.dylib ../lib
 
             # TODO does online updates (https) checking work without cryto?
             # cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
@@ -378,7 +373,7 @@ jobs:
                     CONFIG+=portable \
                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
                     "LIBS += -L$pythonLocation/lib" \
-                    "TCL_CONFIG=$TCL_FULL_PATH/lib/tclConfig.sh" \
+                    "TCL_CONFIG=$TCL_ROOT_DIR/lib/tclConfig.sh" \
                     ../../../Plugins
                 make -j 1
 
