@@ -58,7 +58,7 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: ${{ env.TCL_REL_PATH }}
-                key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-2
+                key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-3
 
             - name: Build Tcl universal
               if: steps.cache-tcl.outputs.cache-hit != 'true'
@@ -98,10 +98,10 @@ jobs:
                 make -j$(sysctl -n hw.ncpu)
                 make install
 
-                sudo mkdir -p $TCL_FULL_PATH/lib $TCL_FULL_PATH/include
-                sudo cp -R build-arm64/include/* $TCL_FULL_PATH/include/
+                mkdir -p $TCL_FULL_PATH/lib $TCL_FULL_PATH/include
+                cp -R build-arm64/include/* $TCL_FULL_PATH/include/
 
-                sudo lipo -create \
+                lipo -create \
                     build-arm64/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
                     -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
@@ -128,7 +128,7 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: ${{ env.ICU_REL_PATH }}
-                key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-2
+                key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-3
 
             - name: Build ICU universal
               if: steps.cache-icu.outputs.cache-hit != 'true'
