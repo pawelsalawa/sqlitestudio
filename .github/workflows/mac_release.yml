@@ -37,6 +37,10 @@ jobs:
         runs-on: macos-15
 
         steps:
+            - name: Install coreutils
+              run: |
+                brew install coreutils
+
             - name: Initial config
               run: |
                 MACOSX_DEPLOYMENT_TARGET=11.0
@@ -46,10 +50,6 @@ jobs:
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "TCL_ROOT_DIR=$(realpath $GITHUB_WORKSPACE/../.cache/tcl-universal)" >> $GITHUB_ENV
                 echo "ICU_ROOT_DIR=$(realpath $GITHUB_WORKSPACE/../.cache/icu-universal)" >> $GITHUB_ENV
-
-            - name: Install coreutils
-              run: |
-                brew install coreutils
 
             - name: Cache Tcl
               id: cache-tcl
