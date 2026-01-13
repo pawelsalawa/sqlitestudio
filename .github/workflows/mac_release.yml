@@ -440,7 +440,9 @@ jobs:
                     github.repository_owner == 'pawelsalawa'
                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
                 }}
-              uses: mxschmitt/action-tmate@v3
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 30
               # run: |
               #   set -x
               #   mkdir -p ~/.ssh
