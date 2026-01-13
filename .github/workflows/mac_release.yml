@@ -102,7 +102,7 @@ jobs:
                     $TCL_FULL_PATH/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
                     -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new
-                rm $TCL_FULL_PATH/$TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
+                #rm $TCL_FULL_PATH/$TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
                 mv $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
 
                 echo "include:"
