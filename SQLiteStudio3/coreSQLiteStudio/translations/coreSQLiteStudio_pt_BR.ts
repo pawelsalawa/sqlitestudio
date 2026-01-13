@@ -1023,11 +1023,7 @@ A visualização permanecerá como é.</translation>
       <location filename="../db/queryexecutor.cpp" line="422"/>
       <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="vanished">Ocorreu um erro ao executar a função count(*), desta forma a paginação de dados será desabilitada. Detalhes de erro do banco de dados: %1</translation>
+      <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="611"/>
