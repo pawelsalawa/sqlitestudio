@@ -58,7 +58,7 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: ${{ env.TCL_REL_PATH }}
-                key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-3
+                key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-4
 
             - name: Build Tcl universal
               if: steps.cache-tcl.outputs.cache-hit != 'true'
@@ -83,7 +83,7 @@ jobs:
                 LDFLAGS="-arch arm64 $GLOBAL_LDFLAGS" \
                 ./configure \
                     --build="$BUILD_TRIPLET" \
-                    --prefix=$PWD/build-arm64
+                    --prefix=$TCL_FULL_PATH
                 make -j$(sysctl -n hw.ncpu)
                 make install
                 make distclean
@@ -98,13 +98,17 @@ jobs:
                 make -j$(sysctl -n hw.ncpu)
                 make install
 
-                mkdir -p $TCL_FULL_PATH/lib $TCL_FULL_PATH/include
-                cp -R build-arm64/include/* $TCL_FULL_PATH/include/
-
                 lipo -create \
-                    build-arm64/lib/libtcl*.dylib \
+                    $TCL_FULL_PATH/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
-                    -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
+                    -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new
+                rm $TCL_FULL_PATH/$TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
+                mv $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib.new $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
+
+                echo "include:"
+                ls -l $TCL_FULL_PATH/include
+                echo "lib:"
+                ls -l $TCL_FULL_PATH/lib
 
                 file $TCL_FULL_PATH/lib/libtcl*.dylib
                 echo "lipo archs:"
@@ -440,31 +444,31 @@ jobs:
 #               with:
 #                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 #                 path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-
-            - name: Setup debugging SSH
-              if: >
-                ${{
-                    github.repository_owner == 'pawelsalawa'
-                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
-                }}
-              uses: owenthereal/action-upterm@v1
-              with:
-                wait-timeout-minutes: 5
-              # run: |
-              #   set -x
-              #   mkdir -p ~/.ssh
-              #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
-              #   chmod 600 ~/.ssh/id_ed25519
-              #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
-              #
-              #   ssh -o ExitOnForwardFailure=yes \
-              #       -o ServerAliveInterval=60 \
-              #       -o ServerAliveCountMax=3 \
-              #       -N -R -4 2222:localhost:22 \
-              #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
-
-            # - name: Upload installer artifact
-            #   uses: actions/upload-artifact@v4
-            #   with:
-            #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-            #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+#
+#             - name: Setup debugging SSH
+#               if: >
+#                 ${{
+#                     github.repository_owner == 'pawelsalawa'
+#                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+#                 }}
+#               uses: owenthereal/action-upterm@v1
+#               with:
+#                 wait-timeout-minutes: 5
+#               # run: |
+#               #   set -x
+#               #   mkdir -p ~/.ssh
+#               #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+#               #   chmod 600 ~/.ssh/id_ed25519
+#               #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
+#               #
+#               #   ssh -o ExitOnForwardFailure=yes \
+#               #       -o ServerAliveInterval=60 \
+#               #       -o ServerAliveCountMax=3 \
+#               #       -N -R -4 2222:localhost:22 \
+#               #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
+#
+#             # - name: Upload installer artifact
+#             #   uses: actions/upload-artifact@v4
+#             #   with:
+#             #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+#             #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
