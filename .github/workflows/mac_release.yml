@@ -231,235 +231,240 @@ jobs:
             # ls -alR /usr/local/opt/openssl/lib
             # echo "---"
 
-            - name: Compiler config for our source code
-              run: |
-                echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
-                echo "CXXFLAGS=$CXXFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
-                echo "LDFLAGS=-arch x86_64 -arch x86_64" >> $GITHUB_ENV
-
-            - name: Clone GH scripts
-              uses: actions/checkout@v4
-              with:
-                repository: pawelsalawa/gh-action-scripts
-                ref: main
-                path: gh-scripts
-
-            - name: Setup GH scripts path
-              shell: bash
-              run: |
-                mv gh-scripts ..
-                cd ..
-                chmod +x gh-scripts/scripts/*.sh
-                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
-                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
-
-#             - name: Install the InstalBuilder
+#             - name: Compiler config for our source code
+#               run: |
+#                 echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
+#                 echo "CXXFLAGS=$CXXFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
+#                 echo "LDFLAGS=-arch x86_64 -arch x86_64" >> $GITHUB_ENV
+#
+#             - name: Clone GH scripts
+#               uses: actions/checkout@v4
+#               with:
+#                 repository: pawelsalawa/gh-action-scripts
+#                 ref: main
+#                 path: gh-scripts
+#
+#             - name: Setup GH scripts path
 #               shell: bash
 #               run: |
-#                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
-#                 hdiutil attach ib.dmg
-#                 /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
-#                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
-#                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
-#                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
+#                 mv gh-scripts ..
+#                 cd ..
+#                 chmod +x gh-scripts/scripts/*.sh
+#                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+#                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 #
-            - name: Clone repo
-              uses: actions/checkout@v4
-              with:
-                ref: ${{ env.BRANCH_NAME }}
-
-            # - name: Verify Python arch
-            #   shell: bash
-            #   run: |
-            #     echo "python arch:"
-            #     lipo -archs $(which python)
-
-            - name: Prepare ccache
-              if: inputs.use_ccache || false
-              uses: hendrikmuhs/ccache-action@v1.2
-              with:
-                key: ${{ matrix.binary_compatibility }}
-                max-size: "32M"
-
-            - name: Configure ccache
-              if: inputs.use_ccache || false
-              run: |
-                echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
-
-            - name: Install SQLite3
-              run: |
-                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
-                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
-
-                cd ..
-                SQLITE3_ZIP=sqlite3-macos-universal-$SQLITE_VERSION.zip
-                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
-
-                sudo unzip $SQLITE3_ZIP libsqlite3.0.dylib -d /usr/local/lib
-                sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
-                sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
-                echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
-                ls -l /usr/local/lib/libsqlite3*
-                ls -l /usr/local/include/sqlite*
-
-            - name: Compile additional SQLite3 extensions
-              shell: bash
-              run: |
-                cd ..
-                mkdir ext
-
-                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
-                ls -l
-
-                mkdir ext-src
-                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
-                cd ext-src
-                ls -l
-
-                FLAGS="$CFLAGS -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
-                set -x
-                for f in compress sqlar; do
-                    gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
-                done
-
-                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
-                    gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
-                done
-
-                for f in icu; do
-                    ICU_FLAGS="-I$ICU_FULL_PATH/include -L$ICU_FULL_PATH/lib -licuio -licui18n -licuuc -licudata"
-                    gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
-                done
-
-                set +x
-                ls -l ../ext/
-
-            - name: Prepare deps
-              run: |
-                mkdir ../lib ../include
-                cp /usr/local/lib/libsqlite3* ../lib
-                cp /usr/local/include/sqlite3* ../include
-                cp /opt/universal/lib/libtcl*.dylib ../lib
-
-                # TODO does online updates (https) checking work without cryto?
-            # cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
-
-            - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
-
-            - name: Compile SQLiteStudio3
-              working-directory: output/build
-              run: |
-                qmake ${{ matrix.qmake_flags }} \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                    CONFIG+=portable \
-                    ../../SQLiteStudio3
-                make -j 4
-
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              run: |
-                qmake ${{ matrix.qmake_flags }} \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                    CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
-                    "LIBS += -L$pythonLocation/lib" \
-                    "TCL_CONFIG=$TCL_CONFIG" \
-                    ../../../Plugins
-                make -j 1
-
-            - name: Copy SQLite extensions to output dir
-              shell: bash
-              run: |
-                cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
-
-            - name: Build packages
-              working-directory: output/build
-              run: |
-                make pkg_verbose
-
-            - name: Determine SQLiteStudio version
-              working-directory: output/SQLiteStudio
-              run: |
-                echo "All files in boundle:"
-                find SQLiteStudio.app
-
-                echo "Listing architecture for files."
-                find SQLiteStudio.app -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
-                    echo "Arch for: $FILE"
-                    lipo -archs "$FILE"
-                done
-
-                echo "Arch for: SQLiteStudio.app/Contents/MacOS/sqlitestudiocli"
-                lipo -archs SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
-
-                SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
-                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-universal" >> $GITHUB_ENV
-                echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio-${SQLITESTUDIO_VERSION}" >> $GITHUB_ENV
-
-            - name: Rename portable package
-              working-directory: output/SQLiteStudio
-              run: |
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-
-#             - name: Create installer package
-#               shell: bash
-#               env:
-#                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+# #             - name: Install the InstalBuilder
+# #               shell: bash
+# #               run: |
+# #                 curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.dmg
+# #                 hdiutil attach ib.dmg
+# #                 /Volumes/InstallBuilder\ Enterprise/*.app/Contents/MacOS/installbuilder.sh --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+# #                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
+# #                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+# #                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio" >> $GITHUB_ENV
+# #
+#             - name: Clone repo
+#               uses: actions/checkout@v4
+#               with:
+#                 ref: ${{ env.BRANCH_NAME }}
+#
+#             # - name: Verify Python arch
+#             #   shell: bash
+#             #   run: |
+#             #     echo "python arch:"
+#             #     lipo -archs $(which python)
+#
+#             - name: Prepare ccache
+#               if: inputs.use_ccache || false
+#               uses: hendrikmuhs/ccache-action@v1.2
+#               with:
+#                 key: ${{ matrix.binary_compatibility }}
+#                 max-size: "32M"
+#
+#             - name: Configure ccache
+#               if: inputs.use_ccache || false
 #               run: |
-#                 echo "$IB_LICENSE" > lic.xml
-#                 hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-#                 echo "Volumes:"
-#                 ls -l /Volumes
-#                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
-#                     --license lic.xml \
-#                     --setvars project.outputDirectory=$(pwd) \
-#                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
-#                 echo "Installer file before renaming:"
-#                 ls -l *.dmg
-#                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-#                 echo "Installer file after renaming:"
-#                 ls -l *.dmg
+#                 echo "PATH=/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
 #
-            - name: SHA256 checksums
-              shell: bash
-              run: |
-                sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-            # sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-                path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-
-            - name: Setup debugging SSH
-              if: >
-                ${{
-                    github.repository_owner == 'pawelsalawa'
-                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
-                }}
-              uses: owenthereal/action-upterm@v1
-              with:
-                wait-timeout-minutes: 5
-              # run: |
-              #   set -x
-              #   mkdir -p ~/.ssh
-              #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
-              #   chmod 600 ~/.ssh/id_ed25519
-              #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
-              #
-              #   ssh -o ExitOnForwardFailure=yes \
-              #       -o ServerAliveInterval=60 \
-              #       -o ServerAliveCountMax=3 \
-              #       -N -R -4 2222:localhost:22 \
-              #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
-
-            # - name: Upload installer artifact
-            #   uses: actions/upload-artifact@v4
-            #   with:
-            #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-            #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+#             - name: Install SQLite3
+#               run: |
+#                 SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+#                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+#
+#                 cd ..
+#                 SQLITE3_ZIP=sqlite3-macos-universal-$SQLITE_VERSION.zip
+#                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+#
+#                 sudo unzip $SQLITE3_ZIP libsqlite3.0.dylib -d /usr/local/lib
+#                 sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
+#                 sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
+#                 echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
+#                 ls -l /usr/local/lib/libsqlite3*
+#                 ls -l /usr/local/include/sqlite*
+#
+#             - name: Compile additional SQLite3 extensions
+#               shell: bash
+#               run: |
+#                 cd ..
+#                 mkdir ext
+#
+#                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
+#                 ls -l
+#
+#                 mkdir ext-src
+#                 unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+#                 cd ext-src
+#                 ls -l
+#
+#                 FLAGS="$CFLAGS -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+#                 set -x
+#                 for f in compress sqlar; do
+#                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
+#                 done
+#
+#                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+#                     gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
+#                 done
+#
+#                 for f in icu; do
+#                     ICU_FLAGS="-I$ICU_FULL_PATH/include -L$ICU_FULL_PATH/lib -licuio -licui18n -licuuc -licudata"
+#                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
+#                 done
+#
+#                 set +x
+#                 ls -l ../ext/
+#
+#             - name: Prepare deps
+#               run: |
+#                 mkdir ../lib ../include
+#                 cp /usr/local/lib/libsqlite3* ../lib
+#                 cp /usr/local/include/sqlite3* ../include
+#                 cp $ICU_FULL_PATH/lib/libicuio.dylib \
+#                    $ICU_FULL_PATH/lib/libicui18n.dylib \
+#                    $ICU_FULL_PATH/lib/libicuuc.dylib \
+#                    $ICU_FULL_PATH/lib/libicudata.dylib \
+#                    ../lib
+#                 cp $TCL_FULL_PATH/lib/libtcl*.dylib ../lib
+#
+#             # TODO does online updates (https) checking work without cryto?
+#             # cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
+#
+#             - name: Prepare output dir
+#               run: mkdir output output/build output/build/Plugins
+#
+#             - name: Compile SQLiteStudio3
+#               working-directory: output/build
+#               run: |
+#                 qmake ${{ matrix.qmake_flags }} \
+#                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+#                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
+#                     CONFIG+=portable \
+#                     ../../SQLiteStudio3
+#                 make -j 4
+#
+#             - name: Compile Plugins
+#               working-directory: output/build/Plugins
+#               run: |
+#                 qmake ${{ matrix.qmake_flags }} \
+#                     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+#                     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
+#                     CONFIG+=portable \
+#                     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
+#                     "LIBS += -L$pythonLocation/lib" \
+#                     "TCL_CONFIG=$TCL_CONFIG" \
+#                     ../../../Plugins
+#                 make -j 1
+#
+#             - name: Copy SQLite extensions to output dir
+#               shell: bash
+#               run: |
+#                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
+#
+#             - name: Build packages
+#               working-directory: output/build
+#               run: |
+#                 make pkg_verbose
+#
+#             - name: Determine SQLiteStudio version
+#               working-directory: output/SQLiteStudio
+#               run: |
+#                 echo "All files in boundle:"
+#                 find SQLiteStudio.app
+#
+#                 echo "Listing architecture for files."
+#                 find SQLiteStudio.app -type f -name "*.dylib" -print0 | while IFS= read -r -d '' FILE; do
+#                     echo "Arch for: $FILE"
+#                     lipo -archs "$FILE"
+#                 done
+#
+#                 echo "Arch for: SQLiteStudio.app/Contents/MacOS/sqlitestudiocli"
+#                 lipo -archs SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+#
+#                 SQLITESTUDIO_VERSION=$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+#                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+#                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-macos-universal" >> $GITHUB_ENV
+#                 echo "INSTALLER_BIN_PREFIX=/Volumes/SQLiteStudio-${SQLITESTUDIO_VERSION}" >> $GITHUB_ENV
+#
+#             - name: Rename portable package
+#               working-directory: output/SQLiteStudio
+#               run: |
+#                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+#
+# #             - name: Create installer package
+# #               shell: bash
+# #               env:
+# #                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+# #               run: |
+# #                 echo "$IB_LICENSE" > lic.xml
+# #                 hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+# #                 echo "Volumes:"
+# #                 ls -l /Volumes
+# #                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
+# #                     --license lic.xml \
+# #                     --setvars project.outputDirectory=$(pwd) \
+# #                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
+# #                 echo "Installer file before renaming:"
+# #                 ls -l *.dmg
+# #                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+# #                 echo "Installer file after renaming:"
+# #                 ls -l *.dmg
+# #
+#             - name: SHA256 checksums
+#               shell: bash
+#               run: |
+#                 sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+#             # sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+#
+#             - name: Upload package artifact
+#               uses: actions/upload-artifact@v4
+#               with:
+#                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+#                 path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+#
+#             - name: Setup debugging SSH
+#               if: >
+#                 ${{
+#                     github.repository_owner == 'pawelsalawa'
+#                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+#                 }}
+#               uses: owenthereal/action-upterm@v1
+#               with:
+#                 wait-timeout-minutes: 5
+#               # run: |
+#               #   set -x
+#               #   mkdir -p ~/.ssh
+#               #   echo "${{ secrets.MACOS_RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+#               #   chmod 600 ~/.ssh/id_ed25519
+#               #   ssh-keyscan ${{ secrets.MACOS_RUNNER_SSH_DOMAIN }} >> ~/.ssh/known_hosts
+#               #
+#               #   ssh -o ExitOnForwardFailure=yes \
+#               #       -o ServerAliveInterval=60 \
+#               #       -o ServerAliveCountMax=3 \
+#               #       -N -R -4 2222:localhost:22 \
+#               #       ${{ secrets.MACOS_RUNNER_SSH_USER }}@${{ secrets.MACOS_RUNNER_SSH_DOMAIN }}
+#
+#             # - name: Upload installer artifact
+#             #   uses: actions/upload-artifact@v4
+#             #   with:
+#             #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
+#             #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
