@@ -18,6 +18,9 @@ UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
 {
     connect(this, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError(QString)));
+    connect(this, &UpdateManager::updateAvailable, this, &UpdateManager::finished);
+    connect(this, &UpdateManager::noUpdatesAvailable, this, &UpdateManager::finished);
+    connect(this, &UpdateManager::updatingError, this, &UpdateManager::finished);
     netManager = new QNetworkAccessManager(this);
 }
 

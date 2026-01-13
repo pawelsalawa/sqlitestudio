@@ -7,6 +7,7 @@
 #include "climsghandler.h"
 #include "completionhelper.h"
 #include "services/pluginmanager.h"
+#include "services/updatemanager.h"
 #include "sqlfileexecutor.h"
 #include <QCoreApplication>
 #include <QtGlobal>
@@ -46,8 +47,10 @@ bool cliHandleCmdLineArgs()
     QCommandLineOption ignoreErrorsOption({"ie", "ignore-errors"},
                                           QObject::tr("When used together with -e option, the execution will not stop on an error, "
                                                       "but rather continue until the end, ignoring errors."));
+#ifdef PORTABLE_CONFIG
     QCommandLineOption checkUpdatesOption({"cu", "check-updates"},
                                           QObject::tr("Checks for updates online and prints the result to standard output."));
+#endif
 
     parser.addOption(debugOption);
     parser.addOption(lemonDebugOption);
@@ -90,8 +93,10 @@ bool cliHandleCmdLineArgs()
     if (parser.isSet(ignoreErrorsOption))
         CliOpts::ignoreErrors = true;
 
+#ifdef PORTABLE_CONFIG
     if (parser.isSet(checkUpdatesOption))
         CliOpts::checkForUpdates = true;
+#endif
 
     if (parser.isSet(execSqlOption))
         CliOpts::sqlScriptToExecute = parser.value(execSqlOption);
@@ -156,6 +161,25 @@ int main(int argc, char *argv[])
 
         return 0;
     }
+
+#ifdef PORTABLE_CONFIG
+    if (CliOpts::checkForUpdates)
+    {
+        QEventLoop loop;
+        QObject::connect(UPDATES, &UpdateManager::updateAvailable, [](const QString& version, const QString& url)
+        {
+            qOut << QObject::tr("New updates are available: %1. Url: %2").arg(version, url) << "\n";
+        });
+        QObject::connect(UPDATES, &UpdateManager::noUpdatesAvailable, []()
+        {
+            qOut << QObject::tr("You're running the most recent version. No updates are available.") << "\n";
+        });
+        QObject::connect(UPDATES, &UpdateManager::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection);
+        UPDATES->checkForUpdates(true);
+        loop.exec();
+        return 0;
+    }
+#endif
 
     if (!CliOpts::sqlScriptToExecute.isNull())
         return cliExecSqlFromFile(CliOpts::dbToOpen);

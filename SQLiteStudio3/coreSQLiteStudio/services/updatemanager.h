@@ -37,6 +37,7 @@ class API_EXPORT UpdateManager : public QObject
         void updateAvailable(const QString& version, const QString& url);
         void noUpdatesAvailable(bool enforced);
         void updatingError(const QString& errorMessage);
+        void finished();
 };
 
 #define UPDATES SQLITESTUDIO->getUpdateManager()

@@ -3,6 +3,7 @@
 ### 4.0.0
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #5237 ARM64 code compatibility.
+- ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
