@@ -48,8 +48,8 @@ jobs:
                 echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
-                echo "TCL_ROOT_DIR=$(realpath -m $GITHUB_WORKSPACE/../.cache/tcl-universal)" >> $GITHUB_ENV
-                echo "ICU_ROOT_DIR=$(realpath -m $GITHUB_WORKSPACE/../.cache/icu-universal)" >> $GITHUB_ENV
+                echo "TCL_ROOT_DIR=$(grealpath -m $GITHUB_WORKSPACE/../.cache/tcl-universal)" >> $GITHUB_ENV
+                echo "ICU_ROOT_DIR=$(grealpath -m $GITHUB_WORKSPACE/../.cache/icu-universal)" >> $GITHUB_ENV
 
             - name: Cache Tcl
               id: cache-tcl
