@@ -316,6 +316,7 @@ jobs:
                     gcc misc/$f.c -Imisc $FLAGS -o ../ext/$f.dylib
                 done
 
+                ls -l "$ICU_PREFIX/include/unicode"
                 for f in icu; do
                     ICU_FLAGS="-I$ICU_PREFIX/include -L$ICU_PREFIX/lib -licuio -licui18n -licuuc -licudata"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
