@@ -20,6 +20,7 @@ namespace CliOpts
     QString dbToOpen;
     QString sqlScriptCodec;
     bool ignoreErrors = false;
+    bool checkForUpdates = false;
 }
 
 bool cliHandleCmdLineArgs()
@@ -45,6 +46,8 @@ bool cliHandleCmdLineArgs()
     QCommandLineOption ignoreErrorsOption({"ie", "ignore-errors"},
                                           QObject::tr("When used together with -e option, the execution will not stop on an error, "
                                                       "but rather continue until the end, ignoring errors."));
+    QCommandLineOption checkUpdatesOption({"cu", "check-updates"},
+                                          QObject::tr("Checks for updates online and prints the result to standard output."));
 
     parser.addOption(debugOption);
     parser.addOption(lemonDebugOption);
@@ -53,6 +56,7 @@ bool cliHandleCmdLineArgs()
     parser.addOption(sqlFileCodecOption);
     parser.addOption(codecListOption);
     parser.addOption(ignoreErrorsOption);
+    parser.addOption(checkUpdatesOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
@@ -85,6 +89,9 @@ bool cliHandleCmdLineArgs()
 
     if (parser.isSet(ignoreErrorsOption))
         CliOpts::ignoreErrors = true;
+
+    if (parser.isSet(checkUpdatesOption))
+        CliOpts::checkForUpdates = true;
 
     if (parser.isSet(execSqlOption))
         CliOpts::sqlScriptToExecute = parser.value(execSqlOption);

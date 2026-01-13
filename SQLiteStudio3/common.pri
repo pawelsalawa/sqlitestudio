@@ -9,8 +9,8 @@ UI_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
 LIBS += -L$$DESTDIR
 
 macx: {
-    QMAKE_CXXFLAGS += -Wno-gnu-zero-variadic-macro-arguments -Wno-overloaded-virtual
     INCLUDEPATH += $$PWD/../../include
+    QMAKE_CXXFLAGS += -Wno-gnu-zero-variadic-macro-arguments -Wno-overloaded-virtual
     LIBS += -L$$PWD/../../lib
 }
 
