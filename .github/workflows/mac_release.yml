@@ -44,8 +44,10 @@ jobs:
                 echo "CXXFLAGS=$CXXFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "LDFLAGS=$LDFLAGS -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
                 echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET" >> $GITHUB_ENV
-                echo "TCL_PREFIX=$GITHUB_WORKSPACE/.cache/tcl-universal" >> $GITHUB_ENV
-                echo "ICU_PREFIX=$GITHUB_WORKSPACE/.cache/icu-universal" >> $GITHUB_ENV
+                echo "TCL_REL_PATH=.cache/tcl-universal" >> $GITHUB_ENV
+                echo "ICU_REL_PATH=.cache/icu-universal" >> $GITHUB_ENV
+                echo "TCL_FULL_PATH=$GITHUB_WORKSPACE/.cache/tcl-universal" >> $GITHUB_ENV
+                echo "ICU_FULL_PATH=$GITHUB_WORKSPACE/.cache/icu-universal" >> $GITHUB_ENV
 
             - name: Install coreutils
               run: |
@@ -55,8 +57,8 @@ jobs:
               id: cache-tcl
               uses: actions/cache@v4
               with:
-                path: ${{ env.TCL_PREFIX }}
-                key: tcl-${{ env.TCL_VERSION }}-macos-universal
+                path: ${{ env.TCL_REL_PATH }}
+                key: tcl-${{ env.TCL_VERSION }}-macos-universal-cache-id-2
 
             - name: Build Tcl universal
               if: steps.cache-tcl.outputs.cache-hit != 'true'
@@ -96,17 +98,17 @@ jobs:
                 make -j$(sysctl -n hw.ncpu)
                 make install
 
-                sudo mkdir -p $TCL_PREFIX/lib $TCL_PREFIX/include
-                sudo cp -R build-arm64/include/* $TCL_PREFIX/include/
+                sudo mkdir -p $TCL_FULL_PATH/lib $TCL_FULL_PATH/include
+                sudo cp -R build-arm64/include/* $TCL_FULL_PATH/include/
 
                 sudo lipo -create \
                     build-arm64/lib/libtcl*.dylib \
                     build-x86_64/lib/libtcl*.dylib \
-                    -output $TCL_PREFIX/lib/libtcl${TCL_VERSION%.*}.dylib
+                    -output $TCL_FULL_PATH/lib/libtcl${TCL_VERSION%.*}.dylib
 
-                file $TCL_PREFIX/lib/libtcl*.dylib
+                file $TCL_FULL_PATH/lib/libtcl*.dylib
                 echo "lipo archs:"
-                lipo -archs $TCL_PREFIX/lib/libtcl*.dylib
+                lipo -archs $TCL_FULL_PATH/lib/libtcl*.dylib
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -125,8 +127,8 @@ jobs:
               id: cache-icu
               uses: actions/cache@v4
               with:
-                path: ${{ env.ICU_PREFIX }}
-                key: icu-macos-${{ env.ICU_VERSION }}-universal
+                path: ${{ env.ICU_REL_PATH }}
+                key: icu-macos-${{ env.ICU_VERSION }}-universal-cache-id-2
 
             - name: Build ICU universal
               if: steps.cache-icu.outputs.cache-hit != 'true'
@@ -172,21 +174,21 @@ jobs:
                 cd ..
 
                 # assemble universal
-                mkdir -p "$ICU_PREFIX/lib" "$ICU_PREFIX/include"
+                mkdir -p "$ICU_FULL_PATH/lib" "$ICU_FULL_PATH/include"
 
-                cp -R build-arm64/install/include/* "$ICU_PREFIX/include/"
+                cp -R build-arm64/install/include/* "$ICU_FULL_PATH/include/"
 
                 for lib in build-arm64/install/lib/*.dylib; do
                     name=$(basename "$lib")
                     lipo -create \
                         "build-arm64/install/lib/$name" \
                         "build-x86_64/install/lib/$name" \
-                        -output "$ICU_PREFIX/lib/$name"
+                        -output "$ICU_FULL_PATH/lib/$name"
                 done
 
-                echo "ICU installed to $ICU_PREFIX"
-                ls -l "$ICU_PREFIX/include"
-                ls -l "$ICU_PREFIX/lib"
+                echo "ICU installed to $ICU_FULL_PATH"
+                ls -l "$ICU_FULL_PATH/include"
+                ls -l "$ICU_FULL_PATH/lib"
 
             # - name: Install latest Python ${{ env.PYTHON_VERSION }} (official, universal2)
             #   shell: bash
@@ -325,7 +327,7 @@ jobs:
                 done
 
                 for f in icu; do
-                    ICU_FLAGS="-I$ICU_PREFIX/include -L$ICU_PREFIX/lib -licuio -licui18n -licuuc -licudata"
+                    ICU_FLAGS="-I$ICU_FULL_PATH/include -L$ICU_FULL_PATH/lib -licuio -licui18n -licuuc -licudata"
                     gcc icu/$f.c -Iicu $ICU_FLAGS $FLAGS -o ../ext/$f.dylib
                 done
 
