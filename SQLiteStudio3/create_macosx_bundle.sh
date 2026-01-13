@@ -182,7 +182,7 @@ embed_libsqlite3() {
 }
 
 embed_libtcl() {
-    cp -RPf "$libdir/libtcl*.dylib" "$1/Contents/Frameworks"
+    cp -RPf $libdir/libtcl*.dylib "$1/Contents/Frameworks"
 }
 
 # < HEAD
