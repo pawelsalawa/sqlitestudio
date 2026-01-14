@@ -224,7 +224,7 @@ replaceInfo() {
     info "Replacing Info.plist"
     YEAR=`date '+%Y'`
 
-    run sed -e "s/%VERSION%/$VERSION/g" -e "s/%YEAR%/$YEAR/g" "$_contents/Info.plist" > "$_contents/Info.plist.new"
+    run sed -e "s/%VERSION%/$VERSION/g" -e "s/%YEAR%/$YEAR/g" "$_contents/Info.plist" \> "$_contents/Info.plist.new"
     debug "New plist:" "$(cat "$_contents/Info.plist.new")"
     run mv "$_contents/Info.plist.new" "$_contents/Info.plist"
 }
