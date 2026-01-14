@@ -797,79 +797,99 @@ Expected one of: %2</source>
       <translation>字符串</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="30"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>SQLite 管理工具 SQLiteStudio 的命令行接口。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="32"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>启用调试消息输出到标准错误输出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="35"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>启用 SQL 代码助手的 Lemon 解析器调试消息。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="34"/>
+      <location filename="../main.cpp" line="36"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>列出 SQLiteStudio 中已安装的插件然后退出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="36"/>
+      <location filename="../main.cpp" line="38"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
       <translation>在指定的数据库文件上执行提供的 SQL 文件（包括 SQLiteStudio&apos;s 查询执行器的所有丰富功能）并退出。如果使用此选项，数据库参数将成为必填项。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="39"/>
+      <location filename="../main.cpp" line="41"/>
       <source>SQL file</source>
       <translation>SQL 文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="40"/>
+      <location filename="../main.cpp" line="42"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
       <translation>读取 SQL 文件时使用的字符编码（-e 选项）。使用 -cl 列出可用的编解码器。默认为 %1。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="43"/>
+      <location filename="../main.cpp" line="45"/>
       <source>codec</source>
       <translation>解码器</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="44"/>
+      <location filename="../main.cpp" line="46"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
       <translation>列出与 -c 选项一起使用的可用编解码器，然后退出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="46"/>
+      <location filename="../main.cpp" line="48"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
       <translation>与 -e 选项一起使用时，执行不会因出错而停止，而是继续到结束，忽略错误。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="52"/>
+      <source>Checks for updates online and prints the result to standard output.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="64"/>
       <source>file</source>
       <translation>文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="64"/>
       <source>Database file to open</source>
       <translation>要打开的数据库文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="78"/>
+      <location filename="../main.cpp" line="85"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation>无效编解码器：%1。使用 -cl 选项列出可用的编解码器。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="108"/>
+      <location filename="../main.cpp" line="120"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation>在执行 SQL 文件时，数据库文件参数是强制性的。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="114"/>
+      <location filename="../main.cpp" line="126"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation>无法打开指定数据库以执行 SQL 文件。您可以尝试使用 -d 选项了解更多详情。</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="171"/>
+      <source>New updates are available: %1. Url: %2</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="175"/>
+      <source>You&apos;re running the most recent version. No updates are available.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="179"/>
+      <source>Error checking for updates: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
 </TS>
