@@ -88,7 +88,7 @@ macx: {
     LIBS += -L$$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio -lcoreSQLiteStudio
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR
-    QMAKE_CXXFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7
+    QMAKE_CXXFLAGS += -stdlib=libc++
 
     defineTest(pluginDep) {
         out_file_parts = $$DESTDIR/lib $$TARGET .dylib

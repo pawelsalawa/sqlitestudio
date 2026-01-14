@@ -15,6 +15,10 @@ while getopts qu _flag; do
 done
 shift $(( OPTIND - 1 ))
 
+if [[ -n ${DEBUG_LEVEL+x} ]]; then
+    quiet="$DEBUG_LEVEL"
+fi
+
 echo "Verbosity level: $quiet"
 
 PYTHON_VERSION="${PYTHON_VERSION:-3.9}"
@@ -174,29 +178,11 @@ debug "lib:" "$(ls -l "$libdir")"
 
 embed_libsqlite3() {
     cp -RPf "$libdir/libsqlite3.0.dylib" "$1/Contents/Frameworks"
-    libsqlite3_in_bundle="$1/Contents/Frameworks/libsqlite3.0.dylib"
     ln -sf libsqlite3.0.dylib "$1/Contents/Frameworks/libsqlite3.dylib"
-    if otool -L "$libsqlite3_in_bundle" | grep -q /opt/local; then
-        info "MacPorts libsqlite3.0.dylib detected! Fixing dylib references"
-        run install_name_tool \
-          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
-          -id "@executable_path/../Frameworks/libsqlite3.0.dylib" \
-          "$libsqlite3_in_bundle"
-    fi
 }
 
 embed_libtcl() {
-    libtcl_name="libtcl$TCL_VERSION_MAJ.dylib"
-    cp -RPf "/opt/local/lib/$libtcl_name" "$1/Contents/Frameworks"
-    libtcl_in_bundle="$1/Contents/Frameworks/$libtcl_name"
-    run otool -L "$libtcl_in_bundle"
-    if otool -L "$libtcl_in_bundle" | grep -q /opt/local; then
-       info "MacPorts $libtcl_name detected! Fixing dylib references"
-        run install_name_tool \
-          -change /opt/local/lib/libz.1.dylib "@rpath/libz.1.dylib" \
-          -id "@executable_path/../Frameworks/$libtcl_name" \
-          "$libtcl_in_bundle"
-    fi
+    cp -RPf $libdir/libtcl*.dylib "$1/Contents/Frameworks"
 }
 
 # < HEAD
@@ -238,7 +224,7 @@ replaceInfo() {
     info "Replacing Info.plist"
     YEAR=`date '+%Y'`
 
-    run sed -e "s/%VERSION%/$VERSION/g" -e "s/%YEAR%/$YEAR/g" "$_contents/Info.plist" > "$_contents/Info.plist.new"
+    run sed -e "s/%VERSION%/$VERSION/g" -e "s/%YEAR%/$YEAR/g" "$_contents/Info.plist" \> "$_contents/Info.plist.new"
     debug "New plist:" "$(cat "$_contents/Info.plist.new")"
     run mv "$_contents/Info.plist.new" "$_contents/Info.plist"
 }
@@ -321,15 +307,7 @@ elif [ "$3" = "dist" ]; then
 
     # Fix python dependencies in the image if linked to a Python library
     python_plugin_lib="SQLiteStudio.app/Contents/PlugIns/libScriptingPython.dylib"
-    if otool -L "$python_plugin_lib" | grep -q /opt/local/Library/Frameworks/Python.framework; then
-        python_from_macports="yes"
-        _ref="/opt/local/Library/Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python"
-    else
-        python_from_macports="no"
-        run rm -f SQLiteStudio.app/Contents/Frameworks/libpython*
-        _ref="@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib"
-    fi
-    run install_name_tool -change "$_ref" "libpython$PYTHON_VERSION.dylib" "$python_plugin_lib"
+    run install_name_tool -change "@loader_path/../Frameworks/libpython$PYTHON_VERSION.dylib" "libpython$PYTHON_VERSION.dylib" "$python_plugin_lib"
 
     # Fix other dependencies which can be supplied by system
     find_local_dependencies SQLiteStudio.app | while read -r _binary _ref; do
@@ -349,27 +327,6 @@ elif [ "$3" = "dist" ]; then
     # shellcheck disable=SC2086
     pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION" "$BACKGROUND_IMG" $BACKGROUND_RGB
 
-    if [ "$python_from_macports" = "yes" ]; then
-        info "MacPorts Python detected. Making an image with bundled Python"
-
-        embed_python_framework /opt/local/Library/Frameworks/Python.framework "$PYTHON_VERSION" SQLiteStudio.app
-
-        run install_name_tool \
-            -change "libpython$PYTHON_VERSION.dylib" "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" \
-            "$python_plugin_lib"
-
-        codesign_app "SQLiteStudio.app"
-
-        assert_no_dylib_problems SQLiteStudio.app
-
-        # shellcheck disable=SC2086
-        pretty_dmg "SQLiteStudio.app" "SQLiteStudio-$VERSION-py$PYTHON_VERSION" "$BACKGROUND_IMG" $BACKGROUND_RGB
-
-        run rm -fr SQLiteStudio.app/Contents/Frameworks/Python.framework
-        run install_name_tool \
-            -change "@loader_path/../Frameworks/Python.framework/Versions/$PYTHON_VERSION/Python" "libpython$PYTHON_VERSION.dylib" \
-            "$python_plugin_lib"
-    fi
     rm -fr thinned
     ls -l -- *.dmg
     info "Done."

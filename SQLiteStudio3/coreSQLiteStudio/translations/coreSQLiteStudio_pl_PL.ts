@@ -4,20 +4,19 @@
   <context>
     <name>AbstractDb</name>
     <message>
-      <location filename="../db/abstractdb.cpp" line="374"/>
-      <location filename="../db/abstractdb.cpp" line="391"/>
+      <location filename="../db/abstractdb.cpp" line="370"/>
+      <location filename="../db/abstractdb.cpp" line="387"/>
       <source>Cannot execute query on closed database.</source>
       <translation>Nie można wykonać zapytania na zamkniętej bazie danych.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="731"/>
+      <location filename="../db/abstractdb.cpp" line="726"/>
       <source>Error attaching database %1: %2</source>
       <translation>Błąd podczas dołączania bazy danych %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="973"/>
       <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation>Nie udało się utworzyć pełnego punktu kontrolnego WAL w bazie danych &apos;%1&apos;. Błąd zwrócony z silnika SQLite: %2</translation>
+      <translation type="vanished">Nie udało się utworzyć pełnego punktu kontrolnego WAL w bazie danych &apos;%1&apos;. Błąd zwrócony z silnika SQLite: %2</translation>
     </message>
   </context>
   <context>
@@ -62,93 +61,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="158"/>
+      <location filename="../completionhelper.cpp" line="159"/>
       <source>New row reference</source>
       <translation>Odnośnik do nowego wiersza</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="165"/>
+      <location filename="../completionhelper.cpp" line="166"/>
       <source>Old row reference</source>
       <translation>Odnośnik do starego wiersza</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="170"/>
+      <location filename="../completionhelper.cpp" line="171"/>
       <source>New table name</source>
       <translation>Nazwa nowej tabeli</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="173"/>
+      <location filename="../completionhelper.cpp" line="174"/>
       <source>New index name</source>
       <translation>Nazwa nowego indeksu</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="176"/>
+      <location filename="../completionhelper.cpp" line="177"/>
       <source>New view name</source>
       <translation>Nazwa nowego widoku</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="179"/>
+      <location filename="../completionhelper.cpp" line="180"/>
       <source>New trigger name</source>
       <translation>Nazwa nowego wyzwalacza</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="182"/>
+      <location filename="../completionhelper.cpp" line="183"/>
       <source>Table or column alias</source>
       <translation>Alias tabeli lub kolumny</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="185"/>
+      <location filename="../completionhelper.cpp" line="186"/>
       <source>transaction name</source>
       <translation>Nazwa transakcji</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="188"/>
+      <location filename="../completionhelper.cpp" line="189"/>
       <source>New column name</source>
       <translation>Nazwa nowej kolumny</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="191"/>
+      <location filename="../completionhelper.cpp" line="192"/>
       <source>Column data type</source>
       <translation>Typ danych kolumny</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="194"/>
+      <location filename="../completionhelper.cpp" line="195"/>
       <source>Constraint name</source>
       <translation>Nazwa ograniczenia</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="207"/>
+      <location filename="../completionhelper.cpp" line="208"/>
       <source>Error message</source>
       <translation>Treść błędu</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="256"/>
+      <location filename="../completionhelper.cpp" line="257"/>
       <source>Any word</source>
       <translation>Dowolne słowo</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="259"/>
+      <location filename="../completionhelper.cpp" line="260"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="262"/>
-      <location filename="../completionhelper.cpp" line="265"/>
+      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="266"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="277"/>
+      <location filename="../completionhelper.cpp" line="278"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="437"/>
+      <location filename="../completionhelper.cpp" line="438"/>
       <source>Default database</source>
       <translation>Domyślna baza danych</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="439"/>
       <source>Temporary objects database</source>
       <translation>Baza danych obiektów tymczasowych</translation>
     </message>
@@ -790,28 +789,27 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="437"/>
+      <location filename="../db/abstractdb3.h" line="420"/>
       <source>Could not open database: %1</source>
       <translation>Nie udało się otworzyć bazy danych: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1229"/>
+      <location filename="../db/abstractdb3.h" line="1214"/>
       <source>Result set expired or no row available.</source>
       <translation>Wyniki zapytania są nieaktualne, lub nie ma dostępnych wierszy.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="333"/>
-      <location filename="../db/abstractdb3.h" line="337"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>Nie udało się załadować rozszerzenia %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="423"/>
       <source>Could not run WAL checkpoint: %1</source>
-      <translation>Nie można uruchomić punktu kontrolnego WAL: %1</translation>
+      <translation type="vanished">Nie można uruchomić punktu kontrolnego WAL: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="461"/>
+      <location filename="../db/abstractdb3.h" line="444"/>
       <source>Could not close database: %1</source>
       <translation>Nie udało się zamknąć bazy danych: %1</translation>
     </message>
@@ -827,12 +825,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2668"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
       <source>Parser stack overflow</source>
       <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6236"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6297"/>
       <source>Syntax error</source>
       <translation>Błąd składni</translation>
     </message>
@@ -1025,11 +1023,7 @@ Widok pozostanie nienaruszony.</translation>
       <location filename="../db/queryexecutor.cpp" line="422"/>
       <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="vanished">Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
+      <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="611"/>
@@ -1132,7 +1126,7 @@ Widok pozostanie nienaruszony.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="860"/>
+      <location filename="../db/abstractdb3.h" line="845"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation>Zarejestrowano domyślną sekwencję porządkowania na żądanie, pod nazwą: %1</translation>
     </message>
@@ -1140,7 +1134,7 @@ Widok pozostanie nienaruszony.</translation>
   <context>
     <name>UpdateManager</name>
     <message>
-      <location filename="../services/updatemanager.cpp" line="92"/>
+      <location filename="../services/updatemanager.cpp" line="95"/>
       <source>Could not check for updates (%1).</source>
       <translation>Nie można sprawdzić aktualizacji (%1).</translation>
     </message>
