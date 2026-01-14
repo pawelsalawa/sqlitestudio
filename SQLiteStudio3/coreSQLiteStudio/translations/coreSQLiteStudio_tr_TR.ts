@@ -1134,7 +1134,7 @@ The view will remain as it is.</translation>
   <context>
     <name>UpdateManager</name>
     <message>
-      <location filename="../services/updatemanager.cpp" line="92"/>
+      <location filename="../services/updatemanager.cpp" line="95"/>
       <source>Could not check for updates (%1).</source>
       <translation>Güncelleştirmeler kontrol edilemedi (%1).</translation>
     </message>

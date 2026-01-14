@@ -797,79 +797,99 @@ Expected one of: %2</source>
       <translation>chaîne de caractère</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="30"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Interface de ligne de commandes de SQLiteStudio, SQLite manager.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="32"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Messages de débogage valides sur sortie d’erreur standard.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="35"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Permet le débogage avec l’analyseur syntaxique de Lemon pour l’assistant SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="34"/>
+      <location filename="../main.cpp" line="36"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Liste les plugins installés dans SQLiteStudio et quitte.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="36"/>
+      <location filename="../main.cpp" line="38"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
       <translation>Exécute le fichier SQL fourni (y compris toutes les fonctionnalités riches de l&apos;exécuteur de requête SQLiteStudio) sur le fichier de base de données spécifié et quitte. Le paramètre de la base de données devient obligatoire si cette option est utilisée.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="39"/>
+      <location filename="../main.cpp" line="41"/>
       <source>SQL file</source>
       <translation>Fichier SQL</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="40"/>
+      <location filename="../main.cpp" line="42"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
       <translation>Encodage de caractères à utiliser lors de la lecture de fichier SQL (-e option). Utilisez -cl pour lister les codecs disponibles. Par défaut, %1.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="43"/>
+      <location filename="../main.cpp" line="45"/>
       <source>codec</source>
       <translation>codec</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="44"/>
+      <location filename="../main.cpp" line="46"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
       <translation>Liste les codecs disponibles à utiliser avec l&apos;option -c et quitte.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="46"/>
+      <location filename="../main.cpp" line="48"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
       <translation>Lorsqu&apos;elle est utilisée avec l&apos;option -e, l&apos;exécution ne s&apos;arrêtera pas sur une erreur, mais se poursuivra jusqu&apos;à la fin, ignorant les erreurs.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="52"/>
+      <source>Checks for updates online and prints the result to standard output.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="64"/>
       <source>file</source>
       <translation>Fichier</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="64"/>
       <source>Database file to open</source>
       <translation>Base de données à ouvrir</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="78"/>
+      <location filename="../main.cpp" line="85"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation>Codec invalide : %1. Utilisez l&apos;option -cl pour lister les codecs disponibles.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="108"/>
+      <location filename="../main.cpp" line="120"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation>L&apos;argument du fichier de la base de données est obligatoire lors de l&apos;exécution du fichier SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="114"/>
+      <location filename="../main.cpp" line="126"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation>Impossible d&apos;ouvrir la base de données spécifiée pour l&apos;exécution de fichier SQL. Vous devriez essayer d&apos;utiliser l&apos;option -d pour trouver plus de détails.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="171"/>
+      <source>New updates are available: %1. Url: %2</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="175"/>
+      <source>You&apos;re running the most recent version. No updates are available.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="179"/>
+      <source>Error checking for updates: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
 </TS>

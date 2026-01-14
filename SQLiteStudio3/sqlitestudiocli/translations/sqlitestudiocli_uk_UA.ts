@@ -798,79 +798,99 @@ Expected one of: %2</source>
       <translation>рядок</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="28"/>
+      <location filename="../main.cpp" line="30"/>
       <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Інтерфейс командного рядка для SQLiteStudio, менеджера баз даних SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="32"/>
+      <location filename="../main.cpp" line="34"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Вмикає повідомлення налагодження при звичайному виході помилки.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="33"/>
+      <location filename="../main.cpp" line="35"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Включає вивід налагоджувальних повідомлень аналізатора Lemon для автодоповнення SQL коду.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="34"/>
+      <location filename="../main.cpp" line="36"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Виводить список встановлених в SQLiteStudio модулів і здійснює вихід.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="36"/>
+      <location filename="../main.cpp" line="38"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
       <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="39"/>
+      <location filename="../main.cpp" line="41"/>
       <source>SQL file</source>
       <translation type="unfinished">SQL file</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="40"/>
+      <location filename="../main.cpp" line="42"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
       <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="43"/>
+      <location filename="../main.cpp" line="45"/>
       <source>codec</source>
       <translation type="unfinished">codec</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="44"/>
+      <location filename="../main.cpp" line="46"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
       <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="46"/>
+      <location filename="../main.cpp" line="48"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
       <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="52"/>
+      <source>Checks for updates online and prints the result to standard output.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="64"/>
       <source>file</source>
       <translation>файл</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="64"/>
       <source>Database file to open</source>
       <translation>Файл бази даних для відкриття</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="78"/>
+      <location filename="../main.cpp" line="85"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="108"/>
+      <location filename="../main.cpp" line="120"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="114"/>
+      <location filename="../main.cpp" line="126"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="171"/>
+      <source>New updates are available: %1. Url: %2</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="175"/>
+      <source>You&apos;re running the most recent version. No updates are available.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../main.cpp" line="179"/>
+      <source>Error checking for updates: %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
 </TS>

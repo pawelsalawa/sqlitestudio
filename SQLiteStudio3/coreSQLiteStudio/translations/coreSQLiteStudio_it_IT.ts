@@ -1134,7 +1134,7 @@ La vista rimarrà così com&apos;è.</translation>
   <context>
     <name>UpdateManager</name>
     <message>
-      <location filename="../services/updatemanager.cpp" line="92"/>
+      <location filename="../services/updatemanager.cpp" line="95"/>
       <source>Could not check for updates (%1).</source>
       <translation>Impossibile controllare gli aggiornamenti: (%1).</translation>
     </message>
