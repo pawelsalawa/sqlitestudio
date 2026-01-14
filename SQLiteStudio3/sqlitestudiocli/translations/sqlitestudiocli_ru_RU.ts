@@ -848,7 +848,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="52"/>
       <source>Checks for updates online and prints the result to standard output.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="64"/>
@@ -878,17 +878,17 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="171"/>
       <source>New updates are available: %1. Url: %2</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">New updates are available: %1. Url: %2</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="175"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="179"/>
       <source>Error checking for updates: %1</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Error checking for updates: %1</translation>
     </message>
   </context>
 </TS>
