@@ -141,7 +141,8 @@ jobs:
                 curl -L "$ICU_URL" | tar -xf - --zstd
                 mv mingw64 icu
                 tee -a $GITHUB_ENV <<EOF_ENV
-                ICU_FLAGS=-I$(pwd)/icu/include -L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
+                ICU_CFLAGS=-I$(pwd)/icu/include
+                ICU_LDFLAGS=-L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
                 ICU_LIBDIR=$(pwd)/icu/bin
                 ZLIB_FLAGS=-lzlib1
                 EOF_ENV
@@ -159,15 +160,15 @@ jobs:
                 FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../include -L../lib -lsqlite3"
                 set -x
                 for f in compress sqlar; do
-                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lzlib1 -o ../ext/$f.dll
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS $ZLIB_FLAGS -o ../ext/$f.dll
                 done
                 
                 for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
-                # for f in icu; do
-                #     $GCC_COMMAND icu/$f.c -I../icu/include -L../icu/lib -licuio -licuin -licuuc -licudt $FLAGS -o ../ext/$f.dll
-                # done
+                for f in icu; do
+                    $GCC_COMMAND icu/$f.c $ICU_CFLAGS $ICU_LDFLAGS $FLAGS -o ../ext/$f.dll
+                done
                 set +x
                 ls -l ../ext/
 
