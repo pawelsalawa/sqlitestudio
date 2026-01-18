@@ -2,10 +2,13 @@
 #define ERDEFFECTIVECHANGEMERGER_H
 
 #include "erdeffectivechange.h"
+#include "common/global.h"
+#include "db/db.h"
 #include <QStringList>
+#include <QUuid>
+#include <QScopeGuard>
 
 class ErdChange;
-class Db;
 
 /**
  * @brief The ErdEffectiveChangeMerger class is responsible for merging multiple ErdChange instances
@@ -62,6 +65,12 @@ class ErdEffectiveChangeMerger
         static QStringList readDbSchema(Db* db);
 
     private:
+        struct TableModifierAftermath
+        {
+            QStringList modifiedTables;
+            QStringList modifiedViews;
+        };
+
         QList<ErdChange*> flatten(const QList<ErdChange*>& changes);
         ErdEffectiveChange merge(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
         ErdEffectiveChange mergeToCreateChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
@@ -115,12 +124,22 @@ class ErdEffectiveChangeMerger
         void executeOneChangeOnBothDbs(ErdEffectiveChange change, Db* referenceDb, Db* workingDb);
 
         /**
+         * @brief Executes the provided effective change on the specified database.
+         * @param change Effective change to be executed.
+         * @param db Database to execute the change on.
+         *
+         * This method applies the effective change to the given database. No transactions are involved,
+         * so the caller is responsible for managing transactions if needed.
+         */
+        void executeOnDb(ErdEffectiveChange change, Db* db);
+
+        /**
          * @brief Generates DDL statements for the provided effective change using the specified database.
          * @param change Effective change to generate DDL for.
          * @param db Database to use for generating the DDL statements.
          * @return List of DDL statements representing the effective change.
          */
-        QStringList generateDdl(const ErdEffectiveChange& change, Db* db);
+        QStringList generateDdl(const ErdEffectiveChange& change, Db* db, TableModifierAftermath& aftermath);
 
         /**
          * @brief Gets DDL statements for the provided effective change using the specified database,
@@ -131,9 +150,35 @@ class ErdEffectiveChangeMerger
          */
         QStringList getDdlForChange(const ErdEffectiveChange& change, Db* db);
 
+        /**
+         * @brief Creates a scope guard that rolls back to a savepoint in both databases upon scope exit.
+         * @param referenceDb In-memory db with schema for applying reference changes.
+         * @param workingDb In-memory db with schema for applying merged changes.
+         * @return Scope guard that rolls back to the savepoint in both databases when it goes out of scope.
+         *
+         * This is to be used when testing changes on both databases, so that any changes made during the test
+         * are rolled back automatically when the scope is exited.
+         */
+        auto scopedTxRollback(Db* referenceDb, Db* workingDb)
+        {
+            static_qstring(savepointTpl, "SAVEPOINT '%1'");
+            static_qstring(rollbackToTpl, "ROLLBACK TO '%1'");
+
+            QString testSavepoint = QUuid::createUuid().toString(QUuid::WithoutBraces);
+            referenceDb->exec(savepointTpl.arg(testSavepoint));
+            workingDb->exec(savepointTpl.arg(testSavepoint));
+
+            return qScopeGuard([referenceDb, workingDb, testSavepoint]()
+            {
+                referenceDb->exec(rollbackToTpl.arg(testSavepoint));
+                workingDb->exec(rollbackToTpl.arg(testSavepoint));
+            });
+        }
+
         QStringList schemaBase;
         QString dbName;
         QHash<QString, QStringList> ddlCacheByChangeId;
+        QHash<QString, TableModifierAftermath> aftermathByChangeId;
 };
 
 #endif // ERDEFFECTIVECHANGEMERGER_H

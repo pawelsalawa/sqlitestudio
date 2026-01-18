@@ -7,6 +7,11 @@ ErdEffectiveChange::ErdEffectiveChange(Type type, const QString& description) :
     id = QUuid::createUuid().toString();
 }
 
+QStringList ErdEffectiveChange::getRawDdl() const
+{
+    return rawDdl;
+}
+
 QString ErdEffectiveChange::getId() const
 {
     return id;
@@ -42,7 +47,11 @@ QString ErdEffectiveChange::getTableName() const
             return tableName;
         case Type::MODIFY:
             return before->table;
+        case Type::RAW:
+            break;
         case Type::INVALID:
+            break;
+        case Type::NOOP:
             break;
     }
     qCritical() << "ErdEffectiveChange::getTableName: Unknown type" << static_cast<int>(type)
@@ -79,5 +88,12 @@ ErdEffectiveChange ErdEffectiveChange::modify(const SqliteCreateTablePtr& before
     ErdEffectiveChange change(Type::MODIFY, description);
     change.before = before;
     change.after = after;
+    return change;
+}
+
+ErdEffectiveChange ErdEffectiveChange::raw(const QStringList& ddl, const QString& description)
+{
+    ErdEffectiveChange change(Type::RAW, description);
+    change.rawDdl = ddl;
     return change;
 }

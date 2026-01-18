@@ -12,6 +12,7 @@ class ErdEffectiveChange
             DROP,
             CREATE,
             NOOP, // to reflect no effective change, e.g., when a created table is later dropped
+            RAW, // to reflect an explicit change that should not be merged away
             INVALID
         };
 
@@ -21,6 +22,7 @@ class ErdEffectiveChange
         static ErdEffectiveChange drop(const QString& tableName, const QString& description);
         static ErdEffectiveChange create(const SqliteCreateTablePtr& after, const QString& description);
         static ErdEffectiveChange modify(const SqliteCreateTablePtr& before, const SqliteCreateTablePtr& after, const QString& description);
+        static ErdEffectiveChange raw(const QStringList& ddl, const QString& description);
 
         Type getType() const;
         QString getTableName() const;
@@ -29,6 +31,8 @@ class ErdEffectiveChange
         QString getDescription() const;
         bool isValid() const;
         QString getId() const;
+
+        QStringList getRawDdl() const;
 
     private:
         ErdEffectiveChange(Type type, const QString& description);
@@ -39,6 +43,7 @@ class ErdEffectiveChange
         SqliteCreateTablePtr after;
         QString description;
         QString id;
+        QStringList rawDdl;
 };
 
 #endif // ERDEFFECTIVECHANGE_H

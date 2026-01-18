@@ -11,8 +11,6 @@
 #include "db/chainexecutor.h"
 #include "changes/erdchangecomposite.h"
 #include "common/unused.h"
-#include <QScopeGuard>
-#include <QUuid>
 
 ErdEffectiveChangeMerger::ErdEffectiveChangeMerger(const QStringList& schemaBase, const QString& dbName) :
     schemaBase(schemaBase), dbName(dbName)
@@ -23,6 +21,7 @@ QList<ErdEffectiveChange> ErdEffectiveChangeMerger::merge(const QList<ErdChange*
 {
     static_qstring(savepointTpl, "SAVEPOINT '%1'");
     static_qstring(rollbackToTpl, "ROLLBACK TO '%1'");
+    static_qstring(disableFkTpl, "PRAGMA foreign_keys = 0;");
     static_qstring(startingSavepoint, "erd_change_compacting_start");
 
     ddlCacheByChangeId.clear();
@@ -47,7 +46,10 @@ QList<ErdEffectiveChange> ErdEffectiveChangeMerger::merge(const QList<ErdChange*
     if (result.isEmpty())
         return {};
 
-    // Prepare initial state in both DBs
+    // Prepare initial state in both DBs.
+    // FK enforcing is disabled prior to any transactions - otherwise it would have no effect.
+    referenceDb->exec(disableFkTpl);
+    workingDb->exec(disableFkTpl);
     referenceDb->exec(savepointTpl.arg(startingSavepoint));
     workingDb->exec(savepointTpl.arg(startingSavepoint));
 
@@ -133,6 +135,8 @@ ErdEffectiveChange ErdEffectiveChangeMerger::merge(const QList<ErdEffectiveChang
             break;
         case ErdEffectiveChange::NOOP:
             return workingList[idx];
+        case ErdEffectiveChange::RAW:
+            return workingList[idx];
     }
     qCritical() << "ErdEffectiveChangeMerger::merge: Unsupported effective change type" << int(workingList[idx].getType())
                 << ", desc:" << workingList[idx].getDescription();
@@ -162,7 +166,16 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(c
     // General strategy here is to first perform mergers ahead if possible.
     // Then take result and try to merge with this CREATE.
     int targetIdx = idx + 1;
-    ErdEffectiveChange changeToMerge = mergeToModifyChange(theList, targetIdx, referenceDb, workingDb);
+    ErdEffectiveChange changeToMerge;
+
+    // Calculate merged MODIFY ahead
+    {
+        // Temporarily apply the starting CREATE, so that subsequent MODIFY's can be merged properly
+        auto createRollback = scopedTxRollback(referenceDb, workingDb);
+        executeOneChangeOnBothDbs(theList[idx], referenceDb, workingDb);
+        changeToMerge = mergeToModifyChange(theList, targetIdx, referenceDb, workingDb);
+    }
+
     ErdEffectiveChange createChange = theList[idx];
     if (changeToMerge.getType() == ErdEffectiveChange::MODIFY &&
         changeToMerge.getTableName() == createChange.getAfter()->table)
@@ -175,7 +188,22 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(c
         if (success)
         {
             idx = targetIdx; // Move idx ahead to point to last merged change
-            qDebug() << "Merged CREATE and MODIFY changes for table" << after->table << "into one.";
+            qDebug() << "Merged CREATE and MODIFY changes for table" << after->table << "into one CREATE.";
+            return mergedChange;
+        }
+    }
+
+    if (changeToMerge.getType() == ErdEffectiveChange::DROP &&
+        changeToMerge.getTableName() == createChange.getAfter()->table)
+    {
+        // Subsequent changes were merged into DROP, so we have case of: CREATE + (MODIFY... + DROP -> DROP)
+        // Merge CREATE + (MODIFY... + DROP -> DROP) into single NOOP
+        ErdEffectiveChange mergedChange = ErdEffectiveChange::noop();
+        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, targetIdx - idx + 1), referenceDb, workingDb);
+        if (success)
+        {
+            idx = targetIdx; // Move idx ahead to point to last merged change
+            qDebug() << "Merged CREATE and DROP changes for table" << changeToMerge.getTableName() << "into NOOP.";
             return mergedChange;
         }
     }
@@ -185,6 +213,10 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(c
 ErdEffectiveChange ErdEffectiveChangeMerger::mergeDropToCreateChange(const QList<ErdEffectiveChange>& theList,
                                                           int& idx, Db* referenceDb, Db* workingDb)
 {
+    // Temporarily apply the starting CREATE, so that subsequent DROP can be merged properly
+    auto createRollback = scopedTxRollback(referenceDb, workingDb);
+    executeOneChangeOnBothDbs(theList[idx], referenceDb, workingDb);
+
     // If we DROP right after CREATE, we can merge both into NOOP.
     // First perform any DROP mergers ahead if possible.
     int targetIdx = idx + 1;
@@ -208,9 +240,73 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeDropToCreateChange(const QList
 ErdEffectiveChange ErdEffectiveChangeMerger::mergeToDropChange(const QList<ErdEffectiveChange>& theList,
                                                         int& idx, Db* referenceDb, Db* workingDb)
 {
-    UNUSED(referenceDb);
-    UNUSED(workingDb);
-    // No merging strategy for DROP change yet
+    int localIdx = idx;
+    QStringList changesToProcess;
+    QHash<QString, QSet<QString>> idToAffectedTables;
+    QSet<QString> affectedTablesSoFar;
+    QStringList tablesToDropSoFar;
+
+    {
+        auto rollbackTx = scopedTxRollback(referenceDb, workingDb);
+        while (localIdx < theList.size())
+        {
+            ErdEffectiveChange next = theList[localIdx];
+            if (next.getType() != ErdEffectiveChange::DROP)
+                break;
+
+            // To populate aftermath cache if not done yet we need to execute each change,
+            // so that all referenced tables are discovered properly.
+            executeOnDb(next, referenceDb);
+
+            QString id = next.getId();
+            changesToProcess << id;
+
+            tablesToDropSoFar << next.getTableName();
+            affectedTablesSoFar.unite(toSet(aftermathByChangeId.value(id).modifiedTables));
+            idToAffectedTables.insert(id, affectedTablesSoFar);
+
+            localIdx++;
+        }
+
+        if (localIdx >= theList.size())
+        {
+            // All changes were DROPs, but because of that the localIdx was incremented beyond the list size.
+            localIdx--;
+        }
+    }
+
+    while (!changesToProcess.isEmpty())
+    {
+        QString id = changesToProcess.last();
+        if (contains(tablesToDropSoFar, idToAffectedTables[id], Qt::CaseInsensitive))
+        {
+            // All affected tables are among the ones being dropped - we can merge this DROP
+            break;
+        }
+        tablesToDropSoFar.removeLast();
+        changesToProcess.removeLast();
+        localIdx--;
+    }
+
+    int stepsToMerge = localIdx - idx;
+    if (stepsToMerge > 0)
+    {
+        static_qstring(rawDropDdl, "DROP TABLE %1;");
+        QStringList ddls;
+        for (int i = idx; i <= localIdx; i++)
+            ddls << rawDropDdl.arg(wrapObjIfNeeded(theList[i].getTableName()));
+
+        QString desc = QObject::tr("Drop tables: %1", "ERD editor").arg(tablesToDropSoFar.join(", "));
+        ErdEffectiveChange mergedChange = ErdEffectiveChange::raw(ddls, desc);
+        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, stepsToMerge + 1), referenceDb, workingDb);
+        if (success)
+        {
+            qDebug() << "Merged multiple DROP changes for tables" << tablesToDropSoFar << "into RAW.";
+            idx += stepsToMerge;
+            return mergedChange;
+        }
+    }
+
     return theList[idx];
 }
 
@@ -269,7 +365,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToOne(const QLis
             if (success)
             {
                 idx += stepsToMerge;
-                qDebug() << "Merged" << (stepsToMerge + 1) << "MODIFY changes for table" << before->table << "into one.";
+                qDebug() << "Merged" << (stepsToMerge + 1) << "MODIFY changes for table" << before->table << "into one MODIFY.";
                 return mergedChange;
             }
             stepsToMerge--;
@@ -295,7 +391,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeModifyToDropAhead(const QList<
         if (success)
         {
             idx++;
-            qDebug() << "Merged MODIFY and DROP changes for table" << beforeTableName << "into one.";
+            qDebug() << "Merged MODIFY and DROP changes for table" << beforeTableName << "into one DROP.";
             return mergedChange;
         }
     }
@@ -313,25 +409,14 @@ QString ErdEffectiveChangeMerger::schemaSnapshot(Db* db)
 bool ErdEffectiveChangeMerger::testAgainstOriginal(ErdEffectiveChange mergedChange, const QList<ErdEffectiveChange>& referenceChanges,
                                                Db* referenceDb, Db* workingDb)
 {
-    static_qstring(savepointTpl, "SAVEPOINT '%1'");
-    static_qstring(rollbackToTpl, "ROLLBACK TO '%1'");
-
     ChainExecutor executor;
     executor.setTransaction(false);
     executor.setAsync(false);
     executor.setDisableForeignKeys(true);
     executor.setDisableObjectDropsDetection(true);
 
-    QString testSavepoint = QUuid::createUuid().toString(QUuid::WithoutBraces);
-    referenceDb->exec(savepointTpl.arg(testSavepoint));
-    workingDb->exec(savepointTpl.arg(testSavepoint));
-
     // Always rollback whatever is done in this method
-    auto rollbackGuard = qScopeGuard([&]()
-    {
-        referenceDb->exec(rollbackToTpl.arg(testSavepoint));
-        workingDb->exec(rollbackToTpl.arg(testSavepoint));
-    });
+    auto rollbackGuard = scopedTxRollback(referenceDb, workingDb);
 
     // Apply related changes to reference DB
     executor.setDb(referenceDb);
@@ -414,17 +499,35 @@ void ErdEffectiveChangeMerger::executeOneChangeOnBothDbs(ErdEffectiveChange chan
     referenceDb->exec(releaseSavepointTpl.arg(savepoint));
 }
 
+void ErdEffectiveChangeMerger::executeOnDb(ErdEffectiveChange change, Db* db)
+{
+    ChainExecutor executor;
+    executor.setTransaction(false);
+    executor.setAsync(false);
+    executor.setDisableForeignKeys(true);
+    executor.setDisableObjectDropsDetection(true);
+
+    QStringList ddl = getDdlForChange(change, db);
+    executor.setQueries(ddl);
+    executor.setDb(db);
+    executor.exec();
+    if (!executor.getSuccessfulExecution())
+        qCritical() << "Failed to execute change on DB:" << executor.getErrorsMessages();
+}
+
 QStringList ErdEffectiveChangeMerger::getDdlForChange(const ErdEffectiveChange& change, Db* db)
 {
     if (ddlCacheByChangeId.contains(change.getId()))
         return ddlCacheByChangeId[change.getId()];
 
-    QStringList ddl = generateDdl(change, db);
+    TableModifierAftermath aftermath;
+    QStringList ddl = generateDdl(change, db, aftermath);
     ddlCacheByChangeId.insert(change.getId(), ddl);
+    aftermathByChangeId.insert(change.getId(), aftermath);
     return ddl;
 }
 
-QStringList ErdEffectiveChangeMerger::generateDdl(const ErdEffectiveChange& change, Db* db)
+QStringList ErdEffectiveChangeMerger::generateDdl(const ErdEffectiveChange& change, Db* db, TableModifierAftermath& aftermath)
 {
     switch (change.getType())
     {
@@ -435,15 +538,23 @@ QStringList ErdEffectiveChangeMerger::generateDdl(const ErdEffectiveChange& chan
         case ErdEffectiveChange::DROP:
         {
             TableModifier modifier(db, change.getTableName());
+            modifier.setDisableFkEnforcement(false);
             modifier.dropTable();
+            aftermath.modifiedTables = modifier.getModifiedTables();
+            aftermath.modifiedViews = modifier.getModifiedViews();
             return modifier.getGeneratedSqls();
         }
         case ErdEffectiveChange::MODIFY:
         {
             TableModifier modifier(db, change.getBefore()->table, change.getBefore());
+            modifier.setDisableFkEnforcement(false);
             modifier.alterTable(change.getAfter());
+            aftermath.modifiedTables = modifier.getModifiedTables();
+            aftermath.modifiedViews = modifier.getModifiedViews();
             return modifier.getGeneratedSqls();
         }
+        case ErdEffectiveChange::RAW:
+            return change.getRawDdl();
         case ErdEffectiveChange::INVALID:
             break;
         case ErdEffectiveChange::NOOP:

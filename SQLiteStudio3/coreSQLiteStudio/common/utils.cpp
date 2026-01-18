@@ -1142,3 +1142,96 @@ QStringList unique(const QStringList& list, Qt::CaseSensitivity cs)
         return true;
     });
 }
+
+bool contains(const QStringList& list, const QStringList& searched, Qt::CaseSensitivity cs)
+{
+    int searchedSize = searched.size();
+    if (searchedSize == 0)
+        return true;
+
+    int listSize = list.size();
+    if (listSize == 0)
+        return false;
+
+    for (int i = 0; i <= listSize - searchedSize; i++)
+    {
+        bool allMatch = true;
+        for (int j = 0; j < searchedSize; j++)
+        {
+            if (list[i + j].compare(searched[j], cs) != 0)
+            {
+                allMatch = false;
+                break;
+            }
+        }
+        if (allMatch)
+            return true;
+    }
+    return false;
+}
+
+bool contains(const QSet<QString>& set, const QStringList& searched, Qt::CaseSensitivity cs)
+{
+    if (cs == Qt::CaseSensitive)
+        return set.contains(toSet(searched));
+
+    for (const QString& item : searched)
+    {
+        bool found = false;
+        for (const QString& setItem : set)
+        {
+            if (setItem.compare(item, Qt::CaseInsensitive) == 0)
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            return false;
+    }
+    return true;
+}
+
+bool contains(const QStringList& list, const QSet<QString>& searched, Qt::CaseSensitivity cs)
+{
+    if (cs == Qt::CaseSensitive)
+        return toSet(list).contains(searched);
+
+    for (const QString& item : searched)
+    {
+        bool found = false;
+        for (const QString& listItem : list)
+        {
+            if (listItem.compare(item, Qt::CaseInsensitive) == 0)
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            return false;
+    }
+    return true;
+}
+
+bool contains(const QSet<QString>& list, const QSet<QString>& searched, Qt::CaseSensitivity cs)
+{
+    if (cs == Qt::CaseSensitive)
+        return list.contains(searched);
+
+    for (const QString& item : searched)
+    {
+        bool found = false;
+        for (const QString& listItem : list)
+        {
+            if (listItem.compare(item, Qt::CaseInsensitive) == 0)
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            return false;
+    }
+    return true;
+}

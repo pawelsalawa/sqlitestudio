@@ -36,6 +36,8 @@ class API_EXPORT TableModifier
         QStringList getModifiedTriggers() const;
         QStringList getModifiedViews() const;
         bool hasMessages() const;
+        bool getDisableFkEnforcement() const;
+        void setDisableFkEnforcement(bool newDisableFkEnforcement);
 
     private:
         void init();
@@ -171,6 +173,7 @@ class API_EXPORT TableModifier
         QStringList modifiedTriggers;
         QStringList modifiedViews;
         QStringList usedTempTableNames;
+        bool disableFkEnforcement = true;
 };
 
 

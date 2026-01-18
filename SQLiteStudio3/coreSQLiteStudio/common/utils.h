@@ -321,6 +321,11 @@ API_EXPORT void runInThread(std::function<void()> func);
 
 API_EXPORT bool isNull(const QVariant& v);
 
+API_EXPORT bool contains(const QStringList& list, const QStringList& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+API_EXPORT bool contains(const QSet<QString>& set, const QStringList& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+API_EXPORT bool contains(const QStringList& list, const QSet<QString>& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+API_EXPORT bool contains(const QSet<QString>& list, const QSet<QString>& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+
 Q_DECLARE_METATYPE(QList<int>)
 
 #endif // UTILS_H

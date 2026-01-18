@@ -53,7 +53,8 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     existingColumns = newCreateTable->getColumnNames();
     newName = newCreateTable->table;
 
-    sqls << "PRAGMA foreign_keys = 0;";
+    if (disableFkEnforcement)
+        sqls << "PRAGMA foreign_keys = 0;";
 
     handleFkConstrains(newCreateTable.data(), createTable->table, newName);
 
@@ -77,7 +78,8 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     handleTriggers();
     handleViews();
 
-    sqls << "PRAGMA foreign_keys = 1;";
+    if (disableFkEnforcement)
+        sqls << "PRAGMA foreign_keys = 1;";
 }
 
 void TableModifier::dropTable()
@@ -87,6 +89,7 @@ void TableModifier::dropTable()
     for (QString& parTable : parentTables)
     {
         TableModifier parentTabMod(db, database, parTable);
+        parentTabMod.setDisableFkEnforcement(disableFkEnforcement);
         parentTabMod.removeFks(table);
         importResultsFromSubmodier(parentTabMod);
         modifiedTables << parTable;
@@ -254,6 +257,7 @@ void TableModifier::handleFks()
             continue; // Avoid recurrent FK handling
 
         TableModifier subModifier(db, fkTable);
+        subModifier.setDisableFkEnforcement(disableFkEnforcement);
         if (!subModifier.isValid())
         {
             warnings << QObject::tr("Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition "
@@ -575,6 +579,16 @@ QList<SqliteCreateTable::Column*> TableModifier::getColumnsToCopyData(SqliteCrea
         resultColumns << column;
     }
     return resultColumns;
+}
+
+bool TableModifier::getDisableFkEnforcement() const
+{
+    return disableFkEnforcement;
+}
+
+void TableModifier::setDisableFkEnforcement(bool newDisableFkEnforcement)
+{
+    disableFkEnforcement = newDisableFkEnforcement;
 }
 
 void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)

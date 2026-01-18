@@ -43,7 +43,7 @@ ErdEffectiveChange ErdChangeDeleteEntity::toEffectiveChange() const
 
 QString ErdChangeDeleteEntity::defaultDescription(const QString& tableName)
 {
-    return QObject::tr("Delete table \"%1\".", "ERD editor").arg(tableName);
+    return QObject::tr("Drop table \"%1\".", "ERD editor").arg(tableName);
 }
 
 QStringList ErdChangeDeleteEntity::getChangeDdl()
