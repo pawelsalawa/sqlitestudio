@@ -16,16 +16,18 @@ class API_EXPORT TableModifier
 {
     public:
         TableModifier(Db* db, const QString& table);
+        TableModifier(Db* db, const QString& table, SqliteCreateTablePtr existingCreateTable);
         TableModifier(Db* db, const QString& database, const QString& table);
+        TableModifier(Db* db, const QString& database, const QString& table, SqliteCreateTablePtr existingCreateTable);
 
         void alterTable(SqliteCreateTablePtr newCreateTable);
         void dropTable();
         void removeFks(const QString& referencedTable);
         void removeColumnFk(const QString& referencedTable, const QString& srcColumn, const QString& trgColumn);
         void removeCompoundFk(const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
-        void removeFk(const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
+        SqliteCreateTablePtr removeFk(const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
 
-        QStringList generateSqls() const;
+        QStringList getGeneratedSqls() const;
         bool isValid() const;
         QStringList getErrors() const;
         QStringList getWarnings() const;

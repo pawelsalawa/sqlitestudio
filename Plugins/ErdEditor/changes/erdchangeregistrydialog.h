@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QTreeWidgetItem>
+#include "changes/erdeffectivechange.h"
+#include "erdeffectivechangemerger.h"
 
 class ErdChangeRegistry;
 class Db;
@@ -17,7 +19,8 @@ class ErdChangeRegistryDialog : public QDialog
         Q_OBJECT
 
     public:
-        explicit ErdChangeRegistryDialog(Db* db, ErdChangeRegistry* changeRegistry, QWidget *parent = nullptr);
+        explicit ErdChangeRegistryDialog(Db* db, ErdChangeRegistry* changeRegistry, const QStringList& schemaBase,
+                                         QWidget *parent = nullptr);
         ~ErdChangeRegistryDialog();
 
     private:
@@ -28,11 +31,16 @@ class ErdChangeRegistryDialog : public QDialog
         };
 
         void populateTree();
+        void populateEffectiveChanges();
+        void selectFirstVisibleItem();
         QTreeWidgetItem* createItemFromChange(int& labelIdx, ErdChange* change);
+        QTreeWidgetItem* createItemFromChange(int& labelIdx, const ErdEffectiveChange& change,
+                                              const ErdEffectiveChangeMerger& merger);
 
         Ui::ErdChangeRegistryDialog *ui;
         Db* db = nullptr;
         ErdChangeRegistry* changeRegistry = nullptr;
+        QStringList schemaBase;
 
     private slots:
         void handleItemSelected(QTreeWidgetItem* item);

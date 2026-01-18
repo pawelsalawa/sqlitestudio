@@ -9,13 +9,15 @@ DEFINES += ERDEDITOR_LIBRARY
 
 SOURCES += \
     changes/erdchangecolorentity.cpp \
+    changes/erdchangemodifyentity.cpp \
     changes/erdchangemoveentity.cpp \
+    changes/erdeffectivechange.cpp \
+    changes/erdeffectivechangemerger.cpp \
     scene/erdarrowitem.cpp \
     changes/erdchange.cpp \
     changes/erdchangecomposite.cpp \
     changes/erdchangedeleteconnection.cpp \
     changes/erdchangedeleteentity.cpp \
-    changes/erdchangeentity.cpp \
     changes/erdchangenewentity.cpp \
     changes/erdchangeregistry.cpp \
     changes/erdchangeregistrydialog.cpp \
@@ -37,13 +39,15 @@ SOURCES += \
 
 HEADERS += \
     changes/erdchangecolorentity.h \
+    changes/erdchangemodifyentity.h \
     changes/erdchangemoveentity.h \
+    changes/erdeffectivechange.h \
+    changes/erdeffectivechangemerger.h \
     scene/erdarrowitem.h \
     changes/erdchange.h \
     changes/erdchangecomposite.h \
     changes/erdchangedeleteconnection.h \
     changes/erdchangedeleteentity.h \
-    changes/erdchangeentity.h \
     changes/erdchangenewentity.h \
     changes/erdchangeregistry.h \
     changes/erdchangeregistrydialog.h \

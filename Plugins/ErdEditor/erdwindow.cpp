@@ -13,7 +13,7 @@
 #include "panel/erdtablewindow.h"
 #include "changes/erdchange.h"
 #include "changes/erdchangeregistry.h"
-#include "changes/erdchangeentity.h"
+#include "changes/erdchangemodifyentity.h"
 #include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
 #include "changes/erdchangecomposite.h"
@@ -26,6 +26,7 @@
 #include "tablemodifier.h"
 #include "common/colorpickerpopup.h"
 #include "common/extlineedit.h"
+#include "changes/erdeffectivechangemerger.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -572,9 +573,11 @@ void ErdWindow::reloadSchema()
             return;
     }
 
+    ui->view->setUpdatesEnabled(false);
     changeRegistry->clear();
     scene->clearScene();
     parseAndRestore(false, MemDbInit::FULL);
+    ui->view->setUpdatesEnabled(true);
 }
 
 void ErdWindow::commitPendingChanges()
@@ -638,7 +641,7 @@ void ErdWindow::abortSidePanel()
 
 void ErdWindow::showChangeRegistry()
 {
-    ErdChangeRegistryDialog dialog(memDb, changeRegistry, this);
+    ErdChangeRegistryDialog dialog(memDb, changeRegistry, cachedDdls, this);
     dialog.exec();
 }
 
@@ -867,47 +870,23 @@ bool ErdWindow::initMemDb(MemDbInit createMemDb)
     if (createMemDb == MemDbInit::NONE)
         return true;
 
-    Db* oldMemDb = memDb; // don't delete it yet, as it will be disconnected from in setDb() methods, etc.
+    if (createMemDb == MemDbInit::FULL || cachedDdls.isEmpty())
+        cachedDdls = ErdEffectiveChangeMerger::readDbSchema(db);
 
-    memDb = DBLIST->createInMemDb();
-    memDb->setName(db->getName()); // same name as original, so that all functions/collations/extensions are loaded when open
-    if (!memDb->openQuiet())
+    Db* oldMemDb = memDb; // don't delete it yet, as it will be disconnected from in setDb() methods, etc.
+    memDb = ErdEffectiveChangeMerger::createMemDbWithSchema(cachedDdls, db->getName());
+    if (!memDb)
     {
-        qCritical() << "Failed to open in-memory database required for ERD editor! Db error:" << memDb->getErrorText();
+        memDb = oldMemDb;
         return false;
     }
-    scene->setDb(memDb);
 
+    scene->setDb(memDb);
     if (oldMemDb)
     {
         oldMemDb->closeQuiet();
         delete oldMemDb;
     }
-
-    // Now copy schema to memdb
-    QStringList ddls;
-    if (createMemDb == MemDbInit::FULL || cachedDdls.isEmpty())
-    {
-        // Order must be: tables, views, triggers, other. It's because they can be created "on" tables" and "on views".
-        SqlQueryPtr tableResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'");
-        SqlQueryPtr viewResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'view' AND name NOT LIKE 'sqlite_%'");
-        SqlQueryPtr triggerResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'trigger' AND name NOT LIKE 'sqlite_%'");
-        SqlQueryPtr indexResults = db->exec("SELECT sql FROM sqlite_schema WHERE type = 'index' AND name NOT LIKE 'sqlite_%'");
-
-        for (const SqlQueryPtr& results : {tableResults, viewResults, triggerResults, indexResults})
-        {
-            for (SqlResultsRowPtr& row : results->getAll())
-                ddls << row->value("sql").toString();
-        }
-
-        cachedDdls = ddls;
-    }
-    else
-    {
-        ddls = cachedDdls;
-    }
-    for (QString& ddl : ddls)
-        memDb->exec(ddl);
 
     return true;
 }

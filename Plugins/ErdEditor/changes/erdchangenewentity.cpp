@@ -1,14 +1,15 @@
 #include "erdchangenewentity.h"
+#include "erdeffectivechange.h"
 #include "scene/erdentity.h"
 
 ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description) :
     ErdChange(description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable)
 {
+    createTable->rebuildTokens();
 }
 
 QStringList ErdChangeNewEntity::getChangeDdl()
 {
-    createTable->rebuildTokens();
     return {createTable->detokenize()};
 }
 
@@ -41,4 +42,14 @@ void ErdChangeNewEntity::applyRedo(ErdScene::SceneChangeApi& api)
     api.refreshEntitiesByTableNames({createTable->table});
     api.setEntityPosition(createTable->table, lastPositionBeforeUndo);
     refreshReferencingTables(api);
+}
+
+ErdEffectiveChange ErdChangeNewEntity::toEffectiveChange() const
+{
+    return ErdEffectiveChange::create(createTable, description);
+}
+
+QString ErdChangeNewEntity::defaultDescription(const QString& tableName)
+{
+    return QObject::tr("Create table \"%1\".", "ERD editor").arg(tableName);
 }

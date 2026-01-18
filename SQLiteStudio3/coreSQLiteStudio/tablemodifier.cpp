@@ -22,11 +22,28 @@ TableModifier::TableModifier(Db* db, const QString& table) :
     init();
 }
 
+TableModifier::TableModifier(Db* db, const QString& table, SqliteCreateTablePtr existingCreateTable) :
+    db(db),
+    table(table)
+{
+    this->createTable = existingCreateTable->typeCloneShared<SqliteCreateTable>();
+    init();
+}
+
 TableModifier::TableModifier(Db* db, const QString& database, const QString& table) :
     db(db),
     database(database),
     table(table)
 {
+    init();
+}
+
+TableModifier::TableModifier(Db* db, const QString& database, const QString& table, SqliteCreateTablePtr existingCreateTable) :
+    db(db),
+    database(database),
+    table(table)
+{
+    this->createTable = existingCreateTable->typeCloneShared<SqliteCreateTable>();
     init();
 }
 
@@ -85,7 +102,7 @@ void TableModifier::dropTable()
 
 void TableModifier::removeFks(const QString& referencedTable)
 {
-    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    SqliteCreateTablePtr newCreateTable = createTable->typeCloneShared<SqliteCreateTable>();
     for (auto&& constr : newCreateTable->getForeignKeysByTable(referencedTable))
     {
         newCreateTable->constraints.removeOne(constr);
@@ -103,27 +120,28 @@ void TableModifier::removeFks(const QString& referencedTable)
 
 void TableModifier::removeColumnFk(const QString& referencedTable, const QString& srcColumn, const QString& trgColumn)
 {
-    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    SqliteCreateTablePtr newCreateTable = createTable->typeCloneShared<SqliteCreateTable>();
     processColumnFkRemoval(newCreateTable, referencedTable, srcColumn, trgColumn);
     alterTable(newCreateTable);
 }
 
 void TableModifier::removeCompoundFk(const QString& referencedTable, const QList<QPair<QString, QString>>& tableColumnPairs)
 {
-    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    SqliteCreateTablePtr newCreateTable = createTable->typeCloneShared<SqliteCreateTable>();
     processCompoundFkRemoval(newCreateTable, referencedTable, tableColumnPairs);
     alterTable(newCreateTable);
 }
 
 
-void TableModifier::removeFk(const QString& referencedTable, const QList<QPair<QString, QString>>& tableColumnPairs)
+SqliteCreateTablePtr TableModifier::removeFk(const QString& referencedTable, const QList<QPair<QString, QString>>& tableColumnPairs)
 {
-    SqliteCreateTablePtr newCreateTable = SqliteCreateTablePtr(createTable->typeClone<SqliteCreateTable>());
+    SqliteCreateTablePtr newCreateTable = createTable->typeCloneShared<SqliteCreateTable>();
     processCompoundFkRemoval(newCreateTable, referencedTable, tableColumnPairs);
     for (auto&& pair : tableColumnPairs)
         processColumnFkRemoval(newCreateTable, referencedTable, pair.first, pair.second);
 
     alterTable(newCreateTable);
+    return newCreateTable;
 }
 
 void TableModifier::processColumnFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QString& srcColumn, const QString& trgColumn)
@@ -169,7 +187,7 @@ void TableModifier::renameTo(const QString& newName, bool doCopyData)
 
     if (hasReservedColName)
     {
-        SqliteCreateTable* ctCopy = createTable->typeClone<SqliteCreateTable>();
+        QScopedPointer<SqliteCreateTable> ctCopy(createTable->typeClone<SqliteCreateTable>());
         ctCopy->table = newName;
         ctCopy->rebuildTokens();
         sqls << ctCopy->detokenize();
@@ -185,7 +203,6 @@ void TableModifier::renameTo(const QString& newName, bool doCopyData)
         }
 
         sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
-        delete ctCopy;
     }
     else
     {
@@ -262,7 +279,7 @@ void TableModifier::handleFks()
 
 void TableModifier::importResultsFromSubmodier(TableModifier& subModifier)
 {
-    sqls += subModifier.generateSqls();
+    sqls += subModifier.getGeneratedSqls();
 
     triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
     tablesHandledForFk = subModifier.tablesHandledForFk;
@@ -1081,7 +1098,7 @@ void TableModifier::copyDataTo(const QString& targetTable, const QStringList& sr
                                                                  wrapObjIfNeeded(table));
 }
 
-QStringList TableModifier::generateSqls() const
+QStringList TableModifier::getGeneratedSqls() const
 {
     return sqls;
 }
@@ -1104,7 +1121,8 @@ QStringList TableModifier::getWarnings() const
 void TableModifier::init()
 {
     originalTable = table;
-    parseDdl();
+    if (!createTable)
+        parseDdl();
 }
 
 void TableModifier::parseDdl()

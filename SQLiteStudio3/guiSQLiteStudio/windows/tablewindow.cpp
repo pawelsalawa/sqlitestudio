@@ -385,7 +385,7 @@ QStringList TableWindow::generateStructureChangeStatements()
                 return QStringList();
         }
 
-        sqls = tableModifier->generateSqls();
+        sqls = tableModifier->getGeneratedSqls();
     }
     return sqls;
 }

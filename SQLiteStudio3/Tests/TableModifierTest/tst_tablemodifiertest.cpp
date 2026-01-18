@@ -54,7 +54,7 @@ void TableModifierTest::testCase1()
     TableModifier mod(db, "test");
     createTable->table = "test2";
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -89,7 +89,7 @@ void TableModifierTest::testCase2()
     TableModifier mod(db, "test");
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -131,7 +131,7 @@ void TableModifierTest::testCase3()
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -175,7 +175,7 @@ void TableModifierTest::testCase4()
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -211,7 +211,7 @@ void TableModifierTest::testCase5()
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -244,7 +244,7 @@ void TableModifierTest::testCase6()
     createTable->table = "newTable";
     createTable->columns.removeAt(1);
     mod.alterTable(createTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.
@@ -283,7 +283,7 @@ void TableModifierTest::testCase7()
     TableModifier mod(db, "abc");
     localCreateTable->table = "newTable";
     mod.alterTable(localCreateTable);
-    QStringList sqls = mod.generateSqls();
+    QStringList sqls = mod.getGeneratedSqls();
 
     /*
      * 1. Disable FK.

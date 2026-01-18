@@ -1,12 +1,15 @@
 #include "erdchangedeleteentity.h"
 #include "common/global.h"
 #include "common/utils_sql.h"
+#include "erdeffectivechange.h"
 #include "tablemodifier.h"
 
 ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, const QPointF& pos, const QColor& customColor, const QString& description) :
     ErdChange(description, true), db(db), tableName(tableName),
     lastPosition(pos), lastCustomColor(customColor)
 {
+    tableModifier = new TableModifier(db, tableName);
+    tableModifier->dropTable();
 }
 
 ErdChangeDeleteEntity::~ErdChangeDeleteEntity()
@@ -33,13 +36,18 @@ void ErdChangeDeleteEntity::applyUndo(ErdScene::SceneChangeApi& api)
         api.setEntityColor(tableName, lastCustomColor);
 }
 
+ErdEffectiveChange ErdChangeDeleteEntity::toEffectiveChange() const
+{
+    return ErdEffectiveChange::drop(tableName, description);
+}
+
+QString ErdChangeDeleteEntity::defaultDescription(const QString& tableName)
+{
+    return QObject::tr("Delete table \"%1\".", "ERD editor").arg(tableName);
+}
+
 QStringList ErdChangeDeleteEntity::getChangeDdl()
 {
-    if (!tableModifier)
-    {
-        tableModifier = new TableModifier(db, tableName);
-        tableModifier->dropTable();
-    }
-    return tableModifier->generateSqls();
+    return tableModifier->getGeneratedSqls();
 }
 

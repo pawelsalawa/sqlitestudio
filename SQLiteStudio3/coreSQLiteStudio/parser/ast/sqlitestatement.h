@@ -243,6 +243,12 @@ class API_EXPORT SqliteStatement : public QObject
         }
 
         template <class T>
+        QSharedPointer<T> typeCloneShared()
+        {
+            return QSharedPointer<T>(dynamic_cast<T*>(clone()));
+        }
+
+        template <class T>
         void attach(QList<T*>& listMemberForChild, T* childStatementToAttach)
         {
             listMemberForChild << childStatementToAttach;

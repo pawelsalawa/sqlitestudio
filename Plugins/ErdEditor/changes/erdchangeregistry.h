@@ -4,15 +4,16 @@
 #include <QObject>
 
 class ErdChange;
+class Db;
+class ErdWindow;
 
 class ErdChangeRegistry : public QObject
 {
     Q_OBJECT
 
     public:
-        explicit ErdChangeRegistry(QObject *parent = nullptr);
+        explicit ErdChangeRegistry(QObject* parent = nullptr);
 
-        QList<ErdChange*> compactedEffectiveChanges();
         void addChange(ErdChange* change);
         int getPendingChangesCount() const;
         QList<ErdChange*> getPendingChanges(bool includeNonDdl = false) const;

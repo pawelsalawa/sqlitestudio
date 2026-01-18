@@ -1,12 +1,13 @@
 #include "erdchangedeleteconnection.h"
 #include "scene/erdconnection.h"
+#include "erdeffectivechange.h"
 #include "tablemodifier.h"
 #include "scene/erdentity.h"
 
 ErdChangeDeleteConnection::ErdChangeDeleteConnection(Db* db, ErdConnection* connection, const QString& description) :
     ErdChange(description, true), db(db)
 {
-    createTable = connection->getStartEntity()->getTableModel();
+    beforeCreateTable = connection->getStartEntity()->getTableModel();
     endEntityName = connection->getEndEntity()->getTableName();
 
     columnPairs << QPair<QString, QString>(
@@ -24,6 +25,9 @@ ErdChangeDeleteConnection::ErdChangeDeleteConnection(Db* db, ErdConnection* conn
                     );
         }
     }
+
+    tableModifier = new TableModifier(db, beforeCreateTable->table);
+    afterCreateTable = tableModifier->removeFk(endEntityName, columnPairs);
 }
 
 ErdChangeDeleteConnection::~ErdChangeDeleteConnection()
@@ -34,7 +38,7 @@ ErdChangeDeleteConnection::~ErdChangeDeleteConnection()
 void ErdChangeDeleteConnection::apply(ErdScene::SceneChangeApi& api)
 {
     QStringList tables = tableModifier->getModifiedTables();
-    tables << createTable->table;
+    tables << beforeCreateTable->table;
     api.refreshEntitiesByTableNames(tables);
 }
 
@@ -43,12 +47,12 @@ void ErdChangeDeleteConnection::applyUndo(ErdScene::SceneChangeApi& api)
     apply(api); // currently exactly the same as apply
 }
 
+ErdEffectiveChange ErdChangeDeleteConnection::toEffectiveChange() const
+{
+    return ErdEffectiveChange::modify(beforeCreateTable, afterCreateTable, description);
+}
+
 QStringList ErdChangeDeleteConnection::getChangeDdl()
 {
-    if (!tableModifier)
-    {
-        tableModifier = new TableModifier(db, createTable->table);
-        tableModifier->removeFk(endEntityName, columnPairs);
-    }
-    return tableModifier->generateSqls();
+    return tableModifier->getGeneratedSqls();
 }

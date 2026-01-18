@@ -16,13 +16,15 @@ class ErdChangeDeleteConnection : public ErdChange
 
         void apply(ErdScene::SceneChangeApi& api);
         void applyUndo(ErdScene::SceneChangeApi& api);
+        ErdEffectiveChange toEffectiveChange() const;
 
     protected:
         QStringList getChangeDdl();
 
     private:
         Db* db = nullptr;
-        SqliteCreateTablePtr createTable;
+        SqliteCreateTablePtr beforeCreateTable;
+        SqliteCreateTablePtr afterCreateTable;
         QString endEntityName;
         QList<QPair<QString, QString>> columnPairs;
         TableModifier* tableModifier = nullptr;

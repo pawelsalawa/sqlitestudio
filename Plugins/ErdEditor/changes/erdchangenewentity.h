@@ -16,6 +16,9 @@ class ErdChangeNewEntity : public ErdChange
         void apply(ErdScene::SceneChangeApi& api);
         void applyUndo(ErdScene::SceneChangeApi& api);
         void applyRedo(ErdScene::SceneChangeApi& api);
+        ErdEffectiveChange toEffectiveChange() const;
+
+        static QString defaultDescription(const QString& tableName);
 
     protected:
         QStringList getChangeDdl();

@@ -4,6 +4,7 @@
 #include "scene/erdscene.h"
 #include <QStringList>
 
+class ErdEffectiveChange;
 class ErdChangeComposite;
 
 /**
@@ -69,6 +70,12 @@ class ErdChange
          * @return True if this change produces DDL statements, false otherwise.
          */
         bool isDdlChange();
+
+        /**
+         * @brief Converts this change into an effective change representation.
+         * @return Effective change object, or nullptr if not applicable.
+         */
+        virtual ErdEffectiveChange toEffectiveChange() const;
 
         /**
          * @brief If multiple changes are provided, they will be wrapped into a composite change.

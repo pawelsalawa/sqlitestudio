@@ -10,7 +10,7 @@
 
 class ErdEntity;
 class ErdChange;
-class ErdChangeEntity;
+class ErdChangeModifyEntity;
 class ErdChangeNewEntity;
 class ErdChangeDeleteEntity;
 class ErdChangeDeleteConnection;

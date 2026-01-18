@@ -6,7 +6,7 @@
 #include "erdlinearrowitem.h"
 #include "erdconnection.h"
 #include "erdgraphvizlayoutplanner.h"
-#include "changes/erdchangeentity.h"
+#include "changes/erdchangemodifyentity.h"
 #include "tablemodifier.h"
 #include "changes/erdchangenewentity.h"
 #include "erdview.h"
@@ -120,6 +120,7 @@ void ErdScene::clearScene()
         delete entity;
     }
 
+    clear(); // Just in case.
     refreshSceneRect();
 }
 
@@ -512,7 +513,7 @@ void ErdScene::deleteItems(const QList<QGraphicsItem*>& items)
             changes << change;
     }
 
-    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Delete multiple diagram elements."));
+    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Delete multiple diagram elements.", "ERD editor"));
     if (change)
         emit changeCreated(change);
 }
@@ -529,7 +530,7 @@ bool ErdScene::undoChange(ErdChange* change)
         ddlExecutor->exec();
         if (!ddlExecutor->getSuccessfulExecution())
         {
-            notifyError(tr("Failed to execute the undo DDL. Details: %1")
+            notifyError(tr("Failed to execute the undo DDL. Details: %1", "ERD editor")
                         .arg(ddlExecutor->getErrorsMessages().join("; ")));
             return false;
         }
@@ -551,7 +552,7 @@ bool ErdScene::redoChange(ErdChange* change)
         ddlExecutor->exec();
         if (!ddlExecutor->getSuccessfulExecution())
         {
-            notifyError(tr("Failed to execute the redo DDL. Details: %1")
+            notifyError(tr("Failed to execute the redo DDL. Details: %1", "ERD editor")
                         .arg(ddlExecutor->getErrorsMessages().join("; ")));
             return false;
         }
@@ -570,7 +571,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
         return nullptr;
     }
 
-    QString changeDesc = tr("Delete entity \"%1\".").arg(entity->getTableName());
+    QString changeDesc = ErdChangeDeleteEntity::defaultDescription(entity->getTableName());
     ErdChange* change = new ErdChangeDeleteEntity(db, entity->getTableName(), entity->pos(), entity->getCustomColor().first, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
     ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
@@ -578,7 +579,7 @@ ErdChange* ErdScene::deleteEntity(ErdEntity*& entity)
     if (!ddlExecutor->getSuccessfulExecution())
     {
         delete change;
-        notifyError(tr("Failed to execute DDL required for table deletion. Details: %1")
+        notifyError(tr("Failed to execute DDL required for table deletion. Details: %1", "ERD editor")
                     .arg(ddlExecutor->getErrorsMessages().join("; ")));
         return nullptr;
     }

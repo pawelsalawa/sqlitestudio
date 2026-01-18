@@ -1,5 +1,6 @@
 #include "erdchange.h"
 #include "erdchangecomposite.h"
+#include "erdeffectivechange.h"
 #include "common/global.h"
 #include "common/utils.h"
 #include <QUuid>
@@ -38,6 +39,11 @@ ErdChange* ErdChange::normalizeChanges(const QList<ErdChange*>& changes, const Q
         return changes.first();
 
     return new ErdChangeComposite(changes, compositeDescription);
+}
+
+ErdEffectiveChange ErdChange::toEffectiveChange() const
+{
+    return ErdEffectiveChange();
 }
 
 QStringList ErdChange::toDdl(bool skipSaveoints)

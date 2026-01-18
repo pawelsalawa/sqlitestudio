@@ -3,7 +3,7 @@
 #include "db/db.h"
 #include "db/chainexecutor.h"
 #include "scene/erdentity.h"
-#include "changes/erdchangeentity.h"
+#include "changes/erdchangemodifyentity.h"
 #include "scene/erdconnection.h"
 #include "erdcolumnfkpanel.h"
 #include "erdtablefkpanel.h"
@@ -243,7 +243,7 @@ bool ErdConnectionPanel::commit()
               tr("Modify relationship between \"%1\" and \"%2\" - change target to \"%3\".")
                 .arg(originalCreateTable->table, originalReferencedTable, createTable->table);
 
-    ErdChange* change = new ErdChangeEntity(db, originalCreateTable, createTable, changeDesc);
+    ErdChange* change = new ErdChangeModifyEntity(db, originalCreateTable, createTable, changeDesc);
     ddlExecutor->setQueries(change->toDdl());
     ddlExecutor->setRollbackOnErrorTo(change->getTransactionId());
     ddlExecutor->exec();

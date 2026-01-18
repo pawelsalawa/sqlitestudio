@@ -293,7 +293,7 @@ QStringList DbObjectDialogs::buildDropSql(const QString& type, const QString& da
         for (auto&& warn : tabMod.getWarnings())
             qWarning() << warn;
 
-        return tabMod.generateSqls();
+        return tabMod.getGeneratedSqls();
     }
 
     static_qstring(dropSql, "DROP %1 IF EXISTS %2.%3;");

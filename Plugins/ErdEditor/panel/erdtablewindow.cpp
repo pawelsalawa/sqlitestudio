@@ -1,7 +1,7 @@
 #include "erdtablewindow.h"
 #include "scene/erdentity.h"
 #include "ui_tablewindow.h"
-#include "changes/erdchangeentity.h"
+#include "changes/erdchangemodifyentity.h"
 #include "changes/erdchangenewentity.h"
 #include "windows/tablestructuremodel.h"
 #include "services/notifymanager.h"
@@ -227,12 +227,12 @@ void ErdTableWindow::executeStructureChanges()
     ErdChange* change;
     if (entity->isExistingTable())
     {
-        QString desc = tr("Update entity \"%1\".").arg(createTable->table);
-        change = new ErdChangeEntity(db, originalCreateTable, createTable, desc);
+        QString desc = ErdChangeModifyEntity::defaultDescription(originalCreateTable->table);
+        change = new ErdChangeModifyEntity(db, originalCreateTable, createTable, desc);
     }
     else
     {
-        QString desc = tr("Create entity \"%1\".").arg(createTable->table);
+        QString desc = ErdChangeNewEntity::defaultDescription(createTable->table);
         change = new ErdChangeNewEntity(db, originalCreateTable->table, createTable, desc);
     }
 

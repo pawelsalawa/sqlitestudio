@@ -2,30 +2,9 @@
 #include "erdchange.h"
 #include <QDebug>
 
-ErdChangeRegistry::ErdChangeRegistry(QObject *parent)
+ErdChangeRegistry::ErdChangeRegistry(QObject* parent)
     : QObject{parent}
 {
-
-}
-
-QList<ErdChange*> ErdChangeRegistry::compactedEffectiveChanges()
-{
-    // TODO
-    /*
-     * Changes can be compacted only at the final commit stage, because we need to maintain the
-     * undo/redo capability until then.
-     *
-     * TODO planned compacting optimalizations:
-     *
-     * - after creating table X and deleting the same table X - remove both changes
-     * - after modifying same table multiple times - generate single aggregated change between 1st and last
-     * - if multiple editions reduce to no changes - remove all these changes entirely
-     * - multiple changes and drop of table at the end - just drop the end table, but only if there are
-     *   no referring views, otherwise we won't be able to reflect actual changes to views
-     * - composite changes should be flattened - there is no benefit in holding them as composite for this purpose,
-     *   while flattened changes enable them for compating with other changes.
-     */
-    return QList<ErdChange*>{};
 }
 
 void ErdChangeRegistry::addChange(ErdChange* change)

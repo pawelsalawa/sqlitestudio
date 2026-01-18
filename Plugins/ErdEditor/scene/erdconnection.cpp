@@ -4,7 +4,7 @@
 #include "scene/erdentity.h"
 #include "scene/erdscene.h"
 #include "erdeditorplugin.h"
-#include "changes/erdchangeentity.h"
+#include "changes/erdchangemodifyentity.h"
 #include "db/db.h"
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
@@ -151,15 +151,13 @@ void ErdConnection::commitFinalizationChange()
         return;
     }
 
-    createTable->rebuildTokens(); // needed for TableModifier when executing changes
-
     QString desc = preCancelEndEntity != nullptr ?
                 QObject::tr("Update relationship from \"%1\"-\"%2\" to \"%1\"-\"%3\".")
                     .arg(createTable->table, preCancelEndEntity->getTableName(), endEntity->getTableName()) :
                 QObject::tr("Create relationship between \"%1\" and \"%2\".")
                     .arg(createTable->table, endEntity->getTableName());
 
-    ErdChange* change = new ErdChangeEntity(scene->getDb(), originalCreateTable, createTable, desc);
+    ErdChange* change = new ErdChangeModifyEntity(scene->getDb(), originalCreateTable, createTable, desc);
 
     ChainExecutor* ddlExecutor = new ChainExecutor();
     ddlExecutor->setTransaction(false);
