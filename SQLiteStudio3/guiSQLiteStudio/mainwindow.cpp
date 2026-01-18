@@ -129,8 +129,10 @@ void MainWindow::init()
     }
 
 #ifdef PORTABLE_CONFIG
-    connect(UPDATES, &UpdateManager::updateAvailable, this, &MainWindow::updateAvailable);
-    connect(UPDATES, &UpdateManager::noUpdatesAvailable, this, &MainWindow::noUpdatesAvailable);
+    // For some reason these two signal-slot connections are not made correctly if method-reference syntax is used
+    // and it affects Windows builds only. Therefore they have to be the old-fashion SIGNAL() and SLOT().
+    connect(UPDATES, SIGNAL(updateAvailable(QString,QString)), this, SLOT(updateAvailable(QString,QString)));
+    connect(UPDATES, SIGNAL(noUpdatesAvailable(bool)), this, SLOT(noUpdatesAvailable(bool)));
 #endif
     connect(statusField, &StatusField::linkActivated, this, &MainWindow::statusFieldLinkClicked);
 
