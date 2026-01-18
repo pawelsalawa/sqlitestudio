@@ -2,6 +2,7 @@
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).
+- BUGFIX: #5472 Fixed updates cheking under Windows.
 
 ### 3.4.20
 - ADDED: #5452 Option to convert Unicode line/paragraph breaks (U+2028 / U+2029) to LN (\n) when storing value entered in the Form View.
