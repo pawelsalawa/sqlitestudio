@@ -73,13 +73,14 @@ class ErdEffectiveChangeMerger
 
         QList<ErdChange*> flatten(const QList<ErdChange*>& changes);
         ErdEffectiveChange merge(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeToCreateChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeToDropChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeToModifyChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeMultipleModifyToOne(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeModifyToDropAhead(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeMultipleModifyToCreateChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
-        ErdEffectiveChange mergeDropToCreateChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange mergeToCreateByStrategy(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange mergeToDropByStrategy(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange mergeToModifyByStrategy(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange strategyMultipleModifyToOne(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange strategyModifyToDropAhead(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange strategyMultipleModifyToCreate(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange strategyDropToCreateChange(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
+        ErdEffectiveChange strategyMultipleDropToRaw(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
 
         /**
          * @brief Generates a schema snapshot of the provided database as a single string.

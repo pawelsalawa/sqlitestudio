@@ -126,11 +126,11 @@ ErdEffectiveChange ErdEffectiveChangeMerger::merge(const QList<ErdEffectiveChang
     switch (workingList[idx].getType())
     {
         case ErdEffectiveChange::CREATE:
-            return mergeToCreateChange(workingList, idx, referenceDb, workingDb);
+            return mergeToCreateByStrategy(workingList, idx, referenceDb, workingDb);
         case ErdEffectiveChange::DROP:
-            return mergeToDropChange(workingList, idx, referenceDb, workingDb);
+            return mergeToDropByStrategy(workingList, idx, referenceDb, workingDb);
         case ErdEffectiveChange::MODIFY:
-            return mergeToModifyChange(workingList, idx, referenceDb, workingDb);
+            return mergeToModifyByStrategy(workingList, idx, referenceDb, workingDb);
         case ErdEffectiveChange::INVALID:
             break;
         case ErdEffectiveChange::NOOP:
@@ -143,7 +143,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::merge(const QList<ErdEffectiveChang
     return workingList[idx];
 }
 
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeToCreateChange(const QList<ErdEffectiveChange>& theList,
+ErdEffectiveChange ErdEffectiveChangeMerger::mergeToCreateByStrategy(const QList<ErdEffectiveChange>& theList,
                                                           int& idx, Db* referenceDb, Db* workingDb)
 {
     if (idx + 1 >= theList.size())
@@ -151,16 +151,58 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeToCreateChange(const QList<Erd
 
     // CREATE, MODIFY, MODIFY, ... -> CREATE
     if (theList[idx + 1].getType() == ErdEffectiveChange::MODIFY)
-        return mergeMultipleModifyToCreateChange(theList, idx, referenceDb, workingDb);
+        return strategyMultipleModifyToCreate(theList, idx, referenceDb, workingDb);
 
     // CREATE, DROP -> NOOP
     if (theList[idx + 1].getType() == ErdEffectiveChange::DROP)
-        return mergeDropToCreateChange(theList, idx, referenceDb, workingDb);
+        return strategyDropToCreateChange(theList, idx, referenceDb, workingDb);
 
     return theList[idx];
 }
 
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(const QList<ErdEffectiveChange>& theList,
+ErdEffectiveChange ErdEffectiveChangeMerger::mergeToDropByStrategy(const QList<ErdEffectiveChange>& theList,
+                                                        int& idx, Db* referenceDb, Db* workingDb)
+{
+    const int initialIdx = idx;
+
+    // DROP, DROP, DROP, ... -> RAW
+    // This simplifies multiple DROPs into single RAW change dropping all tables at once,
+    // while skipping all the FK management statements that would be generated otherwise.
+    ErdEffectiveChange resultChange = strategyMultipleModifyToOne(theList, idx, referenceDb, workingDb);
+    if (idx > initialIdx)
+        return resultChange;
+
+    return theList[idx];
+}
+
+ErdEffectiveChange ErdEffectiveChangeMerger::mergeToModifyByStrategy(const QList<ErdEffectiveChange>& theList,
+                                                          int& idx, Db* referenceDb, Db* workingDb)
+{
+    const int initialIdx = idx;
+
+    // MODIFY(a->b), MODIFY(b->a) -> NOOP
+    auto ddlBefore = theList[idx].getBefore()->detokenize();
+    auto ddlAfter = theList[idx].getAfter()->detokenize();
+    if (ddlBefore == ddlAfter)
+    {
+        qDebug() << "Removed MODIFY change for table" << theList[idx].getTableName() << "as it produces no effective change.";
+        return ErdEffectiveChange::noop();
+    }
+
+    // MODIFY, MODIFY, MODIFY, ... -> MODIFY
+    ErdEffectiveChange resultChange = strategyMultipleModifyToOne(theList, idx, referenceDb, workingDb);
+    if (idx > initialIdx)
+        return resultChange;
+
+    // MODIFY, MODIFY, DROP -> DROP
+    resultChange = strategyModifyToDropAhead(theList, idx, referenceDb, workingDb);
+    if (idx > initialIdx)
+        return resultChange;
+
+    return resultChange;
+}
+
+ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleModifyToCreate(const QList<ErdEffectiveChange>& theList,
                                                           int& idx, Db* referenceDb, Db* workingDb)
 {
     // General strategy here is to first perform mergers ahead if possible.
@@ -173,7 +215,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(c
         // Temporarily apply the starting CREATE, so that subsequent MODIFY's can be merged properly
         auto createRollback = scopedTxRollback(referenceDb, workingDb);
         executeOneChangeOnBothDbs(theList[idx], referenceDb, workingDb);
-        changeToMerge = mergeToModifyChange(theList, targetIdx, referenceDb, workingDb);
+        changeToMerge = mergeToModifyByStrategy(theList, targetIdx, referenceDb, workingDb);
     }
 
     ErdEffectiveChange createChange = theList[idx];
@@ -210,7 +252,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToCreateChange(c
     return theList[idx];
 }
 
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeDropToCreateChange(const QList<ErdEffectiveChange>& theList,
+ErdEffectiveChange ErdEffectiveChangeMerger::strategyDropToCreateChange(const QList<ErdEffectiveChange>& theList,
                                                           int& idx, Db* referenceDb, Db* workingDb)
 {
     // Temporarily apply the starting CREATE, so that subsequent DROP can be merged properly
@@ -220,7 +262,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeDropToCreateChange(const QList
     // If we DROP right after CREATE, we can merge both into NOOP.
     // First perform any DROP mergers ahead if possible.
     int targetIdx = idx + 1;
-    ErdEffectiveChange changeToMerge = mergeToDropChange(theList, targetIdx, referenceDb, workingDb);
+    ErdEffectiveChange changeToMerge = mergeToDropByStrategy(theList, targetIdx, referenceDb, workingDb);
     if (changeToMerge.getType() == ErdEffectiveChange::DROP &&
         changeToMerge.getTableName() == theList[idx].getAfter()->table)
     {
@@ -237,8 +279,69 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeDropToCreateChange(const QList
     return theList[idx];
 }
 
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeToDropChange(const QList<ErdEffectiveChange>& theList,
-                                                        int& idx, Db* referenceDb, Db* workingDb)
+ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleModifyToOne(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
+{
+    // First, try to look how many MODIFY's in a row we have for the same table
+    int stepsToMerge = 0;
+    QString currentTableName = theList[idx].getTableName();
+    while ((idx + stepsToMerge + 1) < theList.size())
+    {
+        ErdEffectiveChange next = theList[idx + stepsToMerge + 1];
+        if (next.getType() != ErdEffectiveChange::MODIFY || next.getTableName() != currentTableName)
+            break;
+
+        currentTableName = next.getAfter()->table;
+        stepsToMerge++;
+    }
+
+    // Now, try to merge as many as possible starting from the maximum found
+    if (stepsToMerge > 0)
+    {
+        SqliteCreateTablePtr before = theList[idx].getBefore();
+        QString description = ErdChangeModifyEntity::defaultDescription(before->table);
+        while (stepsToMerge > 0)
+        {
+            SqliteCreateTablePtr after = theList[idx + stepsToMerge].getAfter();
+            ErdEffectiveChange mergedChange = ErdEffectiveChange::modify(before, after, description);
+            bool success = testAgainstOriginal(mergedChange, theList.mid(idx, stepsToMerge + 1), referenceDb, workingDb);
+            if (success)
+            {
+                idx += stepsToMerge;
+                qDebug() << "Merged" << (stepsToMerge + 1) << "MODIFY changes for table" << before->table << "into one MODIFY.";
+                return mergedChange;
+            }
+            stepsToMerge--;
+        }
+        // Nothing could be merged.
+    }
+    return theList[idx];
+}
+
+ErdEffectiveChange ErdEffectiveChangeMerger::strategyModifyToDropAhead(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
+{
+    if (idx + 1 >= theList.size())
+        return theList[idx];
+
+    QString beforeTableName = theList[idx].getTableName();
+    QString afterTableName = theList[idx].getAfter()->table;
+    ErdEffectiveChange next = theList[idx + 1];
+    if (next.getType() == ErdEffectiveChange::DROP && next.getTableName() == afterTableName)
+    {
+        QString changeDesc = ErdChangeDeleteEntity::defaultDescription(beforeTableName);
+        ErdEffectiveChange mergedChange = ErdEffectiveChange::drop(beforeTableName, changeDesc);
+        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, 2), referenceDb, workingDb);
+        if (success)
+        {
+            idx++;
+            qDebug() << "Merged MODIFY and DROP changes for table" << beforeTableName << "into one DROP.";
+            return mergedChange;
+        }
+    }
+
+    return theList[idx];
+}
+
+ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleDropToRaw(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
 {
     int localIdx = idx;
     QStringList changesToProcess;
@@ -303,95 +406,6 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeToDropChange(const QList<ErdEf
         {
             qDebug() << "Merged multiple DROP changes for tables" << tablesToDropSoFar << "into RAW.";
             idx += stepsToMerge;
-            return mergedChange;
-        }
-    }
-
-    return theList[idx];
-}
-
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeToModifyChange(const QList<ErdEffectiveChange>& theList,
-                                                          int& idx, Db* referenceDb, Db* workingDb)
-{
-    const int initialIdx = idx;
-
-    // MODIFY(a->b), MODIFY(b->a) -> NOOP
-    auto ddlBefore = theList[idx].getBefore()->detokenize();
-    auto ddlAfter = theList[idx].getAfter()->detokenize();
-    if (ddlBefore == ddlAfter)
-    {
-        qDebug() << "Removed MODIFY change for table" << theList[idx].getTableName() << "as it produces no effective change.";
-        return ErdEffectiveChange::noop();
-    }
-
-    // MODIFY, MODIFY, MODIFY, ... -> MODIFY
-    ErdEffectiveChange resultChange = mergeMultipleModifyToOne(theList, idx, referenceDb, workingDb);
-    if (idx > initialIdx)
-        return resultChange;
-
-    // MODIFY, MODIFY, DROP -> DROP
-    resultChange = mergeModifyToDropAhead(theList, idx, referenceDb, workingDb);
-    if (idx > initialIdx)
-        return resultChange;
-
-    return resultChange;
-}
-
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeMultipleModifyToOne(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
-{
-    // First, try to look how many MODIFY's in a row we have for the same table
-    int stepsToMerge = 0;
-    QString currentTableName = theList[idx].getTableName();
-    while ((idx + stepsToMerge + 1) < theList.size())
-    {
-        ErdEffectiveChange next = theList[idx + stepsToMerge + 1];
-        if (next.getType() != ErdEffectiveChange::MODIFY || next.getTableName() != currentTableName)
-            break;
-
-        currentTableName = next.getAfter()->table;
-        stepsToMerge++;
-    }
-
-    // Now, try to merge as many as possible starting from the maximum found
-    if (stepsToMerge > 0)
-    {
-        SqliteCreateTablePtr before = theList[idx].getBefore();
-        QString description = ErdChangeModifyEntity::defaultDescription(before->table);
-        while (stepsToMerge > 0)
-        {
-            SqliteCreateTablePtr after = theList[idx + stepsToMerge].getAfter();
-            ErdEffectiveChange mergedChange = ErdEffectiveChange::modify(before, after, description);
-            bool success = testAgainstOriginal(mergedChange, theList.mid(idx, stepsToMerge + 1), referenceDb, workingDb);
-            if (success)
-            {
-                idx += stepsToMerge;
-                qDebug() << "Merged" << (stepsToMerge + 1) << "MODIFY changes for table" << before->table << "into one MODIFY.";
-                return mergedChange;
-            }
-            stepsToMerge--;
-        }
-        // Nothing could be merged.
-    }
-    return theList[idx];
-}
-
-ErdEffectiveChange ErdEffectiveChangeMerger::mergeModifyToDropAhead(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
-{
-    if (idx + 1 >= theList.size())
-        return theList[idx];
-
-    QString beforeTableName = theList[idx].getTableName();
-    QString afterTableName = theList[idx].getAfter()->table;
-    ErdEffectiveChange next = theList[idx + 1];
-    if (next.getType() == ErdEffectiveChange::DROP && next.getTableName() == afterTableName)
-    {
-        QString changeDesc = ErdChangeDeleteEntity::defaultDescription(beforeTableName);
-        ErdEffectiveChange mergedChange = ErdEffectiveChange::drop(beforeTableName, changeDesc);
-        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, 2), referenceDb, workingDb);
-        if (success)
-        {
-            idx++;
-            qDebug() << "Merged MODIFY and DROP changes for table" << beforeTableName << "into one DROP.";
             return mergedChange;
         }
     }
