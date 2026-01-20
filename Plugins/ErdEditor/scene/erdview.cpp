@@ -208,7 +208,9 @@ void ErdView::mouseReleaseEvent(QMouseEvent* event)
 
     if (isPlacingNewEntity())
     {
-        popOperatingMode();
+        if (!event->modifiers().testFlag(Qt::ShiftModifier))
+            popOperatingMode();
+
         if (event->button() == Qt::LeftButton)
         {
             emit newEntityPositionPicked(mapToScene(event->pos()));
