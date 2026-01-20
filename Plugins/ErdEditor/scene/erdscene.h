@@ -106,6 +106,10 @@ class ErdScene : public QGraphicsScene
         QList<ErdEntity*> getSelectedEntities() const;
         void setArrowType(ErdArrowItem::Type arrowType);
         ErdArrowItem::Type getArrowType() const;
+
+        /**
+         * @return Entities for which position was not restored from the session.
+         */
         void applyConfig(const QHash<QString, QVariant>& erdLayout);
         QHash<QString, QVariant> getConfig();
         void placeNewEntity(ErdEntity* entity, const QPointF& pos);
@@ -146,7 +150,10 @@ class ErdScene : public QGraphicsScene
         ErdConnection* setupEntityConnection(ErdEntity* srcEntity, const QString& srcColumn,
                                              int sourceReferenceIdx, SqliteForeignKey* fk);
         void arrangeEntities(int algo);
-        QPointF getPosForNewEntity() const;
+        void arrangeEntities(int algo, QSet<ErdEntity*> pinnedEntities);
+        QPointF getPosForNewEntity(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations = {}) const;
+        QPointF getPosForNewEntitySpiral(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations = {}) const;
+        bool collides(const QRectF& candidate, const QSet<ErdEntity*>& exclude) const;
         QSet<ErdConnection*> getConnections() const;
         bool confirmLayoutChange() const;
         void refreshEntityFromTableName(ErdEntity* entity, const QString& tableName);

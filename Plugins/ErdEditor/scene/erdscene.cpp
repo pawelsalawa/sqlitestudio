@@ -69,7 +69,7 @@ QSet<QString> ErdScene::parseSchema()
         tableNames << table->table.toLower();
 
         ErdEntity* entityItem = new ErdEntity(table);
-        entityItem->setPos(getPosForNewEntity());
+        entityItem->setPos(getPosForNewEntity(entityItem));
         entityCreated(entityItem);
         addItem(entityItem);
     }
@@ -152,7 +152,7 @@ void ErdScene::refreshSchemaForTableNames(const QStringList& tables)
             SqliteCreateTablePtr createTable = SqliteCreateTablePtr::create();
             createTable->table = tableName;
             entity = new ErdEntity(createTable);
-            entity->setPos(getPosForNewEntity());
+            entity->setPos(getPosForNewEntity(entity));
             entityCreated(entity);
             addItem(entity);
         }
@@ -261,6 +261,7 @@ ErdArrowItem::Type ErdScene::getArrowType() const
 
 void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
 {
+    QSet<ErdEntity*> noStoredPositionEntities;
     StrHash<QVariant> cfgEntities = erdConfig[CFG_KEY_ENTITIES].toHash();
     for (ErdEntity*& entity : entities)
     {
@@ -270,6 +271,9 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
             QPointF pos(singleEntityConfig[CFG_KEY_POS].toPointF());
             entity->setPos(pos);
         }
+        else
+            noStoredPositionEntities << entity;
+
         if (singleEntityConfig.contains(CFG_KEY_COLOR))
         {
             QList<QVariant> colorList = singleEntityConfig[CFG_KEY_COLOR].toList();
@@ -281,6 +285,17 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
             }
         }
     }
+
+    // Arrange entities without stored position
+    if (!noStoredPositionEntities.isEmpty())
+    {
+        for (ErdEntity* entity : noStoredPositionEntities)
+        {
+            QPointF pos = getPosForNewEntitySpiral(entity, noStoredPositionEntities);
+            entity->setPos(pos);
+        }
+    }
+
     QVariant cfgArrowType = erdConfig[ErdScene::CFG_KEY_ARROW_TYPE];
     if (!cfgArrowType.isNull())
         setArrowType((ErdArrowItem::Type)cfgArrowType.toInt());
@@ -665,24 +680,115 @@ void ErdScene::arrangeEntities(int algo)
 {
     ErdGraphvizLayoutPlanner planner;
     planner.arrangeScene(this, static_cast<ErdGraphvizLayoutPlanner::Algo>(algo));
-    update();
     refreshSceneRect();
+    invalidate();
 }
 
-QPointF ErdScene::getPosForNewEntity() const
+QPointF ErdScene::getPosForNewEntity(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations) const
 {
-    QRectF sceneRect = itemsBoundingRect();
-    qreal posX = sceneRect.right();
-    qreal posY = sceneRect.top();
-    for (ErdEntity* entity : entities)
+    UNUSED(entity);
+    bool first = true;
+    QRectF layoutRect;
+
+    for (ErdEntity* e : entities)
     {
-        QRectF rect = entity->boundingRect();
-        QPointF pos = entity->pos();
-        posX = qMax(posX, pos.x() + rect.width());
-        posY = qMin(posY, pos.y());
+        if (!e || excludeFromCalculations.contains(e))
+            continue;
+
+        QRectF rect = e->sceneBoundingRect();
+        if (first)
+        {
+            layoutRect = rect;
+            first = false;
+        }
+        else
+        {
+            layoutRect = layoutRect.united(rect);
+        }
     }
-    posX += 150;
-    return QPointF(posX, posY);
+
+    if (first)
+        return QPointF(0.0, 0.0);
+
+    return QPointF(layoutRect.right() + 150.0, layoutRect.top());
+}
+
+QPointF ErdScene::getPosForNewEntitySpiral(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations) const
+{
+    if (!entity)
+        return QPointF(0, 0);
+
+    // Calculate centroid of existing entities
+    QPointF centroid(0, 0);
+    int count = 0;
+
+    for (ErdEntity* e : entities)
+    {
+        if (!e)
+            continue;
+
+        if (excludeFromCalculations.contains(e))
+            continue;
+
+        QRectF r = e->sceneBoundingRect();
+        centroid += r.center();
+        ++count;
+    }
+
+    if (count == 0)
+        return QPointF(0, 0);
+
+    centroid /= count;
+
+    // Prepare entity size and local offset
+    QRectF localRect = entity->boundingRect();
+    QSizeF size = localRect.size();
+
+    // Correction: boundingRect is local, while position refers to origin
+    QPointF localOffset = localRect.topLeft();
+
+    // Spiral parameters
+    constexpr qreal step = 80.0;
+    constexpr int maxRings = 50;
+
+    // Spiral search
+    for (int ring = 0; ring <= maxRings; ++ring)
+    {
+        for (int dx = -ring; dx <= ring; ++dx)
+        {
+            for (int dy = -ring; dy <= ring; ++dy)
+            {
+                // Only consider positions on the current ring
+                if (qAbs(dx) != ring && qAbs(dy) != ring)
+                    continue;
+
+                QPointF candidateCenter = centroid + QPointF(dx * step, dy * step);
+                QPointF candidatePos = candidateCenter - QPointF(size.width() / 2, size.height() / 2) - localOffset;
+                QRectF candidateRect(candidatePos, size);
+                if (!collides(candidateRect, excludeFromCalculations))
+                    return candidatePos;
+            }
+        }
+    }
+
+    // Fallback
+    return getPosForNewEntity(entity, excludeFromCalculations);
+}
+
+bool ErdScene::collides(const QRectF& candidate, const QSet<ErdEntity*>& exclude) const
+{
+    for (ErdEntity* e : entities)
+    {
+        if (!e)
+            continue;
+
+        if (exclude.contains(e))
+            continue;
+
+        if (e->sceneBoundingRect().intersects(candidate))
+            return true;
+    }
+    return false;
 }
 
 QSet<ErdConnection*> ErdScene::getConnections() const

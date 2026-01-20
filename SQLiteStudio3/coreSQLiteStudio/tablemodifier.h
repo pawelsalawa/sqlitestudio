@@ -167,7 +167,7 @@ class API_EXPORT TableModifier
         QStringList existingColumns;
         QHash<QString, QString> tableColMap;
         QHash<QString, QString> triggerNameToDdlMap;
-        QStringList tablesHandledForFk;
+        QStringList tablesHandledForFk; // should not be shared between parent-child TableModifiers
         QStringList modifiedTables;
         QStringList modifiedIndexes;
         QStringList modifiedTriggers;

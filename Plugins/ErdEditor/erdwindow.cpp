@@ -573,6 +573,7 @@ void ErdWindow::reloadSchema()
             return;
     }
 
+    CFG->set(ERD_CFG_GROUP, db->getPath(), saveSession());
     ui->view->setUpdatesEnabled(false);
     changeRegistry->clear();
     scene->clearScene();
@@ -603,8 +604,10 @@ void ErdWindow::rollbackPendingChanges()
     }
 
     changeRegistry->moveToBeginning();
+    ui->view->setUpdatesEnabled(false);
     scene->clearScene();
     parseAndRestore(false, MemDbInit::CACHED);
+    ui->view->setUpdatesEnabled(true);
 }
 
 void ErdWindow::handleCreatedChange(ErdChange* change)

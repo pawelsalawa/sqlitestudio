@@ -84,10 +84,15 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
 
 void TableModifier::dropTable()
 {
+    tablesHandledForFk << table;
+
     SchemaResolver resolver(db);
     QStringList parentTables = resolver.getFkReferencingTables(database, table);
     for (QString& parTable : parentTables)
     {
+        if (tablesHandledForFk.contains(parTable, Qt::CaseInsensitive))
+            continue; // Avoid recurrent FK handling
+
         TableModifier parentTabMod(db, database, parTable);
         parentTabMod.setDisableFkEnforcement(disableFkEnforcement);
         parentTabMod.removeFks(table);
@@ -275,7 +280,8 @@ void TableModifier::handleFks()
         subModifier.newName = fkTable;
         subModifier.tablesHandledForFk = tablesHandledForFk;
         subModifier.handleFkAsSubModifier(originalTable, newName);
-        modifiedTables << fkTable;
+        if (!subModifier.sqls.isEmpty())
+            modifiedTables << fkTable;
 
         importResultsFromSubmodier(subModifier);
     }
@@ -286,7 +292,6 @@ void TableModifier::importResultsFromSubmodier(TableModifier& subModifier)
     sqls += subModifier.getGeneratedSqls();
 
     triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
-    tablesHandledForFk = subModifier.tablesHandledForFk;
     usedTempTableNames = subModifier.usedTempTableNames;
 
     modifiedTables += subModifier.getModifiedTables();

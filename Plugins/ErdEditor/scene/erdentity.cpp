@@ -38,6 +38,7 @@ ErdEntity::ErdEntity(const SqliteCreateTablePtr& tableModel) :
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemIsFocusable, true);
     setFlag(QGraphicsItem::ItemIsMovable, true);
+    setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
     effect->setBlurRadius(20);
@@ -692,13 +693,24 @@ void ErdEntity::keyReleaseEvent(QKeyEvent* event)
 
 QVariant ErdEntity::itemChange(GraphicsItemChange change, const QVariant& value)
 {
+    if (change == ItemPositionHasChanged)
+    {
+        // This is a hacky fix to force foreground layer repainting when entity is moved,
+        // programmatically after rearranching diagram layout (and perhaps some other cases).
+        // Turns out that some Qt optimization fails to update inner items position updates
+        // and they remain broken until user moves the entity manually. Here we force it.
+        for (auto *child : childItems())
+            child->update();
+    }
+
     if (change == ItemSelectedHasChanged)
     {
-        // This is a hacky fix to force foreground layer repainting when selection changes,
+        // This is another hacky fix to force foreground layer repainting when selection changes,
         // because setting custom colors to entity upon session restoring somehow
         // made Qt forget to repaint this item when it's selected for the first time.
         // It worked fine after selecting some other items and then going back to this one,
         // but not on the very first selection.
+        // updateGeometry();
         QRectF rect = mapRectToScene(boundingRect());
         scene()->invalidate(rect, QGraphicsScene::ForegroundLayer);
     }
