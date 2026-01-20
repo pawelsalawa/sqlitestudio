@@ -214,6 +214,9 @@ void ErdScene::refreshScheduledConnections()
 
 void ErdScene::refreshEntityFromTableName(ErdEntity* entity, const QString& tableName)
 {
+    for (ErdConnection* conn : entity->getForeignConnections())
+        connectionRefreshScheduled << conn->getStartEntity();
+
     entity->clearConnections();
 
     QString oldTableName = entity->getTableName();
