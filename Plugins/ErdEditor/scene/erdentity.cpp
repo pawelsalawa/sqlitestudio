@@ -701,6 +701,8 @@ QVariant ErdEntity::itemChange(GraphicsItemChange change, const QVariant& value)
         // and they remain broken until user moves the entity manually. Here we force it.
         for (auto *child : childItems())
             child->update();
+
+        updateConnectionsGeometry();
     }
 
     if (change == ItemSelectedHasChanged)

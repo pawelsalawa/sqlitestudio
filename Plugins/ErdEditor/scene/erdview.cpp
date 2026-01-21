@@ -55,206 +55,241 @@ Db *ErdView::getDb() const
 
 void ErdView::mousePressEvent(QMouseEvent* event)
 {
-    if (isDraggingView())
+    switch (operatingMode)
     {
-        QGraphicsView::mousePressEvent(event);
-        return;
+        case ErdView::Mode::NORMAL:
+            mousePressedNormal(event);
+            break;
+        case ErdView::Mode::DRAGGING_VIEW:
+            mousePressedDraggingView(event);
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            mousePressedConnectionDrafting(event);
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            mousePressedPlacingNewEntity(event);
+            break;
+        case ErdView::Mode::AREA_SELECTING:
+            mousePressedAreaSelecting(event);
+            break;
     }
-
-    clickPos = event->position().toPoint();
-    lastClickPos = mapToScene(event->position().toPoint());
-
-    if (isPlacingNewEntity())
-    {
-        if (event->button() == Qt::LeftButton)
-        {
-            // All good. Proceed to further events for complete click.
-            return;
-        }
-        else
-        {
-            popOperatingMode();
-            return;
-        }
-    }
-
-    QGraphicsItem* item = clickableItemAt(clickPos);
-    if (event->button() == Qt::LeftButton || event->button() == Qt::RightButton)
-    {
-        if (item && item->flags() & QGraphicsItem::ItemIsMovable)
-        {
-            if (selectedItems.contains(item))
-            {
-                for (QGraphicsItem* movableItem : selectedMovableItems)
-                {
-                    dragOffset[movableItem] = transform().inverted().map(clickPos - mapFromScene(movableItem->pos()));
-                    dragStartPos[movableItem] = movableItem->pos();
-                }
-            }
-            else
-            {
-                dragOffset.clear();
-                dragOffset[item] = transform().inverted().map(clickPos - mapFromScene(item->pos()));
-                dragStartPos[item] = item->pos();
-                if (isDraftingConnection())
-                    return;
-
-                selectedItems = {item};
-                selectedMovableItems = {item};
-            }
-        }
-    }
-
-    if (event->button() == Qt::LeftButton)
-    {
-        if (item && item->flags() & QGraphicsItem::ItemIsMovable)
-        {
-            lastDragScenePos = mapToScene(clickPos);
-            QGraphicsView::mousePressEvent(event);
-            return;
-        }
-
-        if (!isDraggingView())
-        {
-            clearSelectedItems();
-            setDragMode(QGraphicsView::RubberBandDrag);
-        }
-    }
-    else if (event->button() == Qt::MiddleButton)
-    {
-        clearSelectedItems();
-    }
-    else
-    {
-        // RightButton click
-        if (isDraftingConnection() || isPlacingNewEntity())
-        {
-            popOperatingMode();
-        }
-        else
-        {
-            // Fake left-click to force selection
-            QMouseEvent leftBtnEvent(event->type(), event->position(), event->globalPosition(), Qt::LeftButton,
-                Qt::LeftButton | (event->buttons() & ~Qt::RightButton), event->modifiers());
-
-            QGraphicsView::mousePressEvent(&leftBtnEvent);
-            event->ignore();
-
-            emit customContextMenuRequested(event->pos());
-        }
-    }
-    QGraphicsView::mousePressEvent(event);
 }
 
 void ErdView::mouseMoveEvent(QMouseEvent* event)
 {
-    if (isDraggingView())
+    switch (operatingMode)
     {
-        QGraphicsView::mouseMoveEvent(event);
-        return;
+        case ErdView::Mode::NORMAL:
+            mouseMovedNormal(event);
+            break;
+        case ErdView::Mode::DRAGGING_VIEW:
+            mouseMovedDraggingView(event);
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            mouseMovedConnectionDrafting(event);
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            mouseMovedPlacingNewEntity(event);
+            break;
+        case ErdView::Mode::AREA_SELECTING:
+            mouseMovedAreaSelecting(event);
+            break;
     }
-
-    if (isPlacingNewEntity())
-        return;
-
-    if (!selectedItems.isEmpty() && event->buttons().testFlag(Qt::LeftButton) && !dragOffset.isEmpty())
-    {
-        // The code below sets position for same items twice: before and after scene rect is updated.
-        // The scene rect is resized to reflect currently needed area - it's just nice for UX.
-        // Unfortunately updating scene rect messes up positions updated for items just a moment before,
-        // probably because moved items are still in some kind of "dirty" state according to the scene,
-        // so updating scene rect messes up their positions.
-        // Setting same positions afterwards fixes the issue of flickering during items D&D.
-
-        // Set new positions initially
-        QPointF scenePos = mapToScene(event->position().toPoint());
-        for (QGraphicsItem* item : selectedMovableItems)
-            item->setPos(scenePos - dragOffset[item]);
-
-        // Update scene rect to expand/shrink it
-        dynamic_cast<ErdScene*>(scene())->refreshSceneRect();
-
-        // Set new positions once again, cause new scene rect could break positioning
-        for (QGraphicsItem* item : selectedMovableItems)
-            item->setPos(scenePos - dragOffset[item]);
-
-        // Update connection arrows
-        for (QGraphicsItem* item : selectedMovableItems)
-        {
-            ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-            if (entity)
-                entity->updateConnectionsGeometry();
-        }
-        return;
-    }
-    else if (draftConnection)
-        draftConnection->updatePosition(mapToScene(event->position().toPoint()));
-
-    if (!tolerateMicroMovesForClick())
-        clickPos = QPoint();
-
-    QGraphicsView::mouseMoveEvent(event);
 }
 
 void ErdView::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (isDraggingView())
+    switch (operatingMode)
     {
-        QGraphicsView::mouseReleaseEvent(event);
+        case ErdView::Mode::NORMAL:
+            mouseReleasedNormal(event);
+            break;
+        case ErdView::Mode::DRAGGING_VIEW:
+            mouseReleasedDraggingView(event);
+            break;
+        case ErdView::Mode::CONNECTION_DRAFTING:
+            mouseReleasedConnectionDrafting(event);
+            break;
+        case ErdView::Mode::PLACING_NEW_ENTITY:
+            mouseReleasedPlacingNewEntity(event);
+            break;
+        case ErdView::Mode::AREA_SELECTING:
+            mouseReleasedAreaSelecting(event);
+            break;
+    }
+}
+
+void ErdView::mousePressedNormal(QMouseEvent* event)
+{
+    lastClickPos = mapToScene(event->position().toPoint()); // for context menu
+
+    if (event->button() == Qt::RightButton)
+    {
+        // Fake left-click to force selection
+        QMouseEvent leftBtnEvent(event->type(), event->position(), event->globalPosition(), Qt::LeftButton,
+            Qt::LeftButton | (event->buttons() & ~Qt::RightButton), event->modifiers());
+
+        QGraphicsView::mousePressEvent(&leftBtnEvent);
+        event->ignore();
+
+        emit customContextMenuRequested(event->pos());
         return;
     }
 
-    dragOffset.clear();
+    QGraphicsItem* item = clickableItemAt(event->position().toPoint());
 
-    if (isPlacingNewEntity())
+    // Area selection
+    if (!item || !item->flags().testFlag(QGraphicsItem::ItemIsMovable))
     {
-        if (!event->modifiers().testFlag(Qt::ShiftModifier))
-            popOperatingMode();
-
-        if (event->button() == Qt::LeftButton)
+        if (!event->modifiers().testFlag(Qt::ControlModifier))
         {
-            emit newEntityPositionPicked(mapToScene(event->pos()));
-            return;
+            scene()->clearSelection();
+            scene()->clearFocus();
         }
+
+        pushOperatingMode(Mode::AREA_SELECTING);
+        QGraphicsView::mousePressEvent(event);
+        return;
     }
 
+    // Enforced connection creation
+    if (event->button() == Qt::MiddleButton)
+    {
+        setOperatingMode(Mode::CONNECTION_DRAFTING);
+        mousePressedConnectionDrafting(event);
+        return;
+    }
+
+    QGraphicsView::mousePressEvent(event);
+
+    // When starting to drag selected item(s)
+    for (QGraphicsItem* it : scene()->selectedItems())
+    {
+        if (it->flags().testFlag(QGraphicsItem::ItemIsMovable))
+            dragStartPos[it] = it->pos();
+    }
+    if (item && item->flags().testFlag(QGraphicsItem::ItemIsMovable)) // this item is not selected yet in the press event
+        dragStartPos[item] = item->pos();
+}
+
+void ErdView::mousePressedDraggingView(QMouseEvent* event)
+{
+    QGraphicsView::mousePressEvent(event);
+}
+
+void ErdView::mousePressedConnectionDrafting(QMouseEvent* event)
+{
+    if (event->button() == Qt::RightButton)
+    {
+        popOperatingMode();
+        return;
+    }
+
+    QPoint pos = event->position().toPoint();
+    QGraphicsItem* item = clickableItemAt(pos);
+    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    if (entity)
+    {
+        int rowIdx = entity->rowIndexAt(mapToScene(pos));
+        if (rowIdx <= 0)
+            return; // Cannot create connection to entity name or invalid area
+
+        if (draftConnection)
+        {
+            draftConnection->finalizeConnection(entity, mapToScene(pos));
+            draftConnection = nullptr;
+            setOperatingMode(Mode::NORMAL);
+        }
+        else
+        {
+            draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
+            draftConnection->addToScene(scene());
+        }
+        return;
+    }
+
+    QGraphicsView::mousePressEvent(event);
+}
+
+void ErdView::mousePressedPlacingNewEntity(QMouseEvent* event)
+{
+    if (!event->modifiers().testFlag(Qt::ShiftModifier))
+        popOperatingMode();
+
+    if (event->button() == Qt::LeftButton)
+    {
+        emit newEntityPositionPicked(mapToScene(event->pos()));
+        return;
+    }
+
+    QGraphicsView::mousePressEvent(event);
+}
+
+void ErdView::mousePressedAreaSelecting(QMouseEvent* event)
+{
+    QGraphicsView::mousePressEvent(event);
+}
+
+void ErdView::mouseMovedNormal(QMouseEvent* event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void ErdView::mouseMovedDraggingView(QMouseEvent* event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void ErdView::mouseMovedConnectionDrafting(QMouseEvent* event)
+{
+    if (draftConnection)
+        draftConnection->updatePosition(mapToScene(event->position().toPoint()));
+
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void ErdView::mouseMovedPlacingNewEntity(QMouseEvent* event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void ErdView::mouseMovedAreaSelecting(QMouseEvent* event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void ErdView::mouseReleasedNormal(QMouseEvent* event)
+{
     if (event->button() == Qt::LeftButton)
         itemsPotentiallyMoved();
 
-    if (!clickPos.isNull() && (event->position().toPoint() == clickPos || sameItemOnPositions(clickPos, event->position().toPoint())))
-    {
-        QPoint pressPos = clickPos;
-        clickPos = QPoint();
-        if (viewClicked(pressPos, event->button()))
-            return;
-    }
-
-    setDragMode(QGraphicsView::NoDrag);
-    handleSelectionOnMouseEvent(event->position().toPoint());
-
+    dragStartPos.clear();
     QGraphicsView::mouseReleaseEvent(event);
 }
 
-bool ErdView::viewClicked(const QPoint& pos, Qt::MouseButton button)
+void ErdView::mouseReleasedDraggingView(QMouseEvent* event)
 {
-    if (button == Qt::LeftButton)
-    {
-        handleConnectionClick(pos);
-    }
-    if (button == Qt::MiddleButton)
-    {
-        handleConnectionClick(pos, true);
-    }
-    else if (button == Qt::RightButton)
-    {
-        return true;
-    }
-    return false;
+    QGraphicsView::mouseReleaseEvent(event);
+}
+
+void ErdView::mouseReleasedConnectionDrafting(QMouseEvent* event)
+{
+    QGraphicsView::mouseReleaseEvent(event);
+}
+
+void ErdView::mouseReleasedPlacingNewEntity(QMouseEvent* event)
+{
+    QGraphicsView::mouseReleaseEvent(event);
+}
+
+void ErdView::mouseReleasedAreaSelecting(QMouseEvent* event)
+{
+    QGraphicsView::mouseReleaseEvent(event);
+    popOperatingMode();
 }
 
 void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
 {
-    dragOffset.clear();
     if (event->button() == Qt::LeftButton)
     {
         QGraphicsItem* item = clickableItemAt(event->pos());
@@ -369,37 +404,6 @@ QGraphicsItem* ErdView::clickableItemAt(const QPoint& pos)
     return nullptr;
 }
 
-bool ErdView::handleConnectionClick(const QPoint& pos, bool enableConnectionDrafting)
-{
-    QGraphicsItem* item = clickableItemAt(pos);
-    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
-    if (entity)
-    {
-        int rowIdx = entity->rowIndexAt(mapToScene(pos));
-        if (rowIdx <= 0)
-            return false;
-
-        if (enableConnectionDrafting && !isDraftingConnection())
-            setOperatingMode(Mode::CONNECTION_DRAFTING);
-
-        if (draftConnection)
-        {
-            draftConnection->finalizeConnection(entity, mapToScene(pos));
-            draftConnection = nullptr;
-
-            setOperatingMode(Mode::NORMAL);
-            return true;
-        }
-        else if (isDraftingConnection())
-        {
-            draftConnection = new ErdConnection(entity, mapToScene(pos), scene()->getArrowType());
-            draftConnection->addToScene(scene());
-            return true;
-        }
-    }
-    return false;
-}
-
 void ErdView::spacePressed()
 {
     pushOperatingMode(Mode::DRAGGING_VIEW);
@@ -424,7 +428,7 @@ void ErdView::showItemToUser(QGraphicsItem* item)
 
 void ErdView::deleteSelectedItem()
 {
-    scene()->deleteItems(selectedItems);
+    scene()->deleteItems(scene()->selectedItems());
 }
 
 void ErdView::handleVisibilityRequest(const QRectF& rect)
@@ -452,6 +456,9 @@ void ErdView::leavingOperatingMode(Mode mode)
             applyCursor(nullptr);
             emit tableInsertionAborted();
             break;
+        case ErdView::Mode::AREA_SELECTING:
+            setDragMode(QGraphicsView::NoDrag);
+            break;
     }
 }
 
@@ -472,6 +479,9 @@ void ErdView::enteringOperatingMode(Mode mode)
             break;
         case ErdView::Mode::PLACING_NEW_ENTITY:
             applyCursor(ErdWindow::cursorAddTableIcon->toQIconPtr());
+            break;
+        case ErdView::Mode::AREA_SELECTING:
+            setDragMode(QGraphicsView::RubberBandDrag);
             break;
     }
 }
@@ -500,25 +510,6 @@ void ErdView::setDraftingConnectionMode(bool enabled)
 void ErdView::insertNewEntity()
 {
     setOperatingMode(Mode::PLACING_NEW_ENTITY);
-}
-
-void ErdView::handleSelectionOnMouseEvent(const QPoint& pos)
-{
-    QGraphicsItem* item = clickableItemAt(pos);
-    if (selectedItems.contains(item))
-        return; // button relesed over selected item - no deselection
-
-    selectedItems = scene()->selectedItems();
-    selectedMovableItems = selectedItems | FILTER(item, {return item->flags().testFlag(QGraphicsItem::ItemIsMovable);});
-}
-
-void ErdView::clearSelectedItems()
-{
-    selectedItems.clear();
-    selectedMovableItems.clear();
-    dragOffset.clear();
-    scene()->clearSelection();
-    scene()->clearFocus();
 }
 
 bool ErdView::isDraggingView() const
@@ -593,26 +584,6 @@ void ErdView::applyCursor(QIcon* icon)
     viewport()->setCursor(cursor);
 }
 
-bool ErdView::sameItemOnPositions(const QPoint& pos1, const QPoint& pos2)
-{
-    QList<QGraphicsItem*> list1 = items(pos1);
-    QList<QGraphicsItem*> list2 = items(pos2);
-    for (QGraphicsItem*& it1 : list1)
-        if (list2.contains(it1))
-            return true;
-
-    return false;
-}
-
-bool ErdView::tolerateMicroMovesForClick()
-{
-    // Even if not started the arrow yet, we want initial click to be tolerant for micro-moves
-    if (isDraftingConnection())
-        return true;
-
-    return false;
-}
-
 void ErdView::startDragBySpace()
 {
     if (CFG_ERD.Erd.DragBySpace.get())
@@ -639,7 +610,7 @@ void ErdView::itemsPotentiallyMoved()
 {
     QList<ErdChange*> changes;
     QStringList names;
-    for (QGraphicsItem* item : selectedMovableItems)
+    for (QGraphicsItem* item : scene()->selectedItems())
     {
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
         if (entity)
@@ -707,6 +678,9 @@ QDebug operator<<(QDebug dbg, ErdView::Mode value)
             break;
         case ErdView::Mode::PLACING_NEW_ENTITY:
             dbg << "PLACING_NEW_ENTITY";
+            break;
+        case ErdView::Mode::AREA_SELECTING:
+            dbg << "AREA_SELECTING";
             break;
     }
     return dbg;

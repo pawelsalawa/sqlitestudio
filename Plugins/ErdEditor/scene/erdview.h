@@ -25,6 +25,7 @@ class ErdView : public QGraphicsView
             DRAGGING_VIEW,
             CONNECTION_DRAFTING,
             PLACING_NEW_ENTITY,
+            AREA_SELECTING,
         };
 
         ErdView(QWidget *parent = nullptr);
@@ -72,27 +73,34 @@ class ErdView : public QGraphicsView
                 ErdView* view = nullptr;
         };
 
-        bool viewClicked(const QPoint& pos, Qt::MouseButton button);
+        void mousePressedNormal(QMouseEvent* event);
+        void mousePressedDraggingView(QMouseEvent* event);
+        void mousePressedConnectionDrafting(QMouseEvent* event);
+        void mousePressedPlacingNewEntity(QMouseEvent* event);
+        void mousePressedAreaSelecting(QMouseEvent* event);
+
+        void mouseMovedNormal(QMouseEvent* event);
+        void mouseMovedDraggingView(QMouseEvent* event);
+        void mouseMovedConnectionDrafting(QMouseEvent* event);
+        void mouseMovedPlacingNewEntity(QMouseEvent* event);
+        void mouseMovedAreaSelecting(QMouseEvent* event);
+
+        void mouseReleasedNormal(QMouseEvent* event);
+        void mouseReleasedDraggingView(QMouseEvent* event);
+        void mouseReleasedConnectionDrafting(QMouseEvent* event);
+        void mouseReleasedPlacingNewEntity(QMouseEvent* event);
+        void mouseReleasedAreaSelecting(QMouseEvent* event);
+
         QGraphicsItem* clickableItemAt(const QPoint& pos);
-        bool handleConnectionClick(const QPoint& pos, bool enableConnectionDrafting = false);
         void spacePressed();
         void spaceReleased();
-        void handleSelectionOnMouseEvent(const QPoint& pos);
-        void clearSelectedItems();
         void applyCursor(QIcon* icon);
-        bool sameItemOnPositions(const QPoint& pos1, const QPoint& pos2);
-        bool tolerateMicroMovesForClick();
         void startDragBySpace();
         void endDragBySpace();
         void itemsPotentiallyMoved();
 
-        QList<QGraphicsItem*> selectedItems;
-        QList<QGraphicsItem*> selectedMovableItems;
-        QHash<QGraphicsItem*, QPoint> dragOffset;
         QHash<QGraphicsItem*, QPointF> dragStartPos;
-        QPointF lastDragScenePos;
         ErdConnection* draftConnection = nullptr;
-        QPoint clickPos;
         QPointF lastClickPos;
         qreal zoom = 1.0;
         KeyPressFilter* keyFilter = nullptr;
