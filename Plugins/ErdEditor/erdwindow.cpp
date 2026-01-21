@@ -106,6 +106,7 @@ void ErdWindow::staticCleanup()
 void ErdWindow::init()
 {
     ui->setupUi(this);
+    ui->view->setErdWindow(this);
 
     for (auto icon : {cursorAddTableIcon, cursorFkIcon, windowIcon, fdpIcon, neatoIcon,
                     lineStraightIcon, lineCurvyIcon, lineSquareIcon, colorPickerIcon})

@@ -9,10 +9,12 @@
 #include <QStack>
 #include <QDebug>
 
+class ErdEntity;
 class ErdChange;
 class ErdConnection;
 class ErdScene;
 class Db;
+class ErdWindow;
 
 class ErdView : public QGraphicsView
 {
@@ -46,11 +48,11 @@ class ErdView : public QGraphicsView
         void setOperatingMode(Mode mode);
         void pushOperatingMode(Mode mode);
         void popOperatingMode();
+        QPointF getLastClickPos() const;
+        void setErdWindow(ErdWindow* newErdWindow);
 
         static constexpr const char* CFG_KEY_ZOOM = "zoom";
         static constexpr const char* CFG_KEY_CENTER_POINT = "centerPoint";
-
-        QPointF getLastClickPos() const;
 
     protected:
         void mousePressEvent(QMouseEvent* event) override;
@@ -98,6 +100,8 @@ class ErdView : public QGraphicsView
         void startDragBySpace();
         void endDragBySpace();
         void itemsPotentiallyMoved();
+        void createSimilar(ErdEntity* referenceEntity);
+        void clearSelection();
 
         QHash<QGraphicsItem*, QPointF> dragStartPos;
         ErdConnection* draftConnection = nullptr;
@@ -108,6 +112,7 @@ class ErdView : public QGraphicsView
         QPointF centerPoint;
         Mode operatingMode = Mode::NORMAL;
         QStack<Mode> priorOperatingModeStack;
+        ErdWindow* erdWindow = nullptr;
 
     public slots:
         void setDraftingConnectionMode(bool enabled);

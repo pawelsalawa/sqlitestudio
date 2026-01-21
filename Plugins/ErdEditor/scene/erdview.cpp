@@ -142,10 +142,7 @@ void ErdView::mousePressedNormal(QMouseEvent* event)
     if (!item || !item->flags().testFlag(QGraphicsItem::ItemIsMovable))
     {
         if (!event->modifiers().testFlag(Qt::ControlModifier))
-        {
-            scene()->clearSelection();
-            scene()->clearFocus();
-        }
+            clearSelection();
 
         pushOperatingMode(Mode::AREA_SELECTING);
         QGraphicsView::mousePressEvent(event);
@@ -157,6 +154,17 @@ void ErdView::mousePressedNormal(QMouseEvent* event)
     {
         setOperatingMode(Mode::CONNECTION_DRAFTING);
         mousePressedConnectionDrafting(event);
+        return;
+    }
+
+    // Create similar entity by clt+drag
+    ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+    if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::AltModifier) && entity &&
+        erdWindow->clearSidePanel())
+    {
+        clearSelection();
+        createSimilar(entity);
+        QGraphicsView::mousePressEvent(event);
         return;
     }
 
@@ -627,6 +635,31 @@ void ErdView::itemsPotentiallyMoved()
     ErdChange* change = ErdChange::normalizeChanges(changes, tr("Move tables: %1").arg(names.join(", ")));
     if (change)
         emit changeCreated(change);
+}
+
+void ErdView::createSimilar(ErdEntity* referenceEntity)
+{
+    SqliteCreateTablePtr newCreateTable = referenceEntity->getTableModel()->typeCloneShared<SqliteCreateTable>();
+    QString newName = scene()->getNewEntityName(referenceEntity->getTableName(), 2);
+    newCreateTable->table = newName;
+
+    ErdEntity* entity = new ErdEntity(newCreateTable);
+    entity->setExistingTable(false);
+    scene()->placeNewEntity(entity, referenceEntity->pos());
+
+    scene()->setFocusItem(entity, Qt::MouseFocusReason);
+    entity->setSelected(true);
+}
+
+void ErdView::clearSelection()
+{
+    scene()->clearSelection();
+    scene()->clearFocus();
+}
+
+void ErdView::setErdWindow(ErdWindow* newErdWindow)
+{
+    erdWindow = newErdWindow;
 }
 
 QPointF ErdView::getLastClickPos() const

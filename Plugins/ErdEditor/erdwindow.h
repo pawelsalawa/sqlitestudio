@@ -63,6 +63,10 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QString getQuitUncommittedConfirmMessage() const override;
         void setMdiWindow(MdiWindow* value) override;
         bool shouldReuseForArgs(int argCount, ...) override;
+        /**
+         * @return true if panel clear operation was successful and view is allowed to deselect item.
+         */
+        bool clearSidePanel();
 
         static Icon* cursorAddTableIcon;
         static Icon* cursorFkIcon;
@@ -89,10 +93,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool initialRun);
         void focusItem(QGraphicsItem* item);
         void parseAndRestore(bool initialRun, MemDbInit createMemDb);
-        /**
-         * @return true if panel clear operation was successful and view is allowed to deselect item.
-         */
-        bool clearSidePanel();
         /**
          * @return true if panel replacement operation was successful and view is allowed to change item selection.
          */
