@@ -1793,7 +1793,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
         sSort(tableItems, [fkTableCount](DbTreeItem*& i1, DbTreeItem*& i2)
         {
-            return fkTableCount[i1] >= fkTableCount[i2];
+            return fkTableCount[i1] > fkTableCount[i2];
         });
 
         for (DbTreeItem*& tableItem : tableItems)

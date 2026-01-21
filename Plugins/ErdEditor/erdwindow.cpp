@@ -27,6 +27,7 @@
 #include "common/colorpickerpopup.h"
 #include "common/extlineedit.h"
 #include "changes/erdeffectivechangemerger.h"
+#include "common/widgetcover.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -37,6 +38,7 @@
 #include <QMenu>
 #include <QWidgetAction>
 #include <QMessageBox>
+#include <services/notifymanager.h>
 
 Icon* ErdWindow::cursorAddTableIcon = nullptr;
 Icon* ErdWindow::cursorFkIcon = nullptr;
@@ -136,6 +138,8 @@ void ErdWindow::init()
     initFilter();
     initActions();
     initContextMenu();
+    initExecutor();
+    initWidgetCover();
 
     connect(STYLE, &Style::paletteChanged, this, &ErdWindow::uiPaletteChanged);
     connect(scene, &QGraphicsScene::selectionChanged, this, &ErdWindow::itemSelectionChanged);
@@ -540,6 +544,38 @@ void ErdWindow::colorPicked(const QColor& color)
     scene->invalidate();
 }
 
+void ErdWindow::interruptCommitExecution()
+{
+    ddlExecutor->interrupt();
+}
+
+void ErdWindow::commitExecutionFinished(SqlQueryPtr lastQueryResult)
+{
+    UNUSED(lastQueryResult);
+    hideWidgetCover();
+}
+
+void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
+{
+    UNUSED(lastQueryResult);
+    changeRegistry->clear();
+    notifyInfo(tr("All changes have been successfully applied to the database.", "ERD editor"));
+}
+
+void ErdWindow::commitExecutionFailure(int errorCode, const QString& errorText)
+{
+    qWarning() << "Failed to apply ERD changes to the database. Error code:" << errorCode
+               << ", details:" << errorText;
+    notifyError(tr("Failed to apply changes to the database. Details: %1", "ERD editor").arg(errorText));
+}
+
+void ErdWindow::updateCommitExecutionStatus(int queryIdx)
+{
+    widgetCover->displayProgress(commitChangeDescriptions.size(),
+                                 QString("(%v / %m) %1").arg(commitChangeDescriptions[queryIdx]));
+    widgetCover->setProgress(queryIdx);
+}
+
 void ErdWindow::itemSelectionChanged()
 {
     if (ignoreSelectionChangeEvents)
@@ -584,7 +620,30 @@ void ErdWindow::reloadSchema()
 
 void ErdWindow::commitPendingChanges()
 {
-    // TODO
+    commitChangeDescriptions.clear();
+    ErdEffectiveChangeMerger merger(cachedDdls, db->getName());
+    QList<ErdEffectiveChange> effectiveChanges = merger.merge(changeRegistry->getPendingChanges(false));
+    QStringList queries;
+    for (ErdEffectiveChange& ec : effectiveChanges)
+    {
+        auto ddls = merger.getDdlForChange(ec);
+        QString desc = ec.getDescription();
+        for (auto&& ddl : ddls)
+        {
+            UNUSED(ddl);
+            commitChangeDescriptions << desc;
+        }
+
+        queries += ddls;
+    }
+
+    if (queries.size() == 0)
+        return;
+
+    ddlExecutor->setDb(db);
+    ddlExecutor->setQueries(queries);
+    showWidgetCover(queries.size());
+    ddlExecutor->exec();
 }
 
 void ErdWindow::rollbackPendingChanges()
@@ -611,6 +670,49 @@ void ErdWindow::rollbackPendingChanges()
     ui->view->setUpdatesEnabled(true);
 }
 
+void ErdWindow::initWidgetCover()
+{
+    widgetCover = new WidgetCover(ui->content);
+    widgetCover->initWithInterruptContainer();
+    widgetCover->displayProgress(0, "(%v / %m)");
+    connect(widgetCover, SIGNAL(cancelClicked()), this, SLOT(interruptCommitExecution()));
+}
+
+void ErdWindow::initExecutor()
+{
+    ddlExecutor = new ChainExecutor(this);
+    ddlExecutor->setTransaction(true);
+    ddlExecutor->setAsync(true);
+    ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setDisableObjectDropsDetection(true);
+
+    connect(ddlExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(commitExecutionSuccessful(SqlQueryPtr)));
+    connect(ddlExecutor, SIGNAL(finished(SqlQueryPtr)), this, SLOT(commitExecutionFinished(SqlQueryPtr)));
+    connect(ddlExecutor, SIGNAL(failure(int,QString)), this, SLOT(commitExecutionFailure(int,QString)));
+    connect(ddlExecutor, SIGNAL(aboutToExecuteQueryNumber(int)), this, SLOT(updateCommitExecutionStatus(int)));
+}
+
+void ErdWindow::showWidgetCover(int total)
+{
+    widgetCover->displayProgress(total);
+    widgetCover->getContainerLayout()->setColumnMinimumWidth(0, 400);
+    widgetCover->show();
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+
+    ui->sidePanel->setEnabled(false);
+    ui->view->setInteractive(false);
+    updateState();
+}
+
+void ErdWindow::hideWidgetCover()
+{
+    widgetCover->hide();
+    ui->sidePanel->setEnabled(true);
+    ui->view->setInteractive(true);
+    updateState();
+    commitChangeDescriptions.clear();
+}
+
 void ErdWindow::handleCreatedChange(ErdChange* change)
 {
     changeRegistry->addChange(change);
@@ -619,9 +721,23 @@ void ErdWindow::handleCreatedChange(ErdChange* change)
 
 void ErdWindow::updateState()
 {
+    bool readOnlyView = !ui->view->isInteractive();
+    if (!readOnlyView)
+    {
+        for (QAction* act : actionMap.values())
+            act->setEnabled(true);
+    }
+
     updateToolbarState(changeRegistry->getPendingChangesCount(),
                        changeRegistry->isUndoAvailable(),
                        changeRegistry->isRedoAvailable());
+
+    updateSelectionBasedActionsState();
+    if (readOnlyView)
+    {
+        for (QAction* act : actionMap.values())
+            act->setEnabled(false);
+    }
 }
 
 void ErdWindow::updateToolbarState(int effectiveChangeCount, bool undoAvailable, bool redoAvailable)

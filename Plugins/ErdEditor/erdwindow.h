@@ -5,12 +5,17 @@
 #include "erdeditor_global.h"
 #include "scene/erdarrowitem.h"
 #include "erdeditorplugin.h"
+#include "db/db.h"
 #include <QWidget>
 
 
 class ColorPickerPopup;
 
 class ExtLineEdit;
+
+class WidgetCover;
+
+class ChainExecutor;
 namespace Ui {
     class ErdWindow;
 }
@@ -114,6 +119,10 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void updatePickerColorFromSelected(QList<QGraphicsItem*> selectedItems);
         void initFilter();
         void initContextMenu();
+        void initWidgetCover();
+        void initExecutor();
+        void showWidgetCover(int total);
+        void hideWidgetCover();
 
         static constexpr const char* ERD_CFG_GROUP = "ErdPluginConfig";
         static constexpr const char* CFG_KEY_SPLITTER = "splitter";
@@ -144,6 +153,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         QTimer* filterTimer = nullptr;
         QMenu* colorPickerMenu = nullptr;
         QMenu* sceneContextMenu = nullptr;
+        WidgetCover* widgetCover = nullptr;
+        ChainExecutor* ddlExecutor = nullptr;
+        QStringList commitChangeDescriptions;
 
     private slots:
         void checkIfActivated(Qt::WindowStates oldState, Qt::WindowStates newState);
@@ -183,6 +195,14 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void sceneContextMenuRequested(const QPoint& pos);
         void colorResetPicked();
         void colorPicked(const QColor& color);
+        void interruptCommitExecution();
+        void commitExecutionFinished(SqlQueryPtr lastQueryResult);
+        void commitExecutionSuccessful(SqlQueryPtr lastQueryResult);
+        void commitExecutionFailure(int errorCode, const QString& errorText);
+        void updateCommitExecutionStatus(int queryIdx);
+
+    signals:
+        void aboutToCommit();
 };
 
 #endif // ERDWINDOW_H

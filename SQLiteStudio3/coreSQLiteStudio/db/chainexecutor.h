@@ -391,6 +391,12 @@ class API_EXPORT ChainExecutor : public QObject
          * See setMandatoryQueries() for details on mandatory queries.
          */
         void failure(int errorCode, const QString& errorText);
+
+        /**
+         * @brief Emitted just before executing each query.
+         * @param queryIndex Index of the query about to be executed.
+         */
+        void aboutToExecuteQueryNumber(int queryIndex);
 };
 
 #endif // CHAINEXECUTOR_H

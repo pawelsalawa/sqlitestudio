@@ -272,7 +272,7 @@ QHash<QString, QHash<QString, QStringList>> DbObjectDialogs::groupObjects(const 
 
             sSort(tables, [fkTableCount](const QString& t1, const QString& t2)
             {
-                return fkTableCount[t1] >= fkTableCount[t2];
+                return fkTableCount[t1] > fkTableCount[t2];
             });
 
             groupedObjects[dbIt.key()]["TABLE"] = tables;

@@ -64,6 +64,7 @@ void ChainExecutor::exec()
         return;
     }
 
+    interrupted = false;
     executionInProgress = true;
     currentSqlIndex = 0;
     executionErrors.clear();
@@ -93,6 +94,7 @@ void ChainExecutor::executeCurrentSql()
         return;
     }
 
+    emit aboutToExecuteQueryNumber(currentSqlIndex);
     asyncId = db->asyncExec(sqls[currentSqlIndex], queryParams, getExecFlags());
 }
 
@@ -170,8 +172,10 @@ void ChainExecutor::executeSync()
 {
     Db::Flags flags = getExecFlags();
     SqlQueryPtr results;
+    int queryIdx = 0;
     for (const QString& sql : sqls)
     {
+        emit aboutToExecuteQueryNumber(queryIdx++);
         results = db->exec(sql, queryParams, flags);
         if (!handleResults(results))
             return;

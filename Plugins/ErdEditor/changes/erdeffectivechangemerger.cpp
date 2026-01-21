@@ -343,7 +343,6 @@ ErdEffectiveChange ErdEffectiveChangeMerger::strategyModifyToDropAhead(const QLi
 
 ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleDropToRaw(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb)
 {
-    int localIdx = idx;
     QStringList changesToProcess;
     QHash<QString, QSet<QString>> idToAffectedTables;
     QSet<QString> affectedTablesSoFar;
@@ -351,6 +350,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleDropToRaw(const QLi
 
     {
         auto rollbackTx = scopedTxRollback(referenceDb, workingDb);
+        int localIdx = idx;
         while (localIdx < theList.size())
         {
             ErdEffectiveChange next = theList[localIdx];
@@ -370,12 +370,6 @@ ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleDropToRaw(const QLi
 
             localIdx++;
         }
-
-        if (localIdx >= theList.size())
-        {
-            // All changes were DROPs, but because of that the localIdx was incremented beyond the list size.
-            localIdx--;
-        }
     }
 
     while (!changesToProcess.isEmpty())
@@ -388,20 +382,19 @@ ErdEffectiveChange ErdEffectiveChangeMerger::strategyMultipleDropToRaw(const QLi
         }
         tablesToDropSoFar.removeLast();
         changesToProcess.removeLast();
-        localIdx--;
     }
 
-    int stepsToMerge = localIdx - idx;
-    if (stepsToMerge > 0)
+    int stepsToMerge = changesToProcess.size();
+    if (stepsToMerge > 1)
     {
         static_qstring(rawDropDdl, "DROP TABLE %1;");
         QStringList ddls;
-        for (int i = idx; i <= localIdx; i++)
-            ddls << rawDropDdl.arg(wrapObjIfNeeded(theList[i].getTableName()));
+        for (int i = 0; i < stepsToMerge; i++)
+            ddls << rawDropDdl.arg(wrapObjIfNeeded(theList[idx + i].getTableName()));
 
         QString desc = QObject::tr("Drop tables: %1", "ERD editor").arg(tablesToDropSoFar.join(", "));
         ErdEffectiveChange mergedChange = ErdEffectiveChange::raw(ddls, desc);
-        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, stepsToMerge + 1), referenceDb, workingDb);
+        bool success = testAgainstOriginal(mergedChange, theList.mid(idx, stepsToMerge), referenceDb, workingDb);
         if (success)
         {
             qDebug() << "Merged multiple DROP changes for tables" << tablesToDropSoFar << "into RAW.";
