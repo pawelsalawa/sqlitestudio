@@ -675,7 +675,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="129"/>
       <source>Column with the same name</source>
-      <translation type="unfinished"/>
+      <translation>同名列</translation>
     </message>
   </context>
   <context>
@@ -1052,27 +1052,27 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="538"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在表单视图编辑器中编辑文本时，将 Unicode 行分隔符 (U+2028, U+2029) 转换为标准 LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) 字符。&lt;/p&gt;&lt;p&gt;用此选项可保留原始字符。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="541"/>
       <source>Convert Unicode line separators to LF (\n) in form view editors</source>
-      <translation type="unfinished"/>
+      <translation>在窗体视图编辑器中将Unicode行分隔符转换为LF（\n）</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
       <source>General.UseLfForMultilineEditors</source>
-      <translation type="unfinished"/>
+      <translation>General.UseLfForMultilineEditors</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="551"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后，SQLiteStudio 会自动将非常小的实数（例如 &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;）转换为科学计数法。&lt;/p&gt;&lt;p&gt;对于数值大小允许以可读的十进制表示的值，则使用十进制表示法。禁用后，实数始终以十进制表示法显示，即使这会导致小数部分非常长。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="554"/>
       <source>Use scientific notation for very small real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for very small real numbers in the grid view</translation>
+      <translation>在网格视图中，对于非常小的实数，请使用科学计数法。</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="580"/>
@@ -4685,7 +4685,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Edit selected database</source>
-      <translation type="unfinished">Edit selected database</translation>
+      <translation>编辑所选数据库</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>
@@ -6159,7 +6159,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="178"/>
       <source>Column with the same name</source>
-      <translation type="unfinished"/>
+      <translation>同名列</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="217"/>
