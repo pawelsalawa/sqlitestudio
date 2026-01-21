@@ -157,7 +157,7 @@ void ErdView::mousePressedNormal(QMouseEvent* event)
         return;
     }
 
-    // Create similar entity by clt+drag
+    // Create similar entity by alt+drag
     ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
     if (event->button() == Qt::LeftButton && event->modifiers().testFlag(Qt::AltModifier) && entity &&
         erdWindow->clearSidePanel())
@@ -623,12 +623,12 @@ void ErdView::itemsPotentiallyMoved()
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
         if (entity)
         {
-            if (dragStartPos[item] != item->pos())
+            if (dragStartPos.contains(item) && dragStartPos[item] != item->pos())
             {
                 changes << new ErdChangeMoveEntity(entity->getTableName(), dragStartPos[item], item->pos(),
                                                     tr("Move table \"%1\"").arg(entity->getTableName()));
+                names << entity->getTableName();
             }
-            names << entity->getTableName();
         }
     }
 

@@ -11,7 +11,7 @@ class Db;
 class ErdChangeNewEntity : public ErdChange
 {
     public:
-        ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description);
+        ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QPointF& initialPos, const QString& description);
 
         void apply(ErdScene::SceneChangeApi& api);
         void applyUndo(ErdScene::SceneChangeApi& api);

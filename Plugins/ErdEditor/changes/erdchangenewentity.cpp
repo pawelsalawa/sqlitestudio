@@ -2,8 +2,8 @@
 #include "erdeffectivechange.h"
 #include "scene/erdentity.h"
 
-ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QString& description) :
-    ErdChange(description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable)
+ErdChangeNewEntity::ErdChangeNewEntity(Db* db, const QString& temporaryEntityName, const SqliteCreateTablePtr& createTable, const QPointF& initialPos, const QString& description) :
+    ErdChange(description, true), db(db), temporaryEntityName(temporaryEntityName), createTable(createTable), lastPositionBeforeUndo(initialPos)
 {
     createTable->rebuildTokens();
 }

@@ -233,7 +233,7 @@ void ErdTableWindow::executeStructureChanges()
     else
     {
         QString desc = ErdChangeNewEntity::defaultDescription(createTable->table);
-        change = new ErdChangeNewEntity(db, originalCreateTable->table, createTable, desc);
+        change = new ErdChangeNewEntity(db, originalCreateTable->table, createTable, entity->pos(), desc);
     }
 
     structureExecutor->setTransaction(false);

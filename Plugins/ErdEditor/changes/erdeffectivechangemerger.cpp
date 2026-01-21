@@ -168,7 +168,7 @@ ErdEffectiveChange ErdEffectiveChangeMerger::mergeToDropByStrategy(const QList<E
     // DROP, DROP, DROP, ... -> RAW
     // This simplifies multiple DROPs into single RAW change dropping all tables at once,
     // while skipping all the FK management statements that would be generated otherwise.
-    ErdEffectiveChange resultChange = strategyMultipleModifyToOne(theList, idx, referenceDb, workingDb);
+    ErdEffectiveChange resultChange = strategyMultipleDropToRaw(theList, idx, referenceDb, workingDb);
     if (idx > initialIdx)
         return resultChange;
 
