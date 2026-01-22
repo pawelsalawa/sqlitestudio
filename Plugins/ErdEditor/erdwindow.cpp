@@ -614,7 +614,7 @@ void ErdWindow::reloadSchema()
     ui->view->setUpdatesEnabled(false);
     changeRegistry->clear();
     scene->clearScene();
-    parseAndRestore(false, MemDbInit::FULL);
+    parseAndRestore(true, MemDbInit::FULL);
     ui->view->setUpdatesEnabled(true);
 }
 
@@ -666,7 +666,7 @@ void ErdWindow::rollbackPendingChanges()
     changeRegistry->moveToBeginning();
     ui->view->setUpdatesEnabled(false);
     scene->clearScene();
-    parseAndRestore(false, MemDbInit::CACHED);
+    parseAndRestore(true, MemDbInit::CACHED);
     ui->view->setUpdatesEnabled(true);
 }
 
@@ -887,7 +887,7 @@ QString ErdWindow::getCurrentSidePanelModificationsEntity() const
     return QString();
 }
 
-void ErdWindow::parseAndRestore(bool initialRun, MemDbInit createMemDb)
+void ErdWindow::parseAndRestore(bool applyUiConfigPart, MemDbInit createMemDb)
 {
     if (!db)
         return;
@@ -897,10 +897,10 @@ void ErdWindow::parseAndRestore(bool initialRun, MemDbInit createMemDb)
 
     QSet<QString> tableNames = scene->parseSchema();
     QVariant erdConfig = CFG->get(ERD_CFG_GROUP, db->getPath());
-    if (!tryToApplyConfig(erdConfig, tableNames, initialRun))
+    if (!tryToApplyConfig(erdConfig, tableNames, applyUiConfigPart))
     {
         erdConfig = CFG->get(ERD_CFG_GROUP, db->getName());
-        if (!tryToApplyConfig(erdConfig, tableNames, initialRun))
+        if (!tryToApplyConfig(erdConfig, tableNames, applyUiConfigPart))
             scene->arrangeEntitiesFdp(true);
     }
 }
@@ -1052,7 +1052,7 @@ bool ErdWindow::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool initialRun)
+bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool applyUiPart)
 {
     if (!value.isValid() || value.isNull() || !value.canConvert<QHash<QString, QVariant>>())
         return false;
@@ -1073,7 +1073,7 @@ bool ErdWindow::tryToApplyConfig(const QVariant& value, const QSet<QString>& tab
 
     // Config is applicable.
     scene->applyConfig(erdConfig);
-    if (initialRun)
+    if (applyUiPart)
     {
         // UI elements restored only at initial run, because subsequent runs
         // come from rollback/reload, so UI should remain untouched.

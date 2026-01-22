@@ -95,9 +95,9 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void init();
         void applyArrowType(ErdArrowItem::Type arrowType);
         void updateArrowTypeButtons();
-        bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool initialRun);
+        bool tryToApplyConfig(const QVariant& value, const QSet<QString>& tableNames, bool applyUiPart);
         void focusItem(QGraphicsItem* item);
-        void parseAndRestore(bool initialRun, MemDbInit createMemDb);
+        void parseAndRestore(bool applyUiConfigPart, MemDbInit createMemDb);
         /**
          * @return true if panel replacement operation was successful and view is allowed to change item selection.
          */

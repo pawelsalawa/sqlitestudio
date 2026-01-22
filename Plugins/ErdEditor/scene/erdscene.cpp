@@ -292,10 +292,12 @@ void ErdScene::applyConfig(const QHash<QString, QVariant>& erdConfig)
     // Arrange entities without stored position
     if (!noStoredPositionEntities.isEmpty())
     {
+        QSet<ErdEntity*> localList = noStoredPositionEntities;
         for (ErdEntity* entity : noStoredPositionEntities)
         {
-            QPointF pos = getPosForNewEntitySpiral(entity, noStoredPositionEntities);
+            QPointF pos = getPosForNewEntitySpiral(entity, localList);
             entity->setPos(pos);
+            localList.remove(entity);
         }
     }
 
@@ -844,7 +846,7 @@ QList<ErdEntity*> ErdScene::applyColorToSelectedEntities(const QColor& color)
 QString ErdScene::getNewEntityName(const QString& prefix, int startIdx) const
 {
     QStringList existingNames = entityMap.keys();
-    QString baseName = prefix;
+    QString baseName = prefix.back().isDigit() && prefix.length() > 1 ? prefix.left(prefix.length() - 1) : prefix;
     QString name = baseName;
     for (int i = startIdx; existingNames.contains(name); i++)
         name = baseName + QString::number(i);
