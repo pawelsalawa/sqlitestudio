@@ -25,6 +25,7 @@ class ErdChangeRegistry : public QObject
         bool isRedoAvailable() const;
         void clear();
         void moveToBeginning();
+        void complementSceneConfig(QHash<QString, QVariant>& sceneConfig);
 
     private:
         static constexpr int UNDO_LIMIT = 1000;

@@ -119,6 +119,10 @@ class ErdScene : public QGraphicsScene
         QList<ErdEntity*> applyColorToSelectedEntities(const QColor& color);
         QString getNewEntityName(const QString& prefix, int startIdx) const;
 
+        static QHash<QString, QVariant> createEntityConfigEntry(const QPointF& pos,
+                                                                const QColor& bgColor = QColor(),
+                                                                const QColor& fgColor = QColor());
+
         static constexpr auto CFG_KEY_ENTITIES = "entities";
         static constexpr auto CFG_KEY_VIEW_RECT = "viewRect";
         static constexpr auto CFG_KEY_ARROW_TYPE = "arrowType";

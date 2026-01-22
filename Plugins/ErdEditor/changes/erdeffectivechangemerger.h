@@ -64,6 +64,17 @@ class ErdEffectiveChangeMerger
          */
         static QStringList readDbSchema(Db* db);
 
+        /**
+         * @brief Flattens a list of ErdChange instances into a single-level list.
+         * @param changes List of ErdChange instances to be flattened.
+         * @return Flattened list of ErdChange instances.
+         *
+         * This method processes each ErdChange in the input list. If an ErdChange is a composite change
+         * (i.e., it contains multiple sub-changes), the method extracts its sub-changes and adds them
+         * individually to the output list. Non-composite changes are added directly to the output list.
+         */
+        static QList<ErdChange*> flatten(const QList<ErdChange*>& changes);
+
     private:
         struct TableModifierAftermath
         {
@@ -71,7 +82,6 @@ class ErdEffectiveChangeMerger
             QStringList modifiedViews;
         };
 
-        QList<ErdChange*> flatten(const QList<ErdChange*>& changes);
         ErdEffectiveChange merge(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
         ErdEffectiveChange mergeToCreateByStrategy(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);
         ErdEffectiveChange mergeToDropByStrategy(const QList<ErdEffectiveChange>& theList, int& idx, Db* referenceDb, Db* workingDb);

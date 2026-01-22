@@ -1,5 +1,8 @@
 #include "erdchangeregistry.h"
 #include "erdchange.h"
+#include "erdchangedeleteentity.h"
+#include "uiutils.h"
+#include "erdeffectivechangemerger.h"
 #include <QDebug>
 
 ErdChangeRegistry::ErdChangeRegistry(QObject* parent)
@@ -102,6 +105,25 @@ void ErdChangeRegistry::moveToBeginning()
 {
     currentIndex = -1;
     notifyChangesUpdated();
+}
+
+void ErdChangeRegistry::complementSceneConfig(QHash<QString, QVariant>& sceneConfig)
+{
+    QHash<QString, QVariant> entitiesHash = sceneConfig[ErdScene::CFG_KEY_ENTITIES].toHash();
+
+    QList<ErdChangeDeleteEntity*> deleteChanges = ErdEffectiveChangeMerger::flatten(getPendingChanges()) |
+            NNMAP_CAST(ErdChangeDeleteEntity*);
+
+    for (ErdChangeDeleteEntity* delChange : deleteChanges)
+    {
+        QString entityName = delChange->getTableName();
+        QPointF pos = delChange->getLastPosition();
+        QColor bg = delChange->getLastCustomColor();
+        QColor textColor = findContrastingColor(bg);
+        entitiesHash[entityName] = ErdScene::createEntityConfigEntry(pos, bg, textColor);
+    }
+
+    sceneConfig[ErdScene::CFG_KEY_ENTITIES] = entitiesHash;
 }
 
 void ErdChangeRegistry::notifyChangesUpdated()

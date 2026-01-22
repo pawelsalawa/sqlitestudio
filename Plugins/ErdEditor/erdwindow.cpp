@@ -549,21 +549,22 @@ void ErdWindow::interruptCommitExecution()
     ddlExecutor->interrupt();
 }
 
-void ErdWindow::commitExecutionFinished(SqlQueryPtr lastQueryResult)
-{
-    UNUSED(lastQueryResult);
-    hideWidgetCover();
-}
-
 void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
 {
     UNUSED(lastQueryResult);
     changeRegistry->clear();
+
+    // Refresh memDb schema
+    if (!initMemDb(MemDbInit::FULL))
+        qCritical() << "Failed to re-initialize memory database after committing ERD changes.";
+
+    hideWidgetCover();
     notifyInfo(tr("All changes have been successfully applied to the database.", "ERD editor"));
 }
 
 void ErdWindow::commitExecutionFailure(int errorCode, const QString& errorText)
 {
+    hideWidgetCover();
     qWarning() << "Failed to apply ERD changes to the database. Error code:" << errorCode
                << ", details:" << errorText;
     notifyError(tr("Failed to apply changes to the database. Details: %1", "ERD editor").arg(errorText));
@@ -648,21 +649,6 @@ void ErdWindow::commitPendingChanges()
 
 void ErdWindow::rollbackPendingChanges()
 {
-    if (changeRegistry->getPendingChangesCount() > 0)
-    {
-        QMessageBox::StandardButton res = QMessageBox::question(
-                    qobject_cast<QWidget*>(parent()),
-                    tr("Revert diagram to initial state", "ERD editor"),
-                    tr("This action will revert the diagram to its initial state, "
-                       "discarding all pending changes. "
-                       "You will still be able to restore them using the Redo history. "
-                       "Do you want to proceed?")
-                );
-
-        if (res != QMessageBox::Yes)
-            return;
-    }
-
     changeRegistry->moveToBeginning();
     ui->view->setUpdatesEnabled(false);
     scene->clearScene();
@@ -687,7 +673,6 @@ void ErdWindow::initExecutor()
     ddlExecutor->setDisableObjectDropsDetection(true);
 
     connect(ddlExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(commitExecutionSuccessful(SqlQueryPtr)));
-    connect(ddlExecutor, SIGNAL(finished(SqlQueryPtr)), this, SLOT(commitExecutionFinished(SqlQueryPtr)));
     connect(ddlExecutor, SIGNAL(failure(int,QString)), this, SLOT(commitExecutionFailure(int,QString)));
     connect(ddlExecutor, SIGNAL(aboutToExecuteQueryNumber(int)), this, SLOT(updateCommitExecutionStatus(int)));
 }
@@ -845,8 +830,11 @@ QVariant ErdWindow::saveSession()
     if (db)
         sessionValue["db"] = db->getName();
 
+    QHash<QString, QVariant> sceneConfig = scene->getConfig();
+    changeRegistry->complementSceneConfig(sceneConfig);
+
     QHash<QString, QVariant> erdConfig;
-    erdConfig.insert(scene->getConfig());
+    erdConfig.insert(sceneConfig);
     erdConfig.insert(ui->view->getConfig());
     erdConfig[CFG_KEY_SPLITTER] = ui->splitter->saveState();
     erdConfig[CFG_CUSTOM_COLORS] = QVariant::fromValue<QVector<QColor>>(colorPicker->getCustomColors());

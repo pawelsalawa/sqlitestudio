@@ -17,6 +17,9 @@ class ErdChangeDeleteEntity : public ErdChange
         void apply(ErdScene::SceneChangeApi& api);
         void applyUndo(ErdScene::SceneChangeApi& api);
         ErdEffectiveChange toEffectiveChange() const;
+        QPointF getLastPosition() const;
+        QColor getLastCustomColor() const;
+        QString getTableName() const;
 
         static QString defaultDescription(const QString& tableName);
 

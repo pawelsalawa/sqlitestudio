@@ -322,13 +322,7 @@ QHash<QString, QVariant> ErdScene::getConfig()
             continue;
 
         auto colors = entity->getCustomColor();
-
-        QHash<QString, QVariant> singleEntityConfig;
-        singleEntityConfig[CFG_KEY_POS] = entity->pos();
-        if (entity->usesCustomColor())
-            singleEntityConfig[CFG_KEY_COLOR] = QList<QVariant>({colors.first, colors.second});
-
-        erdEntities[entity->getTableName()] = singleEntityConfig;
+        erdEntities[entity->getTableName()] = createEntityConfigEntry(entity->pos(), colors.first, colors.second);
     }
     erdConfig[CFG_KEY_ENTITIES] = erdEntities;
     erdConfig[CFG_KEY_ARROW_TYPE] = (int)arrowType;
@@ -852,6 +846,16 @@ QString ErdScene::getNewEntityName(const QString& prefix, int startIdx) const
         name = baseName + QString::number(i);
 
     return name;
+}
+
+QHash<QString, QVariant> ErdScene::createEntityConfigEntry(const QPointF& pos, const QColor& bgColor, const QColor& fgColor)
+{
+    QHash<QString, QVariant> singleEntityConfig;
+    singleEntityConfig[CFG_KEY_POS] = pos;
+    if (bgColor.isValid() && fgColor.isValid())
+        singleEntityConfig[CFG_KEY_COLOR] = QList<QVariant>({bgColor, fgColor});
+
+    return singleEntityConfig;
 }
 
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)

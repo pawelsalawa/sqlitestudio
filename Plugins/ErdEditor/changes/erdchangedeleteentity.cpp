@@ -51,3 +51,18 @@ QStringList ErdChangeDeleteEntity::getChangeDdl()
     return tableModifier->getGeneratedSqls();
 }
 
+QString ErdChangeDeleteEntity::getTableName() const
+{
+    return tableName;
+}
+
+QColor ErdChangeDeleteEntity::getLastCustomColor() const
+{
+    return lastCustomColor;
+}
+
+QPointF ErdChangeDeleteEntity::getLastPosition() const
+{
+    return lastPosition;
+}
+

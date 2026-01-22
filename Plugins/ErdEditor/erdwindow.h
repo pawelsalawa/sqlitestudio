@@ -196,7 +196,6 @@ class ERDEDITORSHARED_EXPORT ErdWindow : public MdiChild
         void colorResetPicked();
         void colorPicked(const QColor& color);
         void interruptCommitExecution();
-        void commitExecutionFinished(SqlQueryPtr lastQueryResult);
         void commitExecutionSuccessful(SqlQueryPtr lastQueryResult);
         void commitExecutionFailure(int errorCode, const QString& errorText);
         void updateCommitExecutionStatus(int queryIdx);
