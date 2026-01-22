@@ -28,6 +28,8 @@
 #include "common/extlineedit.h"
 #include "changes/erdeffectivechangemerger.h"
 #include "common/widgetcover.h"
+#include "services/notifymanager.h"
+#include "dbtree/dbtree.h"
 #include <QDebug>
 #include <QMdiSubWindow>
 #include <QActionGroup>
@@ -38,7 +40,6 @@
 #include <QMenu>
 #include <QWidgetAction>
 #include <QMessageBox>
-#include <services/notifymanager.h>
 
 Icon* ErdWindow::cursorAddTableIcon = nullptr;
 Icon* ErdWindow::cursorFkIcon = nullptr;
@@ -564,6 +565,9 @@ void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
     QStringList sqls = ddlExecutor->getQueries();
     CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
 
+    // Handle DbTree
+    DBTREE->refreshSchema(db);
+
     // Hide cover and notify user
     hideWidgetCover();
     notifyInfo(tr("All changes have been successfully applied to the database.", "ERD editor"));
@@ -677,7 +681,7 @@ void ErdWindow::initExecutor()
     ddlExecutor->setTransaction(true);
     ddlExecutor->setAsync(true);
     ddlExecutor->setDisableForeignKeys(true);
-    ddlExecutor->setDisableObjectDropsDetection(true);
+    ddlExecutor->setDisableObjectDropsDetection(false);
 
     connect(ddlExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(commitExecutionSuccessful(SqlQueryPtr)));
     connect(ddlExecutor, SIGNAL(failure(int,QString)), this, SLOT(commitExecutionFailure(int,QString)));
