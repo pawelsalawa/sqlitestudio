@@ -552,12 +552,19 @@ void ErdWindow::interruptCommitExecution()
 void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
 {
     UNUSED(lastQueryResult);
+
+    // All good, we can get rid of pending changes now
     changeRegistry->clear();
 
     // Refresh memDb schema
     if (!initMemDb(MemDbInit::FULL))
         qCritical() << "Failed to re-initialize memory database after committing ERD changes.";
 
+    // Update DDL history
+    QStringList sqls = ddlExecutor->getQueries();
+    CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
+
+    // Hide cover and notify user
     hideWidgetCover();
     notifyInfo(tr("All changes have been successfully applied to the database.", "ERD editor"));
 }
