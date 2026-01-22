@@ -302,6 +302,11 @@ void ErdView::mouseDoubleClickEvent(QMouseEvent* event)
     {
         QGraphicsItem* item = clickableItemAt(event->pos());
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
+        if (entity && event->modifiers().testFlag(Qt::ShiftModifier))
+        {
+            scene()->editEntityColumn(entity, mapToScene(event->pos()));
+            return;
+        }
         if (entity)
         {
             entity->edit(mapToScene(event->pos()));

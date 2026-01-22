@@ -19,6 +19,8 @@ class ErdTableWindow : public TableWindow, public ErdPropertiesPanel
         QString getQuitUncommittedConfirmMessage() const;
         bool commitErdChange();
         void abortErdChange();
+        bool editColumn(const QString& columnName);
+        ErdEntity* getEntity() const;
 
     protected:
         bool resolveOriginalCreateTableStatement();

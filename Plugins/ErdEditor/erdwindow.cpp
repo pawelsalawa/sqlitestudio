@@ -151,6 +151,7 @@ void ErdWindow::init()
     connect(ui->view, &QWidget::customContextMenuRequested, this, &ErdWindow::sceneContextMenuRequested);
     connect(scene, &ErdScene::requestVisibilityOf, ui->view, &ErdView::handleVisibilityRequest);
     connect(scene, &ErdScene::connectionEditAbortRequested, ui->view, &ErdView::abortDraftConnection);
+    connect(scene, &ErdScene::requestToEditColumn, this, &ErdWindow::handleColumnEditRequest);
 
     changeRegistry = new ErdChangeRegistry(this);
     connect(changeRegistry, &ErdChangeRegistry::effectiveChangeCountUpdated, this, &ErdWindow::updateToolbarState);
@@ -586,6 +587,34 @@ void ErdWindow::updateCommitExecutionStatus(int queryIdx)
     widgetCover->displayProgress(commitChangeDescriptions.size(),
                                  QString("(%v / %m) %1").arg(commitChangeDescriptions[queryIdx]));
     widgetCover->setProgress(queryIdx);
+}
+
+void ErdWindow::handleColumnEditRequest(ErdEntity* entity, const QString& columnName)
+{
+    if (!currentSideWidget)
+    {
+        qWarning() << "ERD Window: received request to edit column"
+                   << columnName << "but no side panel is open.";
+        return;
+    }
+
+    ErdTableWindow* tableWindow = qobject_cast<ErdTableWindow*>(currentSideWidget);
+    if (!tableWindow)
+    {
+        qWarning() << "ERD Window: received request to edit column"
+                   << columnName << "but side panel is not a table window.";
+        return;
+    }
+
+    if (tableWindow->getEntity() != entity)
+    {
+        qWarning() << "ERD Window: received request to edit column"
+                   << columnName << "but side panel is for a different entity.";
+        return;
+    }
+
+    if (tableWindow->editColumn(columnName))
+        tableWindow->commitErdChange();
 }
 
 void ErdWindow::itemSelectionChanged()

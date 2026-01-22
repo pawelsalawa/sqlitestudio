@@ -288,12 +288,12 @@ void TableWindow::createTriggerActions()
     connect(ui->triggerList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(triggerViewDoubleClicked(QModelIndex)));
 }
 
-void TableWindow::editColumn(const QModelIndex& idx)
+bool TableWindow::editColumn(const QModelIndex& idx)
 {
     if (!idx.isValid())
     {
         addColumn();
-        return;
+        return true;
     }
 
     SqliteCreateTable::Column* column = structureModel->getColumn(idx.row());
@@ -303,12 +303,13 @@ void TableWindow::editColumn(const QModelIndex& idx)
         columnDialog.disableConstraint(ConstraintDialog::Constraint::PK);
 
     if (columnDialog.exec() != QDialog::Accepted)
-        return;
+        return false;
 
     SqliteCreateTable::Column* modifiedColumn = columnDialog.getModifiedColumn();
     structureModel->replaceColumn(idx.row(), modifiedColumn);
     resizeStructureViewColumns();
     updateTableConstraintsToolbarState();
+    return true;
 }
 
 void TableWindow::delColumn(const QModelIndex& idx)

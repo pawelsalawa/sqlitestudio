@@ -848,6 +848,16 @@ QString ErdScene::getNewEntityName(const QString& prefix, int startIdx) const
     return name;
 }
 
+void ErdScene::editEntityColumn(ErdEntity* entity, const QPointF& pos)
+{
+    int rowIdx = entity->rowIndexAt(pos) - 1; // -1 because of header row
+    SqliteCreateTablePtr createTable = entity->getTableModel();
+    if (rowIdx < 0 || rowIdx >= createTable->columns.size())
+        return;
+
+    emit requestToEditColumn(entity, createTable->columns[rowIdx]->name);
+}
+
 QHash<QString, QVariant> ErdScene::createEntityConfigEntry(const QPointF& pos, const QColor& bgColor, const QColor& fgColor)
 {
     QHash<QString, QVariant> singleEntityConfig;

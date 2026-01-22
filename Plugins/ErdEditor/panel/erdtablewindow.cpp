@@ -72,6 +72,12 @@ void ErdTableWindow::abortErdChange()
     rollbackStructure();
 }
 
+bool ErdTableWindow::editColumn(const QString& columnName)
+{
+    QModelIndex idx = structureModel->findColumn(columnName);
+    return TableWindow::editColumn(idx);
+}
+
 bool ErdTableWindow::resolveOriginalCreateTableStatement()
 {
     bool res = TableWindow::resolveOriginalCreateTableStatement();
@@ -151,6 +157,11 @@ void ErdTableWindow::setErrorRecording(bool enabled)
         MAINWINDOW->getStatusField()->resume();
         disconnect(NOTIFY_MANAGER, SIGNAL(notifyError(QString)), this, SLOT(errorRecorded(QString)));
     }
+}
+
+ErdEntity* ErdTableWindow::getEntity() const
+{
+    return entity;
 }
 
 void ErdTableWindow::nameEditedInline(const QString& newName)

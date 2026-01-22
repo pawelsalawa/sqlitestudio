@@ -156,7 +156,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void createDataFormActions();
         void createIndexActions();
         void createTriggerActions();
-        void editColumn(const QModelIndex& idx);
+        bool editColumn(const QModelIndex& idx);
         void delColumn(const QModelIndex& idx);
         void editConstraint(const QModelIndex& idx);
         void delConstraint(const QModelIndex& idx);

@@ -118,6 +118,7 @@ class ErdScene : public QGraphicsScene
         bool redoChange(ErdChange* change);
         QList<ErdEntity*> applyColorToSelectedEntities(const QColor& color);
         QString getNewEntityName(const QString& prefix, int startIdx) const;
+        void editEntityColumn(ErdEntity* entity, const QPointF& pos);
 
         static QHash<QString, QVariant> createEntityConfigEntry(const QPointF& pos,
                                                                 const QColor& bgColor = QColor(),
@@ -215,6 +216,7 @@ class ErdScene : public QGraphicsScene
         void entityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName);
         void entityFieldDeletedInline(ErdEntity* entity, int colIdx);
         void requestVisibilityOf(const QRectF& rect);
+        void requestToEditColumn(ErdEntity* entity, const QString& columnName);
 };
 
 #endif // ERDSCENE_H
