@@ -6,6 +6,7 @@
 - BUGFIX: #5474 The Deterministic feature of custom functions is now properly persisted between application sessions.
 - BUGFIX: #5475 Fixed handling object names starting with a dollar sign.
 - BUGFIX: #5479 Fixed the Copy With Headers action in data view to copy correct headers if in selected cells there are gaps in columns.
+- BUGFIX: #5482 Changed default hotkey for Collations Editor from Ctrl+Shift+C to Ctrl+Shift+L to avoid conflict with another action assigned to Ctrl+Shift+C - Copy With Headers.
 
 ### 3.4.20
 - ADDED: #5452 Option to convert Unicode line/paragraph breaks (U+2028 / U+2029) to LN (\n) when storing value entered in the Form View.
