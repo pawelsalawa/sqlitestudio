@@ -558,20 +558,22 @@ void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
     // All good, we can get rid of pending changes now
     changeRegistry->clear();
 
-    // Refresh memDb schema
+    // Need to refresh memDb and update DDL history.
     if (!initMemDb(MemDbInit::FULL))
         qCritical() << "Failed to re-initialize memory database after committing ERD changes.";
 
-    // Update DDL history
     QStringList sqls = ddlExecutor->getQueries();
     CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
 
-    // Handle DbTree
     DBTREE->refreshSchema(db);
-
-    // Hide cover and notify user
     hideWidgetCover();
     notifyInfo(tr("All changes have been successfully applied to the database.", "ERD editor"));
+}
+
+void ErdWindow::commitExecutionSuccessfulNoChanges()
+{
+    changeRegistry->clear();
+    notifyInfo(tr("The changes were successfully committed. No modifications to the database schema were required.", "ERD editor"));
 }
 
 void ErdWindow::commitExecutionFailure(int errorCode, const QString& errorText)
@@ -679,7 +681,11 @@ void ErdWindow::commitPendingChanges()
     }
 
     if (queries.size() == 0)
+    {
+        // No effective changes. Clean up the registry and return.
+        commitExecutionSuccessfulNoChanges();
         return;
+    }
 
     ddlExecutor->setDb(db);
     ddlExecutor->setQueries(queries);

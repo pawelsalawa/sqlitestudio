@@ -628,7 +628,7 @@ void ErdView::itemsPotentiallyMoved()
         ErdEntity* entity = dynamic_cast<ErdEntity*>(item);
         if (entity)
         {
-            if (dragStartPos.contains(item) && dragStartPos[item] != item->pos())
+            if (entity->isExistingTable() && dragStartPos.contains(item) && dragStartPos[item] != item->pos())
             {
                 changes << new ErdChangeMoveEntity(entity->getTableName(), dragStartPos[item], item->pos(),
                                                     tr("Move table \"%1\"").arg(entity->getTableName()));

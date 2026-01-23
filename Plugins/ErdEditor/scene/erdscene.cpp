@@ -824,8 +824,11 @@ QList<ErdEntity*> ErdScene::applyColorToSelectedEntities(const QColor& color)
         QString tableName = entity->getTableName();
         QColor oldColor = entity->getCustomColor().first;
         QString colorName = color.name(QColor::HexRgb).toUpper();
-        changes << new ErdChangeColorEntity(tableName, oldColor, color,
-                    tr("Change color of table \"%1\" to %2.").arg(tableName, colorName));
+        if (entity->isExistingTable())
+        {
+            changes << new ErdChangeColorEntity(tableName, oldColor, color,
+                        tr("Change color of table \"%1\" to %2.").arg(tableName, colorName));
+        }
 
         entity->setCustomColor(color, textColor);
     }
