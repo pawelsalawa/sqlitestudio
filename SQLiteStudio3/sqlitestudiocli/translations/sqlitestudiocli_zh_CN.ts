@@ -849,7 +849,7 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="52"/>
       <source>Checks for updates online and prints the result to standard output.</source>
-      <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
+      <translation>在线检查更新并将结果打印到标准输出。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="64"/>
@@ -879,17 +879,17 @@ Expected one of: %2</source>
     <message>
       <location filename="../main.cpp" line="171"/>
       <source>New updates are available: %1. Url: %2</source>
-      <translation type="unfinished">New updates are available: %1. Url: %2</translation>
+      <translation>有新的更新可用: %1. Url: %2</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="175"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
-      <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+      <translation>您当前运行的是最新版本，没有可用的更新。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="179"/>
       <source>Error checking for updates: %1</source>
-      <translation type="unfinished">Error checking for updates: %1</translation>
+      <translation>检查更新时出错：%1</translation>
     </message>
   </context>
 </TS>
