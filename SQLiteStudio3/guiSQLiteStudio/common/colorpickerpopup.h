@@ -2,6 +2,7 @@
 #define COLORPICKERPOPUP_H
 
 #include <QWidget>
+#include <QHash>
 
 class QSignalMapper;
 class QVBoxLayout;
