@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -676,7 +676,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="129"/>
       <source>Column with the same name</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column with the same name</translation>
     </message>
   </context>
   <context>
@@ -1053,17 +1053,17 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="538"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="541"/>
       <source>Convert Unicode line separators to LF (\n) in form view editors</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Convert Unicode line separators to LF (\n) in form view editors</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
       <source>General.UseLfForMultilineEditors</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">General.UseLfForMultilineEditors</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="551"/>
@@ -6159,7 +6159,7 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="178"/>
       <source>Column with the same name</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column with the same name</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="217"/>
