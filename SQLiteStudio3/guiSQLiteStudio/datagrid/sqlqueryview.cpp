@@ -584,8 +584,17 @@ void SqlQueryView::copy(bool withHeader)
     // Header
     if (withHeader)
     {
-        int leftMostColumn = groupedItems.first().first()->column();
-        for (SqlQueryModelColumnPtr& col : getModel()->getColumns().mid(leftMostColumn, groupedItems.first().size()))
+        QList<SqlQueryModelColumn*> columnModels;
+        for (SqlQueryItem*& item : selectedItems)
+        {
+            SqlQueryModelColumn* itemColModel = getModel()->getColumns()[item->column()].data();
+            if (columnModels.contains(itemColModel))
+                continue;
+
+            columnModels << itemColModel;
+        }
+
+        for (SqlQueryModelColumn*& col : columnModels)
         {
             theDataRow << col->displayName;
             cells << col->displayName;
