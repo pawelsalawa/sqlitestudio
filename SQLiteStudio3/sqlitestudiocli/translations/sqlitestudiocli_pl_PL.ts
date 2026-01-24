@@ -801,47 +801,47 @@ Oczekiwano jednej z: %2</translation>
       <translation>Interfejs linii poleceń dla SQLiteStudio, menażera SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="34"/>
+      <location filename="../main.cpp" line="47"/>
       <source>Enables debug messages on standard error output.</source>
       <translation>Włącza wiadomości debugujące na standardowym wyjściu błędów.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="35"/>
+      <location filename="../main.cpp" line="48"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Włącza wiadomości debugujące analizatora Lemon dla asystenta kodu SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="36"/>
+      <location filename="../main.cpp" line="49"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Wypisuje listę zainstalowanych w SQLiteStudio wtyczek i wychodzi.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="38"/>
+      <location filename="../main.cpp" line="35"/>
       <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
       <translation>Wykonuje podany plik SQL (w tym wszystkie bogate funkcje wykonywania zapytań w SQLiteStudio) na określonym pliku bazy danych i wychodzi z programu. Parametr bazy danych staje się obowiązkowy, jeśli ta opcja jest używana.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="41"/>
+      <location filename="../main.cpp" line="38"/>
       <source>SQL file</source>
       <translation>Plik SQL</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="42"/>
+      <location filename="../main.cpp" line="39"/>
       <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
       <translation>Kodowanie znaków do użycia podczas czytania pliku SQL (opcja -e). Użyj -cl aby wyświetlić dostępne kodowania. Domyślnie %1.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="45"/>
+      <location filename="../main.cpp" line="42"/>
       <source>codec</source>
       <translation>kodek</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="46"/>
+      <location filename="../main.cpp" line="43"/>
       <source>Lists available codecs to be used with -c option and quits.</source>
       <translation>Wyświetla dostępne kodowania do użycia z opcją -c i wychodzi z programu.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="48"/>
+      <location filename="../main.cpp" line="45"/>
       <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
       <translation>Gdy używany jest razem z opcją -e, wykonanie nie zatrzyma się na błędzie, ale będzie kontynuowane do końca, ignorując błędy.</translation>
     </message>
