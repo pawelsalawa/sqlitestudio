@@ -22,37 +22,37 @@
   <context>
     <name>ChainExecutor</name>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="37"/>
+      <location filename="../db/chainexecutor.cpp" line="38"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
       <translation>No se definió una base de datos sobre la cual ejecutar las consultas.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="44"/>
+      <location filename="../db/chainexecutor.cpp" line="45"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
       <translation>La base de datos usada para ejecutar las consultas no estaba abierta.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="54"/>
+      <location filename="../db/chainexecutor.cpp" line="55"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>No se pudieron desactivar las claves foráneas en la base de datos. Detalles: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="62"/>
+      <location filename="../db/chainexecutor.cpp" line="63"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>No se pudo iniciar una transacción en la base de datos. Detalles: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="90"/>
+      <location filename="../db/chainexecutor.cpp" line="93"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Interrumpido</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="153"/>
+      <location filename="../db/chainexecutor.cpp" line="160"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>No se pudo confirmar una transacción a la base de datos. Detalles: %1</translation>
@@ -186,17 +186,17 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
       <source>No supporting plugin loaded.</source>
       <translation type="unfinished">No supporting plugin loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
       <source>Database could not be initialized.</source>
       <translation type="unfinished">Database could not be initialized.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
       <source>No suitable database driver plugin found.</source>
       <translation type="unfinished">No suitable database driver plugin found.</translation>
     </message>
@@ -784,7 +784,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="967"/>
+      <location filename="../common/utils.cpp" line="949"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
@@ -814,7 +814,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not close database: %1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="121"/>
       <source>Could not attach database %1: %2</source>
       <translation>No se pudo adjuntar la base de datos %1: %2</translation>
     </message>
@@ -947,41 +947,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Table populating</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="161"/>
+      <location filename="../tablemodifier.cpp" line="268"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation type="unfinished">Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="510"/>
+      <location filename="../tablemodifier.cpp" line="633"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation type="unfinished">All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="554"/>
+      <location filename="../tablemodifier.cpp" line="677"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="569"/>
+      <location filename="../tablemodifier.cpp" line="692"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="601"/>
+      <location filename="../tablemodifier.cpp" line="724"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="620"/>
+      <location filename="../tablemodifier.cpp" line="743"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="782"/>
-      <location filename="../tablemodifier.cpp" line="806"/>
-      <location filename="../tablemodifier.cpp" line="825"/>
+      <location filename="../tablemodifier.cpp" line="905"/>
+      <location filename="../tablemodifier.cpp" line="929"/>
+      <location filename="../tablemodifier.cpp" line="948"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
     </message>
