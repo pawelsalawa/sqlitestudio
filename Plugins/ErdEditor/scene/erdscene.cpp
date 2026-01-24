@@ -5,7 +5,6 @@
 #include "schemaresolver.h"
 #include "erdlinearrowitem.h"
 #include "erdconnection.h"
-#include "erdgraphvizlayoutplanner.h"
 #include "changes/erdchangemodifyentity.h"
 #include "tablemodifier.h"
 #include "changes/erdchangenewentity.h"
@@ -17,6 +16,7 @@
 #include "services/notifymanager.h"
 #include "common/unused.h"
 #include "uiutils.h"
+#include "layouts/erdlayoutplanner.h"
 #include <QMessageBox>
 #include <QApplication>
 
@@ -675,11 +675,10 @@ ErdConnection* ErdScene::getConnectionForArrow(ErdArrowItem* arrow)
     return nullptr;
 }
 
-void ErdScene::arrangeEntities(int algo)
+void ErdScene::arrangeEntities(ErdLayoutPlanner::Algo algo)
 {
-    ErdGraphvizLayoutPlanner planner;
-    planner.arrangeScene(this, static_cast<ErdGraphvizLayoutPlanner::Algo>(algo));
-    refreshSceneRect();
+    ErdLayoutPlanner planner;
+    planner.arrangeScene(this, algo);
     invalidate();
 }
 
@@ -874,13 +873,13 @@ QHash<QString, QVariant> ErdScene::createEntityConfigEntry(const QPointF& pos, c
 void ErdScene::arrangeEntitiesFdp(bool skipConfirm)
 {
     if (skipConfirm || confirmLayoutChange())
-        arrangeEntities(ErdGraphvizLayoutPlanner::FDP);
+        arrangeEntities(ErdLayoutPlanner::Algo::FDP);
 }
 
 void ErdScene::arrangeEntitiesNeato(bool skipConfirm)
 {
     if (skipConfirm || confirmLayoutChange())
-        arrangeEntities(ErdGraphvizLayoutPlanner::NEATO);
+        arrangeEntities(ErdLayoutPlanner::Algo::NEATO);
 }
 
 ErdScene::SceneChangeApiImpl::SceneChangeApiImpl(ErdScene& scene) :
