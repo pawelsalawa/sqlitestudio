@@ -195,8 +195,8 @@ void ErdWindow::createActions()
     ui->toolBar->addSeparator();
     ui->toolBar->addWidget(createSetTableColorAction());
     ui->toolBar->addSeparator();
-    createAction(ARRANGE_FDP, *fdpIcon, tr("Arrange entities using Force-Directed Placement approach"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
-    createAction(ARRANGE_NEATO, *neatoIcon, tr("Arrange entities using Spring Model approach"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
+    createAction(ARRANGE_FDP, *fdpIcon, tr("Auto-arrange (local forces)"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
+    createAction(ARRANGE_NEATO, *neatoIcon, tr("Auto-arrange (global balance)"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
     ui->toolBar->addSeparator();
     actionMap[FILTER_VALUE] = ui->toolBar->addWidget(filterEdit);
     createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), scene, SLOT(selectAll()), this);

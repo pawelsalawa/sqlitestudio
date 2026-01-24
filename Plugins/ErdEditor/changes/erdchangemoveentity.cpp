@@ -24,6 +24,11 @@ void ErdChangeMoveEntity::applyRedo(ErdScene::SceneChangeApi& api)
     api.updateScene();
 }
 
+QString ErdChangeMoveEntity::defaultDescription(const QString& tableName)
+{
+    return QObject::tr("Move table \"%1\"").arg(tableName);
+}
+
 QStringList ErdChangeMoveEntity::getChangeDdl()
 {
     return {};

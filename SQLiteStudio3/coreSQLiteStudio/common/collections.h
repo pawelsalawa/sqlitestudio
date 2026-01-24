@@ -313,6 +313,12 @@ struct ListToHashOp {
     Fn fn;
 };
 
+template <typename FnKey, typename FnVal>
+struct ListToHashOp2 {
+    FnKey keyFn;
+    FnVal valFn;
+};
+
 template <typename V, typename Mapper>
 auto operator|(const QList<V>& list, const ListToHashOp<Mapper>& op)
 {
@@ -320,6 +326,19 @@ auto operator|(const QList<V>& list, const ListToHashOp<Mapper>& op)
     QHash<K, V> result;
     for (const V& el : list)
         result[op.fn(el)] = el;
+
+    return result;
+}
+
+template <typename V, typename KeyFn, typename ValFn>
+auto operator|(const QList<V>& list, const ListToHashOp2<KeyFn, ValFn>& op)
+{
+    using K = decltype(op.keyFn(std::declval<const V&>()));
+    using R = decltype(op.valFn(std::declval<const V&>()));
+
+    QHash<K, R> result;
+    for (const V& el : list)
+        result[op.keyFn(el)] = op.valFn(el);
 
     return result;
 }
@@ -335,15 +354,40 @@ auto operator|(const QSet<V>& list, const ListToHashOp<Mapper>& op)
     return result;
 }
 
+template <typename V, typename KeyFn, typename ValFn>
+auto operator|(const QSet<V>& list, const ListToHashOp2<KeyFn, ValFn>& op)
+{
+    using K = decltype(op.keyFn(std::declval<const V&>()));
+    using R = decltype(op.valFn(std::declval<const V&>()));
+
+    QHash<K, R> result;
+    for (const V& el : list)
+        result[op.keyFn(el)] = op.valFn(el);
+
+    return result;
+}
+
+#define _TO_HASH_2(param, key_body) \
+    ListToHashOp{[&](auto&& param) key_body}
+
+#define _TO_HASH_3(param, key_body, value_body) \
+    ListToHashOp2{ \
+        [&](auto&& param) key_body, \
+        [&](auto&& param) value_body \
+    }
+
 /**
  * Reduces given collection to a QHash, mapping element's to a key by the given body.
  * If there is a collision on keys, the new one will always replace previos one.
+ * If you provide 3rd parameter, it will be a body for translating element to a hash value.
+ *
  * Example:
  * QList<Type*> values = {...};
  * QHash<int, Type*> hash = values | TO_HASH(item, {return item->getIntKey();});
+ * QHash<int, QString> hash = values | TO_HASH(item, {return item->getIntKey();}, {return item->getStringValue();});
  */
-#define TO_HASH(param, key_mapper_body) \
-    ListToHashOp{[&](auto&& param) key_mapper_body}
+#define TO_HASH(...) \
+    _GET_MACRO(__VA_ARGS__, _TO_HASH_3, _TO_HASH_2)(__VA_ARGS__)
 
 // ==============================================
 // GROUP_BY

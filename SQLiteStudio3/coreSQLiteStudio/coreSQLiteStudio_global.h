@@ -3,6 +3,8 @@
 
 #include <QtCore/qglobal.h>
 
+#define _GET_MACRO(_1,_2,_3,NAME,...) NAME
+
 #if defined(CORESQLITESTUDIO_LIBRARY)
 #  define API_EXPORT Q_DECL_EXPORT
 #else

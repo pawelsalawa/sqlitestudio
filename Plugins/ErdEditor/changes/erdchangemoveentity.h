@@ -14,6 +14,8 @@ class ErdChangeMoveEntity : public ErdChange
         void applyUndo(ErdScene::SceneChangeApi& api);
         void applyRedo(ErdScene::SceneChangeApi& api);
 
+        static QString defaultDescription(const QString& tableName);
+
     protected:
         QStringList getChangeDdl();
 

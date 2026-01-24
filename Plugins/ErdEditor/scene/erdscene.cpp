@@ -19,6 +19,7 @@
 #include "layouts/erdlayoutplanner.h"
 #include <QMessageBox>
 #include <QApplication>
+#include <changes/erdchangemoveentity.h>
 
 ErdScene::ErdScene(ErdArrowItem::Type arrowType, QObject *parent)
     : QGraphicsScene{parent}, arrowType(arrowType)
@@ -677,9 +678,25 @@ ErdConnection* ErdScene::getConnectionForArrow(ErdArrowItem* arrow)
 
 void ErdScene::arrangeEntities(ErdLayoutPlanner::Algo algo)
 {
+    QHash<ErdEntity*,QPointF> prevPos = entities | TO_HASH(e, {return e;}, {return e->pos();});
+
     ErdLayoutPlanner planner;
     planner.arrangeScene(this, algo);
     invalidate();
+
+    QList<ErdChange*> changes;
+    for (ErdEntity*& e : entities)
+    {
+        if (e->pos() == prevPos[e])
+            continue;
+
+        QString desc = ErdChangeMoveEntity::defaultDescription(e->getTableName());
+        changes << new ErdChangeMoveEntity(e->getTableName(), prevPos[e], e->pos(), desc);
+    }
+
+    ErdChange* change = ErdChange::normalizeChanges(changes, tr("Apply diagram layout"));
+    if (change)
+        emit changeCreated(change);
 }
 
 QPointF ErdScene::getPosForNewEntity(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations) const
