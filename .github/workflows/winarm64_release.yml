@@ -83,7 +83,7 @@ jobs:
                 # The makefile requires the editline static library to be called edit_static
                 cp ${MINGW_PREFIX}/lib/libedit.a ${MINGW_PREFIX}/lib/libedit_static.a
 
-                # The makefile requires the python import library to have no dots"
+                # The makefile requires the python import library to have no dots
                 _pyver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write('.'.join(map(str, sys.version_info[:2])))")
                 _pylibver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write(''.join(map(str, sys.version_info[:2])))")
                 cp ${MINGW_PREFIX}/lib/libpython${_pyver}.dll.a ${MINGW_PREFIX}/lib/libpython${_pylibver}.dll.a
@@ -237,7 +237,6 @@ jobs:
                 # Copy plugins dependencies
                 cp ${MINGW_PREFIX}/bin/libcrypto-3.dll .
                 cp ${MINGW_PREFIX}/bin/tcl86.dll .
-                cp ${MINGW_PREFIX}/bin/libpython${PYTHON_VERSION}.dll .
 
             - name: Prepare portable distro (Resources)
               shell: msys2 {0}
