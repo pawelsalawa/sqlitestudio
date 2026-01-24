@@ -47,7 +47,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(OPEN_DDL_HISTORY,       Qt::CTRL | Qt::Key_H,             QObject::tr("Open DDL history window"))
     CFG_KEY_ENTRY(OPEN_SNIPPETS_EDITOR,   Qt::CTRL | Qt::SHIFT | Qt::Key_P, QObject::tr("Open snippets editor window"))
     CFG_KEY_ENTRY(OPEN_FUNCTION_EDITOR,   Qt::CTRL | Qt::SHIFT | Qt::Key_F, QObject::tr("Open function editor window"))
-    CFG_KEY_ENTRY(OPEN_COLLATION_EDITOR,  Qt::CTRL | Qt::SHIFT | Qt::Key_C, QObject::tr("Open collation editor window"))
+    CFG_KEY_ENTRY(OPEN_COLLATION_EDITOR,  Qt::CTRL | Qt::SHIFT | Qt::Key_L, QObject::tr("Open collation editor window"))
     CFG_KEY_ENTRY(OPEN_EXTENSION_MANAGER, Qt::CTRL | Qt::SHIFT | Qt::Key_E, QObject::tr("Open extension manager window"))
     CFG_KEY_ENTRY(PREV_TASK,              PREV_TASK_KEY_SEQ,                QObject::tr("Previous window"))
     CFG_KEY_ENTRY(NEXT_TASK,              NEXT_TASK_KEY_SEQ,                QObject::tr("Next window"))
