@@ -328,22 +328,22 @@
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="58"/>
       <source>Clear</source>
-      <translation>Vider</translation>
+      <translation type="unfinished">Vider</translation>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="65"/>
       <source>Custom colors</source>
-      <translation type="unfinished">Custom colors</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="73"/>
       <source>Add custom color</source>
-      <translation type="unfinished">Add custom color</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="219"/>
       <source>Select color</source>
-      <translation type="unfinished">Select color</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -652,14 +652,22 @@
   <context>
     <name>ColumnForeignKeyPanel</name>
     <message>
+      <source>Foreign table:</source>
+      <translation type="vanished">Table étrangère :</translation>
+    </message>
+    <message>
+      <source>Foreign column:</source>
+      <translation type="vanished">Colonne étrangère :</translation>
+    </message>
+    <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Referenced column:</source>
-      <translation type="unfinished">Referenced column:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -5289,7 +5297,13 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Are you sure you want to quit the application?
+
+Following items are pending:</source>
+      <translation type="vanished">Confirmez la fermeture de l’application ?</translation>
     </message>
   </context>
   <context>
@@ -6118,24 +6132,36 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
   <context>
     <name>TableForeignKeyPanel</name>
     <message>
+      <source>Foreign table:</source>
+      <translation type="vanished">Table étrangère :</translation>
+    </message>
+    <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="42"/>
       <source>Columns</source>
       <translation>Colonnes</translation>
     </message>
     <message>
+      <source>Local column</source>
+      <translation type="vanished">Colonne locale</translation>
+    </message>
+    <message>
+      <source>Foreign column</source>
+      <translation type="vanished">Colonne étrangère</translation>
+    </message>
+    <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="56"/>
       <source>Referencing column</source>
-      <translation type="unfinished">Referencing column</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="68"/>
       <source>Referenced column</source>
-      <translation type="unfinished">Referenced column</translation>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="104"/>

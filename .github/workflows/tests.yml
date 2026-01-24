@@ -32,11 +32,11 @@ jobs:
                       PYTHON_VERSION: '3.9'
                     - QT_VERSION: '6.5.3'
                       PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.8.0'
+                    - QT_VERSION: '6.8.3'
                       PYTHON_VERSION: '3.12'
                     - QT_VERSION: '6.9.3'
                       PYTHON_VERSION: '3.12'
-                    - QT_VERSION: '6.10.1'
+                    - QT_VERSION: '6.10.2'
                       PYTHON_VERSION: '3.12'
 
         steps:

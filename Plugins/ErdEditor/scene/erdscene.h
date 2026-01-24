@@ -5,6 +5,7 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "erdarrowitem.h"
 #include "schemaresolver.h"
+#include "layouts/erdlayoutplanner.h"
 #include <QGraphicsScene>
 #include <QSet>
 
@@ -154,8 +155,7 @@ class ErdScene : public QGraphicsScene
         void setupEntityConnections(ErdEntity* srcEntity, SqliteCreateTable::Column* srcColumn);
         ErdConnection* setupEntityConnection(ErdEntity* srcEntity, const QString& srcColumn,
                                              int sourceReferenceIdx, SqliteForeignKey* fk);
-        void arrangeEntities(int algo);
-        void arrangeEntities(int algo, QSet<ErdEntity*> pinnedEntities);
+        void arrangeEntities(ErdLayoutPlanner::Algo algo);
         QPointF getPosForNewEntity(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations = {}) const;
         QPointF getPosForNewEntitySpiral(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations = {}) const;
         bool collides(const QRectF& candidate, const QSet<ErdEntity*>& exclude) const;

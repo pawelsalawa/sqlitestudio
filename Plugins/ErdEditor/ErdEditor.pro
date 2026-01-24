@@ -13,6 +13,10 @@ SOURCES += \
     changes/erdchangemoveentity.cpp \
     changes/erdeffectivechange.cpp \
     changes/erdeffectivechangemerger.cpp \
+    layouts/erdlayout.cpp \
+    layouts/erdlayoutfdp.cpp \
+    layouts/erdlayoutneato.cpp \
+    layouts/erdlayoutplanner.cpp \
     scene/erdarrowitem.cpp \
     changes/erdchange.cpp \
     changes/erdchangecomposite.cpp \
@@ -27,7 +31,6 @@ SOURCES += \
     scene/erdcurvyarrowitem.cpp \
     erdeditorplugin.cpp \
     scene/erdentity.cpp \
-    erdgraphvizlayoutplanner.cpp \
     scene/erditem.cpp \
     scene/erdlinearrowitem.cpp \
     scene/erdscene.cpp \
@@ -43,6 +46,10 @@ HEADERS += \
     changes/erdchangemoveentity.h \
     changes/erdeffectivechange.h \
     changes/erdeffectivechangemerger.h \
+    layouts/erdlayout.h \
+    layouts/erdlayoutfdp.h \
+    layouts/erdlayoutneato.h \
+    layouts/erdlayoutplanner.h \
     scene/erdarrowitem.h \
     changes/erdchange.h \
     changes/erdchangecomposite.h \
@@ -58,7 +65,6 @@ HEADERS += \
     erdeditor_global.h \
     erdeditorplugin.h \
     scene/erdentity.h \
-    erdgraphvizlayoutplanner.h \
     scene/erditem.h \
     scene/erdlinearrowitem.h \
     panel/erdpropertiespanel.h \
@@ -71,8 +77,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ErdEditor.json
-
-LIBS += -lgvc -lcdt -lcgraph
 
 FORMS += \
     changes/erdchangeregistrydialog.ui \
