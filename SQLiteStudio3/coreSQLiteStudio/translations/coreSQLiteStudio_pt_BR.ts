@@ -14,10 +14,6 @@
       <source>Error attaching database %1: %2</source>
       <translation>Erro ao anexar banco de dados %1: %2</translation>
     </message>
-    <message>
-      <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="vanished">Falha ao fazer checkpoint WAL cheio no banco de dados &apos;%1&apos;. Erro retornado do mecanismo SQLite: %2</translation>
-    </message>
   </context>
   <context>
     <name>ChainExecutor</name>
@@ -803,10 +799,6 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <location filename="../db/abstractdb3.h" line="336"/>
       <source>Could not load extension %1: %2</source>
       <translation>Não foi possível carregar a extensão %1: %2</translation>
-    </message>
-    <message>
-      <source>Could not run WAL checkpoint: %1</source>
-      <translation type="vanished">Não foi possível executar o ponto de verificação do WAL: %1</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="444"/>
