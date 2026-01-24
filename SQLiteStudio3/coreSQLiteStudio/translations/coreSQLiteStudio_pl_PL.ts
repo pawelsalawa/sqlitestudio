@@ -14,45 +14,41 @@
       <source>Error attaching database %1: %2</source>
       <translation>Błąd podczas dołączania bazy danych %1: %2</translation>
     </message>
-    <message>
-      <source>Failed to make full WAL checkpoint on database &apos;%1&apos;. Error returned from SQLite engine: %2</source>
-      <translation type="vanished">Nie udało się utworzyć pełnego punktu kontrolnego WAL w bazie danych &apos;%1&apos;. Błąd zwrócony z silnika SQLite: %2</translation>
-    </message>
   </context>
   <context>
     <name>ChainExecutor</name>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="37"/>
+      <location filename="../db/chainexecutor.cpp" line="38"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
       <translation>Nie zdefiniowano bazy danych do wykonywania zapytań.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="44"/>
+      <location filename="../db/chainexecutor.cpp" line="45"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
       <translation>Baza danych do wykonywania zapytań nie jest otwarta.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="54"/>
+      <location filename="../db/chainexecutor.cpp" line="55"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Nie udało się wyłączyć kluczy obcych w bazie. Szczegóły: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="62"/>
+      <location filename="../db/chainexecutor.cpp" line="63"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Nie udało się rozpocząć transakcji bazy danych. Szczegóły: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="90"/>
+      <location filename="../db/chainexecutor.cpp" line="93"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Przerwane</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="153"/>
+      <location filename="../db/chainexecutor.cpp" line="160"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Nie udało się zatwierdzić transakcji bazy danych. Szczegóły: %1</translation>
@@ -186,17 +182,17 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
       <source>No supporting plugin loaded.</source>
       <translation>Nie załadowano obsługującej wtyczki.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
       <source>Database could not be initialized.</source>
       <translation>Nie udało się zainicjalizować bazy danych.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Nie znaleziono odpowiedniej wtyczki sterownika.</translation>
     </message>
@@ -784,7 +780,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="967"/>
+      <location filename="../common/utils.cpp" line="949"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
@@ -805,16 +801,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Nie udało się załadować rozszerzenia %1: %2</translation>
     </message>
     <message>
-      <source>Could not run WAL checkpoint: %1</source>
-      <translation type="vanished">Nie można uruchomić punktu kontrolnego WAL: %1</translation>
-    </message>
-    <message>
       <location filename="../db/abstractdb3.h" line="444"/>
       <source>Could not close database: %1</source>
       <translation>Nie udało się zamknąć bazy danych: %1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="121"/>
       <source>Could not attach database %1: %2</source>
       <translation>Nie udało się dołączyć bazy danych %1: %2</translation>
     </message>
@@ -947,41 +939,41 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <translation>Zaludnianie tabel</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="161"/>
+      <location filename="../tablemodifier.cpp" line="268"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabela %1 odwołuje się do tabeli %2, ale definicja klucza obcego nie zostanie zaktualizowane dla definicji nowej tabeli w związku z problemami przy analizowaniu DDL tabeli %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="510"/>
+      <location filename="../tablemodifier.cpp" line="633"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Wszystkie kolumny indeksowane przez indeks %1 już nie istnieją. Indeks ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="554"/>
+      <location filename="../tablemodifier.cpp" line="677"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Wystąpił problem z poprawnym przetworzeniem wyzwalacza %1. Może on zostać zaktualizowany tylko częściowo i będzie wymagał twojej uwagi.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="569"/>
+      <location filename="../tablemodifier.cpp" line="692"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="601"/>
+      <location filename="../tablemodifier.cpp" line="724"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="620"/>
+      <location filename="../tablemodifier.cpp" line="743"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Nie można zaktualizować widoku %1 w związku z modyfikacjami tabeli %2.
 Widok pozostanie nienaruszony.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="782"/>
-      <location filename="../tablemodifier.cpp" line="806"/>
-      <location filename="../tablemodifier.cpp" line="825"/>
+      <location filename="../tablemodifier.cpp" line="905"/>
+      <location filename="../tablemodifier.cpp" line="929"/>
+      <location filename="../tablemodifier.cpp" line="948"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań %1, które może odwoływać się do tabeli %3 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
