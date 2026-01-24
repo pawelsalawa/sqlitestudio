@@ -78,8 +78,6 @@ HEADERS += \
 OTHER_FILES += \
     ErdEditor.json
 
-# LIBS += -lgvc -lcdt -lcgraph
-
 FORMS += \
     changes/erdchangeregistrydialog.ui \
     erdconfig.ui \
