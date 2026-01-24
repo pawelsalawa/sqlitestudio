@@ -22,37 +22,37 @@
   <context>
     <name>ChainExecutor</name>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="37"/>
+      <location filename="../db/chainexecutor.cpp" line="38"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
       <translation>Es wurde keine Datenbank zur Ausführung von Abfragen festgelegt.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="44"/>
+      <location filename="../db/chainexecutor.cpp" line="45"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
       <translation>Die Datenbank ist zur Ausführung von Abfragen nicht geöffnet worden.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="54"/>
+      <location filename="../db/chainexecutor.cpp" line="55"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Fremdschlüssel konnten nicht deaktiviert werden für die Datenbank. Details: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="62"/>
+      <location filename="../db/chainexecutor.cpp" line="63"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Es kann keine Datenbanktransaktion gestartet werden. Details: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="90"/>
+      <location filename="../db/chainexecutor.cpp" line="93"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Abgebrochen</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="153"/>
+      <location filename="../db/chainexecutor.cpp" line="160"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Die Datenbanktransaktion kann nicht &apos;committet&apos; werden. Details: %1</translation>
@@ -186,17 +186,17 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
       <source>No supporting plugin loaded.</source>
       <translation>Es wurde kein passendes plugin geladen.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
       <source>Database could not be initialized.</source>
       <translation>Die Datenbank kann nicht initialisiert werden.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Es wurde kein passender Datenbanktreiber (plugin) gefunden.</translation>
     </message>
@@ -784,7 +784,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="967"/>
+      <location filename="../common/utils.cpp" line="949"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
@@ -814,7 +814,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Die Datenbank %1 kann nicht geschlossen werden.</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="121"/>
       <source>Could not attach database %1: %2</source>
       <translation>Die Datenbank %1 kann nicht angefügt werden: %2</translation>
     </message>
@@ -947,40 +947,40 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Tabellen füllen</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="161"/>
+      <location filename="../tablemodifier.cpp" line="268"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabelle %1 referenziert Tabelle %2, jedoch wird die &apos;foreign key&apos;-Definition für die neue Tabellendefinition nicht aktualisiert, da es Probleme bei der DDL-Analyse von Tabelle %3 gibt.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="510"/>
+      <location filename="../tablemodifier.cpp" line="633"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Alle Spalten, die von Index %1 indiziert wurden, sind verloren. Der Index wird nach der Tabellenmodifikation nicht neu erstellt.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="554"/>
+      <location filename="../tablemodifier.cpp" line="677"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Es ist ein Problem bei der korrekten Verarbeitung des Triggers %1 aufgetreten. Er wird möglicherweise nicht vollständig aktualisert werden und sollte geprüft werden.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="569"/>
+      <location filename="../tablemodifier.cpp" line="692"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Alle Spalten, die durch den Trigger %1 abgedeckt wurden, sind verloren. Der Trigger wird nach der Änderung nicht wiederhergestellt.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="601"/>
+      <location filename="../tablemodifier.cpp" line="724"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Die Aktualisierung des Triggers %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="620"/>
+      <location filename="../tablemodifier.cpp" line="743"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Die Aktualisierung des Views %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden. Der View wird daher nicht geändert.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="782"/>
-      <location filename="../tablemodifier.cpp" line="806"/>
-      <location filename="../tablemodifier.cpp" line="825"/>
+      <location filename="../tablemodifier.cpp" line="905"/>
+      <location filename="../tablemodifier.cpp" line="929"/>
+      <location filename="../tablemodifier.cpp" line="948"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Es ist ein Problem beim Aktualisieren einer %1 Abfrage innerhalb eines %2 Triggers aufgetreten. Eine der %1 Unterabfragen, welche möglicherweise die Tabelle %3 referenziert, kann nicht geändert werden. Eine manuelle Anpassung des Triggers wird nötig sein.</translation>
     </message>

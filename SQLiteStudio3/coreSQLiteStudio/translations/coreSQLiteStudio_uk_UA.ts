@@ -22,37 +22,37 @@
   <context>
     <name>ChainExecutor</name>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="37"/>
+      <location filename="../db/chainexecutor.cpp" line="38"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
       <translation>Не вказана база даних для виконання запитів.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="44"/>
+      <location filename="../db/chainexecutor.cpp" line="45"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
       <translation>Не відкрита база даних для виконання запитів.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="54"/>
+      <location filename="../db/chainexecutor.cpp" line="55"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Не вдалося відключити зовнішні ключі в базі даних. Подробиці: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="62"/>
+      <location filename="../db/chainexecutor.cpp" line="63"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Неможливо розпочати транзакцію. Подробиці: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="90"/>
+      <location filename="../db/chainexecutor.cpp" line="93"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Перервано</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="153"/>
+      <location filename="../db/chainexecutor.cpp" line="160"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Неможливо завершити транзакцію. Подробиці: %1</translation>
@@ -186,17 +186,17 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="615"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
       <source>No supporting plugin loaded.</source>
       <translation>Модуль підтримки не завантажений.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
       <source>Database could not be initialized.</source>
       <translation>Неможливо ініціалізувати базу даних.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="543"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Не знайдено відповідного драйвера бази даних.</translation>
     </message>
@@ -784,7 +784,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="967"/>
+      <location filename="../common/utils.cpp" line="949"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>
@@ -814,7 +814,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Не вдалося закрити базу даних: %1</translation>
     </message>
     <message>
-      <location filename="../impl/dbattacherimpl.cpp" line="122"/>
+      <location filename="../impl/dbattacherimpl.cpp" line="121"/>
       <source>Could not attach database %1: %2</source>
       <translation>Не вдалося підключити базу даних %1: %2</translation>
     </message>
@@ -947,41 +947,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Заповнення таблиць</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="161"/>
+      <location filename="../tablemodifier.cpp" line="268"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Таблиця %1 посилається на таблицю %2, але опис зовнішнього ключа не буде оновлено для опису нової таблиці через проблеми з аналізом DDL таблиці %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="510"/>
+      <location filename="../tablemodifier.cpp" line="633"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Всі стовпчики, проіндексовані індексом %1, видалені. Індекс не буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="554"/>
+      <location filename="../tablemodifier.cpp" line="677"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Виникла проблема при обробці тригера %1. Згодом він не буде повністю оновлений і вимагає вашої уваги.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="569"/>
+      <location filename="../tablemodifier.cpp" line="692"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Всі стовпчики, зачеплені в тригері %1, видалені. Тригер буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="601"/>
+      <location filename="../tablemodifier.cpp" line="724"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Не вдалося оновити тригер %1 відповідно до зміни таблиці %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="620"/>
+      <location filename="../tablemodifier.cpp" line="743"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Неможливо оновити розріз даних (view) %1 у відповідності зі зміною таблиці %2.
 Вид залишиться таким, як є.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="782"/>
-      <location filename="../tablemodifier.cpp" line="806"/>
-      <location filename="../tablemodifier.cpp" line="825"/>
+      <location filename="../tablemodifier.cpp" line="905"/>
+      <location filename="../tablemodifier.cpp" line="929"/>
+      <location filename="../tablemodifier.cpp" line="948"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Виникла проблема при оновленні конструкції %1 всередині тригера %2. Одна з вкладених конструкцій %1, яка можливо посилається на таблицю %3, не може бути коректно модифікована. Можливо необхідне ручна правка тригера.</translation>
     </message>
