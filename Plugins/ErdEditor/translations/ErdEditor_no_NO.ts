@@ -176,7 +176,7 @@
     </message>
     <message>
       <source>Apply diagram layout</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Apply diagram layout</translation>
     </message>
   </context>
   <context>
@@ -298,14 +298,6 @@
       <translation type="unfinished">Delete selected items</translation>
     </message>
     <message>
-      <source>Arrange entities using Force-Directed Placement approach</source>
-      <translation type="obsolete">Arrange entities using Force-Directed Placement approach</translation>
-    </message>
-    <message>
-      <source>Arrange entities using Spring Model approach</source>
-      <translation type="obsolete">Arrange entities using Spring Model approach</translation>
-    </message>
-    <message>
       <source>Select all</source>
       <translation type="unfinished">Select all</translation>
     </message>
@@ -382,11 +374,11 @@
     </message>
     <message>
       <source>Auto-arrange (local forces)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Auto-arrange (local forces)</translation>
     </message>
     <message>
       <source>Auto-arrange (global balance)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Auto-arrange (global balance)</translation>
     </message>
   </context>
   <context>
