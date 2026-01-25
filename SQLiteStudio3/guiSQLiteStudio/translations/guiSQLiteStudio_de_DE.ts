@@ -5939,27 +5939,27 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation type="unfinished">Referenced row (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="870"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
       <source>Trim pasted text?</source>
       <translation>Überflüssige Leerzeichen im Text entfernen?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="871"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="888"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="889"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="988"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="997"/>
       <source>Edit value</source>
       <translation>Werte editieren</translation>
     </message>
