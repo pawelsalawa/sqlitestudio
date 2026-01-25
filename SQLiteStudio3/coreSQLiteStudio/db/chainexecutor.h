@@ -207,6 +207,9 @@ class API_EXPORT ChainExecutor : public QObject
         bool isExecuting() const;
         void setRollbackOnErrorTo(const QString& savepoint);
 
+        bool getUseLegacyAlterRename() const;
+        void setUseLegacyAlterRename(bool newUseLegacyAlterRename);
+
     private:
         /**
          * @brief Executes query defines as the current one.
@@ -253,6 +256,7 @@ class API_EXPORT ChainExecutor : public QObject
         Db::Flags getExecFlags() const;
 
         void restoreFk();
+        void restoreAlterRename();
 
         /**
          * @brief Database for execution.
@@ -334,6 +338,9 @@ class API_EXPORT ChainExecutor : public QObject
         QHash<QString,QVariant> queryParams;
 
         bool disableForeignKeys = false;
+        bool foreignKeysWereDisabled = false;
+        bool useLegacyAlterRename = false;
+        bool legacyAlterRenameWasUsed = false;
         bool disableObjectDropsDetection = false;
         QString errorSavepoint;
 

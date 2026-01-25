@@ -57,28 +57,28 @@ void TableModifierTest::testCase1()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test renamed to test2.
+     *
      * 1. Disable FK.
-     * 1. Create new (with new name)
-     * 2. Copy data to new
-     * 4. Rename referencing table to temp name in 2 steps.
-     * 5. Second step of renaming - drop old table.
-     * 6. Create new referencing table.
-     * 7. Copy data to new referencing table.
-     * 8. Drop temp table.
-     * 9. Drop old table.
-     * 10. Re-enable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Create new structure of referencing table using temp name.
+     * 6. Copy referencing table data into new temp table.
+     * 7. Drop old referencing table.
+     * 8. Rename temp referencing table to its original name.
+     * 9. Re-enable FK.
      */
-    QVERIFY(sqls.size() == 10);
+    QVERIFY(sqls.size() == 9);
     int i = 0;
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE test2 .*", sqls[i++]);
     verifyRe("INSERT INTO test2.*SELECT.*FROM test;", sqls[i++]);
-    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
-    verifyRe("DROP TABLE abc;", sqls[i++]);
-    verifyRe("CREATE TABLE abc .*", sqls[i++]);
-    verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.* REFERENCES test2.*", sqls[i++]);
+    verifyRe("INSERT INTO sqlitestudio_temp_table.*SELECT .* FROM abc.*", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
+    verifyRe("ALTER TABLE sqlitestudio_temp_table RENAME TO abc;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
@@ -92,32 +92,30 @@ void TableModifierTest::testCase2()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test column 'val' renamed to 'newCol'.
+     *
      * 1. Disable FK.
-     * 2. Rename to temp in 2 steps.
-     * 3. Second step of renaming (drop).
-     * 4. Create new.
-     * 5. Copy data from temp to new one.
-     * 6. Rename referencing table to temp name in 2 steps.
-     * 7. Second step of renaming (drop).
-     * 8. Create new referencing table.
-     * 9. Copy data to new referencing table.
-     * 10. Drop first temp table.
-     * 11. Drop second temp table.
-     * 12. Enable FK.
+     * 2. Create new structure under temp table name (with new column name).
+     * 3. Copy data to new temp table.
+     * 4. Drop old table.
+     * 5. Rename temp table to original name.
+     * 6. Create new structure of referencing table using temp name (with new column name in REFERENCES).
+     * 7. Copy referencing table data into new temp table.
+     * 8. Drop old referencing table.
+     * 9. Rename temp referencing table to its original name.
+     * 10. Enable FK.
      */
-    QVERIFY(sqls.size() == 12);
+    QVERIFY(sqls.size() == 10);
     int i = 0;
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
-    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM test.*", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*newCol.*", sqls[i++]);
+    verifyRe("INSERT INTO sqlitestudio_temp_table.*SELECT.*FROM test.*", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
-    verifyRe("CREATE TABLE test .*newCol.*", sqls[i++]);
-    verifyRe("INSERT INTO test.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
+    verifyRe("ALTER TABLE sqlitestudio_temp_table RENAME TO test;", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table0.*REFERENCES test.*newCol.*", sqls[i++]);
+    verifyRe("INSERT INTO sqlitestudio_temp_table0.*SELECT.*FROM abc.*", sqls[i++]);
     verifyRe("DROP TABLE abc;", sqls[i++]);
-    verifyRe("CREATE TABLE abc .*xyz text REFERENCES test \\(newCol\\).*", sqls[i++]);
-    verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("ALTER TABLE sqlitestudio_temp_table0 RENAME TO abc;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
@@ -134,31 +132,31 @@ void TableModifierTest::testCase3()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test renamed to newTable and column 'val' renamed to 'newCol'.
+     *
      * 1. Disable FK.
-     * 2. Create new (with new name)
-     * 3. Copy data to new
+     * 2. Create new (with new name and new column name).
+     * 3. Copy data to new.
      * 4. Drop old table.
-     * 5. Rename referencing table to temp name in two steps.
-     * 6. Second step of renaming (drop).
-     * 7. Create new referencing table.
-     * 8. Copy data to new referencing table.
-     * 9. Drop temp table.
-     * 10. Re-create index i2.
-     * 11. Re-create index i1 with new table name and column name.
-     * 12. Disable FK.
+     * 5. Create new structure of referencing table using temp name (with new column name in REFERENCES).
+     * 6. Copy referencing table data into new temp table.
+     * 7. Drop old referencing table.
+     * 8. Rename temp referencing table to its original name.
+     * 9. Recreate index on referencing table.
+     * 10. Recreate index on new table.
+     * 11. Enable FK.
      */
-    QVERIFY(sqls.size() == 12);
+    QVERIFY(sqls.size() == 11);
     int i = 0;
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
-    verifyRe("CREATE TABLE newTable .*", sqls[i++]);
-    verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
-    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
-    verifyRe("DROP TABLE abc;", sqls[i++]);
-    verifyRe("CREATE TABLE abc .*xyz text REFERENCES newTable \\(newCol\\).*", sqls[i++]);
-    verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("CREATE INDEX i2 ON abc \\(id\\);", sqls[i++]);
+    verifyRe("CREATE TABLE newTable .*newCol.*", sqls[i++]);
+    verifyRe("INSERT INTO newTable.*newCol.*SELECT.*val,.*FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*REFERENCES newTable.*newCol.*", sqls[i++]);
+    verifyRe("INSERT INTO sqlitestudio_temp_table.*SELECT.*FROM abc;", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
+    verifyRe("ALTER TABLE sqlitestudio_temp_table RENAME TO abc;", sqls[i++]);
+    verifyRe("CREATE INDEX i2 ON abc \\(id\\);", sqls[i++]);
     verifyRe("CREATE INDEX i1 ON newTable \\(newCol\\);", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
@@ -178,6 +176,8 @@ void TableModifierTest::testCase4()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test renamed to newTable and column 'val' renamed to 'newCol'.
+     *
      * 1. Disable FK.
      * 2. Create new (with new name)
      * 3. Copy data to new
@@ -214,6 +214,8 @@ void TableModifierTest::testCase5()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test renamed to newTable and column 'val' renamed to 'newCol'.
+     *
      * 1. Disable FK.
      * 2. Create new (with new name)
      * 3. Copy data to new
@@ -247,6 +249,8 @@ void TableModifierTest::testCase6()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table test renamed to newTable and column 'val' removed.
+     *
      * 1. Disable FK.
      * 2. Create new (with new name)
      * 3. Copy data to new
@@ -286,6 +290,8 @@ void TableModifierTest::testCase7()
     QStringList sqls = mod.getGeneratedSqls();
 
     /*
+     * Table abc renamed to newTable (with generated column).
+     *
      * 1. Disable FK.
      * 2. Create new (with new name)
      * 3. Copy data to new

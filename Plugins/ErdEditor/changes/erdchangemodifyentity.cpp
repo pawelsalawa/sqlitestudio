@@ -10,6 +10,8 @@ ErdChangeModifyEntity::ErdChangeModifyEntity(Db* db, const SqliteCreateTablePtr&
 {
     afterCreateTable->rebuildTokens();
     tableModifier = new TableModifier(db, beforeCreateTable->database, beforeCreateTable->table, beforeCreateTable);
+    tableModifier->setDisableFkEnforcement(false);
+    tableModifier->setUseLegacyAlterRename(false);
     tableModifier->alterTable(afterCreateTable);
 }
 

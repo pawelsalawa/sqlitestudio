@@ -716,6 +716,7 @@ void ErdWindow::initExecutor()
     ddlExecutor->setTransaction(true);
     ddlExecutor->setAsync(true);
     ddlExecutor->setDisableForeignKeys(true);
+    ddlExecutor->setUseLegacyAlterRename(true);
     ddlExecutor->setDisableObjectDropsDetection(false);
 
     connect(ddlExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(commitExecutionSuccessful(SqlQueryPtr)));

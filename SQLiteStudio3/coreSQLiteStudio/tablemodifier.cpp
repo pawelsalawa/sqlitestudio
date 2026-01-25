@@ -49,41 +49,57 @@ TableModifier::TableModifier(Db* db, const QString& database, const QString& tab
 
 void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
 {
+    prepare();
+
     tableColMap = newCreateTable->getModifiedColumnsMap(true);
     existingColumns = newCreateTable->getColumnNames();
     newName = newCreateTable->table;
 
-    if (disableFkEnforcement)
-        sqls << "PRAGMA foreign_keys = 0;";
+    handleFkConstrains(newCreateTable.data(), createTable->table, newName); // validate FKs in this (but new) table
 
-    handleFkConstrains(newCreateTable.data(), createTable->table, newName);
-
-    QString tempTableName;
     bool doCopyData = !getColumnsToCopyData(newCreateTable).isEmpty();
     if (table.compare(newName, Qt::CaseInsensitive) == 0)
-        tempTableName = renameToTemp(doCopyData);
+    {
+        // Create new structure as temp table
+        QString tempName = getTempTableName();
+        newCreateTable->table = tempName;
+        newCreateTable->rebuildTokens();
+        sqls << newCreateTable->detokenize();
+        if (doCopyData)
+            copyDataTo(newCreateTable);
 
-    newCreateTable->rebuildTokens();
-    sqls << newCreateTable->detokenize();
-    if (doCopyData)
-        copyDataTo(newCreateTable);
+        // Restore new table name
+        newCreateTable->table = table;
+        newCreateTable->rebuildTokens();
 
-    handleFks();
+        // Drop old table and rename new temp table to target name
+        sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+        sqls << QString("ALTER TABLE %1 RENAME TO %2;").arg(wrapObjIfNeeded(tempName), wrapObjIfNeeded(table));
+    }
+    else
+    {
+        // Name has changed, so just create new table with new structure
+        newCreateTable->rebuildTokens();
+        sqls << newCreateTable->detokenize();
+        if (doCopyData)
+            copyDataTo(newCreateTable);
 
-    // If temp table was created, it means that table name hasn't changed. In that case we need to cleanup temp table (drop it).
-    // Otherwise, the table name has changed, therefor there still remains the old table which we copied data from - we need to drop it here.
-    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName));
+        // Drop old table
+        sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+    }
 
+    handleFks(); // update child tables for their FKs
     handleIndexes();
     handleTriggers();
     handleViews();
 
-    if (disableFkEnforcement)
-        sqls << "PRAGMA foreign_keys = 1;";
+    postProcess();
 }
 
 void TableModifier::dropTable()
 {
+    prepare();
+
     tablesHandledForFk << table;
 
     SchemaResolver resolver(db);
@@ -94,7 +110,7 @@ void TableModifier::dropTable()
             continue; // Avoid recurrent FK handling
 
         TableModifier parentTabMod(db, database, parTable);
-        parentTabMod.setDisableFkEnforcement(disableFkEnforcement);
+        parentTabMod.actAsSubmodifier();
         parentTabMod.removeFks(table);
         importResultsFromSubmodier(parentTabMod);
         modifiedTables << parTable;
@@ -106,6 +122,8 @@ void TableModifier::dropTable()
         sqls << delTpl.arg(wrapObjIfNeeded(table));
     else
         sqls << delFullTpl.arg(wrapObjIfNeeded(database), wrapObjIfNeeded(table));
+
+    postProcess();
 }
 
 void TableModifier::removeFks(const QString& referencedTable)
@@ -262,7 +280,7 @@ void TableModifier::handleFks()
             continue; // Avoid recurrent FK handling
 
         TableModifier subModifier(db, fkTable);
-        subModifier.setDisableFkEnforcement(disableFkEnforcement);
+        subModifier.actAsSubmodifier();
         if (!subModifier.isValid())
         {
             warnings << QObject::tr("Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition "
@@ -308,17 +326,22 @@ void TableModifier::handleFkAsSubModifier(const QString& oldName, const QString&
     if (!handleFkConstrains(createTable.data(), oldName, theNewName))
         return;
 
-    QString tempName = renameToTemp();
-
-    createTable->table = originalTable;
+    // Create new structure as temp table
+    QString tempName = getTempTableName();
+    createTable->table = tempName;
     createTable->rebuildTokens();
     sqls << createTable->detokenize();
+    copyDataTo(createTable); // we just removed some FKs (maybe), but data copy is the same
 
-    copyDataTo(originalTable);
+    // Restore previous name for any further processing to avoid issues - the createTable should refer to the table
+    createTable->table = table;
+    createTable->rebuildTokens();
+
+    // Drop old table and rename new temp table to the target name
+    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table));
+    sqls << QString("ALTER TABLE %1 RENAME TO %2;").arg(wrapObjIfNeeded(tempName), wrapObjIfNeeded(table));
 
     handleFks();
-
-    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName));
 
     simpleHandleIndexes();
     simpleHandleTriggers();
@@ -586,6 +609,16 @@ QList<SqliteCreateTable::Column*> TableModifier::getColumnsToCopyData(SqliteCrea
     return resultColumns;
 }
 
+bool TableModifier::getUseLegacyAlterRename() const
+{
+    return useLegacyAlterRename;
+}
+
+void TableModifier::setUseLegacyAlterRename(bool newUseLegacyAlterRename)
+{
+    useLegacyAlterRename = newUseLegacyAlterRename;
+}
+
 bool TableModifier::getDisableFkEnforcement() const
 {
     return disableFkEnforcement;
@@ -798,6 +831,8 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
     for (SqliteSelect::Core*& core : select->coreSelects)
     {
         resolvedTables = tablesAsNameHash(selectResolver.resolveTables(core));
+        QString coreSql = core->detokenize();
+        qDebug() << coreSql;
 
         tableTokens = core->getContextTableTokens(false);
         for (TokenPtr& token : tableTokens)
@@ -1186,4 +1221,36 @@ QString TableModifier::getTempTableName()
     QString name = resolver.getUniqueName("sqlitestudio_temp_table", usedTempTableNames);
     usedTempTableNames << name;
     return name;
+}
+
+void TableModifier::prepare()
+{
+    if (useLegacyAlterRename)
+    {
+        legacyAlterRenameWasEnabled = db->exec("PRAGMA legacy_alter_table")->getSingleCell().toBool();
+        if (!legacyAlterRenameWasEnabled)
+            sqls << "PRAGMA legacy_alter_table = true;";
+    }
+
+    if (disableFkEnforcement)
+    {
+        fkEnforcementWasEnabled = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+        if (fkEnforcementWasEnabled)
+            sqls << "PRAGMA foreign_keys = 0;";
+    }
+}
+
+void TableModifier::postProcess()
+{
+    if (disableFkEnforcement && fkEnforcementWasEnabled)
+        sqls << "PRAGMA foreign_keys = 1;";
+
+    if (useLegacyAlterRename && !legacyAlterRenameWasEnabled)
+        sqls << "PRAGMA legacy_alter_table = false;";
+}
+
+void TableModifier::actAsSubmodifier()
+{
+    setDisableFkEnforcement(false);
+    setUseLegacyAlterRename(false);
 }

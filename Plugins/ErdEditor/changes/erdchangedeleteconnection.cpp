@@ -27,6 +27,8 @@ ErdChangeDeleteConnection::ErdChangeDeleteConnection(Db* db, ErdConnection* conn
     }
 
     tableModifier = new TableModifier(db, beforeCreateTable->table);
+    tableModifier->setDisableFkEnforcement(false);
+    tableModifier->setUseLegacyAlterRename(false);
     afterCreateTable = tableModifier->removeFk(endEntityName, columnPairs);
 }
 

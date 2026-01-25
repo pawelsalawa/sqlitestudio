@@ -48,12 +48,31 @@ void ChainExecutor::exec()
 
     if (disableForeignKeys)
     {
-        SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
-        if (result->isError())
+        foreignKeysWereDisabled = db->exec("PRAGMA foreign_keys;")->getSingleCell().toBool();
+        if (!foreignKeysWereDisabled)
         {
-            emit finished(SqlQueryPtr());
-            emit failure(db->getErrorCode(), tr("Could not disable foreign keys in the database. Details: %1", "chain executor").arg(db->getErrorText()));
-            return;
+            SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
+            if (result->isError())
+            {
+                emit finished(SqlQueryPtr());
+                emit failure(db->getErrorCode(), tr("Could not disable foreign keys in the database. Details: %1", "chain executor").arg(db->getErrorText()));
+                return;
+            }
+        }
+    }
+
+    if (useLegacyAlterRename)
+    {
+        legacyAlterRenameWasUsed = db->exec("PRAGMA legacy_alter_table;")->getSingleCell().toBool();
+        if (!legacyAlterRenameWasUsed)
+        {
+            SqlQueryPtr result = db->exec("PRAGMA legacy_alter_table = true;");
+            if (result->isError())
+            {
+                emit finished(SqlQueryPtr());
+                emit failure(db->getErrorCode(), tr("Could not switch to legacy ALTER RENAME behavior in the database. Details: %1", "chain executor").arg(db->getErrorText()));
+                return;
+            }
         }
     }
 
@@ -146,6 +165,7 @@ void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
         db->exec(rollbackTpl.arg(errorSavepoint));
 
     restoreFk();
+    restoreAlterRename();
     successfulExecution = false;
     executionErrors << ExecutionError(errorCode, errorText);
     emit finished(lastExecutionResults);
@@ -162,6 +182,7 @@ void ChainExecutor::executionSuccessful(SqlQueryPtr results)
     }
 
     restoreFk();
+    restoreAlterRename();
     successfulExecution = true;
     emit finished(results);
     emit success(results);
@@ -210,12 +231,32 @@ Db::Flags ChainExecutor::getExecFlags() const
 
 void ChainExecutor::restoreFk()
 {
-    if (disableForeignKeys)
+    if (disableForeignKeys && !foreignKeysWereDisabled)
     {
         SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 1;");
         if (result->isError())
             qCritical() << "Could not restore foreign keys in the database after chain execution. Details:" << db->getErrorText();
     }
+}
+
+void ChainExecutor::restoreAlterRename()
+{
+    if (useLegacyAlterRename && !legacyAlterRenameWasUsed)
+    {
+        SqlQueryPtr result = db->exec("PRAGMA legacy_alter_table = false;");
+        if (result->isError())
+            qCritical() << "Could not restore regular ALTER RENAME behavior in the database after chain execution. Details:" << db->getErrorText();
+    }
+}
+
+bool ChainExecutor::getUseLegacyAlterRename() const
+{
+    return useLegacyAlterRename;
+}
+
+void ChainExecutor::setUseLegacyAlterRename(bool newUseLegacyAlterRename)
+{
+    useLegacyAlterRename = newUseLegacyAlterRename;
 }
 
 bool ChainExecutor::isExecuting() const

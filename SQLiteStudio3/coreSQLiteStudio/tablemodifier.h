@@ -39,6 +39,9 @@ class API_EXPORT TableModifier
         bool getDisableFkEnforcement() const;
         void setDisableFkEnforcement(bool newDisableFkEnforcement);
 
+        bool getUseLegacyAlterRename() const;
+        void setUseLegacyAlterRename(bool newUseLegacyAlterRename);
+
     private:
         void init();
         void parseDdl();
@@ -48,7 +51,9 @@ class API_EXPORT TableModifier
         QString renameToTemp(bool doCopyData = true);
         void copyDataTo(const QString& table);
         void copyDataTo(SqliteCreateTablePtr newCreateTable);
-
+        void prepare();
+        void postProcess();
+        void actAsSubmodifier();
         void processColumnFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QString& srcColumn, const QString& trgColumn);
         void processCompoundFkRemoval(SqliteCreateTablePtr& newCreateTable, const QString& referencedTable, const QList<QPair<QString,QString>>& tableColumnPairs);
         void handleIndexes();
@@ -174,6 +179,9 @@ class API_EXPORT TableModifier
         QStringList modifiedViews;
         QStringList usedTempTableNames;
         bool disableFkEnforcement = true;
+        bool useLegacyAlterRename = true;
+        bool fkEnforcementWasEnabled = true;
+        bool legacyAlterRenameWasEnabled = false;
 };
 
 

@@ -9,6 +9,8 @@ ErdChangeDeleteEntity::ErdChangeDeleteEntity(Db* db, const QString& tableName, c
     lastPosition(pos), lastCustomColor(customColor)
 {
     tableModifier = new TableModifier(db, tableName);
+    tableModifier->setDisableFkEnforcement(false);
+    tableModifier->setUseLegacyAlterRename(false);
     tableModifier->dropTable();
 }
 

@@ -21,7 +21,6 @@ QList<ErdEffectiveChange> ErdEffectiveChangeMerger::merge(const QList<ErdChange*
 {
     static_qstring(savepointTpl, "SAVEPOINT '%1'");
     static_qstring(rollbackToTpl, "ROLLBACK TO '%1'");
-    static_qstring(disableFkTpl, "PRAGMA foreign_keys = 0;");
     static_qstring(startingSavepoint, "erd_change_compacting_start");
 
     ddlCacheByChangeId.clear();
@@ -47,9 +46,6 @@ QList<ErdEffectiveChange> ErdEffectiveChangeMerger::merge(const QList<ErdChange*
         return {};
 
     // Prepare initial state in both DBs.
-    // FK enforcing is disabled prior to any transactions - otherwise it would have no effect.
-    referenceDb->exec(disableFkTpl);
-    workingDb->exec(disableFkTpl);
     referenceDb->exec(savepointTpl.arg(startingSavepoint));
     workingDb->exec(savepointTpl.arg(startingSavepoint));
 
@@ -89,6 +85,9 @@ QList<ErdEffectiveChange> ErdEffectiveChangeMerger::merge(const QList<ErdChange*
 
 Db* ErdEffectiveChangeMerger::createMemDbWithSchema(const QStringList& schemaDdls, const QString& name)
 {
+    static_qstring(disableFkTpl, "PRAGMA foreign_keys = 0;");
+    static_qstring(useLegacyRenameTpl, "PRAGMA legacy_alter_table = true;");
+
     Db* newDb = DBLIST->createInMemDb();
     newDb->setName(name); // same name as original, so that all functions/collations/extensions are loaded when open
     if (!newDb->openQuiet())
@@ -96,6 +95,12 @@ Db* ErdEffectiveChangeMerger::createMemDbWithSchema(const QStringList& schemaDdl
         qCritical() << "Failed to open in-memory database required for ERD editor! Db error:" << newDb->getErrorText();
         return nullptr;
     }
+
+    // FK enforcing is disabled prior to any transactions - otherwise it would have no effect.
+    newDb->exec(disableFkTpl);
+
+    // ALTER TABLE RENAME behavior switched to legacy mode to avoid issues with TableModifier renames.
+    newDb->exec(useLegacyRenameTpl);
 
     // Now copy schema to memdb
     for (const QString& ddl : schemaDdls)

@@ -17,6 +17,8 @@ ErdChangeRegistryDialog::ErdChangeRegistryDialog(Db* db, ErdChangeRegistry* chan
     ui->setupUi(this);
     ui->tree->setDragEnabled(false);
     ui->tree->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->splitter->setStretchFactor(0, 1);
+    ui->splitter->setStretchFactor(1, 2);
 
     connect(ui->tree, &QTreeWidget::currentItemChanged, this, &ErdChangeRegistryDialog::handleItemSelected);
     connect(ui->compactCheckBox, &QCheckBox::toggled, this, &ErdChangeRegistryDialog::compactViewToggled);
