@@ -238,6 +238,10 @@ jobs:
                 cp ${MINGW_PREFIX}/bin/libcrypto-3.dll .
                 cp ${MINGW_PREFIX}/bin/tcl86.dll .
 
+                # Workaround for https://github.com/msys2/MINGW-packages/issues/27547
+                cp ${MINGW_PREFIX}/bin/libcrypto-3.dll ./libcrypto-3-arm64.dll
+                cp ${MINGW_PREFIX}/bin/libssl-3.dll ./libssl-3-arm64.dll
+
             - name: Prepare portable distro (Resources)
               shell: msys2 {0}
               run: |
