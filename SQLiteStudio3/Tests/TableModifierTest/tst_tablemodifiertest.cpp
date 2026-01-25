@@ -59,18 +59,21 @@ void TableModifierTest::testCase1()
     /*
      * Table test renamed to test2.
      *
-     * 1. Disable FK.
-     * 2. Create new (with new name)
-     * 3. Copy data to new
-     * 4. Drop old table.
-     * 5. Create new structure of referencing table using temp name.
-     * 6. Copy referencing table data into new temp table.
-     * 7. Drop old referencing table.
-     * 8. Rename temp referencing table to its original name.
-     * 9. Re-enable FK.
+     * 1. Enable legacy alter table.
+     * 2. Disable FK.
+     * 3. Create new (with new name)
+     * 4. Copy data to new
+     * 5. Drop old table.
+     * 6. Create new structure of referencing table using temp name.
+     * 7. Copy referencing table data into new temp table.
+     * 8. Drop old referencing table.
+     * 9. Rename temp referencing table to its original name.
+     * 10. Re-enable FK.
+     * 11. Disable legacy alter table.
      */
-    QVERIFY(sqls.size() == 9);
+    QVERIFY(sqls.size() == 11);
     int i = 0;
+    verifyRe("PRAGMA legacy_alter_table = true;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE test2 .*", sqls[i++]);
     verifyRe("INSERT INTO test2.*SELECT.*FROM test;", sqls[i++]);
@@ -80,6 +83,7 @@ void TableModifierTest::testCase1()
     verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("ALTER TABLE sqlitestudio_temp_table RENAME TO abc;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
+    verifyRe("PRAGMA legacy_alter_table = false;", sqls[i++]);
 }
 
 void TableModifierTest::testCase2()
@@ -88,6 +92,7 @@ void TableModifierTest::testCase2()
 
     TableModifier mod(db, "test");
     createTable->columns[1]->name = "newCol";
+    mod.setUseLegacyAlterRename(false);
     mod.alterTable(createTable);
     QStringList sqls = mod.getGeneratedSqls();
 
@@ -126,6 +131,7 @@ void TableModifierTest::testCase3()
     db->exec("CREATE INDEX i2 ON abc (id);");
 
     TableModifier mod(db, "test");
+    mod.setUseLegacyAlterRename(false);
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
@@ -170,6 +176,7 @@ void TableModifierTest::testCase4()
              "END;");
 
     TableModifier mod(db, "test");
+    mod.setUseLegacyAlterRename(false);
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
@@ -208,6 +215,7 @@ void TableModifierTest::testCase5()
     db->exec("CREATE TRIGGER t3 INSTEAD OF INSERT ON test BEGIN SELECT 1; END;");
 
     TableModifier mod(db, "test");
+    mod.setUseLegacyAlterRename(false);
     createTable->table = "newTable";
     createTable->columns[1]->name = "newCol";
     mod.alterTable(createTable);
@@ -243,6 +251,7 @@ void TableModifierTest::testCase6()
     db->exec("CREATE TRIGGER t2 AFTER UPDATE OF Id, Val ON Test BEGIN SELECT Val, Val2 FROM Test; END;");
 
     TableModifier mod(db, "test");
+    mod.setUseLegacyAlterRename(false);
     createTable->table = "newTable";
     createTable->columns.removeAt(1);
     mod.alterTable(createTable);
@@ -285,6 +294,7 @@ void TableModifierTest::testCase7()
 
 
     TableModifier mod(db, "abc");
+    mod.setUseLegacyAlterRename(false);
     localCreateTable->table = "newTable";
     mod.alterTable(localCreateTable);
     QStringList sqls = mod.getGeneratedSqls();
