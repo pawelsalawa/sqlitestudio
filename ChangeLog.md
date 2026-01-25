@@ -7,7 +7,7 @@
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
-- CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two.
+- CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two. Also views/triggers support got improved for cases with subselects.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.

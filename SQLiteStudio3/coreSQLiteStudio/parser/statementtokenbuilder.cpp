@@ -125,8 +125,9 @@ StatementTokenBuilder& StatementTokenBuilder::withStatement(SqliteStatement* stm
         if (tokens.size() > 0 && !tokens.last()->isWhitespace() && tokens.last()->type != Token::PAR_LEFT)
             withSpace();
 
-        tokens += stmt->tokens;
+        withTokens(stmt->tokens);
         tokens.trimRight(Token::OPERATOR, ";");
+        updateCurrentIdxFromTokens();
     }
     return *this;
 }
@@ -134,6 +135,12 @@ StatementTokenBuilder& StatementTokenBuilder::withStatement(SqliteStatement* stm
 StatementTokenBuilder& StatementTokenBuilder::withTokens(TokenList tokens)
 {
     this->tokens += tokens;
+    for (TokenPtr& t : tokens)
+    {
+        t->start += currentIdx;
+        t->end += currentIdx;
+    }
+    updateCurrentIdxFromTokens();
     return *this;
 }
 
@@ -200,4 +207,12 @@ StatementTokenBuilder& StatementTokenBuilder::with(Token::Type type, const QStri
     tokens << TokenPtr::create(type, value, currentIdx, currentIdx + size - 1);
     currentIdx += size;
     return *this;
+}
+
+void StatementTokenBuilder::updateCurrentIdxFromTokens()
+{
+    if (!tokens.isEmpty())
+        currentIdx = tokens.last()->end + 1;
+    else
+        currentIdx = 0;
 }

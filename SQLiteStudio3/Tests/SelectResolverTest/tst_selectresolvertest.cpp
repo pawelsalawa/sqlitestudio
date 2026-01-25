@@ -8,6 +8,8 @@
 #include "mocks.h"
 #include "parser/parser.h"
 #include "sqlfileexecutor.h"
+#include "schemaresolver.h"
+#include "common/collections.h"
 #include <QString>
 #include <QtTest>
 #include <QSet>
@@ -42,6 +44,7 @@ class SelectResolverTest : public QObject
         void testJoinUsing();
         void testJoinSameTable();
         void testJoinSameTableInSubselect();
+        void testResolveTablesFromMultilevelView();
 };
 
 SelectResolverTest::SelectResolverTest()
@@ -508,6 +511,32 @@ void SelectResolverTest::testJoinSameTableInSubselect()
     QVERIFY(coreColumns[1].tableAlias.isNull());
     QVERIFY(coreColumns[1].alias == "col1:1");
     QVERIFY(coreColumns[1].displayName == "col1:1");
+}
+
+void SelectResolverTest::testResolveTablesFromMultilevelView()
+{
+    loadSchema("schema1.sql");
+
+    SchemaResolver schemaResolver(db);
+    SqliteCreateViewPtr view = schemaResolver.getParsedView("v_pending_narratives");
+
+    SqliteSelect* select = view->select;
+    SelectResolver selectResolver(db, select->detokenize());
+
+    SqliteSelect::Core* core = select->coreSelects[0];
+
+    QSet<QString> expectedTables = {
+        "main.records",
+        "main.record_annotations",
+        "main.record_heuristics",
+        "main.sources"
+    };
+
+    QSet<SelectResolver::Table> tables = selectResolver.resolveTables(core);
+    QVERIFY(tables.size() == expectedTables.size());
+
+    QSet<QString> resultTables = tables | MAP(t, {return t.database + "." + t.table;});
+    QVERIFY(resultTables == expectedTables);
 }
 
 void SelectResolverTest::initTestCase()

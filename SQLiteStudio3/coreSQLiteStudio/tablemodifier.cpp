@@ -89,6 +89,7 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     }
 
     handleFks(); // update child tables for their FKs
+
     handleIndexes();
     handleTriggers();
     handleViews();
@@ -827,18 +828,17 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
     // Table name
     QList<SqliteSelect::Core::SingleSource*> selSources = select->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
     TokenList tableTokens;
-    StrHash<SelectResolver::Table> resolvedTables;
+    QHash<SqliteSelect::Core*, StrHash<SelectResolver::Table>> resolvedTablesCache;
     for (SqliteSelect::Core*& core : select->coreSelects)
     {
-        resolvedTables = tablesAsNameHash(selectResolver.resolveTables(core));
-        QString coreSql = core->detokenize();
-        qDebug() << coreSql;
-
         tableTokens = core->getContextTableTokens(false);
         for (TokenPtr& token : tableTokens)
         {
             if (token->value.compare(originalTable, Qt::CaseInsensitive) != 0)
                 continue;
+
+            SqliteSelect::Core* tokenCore = core->findTypedStatementWithToken<SqliteSelect::Core>(token);
+            StrHash<SelectResolver::Table> resolvedTables = resolveAllTablesForCore(selectResolver, resolvedTablesCache, core, tokenCore);
 
             // Check if that table name is the same as its alias name, so we use alias name and we don't rename it here, cause it's alias, not table
             if (isTableAliasUsedForColumn(token, resolvedTables, selSources))
@@ -893,6 +893,28 @@ StrHash<SelectResolver::Table> TableModifier::tablesAsNameHash(const QSet<Select
         result[tab.table] = tab;
 
     return result;
+}
+
+StrHash<SelectResolver::Table> TableModifier::resolveAllTablesForCore(SelectResolver& selectResolver, QHash<SqliteSelect::Core*, StrHash<SelectResolver::Table>>& resolvedTableCache, SqliteSelect::Core* rootCore, SqliteSelect::Core* tokenCore)
+{
+    if (!resolvedTableCache.contains(tokenCore))
+    {
+        StrHash<SelectResolver::Table> allTables = tablesAsNameHash(selectResolver.resolveTables(tokenCore));
+
+        SqliteStatement* stmt = tokenCore->parentStatement();
+        while (stmt && stmt != rootCore)
+        {
+            SqliteSelect::Core* core = dynamic_cast<SqliteSelect::Core*>(stmt);
+            if (core)
+                allTables.unite(tablesAsNameHash(selectResolver.resolveTables(core)));
+
+            stmt = stmt->parentStatement();
+        }
+
+        allTables.unite(tablesAsNameHash(selectResolver.resolveTables(rootCore)));
+        resolvedTableCache[tokenCore] = allTables;
+    }
+    return resolvedTableCache[tokenCore];
 }
 
 bool TableModifier::isTableAliasUsedForColumn(const TokenPtr &token, const StrHash<SelectResolver::Table> &resolvedTables, const QList<SqliteSelect::Core::SingleSource *> &selSources)

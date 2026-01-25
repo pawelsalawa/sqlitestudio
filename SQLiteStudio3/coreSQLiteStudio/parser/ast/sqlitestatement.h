@@ -212,8 +212,38 @@ class API_EXPORT SqliteStatement : public QObject
 
         QString detokenize();
         Range getRange();
+
+        template <class T>
+        T* findTypedStatementWithToken(TokenPtr token)
+        {
+            T* stmtWithToken = nullptr;
+            for (SqliteStatement* stmt : childStatements())
+            {
+                stmtWithToken = stmt->template findTypedStatementWithToken<T>(token);
+                if (stmtWithToken)
+                    return stmtWithToken;
+            }
+
+            T* thisTyped = dynamic_cast<T*>(this);
+            if (thisTyped && tokens.contains(token))
+                return thisTyped;
+
+            return nullptr;
+        }
         SqliteStatement* findStatementWithToken(TokenPtr token);
+
+        template <class T>
+        T* findTypedStatementWithPosition(quint64 cursorPosition)
+        {
+            TokenPtr token = tokens.atCursorPosition(cursorPosition);
+            if (!token)
+                return nullptr;
+
+            return findTypedStatementWithToken<T>(token);
+
+        }
         SqliteStatement* findStatementWithPosition(quint64 cursorPosition);
+
         SqliteStatement* parentStatement() const;
         QList<SqliteStatement*> childStatements();
         QStringList getContextColumns(bool checkParent = true, bool checkChilds = true);

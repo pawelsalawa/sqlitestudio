@@ -11,6 +11,8 @@
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "parser/ast/sqlitecreateview.h"
 #include "common/strhash.h"
+#include "db/sqlquery.h"
+#include <QUuid>
 
 class API_EXPORT TableModifier
 {
@@ -68,7 +70,6 @@ class API_EXPORT TableModifier
         SqliteUpdate* handleTriggerUpdate(SqliteUpdate* update, const QString& trigName, const QString& trigTable);
         SqliteInsert* handleTriggerInsert(SqliteInsert* insert, const QString& trigName, const QString& trigTable);
         SqliteDelete* handleTriggerDelete(SqliteDelete* del, const QString& trigName, const QString& trigTable);
-        StrHash<SelectResolver::Table> tablesAsNameHash(const QSet<SelectResolver::Table> &resolvedTables);
         bool isTableAliasUsedForColumn(const TokenPtr& token, const StrHash<SelectResolver::Table>& resolvedTables, const QList<SqliteSelect::Core::SingleSource*>& selSources);
         bool handleSubSelects(SqliteStatement* stmt, const QString& trigTable);
         bool handleExprWithSelect(SqliteExpr* expr, const QString& trigTable);
@@ -136,6 +137,10 @@ class API_EXPORT TableModifier
             }
             return modified;
         }
+
+        static StrHash<SelectResolver::Table> tablesAsNameHash(const QSet<SelectResolver::Table> &resolvedTables);
+        static StrHash<SelectResolver::Table> resolveAllTablesForCore(SelectResolver& selectResolver, QHash<SqliteSelect::Core*, StrHash<SelectResolver::Table>>& resolvedTableCache,
+                                                               SqliteSelect::Core* rootCore, SqliteSelect::Core* tokenCore);
 
         Db* db = nullptr;
 

@@ -1,3 +1,5 @@
 <RCC>
-    <qresource prefix="/schemas"/>
+    <qresource prefix="/schemas">
+        <file>schema1.sql</file>
+    </qresource>
 </RCC>

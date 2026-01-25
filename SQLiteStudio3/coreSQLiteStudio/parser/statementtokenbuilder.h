@@ -258,6 +258,8 @@ class StatementTokenBuilder
          */
         StatementTokenBuilder& with(Token::Type type, const QString& value);
 
+        void updateCurrentIdxFromTokens();
+
         /**
          * @brief List of tokens added so far.
          */
