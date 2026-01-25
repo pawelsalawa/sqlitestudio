@@ -174,6 +174,10 @@
       <source>Change color of multiple tables.</source>
       <translation type="unfinished">Change color of multiple tables.</translation>
     </message>
+    <message>
+      <source>Apply diagram layout</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>ErdTableWindow</name>
@@ -295,11 +299,11 @@
     </message>
     <message>
       <source>Arrange entities using Force-Directed Placement approach</source>
-      <translation type="unfinished">Arrange entities using Force-Directed Placement approach</translation>
+      <translation type="obsolete">Arrange entities using Force-Directed Placement approach</translation>
     </message>
     <message>
       <source>Arrange entities using Spring Model approach</source>
-      <translation type="unfinished">Arrange entities using Spring Model approach</translation>
+      <translation type="obsolete">Arrange entities using Spring Model approach</translation>
     </message>
     <message>
       <source>Select all</source>
@@ -376,6 +380,14 @@
       <source>ERD editor</source>
       <translation type="unfinished">ERD editor</translation>
     </message>
+    <message>
+      <source>Auto-arrange (local forces)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Auto-arrange (global balance)</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>QObject</name>
@@ -414,6 +426,10 @@
     <message>
       <source>Create relationship between &quot;%1&quot; and &quot;%2&quot;.</source>
       <translation type="unfinished">Create relationship between &quot;%1&quot; and &quot;%2&quot;.</translation>
+    </message>
+    <message>
+      <source>Move table &quot;%1&quot;</source>
+      <translation type="unfinished">Move table &quot;%1&quot;</translation>
     </message>
   </context>
 </TS>

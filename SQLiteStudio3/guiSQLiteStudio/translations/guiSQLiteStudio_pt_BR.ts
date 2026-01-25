@@ -5942,27 +5942,27 @@ Essa exclusão será permanente. Tem certeza que deseja excluí-la?</translation
       <translation>Linha referenciada (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="870"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
       <source>Trim pasted text?</source>
       <translation>Aparar texto colado?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="871"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>O texto colado contém espaço branco à esquerda ou à direita. Aparar automaticamente?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="888"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>Colar &quot;NULO&quot; como valor nulo?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="889"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>O texto colado contém &quot;NULL&quot; literais. Deseja considerá-los como valores NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="988"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="997"/>
       <source>Edit value</source>
       <translation>Editar valor</translation>
     </message>
