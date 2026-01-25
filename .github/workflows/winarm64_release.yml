@@ -1,0 +1,303 @@
+env:
+    SQLITE_VERSION: '3510100'
+    #ICU_VER: '72'
+    #ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-72.1-1-any.pkg.tar.zst
+    PORTABLE_DIR: output/portable/SQLiteStudio
+    INSTALLBUILDER_DIR: ../ib
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-25.10.1-windows-x64-installer.exe
+    BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+name: Windows ARM 64-bit release build
+
+on:
+    workflow_dispatch:
+        inputs:
+          use_ccache:
+            description: 'Use ccache (for workflow debugging only!)'
+            required: false
+            type: boolean
+          DEBUG:
+            description: 'Enable workflow debug messages'
+            required: false
+            type: boolean
+            default: false
+    schedule:
+        - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
+    repository_dispatch:
+        types: [winarm64_release]
+
+jobs:
+    build:
+        runs-on: windows-11-arm
+
+        steps:
+            - name: Install MSYS2
+              uses: msys2/setup-msys2@v2
+              with: 
+                update: true
+                msystem: CLANGARM64
+                install: unzip
+                pacboy: >-
+                  cc-libs:p
+                  openssl:p
+                  qt6-base:p
+                  qt6-declarative:p
+                  qt6-imageformats:p
+                  qt6-svg:p
+                  wineditline:p
+                  zlib:p
+                  7zip:p
+                  cc:p
+                  ccache:p
+                  curl-winssl:p
+                  make:p
+                  ntldd:p
+                  pkgconf:p
+                  python:p
+                  qt6-tools:p
+                  tcl:p
+
+            - name: Clone GH scripts
+              uses: actions/checkout@v5
+              with:
+                repository: pawelsalawa/gh-action-scripts
+                ref: main
+                path: gh-scripts
+
+            - name: Setup GH scripts path
+              shell: msys2 {0}
+              run: |
+                mv gh-scripts ..
+                cd ..
+                echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
+                echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
+
+            - name: Adjust MSYS2 environment
+              shell: msys2 {0}
+              run: |
+                set -x
+
+                # Remove system wide SQLite, since we want the pre-built version
+                pacman -R --noconfirm -dd mingw-w64-clang-aarch64-sqlite3
+
+                # The makefile requires the editline static library to be called edit_static
+                cp ${MINGW_PREFIX}/lib/libedit.a ${MINGW_PREFIX}/lib/libedit_static.a
+
+                # The makefile requires the python import library to have no dots
+                _pyver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write('.'.join(map(str, sys.version_info[:2])))")
+                _pylibver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write(''.join(map(str, sys.version_info[:2])))")
+                cp ${MINGW_PREFIX}/lib/libpython${_pyver}.dll.a ${MINGW_PREFIX}/lib/libpython${_pylibver}.dll.a
+                echo "PYTHON_VERSION=$_pyver" >> $GITHUB_ENV
+
+                # The makefile requires libcrypto to be called libeay32
+                cp ${MINGW_PREFIX}/lib/libcrypto.dll.a ${MINGW_PREFIX}/lib/libeay32.dll.a
+
+            - name: Clone repo
+              uses: actions/checkout@v5
+              with:
+                ref: ${{ env.BRANCH_NAME }}
+
+            - name: Prepare ccache
+              if: inputs.use_ccache || false
+              uses: hendrikmuhs/ccache-action@v1.2.8
+              with:
+                key: winarm64_release
+                max-size: "24M"
+
+            - name: Configure ccache (or not ccache)
+              shell: msys2 {0}
+              run: |
+                if [ ${{ inputs.use_ccache || false }} = false ]; then
+                    echo GCC_COMMAND="$(which clang.exe)"
+                    echo GXX_COMMAND="$(which clang++.exe)"
+                else
+                    echo GCC_COMMAND="$CCACHE_COMMAND clang.exe"
+                    echo GXX_COMMAND="$CCACHE_COMMAND clang++.exe"
+                fi >> $GITHUB_ENV
+
+            - name: Install SQLite3
+              shell: msys2 {0}
+              run: |
+                SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
+                echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
+
+                cd ..
+                SQLITE3_ZIP=sqlite3-windows-arm64-$SQLITE_VERSION.zip
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
+
+                unzip $SQLITE3_ZIP sqlite3.dll -d lib
+                unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
+
+            - name: Compile additional SQLite3 extensions
+              shell: msys2 {0}
+              run: |
+                cd ..
+                mkdir ext
+                curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
+                
+                mkdir ext-src
+                unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
+                cd ext-src
+                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../include -L../lib -lsqlite3"
+                set -x
+                for f in compress sqlar; do
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dll
+                done
+                
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
+                    $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
+                done
+
+                set +x
+                ls -l ../ext/
+
+            - name: Prepare output dir
+              shell: msys2 {0}
+              run: mkdir output output/build output/build/Plugins
+
+            - name: Compile SQLiteStudio3
+              working-directory: output/build
+              shell: msys2 {0}
+              run: |
+                set -x
+
+                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
+                ${MINGW_PREFIX}/bin/qmake-qt5 \
+                  CONFIG+=portable \
+                  QMAKE_CXXFLAGS+=`pkgconf --cflags wineditline` \
+                  ../../SQLiteStudio3
+
+                # MSYS2_ARG_CONV_EXCL again for QMake called during the build
+                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
+                ${MINGW_PREFIX}/bin/mingw32-make.exe -j 4 VERBOSE=1
+
+            - name: Compile Plugins
+              working-directory: output/build/Plugins
+              shell: msys2 {0}
+              run: |
+                set -x
+
+                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
+                ${MINGW_PREFIX}/bin/qmake-qt5 \
+                  CONFIG+=portable \
+                  QMAKE_CXXFLAGS+=`pkgconf --cflags python3` \
+                  PYTHON_VERSION=${PYTHON_VERSION} \
+                  ../../../Plugins
+
+                ${MINGW_PREFIX}/bin/mingw32-make.exe -j 1
+
+            - name: Copy SQLite extensions to output dir
+              shell: msys2 {0}
+              run: |
+                cp -R ../ext output/SQLiteStudio/
+
+            - name: Prepare portable dir
+              shell: msys2 {0}
+              working-directory: output
+              run: |
+                mkdir portable
+                cp -R SQLiteStudio portable/
+
+            - name: Clean-up portable dir
+              shell: msys2 {0}
+              run: |
+                cd ${{ env.PORTABLE_DIR }}
+                rm -f *.a
+                rm -f plugins/*.a
+                rm -f styles/*.a
+                echo "ABSOLUTE_PORTABLE_DIR=`pwd`" >> $GITHUB_ENV
+
+            - name: Prepare portable distro (Qt)
+              shell: msys2 {0}
+              run: |
+                cd ${ABSOLUTE_PORTABLE_DIR}
+
+                ${MINGW_PREFIX}/bin/windeployqt-qt5 SQLiteStudio.exe \
+                  --no-angle \
+                  --no-translations \
+                  -printsupport -xml -qml
+
+                rm -r bearer
+
+            - name: Prepare portable distro (Deps)
+              shell: msys2 {0}
+              run: |
+                cd ../lib
+                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
+
+                cd ${ABSOLUTE_PORTABLE_DIR}
+
+                # Copy dependencies of sqlitestudio.exe
+                ntldd -R sqlitestudio.exe | \
+                 sed 's/.*=> \(.*\) (0x.*/\1/' | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
+                 xargs -I {} cygpath -u {} | \
+                 xargs -I {} cp {} .
+
+                # Copy plugins dependencies
+                cp ${MINGW_PREFIX}/bin/libcrypto-3.dll .
+                cp ${MINGW_PREFIX}/bin/tcl86.dll .
+
+                # Workaround for https://github.com/msys2/MINGW-packages/issues/27547
+                cp ${MINGW_PREFIX}/bin/libcrypto-3.dll ./libcrypto-3-arm64.dll
+                cp ${MINGW_PREFIX}/bin/libssl-3.dll ./libssl-3-arm64.dll
+
+            - name: Prepare portable distro (Resources)
+              shell: msys2 {0}
+              run: |
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico "$ABSOLUTE_PORTABLE_DIR"/appicon.ico
+                cp SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg "${{ env.PORTABLE_DIR }}"/appicon.svg
+
+            - name: Determine SQLiteStudio version
+              shell: msys2 {0}
+              run: |
+                cd $ABSOLUTE_PORTABLE_DIR
+                SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
+                echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-arm64" >> $GITHUB_ENV
+
+            - name: Assemble portable package
+              shell: msys2 {0}
+              run: |
+                cd $ABSOLUTE_PORTABLE_DIR/..
+                7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
+
+            - name: Install the InstalBuilder
+              shell: msys2 {0}
+              env:
+                IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
+              run: |
+                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.exe
+                ./ib.exe --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe --version
+                echo "$IB_LICENSE" > lic.xml
+                echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
+                echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
+
+            - name: Create installer package
+              shell: msys2 {0}
+              run: |
+                ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
+                    --license lic.xml \
+                    --setvars project.outputDirectory=$(pwd) \
+                    --setvars project.version=$SQLITESTUDIO_VERSION
+                ls -l
+
+            - name: SHA256 checksums
+              shell: msys2 {0}
+              run: |
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+                sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+
+            - name: Upload installer artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
