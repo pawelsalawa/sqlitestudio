@@ -34,25 +34,31 @@
       <translation>Не відкрита база даних для виконання запитів.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="55"/>
+      <location filename="../db/chainexecutor.cpp" line="58"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Не вдалося відключити зовнішні ключі в базі даних. Подробиці: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="63"/>
+      <location filename="../db/chainexecutor.cpp" line="73"/>
+      <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
+      <comment>chain executor</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/chainexecutor.cpp" line="82"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Неможливо розпочати транзакцію. Подробиці: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="93"/>
+      <location filename="../db/chainexecutor.cpp" line="112"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Перервано</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="160"/>
+      <location filename="../db/chainexecutor.cpp" line="180"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Неможливо завершити транзакцію. Подробиці: %1</translation>
@@ -947,41 +953,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Заповнення таблиць</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="268"/>
+      <location filename="../tablemodifier.cpp" line="287"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Таблиця %1 посилається на таблицю %2, але опис зовнішнього ключа не буде оновлено для опису нової таблиці через проблеми з аналізом DDL таблиці %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="633"/>
+      <location filename="../tablemodifier.cpp" line="667"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Всі стовпчики, проіндексовані індексом %1, видалені. Індекс не буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="677"/>
+      <location filename="../tablemodifier.cpp" line="711"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Виникла проблема при обробці тригера %1. Згодом він не буде повністю оновлений і вимагає вашої уваги.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="692"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Всі стовпчики, зачеплені в тригері %1, видалені. Тригер буде відтворений після модифікації таблиці.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="724"/>
+      <location filename="../tablemodifier.cpp" line="758"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Не вдалося оновити тригер %1 відповідно до зміни таблиці %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="743"/>
+      <location filename="../tablemodifier.cpp" line="777"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Неможливо оновити розріз даних (view) %1 у відповідності зі зміною таблиці %2.
 Вид залишиться таким, як є.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="905"/>
-      <location filename="../tablemodifier.cpp" line="929"/>
-      <location filename="../tablemodifier.cpp" line="948"/>
+      <location filename="../tablemodifier.cpp" line="962"/>
+      <location filename="../tablemodifier.cpp" line="986"/>
+      <location filename="../tablemodifier.cpp" line="1005"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Виникла проблема при оновленні конструкції %1 всередині тригера %2. Одна з вкладених конструкцій %1, яка можливо посилається на таблицю %3, не може бути коректно модифікована. Можливо необхідне ручна правка тригера.</translation>
     </message>

@@ -30,25 +30,31 @@
       <translation>没有打开执行查询的数据库。</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="55"/>
+      <location filename="../db/chainexecutor.cpp" line="58"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>未能禁用该数据库中的外键。详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="63"/>
+      <location filename="../db/chainexecutor.cpp" line="73"/>
+      <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
+      <comment>chain executor</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/chainexecutor.cpp" line="82"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>未能启动数据库事务。详情：%1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="93"/>
+      <location filename="../db/chainexecutor.cpp" line="112"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>中断</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="160"/>
+      <location filename="../db/chainexecutor.cpp" line="180"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>未能提交数据库事务。详情：%1</translation>
@@ -939,41 +945,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>数据表填充</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="268"/>
+      <location filename="../tablemodifier.cpp" line="287"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>表 %1 引用了表 %2，但由于解析表 %3 的 DDL 出现问题，不会为新的表定义更新该外键。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="633"/>
+      <location filename="../tablemodifier.cpp" line="667"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>索引 %1 涵盖的所有列索引已消失。表修改后该索引也不会被重新触发。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="677"/>
+      <location filename="../tablemodifier.cpp" line="711"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>处理触发器 %1 时出现问题。它可能没有被充分更新，这需要您的注意。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="692"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>触发器 %1 涵盖的所有列已消失。表修改后该触发器也不会被重新触发。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="724"/>
+      <location filename="../tablemodifier.cpp" line="758"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>无法根据表 %2 的修改更新触发器 %1。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="743"/>
+      <location filename="../tablemodifier.cpp" line="777"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>无法根据表 %2 的修改更新视图 %1。
 视图将保持原样不变。</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="905"/>
-      <location filename="../tablemodifier.cpp" line="929"/>
-      <location filename="../tablemodifier.cpp" line="948"/>
+      <location filename="../tablemodifier.cpp" line="962"/>
+      <location filename="../tablemodifier.cpp" line="986"/>
+      <location filename="../tablemodifier.cpp" line="1005"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>更新 %2 触发器内的一个 %1 语句时出现问题。%1 子句中引用的表 %3 可能无法被正确修改。必要时需要手动更新触发器。</translation>
     </message>
