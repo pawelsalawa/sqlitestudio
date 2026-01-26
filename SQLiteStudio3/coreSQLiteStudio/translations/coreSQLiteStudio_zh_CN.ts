@@ -39,7 +39,7 @@
       <location filename="../db/chainexecutor.cpp" line="73"/>
       <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="82"/>
