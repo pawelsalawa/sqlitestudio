@@ -109,6 +109,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void configureNotNull();
         void configureDefault();
         void pkToggled(bool enabled);
+        void pkAutoIncrToggled(bool enabled);
         void fkToggled(bool enabled);
         void uniqueToggled(bool enabled);
         void checkToggled(bool enabled);

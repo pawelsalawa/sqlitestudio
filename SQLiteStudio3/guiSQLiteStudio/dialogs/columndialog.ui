@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>431</height>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,8 +109,64 @@
         </property>
         <widget class="QWidget" name="simplePage">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="1">
+          <item row="1" column="2">
+           <widget class="QToolButton" name="pkButton">
+            <property name="text">
+             <string>Configure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
            <widget class="QToolButton" name="fkButton">
+            <property name="text">
+             <string>Configure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QToolButton" name="uniqueButton">
+            <property name="text">
+             <string>Configure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QCheckBox" name="collateCheck">
+            <property name="text">
+             <string>Collate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QToolButton" name="collateButton">
+            <property name="text">
+             <string>Configure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="uniqueCheck">
+            <property name="text">
+             <string>Unique</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <widget class="QToolButton" name="generatedButton">
+            <property name="text">
+             <string>Configure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="fkCheck">
+            <property name="text">
+             <string>Foreign Key</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QToolButton" name="checkButton">
             <property name="text">
              <string>Configure</string>
             </property>
@@ -123,24 +179,17 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="notNullCheck">
+          <item row="5" column="2">
+           <widget class="QToolButton" name="notNullButton">
             <property name="text">
-             <string>Not NULL</string>
+             <string>Configure</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="fkCheck">
+          <item row="8" column="2">
+           <widget class="QToolButton" name="defaultButton">
             <property name="text">
-             <string>Foreign Key</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QCheckBox" name="collateCheck">
-            <property name="text">
-             <string>Collate</string>
+             <string>Configure</string>
             </property>
            </widget>
           </item>
@@ -151,20 +200,6 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="uniqueCheck">
-            <property name="text">
-             <string>Unique</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QToolButton" name="uniqueButton">
-            <property name="text">
-             <string>Configure</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QCheckBox" name="pkCheck">
             <property name="text">
@@ -172,31 +207,10 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QToolButton" name="notNullButton">
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="notNullCheck">
             <property name="text">
-             <string>Configure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QToolButton" name="collateButton">
-            <property name="text">
-             <string>Configure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QToolButton" name="defaultButton">
-            <property name="text">
-             <string>Configure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QToolButton" name="pkButton">
-            <property name="text">
-             <string>Configure</string>
+             <string>Not NULL</string>
             </property>
            </widget>
           </item>
@@ -207,17 +221,10 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QToolButton" name="checkButton">
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="autoIncrCheck">
             <property name="text">
-             <string>Configure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QToolButton" name="generatedButton">
-            <property name="text">
-             <string>Configure</string>
+             <string>Autoincrement</string>
             </property>
            </widget>
           </item>
@@ -243,13 +250,13 @@
           <item>
            <widget class="QTableView" name="constraintsView">
             <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
+             <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
             </property>
             <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
+             <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
             </property>
             <property name="horizontalScrollMode">
-             <enum>QAbstractItemView::ScrollPerPixel</enum>
+             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
             </property>
             <attribute name="horizontalHeaderStretchLastSection">
              <bool>true</bool>
@@ -288,10 +295,10 @@
       <item>
        <widget class="QDialogButtonBox" name="buttonBox">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
         </property>
        </widget>
       </item>

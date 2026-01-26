@@ -125,6 +125,7 @@ void ColumnDialog::updateConstraintsToolbarState()
 void ColumnDialog::updateState()
 {
     ui->pkButton->setEnabled(ui->pkCheck->isChecked());
+    ui->autoIncrCheck->setEnabled(ui->pkCheck->isChecked());
     ui->fkButton->setEnabled(ui->fkCheck->isChecked());
     ui->uniqueButton->setEnabled(ui->uniqueCheck->isChecked());
     ui->notNullButton->setEnabled(ui->notNullCheck->isChecked());
@@ -170,6 +171,7 @@ void ColumnDialog::setupConstraintCheckBoxes()
     ui->defaultCheck->setIcon(ICONS.CONSTRAINT_DEFAULT);
 
     connect(ui->pkCheck, SIGNAL(clicked(bool)), this, SLOT(pkToggled(bool)));
+    connect(ui->autoIncrCheck, SIGNAL(clicked(bool)), this, SLOT(pkAutoIncrToggled(bool)));
     connect(ui->fkCheck, SIGNAL(clicked(bool)), this, SLOT(fkToggled(bool)));
     connect(ui->uniqueCheck, SIGNAL(clicked(bool)), this, SLOT(uniqueToggled(bool)));
     connect(ui->notNullCheck, SIGNAL(clicked(bool)), this, SLOT(notNullToggled(bool)));
@@ -579,6 +581,26 @@ void ColumnDialog::configureDefault()
 void ColumnDialog::pkToggled(bool enabled)
 {
     constraintToggled(SqliteCreateTable::Column::Constraint::PRIMARY_KEY, enabled);
+    if (!enabled)
+        ui->autoIncrCheck->setChecked(false);
+
+    updateTypeForAutoIncr();
+}
+
+void ColumnDialog::pkAutoIncrToggled(bool enabled)
+{
+    SqliteCreateTable::Column::Constraint* constraint = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY);
+    if (!constraint)
+    {
+        qCritical() << "Called ColumnDialog::pkAutoIncrToggled(), but there's no PK constraint in the column!";
+        return;
+    }
+
+    constraint->autoincrKw = enabled;
+    if (enabled && constraint->sortOrder == SqliteSortOrder::DESC)
+        constraint->sortOrder = SqliteSortOrder::null;
+
+    updateValidations();
     updateTypeForAutoIncr();
 }
 
@@ -668,6 +690,9 @@ void ColumnDialog::updateConstraint(SqliteCreateTable::Column::Constraint* const
     if (checkBox)
     {
         checkBox->setChecked(true);
+        if (constraint->type == SqliteCreateTable::Column::Constraint::PRIMARY_KEY)
+            ui->autoIncrCheck->setChecked(constraint->autoincrKw);
+
         updateConstraintState(constraint);
     }
 }
