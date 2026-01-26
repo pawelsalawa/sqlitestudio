@@ -1,13 +1,14 @@
 #ifndef COLORPICKERPOPUP_H
 #define COLORPICKERPOPUP_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QWidget>
 #include <QHash>
 
 class QSignalMapper;
 class QVBoxLayout;
 class QToolButton;
-class ColorPickerPopup : public QWidget
+class GUI_API_EXPORT ColorPickerPopup : public QWidget
 {
         Q_OBJECT
     public:
