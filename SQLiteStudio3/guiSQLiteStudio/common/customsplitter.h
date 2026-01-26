@@ -1,9 +1,10 @@
 #ifndef CUSTOMSPLITTER_H
 #define CUSTOMSPLITTER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QSplitter>
 
-class CustomSplitter : public QSplitter
+class GUI_API_EXPORT CustomSplitter : public QSplitter
 {
     Q_OBJECT
 

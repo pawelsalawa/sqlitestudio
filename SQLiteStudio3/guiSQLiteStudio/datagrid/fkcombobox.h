@@ -1,14 +1,15 @@
 #ifndef FKCOMBOBOX_H
 #define FKCOMBOBOX_H
 
-#include <QComboBox>
+#include "guiSQLiteStudio_global.h"
 #include "datagrid/sqlquerymodelcolumn.h"
+#include <QComboBox>
 
 class SqlQueryModel;
 class SqlQueryView;
 class Db;
 
-class FkComboBox : public QComboBox
+class GUI_API_EXPORT FkComboBox : public QComboBox
 {
     Q_OBJECT
 
@@ -26,7 +27,7 @@ class FkComboBox : public QComboBox
         QVariant getValue(bool* manualValueUsed = nullptr, bool* ok = nullptr) const;
 
     private:
-        class FkComboShowFilter : public QObject
+        class GUI_API_EXPORT FkComboShowFilter : public QObject
         {
             public:
                 explicit FkComboShowFilter(FkComboBox* parentCombo);

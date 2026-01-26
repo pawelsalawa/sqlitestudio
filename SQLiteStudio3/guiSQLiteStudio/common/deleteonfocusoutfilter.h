@@ -1,10 +1,11 @@
 #ifndef DELETEONFOCUSOUTFILTER_H
 #define DELETEONFOCUSOUTFILTER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QSet>
 
-class DeleteOnFocusOutFilter : public QObject
+class GUI_API_EXPORT DeleteOnFocusOutFilter : public QObject
 {
     Q_OBJECT
 

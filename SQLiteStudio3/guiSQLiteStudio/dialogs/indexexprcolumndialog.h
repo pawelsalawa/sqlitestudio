@@ -1,6 +1,7 @@
 #ifndef INDEXEXPRCOLUMNDIALOG_H
 #define INDEXEXPRCOLUMNDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 
 class SqliteExpr;
@@ -10,7 +11,7 @@ namespace Ui {
     class IndexExprColumnDialog;
 }
 
-class IndexExprColumnDialog : public QDialog
+class GUI_API_EXPORT IndexExprColumnDialog : public QDialog
 {
         Q_OBJECT
 

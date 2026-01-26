@@ -1,9 +1,10 @@
 #ifndef EXTTABLEWIDGET_H
 #define EXTTABLEWIDGET_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QTableWidget>
 
-class ExtTableWidget : public QTableWidget
+class GUI_API_EXPORT ExtTableWidget : public QTableWidget
 {
     public:
         explicit ExtTableWidget(QWidget* parent = nullptr);

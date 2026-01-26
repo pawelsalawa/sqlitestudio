@@ -1,9 +1,10 @@
 #ifndef MOUSESHORTCUT_H
 #define MOUSESHORTCUT_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 
-class MouseShortcut : public QObject
+class GUI_API_EXPORT MouseShortcut : public QObject
 {
     Q_OBJECT
 

@@ -3,7 +3,6 @@
 
 /** \cond docNever */
 
-
 #include <QtGui>
 #include <QScrollArea>
 #include <QUndoStack>

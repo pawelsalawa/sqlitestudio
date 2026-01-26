@@ -29,7 +29,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         void mouseLeftIndex(const QModelIndex& index);
 
     private:
-        class FkComboShowFilter : public QObject
+        class GUI_API_EXPORT FkComboShowFilter : public QObject
         {
             public:
                 explicit FkComboShowFilter(const SqlQueryItemDelegate* delegate, SqlQueryView* comboView, QObject* parent = 0);

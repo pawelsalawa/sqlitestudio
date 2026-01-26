@@ -1,6 +1,7 @@
 #ifndef EXTACTIONMANAGEMENTNOTIFIER_H
 #define EXTACTIONMANAGEMENTNOTIFIER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QSharedPointer>
 
@@ -8,7 +9,7 @@ class QToolBar;
 class QAction;
 class ExtActionContainer;
 
-class ExtActionManagementNotifier : public QObject
+class GUI_API_EXPORT ExtActionManagementNotifier : public QObject
 {
         Q_OBJECT
     public:

@@ -1,13 +1,14 @@
 #ifndef QUITCONFIRMDIALOG_H
 #define QUITCONFIRMDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 
 namespace Ui {
     class QuitConfirmDialog;
 }
 
-class QuitConfirmDialog : public QDialog
+class GUI_API_EXPORT QuitConfirmDialog : public QDialog
 {
         Q_OBJECT
 

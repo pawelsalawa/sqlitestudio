@@ -1,13 +1,14 @@
 #ifndef EXTENDEDPALETTE_H
 #define EXTENDEDPALETTE_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QBrush>
 #include <QPalette>
 #include <QVariant>
 
 class QStyle;
 
-class ExtendedPalette
+class GUI_API_EXPORT ExtendedPalette
 {
     public:
         ExtendedPalette();

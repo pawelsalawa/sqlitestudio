@@ -1,9 +1,10 @@
 #ifndef SQLQUERYITEMLINEEDIT_H
 #define SQLQUERYITEMLINEEDIT_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QLineEdit>
 
-class SqlQueryItemLineEdit : public QLineEdit
+class GUI_API_EXPORT SqlQueryItemLineEdit : public QLineEdit
 {
     Q_OBJECT
 

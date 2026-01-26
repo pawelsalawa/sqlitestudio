@@ -1,9 +1,10 @@
 #ifndef CENTEREDICONITEMDELEGATE_H
 #define CENTEREDICONITEMDELEGATE_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QStyledItemDelegate>
 
-class CenteredIconItemDelegate : public QStyledItemDelegate
+class GUI_API_EXPORT CenteredIconItemDelegate : public QStyledItemDelegate
 {
     public:
         explicit CenteredIconItemDelegate(QObject* parent = nullptr);

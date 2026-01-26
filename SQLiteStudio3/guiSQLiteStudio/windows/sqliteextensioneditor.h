@@ -1,6 +1,7 @@
 #ifndef SQLITEEXTENSIONEDITOR_H
 #define SQLITEEXTENSIONEDITOR_H
 
+#include "guiSQLiteStudio_global.h"
 #include "icon.h"
 #include "mdichild.h"
 #include <QItemSelection>
@@ -22,7 +23,7 @@ CFG_KEY_LIST(SqliteExtensionEditor, QObject::tr("A SQLite extension editor windo
     CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
-class SqliteExtensionEditor : public MdiChild
+class GUI_API_EXPORT SqliteExtensionEditor : public MdiChild
 {
         Q_OBJECT
 

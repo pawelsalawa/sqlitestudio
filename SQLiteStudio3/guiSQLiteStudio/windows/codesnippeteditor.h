@@ -1,11 +1,12 @@
 #ifndef CODESNIPPETEDITOR_H
 #define CODESNIPPETEDITOR_H
 
+#include "guiSQLiteStudio_global.h"
 #include "mdichild.h"
 #include <QWidget>
 
 namespace Ui {
-class CodeSnippetEditor;
+    class CodeSnippetEditor;
 }
 
 class CodeSnippetEditorModel;
@@ -18,7 +19,7 @@ CFG_KEY_LIST(CodeSnippetEditor, QObject::tr("A code snippets editor window"),
     CFG_KEY_ENTRY(ROLLBACK,   QKeySequence::Cancel,      QObject::tr("Rollback the pending changes"))
 )
 
-class CodeSnippetEditor : public MdiChild
+class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
 {
     Q_OBJECT
 

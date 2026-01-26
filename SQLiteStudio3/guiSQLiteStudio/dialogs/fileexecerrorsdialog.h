@@ -1,6 +1,7 @@
 #ifndef FILEEXECERRORSDIALOG_H
 #define FILEEXECERRORSDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 
 namespace Ui {
@@ -9,7 +10,7 @@ namespace Ui {
 
 class QTableWidgetItem;
 
-class FileExecErrorsDialog : public QDialog
+class GUI_API_EXPORT FileExecErrorsDialog : public QDialog
 {
         Q_OBJECT
 

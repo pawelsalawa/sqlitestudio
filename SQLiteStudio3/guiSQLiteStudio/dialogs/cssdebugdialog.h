@@ -1,6 +1,7 @@
 #ifndef CSSDEBUGDIALOG_H
 #define CSSDEBUGDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 
 namespace Ui {
@@ -9,7 +10,7 @@ namespace Ui {
 
 class QAbstractButton;
 
-class CssDebugDialog : public QDialog
+class GUI_API_EXPORT CssDebugDialog : public QDialog
 {
         Q_OBJECT
 

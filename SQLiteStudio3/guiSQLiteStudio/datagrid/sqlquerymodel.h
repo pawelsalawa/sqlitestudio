@@ -204,7 +204,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int getCellDataLengthLimit();
 
     protected:
-        class CommitUpdateQueryBuilder : public RowIdConditionBuilder
+        class GUI_API_EXPORT CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
             public:
                 void clear();
@@ -224,7 +224,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
                 QStringList assignmentArgs;
         };
 
-        class SelectCellsQueryBuilder : public RowIdConditionBuilder
+        class GUI_API_EXPORT SelectCellsQueryBuilder : public RowIdConditionBuilder
         {
             public:
                 void addRowId(const RowId& rowId);
@@ -247,7 +247,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
                 int argSquence = 0;
         };
 
-        struct StoredFocus
+        struct GUI_API_EXPORT StoredFocus
         {
             int row = -1;
             int column = -1;

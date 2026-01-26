@@ -1,12 +1,13 @@
 #ifndef DIALOGSIZEHANDLER_H
 #define DIALOGSIZEHANDLER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QRect>
 
 class QTimer;
 
-class DialogSizeHandler : public QObject
+class GUI_API_EXPORT DialogSizeHandler : public QObject
 {
     Q_OBJECT
 public:

@@ -1,13 +1,14 @@
 #ifndef DATAWIDGETMAPPER_H
 #define DATAWIDGETMAPPER_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QHash>
 #include <functional>
 
 class QAbstractItemModel;
 
-class DataWidgetMapper : public QObject
+class GUI_API_EXPORT DataWidgetMapper : public QObject
 {
         Q_OBJECT
     public:

@@ -1,13 +1,14 @@
 #ifndef MULTIEDITORFK_H
 #define MULTIEDITORFK_H
 
+#include "guiSQLiteStudio_global.h"
 #include "multieditorwidget.h"
 
 class Db;
 class SqlQueryModelColumn;
 class FkComboBox;
 
-class MultiEditorFk : public MultiEditorWidget
+class GUI_API_EXPORT MultiEditorFk : public MultiEditorWidget
 {
     Q_OBJECT
 

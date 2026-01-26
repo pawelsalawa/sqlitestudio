@@ -1,9 +1,10 @@
 #ifndef IMMEDIATETOOLTIP_H
 #define IMMEDIATETOOLTIP_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QObject>
 
-class ImmediateTooltip : public QObject
+class GUI_API_EXPORT ImmediateTooltip : public QObject
 {
     Q_OBJECT
     public:

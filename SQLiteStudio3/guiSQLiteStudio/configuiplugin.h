@@ -1,11 +1,12 @@
 #ifndef CONFIGUIPLUGIN_H
 #define CONFIGUIPLUGIN_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QtPlugin>
 
 class CfgEntry;
 
-class ConfigUiPlugin
+class GUI_API_EXPORT ConfigUiPlugin
 {
     public:
         virtual ~ConfigUiPlugin() {}

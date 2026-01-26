@@ -4,7 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QListWidget>
 
-class CompleterView : public QListView
+class GUI_API_EXPORT CompleterView : public QListView
 {
         Q_OBJECT
 

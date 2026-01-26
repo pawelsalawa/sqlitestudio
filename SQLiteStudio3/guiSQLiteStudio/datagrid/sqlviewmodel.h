@@ -1,9 +1,10 @@
 #ifndef SQLVIEWMODEL_H
 #define SQLVIEWMODEL_H
 
+#include "guiSQLiteStudio_global.h"
 #include "sqldatasourcequerymodel.h"
 
-class SqlViewModel : public SqlDataSourceQueryModel
+class GUI_API_EXPORT SqlViewModel : public SqlDataSourceQueryModel
 {
     public:
         explicit SqlViewModel(QObject *parent = 0);

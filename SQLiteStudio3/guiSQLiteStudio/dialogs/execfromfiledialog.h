@@ -1,13 +1,14 @@
 #ifndef EXECFROMFILEDIALOG_H
 #define EXECFROMFILEDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 
 namespace Ui {
     class ExecFromFileDialog;
 }
 
-class ExecFromFileDialog : public QDialog
+class GUI_API_EXPORT ExecFromFileDialog : public QDialog
 {
         Q_OBJECT
 

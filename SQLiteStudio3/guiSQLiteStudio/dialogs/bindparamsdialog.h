@@ -1,6 +1,7 @@
 #ifndef BINDPARAMSDIALOG_H
 #define BINDPARAMSDIALOG_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QDialog>
 #include <QHash>
 
@@ -11,7 +12,7 @@ namespace Ui {
 struct BindParam;
 class MultiEditor;
 
-class BindParamsDialog : public QDialog
+class GUI_API_EXPORT BindParamsDialog : public QDialog
 {
         Q_OBJECT
 
