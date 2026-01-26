@@ -1,7 +1,7 @@
 env:
     SQLITE_VERSION: '3510100'
-    #ICU_VER: '72'
-    #ICU_URL: https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-icu-72.1-1-any.pkg.tar.zst
+    ICU_VER: '75'
+    ICU_URL: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-icu-75.1-2-any.pkg.tar.zst
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-25.10.1-windows-x64-installer.exe
@@ -128,6 +128,19 @@ jobs:
                 unzip $SQLITE3_ZIP sqlite3.dll -d lib
                 unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
 
+            - name: Install extension dependencies
+              shell: bash
+              run: |
+                cd ..
+                curl -L "$ICU_URL" | tar -xf - --zstd
+                mv clangarm64 icu
+                tee -a $GITHUB_ENV <<EOF_ENV
+                ICU_CFLAGS=-I$(pwd)/icu/include
+                ICU_LDFLAGS=-L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
+                ICU_LIBDIR=$(pwd)/icu/bin
+                ZLIB_FLAGS=-lzlib1
+                EOF_ENV
+
             - name: Compile additional SQLite3 extensions
               shell: msys2 {0}
               run: |
@@ -148,6 +161,10 @@ jobs:
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
 
+                for f in icu; do
+                    $GCC_COMMAND icu/$f.c $ICU_CFLAGS $ICU_LDFLAGS $FLAGS -o ../ext/$f.dll
+                done
+
                 set +x
                 ls -l ../ext/
 
@@ -162,7 +179,7 @@ jobs:
                 set -x
 
                 MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake-qt5 \
+                ${MINGW_PREFIX}/bin/qmake-qt6 \
                   CONFIG+=portable \
                   QMAKE_CXXFLAGS+=`pkgconf --cflags wineditline` \
                   ../../SQLiteStudio3
@@ -178,7 +195,7 @@ jobs:
                 set -x
 
                 MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake-qt5 \
+                ${MINGW_PREFIX}/bin/qmake-qt6 \
                   CONFIG+=portable \
                   QMAKE_CXXFLAGS+=`pkgconf --cflags python3` \
                   PYTHON_VERSION=${PYTHON_VERSION} \
@@ -225,6 +242,9 @@ jobs:
                 cd ../lib
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
+                cd "$ICU_LIBDIR"
+                cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
+
                 cd ${ABSOLUTE_PORTABLE_DIR}
 
                 # Copy dependencies of sqlitestudio.exe
@@ -251,8 +271,11 @@ jobs:
             - name: Determine SQLiteStudio version
               shell: msys2 {0}
               run: |
+                set -x
                 cd $ABSOLUTE_PORTABLE_DIR
+                ./sqlitestudiocli.exe --version
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
+                [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
                 echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-arm64" >> $GITHUB_ENV
 
@@ -261,6 +284,7 @@ jobs:
               run: |
                 cd $ABSOLUTE_PORTABLE_DIR/..
                 7z a -r sqlitestudio-$PACKAGE_VERSION.zip SQLiteStudio
+                ls -l
 
             - name: Install the InstalBuilder
               shell: msys2 {0}
