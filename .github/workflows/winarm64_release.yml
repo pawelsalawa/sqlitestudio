@@ -83,15 +83,6 @@ jobs:
                 # The makefile requires the editline static library to be called edit_static
                 cp ${MINGW_PREFIX}/lib/libedit.a ${MINGW_PREFIX}/lib/libedit_static.a
 
-                # The makefile requires the python import library to have no dots
-                _pyver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write('.'.join(map(str, sys.version_info[:2])))")
-                _pylibver=$(${MINGW_PREFIX}/bin/python -c "import sys;sys.stdout.write(''.join(map(str, sys.version_info[:2])))")
-                cp ${MINGW_PREFIX}/lib/libpython${_pyver}.dll.a ${MINGW_PREFIX}/lib/libpython${_pylibver}.dll.a
-                echo "PYTHON_VERSION=$_pyver" >> $GITHUB_ENV
-
-                # The makefile requires libcrypto to be called libeay32
-                cp ${MINGW_PREFIX}/lib/libcrypto.dll.a ${MINGW_PREFIX}/lib/libeay32.dll.a
-
             - name: Clone repo
               uses: actions/checkout@v5
               with:
@@ -257,10 +248,6 @@ jobs:
                 # Copy plugins dependencies
                 cp ${MINGW_PREFIX}/bin/libcrypto-3.dll .
                 cp ${MINGW_PREFIX}/bin/tcl86.dll .
-
-                # Workaround for https://github.com/msys2/MINGW-packages/issues/27547
-                cp ${MINGW_PREFIX}/bin/libcrypto-3.dll ./libcrypto-3-arm64.dll
-                cp ${MINGW_PREFIX}/bin/libssl-3.dll ./libssl-3-arm64.dll
 
             - name: Prepare portable distro (Resources)
               shell: msys2 {0}
