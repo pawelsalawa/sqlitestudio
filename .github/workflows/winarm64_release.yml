@@ -220,12 +220,14 @@ jobs:
               run: |
                 cd ${ABSOLUTE_PORTABLE_DIR}
 
-                ${MINGW_PREFIX}/bin/windeployqt-qt5 SQLiteStudio.exe \
-                  --no-angle \
+                ${MINGW_PREFIX}/bin/windeployqt SQLiteStudio.exe \
+                  --release \
                   --no-translations \
+                  --no-system-d3d-compiler \
                   -printsupport -xml -qml
 
-                rm -r bearer
+                rm Qt6Quick*.dll
+                rm -r qmltooling
 
             - name: Prepare portable distro (Deps)
               shell: msys2 {0}
