@@ -30,25 +30,31 @@
       <translation>Il database per l&apos;esecuzione delle query non è stato aperto.</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="55"/>
+      <location filename="../db/chainexecutor.cpp" line="58"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Impossibile disabilitare le chiavi esterne nel database. Dettagli: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="63"/>
+      <location filename="../db/chainexecutor.cpp" line="73"/>
+      <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
+      <comment>chain executor</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/chainexecutor.cpp" line="82"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Impossibile avviare una transazione nel database. Dettagli: %1</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="93"/>
+      <location filename="../db/chainexecutor.cpp" line="112"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
       <translation>Interrotto</translation>
     </message>
     <message>
-      <location filename="../db/chainexecutor.cpp" line="160"/>
+      <location filename="../db/chainexecutor.cpp" line="180"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
       <translation>Impossibile effettuare il commit di una transazione nel database. Dettagli: %1</translation>
@@ -939,41 +945,41 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
       <translation>Popolamento tabella</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="268"/>
+      <location filename="../tablemodifier.cpp" line="287"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>La tabella %1 fa riferimento alla tabella %2, ma la definizione della chiave esterna non sarà aggiornata per la nuova definizione della tabella a causa di problemi durante l&apos;analisi DDL della tabella %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="633"/>
+      <location filename="../tablemodifier.cpp" line="667"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Tutte le colonne indicizzate dall&apos;indice %1 non esistono più. L&apos;indice non verrà ricreato dopo la modifica della tabella.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="677"/>
+      <location filename="../tablemodifier.cpp" line="711"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>C&apos;è un problema con il corretto processo trigger %1. Potrebbe non essere completamente aggiornato in seguito e avrà bisogno della vostra attenzione.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="692"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Tutte le colonne indicizzate dall&apos;indice %1 non esistono più. L&apos;indice non verrà ricreato dopo la modifica della tabella.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="724"/>
+      <location filename="../tablemodifier.cpp" line="758"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Impossibile aggiornare il trigger %1 in accordo alla modifica della tabella %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="743"/>
+      <location filename="../tablemodifier.cpp" line="777"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Impossibile aggiornare la vista %1 in base alle modifiche della tabella %2.
 La vista rimarrà così com&apos;è.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="905"/>
-      <location filename="../tablemodifier.cpp" line="929"/>
-      <location filename="../tablemodifier.cpp" line="948"/>
+      <location filename="../tablemodifier.cpp" line="962"/>
+      <location filename="../tablemodifier.cpp" line="986"/>
+      <location filename="../tablemodifier.cpp" line="1005"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>C&apos;è un problema con l&apos;aggiornamento di un&apos;istruzione %1 entro %2 trigger. Una delle %1 sotto-istruzioni che potrebbero riferirsi alla tabella %3 non può essere modificata correttamente. Può essere necessario un aggiornamento manuale del trigger.</translation>
     </message>
