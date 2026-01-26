@@ -39,6 +39,7 @@ SOURCES +=\
     common/dialogsizehandler.cpp \
     common/immediatetooltip.cpp \
     common/mouseshortcut.cpp \
+    common/passwordtogglehelper.cpp \
     constraints/columngeneratedpanel.cpp \
     datagrid/fkcombobox.cpp \
     datagrid/sqlqueryitemlineedit.cpp \
@@ -203,6 +204,7 @@ HEADERS  += mainwindow.h \
     common/dialogsizehandler.h \
     common/immediatetooltip.h \
     common/mouseshortcut.h \
+    common/passwordtogglehelper.h \
     constraints/columngeneratedpanel.h \
     datagrid/fkcombobox.h \
     datagrid/sqlqueryitemlineedit.h \

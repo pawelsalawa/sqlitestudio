@@ -257,5 +257,7 @@
         <file>img/zoom.svg</file>
         <file>img/zoom_in.svg</file>
         <file>img/zoom_out.svg</file>
+        <file>img/eye_closed.svg</file>
+        <file>img/eye_open.svg</file>
     </qresource>
 </RCC>

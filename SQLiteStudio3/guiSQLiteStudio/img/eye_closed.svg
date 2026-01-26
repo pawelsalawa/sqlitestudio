@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2"
+   sodipodi:docname="eye_closed.svg"
+   viewBox="0 0 122.15 122.15"
+   sodipodi:version="0.32"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   width="122.15"
+   height="122.15"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient23170"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#626262;stop-opacity:1;"
+         offset="0"
+         id="stop23168" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient15908">
+      <stop
+         style="stop-color:#999999;stop-opacity:1;"
+         offset="0"
+         id="stop15904" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop15906" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3176"
+       y2="226.28"
+       gradientUnits="userSpaceOnUse"
+       x2="362.82001"
+       y1="241.25999"
+       x1="348.14001"
+       inkscape:collect="always"
+       gradientTransform="matrix(1.7306839,0,0,1.7274581,-376.98546,-83.525554)">
+      <stop
+         id="stop3172"
+         style="stop-color:rgb(255, 255, 255)"
+         offset="0" />
+      <stop
+         id="stop3174"
+         style="stop-color:rgb(255, 255, 255);stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient15908"
+       id="linearGradient15910"
+       x1="173.1868"
+       y1="298.85501"
+       x2="295.39713"
+       y2="298.85501"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.98822036,0,0,1.1994922,2.8185059,-35.066277)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     guidetolerance="10"
+     pagecolor="#ffffff"
+     gridtolerance="10000"
+     inkscape:window-height="712"
+     inkscape:zoom="3.8327124"
+     objecttolerance="10"
+     inkscape:window-y="-4"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g3178"
+     inkscape:cx="50.095071"
+     inkscape:cy="66.662972"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-x="-4"
+     inkscape:window-width="1024"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:lockguides="true" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(-173.21,-262.83)">
+    <g
+       id="g3178">
+      <path
+         id="path3166"
+         sodipodi:rx="19.416903"
+         sodipodi:ry="18.929998"
+         style="fill:#0000de;stroke-width:1.72907"
+         sodipodi:type="arc"
+         d="m 233.74787,303.19043 a 19.416903,18.929998 0 0 1 20.3848,17.89121 19.416903,18.929998 0 0 1 -18.3049,19.91435 19.416903,18.929998 0 0 1 -20.46822,-17.80045 19.416903,18.929998 0 0 1 18.21161,-19.99547"
+         sodipodi:open="true"
+         sodipodi:cy="322.09552"
+         sodipodi:cx="234.74364"
+         sodipodi:end="4.6519677"
+         sodipodi:start="4.6610829"
+         sodipodi:arc-type="arc" />
+      <path
+         id="path3159"
+         sodipodi:nodetypes="csssc"
+         style="fill:url(#linearGradient15910);fill-opacity:1;stroke:#000000;stroke-width:7.19115;stroke-linecap:round"
+         d="m 234.84276,362.6614 c -31.50447,0.036 -57.04008,-37.29224 -57.54408,-39.18743 -1.23527,-4.58206 25.09093,-39.28337 56.5855,-39.31937 31.50447,-0.036 57.99866,36.03278 57.54408,39.18741 -0.17788,1.22349 -24.00388,38.63566 -54.89564,39.29538" />
+      <path
+         id="path3168"
+         sodipodi:rx="19.416903"
+         sodipodi:ry="18.929998"
+         style="fill:url(#linearGradient3176);stroke-width:1.72907"
+         sodipodi:type="arc"
+         d="m 233.87703,302.94248 a 19.416903,18.929998 0 0 1 20.38481,17.89121 19.416903,18.929998 0 0 1 -18.3049,19.91434 19.416903,18.929998 0 0 1 -20.46823,-17.80045 19.416903,18.929998 0 0 1 18.21161,-19.99547"
+         sodipodi:open="true"
+         sodipodi:cy="321.84756"
+         sodipodi:cx="234.8728"
+         sodipodi:end="4.6519677"
+         sodipodi:start="4.6610829"
+         sodipodi:arc-type="arc" />
+      <path
+         id="path3162"
+         sodipodi:rx="15.435636"
+         sodipodi:ry="15.048566"
+         style="fill:none;stroke:#000000;stroke-width:9.07883;stroke-linecap:round"
+         sodipodi:type="arc"
+         d="m 248.28139,330.28848 a 15.435636,15.048566 0 0 1 -18.37388,6.54884 15.435636,15.048566 0 0 1 -10.20253,-16.27364 15.435636,15.048566 0 0 1 14.35744,-12.95533"
+         sodipodi:open="true"
+         sodipodi:cy="322.62946"
+         sodipodi:cx="234.99449"
+         sodipodi:end="4.6519677"
+         sodipodi:start="0.53396878"
+         sodipodi:arc-type="arc" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#626262;stroke-width:15.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 188.13904,278.59459 92.79748,91.0789"
+         id="path21036"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>eye</dc:title>
+        <dc:date>2009-01-05T17:56:53</dc:date>
+        <dc:description>blue eye symbol</dc:description>
+        <dc:source>https://openclipart.org/detail/20993/eye-by-swerty</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>swerty</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>blue</rdf:li>
+            <rdf:li>eye</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

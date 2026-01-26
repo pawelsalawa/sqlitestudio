@@ -13,6 +13,7 @@
 #include "sqleditor.h"
 #include "common/unused.h"
 #include "db/sqlquery.h"
+#include "common/passwordtogglehelper.h"
 #include <QDateTimeEdit>
 #include <QSpinBox>
 #include <QDebug>
@@ -284,7 +285,7 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
         {
             editor = new QLineEdit(this);
             le = dynamic_cast<QLineEdit*>(editor);
-            le->setEchoMode(QLineEdit::Password);
+            new PasswordToggleHelper(le);
             connect(le, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             break;
         }

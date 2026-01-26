@@ -119,6 +119,8 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(EXTENSION_DELETE,                  "brick_delete")
             DEF_ICON(EXTENSION_ERROR,                   "brick_error")
             DEF_ICON(EXTENSION_EDITOR,                  "extensions")
+            DEF_ICON(EYE_OPEN,                          "eye_open")
+            DEF_ICON(EYE_CLOSED,                        "eye_closed")
             DEF_ICON(FEATURE_REQUEST,                   "feature_request")
             DEF_ICON(FONT_BROWSE,                       "font_browse")
             DEF_ICON(FORMAT_SQL,                        "format_sql")
