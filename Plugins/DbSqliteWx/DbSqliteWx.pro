@@ -28,23 +28,9 @@ isEmpty(WXSQLITE_LIB): {
 }
 
 macx: {
-    # exists( /opt/local/include/openssl-3/openssl/crypto.h ) {
-    #     message( "Configuring OpenSSL from MacPorts" )
-    #     INCLUDEPATH += /opt/local/include/openssl-3
-    #     LIBS += -L/opt/local/lib/openssl-3
-    # } else {
-    #     message( "Configuring OpenSSL from HomeBrew" )
-    #     INCLUDEPATH += /usr/local/opt/openssl/include
-    #     LIBS += -L/usr/local/opt/openssl/lib
-    # }
     LIBS += -framework Security
 }
-!macx: {
-    # LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
-}
 win32: {
-    # INCLUDEPATH += $${PWD}/../deps/include/$${PLATFORM}/
-    # DEPENDPATH += $${PWD}/../deps/include/$${PLATFORM}/
     LIBS += -lcoreSQLiteStudio
 }
 
