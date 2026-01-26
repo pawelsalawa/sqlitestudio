@@ -129,7 +129,7 @@ jobs:
                 unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
 
             - name: Install extension dependencies
-              shell: bash
+              shell: msys2 {0}
               run: |
                 cd ..
                 curl -L "$ICU_URL" | tar -xf - --zstd
