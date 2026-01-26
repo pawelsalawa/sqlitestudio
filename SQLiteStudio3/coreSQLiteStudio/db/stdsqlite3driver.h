@@ -86,6 +86,8 @@
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
         static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
         static int threadsafe() {return Prefix##sqlite3_threadsafe();} \
+        static const char* libversion() {return Prefix##sqlite3_libversion();} \
+        static int libversion_number() {return Prefix##sqlite3_libversion_number();} \
         template<typename... Args> \
         static int db_config(handle* arg1, int arg2, Args&&... args) {return Prefix##sqlite3_db_config(arg1, arg2, std::forward<Args>(args)...);} \
         static int get_autocommit(handle* arg) {return Prefix##sqlite3_get_autocommit(arg);} \

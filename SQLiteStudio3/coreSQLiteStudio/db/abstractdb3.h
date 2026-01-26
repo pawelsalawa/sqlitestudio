@@ -126,6 +126,7 @@ class AbstractDb3 : public AbstractDb
         QString extractLastError(typename T::handle* handle);
         void cleanUp();
         void resetError();
+        void checkForNewerVersionModifications();
 
         /**
          * @brief Registers function to call when unknown collation was encountered by the SQLite.
@@ -460,9 +461,10 @@ bool AbstractDb3<T>::initAfterCreated()
 template <class T>
 void AbstractDb3<T>::initAfterOpen()
 {
-    registerDefaultCollationRequestHandler();;
+    registerDefaultCollationRequestHandler();
     exec("PRAGMA foreign_keys = 1;", Flag::NO_LOCK);
     exec("PRAGMA recursive_triggers = 1;", Flag::NO_LOCK);
+    checkForNewerVersionModifications();
 }
 
 template <class T>
@@ -596,6 +598,42 @@ void AbstractDb3<T>::resetError()
 {
     dbErrorCode = 0;
     dbErrorMessage = QString();
+}
+
+template<class T>
+void AbstractDb3<T>::checkForNewerVersionModifications()
+{
+    QFile file(path);
+    if (file.size() < 100 || !file.open(QIODevice::ReadOnly))
+        return;
+
+    QDataStream in(&file);
+
+    const QByteArray header = file.read(16);
+    if (header.size() != 16)
+        return;
+
+    if (header != QByteArray("SQLite format 3\0", 16))
+        return; // encrypted
+
+    in.skipRawData(80);
+    qint32 hdrSqliteVersion = 0;
+    in >> hdrSqliteVersion;
+
+    static_qstring(verTpl, "%1.%2.%3");
+    QString hdrSqliteVersionStr = verTpl.arg(hdrSqliteVersion / 1000000)
+                             .arg((hdrSqliteVersion / 1000) % 1000)
+                             .arg(hdrSqliteVersion % 1000);
+
+    if ((T::libversion_number() / 1000) < (hdrSqliteVersion / 1000))
+    {
+        notifyWarn(tr("The database file '%1' has been modified by a newer version of SQLite (format %2), "
+                         "while the current application supports up to format %3. Some features may not work correctly.")
+                      .arg(getName())
+                      .arg(hdrSqliteVersionStr)
+                      .arg(T::libversion()));
+    }
+    file.close();
 }
 
 template <class T>

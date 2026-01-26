@@ -755,6 +755,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          */
         virtual QList<LoadedExtension> getManuallyLoadedExtensions() const = 0;
 
+
     signals:
         /**
          * @brief Emitted when the connection to the database was established.

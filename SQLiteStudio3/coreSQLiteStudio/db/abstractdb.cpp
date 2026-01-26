@@ -238,7 +238,7 @@ QString AbstractDb::generateUniqueDbNameNoLock()
     }
 
     QStringList existingDatabases;
-    for (SqlResultsRowPtr row : results->getAll())
+    for (auto&& row : results->getAll())
         existingDatabases << row->value("name").toString();
 
     return generateUniqueName("attached", existingDatabases);

@@ -23,7 +23,7 @@ class AsyncQueryRunner;
 /**
  * @brief Base database logic implementation.
  *
- * This class implements common base logic for all database implementations. It's still abstract class
+ * This class implements common base logic for most database implementations. It's still abstract class
  * and needs further implementation to be usable.
  */
 class API_EXPORT AbstractDb : public Db
