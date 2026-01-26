@@ -179,7 +179,7 @@ jobs:
                 set -x
 
                 MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake-qt6 \
+                ${MINGW_PREFIX}/bin/qmake \
                   CONFIG+=portable \
                   QMAKE_CXXFLAGS+=`pkgconf --cflags wineditline` \
                   ../../SQLiteStudio3
@@ -195,7 +195,7 @@ jobs:
                 set -x
 
                 MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake-qt6 \
+                ${MINGW_PREFIX}/bin/qmake \
                   CONFIG+=portable \
                   QMAKE_CXXFLAGS+=`pkgconf --cflags python3` \
                   PYTHON_VERSION=${PYTHON_VERSION} \
