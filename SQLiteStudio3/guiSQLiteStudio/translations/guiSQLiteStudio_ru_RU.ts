@@ -445,59 +445,64 @@
       <translation>Ограничения</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="178"/>
       <source>Generated value</source>
       <translation>Сгенерированное значение</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Unique</source>
       <translation>Уникальность</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
-      <location filename="../dialogs/columndialog.ui" line="164"/>
-      <location filename="../dialogs/columndialog.ui" line="178"/>
+      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="171"/>
       <location filename="../dialogs/columndialog.ui" line="185"/>
       <location filename="../dialogs/columndialog.ui" line="192"/>
-      <location filename="../dialogs/columndialog.ui" line="199"/>
-      <location filename="../dialogs/columndialog.ui" line="213"/>
-      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
       <translation>Настроить</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="136"/>
+      <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Foreign Key</source>
       <translation>Внешний ключ</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Collate</source>
       <translation>Сравнение</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="213"/>
       <source>Not NULL</source>
       <translation>Не NULL</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="150"/>
+      <location filename="../dialogs/columndialog.ui" line="199"/>
       <source>Check condition</source>
       <translation>Проверка условия</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="171"/>
+      <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Primary Key</source>
       <translation>Первичный ключ</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="206"/>
+      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Default</source>
       <translation>По умолчанию</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="284"/>
+      <location filename="../dialogs/columndialog.ui" line="227"/>
+      <source>Autoincrement</source>
+      <translation type="unfinished">Автоинкремент</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/columndialog.ui" line="291"/>
       <source>Advanced mode</source>
       <translation>Расширенный режим</translation>
     </message>
@@ -515,7 +520,7 @@
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
-      <location filename="../dialogs/columndialog.cpp" line="243"/>
+      <location filename="../dialogs/columndialog.cpp" line="245"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
       <translation>Удалить ограничение</translation>
@@ -581,48 +586,48 @@
       <translation>Добавить ограничение на значение по умолчанию</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="242"/>
+      <location filename="../dialogs/columndialog.cpp" line="244"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
       <translation>Вы действительно хотите удалить ограничение &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="305"/>
+      <location filename="../dialogs/columndialog.cpp" line="307"/>
       <source>Correct the constraint&apos;s configuration.</source>
       <translation>Исправьте конфигурацию ограничения.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="373"/>
+      <location filename="../dialogs/columndialog.cpp" line="375"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>Указание размера данных недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="374"/>
+      <location filename="../dialogs/columndialog.cpp" line="376"/>
       <source>Precision cannot be defined without the scale.</source>
       <translation>Точность не может быть задана без указания размера данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="375"/>
+      <location filename="../dialogs/columndialog.cpp" line="377"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
       <translation>Невозможно использовать тип данных, отличный от INTEGER, если в первичном ключе установлен автоинкремент.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="376"/>
+      <location filename="../dialogs/columndialog.cpp" line="378"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
       <translation>В качестве типа данных был принудительно выбран INTEGER, так как в первичном ключе установлен автоинкремент.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="398"/>
+      <location filename="../dialogs/columndialog.cpp" line="400"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>Указание точности недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="446"/>
+      <location filename="../dialogs/columndialog.cpp" line="448"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
       <translation>Тип привязываемого столбца (%1) отличается от указанного в этом столбце. Могут возникнуть проблемы при вставке или обновлении данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="701"/>
+      <location filename="../dialogs/columndialog.cpp" line="726"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
       <translation>Не удалось найти допустимый для STRICT-таблиц тип данных, соответствующий указанному типу: %1.</translation>
     </message>
@@ -2027,7 +2032,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="45"/>
-      <location filename="../dialogs/dbdialog.cpp" line="176"/>
+      <location filename="../dialogs/dbdialog.cpp" line="177"/>
       <source>File</source>
       <translation>Файл</translation>
     </message>
@@ -2068,62 +2073,62 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>Тест соединения</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="333"/>
+      <location filename="../dialogs/dbdialog.cpp" line="334"/>
       <source>Browse</source>
       <translation>Обзор</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="508"/>
+      <location filename="../dialogs/dbdialog.cpp" line="509"/>
       <source>Database type not selected.</source>
       <translation>Тип базы данных не выбран.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="515"/>
+      <location filename="../dialogs/dbdialog.cpp" line="516"/>
       <source>Database path not specified.</source>
       <translation>Путь к базе данных не указан.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="549"/>
+      <location filename="../dialogs/dbdialog.cpp" line="550"/>
       <source>Enter an unique database name.</source>
       <translation>Введите уникальное имя базы данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="559"/>
+      <location filename="../dialogs/dbdialog.cpp" line="560"/>
       <source>This name is already in use. Please enter unique name.</source>
       <translation>Данное имя уже используется. Пожалуйста, укажите уникальное имя.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="566"/>
+      <location filename="../dialogs/dbdialog.cpp" line="567"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Автоматическая генерация имени отключена, так как имя было задано вручную. Для автоматической генерации необходимо удалить содержимое из поля имени.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="575"/>
+      <location filename="../dialogs/dbdialog.cpp" line="576"/>
       <source>Enter a database file path.</source>
       <translation>Введите путь к базе данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="581"/>
+      <location filename="../dialogs/dbdialog.cpp" line="582"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
       <translation>Указан относительный путь к файлу, который будет преобразован в &quot;%1&quot; в соответствии с текущим рабочим каталогом программы. Лучше всегда указывать абсолютный путь к файлу, чтобы устранить неопределённость в расположении базы данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="591"/>
+      <location filename="../dialogs/dbdialog.cpp" line="592"/>
       <source>This database is already on the list under name: %1</source>
       <translation>Указанная база данных уже находится в списке под именем %1</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="613"/>
+      <location filename="../dialogs/dbdialog.cpp" line="614"/>
       <source>Select a database type.</source>
       <translation>Выберите тип базы данных.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="763"/>
+      <location filename="../dialogs/dbdialog.cpp" line="764"/>
       <source>Choose a location for the new database file</source>
       <translation>Выберите место для нового файла базы данных</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="764"/>
+      <location filename="../dialogs/dbdialog.cpp" line="765"/>
       <source>Browse for existing database file on local computer</source>
       <translation>Указать существующий файл базы данных на локальном компьютере</translation>
     </message>
@@ -4409,6 +4414,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>PasswordToggleHelper</name>
+    <message>
+      <location filename="../common/passwordtogglehelper.cpp" line="11"/>
+      <source>Show / hide password</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>PopulateConfigDialog</name>
     <message>
       <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
@@ -5249,23 +5262,23 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Выполнить запрос в представлении</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="16"/>
+      <location filename="../windows/codesnippeteditor.h" line="17"/>
       <source>A code snippets editor window</source>
       <translation>Окно редактора сниппетов</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="17"/>
+      <location filename="../windows/codesnippeteditor.h" line="18"/>
       <location filename="../windows/collationseditor.h" line="22"/>
       <location filename="../windows/functionseditor.h" line="23"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Commit the pending changes</source>
       <translation>Подтвердить изменения</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="18"/>
+      <location filename="../windows/codesnippeteditor.h" line="19"/>
       <location filename="../windows/collationseditor.h" line="23"/>
       <location filename="../windows/functionseditor.h" line="24"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="23"/>
       <source>Rollback the pending changes</source>
       <translation>Откатить изменения</translation>
     </message>
@@ -5280,7 +5293,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Окно редактора функций</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.h" line="20"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>A SQLite extension editor window</source>
       <translation>Окно редактора расширения SQLite</translation>
     </message>
