@@ -1126,7 +1126,7 @@ view 將保留原始內容</translation>
     <message>
       <location filename="../db/abstractdb3.h" line="630"/>
       <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="883"/>
