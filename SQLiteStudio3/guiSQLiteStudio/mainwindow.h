@@ -138,6 +138,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QString currentStyle() const;
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
+        EditorWindow* openSqlEditorForFile(Db* dbToSet, const QString& fileName);
 
         template <class T, typename... Args>
         T* openMdiWindow(Args&&... args);

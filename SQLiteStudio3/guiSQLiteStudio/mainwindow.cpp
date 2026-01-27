@@ -625,6 +625,20 @@ EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
     return win;
 }
 
+EditorWindow* MainWindow::openSqlEditorForFile(Db* dbToSet, const QString& fileName)
+{
+    EditorWindow* win = openSqlEditor();
+    if (!win->setCurrentDb(dbToSet))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << dbToSet->getName();
+        win->close();
+        return nullptr;
+    }
+
+    win->openFile(fileName);
+    return win;
+}
+
 void MainWindow::saveSession(bool hide)
 {
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();

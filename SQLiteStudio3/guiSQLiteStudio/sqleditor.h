@@ -126,7 +126,9 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
 
         static constexpr int HUGE_QUERY_LENGTH = 10 * 1024 * 1024; // 10MB of SQL
 
-    protected:
+        QString getLoadedFile() const;
+
+        protected:
         void setupDefShortcuts();
         void createActions();
         void keyPressEvent(QKeyEvent* e);
@@ -331,9 +333,12 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
     public slots:
         void colorsConfigChanged();
         void refreshValidObjects();
+        bool loadFile(const QString& fileName);
 
     signals:
         void errorsChecked(bool haveErrors);
+        void fileLoaded(const QString& fileName);
+        void fileSaved(const QString& fileName);
 };
 
 

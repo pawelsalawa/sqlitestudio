@@ -117,6 +117,8 @@ void EditorWindow::init()
         ui->sqlEdit->setCurrentQueryHighlighting(true);
 
     connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
+    connect(ui->sqlEdit, SIGNAL(fileLoaded(QString)), this, SLOT(renameForFile(QString)));
+    connect(ui->sqlEdit, SIGNAL(fileSaved(QString)), this, SLOT(renameForFile(QString)));
 
     connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(resultsModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
@@ -178,6 +180,10 @@ Icon* EditorWindow::getIconNameForMdiWindow()
 
 QString EditorWindow::getTitleForMdiWindow()
 {
+    QString loadedFile = ui->sqlEdit->getLoadedFile();
+    if (!loadedFile.isEmpty())
+        return QFileInfo(loadedFile).fileName();
+
     QStringList existingNames = MainWindow::getInstance()->getMdiArea()->getWindowTitles();
     QString title = tr("SQL editor %1").arg(sqlEditorNum++);
     while (existingNames.contains(title))
@@ -281,6 +287,10 @@ QVariant EditorWindow::saveSession()
     if (db)
         sessionValue["db"] = db->getName();
 
+    QString loadedFile = ui->sqlEdit->getLoadedFile();
+    if (!loadedFile.isEmpty())
+        sessionValue["loadedFile"] = loadedFile;
+
     return sessionValue;
 }
 
@@ -290,7 +300,11 @@ bool EditorWindow::restoreSession(const QVariant& sessionValue)
     if (value.size() == 0)
         return true;
 
-    if (value.contains("query"))
+    bool fileLoaded = false;
+    if (value.contains("loadedFile"))
+        fileLoaded = ui->sqlEdit->loadFile(value["loadedFile"].toString());
+
+    if (value.contains("query") && !fileLoaded)
     {
         ui->sqlEdit->setAutoCompletion(false);
         ui->sqlEdit->setPlainText(value["query"].toString());
@@ -762,6 +776,11 @@ void EditorWindow::queryHighlightingConfigChanged(const QVariant& enabled)
     ui->sqlEdit->setCurrentQueryHighlighting(enabled.toBool());
 }
 
+void EditorWindow::openFile(const QString& fileName)
+{
+    ui->sqlEdit->loadFile(fileName);
+}
+
 void EditorWindow::refreshValidDbObjects()
 {
     ui->sqlEdit->refreshValidObjects();
@@ -772,7 +791,6 @@ size_t qHash(EditorWindow::ActionGroup actionGroup)
     return static_cast<size_t>(actionGroup);
 }
 
-
 bool EditorWindow::isUncommitted() const
 {
     return ui->dataView->isUncommitted();
@@ -781,4 +799,11 @@ bool EditorWindow::isUncommitted() const
 QString EditorWindow::getQuitUncommittedConfirmMessage() const
 {
     return tr("Editor window \"%1\" has uncommitted data.").arg(getMdiWindow()->windowTitle());
+}
+
+void EditorWindow::renameForFile(const QString fileName)
+{
+    UNUSED(fileName);
+    updateWindowTitle();
+    MDIAREA->getTaskByWindow(getMdiWindow())->setToolTip(fileName);
 }

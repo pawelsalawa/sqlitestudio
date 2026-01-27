@@ -173,8 +173,10 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void updateState();
         void checkTextChangedForSession();
         void queryHighlightingConfigChanged(const QVariant& enabled);
+        void renameForFile(const QString fileName);
 
     public slots:
+        void openFile(const QString& fileName);
         void refreshValidDbObjects();
 };
 

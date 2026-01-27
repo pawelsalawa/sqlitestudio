@@ -309,6 +309,7 @@ void SqlEditor::saveToFile(const QString &fileName)
     file.close();
 
     notifyInfo(tr("Saved SQL contents to file: %1").arg(fileName));
+    emit fileSaved(fileName);
 }
 
 void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
@@ -323,6 +324,11 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
     }
     else
         cur.insertText("--");
+}
+
+QString SqlEditor::getLoadedFile() const
+{
+    return loadedFile;
 }
 
 bool SqlEditor::getAlwaysEnforceErrorsChecking() const
@@ -1234,21 +1240,29 @@ void SqlEditor::loadFromFile()
             return;
     }
 
-    QString err;
-    QString sql = readFileContents(fName, &err);
-    if (sql.isNull() && !err.isNull())
+    if (!toPlainText().trimmed().isEmpty())
     {
-        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName, err));
+        MAINWINDOW->openSqlEditorForFile(db, fName);
         return;
     }
 
-    if (toPlainText().trimmed().isEmpty())
+    loadFile(fName);
+}
+
+bool SqlEditor::loadFile(const QString& fileName)
+{
+    QString err;
+    QString sql = readFileContents(fileName, &err);
+    if (sql.isNull() && !err.isNull())
     {
-        setPlainText(sql);
-        loadedFile = fName;
+        notifyError(tr("Could not open file '%1' for reading: %2").arg(fileName, err));
+        return false;
     }
-    else
-        MAINWINDOW->openSqlEditor(db, sql);
+
+    setPlainText(sql);
+    loadedFile = fileName;
+    emit fileLoaded(fileName);
+    return true;
 }
 
 void SqlEditor::deleteLine()
