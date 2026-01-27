@@ -7,6 +7,7 @@
 - ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
 - ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
+- ADDED: #3365 Added Tcl syntax highlighter plugin.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).

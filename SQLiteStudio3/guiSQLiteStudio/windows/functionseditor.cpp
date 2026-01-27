@@ -47,7 +47,7 @@ bool FunctionsEditor::restoreSession(const QVariant &sessionValue)
 
 Icon* FunctionsEditor::getIconNameForMdiWindow()
 {
-    return ICONS.FUNCTION;
+    return ICONS.FUNCTIONS_EDITOR;
 }
 
 QString FunctionsEditor::getTitleForMdiWindow()

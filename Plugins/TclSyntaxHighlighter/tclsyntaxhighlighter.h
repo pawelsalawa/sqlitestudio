@@ -1,26 +1,25 @@
-#ifndef PYTHONSYNTAXHIGHLIGHTER_H
-#define PYTHONSYNTAXHIGHLIGHTER_H
+#ifndef TCLSYNTAXHIGHLIGHTER_H
+#define TCLSYNTAXHIGHLIGHTER_H
 
-#include "pythonsyntaxhighlighter_global.h"
+#include "TclSyntaxHighlighter_global.h"
 #include "syntaxhighlighterplugin.h"
 #include "plugins/genericplugin.h"
-#include <QMap>
 #include <QObject>
-#include <QString>
 #include <QTextCharFormat>
+#include <QRegularExpression>
 
-class PYTHONSYNTAXHIGHLIGHTERSHARED_EXPORT PythonSyntaxHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPlugin
+class TCLSYNTAXHIGHLIGHTER_EXPORT TclSyntaxHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPlugin
 {
         Q_OBJECT
-        SQLITESTUDIO_PLUGIN("pythonsyntaxhighlighter.json")
+        SQLITESTUDIO_PLUGIN("tclsyntaxhighlighter.json")
 
     public:
         enum State
         {
             STANDARD,
             KEYWORD,
-            DEFCLASS,
-            SELF,
+            BUILTIN,
+            VARIABLE,
             OPERATOR,
             BRACE,
             STRING,
@@ -28,15 +27,24 @@ class PYTHONSYNTAXHIGHLIGHTERSHARED_EXPORT PythonSyntaxHighlighterPlugin : publi
             COMMENT
         };
 
-        PythonSyntaxHighlighterPlugin();
-		
+        struct Rule
+        {
+            QRegularExpression pattern;
+            State state;
+        };
+
+        TclSyntaxHighlighterPlugin();
+
         QString getLanguageName() const;
         QSyntaxHighlighter* createSyntaxHighlighter(QWidget* textEdit) const;
         QString previewSampleCode() const;
         void refreshFormats();
 
     private:
+        void initRules();
+
+        QVector<Rule> rules;
         QMap<State, QTextCharFormat> styles;
 };
 
-#endif // PYTHONSYNTAXHIGHLIGHTER_H
+#endif // TCLSYNTAXHIGHLIGHTER_H

@@ -40,11 +40,6 @@ win32: {
         export(LIBS)
     }
 
-    # Duplicated later on, not sure why yet.
-    #contains(QT, gui) {
-    #    LIBS += -lguiSQLiteStudio
-    #}
-
     SO_NAME = ddl
     SO_PREFIX = lib
     PLATFORM = win32
@@ -129,7 +124,7 @@ macx: {
 win32|macx: {
     CONFIG += portable
 
-    contains(QT, gui) {
+    contains(QT, gui)|contains(QT, widgets) {
         LIBS += -lguiSQLiteStudio
     }
 }

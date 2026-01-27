@@ -11,6 +11,7 @@ SUBDIRS += \
     PdfExport \
     SqlExport \
     SqlFormatterSimple \
+    TclSyntaxHighlighter \
     XmlExport \
     JsonExport \
     RegExpImport \
