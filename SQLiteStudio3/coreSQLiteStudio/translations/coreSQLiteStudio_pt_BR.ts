@@ -791,23 +791,23 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not open database: %1</source>
       <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1252"/>
       <source>Result set expired or no row available.</source>
       <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>Não foi possível carregar a extensão %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="444"/>
+      <location filename="../db/abstractdb3.h" line="445"/>
       <source>Could not close database: %1</source>
       <translation>Não foi possível fechar o banco de dados: %1</translation>
     </message>
@@ -1124,7 +1124,12 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="845"/>
+      <location filename="../db/abstractdb3.h" line="630"/>
+      <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="883"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

@@ -791,23 +791,23 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not open database: %1</source>
       <translation>Die Datenbank %1 kann nicht geöffnet werden.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1252"/>
       <source>Result set expired or no row available.</source>
       <translation>Das Abfrageergebniss ist ungültig oder es ist keine Datenzeile verfügbar.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>Konnte die Erweiterung %1 nicht laden: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="444"/>
+      <location filename="../db/abstractdb3.h" line="445"/>
       <source>Could not close database: %1</source>
       <translation>Die Datenbank %1 kann nicht geschlossen werden.</translation>
     </message>
@@ -1123,7 +1123,12 @@ The view will remain as it is.</source>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="845"/>
+      <location filename="../db/abstractdb3.h" line="630"/>
+      <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="883"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation>Registrierte Standardsortierfolge bei Bedarf, unter dem Namen: %1</translation>
     </message>

@@ -445,59 +445,64 @@
       <translation>约束</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="178"/>
       <source>Generated value</source>
       <translation>生成的值</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Unique</source>
       <translation>唯一</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
-      <location filename="../dialogs/columndialog.ui" line="164"/>
-      <location filename="../dialogs/columndialog.ui" line="178"/>
+      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="171"/>
       <location filename="../dialogs/columndialog.ui" line="185"/>
       <location filename="../dialogs/columndialog.ui" line="192"/>
-      <location filename="../dialogs/columndialog.ui" line="199"/>
-      <location filename="../dialogs/columndialog.ui" line="213"/>
-      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
       <translation>配置</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="136"/>
+      <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Foreign Key</source>
       <translation>外键</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Collate</source>
       <translation>字符序</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="213"/>
       <source>Not NULL</source>
       <translation>非空</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="150"/>
+      <location filename="../dialogs/columndialog.ui" line="199"/>
       <source>Check condition</source>
       <translation>条件</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="171"/>
+      <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Primary Key</source>
       <translation>主键</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="206"/>
+      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Default</source>
       <translation>默认</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="284"/>
+      <location filename="../dialogs/columndialog.ui" line="227"/>
+      <source>Autoincrement</source>
+      <translation type="unfinished">自动递增</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/columndialog.ui" line="291"/>
       <source>Advanced mode</source>
       <translation>高级模式</translation>
     </message>
@@ -515,7 +520,7 @@
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
-      <location filename="../dialogs/columndialog.cpp" line="243"/>
+      <location filename="../dialogs/columndialog.cpp" line="245"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
       <translation>删除约束</translation>
@@ -581,48 +586,48 @@
       <translation>添加默认约束</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="242"/>
+      <location filename="../dialogs/columndialog.cpp" line="244"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
       <translation>确定要删除约束“%1”吗？</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="305"/>
+      <location filename="../dialogs/columndialog.cpp" line="307"/>
       <source>Correct the constraint&apos;s configuration.</source>
       <translation>请纠正约束配置。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="373"/>
+      <location filename="../dialogs/columndialog.cpp" line="375"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>INTEGER PRIMARY KEY 列中不允许小数位数。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="374"/>
+      <location filename="../dialogs/columndialog.cpp" line="376"/>
       <source>Precision cannot be defined without the scale.</source>
       <translation>有小数位数才能定义精度。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="375"/>
+      <location filename="../dialogs/columndialog.cpp" line="377"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
       <translation>主键（PRIMARY KEY）已启用自动递增（AUTOINCREMENT），不能使用 INTEGER 以外的类型。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="376"/>
+      <location filename="../dialogs/columndialog.cpp" line="378"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
       <translation>主键（PRIMARY KEY）已启用自动递增（AUTOINCREMENT），强制使用 INTEGER 类型。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="398"/>
+      <location filename="../dialogs/columndialog.cpp" line="400"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>不允许对整型主键（INTEGER PRIMARY KEY）设置精度。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="446"/>
+      <location filename="../dialogs/columndialog.cpp" line="448"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
       <translation>引用的列类型 (%1) 与此列中声明的类型不同。这可能会在插入或更新数据时导致问题。</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="701"/>
+      <location filename="../dialogs/columndialog.cpp" line="726"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
       <translation>无法从声明的类型中匹配有效的 STRICT 表数据类型：%1。</translation>
     </message>
@@ -2027,7 +2032,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="45"/>
-      <location filename="../dialogs/dbdialog.cpp" line="176"/>
+      <location filename="../dialogs/dbdialog.cpp" line="177"/>
       <source>File</source>
       <translation>文件</translation>
     </message>
@@ -2068,62 +2073,62 @@ Browsing other pages will be possible after the row counting is done.</source>
       <translation>测试连接</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="333"/>
+      <location filename="../dialogs/dbdialog.cpp" line="334"/>
       <source>Browse</source>
       <translation>浏览</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="508"/>
+      <location filename="../dialogs/dbdialog.cpp" line="509"/>
       <source>Database type not selected.</source>
       <translation>未选择数据库类型。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="515"/>
+      <location filename="../dialogs/dbdialog.cpp" line="516"/>
       <source>Database path not specified.</source>
       <translation>未指定数据库路径。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="549"/>
+      <location filename="../dialogs/dbdialog.cpp" line="550"/>
       <source>Enter an unique database name.</source>
       <translation>请输入一个唯一的数据库名称。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="559"/>
+      <location filename="../dialogs/dbdialog.cpp" line="560"/>
       <source>This name is already in use. Please enter unique name.</source>
       <translation>此名称已被使用，请输入一个未被占用的名称。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="566"/>
+      <location filename="../dialogs/dbdialog.cpp" line="567"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
       <translation>&lt;p&gt;名称已手动编辑，自动命名已禁用。清空名称栏中的内容将恢复自动命名。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="575"/>
+      <location filename="../dialogs/dbdialog.cpp" line="576"/>
       <source>Enter a database file path.</source>
       <translation>输入一个数据库文件的路径。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="581"/>
+      <location filename="../dialogs/dbdialog.cpp" line="582"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
       <translation>你是&apos;使用相对的文件路径， 根据应用程序&apos;s 工作目录，它们将被解析为 &quot;%1&quot; 。&apos;总是更好地使用绝对文件路径来避免意外的数据库位置。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="591"/>
+      <location filename="../dialogs/dbdialog.cpp" line="592"/>
       <source>This database is already on the list under name: %1</source>
       <translation>该数据库已在列表中，名为：%1</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="613"/>
+      <location filename="../dialogs/dbdialog.cpp" line="614"/>
       <source>Select a database type.</source>
       <translation>请选择一个数据库类型。</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="763"/>
+      <location filename="../dialogs/dbdialog.cpp" line="764"/>
       <source>Choose a location for the new database file</source>
       <translation>选择新数据库文件的位置</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="764"/>
+      <location filename="../dialogs/dbdialog.cpp" line="765"/>
       <source>Browse for existing database file on local computer</source>
       <translation>浏览本地计算机上的现有数据库文件</translation>
     </message>
@@ -4410,6 +4415,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>PasswordToggleHelper</name>
+    <message>
+      <location filename="../common/passwordtogglehelper.cpp" line="11"/>
+      <source>Show / hide password</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>PopulateConfigDialog</name>
     <message>
       <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
@@ -5250,23 +5263,23 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>执行视图查询</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="16"/>
+      <location filename="../windows/codesnippeteditor.h" line="17"/>
       <source>A code snippets editor window</source>
       <translation>代码片段编辑器窗口</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="17"/>
+      <location filename="../windows/codesnippeteditor.h" line="18"/>
       <location filename="../windows/collationseditor.h" line="22"/>
       <location filename="../windows/functionseditor.h" line="23"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Commit the pending changes</source>
       <translation>提交未确认的更改</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="18"/>
+      <location filename="../windows/codesnippeteditor.h" line="19"/>
       <location filename="../windows/collationseditor.h" line="23"/>
       <location filename="../windows/functionseditor.h" line="24"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="23"/>
       <source>Rollback the pending changes</source>
       <translation>回滚未确认的更改</translation>
     </message>
@@ -5281,7 +5294,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>函数编辑器窗口</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.h" line="20"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>A SQLite extension editor window</source>
       <translation>SQLite 扩展编辑器窗口</translation>
     </message>

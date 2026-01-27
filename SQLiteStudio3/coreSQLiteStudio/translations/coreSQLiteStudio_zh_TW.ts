@@ -791,23 +791,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation>無法開啟檔案 &apos;%1&apos; 為了讀取: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not open database: %1</source>
       <translation>無法開啟資料庫 %1。</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1214"/>
+      <location filename="../db/abstractdb3.h" line="1252"/>
       <source>Result set expired or no row available.</source>
       <translation>結果集已過期或是無有效的資料</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>無法載入extension %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="444"/>
+      <location filename="../db/abstractdb3.h" line="445"/>
       <source>Could not close database: %1</source>
       <translation>無法關閉資料庫 %1</translation>
     </message>
@@ -1124,7 +1124,12 @@ view 將保留原始內容</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="845"/>
+      <location filename="../db/abstractdb3.h" line="630"/>
+      <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="883"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

@@ -445,60 +445,65 @@
       <translation>Constraints</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="178"/>
       <source>Generated value</source>
       <translation>Valor gerado</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="150"/>
       <source>Unique</source>
       <translation>Unique</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="115"/>
-      <location filename="../dialogs/columndialog.ui" line="164"/>
-      <location filename="../dialogs/columndialog.ui" line="178"/>
+      <location filename="../dialogs/columndialog.ui" line="122"/>
+      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="157"/>
+      <location filename="../dialogs/columndialog.ui" line="171"/>
       <location filename="../dialogs/columndialog.ui" line="185"/>
       <location filename="../dialogs/columndialog.ui" line="192"/>
-      <location filename="../dialogs/columndialog.ui" line="199"/>
-      <location filename="../dialogs/columndialog.ui" line="213"/>
-      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Configure</source>
       <translation>Configurar</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="136"/>
+      <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Foreign Key</source>
       <translation>Foreign
 Key</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="143"/>
+      <location filename="../dialogs/columndialog.ui" line="136"/>
       <source>Collate</source>
       <translation>Collate</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="129"/>
+      <location filename="../dialogs/columndialog.ui" line="213"/>
       <source>Not NULL</source>
       <translation>Not NULL</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="150"/>
+      <location filename="../dialogs/columndialog.ui" line="199"/>
       <source>Check condition</source>
       <translation>Verifique o estado</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="171"/>
+      <location filename="../dialogs/columndialog.ui" line="206"/>
       <source>Primary Key</source>
       <translation>Primary Key</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="206"/>
+      <location filename="../dialogs/columndialog.ui" line="220"/>
       <source>Default</source>
       <translation>Padrão</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.ui" line="284"/>
+      <location filename="../dialogs/columndialog.ui" line="227"/>
+      <source>Autoincrement</source>
+      <translation type="unfinished">Auto-incremento</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/columndialog.ui" line="291"/>
       <source>Advanced mode</source>
       <translation>Modo avançado</translation>
     </message>
@@ -516,7 +521,7 @@ Key</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="89"/>
-      <location filename="../dialogs/columndialog.cpp" line="243"/>
+      <location filename="../dialogs/columndialog.cpp" line="245"/>
       <source>Delete constraint</source>
       <comment>column dialog</comment>
       <translation>Excluir constraint</translation>
@@ -582,48 +587,48 @@ Key</translation>
       <translation>Adicionar uma constraint padrão</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="242"/>
+      <location filename="../dialogs/columndialog.cpp" line="244"/>
       <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
       <comment>column dialog</comment>
       <translation>Tem certeza que deseja excluir a constraint &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="305"/>
+      <location filename="../dialogs/columndialog.cpp" line="307"/>
       <source>Correct the constraint&apos;s configuration.</source>
       <translation>Corrija a configuração da constraint</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="373"/>
+      <location filename="../dialogs/columndialog.cpp" line="375"/>
       <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>Escala não é permitida para colunas INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="374"/>
+      <location filename="../dialogs/columndialog.cpp" line="376"/>
       <source>Precision cannot be defined without the scale.</source>
       <translation>A precisão não pode ser definida sem a escala.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="375"/>
+      <location filename="../dialogs/columndialog.cpp" line="377"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
       <translation>Não é possível usar outro tipo que não seja INTEGER se AUTOINCREMENT estiver habilitado no PRIMÁRIO KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="376"/>
+      <location filename="../dialogs/columndialog.cpp" line="378"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
       <translation>O tipo INTEGER foi imposto devido à ativação do AUTOINCREMENT na PRIMARY KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="398"/>
+      <location filename="../dialogs/columndialog.cpp" line="400"/>
       <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
       <translation>Precisão não é permitida para colunas INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="446"/>
+      <location filename="../dialogs/columndialog.cpp" line="448"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
       <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
     </message>
     <message>
-      <location filename="../dialogs/columndialog.cpp" line="701"/>
+      <location filename="../dialogs/columndialog.cpp" line="726"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
       <translation>Não foi possível corresponder a datatype de tabela STRICT válido do tipo declarado: %1.</translation>
     </message>
@@ -2028,7 +2033,7 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="45"/>
-      <location filename="../dialogs/dbdialog.cpp" line="176"/>
+      <location filename="../dialogs/dbdialog.cpp" line="177"/>
       <source>File</source>
       <translation>Arquivo</translation>
     </message>
@@ -2069,62 +2074,62 @@ Navegar por outras páginas será possível após a contagem de linhas ser final
       <translation>Testar conexão</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="333"/>
+      <location filename="../dialogs/dbdialog.cpp" line="334"/>
       <source>Browse</source>
       <translation>Navegar</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="508"/>
+      <location filename="../dialogs/dbdialog.cpp" line="509"/>
       <source>Database type not selected.</source>
       <translation>Tipo de banco de dados não selecionado.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="515"/>
+      <location filename="../dialogs/dbdialog.cpp" line="516"/>
       <source>Database path not specified.</source>
       <translation>Caminho da base de dados não especificado.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="549"/>
+      <location filename="../dialogs/dbdialog.cpp" line="550"/>
       <source>Enter an unique database name.</source>
       <translation>Informe um nome único para o banco de dados.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="559"/>
+      <location filename="../dialogs/dbdialog.cpp" line="560"/>
       <source>This name is already in use. Please enter unique name.</source>
       <translation>Este nome já está em uso. Por favor, insira um nome único.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="566"/>
+      <location filename="../dialogs/dbdialog.cpp" line="567"/>
       <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
       <translation>&lt;p&gt;A geração automática de nome foi desabilitada, porque o nome foi editado manualmente. Para restaurar a geração automática, apague o conteúdo do campo nome.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="575"/>
+      <location filename="../dialogs/dbdialog.cpp" line="576"/>
       <source>Enter a database file path.</source>
       <translation>Digite o caminho do arquivo de banco de dados.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="581"/>
+      <location filename="../dialogs/dbdialog.cpp" line="582"/>
       <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
       <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="591"/>
+      <location filename="../dialogs/dbdialog.cpp" line="592"/>
       <source>This database is already on the list under name: %1</source>
       <translation>Este banco de dados já está na lista sob o nome: %1</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="613"/>
+      <location filename="../dialogs/dbdialog.cpp" line="614"/>
       <source>Select a database type.</source>
       <translation>Selecione um tipo de banco de dados.</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="763"/>
+      <location filename="../dialogs/dbdialog.cpp" line="764"/>
       <source>Choose a location for the new database file</source>
       <translation type="unfinished">Choose a location for the new database file</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.cpp" line="764"/>
+      <location filename="../dialogs/dbdialog.cpp" line="765"/>
       <source>Browse for existing database file on local computer</source>
       <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
@@ -4412,6 +4417,14 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
     </message>
   </context>
   <context>
+    <name>PasswordToggleHelper</name>
+    <message>
+      <location filename="../common/passwordtogglehelper.cpp" line="11"/>
+      <source>Show / hide password</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>PopulateConfigDialog</name>
     <message>
       <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
@@ -5252,23 +5265,23 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <translation>Executar a view após a consulta</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="16"/>
+      <location filename="../windows/codesnippeteditor.h" line="17"/>
       <source>A code snippets editor window</source>
       <translation>Uma janela de editor de snippets</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="17"/>
+      <location filename="../windows/codesnippeteditor.h" line="18"/>
       <location filename="../windows/collationseditor.h" line="22"/>
       <location filename="../windows/functionseditor.h" line="23"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
       <source>Commit the pending changes</source>
       <translation>Faça commit da alteração.</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.h" line="18"/>
+      <location filename="../windows/codesnippeteditor.h" line="19"/>
       <location filename="../windows/collationseditor.h" line="23"/>
       <location filename="../windows/functionseditor.h" line="24"/>
-      <location filename="../windows/sqliteextensioneditor.h" line="22"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="23"/>
       <source>Rollback the pending changes</source>
       <translation>Restaurar as alterações pendentes</translation>
     </message>
@@ -5283,7 +5296,7 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
       <translation>Uma janela de editor de função</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.h" line="20"/>
+      <location filename="../windows/sqliteextensioneditor.h" line="21"/>
       <source>A SQLite extension editor window</source>
       <translation>Uma janela de editor de extensões SQLite</translation>
     </message>
