@@ -96,6 +96,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(QString,                 SqlEditorDbListOrder,        "LikeDbTree")
         CFG_ENTRY(bool,                    SqlEditorWrapWords,          false)
         CFG_ENTRY(bool,                    SqlEditorCurrQueryHighlight, true)
+        CFG_ENTRY(bool,                    DisableBlinkingCursor,       false)
         CFG_ENTRY(bool,                    ExpandTables,                true)
         CFG_ENTRY(bool,                    ExpandViews,                 true)
         CFG_ENTRY(bool,                    SortObjects,                 true)

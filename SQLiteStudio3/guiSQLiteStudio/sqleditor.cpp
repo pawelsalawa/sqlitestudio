@@ -61,6 +61,18 @@ void SqlEditor::staticInit()
 {
     wrapWords = CFG_UI.General.SqlEditorWrapWords.get();
     createStaticActions();
+
+    int originalFlashTime = QApplication::cursorFlashTime();
+    if (CFG_UI.General.DisableBlinkingCursor.get())
+        QApplication::setCursorFlashTime(0);
+
+    connect(CFG_UI.General.DisableBlinkingCursor, &CfgEntry::changed, [originalFlashTime](QVariant newValue)
+    {
+        if (newValue.toBool())
+            QApplication::setCursorFlashTime(0);
+        else
+            QApplication::setCursorFlashTime(originalFlashTime);
+    });
 }
 
 SqlEditor::SqlEditor(QWidget *parent) :

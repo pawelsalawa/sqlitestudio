@@ -169,6 +169,18 @@
             </item>
             <item>
              <property name="text">
+              <string>SQL Editor</string>
+             </property>
+             <property name="statusTip">
+              <string>sqlEditorPage</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/open_sql_editor.svg</normaloff>:/icons/img/open_sql_editor.svg</iconset>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Database list</string>
              </property>
              <property name="statusTip">
@@ -177,18 +189,6 @@
              <property name="icon">
               <iconset resource="../icons.qrc">
                <normaloff>:/icons/img/config_dblist.svg</normaloff>:/icons/img/config_dblist.svg</iconset>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Code assistant</string>
-             </property>
-             <property name="statusTip">
-              <string notr="true">codeAssistantPage</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../icons.qrc">
-               <normaloff>:/icons/img/config_code_assistant.svg</normaloff>:/icons/img/config_code_assistant.svg</iconset>
              </property>
             </item>
             <item>
@@ -255,7 +255,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -433,7 +433,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>660</width>
+                <width>456</width>
                 <height>754</height>
                </rect>
               </property>
@@ -932,106 +932,6 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="sqlQueriesGroup">
-             <property name="title">
-              <string>SQL queries</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_4">
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="queryHistorySizeSpin">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="toolTip">
-                 <string>Number of queries kept in the history.</string>
-                </property>
-                <property name="maximum">
-                 <number>999999</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.SqlHistorySize</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="bindParamLimitLabel">
-                <property name="toolTip">
-                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Number of memorized query parameters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="bindParamLimitSpin">
-                <property name="toolTip">
-                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
-                </property>
-                <property name="maximum">
-                 <number>999999</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.BindParamsCacheSize</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="execQueryUnderCursorCheck">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Execute only the query under the cursor</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.ExecuteCurrentQueryOnly</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="queryHistorySizeLabel">
-                <property name="toolTip">
-                 <string>Number of queries kept in the history.</string>
-                </property>
-                <property name="text">
-                 <string>History size:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QCheckBox" name="wrapLinesInSqlEditorCheck">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Wrap lines in SQL editor</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.SqlEditorWrapWords</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QCheckBox" name="highlightCurrentQueryCheck">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It's the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Highlight current query</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.SqlEditorCurrQueryHighlight</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
             <widget class="QGroupBox" name="updatesGroup">
              <property name="title">
               <string>Updates</string>
@@ -1080,13 +980,13 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="statusFieldGroup_2">
+            <widget class="QGroupBox" name="statusFieldGroup">
              <property name="title">
               <string>Status Field</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_35">
               <item>
-               <widget class="QCheckBox" name="checkBox_2">
+               <widget class="QCheckBox" name="checkBox">
                 <property name="toolTip">
                  <string>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it's disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</string>
                 </property>
@@ -1103,6 +1003,164 @@
            </item>
            <item>
             <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="sqlEditorPage">
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <widget class="QGroupBox" name="sqlQueriesGroup">
+             <property name="title">
+              <string>SQL Editor</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="execQueryUnderCursorCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Execute only the query under the cursor</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.ExecuteCurrentQueryOnly</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="highlightCurrentQueryCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Highlight current query</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.SqlEditorCurrQueryHighlight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="wrapLinesInSqlEditorCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Wrap lines in SQL editor</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.SqlEditorWrapWords</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="disableBlinkingCusrorCheck">
+                <property name="text">
+                 <string>Disable blinking text cursor</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.DisableBlinkingCursor</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="codeAssistantGroup">
+             <property name="title">
+              <string>Code assistant</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_14">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="autoTriggerAssistantCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Trigger assistant after typing a dot</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">CodeAssistant.AutoTrigger</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>History</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QLabel" name="queryHistorySizeLabel">
+                <property name="toolTip">
+                 <string>Number of queries kept in the history.</string>
+                </property>
+                <property name="text">
+                 <string>Query history size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="queryHistorySizeSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Number of queries kept in the history.</string>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.SqlHistorySize</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="bindParamLimitLabel">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Number of memorized query parameters</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="bindParamLimitSpin">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.BindParamsCacheSize</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="sqlEditorSpacer">
              <property name="orientation">
               <enum>Qt::Orientation::Vertical</enum>
              </property>
@@ -1601,8 +1659,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>692</width>
-                <height>530</height>
+                <width>389</width>
+                <height>288</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2117,10 +2175,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <x>0</x>
                 <y>0</y>
                 <width>235</width>
-                <height>318</height>
+                <height>493</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QLabel" name="fontConfigTipLabel">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QGroupBox" name="sqlEditorFontGroup">
                  <property name="title">
@@ -2220,45 +2294,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="codeAssistantPage">
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="0">
-            <widget class="QGroupBox" name="codeAssistantGroup">
-             <property name="title">
-              <string>Code assistant settings</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_14">
-              <item row="0" column="0">
-               <widget class="QCheckBox" name="autoTriggerAssistantCheck">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Automatically trigger the assistant after a dot is typed after an object name</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">CodeAssistant.AutoTrigger</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <spacer name="codeAssistantSpacer">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </widget>
         </widget>
        </widget>
       </item>
@@ -2305,8 +2340,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <tabstop>sortColumns</tabstop>
   <tabstop>ddlHistorySizeSpin</tabstop>
   <tabstop>dontShowDdlPreview</tabstop>
-  <tabstop>queryHistorySizeSpin</tabstop>
-  <tabstop>execQueryUnderCursorCheck</tabstop>
   <tabstop>expandTablesCheck</tabstop>
   <tabstop>activeStyleCombo</tabstop>
   <tabstop>previewTabs</tabstop>

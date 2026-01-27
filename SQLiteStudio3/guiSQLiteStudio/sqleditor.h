@@ -291,7 +291,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void backspacePressed();
         void complete();
         void completeSelected();
-//        void scheduleAutoCompletion();
         void checkForAutoCompletion();
         void completerTypedText(const QString& text);
         void completerBackspacePressed();
