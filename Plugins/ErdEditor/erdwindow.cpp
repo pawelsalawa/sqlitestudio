@@ -178,7 +178,7 @@ void ErdWindow::createActions()
     bold.setBold(true);
     changeCountLabel->setFont(bold);
     changeCountLabel->setText(QString::asprintf(CHANGE_COUNT_DIGITS, 0));
-    changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details."));
+    changeCountLabel->setToolTip(tr("The number of changes pending for commit. Click to see details.", "ERD editor"));
     changeCountLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     connect(changeCountLabel, &QToolButton::clicked, this, &ErdWindow::showChangeRegistry);
     ui->toolBar->addWidget(changeCountLabel);
@@ -187,16 +187,16 @@ void ErdWindow::createActions()
     ui->toolBar->addAction(actionMap[REDO]);
     ui->toolBar->addSeparator();
     createAction(NEW_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(newTableToggled(bool)), ui->toolBar, ui->view);
-    createAction(ADD_CONNECTION, ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add a foreign key"), this, SLOT(addConnectionToggled(bool)), ui->toolBar, ui->view);
+    createAction(ADD_CONNECTION, ICONS.CONSTRAINT_FOREIGN_KEY, tr("Add a foreign key", "ERD editor"), this, SLOT(addConnectionToggled(bool)), ui->toolBar, ui->view);
     ui->toolBar->addSeparator();
-    createAction(DELETE_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), ui->view, SLOT(deleteSelectedItem()), ui->toolBar, ui->view);
+    createAction(DELETE_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items", "ERD editor"), ui->view, SLOT(deleteSelectedItem()), ui->toolBar, ui->view);
     ui->toolBar->addSeparator();
     ui->toolBar->addWidget(createLineStyleAction());
     ui->toolBar->addSeparator();
     ui->toolBar->addWidget(createSetTableColorAction());
     ui->toolBar->addSeparator();
-    createAction(ARRANGE_FDP, *fdpIcon, tr("Auto-arrange (local forces)"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
-    createAction(ARRANGE_NEATO, *neatoIcon, tr("Auto-arrange (global balance)"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
+    createAction(ARRANGE_FDP, *fdpIcon, tr("Auto-arrange (local forces)", "ERD editor"), scene, SLOT(arrangeEntitiesFdp()), ui->toolBar);
+    createAction(ARRANGE_NEATO, *neatoIcon, tr("Auto-arrange (global balance)", "ERD editor"), scene, SLOT(arrangeEntitiesNeato()), ui->toolBar);
     ui->toolBar->addSeparator();
     actionMap[FILTER_VALUE] = ui->toolBar->addWidget(filterEdit);
     createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), scene, SLOT(selectAll()), this);
@@ -210,7 +210,7 @@ void ErdWindow::createActions()
 
 QToolButton* ErdWindow::createSetTableColorAction()
 {
-    actionMap[COLOR_PICK] = new QAction(*colorPickerIcon, tr("Set table color"), ui->toolBar);
+    actionMap[COLOR_PICK] = new QAction(*colorPickerIcon, tr("Set table color", "ERD editor"), ui->toolBar);
 
     colorPickerMenu = new QMenu(this);
     colorPicker = new ColorPickerPopup();
@@ -238,9 +238,9 @@ QToolButton* ErdWindow::createLineStyleAction()
     QMenu* lineTypeMenu = new QMenu(this);
     QActionGroup* lineGroup = new QActionGroup(ui->toolBar);
     lineGroup->setExclusive(true);
-    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line"), this);
-    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line"), this);
-    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line"), this);
+    actionMap[LINE_STRAIGHT] = new QAction(*lineStraightIcon, tr("Use straight line", "ERD editor"), this);
+    actionMap[LINE_CURVY] = new QAction(*lineCurvyIcon, tr("Use curvy line", "ERD editor"), this);
+    actionMap[LINE_SQUARE] = new QAction(*lineSquareIcon, tr("Use square line", "ERD editor"), this);
     for (QAction* a : {actionMap[LINE_STRAIGHT], actionMap[LINE_CURVY], actionMap[LINE_SQUARE]})
     {
         a->setCheckable(true);
@@ -251,7 +251,7 @@ QToolButton* ErdWindow::createLineStyleAction()
     lineTypeButton->setPopupMode(QToolButton::InstantPopup);
     lineTypeButton->setMenu(lineTypeMenu);
     lineTypeButton->setStyleSheet("QToolButton {padding-right: 12px;}");
-    lineTypeButton->setToolTip(tr("Choose line type"));
+    lineTypeButton->setToolTip(tr("Choose line type", "ERD editor"));
     connect(lineGroup, &QActionGroup::triggered, this, [this](QAction* action)
     {
         lineTypeButton->setIcon(action->icon());

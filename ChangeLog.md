@@ -9,6 +9,7 @@
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
+- ADDED: #5449 User can now change size of icons on toolbars.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).

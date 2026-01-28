@@ -53,6 +53,7 @@
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
 bool MainWindow::safeModeEnabled = false;
+int MainWindow::defaultToolbarIconSize = 24;
 
 MainWindow::MainWindow() :
     QMainWindow(),
@@ -142,6 +143,11 @@ void MainWindow::init()
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
     connect(CFG_UI.General.AllowMultipleSessions, SIGNAL(changed(QVariant)), this, SLOT(updateMultipleSessionsSetting(QVariant)));
+    connect(CFG_UI.General.ToolBarIconSize, SIGNAL(changed(QVariant)), this, SLOT(updateToolbarStyle()));
+
+    defaultToolbarIconSize = ui->structureToolbar->iconSize().width();
+    updateToolbarStyle();
+    qApp->installEventFilter(new ToolBarStyleEnforcer(this));
 
     updateMultipleSessionsSetting();
     fixFonts();
@@ -376,6 +382,9 @@ void MainWindow::initMenuBar()
 
     // View menu
     viewMenu = createPopupMenu();
+    viewMenu->addSeparator();
+    tbStyleMenu = createToolbarStyleMenu();
+    viewMenu->addMenu(tbStyleMenu);
     viewMenu->setTitle(tr("&View", "menubar"));
     menuBar()->addMenu(viewMenu);
 
@@ -657,6 +666,13 @@ void MainWindow::scheduleSessionSave()
 {
     if (saveSessionTimer)
         saveSessionTimer->start(saveSessionDelayMs);
+}
+
+void MainWindow::updateToolbarStyle()
+{
+    QList<QToolBar*> toolbars = this->findChildren<QToolBar*>();
+    applyToolbarStyle(toolbars);
+    updateToolbarStyleActionState();
 }
 
 void MainWindow::closeNonSessionWindows()
@@ -990,6 +1006,69 @@ void MainWindow::fixToolbars()
     fixToolbarTooltips(ui->dbToolbar);
 }
 
+QMenu* MainWindow::createToolbarStyleMenu()
+{
+    QMenu* menu = new QMenu(viewMenu);
+    menu->setTitle(tr("Toolbar &icons", "menubar"));
+
+    QActionGroup* tbIconSizeGroup = new QActionGroup(menu);
+    tbIconSizeGroup->setExclusive(true);
+    QMetaEnum actMetaEnum = QMetaEnum::fromType<Action>();
+    for (int actEnum = 0, total = actMetaEnum.keyCount(); actEnum < total; actEnum++)
+    {
+        const char* key = actMetaEnum.key(actEnum);
+        if (!QString::fromLatin1(key).startsWith("TOOLBAR_ICON_SIZE_"))
+            continue;
+
+        QString perc = QString::fromLatin1(actMetaEnum.valueToKey(actEnum)).split('_').last();
+        actionMap[actEnum] = new QAction(tr("Size: %1%", "toolbar icons").arg(perc), this);
+        actionMap[actEnum]->setCheckable(true);
+        tbIconSizeGroup->addAction(actionMap[actEnum]);
+        menu->addAction(actionMap[actEnum]);
+
+        int percInt = perc.toInt();
+        if (percInt <= 0) // safety
+            percInt = 100;
+
+        connect(actionMap[actEnum], &QAction::triggered, this, [this, percInt]() {
+            CFG_UI.General.ToolBarIconSize.set(percInt);
+        });
+    }
+    return menu;
+}
+
+void MainWindow::applyToolbarStyle(QToolBar* tb)
+{
+    int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
+    int iconSizeInt = (iconSizePerc <= 0) ? defaultToolbarIconSize : (defaultToolbarIconSize * iconSizePerc) / 100;
+    QSize iconSize = QSize(iconSizeInt, iconSizeInt);
+    tb->setIconSize(iconSize);
+}
+
+void MainWindow::applyToolbarStyle(QList<QToolBar*> tbList)
+{
+    int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
+    int iconSizeInt = (iconSizePerc <= 0) ? defaultToolbarIconSize : (defaultToolbarIconSize * iconSizePerc) / 100;
+    QSize iconSize = QSize(iconSizeInt, iconSizeInt);
+    for (QToolBar* tb : tbList)
+        tb->setIconSize(iconSize);
+}
+
+void MainWindow::updateToolbarStyleActionState()
+{
+    int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
+    QMetaEnum actMetaEnum = QMetaEnum::fromType<Action>();
+    static_qstring(tbIconSizeEnumTpl, "TOOLBAR_ICON_SIZE_%1");
+    int enumInt = actMetaEnum.keyToValue(tbIconSizeEnumTpl.arg(iconSizePerc).toLatin1());
+    if (enumInt == -1)
+    {
+        qCritical() << "Unexpected toolbar icon size in config:" << iconSizePerc << ", resetting to 100%.";
+        CFG_UI.General.ToolBarIconSize.set(100);
+        return;
+    }
+    actionMap[static_cast<Action>(enumInt)]->setChecked(true);
+}
+
 bool MainWindow::confirmQuit(const QList<Committable*>& instances)
 {
     QuitConfirmDialog dialog(MAINWINDOW);
@@ -1140,4 +1219,19 @@ void MainWindow::restoreLastClosedWindow()
 bool MainWindow::hasClosedWindowToRestore() const
 {
     return closedWindowSessionValues.size() > 0;
+}
+
+MainWindow::ToolBarStyleEnforcer::ToolBarStyleEnforcer(QObject* parent) :
+    QObject(parent)
+{
+}
+
+bool MainWindow::ToolBarStyleEnforcer::eventFilter(QObject* obj, QEvent* event)
+{
+    if (event->type() == QEvent::Polish)
+    {
+        if (QToolBar* tb = qobject_cast<QToolBar*>(obj))
+            qobject_cast<MainWindow*>(parent())->applyToolbarStyle(tb);
+    }
+    return QObject::eventFilter(obj, event);
 }

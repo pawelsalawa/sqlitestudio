@@ -115,7 +115,14 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     QComboBox* cb = dynamic_cast<QComboBox*>(widget);
     if (cb)
     {
-        if (cfgEntry->get().userType() == QMetaType::Int)
+        bool dataBased = cb->property(CFG_DATA_DRIVEN_COMBO_PROPERTY).toBool();
+        if (dataBased)
+        {
+            int idx = cb->findData(value);
+            if (idx >= 0)
+                cb->setCurrentIndex(idx);
+        }
+        else if (cfgEntry->get().userType() == QMetaType::Int)
         {
             cb->setCurrentIndex(value.toInt());
             if (cb->currentIndex() != value.toInt())
@@ -185,7 +192,12 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
     GET_CFG_VALUE(widget, key, ColorButton, getColor);
     GET_CFG_VALUE_COND_OK(widget, key, ConfigRadioButton, getAssignedValue, isChecked, ok, QVariant());
     GET_CFG_VALUE_COND(widget, key, QGroupBox, isChecked, isCheckable);
-    if (key->get().userType() == QMetaType::Int)
+
+    if (widget->property(CFG_DATA_DRIVEN_COMBO_PROPERTY).toBool())
+    {
+        GET_CFG_VALUE(widget, key, QComboBox, currentData);
+    }
+    else if (key->get().userType() == QMetaType::Int)
     {
         GET_CFG_VALUE(widget, key, QComboBox, currentIndex);
     }

@@ -159,6 +159,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
         void changeFontSize(int factor);
+        void updateIconSize();
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);

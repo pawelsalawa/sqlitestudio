@@ -122,6 +122,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         static constexpr const char* CFG_BOOL_DEPENDENCY_PROPERTY = "boolDependency";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";
         static constexpr const char* CFG_PREVIEW_PROPERTY = "preview";
+        static constexpr const char* CFG_DATA_DRIVEN_COMBO_PROPERTY = "dataDrivenCombo";
 
     private slots:
         void handleModified();

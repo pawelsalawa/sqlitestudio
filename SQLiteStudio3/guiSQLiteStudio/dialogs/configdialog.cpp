@@ -226,6 +226,7 @@ void ConfigDialog::init()
     initLangs();
     initTooltips();
     initColors();
+    initLookAndFeelPage();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
@@ -1226,6 +1227,21 @@ void ConfigDialog::initColors()
 
                 colorChanged();
             });
+}
+
+void ConfigDialog::initLookAndFeelPage()
+{
+    QMetaEnum actMetaEnum = QMetaEnum::fromType<MainWindow::Action>();
+    for (int actEnum = 0, total = actMetaEnum.keyCount(); actEnum < total; actEnum++)
+    {
+        const char* key = actMetaEnum.key(actEnum);
+        if (!QString::fromLatin1(key).startsWith("TOOLBAR_ICON_SIZE_"))
+            continue;
+
+        QString perc = QString::fromLatin1(actMetaEnum.valueToKey(actEnum)).split('_').last();
+        int percInt = perc.toInt();
+        ui->tbIconSizeCombo->addItem(QString("%1%").arg(perc), percInt);
+    }
 }
 
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)

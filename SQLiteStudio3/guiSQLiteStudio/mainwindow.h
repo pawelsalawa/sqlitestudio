@@ -71,6 +71,14 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             MDI_CASCADE,
             MDI_TILE_HORIZONTAL,
             MDI_TILE_VERTICAL,
+            TOOLBAR_ICON_SIZE_50,
+            TOOLBAR_ICON_SIZE_75,
+            TOOLBAR_ICON_SIZE_100,
+            TOOLBAR_ICON_SIZE_125,
+            TOOLBAR_ICON_SIZE_150,
+            TOOLBAR_ICON_SIZE_200,
+            TOOLBAR_ICON_SIZE_250,
+            TOOLBAR_ICON_SIZE_300,
             OPEN_SQL_EDITOR,
             NEXT_TASK,
             PREV_TASK,
@@ -149,6 +157,15 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void closeEvent(QCloseEvent *event);
 
     private:
+        class ToolBarStyleEnforcer : public QObject
+        {
+            public:
+                ToolBarStyleEnforcer(QObject* parent = nullptr);
+
+            protected:
+                bool eventFilter(QObject* obj, QEvent* event) override;
+        };
+
         MainWindow();
         ~MainWindow();
 
@@ -169,6 +186,10 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
         void fixToolbars();
+        QMenu* createToolbarStyleMenu();
+        void applyToolbarStyle(QToolBar* tb);
+        void applyToolbarStyle(QList<QToolBar*> tbList);
+        void updateToolbarStyleActionState();
 
         static bool confirmQuit(const QList<Committable*>& instances);
 
@@ -188,6 +209,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* dbMenu = nullptr;
         QMenu* structMenu = nullptr;
         QMenu* viewMenu = nullptr;
+        QMenu* tbStyleMenu = nullptr;
         QMenu* toolsMenu = nullptr;
         QMenu* sqlitestudioMenu = nullptr;
 #ifdef PORTABLE_CONFIG
@@ -195,6 +217,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #endif
         WidgetCover* widgetCover = nullptr;
         QTimer* saveSessionTimer = nullptr;
+        static int defaultToolbarIconSize;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -208,6 +231,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void sqliteDocs();
         void reportHistory();
         void donate();
+        void updateToolbarStyle();
 
     private slots:
         void notifyAboutLanguageChange();

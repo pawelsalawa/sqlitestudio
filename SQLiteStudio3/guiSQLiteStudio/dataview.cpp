@@ -54,6 +54,8 @@ void DataView::init(SqlQueryModel* model)
     initUpdates();
     initSlots();
     updateTabsMode();
+    updatePageEdit();
+    updateResultsCount(0);
 }
 
 void DataView::initUpdates()

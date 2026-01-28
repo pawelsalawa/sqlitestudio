@@ -255,7 +255,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1983,8 +1983,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>389</width>
-                <height>288</height>
+                <width>711</width>
+                <height>538</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2076,6 +2076,38 @@
                     </property>
                     <property name="assignedValue" stdset="0">
                      <string notr="true">horizontal</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="toolbarsGroup">
+                 <property name="title">
+                  <string>Toolbars</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_15">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="tbIconSizeLabel">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Icon size</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="tbIconSizeCombo">
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.ToolBarIconSize</string>
+                    </property>
+                    <property name="dataDrivenCombo" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
