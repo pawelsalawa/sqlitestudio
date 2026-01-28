@@ -1784,17 +1784,17 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     {
         SchemaResolver resolver(dbIt.key());
         QList<DbTreeItem*>& tableItems = dbIt.value();
-        if (tableItems.size() <= 1)
-            continue;
-
-        QHash<DbTreeItem*, int> fkTableCount;
-        for (DbTreeItem*& tableItem : tableItems)
-            fkTableCount[tableItem] = resolver.getFkReferencedTables(tableItem->text()).size();
-
-        sSort(tableItems, [fkTableCount](DbTreeItem*& i1, DbTreeItem*& i2)
+        if (tableItems.size() > 1)
         {
-            return fkTableCount[i1] > fkTableCount[i2];
-        });
+            QHash<DbTreeItem*, int> fkTableCount;
+            for (DbTreeItem*& tableItem : tableItems)
+                fkTableCount[tableItem] = resolver.getFkReferencedTables(tableItem->text()).size();
+
+            sSort(tableItems, [fkTableCount](DbTreeItem*& i1, DbTreeItem*& i2)
+            {
+                return fkTableCount[i1] > fkTableCount[i2];
+            });
+        }
 
         for (DbTreeItem*& tableItem : tableItems)
             deleteItem(tableItem);
