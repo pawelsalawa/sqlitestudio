@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -956,12 +956,12 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="1024"/>
       <source>SQL Editor</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">SQL Editor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
       <source>sqlEditorPage</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">sqlEditorPage</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="207"/>
@@ -1285,22 +1285,10 @@
       <translation>Cacher la boîte de dialogue d&apos;aperçu des DDL lors de la validation des modifications de schéma</translation>
     </message>
     <message>
-      <source>SQL queries</source>
-      <translation type="vanished">Requêtes SQL</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1110"/>
       <location filename="../dialogs/configdialog.ui" line="1126"/>
       <source>Number of queries kept in the history.</source>
       <translation>Nombre de requêtes gardées dans l’historique.</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;/p&gt;&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;S&apos;il y a plus d&apos;une requête dans la fenêtre de l&apos;éditeur SQL, alors (si cette option est activée), seulement une requête sera exécutée - celle sous le curseur d&apos;insertion du clavier. Sinon, toutes les requêtes seront exécutées. Vous pouvez toujours limiter les requêtes à exécuter en sélectionnant ces requêtes avant d&apos;appeler à l&apos;exécution. Vous pouvez également utiliser des raccourcis dédiés pour l&apos;exécution dans un mode ou dans l&apos;autre (actuellement configuré à %1 pour l&apos;exécution d&apos;une requête unique et %2 pour l&apos;exécution de toutes les requêtes).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <source>History size:</source>
-      <translation type="vanished">Dimension de l’historique :</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1139"/>
@@ -1347,10 +1335,6 @@
       <location filename="../dialogs/configdialog.ui" line="1059"/>
       <source>Wrap lines in SQL editor</source>
       <translation>Envelopper les lignes dans l&apos;éditeur SQL</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Surligne la requête entière qui est actuellement sous le curseur d&apos;insertion. Ce sera la même requête qui sera exécutée lorsque vous appuierez sur &amp;quot;Exécuter la requête&amp;quot; raccourci ou le bouton (sauf si configuré autrement).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1046"/>
@@ -1455,32 +1439,32 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1030"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1043"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1069"/>
       <source>Disable blinking text cursor</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Disable blinking text cursor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1091"/>
       <source>Trigger assistant after typing a dot</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Trigger assistant after typing a dot</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1104"/>
       <source>History</source>
-      <translation type="unfinished">Historique</translation>
+      <translation>Historique</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
       <source>Query history size:</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Query history size:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1396"/>
@@ -1591,7 +1575,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2509"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2525"/>
@@ -1619,17 +1603,9 @@
       <translation>Police de caractères du champ d’état</translation>
     </message>
     <message>
-      <source>Code assistant settings</source>
-      <translation type="vanished">Paramètres de l&apos;assistant de code</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1088"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si cette option est activée, l&apos;assistant de code sera déclenché dans certains cas, par exemple lorsque l&apos;utilisateur écris &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; pour proposer certaines colonnes de la table. Si l&apos;option est désactivée, l&apos;utilisateur devra appuyer explicitement sur la touche de raccourci assistant.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <source>Automatically trigger the assistant after a dot is typed after an object name</source>
-      <translation type="vanished">Déclenche automatiquement l&apos;assistant après qu&apos;un point soit écris après le nom d&apos;un objet</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="904"/>
