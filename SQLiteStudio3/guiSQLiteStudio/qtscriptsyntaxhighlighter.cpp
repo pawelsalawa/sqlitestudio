@@ -439,29 +439,12 @@ QSyntaxHighlighter* JavaScriptHighlighterPlugin::createSyntaxHighlighter(QWidget
 
 void JavaScriptHighlighterPlugin::refreshFormats()
 {
-    QTextCharFormat format;
-
-    format.setForeground(Cfg::getSyntaxForeground());
-    formats[NORMAL] = format;
-
-    format.setForeground(Cfg::getSyntaxNumberFg());
-    formats[NUMBER] = format;
-
-    format.setForeground(Cfg::getSyntaxKeywordFg());
-    format.setFontWeight(QFont::Bold);
-    formats[KEYWORDS] = format;
-
-    format.setFontItalic(true);
-    format.setFontWeight(QFont::Normal);
-    format.setForeground(Cfg::getSyntaxCommentFg());
-    formats[COMMENT] = format;
-
-    format.setFontItalic(false);
-    format.setForeground(Cfg::getSyntaxStringFg());
-    formats[STRING] = format;
-
-    format.setForeground(Cfg::getSyntaxNumberFg());
-    formats[EXPRESSION] = format;
+    formats[NORMAL] = Cfg::getSyntaxForegroundFormat();
+    formats[NUMBER] = Cfg::getSyntaxNumberFormat();
+    formats[KEYWORDS] = Cfg::getSyntaxKeywordFormat();
+    formats[COMMENT] = Cfg::getSyntaxCommentFormat();
+    formats[STRING] = Cfg::getSyntaxStringFormat();
+    formats[EXPRESSION] = Cfg::getSyntaxNumberFormat();
 }
 
 QString JavaScriptHighlighterPlugin::previewSampleCode() const

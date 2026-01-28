@@ -116,7 +116,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QList<QWidget*> extraWidgets;
         QList<QWidget*> widgetsToIgnore; // main mapper will ignore plugin's forms, they have their own mappers
         QHash<QString, CfgEntry*> allEntries;
-        QHash<QWidget*, QWidget*> boolDependencyToDependingWidget;
+        QHash<QWidget*, QList<QWidget*>> boolDependencyToDependingWidget;
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
         static constexpr const char* CFG_BOOL_DEPENDENCY_PROPERTY = "boolDependency";

@@ -94,53 +94,15 @@ QString TclSyntaxHighlighterPlugin::previewSampleCode() const
 
 void TclSyntaxHighlighterPlugin::refreshFormats()
 {
-    QTextCharFormat format;
-
-    // STANDARD
-    format.setForeground(Cfg::getSyntaxForeground());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    styles[STANDARD] = format;
-
-    // KEYWORD (control / proc / flow)
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxKeywordFg());
-    format.setFontWeight(QFont::Bold);
-    styles[KEYWORD] = format;
-
-    // BUILTIN (set, puts, expr, etc.)
-    styles[BUILTIN] = format; // same as KEYWORD
-
-    // VARIABLE ($var, ${var}, $::ns::var)
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxBindParamFg());
-    styles[VARIABLE] = format;
-
-    // OPERATOR
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxForeground());
-    styles[OPERATOR] = format;
-
-    // BRACE { }
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxForeground());
-    styles[BRACE] = format;
-
-    // STRING
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxStringFg());
-    styles[STRING] = format;
-
-    // NUMBER
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxNumberFg());
-    styles[NUMBER] = format;
-
-    // COMMENT
-    format = QTextCharFormat();
-    format.setForeground(Cfg::getSyntaxCommentFg());
-    format.setFontItalic(true);
-    styles[COMMENT] = format;
+    styles[STANDARD] = Cfg::getSyntaxForegroundFormat();
+    styles[KEYWORD] = Cfg::getSyntaxKeywordFormat();
+    styles[BUILTIN] = Cfg::getSyntaxKeywordFormat();
+    styles[VARIABLE] = Cfg::getSyntaxBindParamFormat();
+    styles[OPERATOR] = Cfg::getSyntaxForegroundFormat();
+    styles[BRACE] = Cfg::getSyntaxForegroundFormat();
+    styles[STRING] = Cfg::getSyntaxStringFormat();
+    styles[NUMBER] = Cfg::getSyntaxNumberFormat();
+    styles[COMMENT] = Cfg::getSyntaxCommentFormat();
 }
 
 void TclSyntaxHighlighterPlugin::initRules()

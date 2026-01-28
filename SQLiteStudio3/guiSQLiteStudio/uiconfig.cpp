@@ -7,12 +7,33 @@
 #include <QDir>
 #include <QDebug>
 
-#define DEFINE_COLOR_HELPER_FN(COLOR_NAME) \
-    QColor get##COLOR_NAME() \
+#define DEFINE_FORMAT_FN_BG_FG(FN_NAME, BG_COLOR_NAME, FG_COLOR_NAME) \
+    QTextCharFormat FN_NAME() \
     { \
-        return CFG_UI.Colors.COLOR_NAME##Custom.get() ? \
-            CFG_UI.Colors.COLOR_NAME.get() : \
-            getDefault##COLOR_NAME().value<QColor>(); \
+        QTextCharFormat format; \
+        format.setForeground(CFG_UI.Colors.FG_COLOR_NAME.get()); \
+        format.setBackground(CFG_UI.Colors.BG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.BG_COLOR_NAME.get() : CFG_UI.Colors.BG_COLOR_NAME.getDefaultValue()); \
+        format.setFontWeight((CFG_UI.Colors.FG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.FG_COLOR_NAME##Bold.get() : CFG_UI.Colors.FG_COLOR_NAME##Bold.getDefaultValue()) ? QFont::ExtraBold : QFont::Normal); \
+        format.setFontItalic(CFG_UI.Colors.FG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.FG_COLOR_NAME##Italic.get() : CFG_UI.Colors.FG_COLOR_NAME##Italic.getDefaultValue()); \
+        return format; \
+    }
+
+#define DEFINE_FORMAT_FN_FG(FN_NAME, FG_COLOR_NAME) \
+    QTextCharFormat FN_NAME() \
+    { \
+        QTextCharFormat format; \
+        format.setForeground(CFG_UI.Colors.FG_COLOR_NAME.get()); \
+        format.setFontWeight((CFG_UI.Colors.FG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.FG_COLOR_NAME##Bold.get() : CFG_UI.Colors.FG_COLOR_NAME##Bold.getDefaultValue()) ? QFont::ExtraBold : QFont::Normal); \
+        format.setFontItalic(CFG_UI.Colors.FG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.FG_COLOR_NAME##Italic.get() : CFG_UI.Colors.FG_COLOR_NAME##Italic.getDefaultValue()); \
+        return format; \
+    }
+
+#define DEFINE_FORMAT_FN_BG(FN_NAME, BG_COLOR_NAME) \
+    QTextCharFormat FN_NAME() \
+    { \
+        QTextCharFormat format; \
+        format.setBackground(CFG_UI.Colors.BG_COLOR_NAME##Custom.get() ? CFG_UI.Colors.BG_COLOR_NAME.get() : CFG_UI.Colors.BG_COLOR_NAME.getDefaultValue()); \
+        return format; \
     }
 
 namespace Cfg
@@ -113,18 +134,17 @@ namespace Cfg
         return STYLE->standardPalette().text();
     }
 
-    DEFINE_COLOR_HELPER_FN(SyntaxParenthesisBg)
-    DEFINE_COLOR_HELPER_FN(SyntaxParenthesisFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxCurrentLineBg)
-    DEFINE_COLOR_HELPER_FN(SyntaxCurrentQueryBg)
-    DEFINE_COLOR_HELPER_FN(SyntaxValidObject)
-    DEFINE_COLOR_HELPER_FN(SyntaxForeground)
-    DEFINE_COLOR_HELPER_FN(SyntaxStringFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxKeywordFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxBindParamFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxBlobFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxCommentFg)
-    DEFINE_COLOR_HELPER_FN(SyntaxNumberFg)
+    DEFINE_FORMAT_FN_BG_FG(getSyntaxParenthesisFormat, SyntaxParenthesisBg, SyntaxParenthesisFg)
+    DEFINE_FORMAT_FN_BG(getSyntaxCurrentLineFormat, SyntaxCurrentLineBg)
+    DEFINE_FORMAT_FN_BG(getSyntaxCurrentQueryFormat, SyntaxCurrentQueryBg)
+    DEFINE_FORMAT_FN_FG(getSyntaxValidObjectFormat, SyntaxValidObject)
+    DEFINE_FORMAT_FN_FG(getSyntaxForegroundFormat, SyntaxForeground)
+    DEFINE_FORMAT_FN_FG(getSyntaxStringFormat, SyntaxStringFg)
+    DEFINE_FORMAT_FN_FG(getSyntaxKeywordFormat, SyntaxKeywordFg)
+    DEFINE_FORMAT_FN_FG(getSyntaxBindParamFormat, SyntaxBindParamFg)
+    DEFINE_FORMAT_FN_FG(getSyntaxBlobFormat, SyntaxBlobFg)
+    DEFINE_FORMAT_FN_FG(getSyntaxCommentFormat, SyntaxCommentFg)
+    DEFINE_FORMAT_FN_FG(getSyntaxNumberFormat, SyntaxNumberFg)
 }
 
 CFG_DEFINE(Ui)

@@ -755,7 +755,7 @@ void SqlEditor::highlightCurrentQuery(QList<QTextEdit::ExtraSelection>& selectio
         return;
 
     QTextEdit::ExtraSelection selection;
-    selection.format.setBackground(Cfg::getSyntaxCurrentQueryBg());
+    selection.format = Cfg::getSyntaxCurrentQueryFormat();
 
     cursor.setPosition(boundries.first);
     cursor.setPosition(boundries.second, QTextCursor::KeepAnchor);
@@ -779,9 +779,7 @@ void SqlEditor::highlightCurrentCursorContext(bool delayedCall)
 void SqlEditor::markMatchedParenthesis(int pos1, int pos2, QList<QTextEdit::ExtraSelection>& selections)
 {
     QTextEdit::ExtraSelection selection;
-
-    selection.format.setBackground(Cfg::getSyntaxParenthesisBg());
-    selection.format.setForeground(Cfg::getSyntaxParenthesisFg());
+    selection.format = Cfg::getSyntaxParenthesisFormat();
 
     QTextCursor cursor = textCursor();
 
@@ -1125,7 +1123,7 @@ void SqlEditor::highlightCurrentLine(QList<QTextEdit::ExtraSelection>& selection
     if (!isReadOnly() && isEnabled())
     {
         QTextEdit::ExtraSelection selection;
-        selection.format.setBackground(Cfg::getSyntaxCurrentLineBg());
+        selection.format = Cfg::getSyntaxCurrentLineFormat();
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();

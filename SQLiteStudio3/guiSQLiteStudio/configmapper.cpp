@@ -6,6 +6,10 @@
 #include "sqlview.h"
 #include "common/colorbutton.h"
 #include "common/fontedit.h"
+#include "common/booltoolbutton.h"
+#include "common/configcombobox.h"
+#include "common/configradiobutton.h"
+#include "common/fileedit.h"
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QComboBox>
@@ -18,9 +22,6 @@
 #include <QStringListModel>
 #include <QFontComboBox>
 #include <QKeySequenceEdit>
-#include <common/configcombobox.h>
-#include <common/configradiobutton.h>
-#include <common/fileedit.h>
 
 #define APPLY_CFG(Widget, Value, WidgetType, Method, DataType) \
     APPLY_CFG_VARIANT(Widget, Value.value<DataType>(), WidgetType, Method)
@@ -96,6 +97,7 @@ ConfigMapper::ConfigMapper(const QList<CfgMain*> cfgMain) :
 void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value, CfgEntry* cfgEntry)
 {
     APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
+    APPLY_CFG(widget, value, BoolToolButton, setChecked, bool);
     APPLY_CFG(widget, value, QLineEdit, setText, QString);
     APPLY_CFG(widget, value, SqlView, setContents, QString);
     APPLY_CFG(widget, value, QTextEdit, setPlainText, QString);
@@ -135,6 +137,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
 void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
 {
     APPLY_NOTIFIER(widget, key, QCheckBox, SIGNAL(stateChanged(int)));
+    APPLY_NOTIFIER(widget, key, BoolToolButton, SIGNAL(toggled(bool)));
     APPLY_NOTIFIER(widget, key, QLineEdit, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, key, QTextEdit, SIGNAL(textChanged()));
     APPLY_NOTIFIER(widget, key, QPlainTextEdit, SIGNAL(textChanged()));
@@ -170,6 +173,7 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
 {
     ok = true;
     GET_CFG_VALUE(widget, key, QCheckBox, isChecked);
+    GET_CFG_VALUE(widget, key, BoolToolButton, isChecked);
     GET_CFG_VALUE(widget, key, QLineEdit, text);
     GET_CFG_VALUE(widget, key, QTextEdit, toPlainText);
     GET_CFG_VALUE(widget, key, QPlainTextEdit, toPlainText);
@@ -585,7 +589,7 @@ void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, Q
     widget->setEnabled(value);
 
     QWidget* dependWidget = configEntryToWidgets.value(cfg);
-    boolDependencyToDependingWidget[dependWidget] = widget;
+    boolDependencyToDependingWidget[dependWidget] << widget;
 }
 
 void ConfigMapper::handleDependencyChange(QWidget* widget)
@@ -599,11 +603,14 @@ bool ConfigMapper::handleBoolDependencyChange(QWidget* widget)
     if (!boolDependencyToDependingWidget.contains(widget))
         return false;
 
-    QWidget* depWid = boolDependencyToDependingWidget[widget];
     bool value = getConfigValueFromWidget(widget).toBool();
-    depWid->setEnabled(value);
-    if (!value)
-        applyConfigDefaultValueToWidget(depWid);
+    QList<QWidget*> depWidList = boolDependencyToDependingWidget[widget];
+    for (QWidget*& depWid : depWidList)
+    {
+        depWid->setEnabled(value);
+        if (!value)
+            applyConfigDefaultValueToWidget(depWid);
+    }
 
     return true;
 }

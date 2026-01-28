@@ -263,7 +263,6 @@ void ConfigDialog::init()
     resettingColors = false;
     colorChanged();
     updateStylePreview();
-    updateColorsAfterLoad();
     restoreLastUsedPage();
 
     ui->categoriesTree->expandAll();
@@ -1222,38 +1221,11 @@ void ConfigDialog::initColors()
                     return;
 
                 configMapper->saveFromWidget(widget, key);
-                if (key->getName().endsWith("Custom"))
-                    toggleColorButtonState(key);
-
                 if (resettingColors)
                     return;
 
                 colorChanged();
             });
-}
-
-void ConfigDialog::updateColorsAfterLoad()
-{
-    QHash<QString, CfgEntry*> entries = CFG_UI.Colors.getEntries();
-    auto it = entries.begin();
-    while (it != entries.end())
-    {
-        if (it.key().endsWith("Custom"))
-            toggleColorButtonState(it.value());
-
-        it++;
-    }
-}
-
-void ConfigDialog::toggleColorButtonState(CfgEntry* colorCheckEntry)
-{
-    CfgEntry* colorKey = colorCheckEntry->getCategory()->getEntryByName(colorCheckEntry->getName().chopped(6));
-    if (colorKey)
-    {
-        QWidget* button = configMapper->getBindWidgetForConfig(colorKey);
-        if (button)
-            button->setEnabled(colorCheckEntry->get().toBool());
-    }
 }
 
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)

@@ -22,5 +22,5 @@ SUBDIRS += \
     DbAndroid \
     DbSqliteWx \
     MultiEditorImage \
-	PythonSyntaxHighlighter
+    PythonSyntaxHighlighter
 

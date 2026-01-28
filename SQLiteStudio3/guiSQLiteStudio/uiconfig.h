@@ -6,6 +6,7 @@
 #include <QFont>
 #include <QHash>
 #include <QColor>
+#include <QTextCharFormat>
 
 #define CFG_UI_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),GUI_API_EXPORT)
 
@@ -15,30 +16,30 @@ namespace Cfg
     GUI_API_EXPORT QVariant getDefaultTextEditorFont();
     GUI_API_EXPORT QVariant getDefaultItemViewFont();
     GUI_API_EXPORT QVariant getDefaultDbTreeLabelFont();
-    QVariant getDefaultSyntaxParenthesisBg();
-    QVariant getDefaultSyntaxParenthesisFg();
-    QVariant getDefaultSyntaxCurrentLineBg();
-    QVariant getDefaultSyntaxCurrentQueryBg();
-    QVariant getDefaultSyntaxValidObject();
-    QVariant getDefaultSyntaxForeground();
-    QVariant getDefaultSyntaxStringFg();
-    QVariant getDefaultSyntaxKeywordFg();
-    QVariant getDefaultSyntaxBindParamFg();
-    QVariant getDefaultSyntaxBlobFg();
-    QVariant getDefaultSyntaxCommentFg();
-    QVariant getDefaultSyntaxNumberFg();
-    GUI_API_EXPORT QColor getSyntaxParenthesisBg();
-    GUI_API_EXPORT QColor getSyntaxParenthesisFg();
-    GUI_API_EXPORT QColor getSyntaxCurrentLineBg();
-    GUI_API_EXPORT QColor getSyntaxCurrentQueryBg();
-    GUI_API_EXPORT QColor getSyntaxValidObject();
-    GUI_API_EXPORT QColor getSyntaxForeground();
-    GUI_API_EXPORT QColor getSyntaxStringFg();
-    GUI_API_EXPORT QColor getSyntaxKeywordFg();
-    GUI_API_EXPORT QColor getSyntaxBindParamFg();
-    GUI_API_EXPORT QColor getSyntaxBlobFg();
-    GUI_API_EXPORT QColor getSyntaxCommentFg();
-    GUI_API_EXPORT QColor getSyntaxNumberFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxParenthesisBg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxParenthesisFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxCurrentLineBg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxCurrentQueryBg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxValidObject();
+    GUI_API_EXPORT QVariant getDefaultSyntaxForeground();
+    GUI_API_EXPORT QVariant getDefaultSyntaxStringFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxKeywordFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxBindParamFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxBlobFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxCommentFg();
+    GUI_API_EXPORT QVariant getDefaultSyntaxNumberFg();
+
+    GUI_API_EXPORT QTextCharFormat getSyntaxParenthesisFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxCurrentLineFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxCurrentQueryFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxValidObjectFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxForegroundFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxStringFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxKeywordFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxBindParamFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxBlobFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxCommentFormat();
+    GUI_API_EXPORT QTextCharFormat getSyntaxNumberFormat();
 
     typedef QHash<QString,QVariant> Session;
     typedef QHash<QString,QVariant> DataEditorsOrder;
@@ -61,30 +62,48 @@ CFG_UI_CATEGORIES(Ui,
     )
 
     CFG_CATEGORY(Colors,
-        CFG_ENTRY(QColor, SyntaxParenthesisBg,        &Cfg::getDefaultSyntaxParenthesisBg)
         CFG_ENTRY(bool,   SyntaxParenthesisBgCustom,  false)
-        CFG_ENTRY(QColor, SyntaxParenthesisFg,        &Cfg::getDefaultSyntaxParenthesisFg)
+        CFG_ENTRY(QColor, SyntaxParenthesisBg,        &Cfg::getDefaultSyntaxParenthesisBg)
         CFG_ENTRY(bool,   SyntaxParenthesisFgCustom,  false)
-        CFG_ENTRY(QColor, SyntaxCurrentLineBg,        &Cfg::getDefaultSyntaxCurrentLineBg)
+        CFG_ENTRY(QColor, SyntaxParenthesisFg,        &Cfg::getDefaultSyntaxParenthesisFg)
+        CFG_ENTRY(bool,   SyntaxParenthesisFgBold,    false)
+        CFG_ENTRY(bool,   SyntaxParenthesisFgItalic,  false)
         CFG_ENTRY(bool,   SyntaxCurrentLineBgCustom,  false)
-        CFG_ENTRY(QColor, SyntaxCurrentQueryBg,       &Cfg::getDefaultSyntaxCurrentQueryBg)
+        CFG_ENTRY(QColor, SyntaxCurrentLineBg,        &Cfg::getDefaultSyntaxCurrentLineBg)
         CFG_ENTRY(bool,   SyntaxCurrentQueryBgCustom, false)
-        CFG_ENTRY(QColor, SyntaxValidObject,          &Cfg::getDefaultSyntaxValidObject)
+        CFG_ENTRY(QColor, SyntaxCurrentQueryBg,       &Cfg::getDefaultSyntaxCurrentQueryBg)
         CFG_ENTRY(bool,   SyntaxValidObjectCustom,    false)
-        CFG_ENTRY(QColor, SyntaxForeground,           &Cfg::getDefaultSyntaxForeground)
+        CFG_ENTRY(QColor, SyntaxValidObject,          &Cfg::getDefaultSyntaxValidObject)
+        CFG_ENTRY(bool,   SyntaxValidObjectBold,      false)
+        CFG_ENTRY(bool,   SyntaxValidObjectItalic,    false)
         CFG_ENTRY(bool,   SyntaxForegroundCustom,     false)
-        CFG_ENTRY(QColor, SyntaxStringFg,             &Cfg::getDefaultSyntaxStringFg)
+        CFG_ENTRY(QColor, SyntaxForeground,           &Cfg::getDefaultSyntaxForeground)
+        CFG_ENTRY(bool,   SyntaxForegroundBold,       false)
+        CFG_ENTRY(bool,   SyntaxForegroundItalic,     false)
         CFG_ENTRY(bool,   SyntaxStringFgCustom,       false)
-        CFG_ENTRY(QColor, SyntaxKeywordFg,            &Cfg::getDefaultSyntaxKeywordFg)
+        CFG_ENTRY(QColor, SyntaxStringFg,             &Cfg::getDefaultSyntaxStringFg)
+        CFG_ENTRY(bool,   SyntaxStringFgBold,         false)
+        CFG_ENTRY(bool,   SyntaxStringFgItalic,       true)
         CFG_ENTRY(bool,   SyntaxKeywordFgCustom,      false)
-        CFG_ENTRY(QColor, SyntaxBindParamFg,          &Cfg::getDefaultSyntaxBindParamFg)
+        CFG_ENTRY(QColor, SyntaxKeywordFg,            &Cfg::getDefaultSyntaxKeywordFg)
+        CFG_ENTRY(bool,   SyntaxKeywordFgBold,        true)
+        CFG_ENTRY(bool,   SyntaxKeywordFgItalic,      false)
         CFG_ENTRY(bool,   SyntaxBindParamFgCustom,    false)
-        CFG_ENTRY(QColor, SyntaxBlobFg,               &Cfg::getDefaultSyntaxBlobFg)
+        CFG_ENTRY(QColor, SyntaxBindParamFg,          &Cfg::getDefaultSyntaxBindParamFg)
+        CFG_ENTRY(bool,   SyntaxBindParamFgBold,      false)
+        CFG_ENTRY(bool,   SyntaxBindParamFgItalic,    false)
         CFG_ENTRY(bool,   SyntaxBlobFgCustom,         false)
-        CFG_ENTRY(QColor, SyntaxCommentFg,            &Cfg::getDefaultSyntaxCommentFg)
+        CFG_ENTRY(QColor, SyntaxBlobFg,               &Cfg::getDefaultSyntaxBlobFg)
+        CFG_ENTRY(bool,   SyntaxBlobFgBold,           false)
+        CFG_ENTRY(bool,   SyntaxBlobFgItalic,         false)
         CFG_ENTRY(bool,   SyntaxCommentFgCustom,      false)
-        CFG_ENTRY(QColor, SyntaxNumberFg,             &Cfg::getDefaultSyntaxNumberFg)
+        CFG_ENTRY(QColor, SyntaxCommentFg,            &Cfg::getDefaultSyntaxCommentFg)
+        CFG_ENTRY(bool,   SyntaxCommentFgBold,        false)
+        CFG_ENTRY(bool,   SyntaxCommentFgItalic,      true)
         CFG_ENTRY(bool,   SyntaxNumberFgCustom,       false)
+        CFG_ENTRY(QColor, SyntaxNumberFg,             &Cfg::getDefaultSyntaxNumberFg)
+        CFG_ENTRY(bool,   SyntaxNumberFgBold,         false)
+        CFG_ENTRY(bool,   SyntaxNumberFgItalic,       false)
     )
 
     CFG_CATEGORY(DbList,

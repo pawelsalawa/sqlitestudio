@@ -70,8 +70,6 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initLangs();
         void initTooltips();
         void initColors();
-        void updateColorsAfterLoad();
-        void toggleColorButtonState(CfgEntry* colorCheckEntry);
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;

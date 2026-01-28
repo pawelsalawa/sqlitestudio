@@ -409,53 +409,14 @@ QSyntaxHighlighter* SqliteHighlighterPlugin::createSyntaxHighlighter(QWidget* te
 
 void SqliteHighlighterPlugin::refreshFormats()
 {
-    QTextCharFormat format;
-
-    // Standard
-    format.setForeground(Cfg::getSyntaxForeground());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[SqliteSyntaxHighlighter::State::STANDARD] = format;
-
-    // Parenthesis
-    format.setForeground(Cfg::getSyntaxForeground());
-    formats[SqliteSyntaxHighlighter::State::PARENTHESIS] = format;
-
-    // String
-    format.setForeground(Cfg::getSyntaxStringFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(true);
-    formats[SqliteSyntaxHighlighter::State::STRING] = format;
-
-    // Keyword
-    format.setForeground(Cfg::getSyntaxKeywordFg());
-    format.setFontWeight(QFont::ExtraBold);
-    format.setFontItalic(false);
-    formats[SqliteSyntaxHighlighter::State::KEYWORD] = format;
-
-    // BindParam
-    format.setForeground(Cfg::getSyntaxBindParamFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[SqliteSyntaxHighlighter::State::BIND_PARAM] = format;
-
-    // Blob
-    format.setForeground(Cfg::getSyntaxBlobFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[SqliteSyntaxHighlighter::State::BLOB] = format;
-
-    // Comment
-    format.setForeground(Cfg::getSyntaxCommentFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(true);
-    formats[SqliteSyntaxHighlighter::State::COMMENT] = format;
-
-    // Number
-    format.setForeground(Cfg::getSyntaxNumberFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    formats[SqliteSyntaxHighlighter::State::NUMBER] = format;
+    formats[SqliteSyntaxHighlighter::State::STANDARD] = Cfg::getSyntaxForegroundFormat();
+    formats[SqliteSyntaxHighlighter::State::PARENTHESIS] = Cfg::getSyntaxForegroundFormat();
+    formats[SqliteSyntaxHighlighter::State::STRING] = Cfg::getSyntaxStringFormat();
+    formats[SqliteSyntaxHighlighter::State::KEYWORD] = Cfg::getSyntaxKeywordFormat();
+    formats[SqliteSyntaxHighlighter::State::BIND_PARAM] = Cfg::getSyntaxBindParamFormat();
+    formats[SqliteSyntaxHighlighter::State::BLOB] = Cfg::getSyntaxBlobFormat();
+    formats[SqliteSyntaxHighlighter::State::COMMENT] = Cfg::getSyntaxCommentFormat();
+    formats[SqliteSyntaxHighlighter::State::NUMBER] = Cfg::getSyntaxNumberFormat();
 }
 
 QString SqliteHighlighterPlugin::previewSampleCode() const

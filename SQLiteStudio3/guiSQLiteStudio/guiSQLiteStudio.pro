@@ -32,6 +32,7 @@ QMAKE_CXXFLAGS += -pedantic
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
 SOURCES +=\
+    common/booltoolbutton.cpp \
     common/colorpickerpopup.cpp \
     common/customsplitter.cpp \
     common/dbcombobox.cpp \
@@ -197,6 +198,7 @@ SOURCES +=\
     dialogs/fileexecerrorsdialog.cpp
 
 HEADERS  += mainwindow.h \
+    common/booltoolbutton.h \
     common/colorpickerpopup.h \
     common/customsplitter.h \
     common/dbcombobox.h \

@@ -112,6 +112,12 @@ class CfgTypedEntry : public CfgEntry
             return v.value<T>();
         }
 
+        T getDefaultValue()
+        {
+            QVariant v = CfgEntry::getDefaultValue();
+            return v.value<T>();
+        }
+
         void set(const T& value)
         {
             CfgEntry::set(QVariant::fromValue<T>(value));

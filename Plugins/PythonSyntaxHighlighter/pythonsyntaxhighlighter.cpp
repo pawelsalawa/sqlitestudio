@@ -241,47 +241,15 @@ QSyntaxHighlighter* PythonSyntaxHighlighterPlugin::createSyntaxHighlighter(QWidg
 
 void PythonSyntaxHighlighterPlugin::refreshFormats()
 {
-    QTextCharFormat format;
-
-    // Standard
-    format.setForeground(Cfg::getSyntaxForeground());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(false);
-    styles[PythonSyntaxHighlighterPlugin::STANDARD] = format;
-
-    // Class
-    format.setForeground(Cfg::getSyntaxKeywordFg());
-    format.setFontWeight(QFont::Bold);
-    styles[PythonSyntaxHighlighterPlugin::DEFCLASS] = format;
-    styles[PythonSyntaxHighlighterPlugin::KEYWORD] = format;
-
-    // Self
-    format.setForeground(Cfg::getSyntaxKeywordFg());
-    format.setFontWeight(QFont::Normal);
-    format.setFontItalic(true);
-    styles[PythonSyntaxHighlighterPlugin::SELF] = format;
-
-    // Operator
-    format.setForeground(Cfg::getSyntaxForeground());
-    format.setFontItalic(false);
-    styles[PythonSyntaxHighlighterPlugin::OPERATOR] = format;
-
-    // Parenthesis
-    format.setForeground(Cfg::getSyntaxForeground());
-    styles[PythonSyntaxHighlighterPlugin::BRACE] = format;
-
-    // String
-    format.setForeground(Cfg::getSyntaxStringFg());
-    styles[PythonSyntaxHighlighterPlugin::STRING] = format;
-
-    // Numbers
-    format.setForeground(Cfg::getSyntaxNumberFg());
-    styles[PythonSyntaxHighlighterPlugin::NUMBER] = format;
-
-    // Comment
-    format.setForeground(Cfg::getSyntaxCommentFg());
-    format.setFontItalic(true);
-    styles[PythonSyntaxHighlighterPlugin::COMMENT] = format;
+    styles[PythonSyntaxHighlighterPlugin::STANDARD] = Cfg::getSyntaxForegroundFormat();
+    styles[PythonSyntaxHighlighterPlugin::DEFCLASS] = Cfg::getSyntaxKeywordFormat();
+    styles[PythonSyntaxHighlighterPlugin::KEYWORD] = Cfg::getSyntaxKeywordFormat();
+    styles[PythonSyntaxHighlighterPlugin::SELF] = Cfg::getSyntaxKeywordFormat();
+    styles[PythonSyntaxHighlighterPlugin::OPERATOR] = Cfg::getSyntaxForegroundFormat();
+    styles[PythonSyntaxHighlighterPlugin::BRACE] = Cfg::getSyntaxForegroundFormat();
+    styles[PythonSyntaxHighlighterPlugin::STRING] = Cfg::getSyntaxStringFormat();
+    styles[PythonSyntaxHighlighterPlugin::NUMBER] = Cfg::getSyntaxNumberFormat();
+    styles[PythonSyntaxHighlighterPlugin::COMMENT] = Cfg::getSyntaxCommentFormat();
 }
 
 QString PythonSyntaxHighlighterPlugin::previewSampleCode() const
