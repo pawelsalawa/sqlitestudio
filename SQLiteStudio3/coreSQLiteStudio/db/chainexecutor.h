@@ -338,7 +338,7 @@ class API_EXPORT ChainExecutor : public QObject
         QHash<QString,QVariant> queryParams;
 
         bool disableForeignKeys = false;
-        bool foreignKeysWereDisabled = false;
+        bool foreignKeysWereEnabled = true;
         bool useLegacyAlterRename = false;
         bool legacyAlterRenameWasUsed = false;
         bool disableObjectDropsDetection = false;

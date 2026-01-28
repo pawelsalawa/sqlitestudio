@@ -48,8 +48,8 @@ void ChainExecutor::exec()
 
     if (disableForeignKeys)
     {
-        foreignKeysWereDisabled = db->exec("PRAGMA foreign_keys;")->getSingleCell().toBool();
-        if (!foreignKeysWereDisabled)
+        foreignKeysWereEnabled = db->exec("PRAGMA foreign_keys;")->getSingleCell().toBool();
+        if (foreignKeysWereEnabled)
         {
             SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
             if (result->isError())
@@ -231,7 +231,7 @@ Db::Flags ChainExecutor::getExecFlags() const
 
 void ChainExecutor::restoreFk()
 {
-    if (disableForeignKeys && !foreignKeysWereDisabled)
+    if (disableForeignKeys && foreignKeysWereEnabled)
     {
         SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 1;");
         if (result->isError())

@@ -33,11 +33,11 @@
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
 #include "common/dbcombobox.h"
+#include "tablemodifier.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
 #include <QMessageBox>
-#include <tablemodifier.h>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QDebug>
