@@ -955,12 +955,12 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="1024"/>
       <source>SQL Editor</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">SQL Editor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
       <source>sqlEditorPage</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">sqlEditorPage</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="207"/>
@@ -1284,22 +1284,10 @@
       <translation>Non mostrare la finestra di anteprima DDL quando si salvano le modifiche allo schema</translation>
     </message>
     <message>
-      <source>SQL queries</source>
-      <translation type="vanished">Query SQL</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1110"/>
       <location filename="../dialogs/configdialog.ui" line="1126"/>
       <source>Number of queries kept in the history.</source>
       <translation>Numero di query conservate nella cronologia.</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute. You can also use dedicated shortcuts for executing in one mode or the other (currently configured to %1 for single query execution and %2 for all queries execution).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se c&apos;è più di una query nella finestra dell&apos;editor SQL, allora (se questa opzione è abilitata) verrà eseguita solo una singola query - quella sotto il cursore dell&apos;inserimento della tastiera. Altrimenti tutte le query verranno eseguite. È sempre possibile limitare le query da eseguire selezionando quelle query prima di richiamarne l&apos;esecuzione. È inoltre possibile utilizzare scorciatoie dedicate per l&apos;esecuzione in una modalità o nell&apos;altra (attualmente configurate a %1 per l&apos;esecuzione di una singola interrogazione e %2 per l&apos;esecuzione di tutte le query).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <source>History size:</source>
-      <translation type="vanished">Dimensione cronologia:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1139"/>
@@ -1346,10 +1334,6 @@
       <location filename="../dialogs/configdialog.ui" line="1059"/>
       <source>Wrap lines in SQL editor</source>
       <translation>A capo automatico di righe nell&apos;editor SQL</translation>
-    </message>
-    <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights entire query that is currently under the insertion cursor. It&apos;s the same query that will be executed when you hit &amp;quot;Execute query&amp;quot; hotkey or button (unless configured otherwise).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Evidenzia l&apos;intera query che è attualmente sotto il cursore di inserimento. Essa è la query che verrà eseguita quando si preme il tasto di scelta rapida o il pulsante &amp;quot;Esegui query&amp;quot; (a meno che non sia configurato differentemente).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1046"/>
@@ -1454,32 +1438,32 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1030"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1043"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1069"/>
       <source>Disable blinking text cursor</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Disable blinking text cursor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1091"/>
       <source>Trigger assistant after typing a dot</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Trigger assistant after typing a dot</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1104"/>
       <source>History</source>
-      <translation type="unfinished">Cronologia</translation>
+      <translation>Cronologia</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
       <source>Query history size:</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Query history size:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1396"/>
@@ -1590,7 +1574,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2509"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2525"/>
@@ -1618,17 +1602,9 @@
       <translation>Carattere campo di stato</translation>
     </message>
     <message>
-      <source>Code assistant settings</source>
-      <translation type="vanished">Impostazioni dell&apos;assistente codice</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="1088"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se questa opzione è abilitata, l&apos;assistente del codice verrà attivato quando l&apos;utente preme per esempio &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; per proporre colonne della tabella. Se l&apos;opzione è disabilitata, l&apos;utente dovrà premere esplicitamente il tasto di scelta rapida dell&apos;assistente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <source>Automatically trigger the assistant after a dot is typed after an object name</source>
-      <translation type="vanished">Attiva automaticamente l&apos;assistente dopo aver digitato un punto dopo il nome di un oggetto</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="904"/>
