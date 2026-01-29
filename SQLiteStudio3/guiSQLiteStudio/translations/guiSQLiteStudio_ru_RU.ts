@@ -1544,23 +1544,23 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2088"/>
       <source>Toolbars</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Toolbars</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2094"/>
       <location filename="../dialogs/configdialog.ui" line="2104"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2097"/>
       <source>Icon size</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Icon size</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2107"/>
       <source>General.ToolBarIconSize</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">General.ToolBarIconSize</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2222"/>
@@ -4168,13 +4168,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="1012"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1024"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1117"/>

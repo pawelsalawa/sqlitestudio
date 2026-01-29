@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -1545,23 +1545,23 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2088"/>
       <source>Toolbars</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Toolbars</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2094"/>
       <location filename="../dialogs/configdialog.ui" line="2104"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2097"/>
       <source>Icon size</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Icon size</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2107"/>
       <source>General.ToolBarIconSize</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">General.ToolBarIconSize</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2222"/>
@@ -4170,13 +4170,13 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <location filename="../mainwindow.cpp" line="1012"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1024"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1117"/>
