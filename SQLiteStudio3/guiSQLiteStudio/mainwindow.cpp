@@ -1039,8 +1039,11 @@ QMenu* MainWindow::createToolbarStyleMenu()
 
 void MainWindow::applyToolbarStyle(QToolBar* tb)
 {
+    bool useDefault = tb->property(CONSTANT_ICON_SIZE).toBool();
     int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
-    int iconSizeInt = (iconSizePerc <= 0) ? defaultToolbarIconSize : (defaultToolbarIconSize * iconSizePerc) / 100;
+    int iconSizeInt = useDefault || (iconSizePerc <= 0) ?
+                defaultToolbarIconSize :
+                (defaultToolbarIconSize * iconSizePerc) / 100;
     QSize iconSize = QSize(iconSizeInt, iconSizeInt);
     tb->setIconSize(iconSize);
 }
@@ -1050,8 +1053,14 @@ void MainWindow::applyToolbarStyle(QList<QToolBar*> tbList)
     int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
     int iconSizeInt = (iconSizePerc <= 0) ? defaultToolbarIconSize : (defaultToolbarIconSize * iconSizePerc) / 100;
     QSize iconSize = QSize(iconSizeInt, iconSizeInt);
+    QSize defIconSize = QSize(defaultToolbarIconSize, defaultToolbarIconSize);
     for (QToolBar* tb : tbList)
-        tb->setIconSize(iconSize);
+    {
+        if (tb->property(CONSTANT_ICON_SIZE).toBool())
+            tb->setIconSize(defIconSize);
+        else
+            tb->setIconSize(iconSize);
+    }
 }
 
 void MainWindow::updateToolbarStyleActionState()

@@ -152,6 +152,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         T* openMdiWindow(Args&&... args);
 
         static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
+        static_char* CONSTANT_ICON_SIZE = "ConstantIconSize";
 
     protected:
         void closeEvent(QCloseEvent *event);

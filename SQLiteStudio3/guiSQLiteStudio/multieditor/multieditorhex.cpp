@@ -58,14 +58,31 @@ bool MultiEditorHexPlugin::validFor(const DataType& dataType)
     return true;
 }
 
-int MultiEditorHexPlugin::getPriority(const DataType& dataType)
+int MultiEditorHexPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
+    // Returning 3 to force opening hex editor on double-click for binary types or QByteArray values,
+    // but leaving 1 & 2 for specialized editors (e.g. image editor, etc.)
+    if (dataType.isBinary() && value.userType() == QMetaType::QByteArray)
+        return 3;
+
     switch (dataType.getType())
     {
         case DataType::BLOB:
-            return 1;
-        case DataType::BIGINT:
+            return 3;
         case DataType::ANY:
+        case DataType::NONE:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::STRING:
+        case DataType::VARCHAR:
+        case DataType::unknown:
+        {
+            if (value.userType() == QMetaType::QByteArray)
+                return 3;
+
+            break;
+        }
+        case DataType::BIGINT:
         case DataType::DECIMAL:
         case DataType::DOUBLE:
         case DataType::INTEGER:
@@ -73,15 +90,9 @@ int MultiEditorHexPlugin::getPriority(const DataType& dataType)
         case DataType::NUMERIC:
         case DataType::REAL:
         case DataType::BOOLEAN:
-        case DataType::NONE:
-        case DataType::STRING:
-        case DataType::TEXT:
-        case DataType::CHAR:
-        case DataType::VARCHAR:
         case DataType::DATE:
         case DataType::DATETIME:
         case DataType::TIME:
-        case DataType::unknown:
             break;
     }
     return 100;

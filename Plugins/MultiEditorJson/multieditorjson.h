@@ -26,9 +26,11 @@ public:
     void setReadOnly(bool value) override;
     QList<QWidget*> getNoScrollWidgets() override;
     void focusThisWidget() override;
+    QString getPreferredFileFilter();
+
+    static bool isValidJson(const QString& json, QString* errorMsg = nullptr);
 
 private:
-    bool isValidJson(const QString& json, QString* errorMsg = nullptr);
     QString prettifyJson(const QString& json);
     QString condenseJson(const QString& json);
     void updateStatus();
@@ -58,7 +60,7 @@ class MULTIEDITORJSON_EXPORT MultiEditorJsonPlugin : public GenericPlugin, publi
 public:
     MultiEditorWidget* getInstance() override;
     bool validFor(const DataType& dataType) override;
-    int getPriority(const DataType& dataType) override;
+    int getPriority(const QVariant& value, const DataType& dataType) override;
     QString getTabLabel() override;
     bool init() override;
     void deinit() override;

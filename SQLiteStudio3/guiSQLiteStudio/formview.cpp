@@ -103,9 +103,18 @@ void FormView::reloadInternal()
 
     // Recreate
     dataMapper->setModel(model.data());
+    int minWidth = 0;
+    QList<MultiEditor*> editors;
     int i = 0;
     for (SqlQueryModelColumnPtr& column : model->getColumns())
-        addColumn(i++, column.data());
+    {
+        MultiEditor* editor = addColumn(i++, column.data());
+        minWidth = qMax(minWidth, editor->getCornerLabelWidth());
+        editors << editor;
+    }
+
+    for (MultiEditor*& editor : editors)
+        editor->adjustCornerLabelMinWidth(minWidth);
 }
 
 bool FormView::isModified() const

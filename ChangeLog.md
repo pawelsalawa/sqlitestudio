@@ -13,6 +13,9 @@
 - ADDED: #5449 User can now change size of icons on toolbars.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
+- ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
+- ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
+- CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4862 SQL Editor is now tied to a file whenever loads or saves to that file and that tie is restored upon next application session. It also renames editor window to that file name.

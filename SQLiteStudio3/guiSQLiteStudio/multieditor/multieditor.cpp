@@ -28,6 +28,7 @@
 #include <QToolButton>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QFileDialog>
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
@@ -55,20 +56,29 @@ void MultiEditor::init(TabsMode tabsMode)
     cornerLabel = new QLabel();
     QFont font = cornerLabel->font();
     font.setBold(true);
+    font.setPointSizeF(font.pointSizeF() * 1.5);
     cornerLabel->setFont(font);
     cornerLabel->setFrameStyle(QFrame::NoFrame);
     hbox->addWidget(cornerLabel);
     cornerLabel->setVisible(false);
 
+    hbox->addSpacing(10);
+
     nullCheck = new QCheckBox(tr("Null value", "multieditor"));
     hbox->addWidget(nullCheck);
-
-    hbox->addStretch();
 
     stateLabel = new QLabel();
     hbox->addWidget(stateLabel);
 
-    hbox->addSpacing(50);
+    int minWidth = qMax(nullCheck->sizeHint().width(), stateLabel->sizeHint().width());
+    nullCheck->setMinimumWidth(minWidth);
+    stateLabel->setMinimumWidth(minWidth);
+
+    saveToFileButton = createButton(ICONS.SAVE_FILE, tr("Save this value to a file"), SLOT(saveFile()));
+    hbox->addWidget(saveToFileButton);
+
+    loadFromFileButton = createButton(ICONS.OPEN_FILE, tr("Load this value from a file"), SLOT(openFile()));
+    hbox->addWidget(loadFromFileButton);
 
     tabs = new QTabWidget();
     layout()->addWidget(tabs);
@@ -78,14 +88,8 @@ void MultiEditor::init(TabsMode tabsMode)
     {
         case CONFIGURABLE:
         {
-            configBtn = new QToolButton();
-            configBtn->setToolTip(tr("Configure editors for this data type"));
-            configBtn->setIcon(ICONS.CONFIGURE);
-            configBtn->setFocusPolicy(Qt::NoFocus);
-            configBtn->setAutoRaise(true);
-            configBtn->setEnabled(false);
-            connect(configBtn, SIGNAL(clicked()), this, SLOT(configClicked()));
-            tabs->setCornerWidget(configBtn);
+            configBtn = createButton(ICONS.CONFIGURE, tr("Configure editors for this data type"), SLOT(configClicked()));
+            hbox->addWidget(configBtn);
             break;
         }
         case DYNAMIC:
@@ -107,6 +111,8 @@ void MultiEditor::init(TabsMode tabsMode)
         case PRECONFIGURED:
             break;
     }
+
+    hbox->addStretch(); // squeeze to the left
 
     QGraphicsColorizeEffect* effect = new QGraphicsColorizeEffect();
     effect->setColor(Qt::black);
@@ -177,10 +183,9 @@ void MultiEditor::invalidateValue()
         return;
     }
 
-    QWidget* editorWidget = nullptr;
     for (int i = 0; i < tabs->count(); i++)
     {
-        editorWidget = tabs->widget(i);
+        QWidget* editorWidget = tabs->widget(i);
         if (editorWidget == obj)
             continue; // skip sender
 
@@ -237,6 +242,16 @@ void MultiEditor::setValue(const QVariant& value)
     valueModified = false;
 }
 
+void MultiEditor::setValueAndType(const QVariant& value, const DataType& dataType, bool selectTabByValuePriority)
+{
+    if (selectTabByValuePriority)
+        setDataType(dataType, value);
+    else
+        setDataType(dataType);
+
+    setValue(value);
+}
+
 QVariant MultiEditor::getValue() const
 {
     if (nullCheck->isChecked())
@@ -275,6 +290,7 @@ void MultiEditor::setReadOnly(bool value)
 
     stateLabel->setVisible(readOnly);
     nullCheck->setEnabled(!readOnly);
+    loadFromFileButton->setEnabled(!readOnly);
     updateVisibility();
     updateLabel();
 }
@@ -287,12 +303,18 @@ void MultiEditor::setDeletedRow(bool value)
 
 void MultiEditor::setDataType(const DataType& dataType)
 {
+    setDataType(dataType, QVariant());
+}
+
+void MultiEditor::setDataType(const DataType& dataType, const QVariant& forValue)
+{
     this->dataType = dataType;
 
-    for (MultiEditorWidget*& editorWidget : getEditorTypes(dataType))
+    int bestEditorIdx = 0;
+    for (MultiEditorWidget*& editorWidget : getEditorTypes(dataType, forValue, &bestEditorIdx))
         addEditor(editorWidget);
 
-    showTab(0);
+    showTab(bestEditorIdx);
     if (configBtn)
         configBtn->setEnabled(true);
 }
@@ -320,6 +342,29 @@ void MultiEditor::setCornerLabel(const QString &label)
     cornerLabel->setVisible(!label.isNull());
 }
 
+QString MultiEditor::getEditorFileFilter()
+{
+    if (!tabs->currentWidget())
+        return QString();
+
+    return dynamic_cast<MultiEditorWidget*>(tabs->currentWidget())->getPreferredFileFilter();
+}
+
+int MultiEditor::getCornerLabelWidth() const
+{
+    return cornerLabel->sizeHint().width();
+}
+
+void MultiEditor::adjustCornerLabelMinWidth(int value)
+{
+    cornerLabel->setMinimumWidth(value);
+}
+
+void MultiEditor::setSaveButtonVisible(bool visible)
+{
+    saveToFileButton->setVisible(visible);
+}
+
 void MultiEditor::loadBuiltInEditors()
 {
     PLUGINS->loadBuiltInPlugin(new MultiEditorBoolPlugin);
@@ -331,11 +376,37 @@ void MultiEditor::loadBuiltInEditors()
     PLUGINS->loadBuiltInPlugin(new MultiEditorNumericPlugin);
 }
 
-QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
+QString MultiEditor::getFileDialogFilter(FileDialogFilters filter)
+{
+    switch (filter)
+    {
+        case MultiEditor::ALL_FILES:
+            return tr("All files (*)");
+        case MultiEditor::TEXT_FILES:
+            return tr("Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)");
+        case MultiEditor::SQL_FILES:
+            return tr("SQL files (*.sql)");
+        case MultiEditor::BINARY_DATA:
+            return tr("Binary data (*.bin *.dat *.raw)");
+        case MultiEditor::IMAGES:
+            return tr("Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)");
+        case MultiEditor::ARCHIVES:
+            return tr("Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)");
+        case MultiEditor::DOCUMENTS:
+            return tr("Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)");
+        case MultiEditor::EXEUTABLES:
+            return tr("Executables (*.exe *.dll *.so *.dylib)");
+    }
+    return QString();
+}
+
+QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType, const QVariant& value, int* priorityEditorIndex)
 {
     QList<MultiEditorWidget*> editors;
     MultiEditorWidget* editor = nullptr;
 
+    int editorIdx = 0;
+    int currentBestPrio = 999999;
     QString typeStr = dataType.toString().trimmed().toUpper();
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
     if (editorsOrder.contains(typeStr))
@@ -356,8 +427,18 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
             }
 
             editor = plugin->getInstance();
+            if (priorityEditorIndex && currentBestPrio > 1)
+            {
+                int prio = plugin->getPriority(value, dataType);
+                if (prio < currentBestPrio)
+                {
+                    currentBestPrio = prio;
+                    *priorityEditorIndex = editorIdx;
+                }
+            }
             editor->setTabLabel(plugin->getTabLabel());
             editors << editor;
+            editorIdx++;
         }
     }
 
@@ -378,7 +459,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
         if (!plugin->validFor(dataType))
             continue;
 
-        editorWithPrio.first = plugin->getPriority(dataType);
+        editorWithPrio.first = plugin->getPriority(value, dataType);
         editorWithPrio.second = plugin->getInstance();
         editorWithPrio.second->setTabLabel(plugin->getTabLabel());
         sortedEditors << editorWithPrio;
@@ -391,6 +472,9 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
 
     for (EditorWithPriority& e : sortedEditors)
         editors << e.second;
+
+    if (priorityEditorIndex)
+        *priorityEditorIndex = 0;
 
     return editors;
 }
@@ -424,10 +508,9 @@ void MultiEditor::updateNullEffect()
 void MultiEditor::updateValue(const QVariant& newValue)
 {
     invalidatingDisabled = true;
-    MultiEditorWidget* editorWidget = nullptr;
     for (int i = 0; i < tabs->count(); i++)
     {
-        editorWidget = dynamic_cast<MultiEditorWidget*>(tabs->widget(i));
+        MultiEditorWidget* editorWidget = dynamic_cast<MultiEditorWidget*>(tabs->widget(i));
         setValueToWidget(editorWidget, newValue);
     }
     invalidatingDisabled = false;
@@ -494,6 +577,37 @@ void MultiEditor::sortAddTabMenu()
     addTabMenu->insertActions(nullptr, editorActions);
 }
 
+QString MultiEditor::getFileFilter(const QString& customFilter) const
+{
+    QStringList list;
+    list << getFileDialogFilter(ALL_FILES);
+    list << getFileDialogFilter(TEXT_FILES);
+    list << getFileDialogFilter(SQL_FILES);
+    list << getFileDialogFilter(BINARY_DATA);
+    list << getFileDialogFilter(IMAGES);
+    list << getFileDialogFilter(ARCHIVES);
+    list << getFileDialogFilter(DOCUMENTS);
+    list << getFileDialogFilter(EXEUTABLES);
+    if (!customFilter.isEmpty())
+        list << customFilter;
+
+    return list.join(";;");
+}
+
+QToolButton* MultiEditor::createButton(const QIcon& icon, const QString& tooltip, const char* slot)
+{
+    int height = nullCheck->sizeHint().height();
+
+    QToolButton* btn = new QToolButton();
+    btn->setAutoRaise(true);
+    btn->setIcon(icon);
+    btn->setIconSize(QSize(height, height));
+    btn->setFocusPolicy(Qt::NoFocus);
+    btn->setToolTip(tooltip);
+    connect(btn, SIGNAL(clicked()), this, slot);
+    return btn;
+}
+
 void MultiEditor::removeTab(int idx)
 {
     MultiEditorWidget* editor = dynamic_cast<MultiEditorWidget*>(tabs->widget(idx));
@@ -512,4 +626,98 @@ void MultiEditor::removeTab(int idx)
 
     addPluginToMenu(plugin);
     sortAddTabMenu();
+}
+
+void MultiEditor::openFile()
+{
+    QString customFilter = getEditorFileFilter();
+    QString dir = getFileDialogInitPath();
+    QString filter = getFileFilter(customFilter);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open"), dir, filter, customFilter.isEmpty() ? nullptr : &customFilter);
+    if (fileName.isNull())
+        return;
+
+    setFileDialogInitPathByFile(fileName);
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        notifyError(tr("Could not open file %1 for reading.").arg(fileName));
+        return;
+    }
+
+    QByteArray newData = file.readAll();
+    file.close();
+
+    updateValue(newData);
+    emit modified();
+}
+
+void MultiEditor::saveFile()
+{
+    QString customFilter = getEditorFileFilter();
+    QString dir = getFileDialogInitPath();
+    QString filter = getFileFilter(customFilter);
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save"), dir, filter, customFilter.isEmpty() ? nullptr : &customFilter);
+    if (fileName.isNull())
+        return;
+
+    setFileDialogInitPathByFile(fileName);
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        notifyError(tr("Could not open file %1 for writting.").arg(fileName));
+        return;
+    }
+
+    bool ok = false;
+    QVariant value = getValue();
+    switch (value.userType())
+    {
+        case QMetaType::QByteArray:
+        {
+            QDataStream out(&file);
+            QByteArray ba = value.toByteArray();
+            out.writeRawData(ba.constData(), ba.size());
+            ok = (out.status() == QDataStream::Ok);
+            break;
+        }
+        case QMetaType::Int:
+        case QMetaType::Bool:
+        {
+            QTextStream out(&file);
+            out << value.toInt();
+            ok = (out.status() == QTextStream::Ok);
+            break;
+        }
+        case QMetaType::Double:
+        {
+            QTextStream out(&file);
+            out << value.toDouble();
+            ok = (out.status() == QTextStream::Ok);
+            break;
+        }
+        case QMetaType::UInt:
+        case QMetaType::LongLong:
+        {
+            QTextStream out(&file);
+            out << value.toLongLong();
+            ok = (out.status() == QTextStream::Ok);
+            break;
+        }
+        default:
+        {
+            QTextStream out(&file);
+            out.setEncoding(QStringConverter::Utf8);
+            out << value.toString();
+            ok = (out.status() == QTextStream::Ok);
+            break;
+        }
+    }
+
+    if (!ok)
+        notifyError(tr("Could not write data into the file %1").arg(fileName));
+
+    file.close();
 }

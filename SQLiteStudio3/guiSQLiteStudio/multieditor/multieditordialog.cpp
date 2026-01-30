@@ -32,6 +32,11 @@ MultiEditorDialog::~MultiEditorDialog()
     delete multiEditor;
 }
 
+void MultiEditorDialog::setValue(const QVariant& value, const DataType& dataType)
+{
+    multiEditor->setValueAndType(value, dataType, true);
+}
+
 void MultiEditorDialog::setValue(const QVariant& value)
 {
     multiEditor->setValue(value);

@@ -16,6 +16,7 @@ class GUI_API_EXPORT MultiEditorWidget : public QWidget
         virtual void setReadOnly(bool value) = 0;
         virtual QList<QWidget*> getNoScrollWidgets() = 0;
         virtual void focusThisWidget() = 0;
+        virtual QString getPreferredFileFilter();
 
         void installEventFilter(QObject* filterObj);
 

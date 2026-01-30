@@ -241,8 +241,9 @@ bool MultiEditorDateTimePlugin::validFor(const DataType& dataType)
     return false;
 }
 
-int MultiEditorDateTimePlugin::getPriority(const DataType& dataType)
+int MultiEditorDateTimePlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
+    UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:
@@ -264,9 +265,9 @@ int MultiEditorDateTimePlugin::getPriority(const DataType& dataType)
         case DataType::unknown:
             break;
         case DataType::DATE:
-            return 2;
+            return 5;
         case DataType::DATETIME:
-            return 1;
+            return 4;
     }
     return 10;
 }

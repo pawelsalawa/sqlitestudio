@@ -25,6 +25,7 @@ class MultiEditorImage : public MultiEditorWidget
         QList<QWidget*> getNoScrollWidgets();
         void focusThisWidget();
         void notifyAboutUnload();
+        QString getPreferredFileFilter();
 
     private:
         void scale(double factor);
@@ -33,14 +34,11 @@ class MultiEditorImage : public MultiEditorWidget
         QByteArray imgFormat;
         QScrollArea* scrollArea = nullptr;
         QLabel* imgLabel = nullptr;
-        QAction* loadAction = nullptr;
         QAction* zoomInAct = nullptr;
         QAction* zoomOutAct = nullptr;
         double currentZoom = 1.0;
 
     private slots:
-        void openFile();
-        void saveFile();
         void zoomIn();
         void zoomOut();
         void resetZoom();
@@ -55,7 +53,7 @@ class MULTIEDITORIMAGE_EXPORT MultiEditorImagePlugin : public GenericPlugin, pub
     public:
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
-        int getPriority(const DataType& dataType);
+        int getPriority(const QVariant& value, const DataType& dataType);
         QString getTabLabel();
         bool init();
         void deinit();

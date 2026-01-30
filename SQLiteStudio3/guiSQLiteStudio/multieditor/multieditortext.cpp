@@ -2,6 +2,7 @@
 #include "common/unused.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
+#include "common/unused.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>
@@ -160,8 +161,9 @@ bool MultiEditorTextPlugin::validFor(const DataType& dataType)
     return true;
 }
 
-int MultiEditorTextPlugin::getPriority(const DataType& dataType)
+int MultiEditorTextPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
+    UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:
@@ -186,7 +188,7 @@ int MultiEditorTextPlugin::getPriority(const DataType& dataType)
         case DataType::unknown:
             break;
     }
-    return 1;
+    return 4;
 }
 
 QString MultiEditorTextPlugin::getTabLabel()

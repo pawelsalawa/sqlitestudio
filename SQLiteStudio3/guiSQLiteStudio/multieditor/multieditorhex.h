@@ -43,7 +43,7 @@ class GUI_API_EXPORT MultiEditorHexPlugin : public BuiltInPlugin, public MultiEd
     public:
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
-        int getPriority(const DataType& dataType);
+        int getPriority(const QVariant& value, const DataType& dataType);
         QString getTabLabel();
 };
 

@@ -448,7 +448,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType:
         if (!plugin->validFor(modelDataType))
             continue;
 
-        editorWithPrio.first = plugin->getPriority(modelDataType);
+        editorWithPrio.first = plugin->getPriority(QVariant(), modelDataType);
         editorWithPrio.second = plugin;
         sortedPlugins << editorWithPrio;
     }

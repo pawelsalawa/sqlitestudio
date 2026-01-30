@@ -65,7 +65,7 @@ class GUI_API_EXPORT MultiEditorBoolPlugin : public BuiltInPlugin, public MultiE
     public:
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
-        int getPriority(const DataType& dataType);
+        int getPriority(const QVariant& value, const DataType& dataType);
         QString getTabLabel();
 };
 

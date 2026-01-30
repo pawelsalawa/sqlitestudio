@@ -5,6 +5,11 @@ MultiEditorWidget::MultiEditorWidget(QWidget *parent) :
 {
 }
 
+QString MultiEditorWidget::getPreferredFileFilter()
+{
+    return QString();
+}
+
 void MultiEditorWidget::installEventFilter(QObject* filterObj)
 {
     QObject::installEventFilter(filterObj);

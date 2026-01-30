@@ -15,6 +15,7 @@ class GUI_API_EXPORT MultiEditorDialog : public QDialog
         explicit MultiEditorDialog(QWidget *parent = 0);
         ~MultiEditorDialog();
 
+        void setValue(const QVariant& value, const DataType& dataType);
         void setValue(const QVariant& value);
         QVariant getValue();
 

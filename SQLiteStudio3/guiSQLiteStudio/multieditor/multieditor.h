@@ -40,12 +40,25 @@ class GUI_API_EXPORT MultiEditor : public QWidget
             DYNAMIC             /**< No tabs are loaded, but user has button to add new tabs, can close them and reorder them. */
         };
 
+        enum FileDialogFilters
+        {
+            ALL_FILES,   /**< *.* */
+            TEXT_FILES,  /**< *.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml */
+            SQL_FILES,   /**< *.sql */
+            BINARY_DATA, /**< *.bin *.dat *.raw */
+            IMAGES,      /**< *.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng */
+            ARCHIVES,    /**< *.zip *.7z *.rar *.tar *.gz *.bz2 *.xz */
+            DOCUMENTS,   /**< *.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods */
+            EXEUTABLES   /**< *.exe *.dll *.so *.dylib */
+        };
+
         explicit MultiEditor(QWidget *parent = nullptr, TabsMode tabsMode = CONFIGURABLE);
 
         void addEditor(MultiEditorWidget* editorWidget);
         void showTab(int idx);
 
         void setValue(const QVariant& value);
+        void setValueAndType(const QVariant& value, const DataType& dataType, bool selectTabByValuePriority = false);
         QVariant getValue() const;
         bool isModified() const;
         bool eventFilter(QObject* obj, QEvent* event);
@@ -56,6 +69,10 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void enableFk(Db* db, SqlQueryModelColumn* column);
         void focusThisEditor();
         void setCornerLabel(const QString& label);
+        QString getEditorFileFilter();
+        int getCornerLabelWidth() const;
+        void adjustCornerLabelMinWidth(int value);
+        void setSaveButtonVisible(bool visible);
 
         template <class T>
         T* getEditorWidget() const
@@ -71,9 +88,11 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         }
 
         static void loadBuiltInEditors();
+        static QString getFileDialogFilter(FileDialogFilters filter);
 
     private:
         void init(TabsMode tabsMode);
+        void setDataType(const DataType& dataType, const QVariant& forValue);
         void updateVisibility();
         void updateNullEffect();
         void updateValue(const QVariant& newValue);
@@ -83,14 +102,18 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void initAddTabMenu();
         void addPluginToMenu(MultiEditorWidgetPlugin* plugin);
         void sortAddTabMenu();
+        QString getFileFilter(const QString& customFilter) const;
+        QToolButton* createButton(const QIcon& icon, const QString& tooltip, const char* slot);
 
-        static QList<MultiEditorWidget*> getEditorTypes(const DataType& dataType);
+        static QList<MultiEditorWidget*> getEditorTypes(const DataType& dataType, const QVariant& value, int* priorityEditorIndex = nullptr);
 
         static const int margins = 2;
         static const int spacing = 2;
 
         QLabel* cornerLabel = nullptr;
         QCheckBox* nullCheck = nullptr;
+        QToolButton* saveToFileButton = nullptr;
+        QToolButton* loadFromFileButton = nullptr;
         QTabWidget* tabs = nullptr;
         QList<MultiEditorWidget*> editors;
         QLabel* stateLabel = nullptr;
@@ -124,6 +147,8 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void invalidateValue();
         void setModified();
         void removeTab(int idx);
+        void openFile();
+        void saveFile();
 
     signals:
         void modified();

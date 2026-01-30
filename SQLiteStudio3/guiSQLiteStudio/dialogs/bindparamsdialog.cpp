@@ -59,17 +59,25 @@ void BindParamsDialog::initEditors()
 
     if (firstEditor)
         firstEditor->focusThisEditor();
+
+    int minWidth = 0;
+    for (auto&& editor : editors.values())
+        minWidth = qMax(minWidth, editor->getCornerLabelWidth());
+
+    for (auto&& editor : editors.values())
+        editor->adjustCornerLabelMinWidth(minWidth);
 }
 
 MultiEditor* BindParamsDialog::initEditor(BindParam* param, const QVariant& cachedValue)
 {
     // Label
-    static_qstring(nameTpl, "[%1] %2");
-    QString label = nameTpl.arg(param->position + 1).arg(param->originalName);
+    static_qstring(nameTpl, "[%1]");
+    QString label = param->originalName == "?" ? nameTpl.arg(param->position + 1) : param->originalName;
 
     // MultiEditor
     MultiEditor* multiEditor = new MultiEditor(this, MultiEditor::DYNAMIC);
     multiEditor->setReadOnly(false);
+    multiEditor->setSaveButtonVisible(false);
     multiEditor->setCornerLabel(label);
     contents->layout()->addWidget(multiEditor);
     contents->layout()->setAlignment(multiEditor, Qt::AlignTop);

@@ -2,6 +2,7 @@
 #include "iconmanager.h"
 #include "services/notifymanager.h"
 #include "uiconfig.h"
+#include "mainwindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QToolBar>
@@ -10,6 +11,7 @@
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QFont>
+#include <multieditor/multieditor.h>
 
 MultiEditorJson::MultiEditorJson()
 {
@@ -20,7 +22,8 @@ MultiEditorJson::MultiEditorJson()
     // Create toolbar
     toolbar = new QToolBar();
     toolbar->setIconSize(QSize(16, 16));
-    
+    toolbar->setProperty(MainWindow::CONSTANT_ICON_SIZE, true);
+
     prettifyAction = toolbar->addAction(ICONS.FORMAT_SQL, tr("Prettify"), this, SLOT(onPrettify()));
     prettifyAction->setToolTip(tr("Format JSON with indentation"));
     
@@ -76,7 +79,10 @@ void MultiEditorJson::setValue(const QVariant& value)
 
 QVariant MultiEditorJson::getValue()
 {
-    return textEdit->toPlainText();
+    QString newStr = textEdit->document()->toRawText();
+    newStr.replace(QChar::ParagraphSeparator, '\n');
+    newStr.replace(QChar::LineSeparator, '\n');
+    return newStr;
 }
 
 void MultiEditorJson::setReadOnly(bool value)
@@ -97,6 +103,11 @@ QList<QWidget*> MultiEditorJson::getNoScrollWidgets()
 void MultiEditorJson::focusThisWidget()
 {
     textEdit->setFocus();
+}
+
+QString MultiEditorJson::getPreferredFileFilter()
+{
+    return tr("JSON files (*.json, *.txt)");
 }
 
 bool MultiEditorJson::isValidJson(const QString& json, QString* errorMsg)
@@ -243,8 +254,16 @@ bool MultiEditorJsonPlugin::validFor(const DataType& dataType)
     return false;
 }
 
-int MultiEditorJsonPlugin::getPriority(const DataType& dataType)
+int MultiEditorJsonPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
+    if (value.userType() == QMetaType::QString)
+    {
+        QString str = value.toString();
+        // First quick test for [ or { to avoid unnecessary JSON parsing
+        if ((str.startsWith("[") || str.startsWith("{")) && MultiEditorJson::isValidJson(str))
+            return 1; // Highest priority for valid JSON strings
+    }
+
     switch (dataType.getType())
     {
         case DataType::TEXT:

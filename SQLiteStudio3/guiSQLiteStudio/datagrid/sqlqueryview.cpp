@@ -29,6 +29,8 @@
 #include <QCryptographicHash>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <services/pluginmanager.h>
+#include <multieditor/multieditorwidgetplugin.h>
 
 CFG_KEYS_DEFINE(SqlQueryView)
 
@@ -435,10 +437,15 @@ void SqlQueryView::invertSelection()
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
-    if (item->getColumn()->dataType.getType() == DataType::BLOB)
+    QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
+    for (MultiEditorWidgetPlugin* plugin : plugins)
     {
-        openValueEditor(item);
-        return false;
+        int prio = plugin->getPriority(item->getValue(), item->getColumn()->dataType);
+        if (prio <= 3)
+        {
+            openValueEditor(item);
+            return false;
+        }
     }
     return true;
 }
@@ -993,9 +1000,8 @@ void SqlQueryView::openValueEditor(SqlQueryItem* item)
     if (!column->getFkConstraints().isEmpty())
         editor.enableFk(getModel()->getDb(), column);
 
-    editor.setDataType(column->dataType);
     editor.setWindowTitle(tr("Edit value"));
-    editor.setValue(item->getValue());
+    editor.setValue(item->getValue(), column->dataType);
     editor.setReadOnly(!column->canEdit());
 
     if (editor.exec() == QDialog::Rejected)
