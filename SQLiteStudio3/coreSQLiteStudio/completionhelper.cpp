@@ -76,8 +76,21 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
     if (!db || !db->isValid())
         return Results();
 
+    // Selecting query at cursor position
+    int queryStartPos;
+    QString adjustedSql = getQueryWithPosition(fullSql, cursorPosition, &queryStartPos);
+    cursorPosition -= queryStartPos;
+
+    // Trim left
+    QString trimmed = trimmedLeft(adjustedSql);
+    int lenDiff = adjustedSql.length() - trimmed.length();
+    if (cursorPosition >= lenDiff)
+        cursorPosition -= lenDiff;
+    else if (cursorPosition > 0)
+        cursorPosition = 0;
+
     // Get SQL up to the current cursor position.
-    QString adjustedSql = fullSql.mid(0, cursorPosition);
+    adjustedSql = trimmed.mid(0, cursorPosition);
 
     // If asked for completion when being in the middle of keyword or ID,
     // then remove that unfinished keyword/ID from sql and put it into
@@ -93,7 +106,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
 
     // Parse the full sql in regular mode to extract query statement
     // for the results comparer and table-alias mapping.
-    parseFullSql();
+    parseFullSql(adjustedSql);
 
     // Collect used db names in original query (before using attach names)
     collectOtherDatabases();
@@ -742,6 +755,9 @@ QList<ExpectedTokenPtr> CompletionHelper::getCollations()
 
 QList<ExpectedTokenPtr> CompletionHelper::getJoinExpression()
 {
+    if (!parsedQuery)
+        return QList<ExpectedTokenPtr>();
+
     // Finding JoinSourceOther at cursor position - 1, because last token ending index is exclusive, not inclusive.
     SqliteSelect::Core::JoinSourceOther* thisOtherSrc = parsedQuery->findTypedStatementWithPosition<SqliteSelect::Core::JoinSourceOther>(cursorPosition - 1);
     if (!thisOtherSrc)
@@ -1117,15 +1133,12 @@ bool CompletionHelper::isFilterType(Token::Type type)
     }
 }
 
-void CompletionHelper::parseFullSql()
+void CompletionHelper::parseFullSql(const QString& sql)
 {
-    QString sql = fullSql;
-
-    // Selecting query at cursor position
-    QString query = getQueryWithPosition(sql, cursorPosition);
+    QString query = sql;
 
     // Token list of the query. Also useful, not only parsed query.
-    queryTokens = Lexer::tokenize(query);
+    queryTokens = Lexer::tokenize(sql);
     queryTokens.trim();
 
     // Completing query

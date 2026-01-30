@@ -304,23 +304,16 @@ void removeDuplicates(QList<T>& list)
 }
 
 API_EXPORT size_t qHash(const QVariant& var);
-
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
-
 API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes);
-
 API_EXPORT QByteArray serializeToBytes(const QVariant& value, QDataStream::Version version);
-
 API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes, QDataStream::Version version);
-
 API_EXPORT QString readFileContents(const QString& path, QString* err);
-
 API_EXPORT QString toNativePath(const QString& path);
-
 API_EXPORT void runInThread(std::function<void()> func);
-
 API_EXPORT bool isNull(const QVariant& v);
-
+API_EXPORT void trimLeft(QString& s);
+API_EXPORT QString trimmedLeft(const QString& s);
 API_EXPORT bool contains(const QStringList& list, const QStringList& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT bool contains(const QSet<QString>& set, const QStringList& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT bool contains(const QStringList& list, const QSet<QString>& searched, Qt::CaseSensitivity cs = Qt::CaseSensitive);

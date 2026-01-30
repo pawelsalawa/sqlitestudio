@@ -1235,3 +1235,19 @@ bool contains(const QSet<QString>& list, const QSet<QString>& searched, Qt::Case
     }
     return true;
 }
+
+void trimLeft(QString& s)
+{
+    int i = 0;
+    while (i < s.size() && s.at(i).isSpace())
+        ++i;
+
+    s.remove(0, i);
+}
+
+QString trimmedLeft(const QString& s)
+{
+    QString res = s;
+    trimLeft(res);
+    return res;
+}

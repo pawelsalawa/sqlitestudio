@@ -21,6 +21,7 @@
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
+- BIGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).
