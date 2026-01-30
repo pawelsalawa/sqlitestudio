@@ -78,19 +78,19 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
 
     // Selecting query at cursor position
     int queryStartPos;
-    QString adjustedSql = getQueryWithPosition(fullSql, cursorPosition, &queryStartPos);
+    QString query = getQueryWithPosition(fullSql, cursorPosition, &queryStartPos);
     cursorPosition -= queryStartPos;
 
     // Trim left
-    QString trimmed = trimmedLeft(adjustedSql);
-    int lenDiff = adjustedSql.length() - trimmed.length();
+    QString trimmed = trimmedLeft(query);
+    int lenDiff = query.length() - trimmed.length();
     if (cursorPosition >= lenDiff)
         cursorPosition -= lenDiff;
     else if (cursorPosition > 0)
         cursorPosition = 0;
 
     // Get SQL up to the current cursor position.
-    adjustedSql = trimmed.mid(0, cursorPosition);
+    QString adjustedSql = trimmed.mid(0, cursorPosition);
 
     // If asked for completion when being in the middle of keyword or ID,
     // then remove that unfinished keyword/ID from sql and put it into
@@ -106,7 +106,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
 
     // Parse the full sql in regular mode to extract query statement
     // for the results comparer and table-alias mapping.
-    parseFullSql(adjustedSql);
+    parseFullSql(query);
 
     // Collect used db names in original query (before using attach names)
     collectOtherDatabases();
