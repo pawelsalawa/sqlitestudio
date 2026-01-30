@@ -278,44 +278,12 @@
       <translation type="unfinished">Redo</translation>
     </message>
     <message>
-      <source>The number of changes pending for commit. Click to see details.</source>
-      <translation type="unfinished">The number of changes pending for commit. Click to see details.</translation>
-    </message>
-    <message>
       <source>Create a table</source>
       <translation type="unfinished">Create a table</translation>
     </message>
     <message>
-      <source>Add a foreign key</source>
-      <translation type="unfinished">Add a foreign key</translation>
-    </message>
-    <message>
-      <source>Delete selected items</source>
-      <translation type="unfinished">Delete selected items</translation>
-    </message>
-    <message>
       <source>Select all</source>
       <translation type="unfinished">Select all</translation>
-    </message>
-    <message>
-      <source>Set table color</source>
-      <translation type="unfinished">Set table color</translation>
-    </message>
-    <message>
-      <source>Use straight line</source>
-      <translation type="unfinished">Use straight line</translation>
-    </message>
-    <message>
-      <source>Use curvy line</source>
-      <translation type="unfinished">Use curvy line</translation>
-    </message>
-    <message>
-      <source>Use square line</source>
-      <translation type="unfinished">Use square line</translation>
-    </message>
-    <message>
-      <source>Choose line type</source>
-      <translation type="unfinished">Choose line type</translation>
     </message>
     <message>
       <source>Filter items</source>
@@ -369,16 +337,58 @@
       <translation type="unfinished">ERD editor</translation>
     </message>
     <message>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <source>The number of changes pending for commit. Click to see details.</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">The number of changes pending for commit. Click to see details.</translation>
+    </message>
+    <message>
+      <source>Add a foreign key</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Add a foreign key</translation>
+    </message>
+    <message>
+      <source>Delete selected items</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Delete selected items</translation>
+    </message>
+    <message>
       <source>Auto-arrange (local forces)</source>
+      <comment>ERD editor</comment>
       <translation type="unfinished">Auto-arrange (local forces)</translation>
     </message>
     <message>
       <source>Auto-arrange (global balance)</source>
+      <comment>ERD editor</comment>
       <translation type="unfinished">Auto-arrange (global balance)</translation>
     </message>
     <message>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <source>Set table color</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Set table color</translation>
+    </message>
+    <message>
+      <source>Use straight line</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Use straight line</translation>
+    </message>
+    <message>
+      <source>Use curvy line</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Use curvy line</translation>
+    </message>
+    <message>
+      <source>Use square line</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Use square line</translation>
+    </message>
+    <message>
+      <source>Choose line type</source>
+      <comment>ERD editor</comment>
+      <translation type="unfinished">Choose line type</translation>
     </message>
   </context>
   <context>
