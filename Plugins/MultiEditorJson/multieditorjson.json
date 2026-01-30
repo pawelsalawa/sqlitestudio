@@ -1,0 +1,7 @@
+{
+    "type":         "MultiEditorWidgetPlugin",
+    "title":        "JSON editor/viewer",
+    "description":  "Introduces JSON editor/viewer tab with syntax highlighting for cell editor and form view.",
+    "version":      10000,
+    "author":       "CalumKnott"
+}

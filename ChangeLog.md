@@ -5,6 +5,7 @@
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #5237 ARM64 code compatibility.
 - ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
+- ADDED: #4027 Added data editor plugin for JSON - with syntax validation and highlighting for editing table data. Contributed by @CalumKnott!
 - ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
