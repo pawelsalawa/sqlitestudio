@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -891,7 +891,7 @@
       <location filename="../completer/completerwindow.cpp" line="245"/>
       <source>Join condition: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Join condition: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="288"/>
