@@ -1,6 +1,7 @@
 #include "multieditorjson.h"
 #include "iconmanager.h"
 #include "services/notifymanager.h"
+#include "uiconfig.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QToolBar>
@@ -44,10 +45,7 @@ MultiEditorJson::MultiEditorJson()
     textEdit = new QPlainTextEdit();
     
     // Set monospace font
-    QFont font("Courier");
-    font.setStyleHint(QFont::Monospace);
-    font.setPointSize(10);
-    textEdit->setFont(font);
+    textEdit->setFont(CFG_UI.Fonts.SqlEditor.get());
     
     // Enable line wrapping for better readability
     textEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
