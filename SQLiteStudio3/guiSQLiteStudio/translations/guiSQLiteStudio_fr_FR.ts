@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l'extrait</translation>
+      <translation>Nom de l&apos;extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -888,7 +888,13 @@
       <translation>Fonction Pragma : %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="286"/>
+      <location filename="../completer/completerwindow.cpp" line="245"/>
+      <source>Join condition: %1</source>
+      <comment>completer statusbar</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../completer/completerwindow.cpp" line="288"/>
       <source>Insert a code snippet</source>
       <translation>Insérer un extrait de code</translation>
     </message>

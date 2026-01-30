@@ -888,7 +888,13 @@ Key</translation>
       <translation>Pragma função: %1</translation>
     </message>
     <message>
-      <location filename="../completer/completerwindow.cpp" line="286"/>
+      <location filename="../completer/completerwindow.cpp" line="245"/>
+      <source>Join condition: %1</source>
+      <comment>completer statusbar</comment>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../completer/completerwindow.cpp" line="288"/>
       <source>Insert a code snippet</source>
       <translation>Inserir trecho de código</translation>
     </message>
