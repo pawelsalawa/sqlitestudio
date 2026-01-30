@@ -118,38 +118,38 @@
       <translation>Nom de la contrainte</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="211"/>
       <source>Error message</source>
       <translation>Message d’erreur</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="257"/>
+      <location filename="../completionhelper.cpp" line="260"/>
       <source>Any word</source>
       <translation>N’importe quel mot</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="263"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
       <location filename="../completionhelper.cpp" line="266"/>
+      <location filename="../completionhelper.cpp" line="269"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="278"/>
+      <location filename="../completionhelper.cpp" line="281"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="441"/>
       <source>Default database</source>
       <translation>Base de données par défaut</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="439"/>
+      <location filename="../completionhelper.cpp" line="442"/>
       <source>Temporary objects database</source>
       <translation>Objets temporaires de base de données</translation>
     </message>
@@ -823,12 +823,12 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
       <translation>Requête imcomplète.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2688"/>
       <source>Parser stack overflow</source>
       <translation>Analyse dépassement pile</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6297"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6306"/>
       <source>Syntax error</source>
       <translation>Erreur de syntaxe</translation>
     </message>

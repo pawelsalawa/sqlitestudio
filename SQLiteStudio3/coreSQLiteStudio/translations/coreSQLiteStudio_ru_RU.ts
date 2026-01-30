@@ -118,38 +118,38 @@
       <translation>Имя ограничения</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="211"/>
       <source>Error message</source>
       <translation>Сообщение об ошибке</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="257"/>
+      <location filename="../completionhelper.cpp" line="260"/>
       <source>Any word</source>
       <translation>Любое слово</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="263"/>
       <source>String</source>
       <translation>Строка</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
       <location filename="../completionhelper.cpp" line="266"/>
+      <location filename="../completionhelper.cpp" line="269"/>
       <source>Number</source>
       <translation>Число</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="278"/>
+      <location filename="../completionhelper.cpp" line="281"/>
       <source>BLOB literal</source>
       <translation>Значение BLOB</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="441"/>
       <source>Default database</source>
       <translation>База данных по умолчанию</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="439"/>
+      <location filename="../completionhelper.cpp" line="442"/>
       <source>Temporary objects database</source>
       <translation>База данных временных объектов</translation>
     </message>
@@ -823,12 +823,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2688"/>
       <source>Parser stack overflow</source>
       <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6297"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6306"/>
       <source>Syntax error</source>
       <translation>Синтаксическая ошибка</translation>
     </message>

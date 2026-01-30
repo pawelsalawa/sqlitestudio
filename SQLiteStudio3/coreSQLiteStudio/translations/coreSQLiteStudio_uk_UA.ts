@@ -118,38 +118,38 @@
       <translation>Назва обмеження</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="211"/>
       <source>Error message</source>
       <translation>Повідомлення про помилку</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="257"/>
+      <location filename="../completionhelper.cpp" line="260"/>
       <source>Any word</source>
       <translation>Будь-яке слово</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="263"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
       <location filename="../completionhelper.cpp" line="266"/>
+      <location filename="../completionhelper.cpp" line="269"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="278"/>
+      <location filename="../completionhelper.cpp" line="281"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="438"/>
+      <location filename="../completionhelper.cpp" line="441"/>
       <source>Default database</source>
       <translation>База даних за замовчуванням</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="439"/>
+      <location filename="../completionhelper.cpp" line="442"/>
       <source>Temporary objects database</source>
       <translation>База даних тимчасових об&apos;єктів</translation>
     </message>
@@ -823,12 +823,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Незавершений запит.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2688"/>
       <source>Parser stack overflow</source>
       <translation>Переповнення стека аналізатора</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6297"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6306"/>
       <source>Syntax error</source>
       <translation>Синтаксична помилка</translation>
     </message>
