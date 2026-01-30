@@ -106,6 +106,8 @@ const QString Token::typeToString(Token::Type type)
             return "CTX_VIEW";
         case Token::CTX_JOIN_OPTS:
             return "CTX_JOIN_OPTS";
+        case Token::CTX_JOIN_EXPR:
+            return "CTX_JOIN_EXPR";
         case Token::INVALID:
             return "INVALID";
         case Token::OTHER:

@@ -194,9 +194,12 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
         case Token::CTX_CONSTRAINT:
             results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Constraint name"));
             break;
+        case Token::CTX_JOIN_EXPR:
+            results += getJoinExpression();
+            break;
         case Token::CTX_FK_MATCH:
         {
-            for (QString kw : getFkMatchKeywords())
+            for (QString& kw : getFkMatchKeywords())
                 results += getExpectedToken(ExpectedToken::KEYWORD, kw);
 
             break;
@@ -735,6 +738,121 @@ QList<ExpectedTokenPtr> CompletionHelper::getCollations()
         expectedTokens += getExpectedToken(ExpectedToken::COLLATION, row->value("name").toString());
 
     return expectedTokens;
+}
+
+QList<ExpectedTokenPtr> CompletionHelper::getJoinExpression()
+{
+    // Finding JoinSourceOther at cursor position - 1, because last token ending index is exclusive, not inclusive.
+    SqliteSelect::Core::JoinSourceOther* thisOtherSrc = parsedQuery->findTypedStatementWithPosition<SqliteSelect::Core::JoinSourceOther>(cursorPosition - 1);
+    if (!thisOtherSrc)
+        return QList<ExpectedTokenPtr>();
+
+    SqliteSelect::Core::SingleSource* thisSingleSrc = thisOtherSrc->singleSource;
+    if (!thisSingleSrc)
+        return QList<ExpectedTokenPtr>();
+
+    if (thisSingleSrc->table.isNull())
+    {
+        // Currently this is only supported for table sources.
+        // Supporting subselects (thisSingleSrc->select) or sub-joins (thisSingleSrc->joinSource) would require more work.
+        // Table-value functions are pretty much out of scope.
+        return QList<ExpectedTokenPtr>();
+    }
+
+    // Determine if "this source" is in other sources, or is it the "single source" of this join source
+    SqliteSelect::Core::JoinSource* joinSrc = thisSingleSrc->findClosestTypedParentStatement<SqliteSelect::Core::JoinSource>();
+    QList<SqliteSelect::Core::SingleSource*> singleSourcesToProcess = joinSrc->otherSources | MAP(os, {return os->singleSource;});
+    if (singleSourcesToProcess.contains(thisSingleSrc))
+    {
+        // "thisSrc" is one of the "other sources" - need to swap it out with the "single source"
+        singleSourcesToProcess.removeOne(thisSingleSrc);
+        singleSourcesToProcess << joinSrc->singleSource;
+    }
+
+    // Parse table from thisSingleSrc
+    SqliteCreateTablePtr thisCreateTable = schemaResolver->getParsedTable(thisSingleSrc->database, thisSingleSrc->table, true);
+    if (!thisCreateTable)
+    {
+        qWarning() << "Failed to parse table for JOIN expression completion:" << thisSingleSrc->database << "." << thisSingleSrc->table;
+        return QList<ExpectedTokenPtr>();
+    }
+
+    // Compare this to other join sources and generate pairing condition expressions
+    QList<ExpectedTokenPtr> results;
+    for (SqliteSelect::Core::SingleSource* otherSingleSrc : singleSourcesToProcess)
+    {
+        if (otherSingleSrc->table.isNull())
+            continue;
+
+        // Parse the other table
+        SqliteCreateTablePtr otherCreateTable = schemaResolver->getParsedTable(otherSingleSrc->database, otherSingleSrc->table, true);
+        if (!otherCreateTable)
+        {
+            qWarning() << "Failed to parse other table for JOIN expression completion:" << otherSingleSrc->database << "." << otherSingleSrc->table;
+            continue;
+        }
+
+        results += buildJoinExprFor(thisCreateTable, otherCreateTable, thisSingleSrc, otherSingleSrc);
+        results += buildJoinExprFor(otherCreateTable, thisCreateTable, otherSingleSrc, thisSingleSrc);
+    }
+    return results;
+}
+
+QList<ExpectedTokenPtr> CompletionHelper::buildJoinExprFor(const SqliteCreateTablePtr& thisCreateTable, const SqliteCreateTablePtr& otherCreateTable, SqliteSelect::Core::SingleSource* thisSingleSrc, SqliteSelect::Core::SingleSource* otherSingleSrc)
+{
+    static_qstring(colExprTpl, "%1.%2 = %3.%4");
+    QString thisName = wrapObjIfNeeded(thisSingleSrc->alias.isNull() ? thisSingleSrc->table : thisSingleSrc->alias);
+    QString otherName = wrapObjIfNeeded(otherSingleSrc->alias.isNull() ? otherSingleSrc->table : otherSingleSrc->alias);
+
+    QList<SqliteCreateTable::Column::Constraint*> thisToOtherColumnFks = thisCreateTable->getColumnForeignKeysByTable(otherSingleSrc->table);
+    QList<SqliteCreateTable::Constraint*> thisToOtherTableFks = thisCreateTable->getForeignKeysByTable(otherSingleSrc->table);
+
+    QList<ExpectedTokenPtr> results;
+
+    for (SqliteCreateTable::Column::Constraint*& colConstr : thisToOtherColumnFks)
+    {
+        QString thisColName = dynamic_cast<SqliteCreateTable::Column*>(colConstr->parentStatement())->name;
+        QStringList otherColNames =  colConstr->foreignKey->getColumnNames();
+        QString otherColName = otherColNames.isEmpty() ? thisColName : otherColNames.first();;
+        if (!otherCreateTable->getColumn(otherColName))
+        {
+            qWarning() << "Failed to find other column for JOIN expression completion:" << otherColName;
+            continue;
+        }
+        results += getExpectedToken(ExpectedToken::JOIN_EXPR, colExprTpl.arg(thisName,
+                                                                             wrapObjIfNeeded(thisColName),
+                                                                             otherName,
+                                                                             wrapObjIfNeeded(otherColName)
+                                                                             ), 1);
+    }
+
+    for (SqliteCreateTable::Constraint*& tabConstr : thisToOtherTableFks)
+    {
+        QStringList thisColNames = tabConstr->getColumnNames();
+        QStringList otherColNames =  tabConstr->foreignKey->getColumnNames();
+        if (otherColNames.isEmpty())
+            otherColNames = thisColNames;
+
+        if (thisColNames.size() != otherColNames.size() || thisColNames.isEmpty())
+        {
+            qWarning() << "Mismatched column count for JOIN expression completion between tables:"
+                       << thisCreateTable->table << "and" << otherCreateTable->table
+                       << "or no columns defined.";
+            continue;
+        }
+
+        QStringList parts;
+        for (int i = 0, total = thisColNames.size(); i < total; i++)
+        {
+            parts += colExprTpl.arg(thisName,
+                                   wrapObjIfNeeded(thisColNames[i]),
+                                   otherName,
+                                   wrapObjIfNeeded(otherColNames[i]));
+        }
+        results += getExpectedToken(ExpectedToken::JOIN_EXPR, parts.join(" AND "), 1);
+    }
+
+    return results;
 }
 
 TokenPtr CompletionHelper::getPreviousDbOrTable(const TokenList &parsedTokens)

@@ -123,8 +123,8 @@ class API_EXPORT SchemaResolver
         StrHash<ObjectDetails> getAllObjectDetails();
         StrHash<ObjectDetails> getAllObjectDetails(const QString& database);
 
-        SqliteCreateTablePtr getParsedTable(const QString& name);
-        SqliteCreateTablePtr getParsedTable(const QString& database, const QString& name);
+        SqliteCreateTablePtr getParsedTable(const QString& name, bool autoConvertVirtTable = false);
+        SqliteCreateTablePtr getParsedTable(const QString& database, const QString& name, bool autoConvertVirtTable = false);
         SqliteCreateIndexPtr getParsedIndex(const QString& name);
         SqliteCreateIndexPtr getParsedIndex(const QString& database, const QString& name);
         SqliteCreateTriggerPtr getParsedTrigger(const QString& name);

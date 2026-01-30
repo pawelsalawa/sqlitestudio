@@ -240,9 +240,23 @@ class API_EXPORT SqliteStatement : public QObject
                 return nullptr;
 
             return findTypedStatementWithToken<T>(token);
-
         }
         SqliteStatement* findStatementWithPosition(quint64 cursorPosition);
+
+        template <class T>
+        T* findClosestTypedParentStatement()
+        {
+            SqliteStatement* parent = parentStatement();
+            while (parent)
+            {
+                T* casted = dynamic_cast<T*>(parent);
+                if (casted)
+                    return casted;
+
+                parent = parent->parentStatement();
+            }
+            return nullptr;
+        }
 
         SqliteStatement* parentStatement() const;
         QList<SqliteStatement*> childStatements();

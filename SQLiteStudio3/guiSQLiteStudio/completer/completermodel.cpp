@@ -164,6 +164,8 @@ QIcon CompleterModel::getIcon(ExpectedToken::Type type) const
             return ICONS.COMPLETER_PRAGMA;
         case ExpectedToken::NO_VALUE:
             return ICONS.COMPLETER_NO_VALUE;
+        case ExpectedToken::JOIN_EXPR:
+            return ICONS.CONSTRAINT_FOREIGN_KEY;
     }
 
     return ICONS.COMPLETER_NO_VALUE;

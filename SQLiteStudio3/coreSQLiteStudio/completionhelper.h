@@ -113,6 +113,9 @@ class API_EXPORT CompletionHelper : public QObject
         QList<ExpectedTokenPtr> getPragmas();
         QList<ExpectedTokenPtr> getFunctions(Db* db);
         QList<ExpectedTokenPtr> getCollations();
+        QList<ExpectedTokenPtr> getJoinExpression();
+        QList<ExpectedTokenPtr> buildJoinExprFor(const SqliteCreateTablePtr& thisCreateTable, const SqliteCreateTablePtr& otherCreateTable,
+                                                 SqliteSelect::Core::SingleSource* thisSingleSrc, SqliteSelect::Core::SingleSource* otherSingleSrc);
         TokenPtr getPreviousDbOrTable(const TokenList& parsedTokens);
         void attachDatabases();
         void detachDatabases();

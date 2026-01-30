@@ -241,6 +241,8 @@ QString CompleterWindow::getStatusMsg(const QModelIndex& index)
             return tr("Collation: %1", "completer statusbar").arg(value);
         case ExpectedToken::PRAGMA:
             return tr("Pragma function: %1", "completer statusbar").arg(value);
+        case ExpectedToken::JOIN_EXPR:
+            return tr("Join condition: %1", "completer statusbar").arg(value);
         case ExpectedToken::NO_VALUE:
         {
             if (!label.isEmpty())

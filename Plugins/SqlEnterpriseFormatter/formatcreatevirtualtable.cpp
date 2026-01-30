@@ -102,6 +102,7 @@ void FormatCreateVirtualTable::handleToken(const TokenPtr& token)
         case Token::CTX_NEW_KW:
         case Token::CTX_OLD_KW:
         case Token::CTX_ERROR_MESSAGE:
+        case Token::CTX_JOIN_EXPR:
             break;
     }
 }

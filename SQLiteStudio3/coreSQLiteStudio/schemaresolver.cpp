@@ -1176,13 +1176,16 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     return details;
 }
 
-SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &name)
+SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &name, bool autoConvertVirtTable)
 {
-    return getParsedTable("main", name);
+    return getParsedTable("main", name, autoConvertVirtTable);
 }
 
-SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &database, const QString &name)
+SqliteCreateTablePtr SchemaResolver::getParsedTable(const QString &database, const QString &name, bool autoConvertVirtTable)
 {
+    if (autoConvertVirtTable && isVirtualTable(database, name))
+        return resolveVirtualTableAsRegularTable(database, name);
+
     return getParsedObject(database, name, TABLE).objectCast<SqliteCreateTable>();
 }
 

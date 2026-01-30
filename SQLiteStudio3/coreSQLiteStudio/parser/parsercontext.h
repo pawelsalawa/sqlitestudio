@@ -206,7 +206,7 @@ class ParserContext
          * Disabling it will cause no AST objects to be produced, but it can be used to find out syntax errors.
          * If you don't need AST objects (output from parsing), then you can turn this off to speed up Lemon parser.
          *
-         * The Parser class for example turns it of when it probes for next valid token candidates. In that case
+         * The Parser class for example turns it off when it probes for next valid token candidates. In that case
          * no AST output objects are used, just information whether the next candidate is valid or not.
          */
         bool executeRules = true;

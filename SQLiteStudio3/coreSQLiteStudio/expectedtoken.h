@@ -31,7 +31,8 @@ struct API_EXPORT ExpectedToken
         FUNCTION,
         OPERATOR,
         COLLATION,
-        PRAGMA
+        PRAGMA,
+        JOIN_EXPR
     };
 
     /**

@@ -203,7 +203,6 @@ void Parser::expectedTokenLookup(void* pParser)
 
     ParserContext tempContext;
     tempContext.executeRules = false;
-    tempContext.executeRules = false;
     tempContext.doFallbacks = false;
     QSet<TokenPtr> tokenSet =
             lexer->getEveryTokenType({
@@ -214,7 +213,7 @@ void Parser::expectedTokenLookup(void* pParser)
                 Token::CTX_ALIAS, Token::CTX_TABLE_NEW, Token::CTX_INDEX_NEW, Token::CTX_TRIGGER_NEW,
                 Token::CTX_VIEW_NEW, Token::CTX_COLUMN_NEW, Token::CTX_TRANSACTION,
                 Token::CTX_CONSTRAINT, Token::CTX_COLUMN_TYPE, Token::CTX_OLD_KW, Token::CTX_NEW_KW,
-                Token::CTX_ROWID_KW, Token::CTX_STRICT_KW, Token::INVALID,
+                Token::CTX_ROWID_KW, Token::CTX_STRICT_KW, Token::CTX_JOIN_EXPR, Token::INVALID,
                 Token::BLOB, Token::STRING, Token::FLOAT, Token::INTEGER
             });
 

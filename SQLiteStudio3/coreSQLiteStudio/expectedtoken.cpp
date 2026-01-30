@@ -21,6 +21,7 @@ bool ExpectedToken::needsWrapping() const
         case ExpectedToken::BLOB:
         case ExpectedToken::PRAGMA:
         case ExpectedToken::NO_VALUE:
+        case ExpectedToken::JOIN_EXPR:
             return false;
     }
     return false;
@@ -34,7 +35,7 @@ int ExpectedToken::operator==(const ExpectedToken& other) const
 
 QString ExpectedToken::toString() const
 {
-    return QString("%4. %1 : %2 (ctx: %3) [label: %5]").arg(value).arg(type).arg(contextInfo).arg(prefix).arg(label);
+    return QString("%4. %1 : %2 (ctx: %3) [label: %5]").arg(value).arg(type).arg(contextInfo, prefix, label);
 }
 
 ExpectedTokenPtr::ExpectedTokenPtr() :

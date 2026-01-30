@@ -103,6 +103,7 @@ struct API_EXPORT Token
         CTX_OLD_KW = 0x0036,            /**< The <tt>OLD</tt> keyword is valid at this token position. */
         CTX_ERROR_MESSAGE = 0x0037,     /**< Error message string is valid at this token position. */
         CTX_STRICT_KW = 0x0038,         /**< STRICT keyword is valid at this token position. */
+        CTX_JOIN_EXPR = 0x0039,         /**< Condition expression for joining tables is valid at this token position. */
     };
 
     /**

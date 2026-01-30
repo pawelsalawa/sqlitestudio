@@ -1192,6 +1192,11 @@ joinconstr_opt(X) ::= USING LP
                                                 objectForTokens = X;
                                             }
 joinconstr_opt(X) ::= .                     {X = nullptr;}
+joinconstr_opt(X) ::= ON CTX_JOIN_EXPR.     {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new SqliteSelect::Core::JoinConstraint();
+                                                objectForTokens = X;
+                                            }
 
 %type dbnm {QString*}
 %destructor dbnm {parser_safe_delete($$);}
