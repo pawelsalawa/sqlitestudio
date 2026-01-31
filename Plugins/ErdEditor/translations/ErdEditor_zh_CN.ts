@@ -17,82 +17,82 @@
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows the changes as they will be committed. Redundant or mutually cancelling steps are merged or removed from the list.&lt;br/&gt;When disabled, all individual undo and redo steps are shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows the changes as they will be committed. Redundant or mutually cancelling steps are merged or removed from the list.&lt;br/&gt;When disabled, all individual undo and redo steps are shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;显示将要提交的更改。冗余或相互抵消的步骤将被合并或从列表中删除。&lt;br/&gt;禁用后，将显示所有单独的撤销和重做步骤。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>Show effective changes only</source>
-      <translation type="unfinished">Show effective changes only</translation>
+      <translation>仅显示有效变更</translation>
     </message>
     <message>
       <source>&lt;html&gt;&lt;body&gt;Shows changes that do not modify the database schema, but only affect the diagram (for example, table position changes). &lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;body&gt;Shows changes that do not modify the database schema, but only affect the diagram (for example, table position changes). &lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;body&gt;显示不会修改数据库架构，而只会影响图表的更改（例如，表位置更改）。 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>Show non-schema changes</source>
-      <translation type="unfinished">Show non-schema changes</translation>
+      <translation>显示非方案变更</translation>
     </message>
     <message>
       <source>-- This is a change applied only to the diagram. It has no database schema efects.</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">-- This is a change applied only to the diagram. It has no database schema efects.</translation>
+      <translation>— 此更改仅应用于图表，不会影响数据库架构。</translation>
     </message>
   </context>
   <context>
     <name>ErdConfig</name>
     <message>
       <source>Form</source>
-      <translation type="unfinished">Form</translation>
+      <translation>表单</translation>
     </message>
     <message>
       <source>Maximum number of tables for ERD editor</source>
-      <translation type="unfinished">Maximum number of tables for ERD editor</translation>
+      <translation>ERD 编辑器的最大表格数量</translation>
     </message>
     <message>
       <source>Setting this value too high may cause the application to slow down or become unresponsive when opening the ERD editor.</source>
-      <translation type="unfinished">Setting this value too high may cause the application to slow down or become unresponsive when opening the ERD editor.</translation>
+      <translation>将此值设置得过高可能会导致应用程序在打开 ERD 编辑器时运行缓慢或无响应。</translation>
     </message>
     <message>
       <source>Erd.MaxTableLimit</source>
-      <translation type="unfinished">Erd.MaxTableLimit</translation>
+      <translation>Erd.MaxTableLimit</translation>
     </message>
     <message>
       <source>Starts panning as soon as the Space key is pressed, without requiring a mouse button press.</source>
-      <translation type="unfinished">Starts panning as soon as the Space key is pressed, without requiring a mouse button press.</translation>
+      <translation>按下空格键即可开始平移，无需按鼠标按钮。</translation>
     </message>
     <message>
       <source>Pan view with Space only</source>
-      <translation type="unfinished">Pan view with Space only</translation>
+      <translation>仅使用空格键的平移视图</translation>
     </message>
     <message>
       <source>Erd.DragBySpace</source>
-      <translation type="unfinished">Erd.DragBySpace</translation>
+      <translation>Erd.DragBySpace</translation>
     </message>
   </context>
   <context>
     <name>ErdConnectionPanel</name>
     <message>
       <source>Form</source>
-      <translation type="unfinished">Form</translation>
+      <translation>表单</translation>
     </message>
     <message>
       <source>Foreign key properties</source>
-      <translation type="unfinished">Foreign key properties</translation>
+      <translation>外键属性</translation>
     </message>
     <message>
       <source>Composite relation (multiple columns)</source>
-      <translation type="unfinished">Composite relation (multiple columns)</translation>
+      <translation>复合关系（多列）</translation>
     </message>
     <message>
       <source>Referencing (child) table:</source>
-      <translation type="unfinished">Referencing (child) table:</translation>
+      <translation>引用（子）表：</translation>
     </message>
     <message>
       <source>Referencing (child) column:</source>
-      <translation type="unfinished">Referencing (child) column:</translation>
+      <translation>引用（子）列：</translation>
     </message>
     <message>
       <source>ERD side panel for relation between tables &quot;%1&quot; and &quot;%2&quot; has uncommitted modifications.</source>
-      <translation type="unfinished">ERD side panel for relation between tables &quot;%1&quot; and &quot;%2&quot; has uncommitted modifications.</translation>
+      <translation>表 &quot;%1&quot; 和 &quot;%2&quot; 之间关系的 ERD 侧面板有未提交的修改。</translation>
     </message>
     <message>
       <source>Apply changes to diagram</source>
@@ -338,57 +338,57 @@
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Hold the Spacebar and drag with the mouse to pan the diagram freely without selecting any items.&lt;/p&gt;&lt;p&gt;- Use the mouse wheel to zoom in and out.&lt;/p&gt;&lt;p&gt;- Deselect the table (or click Commit in the side panel toolbar) to apply the side panel changes to the diagram.&lt;/p&gt;&lt;p&gt;- Press Esc (or click Rollback in the side panel toolbar) to discard the side panel changes.&lt;/p&gt;&lt;p&gt;- Double-Click on a table name or column to edit the name inline.&lt;/p&gt;&lt;p&gt;- Shift-Double-Click on a column to edit column details (datatype, constraints).&lt;/p&gt;&lt;p&gt;- To create a foreign key between table, click the middle mouse button on the table columns you want to connect.&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot; font-weight:700;&quot;&gt;All diagram changes remain pending until you explicitly commit or roll them back&lt;/span&gt; using the toolbar buttons in the top-left corner of the diagram.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- 按住空格键并拖动鼠标，即可自由平移图表，无需选择任何项目。&lt;/p&gt;&lt;p&gt;- 使用鼠标滚轮放大和缩小。&lt;/p&gt;&lt;p&gt;- 取消选择表格（或单击侧边栏工具栏中的“提交”），即可将侧边栏的更改应用到图表。&lt;/p&gt;&lt;p&gt;- 按 Esc 键（或单击侧边栏工具栏中的“回滚”），即可放弃侧边栏的更改。&lt;/p&gt;&lt;p&gt;- 双击表名或列名，即可直接编辑名称。&lt;/p&gt;&lt;p&gt;- 按住 Shift 键并双击列名，即可编辑列详细信息（数据类型、约束）。&lt;/p&gt;&lt;p&gt;- 要在表之间创建外键，单击要连接的表格列上的鼠标中键。所有图表更改将保持待处理状态，直到您使用图表左上角的工具栏按钮显式提交或回滚它们。了解更多信息（点击打开在线帮助页面）&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/pawelsalawa/sqlitestudio/wiki/ERD-plugin-manual#usage&quot;&gt;&lt;span style=&quot; font-weight:700; text-decoration: underline; color:#058800;&quot;&gt;Learn more (click to open online help page)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>The number of changes pending for commit. Click to see details.</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">The number of changes pending for commit. Click to see details.</translation>
+      <translation>待提交的更改数量。点击查看详情。</translation>
     </message>
     <message>
       <source>Add a foreign key</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Add a foreign key</translation>
+      <translation>添加外键</translation>
     </message>
     <message>
       <source>Delete selected items</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Delete selected items</translation>
+      <translation>删除所选项目</translation>
     </message>
     <message>
       <source>Auto-arrange (local forces)</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Auto-arrange (local forces)</translation>
+      <translation>自动排列（局部力）</translation>
     </message>
     <message>
       <source>Auto-arrange (global balance)</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Auto-arrange (global balance)</translation>
+      <translation>自动排列（全局平衡）</translation>
     </message>
     <message>
       <source>Set table color</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Set table color</translation>
+      <translation>设置表颜色</translation>
     </message>
     <message>
       <source>Use straight line</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Use straight line</translation>
+      <translation>使用直线</translation>
     </message>
     <message>
       <source>Use curvy line</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Use curvy line</translation>
+      <translation>使用曲线线</translation>
     </message>
     <message>
       <source>Use square line</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Use square line</translation>
+      <translation>使用方形线</translation>
     </message>
     <message>
       <source>Choose line type</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Choose line type</translation>
+      <translation>选择线类型</translation>
     </message>
   </context>
   <context>
@@ -396,42 +396,42 @@
     <message>
       <source>Drop table &quot;%1&quot;.</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Drop table &quot;%1&quot;.</translation>
+      <translation>拖放表 &quot;%1&quot;</translation>
     </message>
     <message>
       <source>Modify table &quot;%1&quot;.</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Modify table &quot;%1&quot;.</translation>
+      <translation>修改表 &quot;%1&quot;</translation>
     </message>
     <message>
       <source>Create table &quot;%1&quot;.</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Create table &quot;%1&quot;.</translation>
+      <translation>创建表 &quot;%1&quot;</translation>
     </message>
     <message>
       <source>Failed to create in-memory databases required for change compacting.</source>
-      <translation type="unfinished">Failed to create in-memory databases required for change compacting.</translation>
+      <translation>创建变更压缩所需的内存数据库失败。</translation>
     </message>
     <message>
       <source>Drop tables: %1</source>
       <comment>ERD editor</comment>
-      <translation type="unfinished">Drop tables: %1</translation>
+      <translation>拖放表： %1</translation>
     </message>
     <message>
       <source>Could not commit changes for finalized ERD connection.</source>
-      <translation type="unfinished">Could not commit changes for finalized ERD connection.</translation>
+      <translation>无法提交已完成的 ERD 连接的更改。</translation>
     </message>
     <message>
       <source>Update relationship from &quot;%1&quot;-&quot;%2&quot; to &quot;%1&quot;-&quot;%3&quot;.</source>
-      <translation type="unfinished">Update relationship from &quot;%1&quot;-&quot;%2&quot; to &quot;%1&quot;-&quot;%3&quot;.</translation>
+      <translation>将关系从 &quot;%1&quot;-&quot;%2&quot; 更新为 &quot;%1&quot;-&quot;%3&quot;。</translation>
     </message>
     <message>
       <source>Create relationship between &quot;%1&quot; and &quot;%2&quot;.</source>
-      <translation type="unfinished">Create relationship between &quot;%1&quot; and &quot;%2&quot;.</translation>
+      <translation>创建 &quot;%1&quot; 和 &quot;%2&quot; 之间的关系。</translation>
     </message>
     <message>
       <source>Move table &quot;%1&quot;</source>
-      <translation type="unfinished">Move table &quot;%1&quot;</translation>
+      <translation>移动表 &quot;%1&quot;</translation>
     </message>
   </context>
 </TS>
