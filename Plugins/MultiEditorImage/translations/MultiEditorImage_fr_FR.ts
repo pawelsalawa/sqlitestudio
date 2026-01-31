@@ -4,14 +4,6 @@
   <context>
     <name>MultiEditorImage</name>
     <message>
-      <source>Load from file</source>
-      <translation type="vanished">Charger à partir d’un fichier</translation>
-    </message>
-    <message>
-      <source>Store in a file</source>
-      <translation type="vanished">Stocker dans un fichier</translation>
-    </message>
-    <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Zoom in by 25%</source>
       <translation>Zoom avant de 25%</translation>
@@ -25,38 +17,6 @@
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Reset zoom</source>
       <translation>Réinitialiser le zoom</translation>
-    </message>
-    <message>
-      <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="vanished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Tous les fichiers (*)</translation>
-    </message>
-    <message>
-      <source>Open image</source>
-      <translation type="vanished">Ouvrir une image</translation>
-    </message>
-    <message>
-      <source>Could not open file %1 for reading.</source>
-      <translation type="vanished">Impossible d&apos;ouvrir le fichier %1 pour la lecture.</translation>
-    </message>
-    <message>
-      <source>All files (*)</source>
-      <translation type="vanished">Tous les fichiers (*)</translation>
-    </message>
-    <message>
-      <source>Save image</source>
-      <translation type="vanished">Enregistrer l&apos;image</translation>
-    </message>
-    <message>
-      <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="vanished">Tentative d&apos;enregistrement d&apos;une image sous un format différent (%1) de l&apos;original (%2), mais l&apos;application n&apos;a pas réussi à la convertir. L&apos;image au format inchangé (%3) sera enregistrée sous le nom suivant (%4)</translation>
-    </message>
-    <message>
-      <source>Could not open file %1 for writting.</source>
-      <translation type="vanished">Impossible d&apos;ouvrir le fichier %1 pour écriture.</translation>
-    </message>
-    <message>
-      <source>Could not write image into the file %1</source>
-      <translation type="vanished">Impossible d&apos;écrire l&apos;image dans le fichier %1</translation>
     </message>
   </context>
   <context>
