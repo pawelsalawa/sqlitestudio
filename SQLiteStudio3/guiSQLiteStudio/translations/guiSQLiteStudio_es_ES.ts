@@ -4229,12 +4229,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="77"/>
       <source>Save this value to a file</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Save this value to a file</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="80"/>
       <source>Load this value from a file</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Load this value from a file</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="91"/>
@@ -4254,42 +4254,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="384"/>
       <source>All files (*)</source>
-      <translation type="unfinished">Todos los archivos (*)</translation>
+      <translation>Todos los archivos (*)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="386"/>
       <source>Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="388"/>
       <source>SQL files (*.sql)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">SQL files (*.sql)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="390"/>
       <source>Binary data (*.bin *.dat *.raw)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Binary data (*.bin *.dat *.raw)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="392"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="394"/>
       <source>Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="396"/>
       <source>Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="398"/>
       <source>Executables (*.exe *.dll *.so *.dylib)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Executables (*.exe *.dll *.so *.dylib)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="422"/>
@@ -4311,27 +4311,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="636"/>
       <source>Open</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Open</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="645"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not open file %1 for reading.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="661"/>
       <source>Save</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Save</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="670"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="720"/>
       <source>Could not write data into the file %1</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Could not write data into the file %1</translation>
     </message>
   </context>
   <context>
