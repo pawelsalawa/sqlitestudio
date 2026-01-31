@@ -41,18 +41,18 @@
     </message>
     <message>
       <source>JSON validation failed: %1</source>
-      <translation type="unfinished">JSON validation failed: %1</translation>
+      <translation>JSON 验证失败：%1</translation>
     </message>
     <message>
       <source>JSON files (*.json, *.txt)</source>
-      <translation type="unfinished">JSON files (*.json, *.txt)</translation>
+      <translation>JSON 文件 (*.json, *.txt)</translation>
     </message>
   </context>
   <context>
     <name>MultiEditorJsonPlugin</name>
     <message>
       <source>JSON</source>
-      <translation type="unfinished">JSON</translation>
+      <translation>JSON</translation>
     </message>
   </context>
 </TS>
