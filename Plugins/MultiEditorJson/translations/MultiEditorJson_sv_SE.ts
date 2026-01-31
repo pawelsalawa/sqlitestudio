@@ -43,6 +43,10 @@
       <source>JSON validation failed: %1</source>
       <translation type="unfinished">JSON validation failed: %1</translation>
     </message>
+    <message>
+      <source>JSON files (*.json, *.txt)</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>MultiEditorJsonPlugin</name>

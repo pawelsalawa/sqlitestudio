@@ -63,93 +63,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="159"/>
+      <location filename="../completionhelper.cpp" line="172"/>
       <source>New row reference</source>
       <translation>Nuovo riferimento riga</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="166"/>
+      <location filename="../completionhelper.cpp" line="179"/>
       <source>Old row reference</source>
       <translation>Vecchio riferimento riga</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="171"/>
+      <location filename="../completionhelper.cpp" line="184"/>
       <source>New table name</source>
       <translation>Nuovo nome della tabella</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="174"/>
+      <location filename="../completionhelper.cpp" line="187"/>
       <source>New index name</source>
       <translation>Nuovo nome indice</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="177"/>
+      <location filename="../completionhelper.cpp" line="190"/>
       <source>New view name</source>
       <translation>Nuovo nome vista</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="180"/>
+      <location filename="../completionhelper.cpp" line="193"/>
       <source>New trigger name</source>
       <translation>Nuovo nome del trigger</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="183"/>
+      <location filename="../completionhelper.cpp" line="196"/>
       <source>Table or column alias</source>
       <translation>Alias tabella o colonna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="186"/>
+      <location filename="../completionhelper.cpp" line="199"/>
       <source>transaction name</source>
       <translation>nome della transazione</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="189"/>
+      <location filename="../completionhelper.cpp" line="202"/>
       <source>New column name</source>
       <translation>Nuovo nome colonna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="192"/>
+      <location filename="../completionhelper.cpp" line="205"/>
       <source>Column data type</source>
       <translation>Tipo di dati colonna</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="195"/>
+      <location filename="../completionhelper.cpp" line="208"/>
       <source>Constraint name</source>
       <translation>Nome del constraint</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="211"/>
+      <location filename="../completionhelper.cpp" line="224"/>
       <source>Error message</source>
       <translation>Messaggio di errore</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="273"/>
       <source>Any word</source>
       <translation>Qualsiasi parola</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="276"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="266"/>
-      <location filename="../completionhelper.cpp" line="269"/>
+      <location filename="../completionhelper.cpp" line="279"/>
+      <location filename="../completionhelper.cpp" line="282"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="281"/>
+      <location filename="../completionhelper.cpp" line="294"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="441"/>
+      <location filename="../completionhelper.cpp" line="454"/>
       <source>Default database</source>
       <translation>Database predefinito</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="442"/>
+      <location filename="../completionhelper.cpp" line="455"/>
       <source>Temporary objects database</source>
       <translation>Database oggetti temporanei</translation>
     </message>

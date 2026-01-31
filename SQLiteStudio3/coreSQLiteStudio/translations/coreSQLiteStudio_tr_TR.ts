@@ -63,93 +63,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="159"/>
+      <location filename="../completionhelper.cpp" line="172"/>
       <source>New row reference</source>
       <translation>Yeni satır referansı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="166"/>
+      <location filename="../completionhelper.cpp" line="179"/>
       <source>Old row reference</source>
       <translation>Eski satır referansı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="171"/>
+      <location filename="../completionhelper.cpp" line="184"/>
       <source>New table name</source>
       <translation>Yeni tablo adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="174"/>
+      <location filename="../completionhelper.cpp" line="187"/>
       <source>New index name</source>
       <translation>Yeni indeks</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="177"/>
+      <location filename="../completionhelper.cpp" line="190"/>
       <source>New view name</source>
       <translation>Yeni view adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="180"/>
+      <location filename="../completionhelper.cpp" line="193"/>
       <source>New trigger name</source>
       <translation>Yeni trigger adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="183"/>
+      <location filename="../completionhelper.cpp" line="196"/>
       <source>Table or column alias</source>
       <translation>Tablo ya da kolon takma adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="186"/>
+      <location filename="../completionhelper.cpp" line="199"/>
       <source>transaction name</source>
       <translation>işlem adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="189"/>
+      <location filename="../completionhelper.cpp" line="202"/>
       <source>New column name</source>
       <translation>Yeni kolon adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="192"/>
+      <location filename="../completionhelper.cpp" line="205"/>
       <source>Column data type</source>
       <translation>Kolon veri tipi</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="195"/>
+      <location filename="../completionhelper.cpp" line="208"/>
       <source>Constraint name</source>
       <translation>Constraint adı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="211"/>
+      <location filename="../completionhelper.cpp" line="224"/>
       <source>Error message</source>
       <translation>Hata mesajı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="260"/>
+      <location filename="../completionhelper.cpp" line="273"/>
       <source>Any word</source>
       <translation>Herhangi bir kelime</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="263"/>
+      <location filename="../completionhelper.cpp" line="276"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="266"/>
-      <location filename="../completionhelper.cpp" line="269"/>
+      <location filename="../completionhelper.cpp" line="279"/>
+      <location filename="../completionhelper.cpp" line="282"/>
       <source>Number</source>
       <translation>Sayı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="281"/>
+      <location filename="../completionhelper.cpp" line="294"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="441"/>
+      <location filename="../completionhelper.cpp" line="454"/>
       <source>Default database</source>
       <translation>Varsayılan veritabanı</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="442"/>
+      <location filename="../completionhelper.cpp" line="455"/>
       <source>Temporary objects database</source>
       <translation>Geçici nesneler veritabanı</translation>
     </message>

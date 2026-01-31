@@ -3352,49 +3352,49 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>FormView</name>
     <message>
-      <location filename="../formview.cpp" line="275"/>
+      <location filename="../formview.cpp" line="284"/>
       <source>Commit row</source>
       <comment>form view</comment>
       <translation>Committa riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="276"/>
+      <location filename="../formview.cpp" line="285"/>
       <source>Rollback row</source>
       <comment>form view</comment>
       <translation>Ripristina riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="277"/>
+      <location filename="../formview.cpp" line="286"/>
       <source>First row</source>
       <comment>form view</comment>
       <translation>Prima riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="278"/>
+      <location filename="../formview.cpp" line="287"/>
       <source>Previous row</source>
       <comment>form view</comment>
       <translation>Riga precedente</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="279"/>
+      <location filename="../formview.cpp" line="288"/>
       <source>Next row</source>
       <comment>form view</comment>
       <translation>Riga successiva</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="280"/>
+      <location filename="../formview.cpp" line="289"/>
       <source>Last row</source>
       <comment>form view</comment>
       <translation>Ultima riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="281"/>
+      <location filename="../formview.cpp" line="290"/>
       <source>Insert new row</source>
       <comment>form view</comment>
       <translation>Inserisci nuova riga</translation>
     </message>
     <message>
-      <location filename="../formview.cpp" line="282"/>
+      <location filename="../formview.cpp" line="291"/>
       <source>Delete current row</source>
       <comment>form view</comment>
       <translation>Elimina riga corrente</translation>
@@ -4185,17 +4185,17 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
       <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1117"/>
+      <location filename="../mainwindow.cpp" line="1126"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Il database passato nei parametri della riga di comando (%1) era già nell&apos;elenco con il nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1124"/>
+      <location filename="../mainwindow.cpp" line="1133"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Il database passato nei parametri della riga di comando (%1) è stato temporaneamente aggiunto all&apos;elenco con nome: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1129"/>
+      <location filename="../mainwindow.cpp" line="1138"/>
       <source>Could not add database %1 to list.</source>
       <translation>Impossibile aggiungere il database %1 all&apos;elenco.</translation>
     </message>
@@ -4221,48 +4221,123 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditor</name>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="63"/>
+      <location filename="../multieditor/multieditor.cpp" line="67"/>
       <source>Null value</source>
       <comment>multieditor</comment>
       <translation>Valore nullo</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="82"/>
+      <location filename="../multieditor/multieditor.cpp" line="77"/>
+      <source>Save this value to a file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="80"/>
+      <source>Load this value from a file</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="91"/>
       <source>Configure editors for this data type</source>
       <translation>Configura gli editor per questo tipo di dati</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="95"/>
+      <location filename="../multieditor/multieditor.cpp" line="99"/>
       <source>Open another tab</source>
       <translation>Apri un&apos;altra scheda</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="304"/>
+      <location filename="../multieditor/multieditor.cpp" line="326"/>
       <source>Foreign Key</source>
       <translation>Chiave Esterna</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="351"/>
+      <location filename="../multieditor/multieditor.cpp" line="384"/>
+      <source>All files (*)</source>
+      <translation type="unfinished">Tutti i file (*)</translation>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="386"/>
+      <source>Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="388"/>
+      <source>SQL files (*.sql)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="390"/>
+      <source>Binary data (*.bin *.dat *.raw)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="392"/>
+      <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="394"/>
+      <source>Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="396"/>
+      <source>Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="398"/>
+      <source>Executables (*.exe *.dll *.so *.dylib)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="422"/>
       <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%2&apos; data type.</source>
       <translation>Il plugin editor dati &apos;%1&apos; dell&apos;editor di dati non viene caricato, mentre è definito per la modifica del tipo di dati &apos;%1&apos;. {1&apos;?} {2&apos;?} {1&apos; or 2&apos;?}</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="445"/>
+      <location filename="../multieditor/multieditor.cpp" line="528"/>
       <source>Deleted</source>
       <comment>multieditor</comment>
       <translation>Eliminato</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditor.cpp" line="447"/>
+      <location filename="../multieditor/multieditor.cpp" line="530"/>
       <source>Read only</source>
       <comment>multieditor</comment>
       <translation>Sola lettura</translation>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="636"/>
+      <source>Open</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="645"/>
+      <source>Could not open file %1 for reading.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="661"/>
+      <source>Save</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="670"/>
+      <source>Could not open file %1 for writting.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../multieditor/multieditor.cpp" line="720"/>
+      <source>Could not write data into the file %1</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>MultiEditorBoolPlugin</name>
     <message>
-      <location filename="../multieditor/multieditorbool.cpp" line="226"/>
+      <location filename="../multieditor/multieditorbool.cpp" line="228"/>
       <source>Boolean</source>
       <translation>Booleano</translation>
     </message>
@@ -4270,7 +4345,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorDatePlugin</name>
     <message>
-      <location filename="../multieditor/multieditordate.cpp" line="88"/>
+      <location filename="../multieditor/multieditordate.cpp" line="90"/>
       <source>Date</source>
       <translation>Data</translation>
     </message>
@@ -4278,7 +4353,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorDateTimePlugin</name>
     <message>
-      <location filename="../multieditor/multieditordatetime.cpp" line="276"/>
+      <location filename="../multieditor/multieditordatetime.cpp" line="277"/>
       <source>Date &amp; time</source>
       <translation>Data e ora</translation>
     </message>
@@ -4286,7 +4361,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorHexPlugin</name>
     <message>
-      <location filename="../multieditor/multieditorhex.cpp" line="92"/>
+      <location filename="../multieditor/multieditorhex.cpp" line="103"/>
       <source>Hex</source>
       <translation>Hex</translation>
     </message>
@@ -4294,7 +4369,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorNumericPlugin</name>
     <message>
-      <location filename="../multieditor/multieditornumeric.cpp" line="111"/>
+      <location filename="../multieditor/multieditornumeric.cpp" line="113"/>
       <source>Number</source>
       <comment>numeric multi editor tab name</comment>
       <translation>Numero</translation>
@@ -4303,37 +4378,37 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorText</name>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="111"/>
+      <location filename="../multieditor/multieditortext.cpp" line="112"/>
       <source>Tab changes focus</source>
       <translation>Cambio focus scheda</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="112"/>
+      <location filename="../multieditor/multieditortext.cpp" line="113"/>
       <source>Cut</source>
       <translation>Taglia</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="113"/>
+      <location filename="../multieditor/multieditortext.cpp" line="114"/>
       <source>Copy</source>
       <translation>Copia</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="114"/>
+      <location filename="../multieditor/multieditortext.cpp" line="115"/>
       <source>Paste</source>
       <translation>Incolla</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="115"/>
+      <location filename="../multieditor/multieditortext.cpp" line="116"/>
       <source>Delete</source>
       <translation>Elimina</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="116"/>
+      <location filename="../multieditor/multieditortext.cpp" line="117"/>
       <source>Undo</source>
       <translation>Annulla</translation>
     </message>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="117"/>
+      <location filename="../multieditor/multieditortext.cpp" line="118"/>
       <source>Redo</source>
       <translation>Ripeti</translation>
     </message>
@@ -4341,7 +4416,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorTextPlugin</name>
     <message>
-      <location filename="../multieditor/multieditortext.cpp" line="194"/>
+      <location filename="../multieditor/multieditortext.cpp" line="196"/>
       <source>Text</source>
       <translation>Testo</translation>
     </message>
@@ -4349,7 +4424,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
   <context>
     <name>MultiEditorTimePlugin</name>
     <message>
-      <location filename="../multieditor/multieditortime.cpp" line="91"/>
+      <location filename="../multieditor/multieditortime.cpp" line="93"/>
       <source>Time</source>
       <translation>Tempo</translation>
     </message>
@@ -5820,200 +5895,200 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
   <context>
     <name>SqlQueryView</name>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="57"/>
       <source>Go to referenced row in...</source>
       <translation>Vai alla riga di riferimento in...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="91"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
       <source>Copy</source>
       <translation>Copia</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="92"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
       <source>Copy with headers</source>
       <translation>Copia con intestazioni</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
       <source>Copy as...</source>
       <translation>Copia come...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Paste</source>
       <translation>Incolla</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Paste as...</source>
       <translation>Incolla come...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Set NULL values</source>
       <translation>Imposta valori NULL</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Erase values</source>
       <translation>Cancella valori</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Commit</source>
       <translation>Commit</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Rollback</source>
       <translation>Rollback</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
       <source>Commit selected cells</source>
       <translation>Committa celle selezionate</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
       <source>Rollback selected cells</source>
       <translation>Ripristina celle selezionate</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Edit current cell inline</source>
       <translation>Modifica la cella attuale inline</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
       <source>Define columns to sort by</source>
       <translation>Definire le colonne da ordinare per</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
       <source>Remove custom sorting</source>
       <translation>Rimuovi ordinamento personalizzato</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
       <source>Insert row</source>
       <translation>Inserisci riga</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Insert multiple rows</source>
       <translation>Inserisci righe multiple</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
       <source>Delete selected row</source>
       <translation>Elimina riga selezionata</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
       <source>Adjust height of rows</source>
       <translation>Regola l&apos;altezza delle righe</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation>Aumenta dimensione carattere</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation>Riduci dimensione carattere</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="121"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation>Inverti selezione</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Edit value in editor</source>
       <translation>Modifica valore nell&apos;editor</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
       <source>Show value in a viewer</source>
       <translation>Mostra valore in un visualizzatore</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="187"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="189"/>
       <source>Generate query for selected cells</source>
       <translation>Genera query per le celle selezionate</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="454"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="461"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation>Nessun elemento selezionato in cui incollare il contenuto degli appunti.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="467"/>
       <source>Cannot paste data. Details: %1</source>
       <translation>Impossibile incollare i dati. Dettagli: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="460"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="467"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation>La struttura di almeno una tabella utilizzata è cambiata dall&apos;ultimo caricamento dei dati. Ricarica i dati per procedere.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="537"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation>Impossibile incollare in una cella. Dettagli: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="530"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="537"/>
       <source>The row is marked for deletion.</source>
       <translation>La riga è contrassegnata per l&apos;eliminazione.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="541"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="548"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation>Impossibile incollare nella colonna %1. Dettagli: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="559"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="566"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation>Vai alla riga referenziata nella tabella &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="571"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="578"/>
       <source>table &apos;%1&apos;</source>
       <translation>tabella &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="594"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="601"/>
       <source>Referenced row (%1)</source>
       <translation>Riga referenziata (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="879"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="886"/>
       <source>Trim pasted text?</source>
       <translation>Tagliare il testo incollato?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="880"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="887"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation>Il testo incollato contiene lo spazio bianco iniziale o finale. Taglio automaticamente?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="888"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="895"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation>Incollare &quot;NULL&quot; come valore nullo?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="889"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="896"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation>Il testo incollato contiene &quot;NULL&quot; letterali. Vuoi considerarli come valori NULL?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="997"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1003"/>
       <source>Edit value</source>
       <translation>Modifica valore</translation>
     </message>
