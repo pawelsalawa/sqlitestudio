@@ -16,7 +16,7 @@
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
-      <translation type="unfinished">Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</translation>
+      <translation>请勿加载任何插件。可与安全模式配合使用，以进一步隔离潜在问题。</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
