@@ -50,7 +50,7 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-    setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
+    setReadOnly(false);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
@@ -325,7 +325,8 @@ void SqlQueryView::itemActivated(const QModelIndex& index)
         return;
 
     item->skipInitialFocusSelection();
-    edit(getCurrentIndex());
+    if (!simpleBrowserMode)
+        edit(getCurrentIndex());
 }
 
 void SqlQueryView::generateSelect()
@@ -375,7 +376,8 @@ void SqlQueryView::editCurrent()
         if (item)
             item->skipInitialFocusSelection();
 
-        edit(idx);
+        if (!simpleBrowserMode)
+            edit(idx);
     }
 }
 
@@ -698,6 +700,11 @@ bool SqlQueryView::getSimpleBrowserMode() const
 
 void SqlQueryView::setSimpleBrowserMode(bool value)
 {
+    if (value)
+        setEditTriggers(QAbstractItemView::NoEditTriggers);
+    else
+        setEditTriggers(QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed);
+
     simpleBrowserMode = value;
 }
 
@@ -709,6 +716,11 @@ void SqlQueryView::setIgnoreColumnWidthChanges(bool ignore)
 QMenu* SqlQueryView::getHeaderContextMenu() const
 {
     return headerContextMenu;
+}
+
+void SqlQueryView::setReadOnly(bool value)
+{
+    setSimpleBrowserMode(value);
 }
 
 void SqlQueryView::scrollContentsBy(int dx, int dy)
@@ -731,9 +743,9 @@ void SqlQueryView::keyPressEvent(QKeyEvent *e)
 
     QTableView::keyPressEvent(e);
 
-    if (shouldOpenEditor && state() != QAbstractItemView::EditingState)
+    if (shouldOpenEditor && state() != QAbstractItemView::EditingState && !simpleBrowserMode)
     {
-        edit(currentIndex());
+        QTableView::edit(currentIndex());
         QApplication::sendEvent(focusWidget(), e);
     }
 }

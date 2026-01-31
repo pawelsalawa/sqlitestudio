@@ -91,6 +91,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setSimpleBrowserMode(bool value);
         void setIgnoreColumnWidthChanges(bool ignore);
         QMenu* getHeaderContextMenu() const;
+        void setReadOnly(bool value);
 
     protected:
         void scrollContentsBy(int dx, int dy);

@@ -18,7 +18,7 @@ FkComboBox::FkComboBox(QWidget* parent, int dropDownViewMinWidth)
     init();
 }
 
-QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, const QVariant& currentValue)
+QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, const QVariant& currentValue, QString* currColName)
 {
     static_qstring(sql, "SELECT %4, %1 FROM %2%3");
     static_qstring(currValueTpl, "(%1 == %2) AS %3");
@@ -104,6 +104,9 @@ QString FkComboBox::getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, 
     QString currValueExpr = isNull(currentValue) ?
                                 currNullValueTpl.arg(firstSrcCol, currValueColName) :
                                 currValueTpl.arg(firstSrcCol, valueToSqlLiteral(currentValue), currValueColName);
+
+    if (currColName)
+        *currColName = currValueColName;
 
     return sql.arg(
         selectedCols.join(", "),

@@ -14,9 +14,9 @@ class GUI_API_EXPORT FkComboBox : public QComboBox
     Q_OBJECT
 
     public:
-        FkComboBox(QWidget *parent, int dropDownViewMinWidth = -1);
+        FkComboBox(QWidget *parent = nullptr, int dropDownViewMinWidth = -1);
 
-        static QString getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, const QVariant& currentValue);
+        static QString getSqlForFkEditor(Db* db, SqlQueryModelColumn* columnModel, const QVariant& currentValue, QString* currColName = nullptr);
         static qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool* isError);
 
         static const qlonglong MAX_ROWS_FOR_FK = 10000L;

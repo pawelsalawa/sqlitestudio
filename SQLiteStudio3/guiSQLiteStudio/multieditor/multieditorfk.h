@@ -4,6 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include "multieditorwidget.h"
 
+class SqlQueryModel;
 class Db;
 class SqlQueryModelColumn;
 class FkComboBox;
@@ -24,7 +25,15 @@ class GUI_API_EXPORT MultiEditorFk : public MultiEditorWidget
         QList<QWidget*> getNoScrollWidgets();
 
     private:
+        void updatePreview(const QVariant& value);
+
         FkComboBox* comboBox = nullptr;
+        Db* db = nullptr;
+        SqlQueryModelColumn* columnModel = nullptr;
+        SqlQueryModel* previewModel = nullptr;
+
+    private slots:
+        void updatePreview();
 };
 
 #endif // MULTIEDITORFK_H
