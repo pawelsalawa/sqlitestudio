@@ -5,15 +5,15 @@
     <name>ErdChangeRegistryDialog</name>
     <message>
       <source>Pending changes registry</source>
-      <translation type="unfinished">Pending changes registry</translation>
+      <translation>待处理变更注册表</translation>
     </message>
     <message>
       <source>Pending changes</source>
-      <translation type="unfinished">Pending changes</translation>
+      <translation>待处理的更改</translation>
     </message>
     <message>
       <source>DDL preview</source>
-      <translation type="unfinished">DDL preview</translation>
+      <translation>DDL 预览</translation>
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows the changes as they will be committed. Redundant or mutually cancelling steps are merged or removed from the list.&lt;br/&gt;When disabled, all individual undo and redo steps are shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
