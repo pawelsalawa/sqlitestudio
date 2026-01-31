@@ -333,17 +333,17 @@
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="65"/>
       <source>Custom colors</source>
-      <translation type="unfinished">Custom colors</translation>
+      <translation>自定义颜色</translation>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="73"/>
       <source>Add custom color</source>
-      <translation type="unfinished">Add custom color</translation>
+      <translation>添加自定义颜色</translation>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="219"/>
       <source>Select color</source>
-      <translation type="unfinished">Select color</translation>
+      <translation>选择颜色</translation>
     </message>
   </context>
   <context>
@@ -658,12 +658,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation>引用表：</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Referenced column:</source>
-      <translation type="unfinished">Referenced column:</translation>
+      <translation>引用列：</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -890,7 +890,7 @@
       <location filename="../completer/completerwindow.cpp" line="245"/>
       <source>Join condition: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Join condition: %1</translation>
+      <translation>加入条件： %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="288"/>
@@ -961,12 +961,12 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="1024"/>
       <source>SQL Editor</source>
-      <translation type="unfinished">SQL Editor</translation>
+      <translation>SQL 编辑器</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
       <source>sqlEditorPage</source>
-      <translation type="unfinished">sqlEditorPage</translation>
+      <translation>sqlEditorPage</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="207"/>
@@ -1444,22 +1444,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1030"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;当存在多个查询时，仅执行光标下的查询。&lt;br/&gt;如果禁用此功能，则执行所有查询。&lt;br/&gt;您还可以执行选定的查询或使用快捷键（%1 执行单个查询，%2 执行所有查询）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1043"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;突出显示光标下的查询 - 使用 &lt;span style=&quot; font-style:italic;&quot;&gt;执行查询&lt;/span&gt;时将执行的相同查询。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1069"/>
       <source>Disable blinking text cursor</source>
-      <translation type="unfinished">Disable blinking text cursor</translation>
+      <translation>禁用闪烁的文本光标</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1091"/>
       <source>Trigger assistant after typing a dot</source>
-      <translation type="unfinished">Trigger assistant after typing a dot</translation>
+      <translation>输入句点后触发助手</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1104"/>
@@ -1469,7 +1469,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1113"/>
       <source>Query history size:</source>
-      <translation type="unfinished">Query history size:</translation>
+      <translation>查询历史记录大小：</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1396"/>
@@ -1550,23 +1550,23 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2088"/>
       <source>Toolbars</source>
-      <translation type="unfinished">Toolbars</translation>
+      <translation>工具栏</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2094"/>
       <location filename="../dialogs/configdialog.ui" line="2104"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;以默认大小的百分比表示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2097"/>
       <source>Icon size</source>
-      <translation type="unfinished">Icon size</translation>
+      <translation>图标大小</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2107"/>
       <source>General.ToolBarIconSize</source>
-      <translation type="unfinished">General.ToolBarIconSize</translation>
+      <translation>General.ToolBarIconSize</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2222"/>
@@ -1601,7 +1601,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2541"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;提示：&lt;/span&gt; 除了此处提供的设置外，您还可以通过按住 &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; 并滚动 &lt;span style=&quot; font-weight:700;&quot;&gt;鼠标滚轮&lt;/span&gt; 在要更改字体大小的元素上，动态调整大多数界面元素的字体大小。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2557"/>
@@ -4175,13 +4175,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="1012"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
-      <translation type="unfinished">Toolbar &amp;icons</translation>
+      <translation>工具栏图标(&amp;I)</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1024"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
-      <translation type="unfinished">Size: %1%</translation>
+      <translation>大小：1%</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1126"/>
@@ -4228,12 +4228,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="77"/>
       <source>Save this value to a file</source>
-      <translation type="unfinished"/>
+      <translation>将此值保存到文件中</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="80"/>
       <source>Load this value from a file</source>
-      <translation type="unfinished"/>
+      <translation>从文件中加载此值</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="91"/>
@@ -4253,42 +4253,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="384"/>
       <source>All files (*)</source>
-      <translation type="unfinished">所有文件 (*)</translation>
+      <translation>所有文件 (*)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="386"/>
       <source>Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</source>
-      <translation type="unfinished"/>
+      <translation>文本文件（*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="388"/>
       <source>SQL files (*.sql)</source>
-      <translation type="unfinished"/>
+      <translation>SQL 文件 (*.sql)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="390"/>
       <source>Binary data (*.bin *.dat *.raw)</source>
-      <translation type="unfinished"/>
+      <translation>二进制数据（*.bin *.dat *.raw）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="392"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</source>
-      <translation type="unfinished"/>
+      <translation>图像（*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="394"/>
       <source>Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</source>
-      <translation type="unfinished"/>
+      <translation>压缩文件（*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="396"/>
       <source>Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</source>
-      <translation type="unfinished"/>
+      <translation>文档（*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="398"/>
       <source>Executables (*.exe *.dll *.so *.dylib)</source>
-      <translation type="unfinished"/>
+      <translation>可执行文件（*.exe *.dll *.so *.dylib）</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="422"/>
@@ -4310,27 +4310,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="636"/>
       <source>Open</source>
-      <translation type="unfinished"/>
+      <translation>打开</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="645"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished"/>
+      <translation>无法打开文件 %1 进行读取。</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="661"/>
       <source>Save</source>
-      <translation type="unfinished"/>
+      <translation>保存</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="670"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished"/>
+      <translation>无法打开文件 %1 进行写入。</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="720"/>
       <source>Could not write data into the file %1</source>
-      <translation type="unfinished"/>
+      <translation>无法将数据写入文件 %1</translation>
     </message>
   </context>
   <context>
@@ -4541,7 +4541,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../common/passwordtogglehelper.cpp" line="11"/>
       <source>Show / hide password</source>
-      <translation type="unfinished">Show / hide password</translation>
+      <translation>显示/隐藏密码</translation>
     </message>
   </context>
   <context>
@@ -5431,7 +5431,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;您确定要退出此应用吗？&lt;/span&gt;&lt;/p&gt;&lt;p&gt;以下项目处于待处理状态：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -6266,17 +6266,17 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation>引用表：</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="56"/>
       <source>Referencing column</source>
-      <translation type="unfinished">Referencing column</translation>
+      <translation>引用列</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="68"/>
       <source>Referenced column</source>
-      <translation type="unfinished">Referenced column</translation>
+      <translation>引用列</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="104"/>

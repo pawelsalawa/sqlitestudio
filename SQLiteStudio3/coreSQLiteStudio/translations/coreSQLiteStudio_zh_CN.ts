@@ -39,7 +39,7 @@
       <location filename="../db/chainexecutor.cpp" line="73"/>
       <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+      <translation>无法在数据库中切换到旧版 ALTER RENAME 行为。详细信息：%1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -1126,7 +1126,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="630"/>
       <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-      <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+      <translation>数据库文件“%1”已被新版本的 SQLite（格式 %2）修改，而当前应用程序最高支持格式 %3。某些功能可能无法正常工作。</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="883"/>
