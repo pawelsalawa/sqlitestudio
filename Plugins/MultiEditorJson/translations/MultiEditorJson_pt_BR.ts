@@ -45,7 +45,7 @@
     </message>
     <message>
       <source>JSON files (*.json, *.txt)</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">JSON files (*.json, *.txt)</translation>
     </message>
   </context>
   <context>
