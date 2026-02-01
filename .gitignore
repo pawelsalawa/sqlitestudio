@@ -38,6 +38,9 @@ qrc_*.cpp
 # Generated version calculation script
 calc_version.py
 
+# Generated Makefiles
+Makefile
+
 # ---- Build outputs ----------------------------------------------------------
 # Common out-of-source build dirs
 build/
