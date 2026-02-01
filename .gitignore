@@ -35,8 +35,10 @@ qrc_*.cpp
 .qmake.stash
 .qmake.cache
 
-# Generated version calculation script
+# Generated version calculation scripts
 calc_version.py
+calc_version.bat
+calc_version.sh
 
 # Generated Makefiles
 Makefile

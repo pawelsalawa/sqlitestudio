@@ -37,30 +37,57 @@ isEmpty(SQLITESTUDIO_VERSION_INT) {
     error("Could not extract version from $$SQLITESTUDIO_CPP")
 }
 
-# Calculate version components using Python
-# Create a small Python script file to avoid shell escaping issues
-VERSION_CALC_SCRIPT = $$OUT_PWD/calc_version.py
-
-# Write Python code to calculate version components
-VERSION_CALC_CONTENT = "v = $$SQLITESTUDIO_VERSION_INT"
-VERSION_CALC_CONTENT += $$escape_expand(\\n)
-VERSION_CALC_CONTENT += "print(str(v//10000) + ' ' + str((v//100)%100) + ' ' + str(v%100))"
-
-write_file($$VERSION_CALC_SCRIPT, VERSION_CALC_CONTENT)
-
-# Run the script
+# Calculate version components
+# For Windows, use batch file to avoid Python dependency
+# For Unix-like systems, use shell script
 win32 {
-    # Windows
-    VERSION_CALC = $$system(python $$VERSION_CALC_SCRIPT 2>NUL, lines)
-    isEmpty(VERSION_CALC) {
-        VERSION_CALC = $$system(python3 $$VERSION_CALC_SCRIPT 2>NUL, lines)
-    }
+    # Windows: Create batch file for version calculation
+    VERSION_CALC_SCRIPT = $$OUT_PWD/calc_version.bat
+    
+    # Batch file content for Windows integer division
+    VERSION_CALC_CONTENT = "@echo off"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    VERSION_CALC_CONTENT += "set ver=$$SQLITESTUDIO_VERSION_INT"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Major = ver / 10000
+    VERSION_CALC_CONTENT += "set /a major=ver/10000"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Minor = (ver / 100) % 100
+    VERSION_CALC_CONTENT += "set /a minor=(ver/100)%%100"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Patch = ver % 100
+    VERSION_CALC_CONTENT += "set /a patch=ver%%100"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    VERSION_CALC_CONTENT += "echo %major% %minor% %patch%"
+    
+    write_file($$VERSION_CALC_SCRIPT, VERSION_CALC_CONTENT)
+    
+    # Run the batch file
+    VERSION_CALC = $$system($$VERSION_CALC_SCRIPT 2>NUL, lines)
 } else {
-    # Unix-like
-    VERSION_CALC = $$system(python3 $$VERSION_CALC_SCRIPT 2>/dev/null, lines)
-    isEmpty(VERSION_CALC) {
-        VERSION_CALC = $$system(python $$VERSION_CALC_SCRIPT 2>/dev/null, lines)
-    }
+    # Unix-like: Create shell script for version calculation
+    VERSION_CALC_SCRIPT = $$OUT_PWD/calc_version.sh
+    
+    # Shell script content for integer division
+    VERSION_CALC_CONTENT = "#!/bin/sh"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    VERSION_CALC_CONTENT += "ver=$$SQLITESTUDIO_VERSION_INT"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Major = ver / 10000
+    VERSION_CALC_CONTENT += "major=\$$((ver/10000))"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Minor = (ver / 100) % 100
+    VERSION_CALC_CONTENT += "minor=\$$((ver/100%100))"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    # Patch = ver % 100
+    VERSION_CALC_CONTENT += "patch=\$$((ver%100))"
+    VERSION_CALC_CONTENT += $$escape_expand(\\n)
+    VERSION_CALC_CONTENT += "echo \$$major \$$minor \$$patch"
+    
+    write_file($$VERSION_CALC_SCRIPT, VERSION_CALC_CONTENT)
+    
+    # Run the shell script
+    VERSION_CALC = $$system(sh $$VERSION_CALC_SCRIPT 2>/dev/null, lines)
 }
 
 # Parse the results if we got them
@@ -71,9 +98,9 @@ win32 {
     SQLITESTUDIO_VERSION_PATCH = $$member(VERSION_PARTS, 2)
 }
 
-# If Python is not available, show error with helpful message
+# If script execution failed, show error with helpful message
 isEmpty(SQLITESTUDIO_VERSION_MAJOR) {
-    error("Could not calculate version components. Python is required for building SQLiteStudio. Please ensure Python is installed and in your PATH.")
+    error("Could not calculate version components from $$SQLITESTUDIO_VERSION_INT. Please check that the build environment supports batch/shell scripts.")
 }
 
 # Create version string
