@@ -589,8 +589,7 @@ void IndexDialog::rebuildCreateIndex()
 
     if (ui->partialIndexCheck->isChecked())
     {
-        if (createIndex->where)
-            delete createIndex->where;
+        delete createIndex->where;
 
         Parser parser;
         SqliteExpr* expr = parser.parseExpr(ui->partialIndexEdit->toPlainText());

@@ -16,11 +16,8 @@ FormManager::FormManager()
 
 FormManager::~FormManager()
 {
-    if (uiLoader)
-    {
-        delete uiLoader;
-        uiLoader = nullptr;
-    }
+    delete uiLoader;
+    uiLoader = nullptr;
 }
 
 QWidget* FormManager::createWidget(const QString& name)

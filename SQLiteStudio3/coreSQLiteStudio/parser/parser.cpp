@@ -30,17 +30,11 @@ Parser::~Parser()
 
 void Parser::cleanUp()
 {
-    if (lexer)
-    {
-        delete lexer;
-        lexer = nullptr;
-    }
+    delete lexer;
+    lexer = nullptr;
 
-    if (context)
-    {
-        delete context;
-        context = nullptr;
-    }
+    delete context;
+    context = nullptr;
 }
 
 void *Parser::parseAlloc(void *(*mallocProc)(size_t))

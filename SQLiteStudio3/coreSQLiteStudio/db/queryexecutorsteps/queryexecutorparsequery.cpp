@@ -11,15 +11,15 @@ QueryExecutorParseQuery::QueryExecutorParseQuery(const QString& name)
 
 QueryExecutorParseQuery::~QueryExecutorParseQuery()
 {
-    if (parser)
-        delete parser;
+    delete parser;
+    parser = nullptr;
 }
 
 bool QueryExecutorParseQuery::exec()
 {
     // Prepare parser
-    if (parser)
-        delete parser;
+    delete parser;
+    parser = nullptr;
 
     parser = new Parser();
 

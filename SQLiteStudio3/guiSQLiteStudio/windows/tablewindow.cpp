@@ -365,8 +365,7 @@ QStringList TableWindow::generateStructureChangeStatements()
     }
     else
     {
-        if (tableModifier)
-            delete tableModifier;
+        delete tableModifier;
 
         tableModifier = new TableModifier(db, database, table);
         tableModifier->alterTable(createTable);
