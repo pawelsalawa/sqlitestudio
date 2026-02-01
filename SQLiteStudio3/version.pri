@@ -40,7 +40,12 @@ isEmpty(SQLITESTUDIO_VERSION_INT) {
 # Calculate version components using Python
 # Create a small Python script file to avoid shell escaping issues
 VERSION_CALC_SCRIPT = $$OUT_PWD/calc_version.py
-VERSION_CALC_CONTENT = "v = $$SQLITESTUDIO_VERSION_INT$$escape_expand(\\n)print(str(v//10000) + ' ' + str((v//100)%100) + ' ' + str(v%100))"
+
+# Write Python code to calculate version components
+VERSION_CALC_CONTENT = "v = $$SQLITESTUDIO_VERSION_INT"
+VERSION_CALC_CONTENT += $$escape_expand(\\n)
+VERSION_CALC_CONTENT += "print(str(v//10000) + ' ' + str((v//100)%100) + ' ' + str(v%100))"
+
 write_file($$VERSION_CALC_SCRIPT, VERSION_CALC_CONTENT)
 
 # Run the script
@@ -88,5 +93,7 @@ DEFINES += SQLITESTUDIO_VERSION_INT=$$SQLITESTUDIO_VERSION_INT
 DEFINES += SQLITESTUDIO_VERSION_MAJOR=$$SQLITESTUDIO_VERSION_MAJOR
 DEFINES += SQLITESTUDIO_VERSION_MINOR=$$SQLITESTUDIO_VERSION_MINOR
 DEFINES += SQLITESTUDIO_VERSION_PATCH=$$SQLITESTUDIO_VERSION_PATCH
+# Triple-backslash escaping produces a quoted string literal in C++:
+# e.g., #define SQLITESTUDIO_VERSION_STRING "4.0.0"
 DEFINES += SQLITESTUDIO_VERSION_STRING=\\\"$$SQLITESTUDIO_VERSION_STRING\\\"
 
