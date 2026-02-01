@@ -124,7 +124,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
       <source>Snippet name</source>
-      <translation>Nom de l&apos;extrait</translation>
+      <translation>Nom de l'extrait</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
@@ -1445,22 +1445,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="219"/>
       <source>Data renderers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="892"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="912"/>
       <source>Data type</source>
-      <translation type="unfinished">Type de données</translation>
+      <translation>Type de données</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="917"/>
       <source>Renderer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Renderer</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1079"/>
@@ -4386,7 +4386,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
       <location filename="../multieditor/multieditorfk.cpp" line="25"/>
       <source>Selected value preview</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Selected value preview</translation>
     </message>
   </context>
   <context>
