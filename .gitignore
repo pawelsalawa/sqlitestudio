@@ -35,6 +35,9 @@ qrc_*.cpp
 .qmake.stash
 .qmake.cache
 
+# Generated version calculation script
+calc_version.py
+
 # ---- Build outputs ----------------------------------------------------------
 # Common out-of-source build dirs
 build/
