@@ -120,7 +120,7 @@ void ConfigDialog::configureDataEditors(const QString& dataTypeString)
         }
     }
 
-    addDataType(dataTypeString.toUpper());
+    addEditorDataType(dataTypeString.toUpper());
 }
 
 QString ConfigDialog::getFilterString(QWidget *widget)
@@ -222,6 +222,7 @@ void ConfigDialog::init()
     initPluginsPage();
     initFormatterPlugins();
     initDataEditors();
+    initDataRenderers();
     initShortcuts();
     initLangs();
     initTooltips();
@@ -611,7 +612,7 @@ void ConfigDialog::setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, cons
     updatingDataEditorItem = false;
 }
 
-void ConfigDialog::addDataType(const QString& typeStr)
+void ConfigDialog::addEditorDataType(const QString& typeStr)
 {
     QListWidgetItem* item = new QListWidgetItem(typeStr);
     item->setFlags(item->flags()|Qt::ItemIsEditable);
@@ -782,13 +783,13 @@ void ConfigDialog::dataEditorTabsOrderChanged(int from, int to)
     setPluginNamesForDataTypeItem(typeItem, pluginNames);
 }
 
-void ConfigDialog::addDataType()
+void ConfigDialog::addEditorDataType()
 {
-    addDataType("");
-    renameDataType();
+    addEditorDataType("");
+    renameEditorDataType();
 }
 
-void ConfigDialog::renameDataType()
+void ConfigDialog::renameEditorDataType()
 {
     QListWidgetItem* item = ui->dataEditorsTypesList->currentItem();
     if (!item)
@@ -797,7 +798,7 @@ void ConfigDialog::renameDataType()
     ui->dataEditorsTypesList->editItem(item);
 }
 
-void ConfigDialog::delDataType()
+void ConfigDialog::delEditorDataType()
 {
     QListWidgetItem* item = ui->dataEditorsTypesList->currentItem();
     if (!item)
@@ -822,10 +823,25 @@ void ConfigDialog::delDataType()
     markModified();
 }
 
-void ConfigDialog::dataTypesHelp()
+void ConfigDialog::editorDataTypesHelp()
 {
     static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#customizing-data-type-editors");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void ConfigDialog::addRendererDataType()
+{
+    // TODO
+}
+
+void ConfigDialog::renameRendererDataType()
+{
+    // TODO
+}
+
+void ConfigDialog::delRendererDataType()
+{
+    // TODO
 }
 
 void ConfigDialog::updateActiveFormatterState()
@@ -1684,19 +1700,19 @@ void ConfigDialog::initDataEditors()
     }
 
     QAction* act = new QAction(ICONS.INSERT_DATATYPE, tr("Add new data type"), ui->dataEditorsTypesToolbar);
-    connect(act, SIGNAL(triggered()), this, SLOT(addDataType()));
+    connect(act, SIGNAL(triggered()), this, SLOT(addEditorDataType()));
     ui->dataEditorsTypesToolbar->addAction(act);
 
     dataEditRenameAction = new QAction(ICONS.RENAME_DATATYPE, tr("Rename selected data type"), ui->dataEditorsTypesToolbar);
-    connect(dataEditRenameAction, SIGNAL(triggered()), this, SLOT(renameDataType()));
+    connect(dataEditRenameAction, SIGNAL(triggered()), this, SLOT(renameEditorDataType()));
     ui->dataEditorsTypesToolbar->addAction(dataEditRenameAction);
 
     dataEditDeleteAction = new QAction(ICONS.DELETE_DATATYPE, tr("Delete selected data type"), ui->dataEditorsTypesToolbar);
-    connect(dataEditDeleteAction, SIGNAL(triggered()), this, SLOT(delDataType()));
+    connect(dataEditDeleteAction, SIGNAL(triggered()), this, SLOT(delEditorDataType()));
     ui->dataEditorsTypesToolbar->addAction(dataEditDeleteAction);
 
     act = new QAction(ICONS.HELP, tr("Help for configuring data type editors"), ui->dataEditorsTypesToolbar);
-    connect(act, SIGNAL(triggered()), this, SLOT(dataTypesHelp()));
+    connect(act, SIGNAL(triggered()), this, SLOT(editorDataTypesHelp()));
     ui->dataEditorsTypesToolbar->addAction(act);
 
     connect(ui->dataEditorsTypesList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeEditors()));
@@ -1708,6 +1724,23 @@ void ConfigDialog::initDataEditors()
     ui->dataEditorsTypesList->setCurrentRow(0, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
     ui->dataEditorsTypesGroup->setMinimumWidth(ui->dataEditorsTypesToolbar->sizeHint().width());
     updateDataTypeListState();
+}
+
+void ConfigDialog::initDataRenderers()
+{
+    ui->dataRenderersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QAction* act = new QAction(ICONS.INSERT_DATATYPE, tr("Add new data type"), ui->dataRenderersToolbar);
+    connect(act, SIGNAL(triggered()), this, SLOT(addRendererDataType()));
+    ui->dataRenderersToolbar->addAction(act);
+
+    dataRenderRenameAction = new QAction(ICONS.RENAME_DATATYPE, tr("Rename selected data type"), ui->dataRenderersToolbar);
+    connect(dataRenderRenameAction, SIGNAL(triggered()), this, SLOT(renameRendererDataType()));
+    ui->dataRenderersToolbar->addAction(dataRenderRenameAction);
+
+    dataRenderDeleteAction = new QAction(ICONS.DELETE_DATATYPE, tr("Delete selected data type"), ui->dataRenderersToolbar);
+    connect(dataRenderDeleteAction, SIGNAL(triggered()), this, SLOT(delRendererDataType()));
+    ui->dataRenderersToolbar->addAction(dataRenderDeleteAction);
 }
 
 void ConfigDialog::initShortcuts()

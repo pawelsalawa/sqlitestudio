@@ -7,6 +7,7 @@
 #include "common/global.h"
 #include "guiSQLiteStudio_global.h"
 
+class CellRendererPlugin;
 class Icon;
 
 class GUI_API_EXPORT SqlQueryModelColumn
@@ -184,6 +185,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QSet<EditionForbiddenReason> editionForbiddenReason;
         QList<Constraint*> constraints;
         QString queryExecutorAlias;
+        CellRendererPlugin* cellRenderer = nullptr;
 
     private:
         template <class T>

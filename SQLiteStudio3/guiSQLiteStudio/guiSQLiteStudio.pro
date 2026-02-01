@@ -208,6 +208,7 @@ HEADERS  += mainwindow.h \
     common/mouseshortcut.h \
     common/passwordtogglehelper.h \
     constraints/columngeneratedpanel.h \
+    datagrid/cellrendererplugin.h \
     datagrid/fkcombobox.h \
     datagrid/sqlqueryitemlineedit.h \
     extendedpalette.h \

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg4941"
+   height="281.62mm"
+   width="281.62mm"
+   version="1.1"
+   viewBox="0 0 997.87403 997.87981"
+   sodipodi:docname="config_data_renderers.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs48" />
+  <sodipodi:namedview
+     id="namedview46"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.63141122"
+     inkscape:cx="74.436435"
+     inkscape:cy="703.97862"
+     inkscape:current-layer="svg4941" />
+  <metadata
+     id="metadata4946">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g4162"
+     transform="matrix(0.46490714,0,0,0.62006645,312.70371,181.45874)">
+    <rect
+       id="rect4151-4"
+       height="1362"
+       width="1052"
+       y="-172.64"
+       x="-665" />
+    <path
+       id="path5502-4"
+       d="m 360,75 -35,30 50,55 h 190 l 50,-45 -35,-40 z m 340,0 -55,45 40,40 h 180 l 70,-60 -25,-25 z m -395,40 -32.5,32.5 -85,475 37.5,40 52.5,-45 80,-445 z M 285,637.5 237.5,680 270,720 H 427.5 L 505,675 457.5,637.5 Z m 330,0 -75,40 52.5,42.5 h 165 l 52.5,-47.5 -32.5,-35 z m 207.5,52.5 -55,50 -75,445 47.5,52.5 37.5,-30 L 860,730 Z m -642.5,510 -67.5,60 22.5,22.5 h 217.5 l 50,-47.5 -30,-35 z m 310,0 -52.5,40 35,42.5 H 690 l 32.5,-30 L 675,1200 Z"
+       fill-rule="evenodd"
+       transform="translate(-665,-172.64)"
+       fill="#ff4a00" />
+    <path
+       id="path5504-4"
+       d="m 945,117.5 -65,60 -85,445 35,40 52.5,-47.5 90,-465 z m -320,12.5 -55,50 -60,305 15,170 80,-165 60,-320 z m -260,55 -20,125 110,310 60,50 -15,-180 -80,-245 z m 500,0 -90,75 L 640.58,445.7 530,670 625,615 840,315 Z M 516.71,681.57 422.99,735.14 210,1035 l -20,130 85,-75 140,-200 z m 13.29,0.93 17.5,187.5 85,237.5 52.5,67.5 20,-125 -117.5,-320 z m -310,10 -55,47.5 -90,475 27.5,25 70,-60 82.5,-445 z m 300,7.29 -80,170.21 -55,310 37.5,42.5 57.5,-45 54.43,-329.07 z M 927,1187 a 50,50 0 0 0 -50,50 50,50 0 0 0 50,50 50,50 0 0 0 50,-50 50,50 0 0 0 -50,-50 z"
+       fill-rule="evenodd"
+       transform="translate(-665,-172.64)"
+       fill="#141414" />
+  </g>
+  <g
+     id="g4153-6"
+     transform="matrix(0.46490812,0,0,0.6200664,817.36474,181.45873)">
+    <rect
+       id="rect4151-09"
+       height="1362"
+       width="1052"
+       y="-172.64"
+       x="-665" />
+    <path
+       id="path5502-1"
+       d="m 360,75 -35,30 50,55 h 190 l 50,-45 -35,-40 z m 340,0 -55,45 40,40 h 180 l 70,-60 -25,-25 z m -395,40 -32.5,32.5 -85,475 37.5,40 52.5,-45 80,-445 z m 640,2.5 -65,60 -85,445 35,40 52.5,-47.5 90,-465 z M 865,185 775,260 640.58,445.7 530,670 625,615 840,315 Z M 516.71,681.57 422.99,735.14 210,1035 l -20,130 85,-75 140,-200 z m 305.79,8.43 -55,50 -75,445 47.5,52.5 37.5,-30 L 860,730 Z m -602.5,2.5 -55,47.5 -90,475 27.5,25 70,-60 82.5,-445 z m -40,507.5 -67.5,60 22.5,22.5 h 217.5 l 50,-47.5 -30,-35 z m 310,0 -52.5,40 35,42.5 H 690 l 32.5,-30 L 675,1200 Z"
+       fill-rule="evenodd"
+       transform="translate(-665,-172.64)"
+       fill="#ff4a00" />
+    <path
+       id="path5576-0"
+       d="m 625,130 -55,50 -60,305 15,170 80,-165 60,-320 z M 365,185 345,310 455,620 515,670 500,490 420,245 Z M 285,637.5 237.5,680 270,720 H 427.5 L 505,675 457.5,637.5 Z m 330,0 -75,40 52.5,42.5 h 165 l 52.5,-47.5 -32.5,-35 z m -85,45 17.5,187.5 85,237.5 52.5,67.5 20,-125 -117.5,-320 z m -10,17.29 -80,170.21 -55,310 37.5,42.5 57.5,-45 54.43,-329.07 z M 927,1187 a 50,50 0 0 0 -50,50 50,50 0 0 0 50,50 50,50 0 0 0 50,-50 50,50 0 0 0 -50,-50 z"
+       fill-rule="evenodd"
+       transform="translate(-665,-172.64)"
+       fill="#141414" />
+  </g>
+</svg>

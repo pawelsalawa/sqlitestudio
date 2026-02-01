@@ -214,6 +214,18 @@
                 <normaloff>:/icons/img/config_data_editors.svg</normaloff>:/icons/img/config_data_editors.svg</iconset>
               </property>
              </item>
+             <item>
+              <property name="text">
+               <string>Data renderers</string>
+              </property>
+              <property name="statusTip">
+               <string notr="true">dataRenderersPage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_data_renderers.svg</normaloff>:/icons/img/config_data_renderers.svg</iconset>
+              </property>
+             </item>
             </item>
             <item>
              <property name="text">
@@ -255,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -433,7 +445,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>456</width>
+                <width>679</width>
                 <height>754</height>
                </rect>
               </property>
@@ -868,6 +880,43 @@
                </item>
               </layout>
              </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="dataRenderersPage">
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <widget class="QLabel" name="dataRenderersHelp">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolBar" name="dataRenderersToolbar"/>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="dataRenderersTable">
+             <property name="cornerButtonEnabled">
+              <bool>false</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Data type</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Renderer</string>
+              </property>
+             </column>
             </widget>
            </item>
           </layout>
@@ -2530,8 +2579,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>235</width>
-                <height>493</height>
+                <width>695</width>
+                <height>522</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">

@@ -9,6 +9,7 @@
 #include "fkcombobox.h"
 #include "schemaresolver.h"
 #include "sqlqueryitemlineedit.h"
+#include "datagrid/cellrendererplugin.h"
 #include <QHeaderView>
 #include <QPainter>
 #include <QEvent>
@@ -35,8 +36,12 @@ SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
 void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyledItemDelegate::paint(painter, option, index);
-    SqlQueryItem* item = getItem(index);
+    handleUncommitedPainting(painter, option, index);
+}
 
+void SqlQueryItemDelegate::handleUncommitedPainting(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex &index)
+{
+    SqlQueryItem* item = getItem(index);
     if (item->isUncommitted())
     {
         painter->setPen(item->isCommittingError() ? QColor(Qt::red) : QColor(Qt::blue));
@@ -224,7 +229,7 @@ void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelI
     le->setText(str);
 }
 
-SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const
+SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index)
 {
     const SqlQueryModel* queryModel = dynamic_cast<const SqlQueryModel*>(index.model());
     return queryModel->itemFromIndex(index);

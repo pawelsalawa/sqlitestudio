@@ -28,6 +28,9 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const;
         void mouseLeftIndex(const QModelIndex& index);
 
+        static void handleUncommitedPainting(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index);
+        static SqlQueryItem* getItem(const QModelIndex &index);
+
     private:
         class GUI_API_EXPORT FkComboShowFilter : public QObject
         {
@@ -40,7 +43,6 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
                 SqlQueryView* comboView = nullptr;
         };
 
-        SqlQueryItem* getItem(const QModelIndex &index) const;
         QWidget* getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const;
         QWidget* getFkEditor(SqlQueryItem* item, bool shouldSkipInitialSelection, QWidget* parent, const SqlQueryModel *model) const;
         void setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const;

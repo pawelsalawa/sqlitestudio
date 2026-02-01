@@ -2,14 +2,6 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2580"
    sodipodi:docname="apply_filter_txt.svg"
    inkscape:export-filename="/Users/lmproulx/Desktop/isotype/En cours/entonnoir.png"
@@ -19,7 +11,15 @@
    version="1.0"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-ydpi="300"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs15">
     <linearGradient
@@ -129,7 +129,7 @@
        x2="395.17294"
        y2="364.68719"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.3501259,0,0,1.350126,-283.84807,-123.18575)" />
+       gradientTransform="matrix(1.3501259,0,0,1.350126,-286.61181,-174.5529)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -138,18 +138,20 @@
      inkscape:window-y="34"
      pagecolor="#ffffff"
      inkscape:window-height="811"
-     inkscape:zoom="0.7"
+     inkscape:zoom="1.4"
      inkscape:window-x="42"
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="g2637"
-     inkscape:cx="251.26644"
-     inkscape:cy="276.35619"
+     inkscape:cx="-19.285714"
+     inkscape:cy="281.07143"
      inkscape:showpageshadow="false"
      inkscape:window-width="1130"
      inkscape:pageopacity="0.0"
      inkscape:document-units="px"
-     inkscape:document-rotation="0" />
+     inkscape:document-rotation="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
   <g
      id="g2637"
      transform="matrix(1.6258171,0,0,1.6258171,-341.78757,-320.99561)">
@@ -177,16 +179,16 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:176.011px;font-family:Bungee;-inkscape-font-specification:'Bungee Bold';fill:url(#linearGradient869);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075337;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723">T</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:239.766px;line-height:1.25;font-family:Bungee;-inkscape-font-specification:'Bungee Bold';fill:url(#linearGradient869-5);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075343;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723"
-       x="237.24791"
-       y="479.10907"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:239.766px;line-height:1.25;font-family:Bungee;-inkscape-font-specification:'Bungee Bold';fill:url(#linearGradient869-5);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723"
+       x="234.48416"
+       y="427.74191"
        id="text861-2"
-       transform="scale(0.89544039,1.1167689)"><tspan
+       transform="scale(0.8954404,1.1167689)"><tspan
          sodipodi:role="line"
          id="tspan859-1"
-         x="237.24791"
-         y="479.10907"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:239.766px;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';fill:url(#linearGradient869-5);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075343;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723">~</tspan></text>
+         x="234.48416"
+         y="427.74191"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:239.766px;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';fill:url(#linearGradient869-5);fill-opacity:1;stroke:#3d3d3d;stroke-width:6.15075;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99723">~</tspan></text>
   </g>
   <metadata
      id="metadata12">

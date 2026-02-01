@@ -65,6 +65,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         bool initPluginPage(Plugin* plugin, bool skipConfigLoading);
         void deinitPluginPage(Plugin* pluginName);
         void initDataEditors();
+        void initDataRenderers();
         void initShortcuts();
         void initShortcuts(CfgCategory* cfgCategory);
         void initLangs();
@@ -95,7 +96,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void transformDataTypeEditorsToCustomList(QListWidgetItem* typeItem);
         QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem, bool* exists = nullptr);
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
-        void addDataType(const QString& typeStr);
+        void addEditorDataType(const QString& typeStr);
         void rollbackPluginConfigs();
         void rollbackColorsConfig();
         void commitPluginConfigs();
@@ -126,6 +127,8 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QHash<UiConfiguredPlugin*,ConfigMapper*> pluginConfigMappers;
         QAction* dataEditRenameAction = nullptr;
         QAction* dataEditDeleteAction = nullptr;
+        QAction* dataRenderRenameAction = nullptr;
+        QAction* dataRenderDeleteAction = nullptr;
         bool updatingDataEditorItem = false;
         bool modifiedFlag = false;
         QList<ConfigNotifiablePlugin*> notifiablePlugins;
@@ -144,10 +147,13 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void dataEditorItemEdited(QListWidgetItem* item);
         void dataEditorAvailableChanged(QListWidgetItem* item);
         void dataEditorTabsOrderChanged(int from, int to);
-        void addDataType();
-        void renameDataType();
-        void delDataType();
-        void dataTypesHelp();
+        void addEditorDataType();
+        void renameEditorDataType();
+        void delEditorDataType();
+        void editorDataTypesHelp();
+        void addRendererDataType();
+        void renameRendererDataType();
+        void delRendererDataType();
         void switchPage(QTreeWidgetItem* item);
         void updateStylePreview();
         void apply();
