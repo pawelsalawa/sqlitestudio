@@ -6,11 +6,8 @@
 
 QueryExecutorReplaceViews::~QueryExecutorReplaceViews()
 {
-    if (schemaResolver)
-    {
-        delete schemaResolver;
-        schemaResolver = nullptr;
-    }
+    delete schemaResolver;
+    schemaResolver = nullptr;
 }
 
 bool QueryExecutorReplaceViews::exec()

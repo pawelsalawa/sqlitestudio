@@ -86,11 +86,8 @@ SqlEditor::~SqlEditor()
     if (objectsInNamedDbWatcher->isRunning())
         objectsInNamedDbWatcher->waitForFinished();
 
-    if (queryParser)
-    {
-        delete queryParser;
-        queryParser = nullptr;
-    }
+    delete queryParser;
+    queryParser = nullptr;
 }
 
 void SqlEditor::init()

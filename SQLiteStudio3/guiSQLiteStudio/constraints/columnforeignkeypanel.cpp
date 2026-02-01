@@ -208,8 +208,7 @@ void ColumnForeignKeyPanel::storeConfiguration()
     constr->type = SqliteCreateTable::Column::Constraint::FOREIGN_KEY;
 
     // Cleanup & initial setup
-    if (constr->foreignKey)
-        delete constr->foreignKey;
+    delete constr->foreignKey;
 
     constr->foreignKey = new SqliteForeignKey();
     constr->foreignKey->setParent(constr);

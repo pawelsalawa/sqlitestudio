@@ -200,11 +200,8 @@ void ColumnDefaultPanel::storeLiteral(SqliteCreateTable::Column::Constraint* con
 
 void ColumnDefaultPanel::clearDefault(SqliteCreateTable::Column::Constraint* constr)
 {
-    if (constr->expr)
-    {
-        delete constr->expr;
-        constr->expr = nullptr;
-    }
+    delete constr->expr;
+    constr->expr = nullptr;
     constr->literalNull = false;
     constr->literalValue = QVariant();
     constr->id = QString();

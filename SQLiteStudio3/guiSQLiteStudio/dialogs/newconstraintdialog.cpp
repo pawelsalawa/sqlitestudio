@@ -41,8 +41,7 @@ NewConstraintDialog::NewConstraintDialog(ConstraintDialog::Constraint constraint
 NewConstraintDialog::~NewConstraintDialog()
 {
     delete ui;
-    if (constraintDialog)
-        delete constraintDialog;
+    delete constraintDialog;
 }
 
 SqliteStatement* NewConstraintDialog::getConstraint()

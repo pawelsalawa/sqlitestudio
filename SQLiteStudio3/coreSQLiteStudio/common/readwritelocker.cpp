@@ -18,17 +18,11 @@ ReadWriteLocker::ReadWriteLocker(QReadWriteLock* lock, const QString& query, boo
 
 ReadWriteLocker::~ReadWriteLocker()
 {
-    if (readLocker)
-    {
-        delete readLocker;
-        readLocker = nullptr;
-    }
+    delete readLocker;
+    readLocker = nullptr;
 
-    if (writeLocker)
-    {
-        delete writeLocker;
-        writeLocker = nullptr;
-    }
+    delete writeLocker;
+    writeLocker = nullptr;
 }
 
 void ReadWriteLocker::init(QReadWriteLock* lock, ReadWriteLocker::Mode mode)
