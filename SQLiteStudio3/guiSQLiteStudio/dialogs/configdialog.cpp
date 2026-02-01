@@ -1902,8 +1902,7 @@ void ConfigDialog::updateStylePreview()
 
     applyStyle(ui->activeStylePreviewGroup, previewStyle);
 
-    if (previousStyle)
-        delete previousStyle;
+    delete previousStyle;
 }
 
 void ConfigDialog::apply()

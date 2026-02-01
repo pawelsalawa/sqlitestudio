@@ -150,11 +150,8 @@ void ColumnGeneratedPanel::storeExpr(SqliteCreateTable::Column::Constraint* cons
 
 void ColumnGeneratedPanel::clear(SqliteCreateTable::Column::Constraint* constr)
 {
-    if (constr->expr)
-    {
-        delete constr->expr;
-        constr->expr = nullptr;
-    }
+    delete constr->expr;
+    constr->expr = nullptr;
     constr->generatedKw = false;
     constr->generatedType = SqliteCreateTable::Column::Constraint::GeneratedType::null;
 }

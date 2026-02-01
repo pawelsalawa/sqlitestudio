@@ -1073,8 +1073,7 @@ void ViewWindow::executeStructureChanges()
         }
 
         createView = parser.getQueries().first().dynamicCast<SqliteCreateView>();
-        if (viewModifier)
-            delete viewModifier;
+        delete viewModifier;
 
         viewModifier = new ViewModifier(db, database, view);
         viewModifier->alterView(createView);

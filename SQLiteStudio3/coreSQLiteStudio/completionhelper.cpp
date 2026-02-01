@@ -52,23 +52,14 @@ void CompletionHelper::init()
 
 CompletionHelper::~CompletionHelper()
 {
-    if (schemaResolver)
-    {
-        delete schemaResolver;
-        schemaResolver = nullptr;
-    }
+    delete schemaResolver;
+    schemaResolver = nullptr;
 
-    if (selectResolver)
-    {
-        delete selectResolver;
-        selectResolver = nullptr;
-    }
+    delete selectResolver;
+    selectResolver = nullptr;
 
-    if (dbAttacher)
-    {
-        delete dbAttacher;
-        dbAttacher = nullptr;
-    }
+    delete dbAttacher;
+    dbAttacher = nullptr;
 }
 
 CompletionHelper::Results CompletionHelper::getExpectedTokens()
@@ -1649,9 +1640,7 @@ DbAttacher* CompletionHelper::getDbAttacher() const
 
 void CompletionHelper::setDbAttacher(DbAttacher* value)
 {
-    if (dbAttacher)
-        delete dbAttacher;
-
+    delete dbAttacher;
     dbAttacher = value;
 }
 

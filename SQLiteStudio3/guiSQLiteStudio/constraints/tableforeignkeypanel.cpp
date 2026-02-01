@@ -333,8 +333,7 @@ void TableForeignKeyPanel::storeConfiguration()
     constr->type = SqliteCreateTable::Constraint::FOREIGN_KEY;
 
     // Cleanup & initial setup
-    if (constr->foreignKey)
-        delete constr->foreignKey;
+    delete constr->foreignKey;
 
     for (SqliteIndexedColumn* idxCol : constr->indexedColumns)
         delete idxCol;
