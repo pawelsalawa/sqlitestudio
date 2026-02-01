@@ -46,6 +46,7 @@ bool CompletionComparer::operator ()(const ExpectedTokenPtr& token1, const Expec
         case ExpectedToken::NUMBER:
         case ExpectedToken::BLOB:
         case ExpectedToken::NO_VALUE:
+        case ExpectedToken::JOIN_EXPR:
             return false;
     }
 
