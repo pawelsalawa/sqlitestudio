@@ -30,8 +30,12 @@ on:
             description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
-          one_version_only:
-            description: "Run only one version variant"
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
 
@@ -40,36 +44,16 @@ jobs:
         runs-on: ubuntu-22.04
 
         strategy:
-            matrix: ${{ fromJSON(
-                inputs.one_version_only &&
-                >-
-                    [
-                      {
-                        "QT_VERSION":     "6.8.3",
-                        "PYTHON_VERSION": "3.12"
-                      }
-                    ]
-                ||
-                >-
-                    [
-                      {
-                        "QT_VERSION":     "6.2.4",
-                        "PYTHON_VERSION": "3.9"
-                      },
-                      {
-                        "QT_VERSION":     "6.5.3",
-                        "PYTHON_VERSION": "3.9"
-                      },
-                      {
-                        "QT_VERSION":     "6.8.3",
-                        "PYTHON_VERSION": "3.12"
-                      },
-                      {
-                        "QT_VERSION":     "6.10.2",
-                        "PYTHON_VERSION": "3.12"
-                      }
-                    ]
-              ) }}
+            matrix:
+                include:
+                    - QT_VERSION: '6.2.4'
+                      PYTHON_VERSION: '3.9'
+                    - QT_VERSION: '6.5.3'
+                      PYTHON_VERSION: '3.9'
+                    - QT_VERSION: '6.8.3'
+                      PYTHON_VERSION: '3.12'
+                    - QT_VERSION: '6.10.2'
+                      PYTHON_VERSION: '3.12'
 
         steps:
             - uses: actions/setup-python@v4
