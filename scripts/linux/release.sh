@@ -14,7 +14,10 @@ fi
 
 OLDDIR=$(pwd)
 
-VER=$(grep 'static const int sqlitestudioVersion' ../../SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp | grep -E -o '[\ 0-9]{2}' | bc | paste -s -d'.')
+# Extract version integer from source file
+VER_INT=$(grep 'static const int sqlitestudioVersion' ../../SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp | grep -o '[0-9]*')
+# Convert to version string using our conversion script
+VER=$(sh ../../scripts/convert_int_ver.sh "$VER_INT")
 
 rm -rf ../../output
 ./compile.sh "$QMAKE" $CORES
