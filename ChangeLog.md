@@ -23,6 +23,7 @@
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
+- CHANGE: #4688 Added metadata to Windows executables.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BIGFIX: #3146 Fixed accent characters support under MacOS.
 - BIGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.

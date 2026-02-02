@@ -8,6 +8,7 @@ QT       += core gui widgets network
 
 include($$PWD/../common.pri)
 include($$PWD/../utils.pri)
+include($$PWD/../version.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudio
 MOC_DIR = $$MOC_DIR/sqlitestudio
@@ -43,7 +44,9 @@ SOURCES += main.cpp \
     singleapplication/singleapplication.cpp
 
 win32 {
-    RC_FILE = windows.rc
+    DQ = $$escape_expand(\")
+    QMAKE_SUBSTITUTES += windows.rc.in
+    RC_FILE = $$OUT_PWD/windows.rc
     msvc:LIBS += User32.lib
     gcc:LIBS += -lUser32
 }
@@ -53,8 +56,8 @@ macx {
 }
 
 OTHER_FILES += \
-    windows.rc \
-    SQLiteStudio.exe.manifest
+    SQLiteStudio.exe.manifest \
+    windows.rc.in
 
 unix {
     target.path = $$BINDIR

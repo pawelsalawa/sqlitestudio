@@ -1,9 +1,6 @@
 OUTPUT_DIR_NAME = output
 export(OUTPUT_DIR_NAME)
 
-# Include version parsing to make version variables available to all subprojects
-include($$PWD/version.pri)
-
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
 MOC_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build

@@ -1,0 +1,32 @@
+#include <windows.h>
+
+ID_ICON ICON DISCARDABLE $${DQ}$$_PRO_FILE_PWD_/../guiSQLiteStudio/img/sqlitestudio.ico$${DQ}
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST $${DQ}$$_PRO_FILE_PWD_/../sqlitestudio/SQLiteStudio.exe.manifest$${DQ}
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION     $$SQLITESTUDIO_VERSION_MAJOR,$$SQLITESTUDIO_VERSION_MINOR,$$SQLITESTUDIO_VERSION_PATCH,0
+ PRODUCTVERSION  $$SQLITESTUDIO_VERSION_MAJOR,$$SQLITESTUDIO_VERSION_MINOR,$$SQLITESTUDIO_VERSION_PATCH,0
+ FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+ FILEOS          VOS_NT_WINDOWS32
+ FILETYPE        VFT_APP
+ FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK $${DQ}StringFileInfo$${DQ}
+    BEGIN
+        BLOCK $${DQ}040904b0$${DQ}
+        BEGIN
+            VALUE $${DQ}CompanyName$${DQ},      $${DQ}SalSoft$${DQ}
+            VALUE $${DQ}FileDescription$${DQ},  $${DQ}SQLiteStudio - SQLite database manager$${DQ}
+            VALUE $${DQ}FileVersion$${DQ},      $${DQ}$$SQLITESTUDIO_VERSION_STRING$${DQ}
+            VALUE $${DQ}InternalName$${DQ},     $${DQ}SQLiteStudio$${DQ}
+            VALUE $${DQ}LegalCopyright$${DQ},   $${DQ}Copyright (C) 2026 SalSoft$${DQ}
+            VALUE $${DQ}OriginalFilename$${DQ}, $${DQ}SQLiteStudio.exe$${DQ}
+            VALUE $${DQ}ProductName$${DQ},      $${DQ}SQLiteStudio$${DQ}
+            VALUE $${DQ}ProductVersion$${DQ},   $${DQ}$$SQLITESTUDIO_VERSION_STRING$${DQ}
+        END
+    END
+    BLOCK $${DQ}VarFileInfo$${DQ}
+    BEGIN
+        VALUE $${DQ}Translation$${DQ}, 0x409, 1200
+    END
+END
