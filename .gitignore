@@ -35,6 +35,13 @@ qrc_*.cpp
 .qmake.stash
 .qmake.cache
 
+# Generated version calculation scripts
+calc_version.bat
+calc_version.sh
+
+# Generated Makefiles
+Makefile
+
 # ---- Build outputs ----------------------------------------------------------
 # Common out-of-source build dirs
 build/

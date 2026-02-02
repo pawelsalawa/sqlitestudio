@@ -1,5 +1,8 @@
 TEMPLATE = subdirs
 
+# Include version parsing
+include($$PWD/version.pri)
+
 REQ_QT_MAJOR = 6
 REQ_QT_MINOR = 2
 REQ_QT_PATCH = 0
