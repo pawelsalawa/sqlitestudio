@@ -63,93 +63,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="172"/>
+      <location filename="../completionhelper.cpp" line="163"/>
       <source>New row reference</source>
       <translation>Нове посилання на рядок</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="179"/>
+      <location filename="../completionhelper.cpp" line="170"/>
       <source>Old row reference</source>
       <translation>Старе посилання на рядок</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="184"/>
+      <location filename="../completionhelper.cpp" line="175"/>
       <source>New table name</source>
       <translation>Назва нової таблиці</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="187"/>
+      <location filename="../completionhelper.cpp" line="178"/>
       <source>New index name</source>
       <translation>Назва нового індексу</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="190"/>
+      <location filename="../completionhelper.cpp" line="181"/>
       <source>New view name</source>
       <translation>Нова назва розрізу даних (view)</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="193"/>
+      <location filename="../completionhelper.cpp" line="184"/>
       <source>New trigger name</source>
       <translation>Назва нової тригера</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="196"/>
+      <location filename="../completionhelper.cpp" line="187"/>
       <source>Table or column alias</source>
       <translation>Псевдонім таблиці або стовпця</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="199"/>
+      <location filename="../completionhelper.cpp" line="190"/>
       <source>transaction name</source>
       <translation>назва транзакції</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="202"/>
+      <location filename="../completionhelper.cpp" line="193"/>
       <source>New column name</source>
       <translation>Нове ім&apos;я стовпця</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="205"/>
+      <location filename="../completionhelper.cpp" line="196"/>
       <source>Column data type</source>
       <translation>Тип даних стовпця</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="199"/>
       <source>Constraint name</source>
       <translation>Назва обмеження</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="224"/>
+      <location filename="../completionhelper.cpp" line="215"/>
       <source>Error message</source>
       <translation>Повідомлення про помилку</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="273"/>
+      <location filename="../completionhelper.cpp" line="264"/>
       <source>Any word</source>
       <translation>Будь-яке слово</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="276"/>
+      <location filename="../completionhelper.cpp" line="267"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="279"/>
-      <location filename="../completionhelper.cpp" line="282"/>
+      <location filename="../completionhelper.cpp" line="270"/>
+      <location filename="../completionhelper.cpp" line="273"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="294"/>
+      <location filename="../completionhelper.cpp" line="285"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="454"/>
+      <location filename="../completionhelper.cpp" line="445"/>
       <source>Default database</source>
       <translation>База даних за замовчуванням</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="455"/>
+      <location filename="../completionhelper.cpp" line="446"/>
       <source>Temporary objects database</source>
       <translation>База даних тимчасових об&apos;єктів</translation>
     </message>
