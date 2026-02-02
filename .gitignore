@@ -36,7 +36,6 @@ qrc_*.cpp
 .qmake.cache
 
 # Generated version calculation scripts
-calc_version.py
 calc_version.bat
 calc_version.sh
 

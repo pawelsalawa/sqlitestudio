@@ -108,6 +108,9 @@ SQLITESTUDIO_VERSION_STRING = "$${SQLITESTUDIO_VERSION_MAJOR}.$${SQLITESTUDIO_VE
 
 message("SQLiteStudio version: $$SQLITESTUDIO_VERSION_STRING ($$SQLITESTUDIO_VERSION_INT)")
 
+# Set qmake VERSION variable for use in .rc files and other contexts
+VERSION = $$SQLITESTUDIO_VERSION_STRING
+
 # Make variables available to other .pro files
 export(SQLITESTUDIO_VERSION_INT)
 export(SQLITESTUDIO_VERSION_MAJOR)
