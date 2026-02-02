@@ -3811,19 +3811,19 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <translation>Sortierung</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="771"/>
-      <location filename="../dialogs/indexdialog.cpp" line="784"/>
+      <location filename="../dialogs/indexdialog.cpp" line="770"/>
+      <location filename="../dialogs/indexdialog.cpp" line="783"/>
       <source>Error</source>
       <comment>index dialog</comment>
       <translation>Fehler</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="772"/>
+      <location filename="../dialogs/indexdialog.cpp" line="771"/>
       <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
       <translation>Der eindeutige Index kann nicht erzeigt werden, da Werte in den selektierten Spalten nicht eundeutig sind. Möchten Sie die zugehörige SELECT Abfrage ausführen, um die uneindeutigen Werte zu sehen?</translation>
     </message>
     <message>
-      <location filename="../dialogs/indexdialog.cpp" line="784"/>
+      <location filename="../dialogs/indexdialog.cpp" line="783"/>
       <source>An error occurred while executing SQL statements:
 %1</source>
       <translation>Fehler beim Ausführen des folgenden SQL Statments:
@@ -4467,53 +4467,53 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
       <translation>Neue Bedingung</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="104"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="112"/>
       <source>Primary Key</source>
       <comment>new constraint dialog</comment>
       <translation>Primärschlüssel</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="113"/>
       <source>Foreign Key</source>
       <comment>new constraint dialog</comment>
       <translation>Fremdschlüssel</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="106"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="114"/>
       <source>Unique</source>
       <comment>new constraint dialog</comment>
       <translation>Einzigartig</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="108"/>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="115"/>
       <source>Check</source>
       <comment>new constraint dialog</comment>
       <translation>Prüfung</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="116"/>
       <source>Not NULL</source>
       <comment>new constraint dialog</comment>
       <translation>Nicht NULL</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="117"/>
       <source>Collate</source>
       <comment>new constraint dialog</comment>
       <translation>Kollation</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="118"/>
       <source>Generated</source>
       <comment>new constraint dialog</comment>
       <translation>Generiert</translation>
     </message>
     <message>
-      <location filename="../dialogs/newconstraintdialog.cpp" line="120"/>
+      <location filename="../dialogs/newconstraintdialog.cpp" line="119"/>
       <source>Default</source>
       <comment>new constraint dialog</comment>
       <translation>Standard</translation>
@@ -5558,197 +5558,197 @@ find next</source>
       <translation>Wort umbrechen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="166"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>Ausschneiden</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>Kopieren</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>Einfügen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>Löschen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>Alles auswählen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>Rückgängig</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>Wiederholen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>Komplett</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="177"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>SQL formatieren</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="178"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>SQL in Datei speichern</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="179"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation>Datei zum Speichern von SQL auswählen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="180"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>SQL aus Datei laden</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="181"/>
+      <location filename="../sqleditor.cpp" line="178"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>Zeile löschen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="182"/>
+      <location filename="../sqleditor.cpp" line="179"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>Block nach unten verschieben</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="183"/>
+      <location filename="../sqleditor.cpp" line="180"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>Block nach oben verschieben</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="184"/>
+      <location filename="../sqleditor.cpp" line="181"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>Block nach unten kopieren</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="185"/>
+      <location filename="../sqleditor.cpp" line="182"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>Kopiere auf ab</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="186"/>
+      <location filename="../sqleditor.cpp" line="183"/>
       <source>Find or replace</source>
       <comment>sql editor</comment>
       <translation>Finden oder Ersetzen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="187"/>
+      <location filename="../sqleditor.cpp" line="184"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>Nächster Fund</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="188"/>
+      <location filename="../sqleditor.cpp" line="185"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>Vorheriger Fund</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="189"/>
+      <location filename="../sqleditor.cpp" line="186"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>Ersetzen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="190"/>
+      <location filename="../sqleditor.cpp" line="187"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation>Kommentar umschalten</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="191"/>
+      <location filename="../sqleditor.cpp" line="188"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="192"/>
+      <location filename="../sqleditor.cpp" line="189"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation>Schriftgröße verringern</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="302"/>
+      <location filename="../sqleditor.cpp" line="299"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="311"/>
+      <location filename="../sqleditor.cpp" line="308"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>SQL Inhalte in Datei speichern: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="538"/>
+      <location filename="../sqleditor.cpp" line="535"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1166"/>
+      <location filename="../sqleditor.cpp" line="1163"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1201"/>
+      <location filename="../sqleditor.cpp" line="1198"/>
       <source>Save to file</source>
       <translation>In Datei speichern</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1216"/>
+      <location filename="../sqleditor.cpp" line="1213"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1217"/>
-      <location filename="../sqleditor.cpp" line="1234"/>
+      <location filename="../sqleditor.cpp" line="1214"/>
+      <location filename="../sqleditor.cpp" line="1231"/>
       <source>Open file</source>
       <translation>Datei öffnen</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1235"/>
+      <location filename="../sqleditor.cpp" line="1232"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
       <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1256"/>
+      <location filename="../sqleditor.cpp" line="1253"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1462"/>
+      <location filename="../sqleditor.cpp" line="1459"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
@@ -6361,7 +6361,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation>Fremdspalte</translation>
     </message>
     <message>
-      <location filename="../constraints/tableforeignkeypanel.cpp" line="446"/>
+      <location filename="../constraints/tableforeignkeypanel.cpp" line="445"/>
       <source>Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</source>
       <translation type="unfinished">Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</translation>
     </message>
@@ -6527,7 +6527,7 @@ NULL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1746"/>
+      <location filename="../windows/tablewindow.cpp" line="1745"/>
       <source>Data</source>
       <translation>Daten</translation>
     </message>
@@ -6741,7 +6741,7 @@ NULL</translation>
       <translation type="unfinished">Are you sure you want to delete column &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="376"/>
+      <location filename="../windows/tablewindow.cpp" line="375"/>
       <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
       <comment>table window</comment>
@@ -6749,229 +6749,229 @@ Would you like to proceed?</source>
 Would you like to proceed?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="378"/>
+      <location filename="../windows/tablewindow.cpp" line="377"/>
       <source>Table modification</source>
       <comment>table window</comment>
       <translation>Tabellenänderung</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="503"/>
+      <location filename="../windows/tablewindow.cpp" line="502"/>
       <source>Could not load data for table %1. Error details: %2</source>
       <translation type="unfinished">Could not load data for table %1. Error details: %2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="647"/>
+      <location filename="../windows/tablewindow.cpp" line="646"/>
       <source>Could not process the %1 table correctly. Unable to open a table window.</source>
       <translation type="unfinished">Could not process the %1 table correctly. Unable to open a table window.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="671"/>
+      <location filename="../windows/tablewindow.cpp" line="670"/>
       <source>Database</source>
       <translation>Datenbank</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="703"/>
+      <location filename="../windows/tablewindow.cpp" line="702"/>
       <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
       <translation type="unfinished">Could not restore window %1, because no database or table was stored in session for this window.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="709"/>
+      <location filename="../windows/tablewindow.cpp" line="708"/>
       <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
       <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="716"/>
+      <location filename="../windows/tablewindow.cpp" line="715"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
       <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="725"/>
+      <location filename="../windows/tablewindow.cpp" line="724"/>
       <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
       <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="750"/>
-      <location filename="../windows/tablewindow.cpp" line="752"/>
+      <location filename="../windows/tablewindow.cpp" line="749"/>
+      <location filename="../windows/tablewindow.cpp" line="751"/>
       <source>New table %1</source>
       <translation>Neue Tabelle %1</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="893"/>
+      <location filename="../windows/tablewindow.cpp" line="892"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
       <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="897"/>
+      <location filename="../windows/tablewindow.cpp" line="896"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="935"/>
+      <location filename="../windows/tablewindow.cpp" line="934"/>
       <source>Could not commit table structure. Error message: %1</source>
       <comment>table window</comment>
       <translation type="unfinished">Could not commit table structure. Error message: %1</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="959"/>
+      <location filename="../windows/tablewindow.cpp" line="958"/>
       <source>Reset autoincrement</source>
       <translation>Autoincrement zurücksetzen</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="959"/>
+      <location filename="../windows/tablewindow.cpp" line="958"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>Sind Sie sicher, dass Sie den Autoincrement Wert für die Tabelle &apos;%1&apos; zurücksetzen möchten?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="966"/>
+      <location filename="../windows/tablewindow.cpp" line="965"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>Ein Fehler ist aufgetreten beim Zurücksetzen des Autoincrementwertes für die Tabelle &apos;%1&apos;: %2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="968"/>
+      <location filename="../windows/tablewindow.cpp" line="967"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1056"/>
+      <location filename="../windows/tablewindow.cpp" line="1055"/>
       <source>Empty name</source>
       <translation>Leerer Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1056"/>
+      <location filename="../windows/tablewindow.cpp" line="1055"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
       <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1065"/>
+      <location filename="../windows/tablewindow.cpp" line="1064"/>
       <source>Cannot create a table without at least one column.</source>
       <translation type="unfinished">Cannot create a table without at least one column.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1091"/>
+      <location filename="../windows/tablewindow.cpp" line="1090"/>
       <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
       <translation type="unfinished">Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1098"/>
+      <location filename="../windows/tablewindow.cpp" line="1097"/>
       <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
       <translation type="unfinished">Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1117"/>
+      <location filename="../windows/tablewindow.cpp" line="1116"/>
       <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
       <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1301"/>
+      <location filename="../windows/tablewindow.cpp" line="1300"/>
       <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
       <comment>table window</comment>
       <translation type="unfinished">Are you sure you want to delete table constraint &apos;%1&apos;?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1302"/>
+      <location filename="../windows/tablewindow.cpp" line="1301"/>
       <source>Delete constraint</source>
       <comment>table window</comment>
       <translation>Bedingung löschen</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1357"/>
+      <location filename="../windows/tablewindow.cpp" line="1356"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1370"/>
+      <location filename="../windows/tablewindow.cpp" line="1369"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1403"/>
+      <location filename="../windows/tablewindow.cpp" line="1402"/>
       <source>Uncommitted changes</source>
       <translation>Nicht bestätigte Änderungen</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1404"/>
+      <location filename="../windows/tablewindow.cpp" line="1403"/>
       <source>There are uncommitted structure modifications.</source>
       <translation>Es gibt nicht bestätigte Strukturänderungen.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1406"/>
+      <location filename="../windows/tablewindow.cpp" line="1405"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
       <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1410"/>
+      <location filename="../windows/tablewindow.cpp" line="1409"/>
       <source>Commit modifications and browse data</source>
       <translation>Änderungen bestätigen und Daten ansehen</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1409"/>
+      <location filename="../windows/tablewindow.cpp" line="1408"/>
       <source>Go back to structure tab</source>
       <translation>Zurück zum Struktur-Tab</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1617"/>
+      <location filename="../windows/tablewindow.cpp" line="1616"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation>Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1618"/>
+      <location filename="../windows/tablewindow.cpp" line="1617"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation>Einzigartig</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1619"/>
+      <location filename="../windows/tablewindow.cpp" line="1618"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>Spalten</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1620"/>
+      <location filename="../windows/tablewindow.cpp" line="1619"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>Partieller Indexzustand</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1671"/>
+      <location filename="../windows/tablewindow.cpp" line="1670"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation>Name</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1672"/>
+      <location filename="../windows/tablewindow.cpp" line="1671"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation>Event</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1673"/>
+      <location filename="../windows/tablewindow.cpp" line="1672"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Condition</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1674"/>
+      <location filename="../windows/tablewindow.cpp" line="1673"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation type="unfinished">Details</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1788"/>
+      <location filename="../windows/tablewindow.cpp" line="1787"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1790"/>
+      <location filename="../windows/tablewindow.cpp" line="1789"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1792"/>
+      <location filename="../windows/tablewindow.cpp" line="1791"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
     </message>
@@ -7414,7 +7414,7 @@ Details: %1</translation>
       <translation type="unfinished">The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1084"/>
+      <location filename="../windows/viewwindow.cpp" line="1083"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
@@ -7422,7 +7422,7 @@ Would you like to proceed?</source>
 Would you like to proceed?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1086"/>
+      <location filename="../windows/viewwindow.cpp" line="1085"/>
       <source>View modification</source>
       <comment>view window</comment>
       <translation>Änderungen anzeigen</translation>

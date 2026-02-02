@@ -63,93 +63,93 @@
   <context>
     <name>CompletionHelper</name>
     <message>
-      <location filename="../completionhelper.cpp" line="172"/>
+      <location filename="../completionhelper.cpp" line="163"/>
       <source>New row reference</source>
       <translation>מספר הפניה חדש</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="179"/>
+      <location filename="../completionhelper.cpp" line="170"/>
       <source>Old row reference</source>
       <translation>מספר הפניה ישן</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="184"/>
+      <location filename="../completionhelper.cpp" line="175"/>
       <source>New table name</source>
       <translation>שם טבלה חדשה</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="187"/>
+      <location filename="../completionhelper.cpp" line="178"/>
       <source>New index name</source>
       <translation>שם מפתח חדש</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="190"/>
+      <location filename="../completionhelper.cpp" line="181"/>
       <source>New view name</source>
       <translation>שם מצג חדש</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="193"/>
+      <location filename="../completionhelper.cpp" line="184"/>
       <source>New trigger name</source>
       <translation>שם מזנק חדש</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="196"/>
+      <location filename="../completionhelper.cpp" line="187"/>
       <source>Table or column alias</source>
       <translation>כינוי טבלה או עמודות</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="199"/>
+      <location filename="../completionhelper.cpp" line="190"/>
       <source>transaction name</source>
       <translation>שם תנועה</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="202"/>
+      <location filename="../completionhelper.cpp" line="193"/>
       <source>New column name</source>
       <translation>שם עמודה חדשה</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="205"/>
+      <location filename="../completionhelper.cpp" line="196"/>
       <source>Column data type</source>
       <translation>סוג עמודת מידע</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="208"/>
+      <location filename="../completionhelper.cpp" line="199"/>
       <source>Constraint name</source>
       <translation>שם אילוץ</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="224"/>
+      <location filename="../completionhelper.cpp" line="215"/>
       <source>Error message</source>
       <translation>הודעת שגיאה</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="273"/>
+      <location filename="../completionhelper.cpp" line="264"/>
       <source>Any word</source>
       <translation>מילה כלשהי</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="276"/>
+      <location filename="../completionhelper.cpp" line="267"/>
       <source>String</source>
       <translation type="unfinished">String</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="279"/>
-      <location filename="../completionhelper.cpp" line="282"/>
+      <location filename="../completionhelper.cpp" line="270"/>
+      <location filename="../completionhelper.cpp" line="273"/>
       <source>Number</source>
       <translation type="unfinished">Number</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="294"/>
+      <location filename="../completionhelper.cpp" line="285"/>
       <source>BLOB literal</source>
       <translation type="unfinished">BLOB literal</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="454"/>
+      <location filename="../completionhelper.cpp" line="445"/>
       <source>Default database</source>
       <translation>מסד נתונים ברירת מחדל</translation>
     </message>
     <message>
-      <location filename="../completionhelper.cpp" line="455"/>
+      <location filename="../completionhelper.cpp" line="446"/>
       <source>Temporary objects database</source>
       <translation>מסד נתוני עצמים זמניים</translation>
     </message>
