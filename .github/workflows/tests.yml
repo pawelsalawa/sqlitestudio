@@ -20,24 +20,53 @@ on:
             - '**.ui'
             - '**.qrc'
             - '**/tests.yml'
+    workflow_dispatch:
+        inputs:
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
+            type: boolean
+            default: false
+          one_version_only:
+            description: "Run only one version variant"
+            type: boolean
+            default: false
 
 jobs:
     build:
         runs-on: ubuntu-22.04
 
         strategy:
-            matrix:
-                include:
-                    - QT_VERSION: '6.2.4'
-                      PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.5.3'
-                      PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.8.3'
-                      PYTHON_VERSION: '3.12'
-                    - QT_VERSION: '6.9.3'
-                      PYTHON_VERSION: '3.12'
-                    - QT_VERSION: '6.10.2'
-                      PYTHON_VERSION: '3.12'
+            matrix: ${{ fromJSON(
+                inputs.one_version_only &&
+                '[
+                  {
+                    "QT_VERSION":     "6.8.3",
+                    "PYTHON_VERSION": "3.12"
+                  }
+                ]' ||
+                '[
+                  {
+                    "QT_VERSION":     "6.2.4",
+                    "PYTHON_VERSION": "3.9"
+                  },
+                  {
+                    "QT_VERSION":     "6.5.3",
+                    "PYTHON_VERSION": "3.9"
+                  },
+                  {
+                    "QT_VERSION":     "6.8.3",
+                    "PYTHON_VERSION": "3.12"
+                  },
+                  {
+                    "QT_VERSION":     "6.10.2",
+                    "PYTHON_VERSION": "3.12"
+                  }
+                ]'
+              ) }}
 
         steps:
             - uses: actions/setup-python@v4
@@ -126,3 +155,21 @@ jobs:
                 export LD_LIBRARY_PATH="./lib"
                 ldd tst_tablemodifiertest
                 for f in tst_*; do ./$f; done
+
+            - name: Install Midnight Commander
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              run: brew install mc
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 10
