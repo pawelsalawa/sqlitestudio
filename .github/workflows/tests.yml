@@ -141,7 +141,7 @@ jobs:
                     github.repository_owner == 'pawelsalawa'
                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
                 }}
-              run: brew install mc
+              run: sudo apt install mc
 
             - name: Setup debugging SSH
               if: >
