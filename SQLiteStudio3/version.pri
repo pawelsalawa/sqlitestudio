@@ -2,7 +2,7 @@ win32 {
     VERSION_CALC_SCRIPT = $$PWD/../scripts/win32/calc_version.bat
     VERSION_CALC = $$system($$VERSION_CALC_SCRIPT 2>NUL, lines)
 } else {
-    VERSION_CALC_SCRIPT = $$OUT/../scripts/linux/calc_version.sh
+    VERSION_CALC_SCRIPT = $$PWD/../scripts/linux/calc_version.sh
     VERSION_CALC = $$system($$VERSION_CALC_SCRIPT 2>/dev/null, lines)
 }
 
