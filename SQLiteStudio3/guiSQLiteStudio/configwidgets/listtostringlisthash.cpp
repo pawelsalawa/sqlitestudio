@@ -51,7 +51,7 @@ QVariant ListToStringListHash::getWidgetConfigValue(QWidget* widget, bool& ok)
     return orderHash;
 }
 
-const char*ListToStringListHash::getModifiedNotifier() const
+const char* ListToStringListHash::getModifiedNotifier() const
 {
     return SIGNAL(itemChanged(QListWidgetItem*));
 }

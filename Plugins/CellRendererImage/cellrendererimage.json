@@ -1,0 +1,7 @@
+{
+    "type":         "CellRendererPlugin",
+    "title":        "Image renderer for Grid View",
+    "description":  "Introduces image preview for cells in Grid View.",
+    "version":      10000,
+    "author":       "SalSoft"
+}

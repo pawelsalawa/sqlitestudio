@@ -93,6 +93,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QMenu* getHeaderContextMenu() const;
         void setReadOnly(bool value);
 
+        static void staticInit();
+
     protected:
         void scrollContentsBy(int dx, int dy);
         void keyPressEvent(QKeyEvent *e);

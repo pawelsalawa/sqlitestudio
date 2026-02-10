@@ -24,6 +24,7 @@ class GUI_API_EXPORT MultiEditorWidget : public QWidget
         QString getTabLabel();
         bool isUpToDate() const;
         void setUpToDate(bool value);
+        void notifyAboutUnload();
 
     private:
         bool upToDate = true;

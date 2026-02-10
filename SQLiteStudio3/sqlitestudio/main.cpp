@@ -26,6 +26,7 @@
 #include "singleapplication/singleapplication.h"
 #include "services/impl/configimpl.h"
 #include "common/colorpickerpopup.h"
+#include "datagrid/sqlqueryview.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -201,6 +202,9 @@ int main(int argc, char *argv[])
         QProcess::startDetached(qApp->arguments().at(0), qApp->arguments().mid(1));
         return 0;
     }
+
+    // Initialize cell renderers, including those from plugins
+    SqlQueryView::staticInit();
 
     // Shortcuts titles needs to be retranslated, because their titles were set initially in global scope,
     // while translation files were not loaded yet. Now they are.

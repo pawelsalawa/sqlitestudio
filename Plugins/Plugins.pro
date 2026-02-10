@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 pluginsProject = 1
 
 SUBDIRS += \
+    CellRendererImage \
     CsvExport \
     CsvImport \
     ErdEditor \

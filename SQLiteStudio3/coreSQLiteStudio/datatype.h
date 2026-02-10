@@ -53,6 +53,7 @@ class API_EXPORT DataType : public QObject
         bool isNull() const;
         bool isEmpty() const;
         DataType& operator=(const DataType& other);
+        bool operator==(const DataType& other);
 
         static QString toString(Enum e);
         static Enum fromString(QString key, Qt::CaseSensitivity cs = Qt::CaseSensitive);

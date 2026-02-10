@@ -36,3 +36,8 @@ void MultiEditorWidget::setUpToDate(bool value)
 {
     upToDate = value;
 }
+
+void MultiEditorWidget::notifyAboutUnload()
+{
+    emit aboutToBeDeleted();
+}

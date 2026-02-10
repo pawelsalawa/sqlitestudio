@@ -44,6 +44,7 @@ namespace Cfg
     typedef QHash<QString,QVariant> Session;
     typedef QHash<QString,QVariant> DataEditorsOrder;
     typedef QHash<QString,QVariant> ColorPickerConfig;
+    typedef QHash<QString,QString> DataRenderers;
     enum InsertRowPlacement
     {
         BEFORE_CURRENT,
@@ -140,6 +141,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    NewDbNotPermanentByDefault,  false)
         CFG_ENTRY(bool,                    BypassDbDialogWhenDropped,   false)
         CFG_ENTRY(Cfg::DataEditorsOrder,   DataEditorsOrder,            Cfg::DataEditorsOrder())
+        CFG_ENTRY(Cfg::DataRenderers,      DataRenderers,               Cfg::DataRenderers())
         CFG_ENTRY(QString,                 FileDialogLastPath,          QString())
         CFG_ENTRY(int,                     MaxInitialColumnWith,        600)
         CFG_ENTRY(bool,                    EnlargeColumnForValue,       true)

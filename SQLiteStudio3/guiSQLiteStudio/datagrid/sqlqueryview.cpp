@@ -13,6 +13,7 @@
 #include "services/functionmanager.h"
 #include "services/notifymanager.h"
 #include "windows/editorwindow.h"
+#include "cellrendererplugin.h"
 #include "mainwindow.h"
 #include "common/utils_sql.h"
 #include "common/mouseshortcut.h"
@@ -721,6 +722,29 @@ QMenu* SqlQueryView::getHeaderContextMenu() const
 void SqlQueryView::setReadOnly(bool value)
 {
     setSimpleBrowserMode(value);
+}
+
+void SqlQueryView::staticInit()
+{
+    QHash<QString,QString> renderers = CFG_UI.General.DataRenderers.get();
+
+    for (const QString& typeName : DataType::getAllNames())
+    {
+        if (!renderers.contains(typeName))
+            renderers[typeName] = QString();
+    }
+
+    for (CellRendererPlugin* plugin : PLUGINS->getLoadedPlugins<CellRendererPlugin>())
+    {
+        for (const DataType& type : plugin->getPreferredTypes())
+        {
+            QString typeName = type.toString();
+            if (!renderers.contains(typeName))
+                renderers[typeName] = plugin->getName();
+        }
+    }
+
+    CFG_UI.General.DataRenderers.set(renderers);
 }
 
 void SqlQueryView::scrollContentsBy(int dx, int dy)

@@ -24,7 +24,6 @@ class MultiEditorImage : public MultiEditorWidget
         void setReadOnly(bool boolValue);
         QList<QWidget*> getNoScrollWidgets();
         void focusThisWidget();
-        void notifyAboutUnload();
         QString getPreferredFileFilter();
 
     private:

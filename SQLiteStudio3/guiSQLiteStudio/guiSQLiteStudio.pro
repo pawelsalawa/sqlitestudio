@@ -34,6 +34,7 @@ DEFINES += GUISQLITESTUDIO_LIBRARY
 SOURCES +=\
     common/booltoolbutton.cpp \
     common/colorpickerpopup.cpp \
+    common/combonowheelfilter.cpp \
     common/customsplitter.cpp \
     common/dbcombobox.cpp \
     common/deleteonfocusoutfilter.cpp \
@@ -41,6 +42,7 @@ SOURCES +=\
     common/immediatetooltip.cpp \
     common/mouseshortcut.cpp \
     common/passwordtogglehelper.cpp \
+    configwidgets/cellrenderertable.cpp \
     constraints/columngeneratedpanel.cpp \
     datagrid/fkcombobox.cpp \
     datagrid/sqlqueryitemlineedit.cpp \
@@ -200,6 +202,7 @@ SOURCES +=\
 HEADERS  += mainwindow.h \
     common/booltoolbutton.h \
     common/colorpickerpopup.h \
+    common/combonowheelfilter.h \
     common/customsplitter.h \
     common/dbcombobox.h \
     common/deleteonfocusoutfilter.h \
@@ -207,6 +210,7 @@ HEADERS  += mainwindow.h \
     common/immediatetooltip.h \
     common/mouseshortcut.h \
     common/passwordtogglehelper.h \
+    configwidgets/cellrenderertable.h \
     constraints/columngeneratedpanel.h \
     datagrid/cellrendererplugin.h \
     datagrid/fkcombobox.h \

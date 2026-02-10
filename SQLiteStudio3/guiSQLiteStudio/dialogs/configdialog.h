@@ -8,6 +8,12 @@
 #include <QDialog>
 #include <QHash>
 
+
+class QTableWidgetItem;
+
+class CellRendererPlugin;
+
+class ComboNoWheelFilter;
 namespace Ui {
     class ConfigDialog;
 }
@@ -97,6 +103,10 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem, bool* exists = nullptr);
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
         void addEditorDataType(const QString& typeStr);
+        void addRendererDataType(const QString& typeStr);
+        void defineDefaultStyleForRendererCombo(QComboBox* combo);
+        void defineAltStyleForRendererCombo(QComboBox* combo, int idx);
+        void applyRendererComboStyle(QComboBox* combo, int idx);
         void rollbackPluginConfigs();
         void rollbackColorsConfig();
         void commitPluginConfigs();
@@ -110,6 +120,8 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors);
         void highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin);
         void highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin);
+        void dataTypeEditorPluginLoaded(MultiEditorWidgetPlugin* plugin);
+        void dataTypeEditorPluginUnloaded(MultiEditorWidgetPlugin* plugin);
         void rememberLastUsedPage();
         void restoreLastUsedPage();
 
@@ -130,6 +142,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QAction* dataRenderRenameAction = nullptr;
         QAction* dataRenderDeleteAction = nullptr;
         bool updatingDataEditorItem = false;
+        bool updatingDataRendererItem = false;
         bool modifiedFlag = false;
         QList<ConfigNotifiablePlugin*> notifiablePlugins;
         bool requiresSchemasRefresh = false;
@@ -144,13 +157,14 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void pageSwitched();
         void updateDataTypeEditors();
         void updateDataTypeListState();
+        void updateDataTypeRendererState();
         void dataEditorItemEdited(QListWidgetItem* item);
         void dataEditorAvailableChanged(QListWidgetItem* item);
         void dataEditorTabsOrderChanged(int from, int to);
+        void dataRendererItemEdited(QTableWidgetItem* item);
         void addEditorDataType();
         void renameEditorDataType();
         void delEditorDataType();
-        void editorDataTypesHelp();
         void addRendererDataType();
         void renameRendererDataType();
         void delRendererDataType();

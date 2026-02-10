@@ -16,16 +16,17 @@ class GUI_API_EXPORT CellRendererPlugin : public virtual Plugin
 {
     public:
         /**
-         * @brief useFor Determines whether this plugin should be used for rendering cells of given data type.
-         * @param dataType Data type of the cell to be rendered.
-         * @return True if this plugin should be used for rendering cells of given data type, false otherwise.
+         * @brief getPreferredTypes is called by the view to check if this plugin wants to be used for rendering cells of given data type.
+         * @return List of data types that this plugin prefers to be used for. If the list is empty,
+         * then this plugin does not have a preference and can be used for any data type.
          *
          * This is used to configure default renderer for particular data types, if plugin wants to become one.
-         * It is okay to always return false and let user configure for which data types this plugin should be used.
+         * It is okay to always return empty list and let user configure for which data types this plugin should be used.
          *
-         * User still can turn off this renderer for specified data types in the configuration window even if this method returns true.
+         * User still can turn off this renderer for specified data types in the configuration window even if this method returns
+         * particular types in the list.
          */
-        virtual bool useFor(const DataType& dataType) = 0;
+        virtual QList<DataType> getPreferredTypes() = 0;
 
         /**
          * @brief Creates an instance of QAbstractItemDelegate that will be used for rendering cells.
@@ -34,20 +35,14 @@ class GUI_API_EXPORT CellRendererPlugin : public virtual Plugin
          * It is created as per-column for each data type that this plugin is configured to be used for.
          * The view does not take ownership over the constructed delegate. This method may return
          * same delegate instance for multiple calls, if the delegate is stateless.
+         * It also means that the plugin is responsible for deleting the delegate when it is no longer needed. The plugin should
+         * delete the delegate in the deinit() method, which is called when plugin is about to be unloaded.
          *
          * Useful static public methods that may be needed inside the delegate implementation are:
          * SqlQueryItemDelegate::getItem(const QModelIndex &index)
          * SqlQueryItemDelegate::handleUncommitedPainting(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex &index).
          */
         virtual QAbstractItemDelegate* createDelegate() = 0;
-
-        /**
-         * @brief Should delete all delegates it has created in createDelegate().
-         *
-         * This is called just before the plugin is unloaded to allow it to cleanup any resources.
-         * At this point all views have stopped using this delegate, so it's safe to delete them.
-         */
-        virtual void cleanup() = 0;
 
         /**
          * @brief Provides the name of this cell renderer to be shown to user in configuration window.

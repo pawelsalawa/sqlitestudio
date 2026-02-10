@@ -445,7 +445,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>679</width>
+                <width>456</width>
                 <height>754</height>
                </rect>
               </property>
@@ -847,14 +847,45 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="QGroupBox" name="dataEditorsAvailableGroup">
-                 <property name="title">
-                  <string>Available editors:</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_26">
+                <widget class="QWidget" name="widget" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
-                   <widget class="QListWidget" name="dataEditorsAvailableList">
-                    <property name="sortingEnabled">
+                   <widget class="QGroupBox" name="dataEditorsAvailableGroup">
+                    <property name="title">
+                     <string>Available editors:</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_26">
+                     <item>
+                      <widget class="QListWidget" name="dataEditorsAvailableList">
+                       <property name="sortingEnabled">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_2">
+                    <property name="text">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignmentFlag::AlignCenter</set>
+                    </property>
+                    <property name="wordWrap">
                      <bool>true</bool>
                     </property>
                    </widget>
@@ -865,7 +896,7 @@
                <item>
                 <widget class="QGroupBox" name="dataEditorsSelectedGroup">
                  <property name="title">
-                  <string>Editors selected for this data type:</string>
+                  <string>Preview of editors for this data type (drag to reorder):</string>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_27">
                   <item>
@@ -903,10 +934,16 @@
             <widget class="QToolBar" name="dataRenderersToolbar"/>
            </item>
            <item>
-            <widget class="QTableWidget" name="dataRenderersTable">
+            <widget class="CellRendererTable" name="dataRenderersTable">
              <property name="cornerButtonEnabled">
               <bool>false</bool>
              </property>
+             <property name="cfg" stdset="0">
+              <string>General.DataRenderers</string>
+             </property>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
              <column>
               <property name="text">
                <string>Data type</string>
@@ -2032,8 +2069,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>711</width>
-                <height>538</height>
+                <width>389</width>
+                <height>363</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2579,8 +2616,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>695</width>
-                <height>522</height>
+                <width>235</width>
+                <height>493</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2738,6 +2775,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>BoolToolButton</class>
    <extends>QToolButton</extends>
    <header>common/booltoolbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CellRendererTable</class>
+   <extends>QTableWidget</extends>
+   <header>configwidgets/cellrenderertable.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

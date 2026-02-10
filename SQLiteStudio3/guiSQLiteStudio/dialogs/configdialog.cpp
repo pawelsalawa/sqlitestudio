@@ -25,6 +25,7 @@
 #include "dbtree/dbtree.h"
 #include "windows/editorwindow.h"
 #include "syntaxhighlighterplugin.h"
+#include "datagrid/cellrendererplugin.h"
 #include "sqleditor.h"
 #include "style.h"
 #include "common/dialogsizehandler.h"
@@ -273,8 +274,10 @@ void ConfigDialog::init()
 void ConfigDialog::load()
 {
     updatingDataEditorItem = true;
+    updatingDataRendererItem = true;
     configMapper->loadToWidget(ui->stackedWidget);
     updatingDataEditorItem = false;
+    updatingDataRendererItem = false;
     setModified(false);
 }
 
@@ -477,6 +480,9 @@ void ConfigDialog::pageSwitched()
 
 void ConfigDialog::updateDataTypeEditors()
 {
+    if (!ui->dataEditorsTypesList->currentItem())
+        return;
+
     QString typeName = ui->dataEditorsTypesList->currentItem()->text();
     DataType::Enum typeEnum = DataType::fromString(typeName);
     bool usingCustomOrder = false;
@@ -621,6 +627,16 @@ void ConfigDialog::addEditorDataType(const QString& typeStr)
     markModified();
 }
 
+void ConfigDialog::addRendererDataType(const QString& typeStr)
+{
+    int row = ui->dataRenderersTable->rowCount();
+    ui->dataRenderersTable->setRowCount(row + 1);
+    ui->dataRenderersTable->addRendererDataType(typeStr, row);
+    ui->dataRenderersTable->setCurrentCell(row, 0);
+    ui->dataRenderersTable->scrollTo(ui->dataRenderersTable->currentIndex());
+    markModified();
+}
+
 void ConfigDialog::rollbackPluginConfigs()
 {
     CfgMain* mainCfg = nullptr;
@@ -707,6 +723,14 @@ void ConfigDialog::updateDataTypeListState()
     ui->dataEditorsSelectedTabs->setEnabled(orderEditingEnabled);
 }
 
+void ConfigDialog::updateDataTypeRendererState()
+{
+    QTableWidgetItem* item = ui->dataRenderersTable->item(ui->dataRenderersTable->currentRow(), 0);
+    bool editingEnabled = ui->dataRenderersTable->selectedItems().size() > 0 && item && item->flags().testFlag(Qt::ItemIsEditable);
+    dataRenderRenameAction->setEnabled(editingEnabled);
+    dataRenderDeleteAction->setEnabled(editingEnabled);
+}
+
 void ConfigDialog::dataEditorItemEdited(QListWidgetItem* item)
 {
     if (updatingDataEditorItem)
@@ -783,6 +807,24 @@ void ConfigDialog::dataEditorTabsOrderChanged(int from, int to)
     setPluginNamesForDataTypeItem(typeItem, pluginNames);
 }
 
+void ConfigDialog::dataRendererItemEdited(QTableWidgetItem* item)
+{
+    if (updatingDataRendererItem)
+        return;
+
+    updatingDataRendererItem = true;
+    QString txt = item->text().toUpper();
+    if (DataType::getAllNames().contains(txt))
+        txt += "_";
+
+    while (ui->dataRenderersTable->findItems(txt, Qt::MatchExactly).size() > 1)
+        txt += "_";
+
+    item->setText(txt);
+    updatingDataRendererItem = false;
+    markModified();
+}
+
 void ConfigDialog::addEditorDataType()
 {
     addEditorDataType("");
@@ -823,25 +865,44 @@ void ConfigDialog::delEditorDataType()
     markModified();
 }
 
-void ConfigDialog::editorDataTypesHelp()
-{
-    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#customizing-data-type-editors");
-    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
-}
-
 void ConfigDialog::addRendererDataType()
 {
-    // TODO
+    addRendererDataType("");
+    renameRendererDataType();
 }
 
 void ConfigDialog::renameRendererDataType()
 {
-    // TODO
+    QTableWidgetItem* item = ui->dataRenderersTable->item(ui->dataRenderersTable->currentRow(), 0);
+    if (!item)
+        return;
+
+    ui->dataRenderersTable->editItem(item);
 }
 
 void ConfigDialog::delRendererDataType()
 {
-    // TODO
+    QTableWidgetItem* item = ui->dataRenderersTable->currentItem();
+    if (!item)
+        return;
+
+    int row = ui->dataRenderersTable->currentRow();
+    ui->dataRenderersTable->removeRow(row);
+
+    if (ui->dataRenderersTable->rowCount() > 0)
+    {
+        if (ui->dataRenderersTable->rowCount() <= row)
+        {
+            row--;
+            if (row < 0)
+                row = 0;
+        }
+
+        ui->dataRenderersTable->setCurrentCell(row, 0, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    }
+
+    updateDataTypeRendererState();
+    markModified();
 }
 
 void ConfigDialog::updateActiveFormatterState()
@@ -992,6 +1053,10 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
     if (notifiablePlugin && notifiablePlugins.contains(notifiablePlugin))
         notifiablePlugins.removeOne(notifiablePlugin);
 
+    // Data editors
+    if (type->isForPluginType<MultiEditorWidgetPlugin>())
+        dataTypeEditorPluginUnloaded(dynamic_cast<MultiEditorWidgetPlugin*>(plugin));
+
     // Update code colors page
     if (type->isForPluginType<SyntaxHighlighterPlugin>())
         highlighterPluginUnloaded(dynamic_cast<SyntaxHighlighterPlugin*>(plugin));
@@ -1008,6 +1073,10 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfi
     // Update formatters page
     if (type->isForPluginType<CodeFormatterPlugin>())
         codeFormatterLoaded();
+
+    // Data editors
+    if (type->isForPluginType<MultiEditorWidgetPlugin>())
+        dataTypeEditorPluginLoaded(dynamic_cast<MultiEditorWidgetPlugin*>(plugin));
 
     // Update code colors page
     if (type->isForPluginType<SyntaxHighlighterPlugin>())
@@ -1186,6 +1255,18 @@ void ConfigDialog::highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin)
     highlightingPluginForPreviewEditor.removeRight(plugin);
 }
 
+void ConfigDialog::dataTypeEditorPluginLoaded(MultiEditorWidgetPlugin* plugin)
+{
+    UNUSED(plugin);
+    updateDataTypeEditors();
+}
+
+void ConfigDialog::dataTypeEditorPluginUnloaded(MultiEditorWidgetPlugin* plugin)
+{
+    UNUSED(plugin);
+    updateDataTypeEditors();
+}
+
 void ConfigDialog::rememberLastUsedPage()
 {
     lastUsedCategory = ui->categoriesTree->currentItem()->statusTip(0);
@@ -1295,6 +1376,7 @@ void ConfigDialog::initInternalCustomConfigWidgets()
     customWidgets << new StyleConfigWidget();
     customWidgets << new ListToStringListHash(&CFG_UI.General.DataEditorsOrder);
     customWidgets << new ComboDataWidget(&CFG_CORE.General.Language);
+    customWidgets << new CellRendererTableToHash();
     configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
@@ -1652,6 +1734,9 @@ bool ConfigDialog::initPluginPage(Plugin* plugin, bool skipConfigLoading)
 
 void ConfigDialog::deinitPluginPage(Plugin* plugin)
 {
+    if (!plugin)
+        return;
+
     QString pluginName = plugin->getName();
     if (!nameToPage.contains(pluginName))
         return;
@@ -1689,10 +1774,9 @@ void ConfigDialog::initDataEditors()
     QStringList dataTypeList = dataTypeSet.values();
     sSort(dataTypeList);
 
-    QListWidgetItem* item = nullptr;
     for (QString& type : dataTypeList)
     {
-        item = new QListWidgetItem(type);
+        QListWidgetItem* item = new QListWidgetItem(type);
         if (!DataType::getAllNames().contains(type))
             item->setFlags(item->flags()|Qt::ItemIsEditable);
 
@@ -1711,10 +1795,6 @@ void ConfigDialog::initDataEditors()
     connect(dataEditDeleteAction, SIGNAL(triggered()), this, SLOT(delEditorDataType()));
     ui->dataEditorsTypesToolbar->addAction(dataEditDeleteAction);
 
-    act = new QAction(ICONS.HELP, tr("Help for configuring data type editors"), ui->dataEditorsTypesToolbar);
-    connect(act, SIGNAL(triggered()), this, SLOT(editorDataTypesHelp()));
-    ui->dataEditorsTypesToolbar->addAction(act);
-
     connect(ui->dataEditorsTypesList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeEditors()));
     connect(ui->dataEditorsTypesList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeListState()));
     connect(ui->dataEditorsTypesList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(dataEditorItemEdited(QListWidgetItem*)));
@@ -1729,6 +1809,8 @@ void ConfigDialog::initDataEditors()
 void ConfigDialog::initDataRenderers()
 {
     ui->dataRenderersTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->dataRenderersTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->dataRenderersTable->setSelectionMode(QAbstractItemView::SingleSelection);
 
     QAction* act = new QAction(ICONS.INSERT_DATATYPE, tr("Add new data type"), ui->dataRenderersToolbar);
     connect(act, SIGNAL(triggered()), this, SLOT(addRendererDataType()));
@@ -1741,6 +1823,11 @@ void ConfigDialog::initDataRenderers()
     dataRenderDeleteAction = new QAction(ICONS.DELETE_DATATYPE, tr("Delete selected data type"), ui->dataRenderersToolbar);
     connect(dataRenderDeleteAction, SIGNAL(triggered()), this, SLOT(delRendererDataType()));
     ui->dataRenderersToolbar->addAction(dataRenderDeleteAction);
+
+    connect(ui->dataRenderersTable->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeRendererState()));
+    connect(ui->dataRenderersTable, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(dataRendererItemEdited(QTableWidgetItem*)));
+
+    updateDataTypeRendererState();
 }
 
 void ConfigDialog::initShortcuts()

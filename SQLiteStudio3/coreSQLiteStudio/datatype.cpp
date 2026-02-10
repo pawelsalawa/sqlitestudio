@@ -177,6 +177,16 @@ DataType& DataType::operator=(const DataType& other)
     return *this;
 }
 
+bool DataType::operator==(const DataType& other)
+{
+    if (type == unknown)
+        return typeStr.compare(other.typeStr, Qt::CaseInsensitive);
+
+    return type == other.type &&
+            precision == other.precision &&
+            scale == other.scale;
+}
+
 QString DataType::toString(DataType::Enum e)
 {
     QMetaEnum metaEnum = staticMetaObject.enumerator(0);

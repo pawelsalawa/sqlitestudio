@@ -301,10 +301,17 @@ QString MultiEditorJsonPlugin::getTabLabel()
 
 bool MultiEditorJsonPlugin::init()
 {
+    SQLS_INIT_RESOURCE(multieditorjson);
     return GenericPlugin::init();
 }
 
 void MultiEditorJsonPlugin::deinit()
 {
+    for (MultiEditorJson*& editor : instances)
+    {
+        editor->notifyAboutUnload();
+        delete editor;
+    }
+    SQLS_CLEANUP_RESOURCE(multieditorjson);
     GenericPlugin::deinit();
 }

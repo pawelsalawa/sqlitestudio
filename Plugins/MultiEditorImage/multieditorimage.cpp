@@ -80,11 +80,6 @@ void MultiEditorImage::focusThisWidget()
 {
 }
 
-void MultiEditorImage::notifyAboutUnload()
-{
-    emit aboutToBeDeleted();
-}
-
 QString MultiEditorImage::getPreferredFileFilter()
 {
     return MultiEditor::getFileDialogFilter(MultiEditor::IMAGES);

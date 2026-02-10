@@ -12,7 +12,7 @@ class GUI_API_EXPORT ListToStringListHash: public GenericPlugin, public CustomCo
         bool isConfigForWidget(CfgEntry* key, QWidget* widget);
         void applyConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value);
         QVariant getWidgetConfigValue(QWidget* widget, bool& ok);
-        const char*getModifiedNotifier() const;
+        const char* getModifiedNotifier() const;
         QString getFilterString(QWidget* widget) const;
 
     private:
