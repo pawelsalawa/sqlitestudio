@@ -4,7 +4,6 @@
 #include "sqlite3_parse.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
-#include "common/unused.h"
 
 #include <QByteArray>
 #include <QChar>
@@ -78,7 +77,7 @@ int lexerWindowSpecificGetToken(const QString& z, TokenPtr& token, const TokenPt
 
 void lexerHandleWindowKeyword(const QString& z, TokenPtr& token, const TokenPtr& prevToken, bool tolerant)
 {
-    UNUSED(prevToken);
+    Q_UNUSED(prevToken);
     TokenPtr firstAfter = TokenPtr::create();
     int lgt = lexerWindowSpecificGetToken(z, firstAfter, token, tolerant);
     if (firstAfter->lemonType != TK3_ID)
@@ -124,7 +123,7 @@ void lexerHandleFilterKeyword(const QString& z, TokenPtr& token, const TokenPtr&
 
 int lexerGetToken(const QString& z, TokenPtr& token, const TokenPtr& prevToken, int sqliteVersion, bool tolerant)
 {
-    UNUSED(sqliteVersion);
+    Q_UNUSED(sqliteVersion);
 
     int lgt = lexerGetToken(z, token, tolerant);
     if (token->lemonType == TK3_WINDOW)

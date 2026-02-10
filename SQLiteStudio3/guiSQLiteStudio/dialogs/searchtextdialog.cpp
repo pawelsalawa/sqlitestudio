@@ -1,7 +1,6 @@
 #include "searchtextdialog.h"
 #include "ui_searchtextdialog.h"
 #include "searchtextlocator.h"
-#include "common/unused.h"
 #include "common/dialogsizehandler.h"
 
 SearchTextDialog::SearchTextDialog(SearchTextLocator* textLocator, QWidget *parent) :
@@ -36,7 +35,7 @@ void SearchTextDialog::changeEvent(QEvent *e)
 
 void SearchTextDialog::showEvent(QShowEvent* e)
 {
-    UNUSED(e);
+    Q_UNUSED(e);
     ui->findEdit->setFocus();
     ui->findEdit->selectAll();
     configModifiedState = true;

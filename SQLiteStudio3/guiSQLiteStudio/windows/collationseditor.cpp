@@ -1,6 +1,5 @@
 #include "collationseditor.h"
 #include "ui_collationseditor.h"
-#include "common/unused.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
@@ -41,7 +40,7 @@ QVariant CollationsEditor::saveSession()
 
 bool CollationsEditor::restoreSession(const QVariant& sessionValue)
 {
-    UNUSED(sessionValue);
+    Q_UNUSED(sessionValue);
     return true;
 }
 
@@ -75,7 +74,7 @@ void CollationsEditor::setupDefShortcuts()
 
 QToolBar* CollationsEditor::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolbar;
 }
 

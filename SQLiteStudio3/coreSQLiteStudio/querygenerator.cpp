@@ -2,7 +2,6 @@
 #include "common/global.h"
 #include "common/utils_sql.h"
 #include "db/db.h"
-#include "common/unused.h"
 
 QueryGenerator::QueryGenerator()
 {
@@ -174,7 +173,7 @@ QString QueryGenerator::generateSelectFromSelect(Db* db, const QString& initialS
 
 QString QueryGenerator::generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const StrHash<QVariantList> values)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
     static_qstring(tpl, "SELECT %1 FROM %2%3");
 
     QStringList wrappedCols = wrapObjNamesIfNeeded(columns);

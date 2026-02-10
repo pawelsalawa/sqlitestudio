@@ -1,5 +1,4 @@
 #include "constraintpanel.h"
-#include "common/unused.h"
 #include "constraints/tableprimarykeypanel.h"
 #include "constraints/tableforeignkeypanel.h"
 #include "constraints/tableuniquepanel.h"

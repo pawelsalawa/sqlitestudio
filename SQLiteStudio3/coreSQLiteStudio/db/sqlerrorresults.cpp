@@ -1,5 +1,4 @@
 #include "sqlerrorresults.h"
-#include "common/unused.h"
 
 SqlErrorResults::SqlErrorResults(int code, const QString& text)
 {
@@ -44,12 +43,12 @@ bool SqlErrorResults::hasNextInternal()
 
 bool SqlErrorResults::execInternal(const QList<QVariant>& args)
 {
-    UNUSED(args);
+    Q_UNUSED(args);
     return false;
 }
 
 bool SqlErrorResults::execInternal(const QHash<QString, QVariant>& args)
 {
-    UNUSED(args);
+    Q_UNUSED(args);
     return false;
 }

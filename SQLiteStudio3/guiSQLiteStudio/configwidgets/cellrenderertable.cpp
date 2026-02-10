@@ -4,7 +4,6 @@
 #include "datagrid/cellrendererplugin.h"
 #include "dialogs/configdialog.h"
 #include "common/combonowheelfilter.h"
-#include "common/unused.h"
 #include <QComboBox>
 
 CellRendererTable::CellRendererTable(QWidget* parent) :
@@ -73,7 +72,7 @@ void CellRendererTable::applyRendererComboStyle(QComboBox* combo, int idx)
 
 void CellRendererTable::handlePluginUnload(Plugin* plugin, PluginType* type)
 {
-    UNUSED(type);
+    Q_UNUSED(type);
     CellRendererPlugin* rendererPlugin = dynamic_cast<CellRendererPlugin*>(plugin);
     if (!rendererPlugin)
         return;
@@ -95,7 +94,7 @@ void CellRendererTable::handlePluginUnload(Plugin* plugin, PluginType* type)
 
 void CellRendererTable::handlePluginLoaded(Plugin* plugin, PluginType* type)
 {
-    UNUSED(type);
+    Q_UNUSED(type);
     CellRendererPlugin* rendererPlugin = dynamic_cast<CellRendererPlugin*>(plugin);
     if (!rendererPlugin)
         return;
@@ -117,13 +116,13 @@ CellRendererTableToHash::CellRendererTableToHash()
 
 bool CellRendererTableToHash::isConfigForWidget(CfgEntry* key, QWidget* widget)
 {
-    UNUSED(widget);
+    Q_UNUSED(widget);
     return (CFG_UI.General.DataRenderers == key);
 }
 
 void CellRendererTableToHash::applyConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
 {
-    UNUSED(key);
+    Q_UNUSED(key);
 
     CellRendererTable* table = dynamic_cast<CellRendererTable*>(widget);
     table->setRowCount(0);

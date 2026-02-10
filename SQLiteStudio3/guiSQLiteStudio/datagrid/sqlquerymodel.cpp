@@ -4,7 +4,6 @@
 #include "services/notifymanager.h"
 #include "common/utils_sql.h"
 #include "schemaresolver.h"
-#include "common/unused.h"
 #include "db/sqlerrorcodes.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "uiconfig.h"
@@ -771,19 +770,19 @@ QString SqlQueryModel::generateSelectFunctionQueryForItems(const QString& functi
 
 QString SqlQueryModel::generateInsertQueryForItems(const QList<SqlQueryItem*>& items)
 {
-    UNUSED(items);
+    Q_UNUSED(items);
     return QString();
 }
 
 QString SqlQueryModel::generateUpdateQueryForItems(const QList<SqlQueryItem*>& items)
 {
-    UNUSED(items);
+    Q_UNUSED(items);
     return QString();
 }
 
 QString SqlQueryModel::generateDeleteQueryForItems(const QList<SqlQueryItem*>& items)
 {
-    UNUSED(items);
+    Q_UNUSED(items);
     return QString();
 }
 
@@ -806,8 +805,8 @@ int SqlQueryModel::getCurrentPage(bool includeOneBeingLoaded) const
 
 bool SqlQueryModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
-    UNUSED(itemsInRow);
-    UNUSED(successfulCommitHandlers);
+    Q_UNUSED(itemsInRow);
+    Q_UNUSED(successfulCommitHandlers);
     return false;
 }
 
@@ -914,7 +913,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow, QLis
 
 bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow, QList<SqlQueryModel::CommitSuccessfulHandler>& successfulCommitHandlers)
 {
-    UNUSED(successfulCommitHandlers);
+    Q_UNUSED(successfulCommitHandlers);
     if (itemsInRow.size() == 0)
     {
         qCritical() << "No items passed to SqlQueryModel::commitDeletedRow().";
@@ -1477,7 +1476,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 
 void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
 {
-    UNUSED(code);
+    Q_UNUSED(code);
 
     if (rowCount() > 0)
     {
@@ -1508,7 +1507,7 @@ void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsRe
     // TotalPages provided by QueryExecutor is wrong if there are tons of columns in results, as row limit is applied
     // to prevent memory exhaustion. QueryExecutor is not aware of the limit at the moment of execution, so it calculates
     // total number of pages incorrectly.
-    UNUSED(totalPages);
+    Q_UNUSED(totalPages);
 
     this->rowsAffected = rowsAffected;
     this->totalRowsReturned = rowsReturned;
@@ -1520,7 +1519,7 @@ void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsRe
 
 void SqlQueryModel::itemValueEdited(SqlQueryItem* item)
 {
-    UNUSED(item);
+    Q_UNUSED(item);
     emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
@@ -1733,8 +1732,8 @@ bool SqlQueryModel::wasDataModifyingQuery() const
 
 void SqlQueryModel::updateSelectiveCommitRollbackActions(const QItemSelection& selected, const QItemSelection& deselected)
 {
-    UNUSED(selected);
-    UNUSED(deselected);
+    Q_UNUSED(selected);
+    Q_UNUSED(deselected);
     QList<SqlQueryItem*> selectedItems = view->getSelectedItems();
     bool result = false;
     if (selectedItems.size() > 0)
@@ -2059,7 +2058,7 @@ void SqlQueryModel::handlePossibleTableModification(Db *modDb, const QString &da
 
 void SqlQueryModel::handlePossibleTableRename(Db *modDb, const QString &database, const QString &oldName, const QString &newName)
 {
-    UNUSED(newName);
+    Q_UNUSED(newName);
     QString dbName = database.toLower() == "main" ? QString() : database;
     DbAndTable dbAndTable(modDb, dbName, oldName);
     if (tablesInUse.contains(dbAndTable))
@@ -2068,43 +2067,43 @@ void SqlQueryModel::handlePossibleTableRename(Db *modDb, const QString &database
 
 void SqlQueryModel::applySqlFilter(const QString& value)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyStringFilter(const QString& value)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyStrictFilter(const QString& value)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyRegExpFilter(const QString& value)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyStringFilter(const QStringList& values)
 {
-    UNUSED(values);
+    Q_UNUSED(values);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyStrictFilter(const QStringList& values)
 {
-    UNUSED(values);
+    Q_UNUSED(values);
     // For custom query this is not supported.
 }
 
 void SqlQueryModel::applyRegExpFilter(const QStringList& values)
 {
-    UNUSED(values);
+    Q_UNUSED(values);
     // For custom query this is not supported.
 }
 
@@ -2115,7 +2114,7 @@ void SqlQueryModel::resetFilter()
 
 int SqlQueryModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return headerColumns.size();
 }
 

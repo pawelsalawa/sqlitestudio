@@ -1,7 +1,6 @@
 #include "formmanager.h"
 #include "services/pluginmanager.h"
 #include "uiloader.h"
-#include "common/unused.h"
 #include "common/global.h"
 #include <QFile>
 #include <QDir>
@@ -60,7 +59,7 @@ QWidget* FormManager::createWidgetByFullPath(const QString& path)
 
 void FormManager::rescanResources(Plugin* plugin, PluginType* pluginType)
 {
-    UNUSED(pluginType);
+    Q_UNUSED(pluginType);
     rescanResources(plugin->getName());
 }
 

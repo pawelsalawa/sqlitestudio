@@ -1,5 +1,4 @@
 #include "userinputfilter.h"
-#include "common/unused.h"
 #include "common/lazytrigger.h"
 #include <QTimer>
 #include <QLineEdit>

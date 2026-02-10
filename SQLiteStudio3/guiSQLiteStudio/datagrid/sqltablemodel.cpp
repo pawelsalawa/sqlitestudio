@@ -3,7 +3,6 @@
 #include "sqlqueryitem.h"
 #include "services/notifymanager.h"
 #include "uiconfig.h"
-#include "common/unused.h"
 #include <QDebug>
 #include <QApplication>
 #include <schemaresolver.h>
@@ -337,8 +336,8 @@ QString SqlTableModel::getDataSource()
 QString SqlTableModel::getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                     QStringList& sqlValues, QList<QVariant>& args)
 {
-    UNUSED(modelColumns);
-    UNUSED(args);
+    Q_UNUSED(modelColumns);
+    Q_UNUSED(args);
     QString sql = "INSERT INTO "+wrapObjIfNeeded(table);
     if (colNameList.size() == 0)
     {

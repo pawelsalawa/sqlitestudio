@@ -1,7 +1,6 @@
 #include "htmlexport.h"
 #include "services/pluginmanager.h"
 #include "schemaresolver.h"
-#include "common/unused.h"
 #include <QFile>
 #include <QDebug>
 #include <QRegularExpression>
@@ -40,8 +39,8 @@ CfgMain* HtmlExport::getConfig()
 
 bool HtmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(query);
-    UNUSED(providedData);
+    Q_UNUSED(query);
+    Q_UNUSED(providedData);
 
     if (!beginDoc(tr("SQL query results")))
         return false;
@@ -105,10 +104,10 @@ bool HtmlExport::afterExportQueryResults()
 
 bool HtmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(database);
-    UNUSED(ddl);
-    UNUSED(columnNames);
-    UNUSED(providedData);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(providedData);
 
     if (isTableExport())
     {
@@ -232,11 +231,11 @@ bool HtmlExport::exportDataRow(SqlResultsRowPtr data)
 
 bool HtmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(database);
-    UNUSED(ddl);
-    UNUSED(columnNames);
-    UNUSED(createTable);
-    UNUSED(providedData);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(createTable);
+    Q_UNUSED(providedData);
 
     if (isTableExport())
     {
@@ -313,8 +312,8 @@ bool HtmlExport::beforeExportDatabase(const QString& database)
 
 bool HtmlExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     writeln("<table>");
     incrIndent();
@@ -369,8 +368,8 @@ bool HtmlExport::exportIndex(const QString& database, const QString& name, const
 
 bool HtmlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     writeln("<table>");
     incrIndent();
@@ -444,8 +443,8 @@ bool HtmlExport::exportTrigger(const QString& database, const QString& name, con
 
 bool HtmlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     writeln("<table>");
     incrIndent();

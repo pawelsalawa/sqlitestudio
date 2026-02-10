@@ -21,7 +21,6 @@
 #include "db/queryexecutorsteps/queryexecutorvaluesmode.h"
 #include "db/queryexecutorsteps/queryexecutorcolumntype.h"
 #include "db/queryexecutorsteps/queryexecutorsmarthints.h"
-#include "common/unused.h"
 #include "chainexecutor.h"
 #include "log.h"
 #include "schemaresolver.h"
@@ -214,8 +213,8 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
 
 void QueryExecutor::cleanupAfterExecFailed(int code, QString errorMessage)
 {
-    UNUSED(code);
-    UNUSED(errorMessage);
+    Q_UNUSED(code);
+    Q_UNUSED(errorMessage);
     cleanup();
 }
 

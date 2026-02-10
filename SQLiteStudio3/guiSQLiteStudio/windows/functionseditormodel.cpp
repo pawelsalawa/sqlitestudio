@@ -1,6 +1,5 @@
 #include "functionseditormodel.h"
 #include "common/strhash.h"
-#include "common/unused.h"
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "icon.h"
@@ -312,7 +311,7 @@ bool FunctionsEditorModel::isAllowedName(int rowToSkip, const QString& nameToVal
 
 int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return functionList.size();
 }
 

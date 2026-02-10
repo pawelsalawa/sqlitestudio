@@ -1,6 +1,5 @@
 #include "sqliteextensioneditormodel.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 
 #include <QFileInfo>
 
@@ -193,7 +192,7 @@ bool SqliteExtensionEditorModel::isValidRowIndex(int row) const
 
 int SqliteExtensionEditorModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return extensionList.size();
 }
 

@@ -1,6 +1,5 @@
 #include "scriptingtcl.h"
 #include "common/global.h"
-#include "common/unused.h"
 #include "db/db.h"
 #include "parser/lexer.h"
 #include "parser/token.h"
@@ -455,8 +454,8 @@ int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc,
 
 int ScriptingTcl::initTclCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[])
 {
-    UNUSED(clientData);
-    UNUSED(objv);
+    Q_UNUSED(clientData);
+    Q_UNUSED(objv);
 
     if (objc > 1)
     {

@@ -3,7 +3,6 @@
 #include "sqlitestudio.h"
 #include "config_builder.h"
 #include "services/exportmanager.h"
-#include "common/unused.h"
 #include "services/codeformatter.h"
 #include <QStringEncoder>
 
@@ -41,7 +40,7 @@ QString SqlExport::getExportConfigFormName() const
 
 bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
+    Q_UNUSED(providedData);
     static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
     static_qstring(ifNotExists, "IF NOT EXISTS ");
     static_qstring(createDdl, "CREATE TABLE %1%2 (%3);");
@@ -87,8 +86,8 @@ bool SqlExport::exportQueryResultsRow(SqlResultsRowPtr row)
 
 bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(createTable);
-    UNUSED(providedData);
+    Q_UNUSED(createTable);
+    Q_UNUSED(providedData);
 
     tableGeneratedColumns.clear();
     for (SqliteCreateTable::Column*& col : createTable->columns)
@@ -102,8 +101,8 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 
 bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(createTable);
-    UNUSED(providedData);
+    Q_UNUSED(createTable);
+    Q_UNUSED(providedData);
     return exportTable(database, table, columnNames, ddl);
 }
 
@@ -177,7 +176,7 @@ bool SqlExport::afterExport()
 
 bool SqlExport::beforeExportDatabase(const QString& database)
 {
-    UNUSED(database);
+    Q_UNUSED(database);
     writeHeader();
     writeFkDisable();
     writeBegin();
@@ -186,7 +185,7 @@ bool SqlExport::beforeExportDatabase(const QString& database)
 
 bool SqlExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
-    UNUSED(createIndex);
+    Q_UNUSED(createIndex);
     static_qstring(dropDdl, "DROP INDEX IF EXISTS %1;");
     static_qstring(ifNotExists, " IF NOT EXISTS");
 
@@ -211,7 +210,7 @@ bool SqlExport::exportIndex(const QString& database, const QString& name, const 
 
 bool SqlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
-    UNUSED(createTrigger);
+    Q_UNUSED(createTrigger);
     static_qstring(dropDdl, "DROP TRIGGER IF EXISTS %1;");
     static_qstring(ifNotExists, " IF NOT EXISTS");
 
@@ -236,7 +235,7 @@ bool SqlExport::exportTrigger(const QString& database, const QString& name, cons
 
 bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
-    UNUSED(createView);
+    Q_UNUSED(createView);
     static_qstring(dropDdl, "DROP VIEW IF EXISTS %1;");
     static_qstring(ifNotExists, " IF NOT EXISTS");
 

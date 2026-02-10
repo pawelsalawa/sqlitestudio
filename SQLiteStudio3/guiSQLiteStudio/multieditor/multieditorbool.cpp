@@ -1,5 +1,4 @@
 #include "multieditorbool.h"
-#include "common/unused.h"
 #include <QVBoxLayout>
 #include <QCheckBox>
 #include <QVariant>
@@ -195,7 +194,7 @@ bool MultiEditorBoolPlugin::validFor(const DataType& dataType)
 
 int MultiEditorBoolPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BOOLEAN:

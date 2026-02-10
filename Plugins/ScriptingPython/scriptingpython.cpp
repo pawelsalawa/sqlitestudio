@@ -1,6 +1,5 @@
 #include "scriptingpython.h"
 #include "common/global.h"
-#include "common/unused.h"
 #include "db/db.h"
 #include "db/sqlite3.h"
 #include "parser/lexer.h"
@@ -723,7 +722,7 @@ PyObject* ScriptingPython::dbEvalCompat(PyObject *self, PyObject *args)
 
 PyObject* ScriptingPython::dbEval(PyObject* self, PyObject *const *args)
 {
-    UNUSED(self);
+    Q_UNUSED(self);
 
     Py_ssize_t nargs = PyList_GET_SIZE(args);
     if (nargs != 1)

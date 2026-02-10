@@ -2,7 +2,6 @@
 #include "dbandroidinstance.h"
 #include "sqlqueryandroid.h"
 #include "db/sqlerrorcodes.h"
-#include "common/unused.h"
 #include "dbandroid.h"
 #include "dbandroidjsonconnection.h"
 #include "dbandroidconnectionfactory.h"
@@ -76,26 +75,26 @@ QString DbAndroidInstance::getTypeClassName() const
 bool DbAndroidInstance::deregisterFunction(const QString& name, int argCount)
 {
     // Unsupported by native Android driver
-    UNUSED(name);
-    UNUSED(argCount);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
     return true;
 }
 
 bool DbAndroidInstance::registerScalarFunction(const QString& name, int argCount, bool deterministic)
 {
     // Unsupported by native Android driver
-    UNUSED(name);
-    UNUSED(argCount);
-    UNUSED(deterministic);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
     return true;
 }
 
 bool DbAndroidInstance::registerAggregateFunction(const QString& name, int argCount, bool deterministic)
 {
     // Unsupported by native Android driver
-    UNUSED(name);
-    UNUSED(argCount);
-    UNUSED(deterministic);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
     return true;
 }
 
@@ -107,8 +106,8 @@ bool DbAndroidInstance::initAfterCreated()
 
 bool DbAndroidInstance::loadExtension(const QString& filePath, const QString& initFunc)
 {
-    UNUSED(filePath);
-    UNUSED(initFunc);
+    Q_UNUSED(filePath);
+    Q_UNUSED(initFunc);
     errorCode = 1;
     errorText = tr("Android SQLite driver does not support loadable extensions.");
     return false;
@@ -185,14 +184,14 @@ bool DbAndroidInstance::closeInternal()
 bool DbAndroidInstance::registerCollationInternal(const QString& name)
 {
     // Unsupported by native Android driver
-    UNUSED(name);
+    Q_UNUSED(name);
     return true;
 }
 
 bool DbAndroidInstance::deregisterCollationInternal(const QString& name)
 {
     // Unsupported by native Android driver
-    UNUSED(name);
+    Q_UNUSED(name);
     return true;
 }
 

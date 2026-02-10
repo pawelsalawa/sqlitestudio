@@ -3,7 +3,6 @@
 #include "erdentity.h"
 #include "erdlinearrowitem.h"
 #include "erdscene.h"
-#include "common/unused.h"
 #include "mainwindow.h"
 #include "erdeditorplugin.h"
 #include "db/db.h"

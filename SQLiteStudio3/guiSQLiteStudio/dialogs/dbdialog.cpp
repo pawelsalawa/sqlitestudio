@@ -11,7 +11,6 @@
 #include "common/global.h"
 #include "iconmanager.h"
 #include "sqleditor.h"
-#include "common/unused.h"
 #include "db/sqlquery.h"
 #include "common/passwordtogglehelper.h"
 #include <QDateTimeEdit>
@@ -639,7 +638,7 @@ void DbDialog::propertyChanged()
 
 void DbDialog::typeChanged(int index)
 {
-    UNUSED(index);
+    Q_UNUSED(index);
     updateOptions();
     updateState();
 }
@@ -675,7 +674,7 @@ void DbDialog::browseForFile()
 
 void DbDialog::fileChanged(const QString &arg1)
 {
-    UNUSED(arg1);
+    Q_UNUSED(arg1);
     valueForNameGenerationChanged();
     updateType();
     propertyChanged();

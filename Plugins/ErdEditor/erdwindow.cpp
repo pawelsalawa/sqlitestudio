@@ -3,7 +3,6 @@
 #include "iconmanager.h"
 #include "ui_erdwindow.h"
 #include "scene/erdscene.h"
-#include "common/unused.h"
 #include "services/dbmanager.h"
 #include "mdiwindow.h"
 #include "style.h"
@@ -466,7 +465,7 @@ void ErdWindow::newTableAtPosition()
 
 void ErdWindow::handleEntityNameEditedInline(ErdEntity* entity, const QString& newName)
 {
-    UNUSED(entity);
+    Q_UNUSED(entity);
     if (!currentSideWidget)
         return;
 
@@ -479,7 +478,7 @@ void ErdWindow::handleEntityNameEditedInline(ErdEntity* entity, const QString& n
 
 void ErdWindow::handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, const QString& newName)
 {
-    UNUSED(entity);
+    Q_UNUSED(entity);
     if (!currentSideWidget)
         return;
 
@@ -492,7 +491,7 @@ void ErdWindow::handleEntityFieldEditedInline(ErdEntity* entity, int colIdx, con
 
 void ErdWindow::handleEntityFieldDeletedInline(ErdEntity* entity, int colIdx)
 {
-    UNUSED(entity);
+    Q_UNUSED(entity);
     if (!currentSideWidget)
         return;
 
@@ -553,7 +552,7 @@ void ErdWindow::interruptCommitExecution()
 
 void ErdWindow::commitExecutionSuccessful(SqlQueryPtr lastQueryResult)
 {
-    UNUSED(lastQueryResult);
+    Q_UNUSED(lastQueryResult);
 
     // All good, we can get rid of pending changes now
     changeRegistry->clear();
@@ -673,7 +672,7 @@ void ErdWindow::commitPendingChanges()
         QString desc = ec.getDescription();
         for (auto&& ddl : ddls)
         {
-            UNUSED(ddl);
+            Q_UNUSED(ddl);
             commitChangeDescriptions << desc;
         }
 
@@ -867,7 +866,7 @@ void ErdWindow::updateArrowTypeButtons()
 
 QToolBar* ErdWindow::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolBar;
 }
 

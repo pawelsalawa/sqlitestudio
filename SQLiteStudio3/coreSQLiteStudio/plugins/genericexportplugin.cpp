@@ -1,7 +1,6 @@
 #include "genericexportplugin.h"
 #include "common/utils.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include "config_builder.h"
 #include <QStringEncoder>
 
@@ -46,7 +45,7 @@ CfgMain* GenericExportPlugin::getConfig()
 
 QString GenericExportPlugin::getConfigFormName(ExportManager::ExportMode mode) const
 {
-    UNUSED(mode);
+    Q_UNUSED(mode);
     return QString();
 }
 

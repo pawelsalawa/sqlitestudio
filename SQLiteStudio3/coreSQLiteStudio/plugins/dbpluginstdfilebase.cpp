@@ -1,11 +1,10 @@
 #include "dbpluginstdfilebase.h"
-#include "common/unused.h"
 #include "db/sqlquery.h"
 #include <QFileInfo>
 
 Db *DbPluginStdFileBase::getInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options, QString *errorMessage)
 {
-    UNUSED(errorMessage);
+    Q_UNUSED(errorMessage);
 
     Db* db = newInstance(name, path, options);
 

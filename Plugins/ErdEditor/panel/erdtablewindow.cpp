@@ -7,7 +7,6 @@
 #include "services/notifymanager.h"
 #include "mainwindow.h"
 #include "statusfield.h"
-#include "common/unused.h"
 #include <QMessageBox>
 #include <QTimer>
 #include <QPushButton>
@@ -106,7 +105,7 @@ void ErdTableWindow::defineCurrentContextDb()
 
 bool ErdTableWindow::handleFailedStructureChanges(bool skipWarning)
 {
-    UNUSED(skipWarning);
+    Q_UNUSED(skipWarning);
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Warning);

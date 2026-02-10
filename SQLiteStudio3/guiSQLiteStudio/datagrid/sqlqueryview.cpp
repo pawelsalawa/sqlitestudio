@@ -5,7 +5,6 @@
 #include "common/widgetcover.h"
 #include "tsvserializer.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
@@ -296,7 +295,7 @@ SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
 
 QToolBar* SqlQueryView::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 

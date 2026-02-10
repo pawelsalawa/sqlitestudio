@@ -10,7 +10,6 @@
 #include "common/global.h"
 #include "services/notifymanager.h"
 #include "mainwindow.h"
-#include "common/unused.h"
 #include "dbobjectdialogs.h"
 #include "common/userinputfilter.h"
 #include "common/widgetcover.h"
@@ -740,7 +739,7 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
 
 bool DbTree::areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem)
 {
-    UNUSED(dstItem);
+    Q_UNUSED(dstItem);
     for (const QUrl& srcUrl : srcUrls)
     {
         if (!srcUrl.isLocalFile())
@@ -767,7 +766,7 @@ void DbTree::setSelectedItem(DbTreeItem *item)
 
 QToolBar* DbTree::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 
@@ -1675,7 +1674,7 @@ void DbTree::delColumn(DbTreeItem* item)
 
 void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
-    UNUSED(previous);
+    Q_UNUSED(previous);
     updateActionStates(treeModel->itemFromIndex(current));
 }
 

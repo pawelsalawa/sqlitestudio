@@ -1,5 +1,4 @@
 #include "sqlqueryrownummodel.h"
-#include "common/unused.h"
 
 SqlQueryRowNumModel::SqlQueryRowNumModel(QAbstractItemModel *value, QObject *parent) :
     QAbstractItemModel(parent)
@@ -9,21 +8,21 @@ SqlQueryRowNumModel::SqlQueryRowNumModel(QAbstractItemModel *value, QObject *par
 
 QModelIndex SqlQueryRowNumModel::index(int row, int column, const QModelIndex &parent) const
 {
-    UNUSED(row);
-    UNUSED(column);
-    UNUSED(parent);
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
     return QModelIndex();
 }
 
 QModelIndex SqlQueryRowNumModel::parent(const QModelIndex &child) const
 {
-    UNUSED(child);
+    Q_UNUSED(child);
     return QModelIndex();
 }
 
 int SqlQueryRowNumModel::rowCount(const QModelIndex &parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
 
     if (!mainModel)
         return 0;
@@ -33,7 +32,7 @@ int SqlQueryRowNumModel::rowCount(const QModelIndex &parent) const
 
 int SqlQueryRowNumModel::columnCount(const QModelIndex &parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
 
     if (!mainModel)
         return 0;
@@ -43,14 +42,14 @@ int SqlQueryRowNumModel::columnCount(const QModelIndex &parent) const
 
 QVariant SqlQueryRowNumModel::data(const QModelIndex &index, int role) const
 {
-    UNUSED(index);
-    UNUSED(role);
+    Q_UNUSED(index);
+    Q_UNUSED(role);
     return QVariant();
 }
 
 QVariant SqlQueryRowNumModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    UNUSED(role);
+    Q_UNUSED(role);
     if (orientation == Qt::Horizontal)
         return QVariant();
 

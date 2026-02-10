@@ -2,7 +2,6 @@
 #include "iconmanager.h"
 #include "uiconfig.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include "multieditor/multieditor.h"
 #include <QBuffer>
 #include <QImageReader>
@@ -66,7 +65,7 @@ QVariant MultiEditorImage::getValue()
 
 void MultiEditorImage::setReadOnly(bool boolValue)
 {
-    UNUSED(boolValue);
+    Q_UNUSED(boolValue);
 }
 
 QList<QWidget*> MultiEditorImage::getNoScrollWidgets()

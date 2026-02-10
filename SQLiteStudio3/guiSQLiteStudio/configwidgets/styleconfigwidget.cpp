@@ -1,6 +1,5 @@
 #include "styleconfigwidget.h"
 #include "uiconfig.h"
-#include "common/unused.h"
 #include "dialogs/configdialog.h"
 #include <QDebug>
 #include <QComboBox>
@@ -11,13 +10,13 @@ StyleConfigWidget::StyleConfigWidget()
 
 bool StyleConfigWidget::isConfigForWidget(CfgEntry* key, QWidget* widget)
 {
-    UNUSED(widget);
+    Q_UNUSED(widget);
     return (key == &CFG_UI.General.Style);
 }
 
 void StyleConfigWidget::applyConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
 {
-    UNUSED(key);
+    Q_UNUSED(key);
 
     QComboBox* combo = qobject_cast<QComboBox*>(widget);
 

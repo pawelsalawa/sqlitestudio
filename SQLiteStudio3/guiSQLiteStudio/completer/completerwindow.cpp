@@ -1,7 +1,6 @@
 #include "completerwindow.h"
 #include "ui_completerwindow.h"
 #include "completermodel.h"
-#include "common/unused.h"
 #include "sqleditor.h"
 #include "common/utils_sql.h"
 #include "services/codesnippetmanager.h"
@@ -268,13 +267,13 @@ void CompleterWindow::focusOut()
 
 void CompleterWindow::doubleClicked(const QModelIndex& index)
 {
-    UNUSED(index);
+    Q_UNUSED(index);
     accept();
 }
 
 void CompleterWindow::currentRowChanged(const QModelIndex& current, const QModelIndex& previous)
 {
-    UNUSED(previous);
+    Q_UNUSED(previous);
     ui->status->showMessage(getStatusMsg(current));
 }
 
@@ -302,7 +301,7 @@ void CompleterWindow::snippetHotkeyPressed(int index)
 
 void CompleterWindow::snippetDoubleClicked(QListWidgetItem* item)
 {
-    UNUSED(item);
+    Q_UNUSED(item);
     accept();
 }
 

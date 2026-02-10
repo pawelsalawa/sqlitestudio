@@ -1,6 +1,5 @@
 #include "completermodel.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 #include "completerview.h"
 #include <QIcon>
 #include <QVariant>
@@ -21,19 +20,19 @@ QModelIndex CompleterModel::index(int row, int column, const QModelIndex& parent
 
 QModelIndex CompleterModel::parent(const QModelIndex& child) const
 {
-    UNUSED(child);
+    Q_UNUSED(child);
     return QModelIndex();
 }
 
 int CompleterModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return tokens.size();
 }
 
 int CompleterModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return 1;
 }
 

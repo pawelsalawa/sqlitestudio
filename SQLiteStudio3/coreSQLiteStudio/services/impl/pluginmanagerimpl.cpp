@@ -2,7 +2,6 @@
 #include "plugins/scriptingplugin.h"
 #include "plugins/genericplugin.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include "translations.h"
 #include <QCoreApplication>
 #include <QDir>
@@ -281,7 +280,7 @@ bool PluginManagerImpl::readDependencies(const QString& pluginName, PluginManage
 
 bool PluginManagerImpl::readConflicts(const QString& pluginName, PluginManagerImpl::PluginContainer* container, const QJsonValue& confValue)
 {
-    UNUSED(pluginName);
+    Q_UNUSED(pluginName);
 
     if (confValue.isUndefined())
         return true;

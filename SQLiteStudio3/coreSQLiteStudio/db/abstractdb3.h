@@ -4,7 +4,6 @@
 #include "db/abstractdb.h"
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
-#include "common/unused.h"
 #include "services/collationmanager.h"
 #include "services/notifymanager.h"
 #include "sqlitestudio.h"
@@ -782,8 +781,8 @@ void AbstractDb3<T>::evaluateAggregateFinal(typename T::context* context)
 template <class T>
 int AbstractDb3<T>::evaluateCollation(void* userData, int length1, const void* value1, int length2, const void* value2)
 {
-    UNUSED(length1);
-    UNUSED(length2);
+    Q_UNUSED(length1);
+    Q_UNUSED(length2);
     CollationUserData* collUserData = reinterpret_cast<CollationUserData*>(userData);
     return COLLATIONS->evaluate(collUserData->name, QString::fromUtf8((const char*)value1), QString::fromUtf8((const char*)value2));
 }
@@ -835,7 +834,7 @@ void AbstractDb3<T>::releaseAggregateContext(typename T::context* context)
 template <class T>
 void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::handle* fnDbHandle, int eTextRep, const char* collationName)
 {
-    UNUSED(eTextRep);
+    Q_UNUSED(eTextRep);
 
     CollationUserData* defUserData = reinterpret_cast<CollationUserData*>(fnUserData);
     if (!defUserData)
@@ -886,9 +885,9 @@ void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::hand
 template <class T>
 int AbstractDb3<T>::evaluateDefaultCollation(void* userData, int length1, const void* value1, int length2, const void* value2)
 {
-    UNUSED(userData);
-    UNUSED(length1);
-    UNUSED(length2);
+    Q_UNUSED(userData);
+    Q_UNUSED(length1);
+    Q_UNUSED(length2);
     return COLLATIONS->evaluateDefault(QString::fromUtf8((const char*)value1, length1), QString::fromUtf8((const char*)value2, length2));
 }
 
@@ -1306,7 +1305,7 @@ int AbstractDb3<T>::Query::Row::init(const QStringList& columns, typename T::stm
 template <class T>
 int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVariant& value, Db::Flags flags)
 {
-    UNUSED(flags);
+    Q_UNUSED(flags);
     int dataType = T::column_type(stmt, col);
     switch (dataType)
     {

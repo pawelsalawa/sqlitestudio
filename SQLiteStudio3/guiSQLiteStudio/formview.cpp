@@ -1,5 +1,4 @@
 #include "formview.h"
-#include "common/unused.h"
 #include "datagrid/fkcombobox.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
@@ -300,12 +299,12 @@ void FormView::setupDefShortcuts()
 
 QToolBar* FormView::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 
 void FormView::showEvent(QShowEvent* event)
 {
-    UNUSED(event);
+    Q_UNUSED(event);
     reloadInternal();
 }
