@@ -107,7 +107,7 @@
     <message>
       <location filename="../configwidgets/cellrenderertable.cpp" line="34"/>
       <source>Default</source>
-      <translation type="unfinished">Padrão</translation>
+      <translation>Padrão</translation>
     </message>
   </context>
   <context>
@@ -1274,10 +1274,6 @@ Key</translation>
       <translation>Editores disponíveis:</translation>
     </message>
     <message>
-      <source>Editors selected for this data type:</source>
-      <translation type="vanished">Editores selecionados para este tipo de dado:</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="978"/>
       <source>Schema editing</source>
       <translation>Edição do schema</translation>
@@ -1457,12 +1453,12 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="899"/>
       <source>Preview of editors for this data type (drag to reorder):</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="923"/>
@@ -1472,7 +1468,7 @@ Key</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="942"/>
       <source>General.DataRenderers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">General.DataRenderers</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="949"/>
@@ -1761,10 +1757,6 @@ Key</translation>
       <location filename="../dialogs/configdialog.cpp" line="1823"/>
       <source>Delete selected data type</source>
       <translation>Excluir tipo de dado selecionado</translation>
-    </message>
-    <message>
-      <source>Help for configuring data type editors</source>
-      <translation type="vanished">Ajuda para configurar editores de tipos de dados</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1909"/>
