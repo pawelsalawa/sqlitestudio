@@ -22,7 +22,7 @@
   <context>
     <name>MultiEditorImagePlugin</name>
     <message>
-      <location filename="../multieditorimage.cpp" line="206"/>
+      <location filename="../multieditorimage.cpp" line="201"/>
       <source>Image</source>
       <translation>Imagen</translation>
     </message>
