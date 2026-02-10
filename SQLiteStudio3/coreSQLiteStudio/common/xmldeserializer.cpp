@@ -1,5 +1,4 @@
 /*#include "xmldeserializer.h"
-#include "unused.h"
 #include <QDebug>
 
 XmlDeserializer::XmlDeserializer()
@@ -78,7 +77,7 @@ void XmlDeserializer::handleText(QXmlStreamReader &reader)
 
 void XmlDeserializer::handleEndElement(QXmlStreamReader &reader)
 {
-    UNUSED(reader);
+    Q_UNUSED(reader);
     ctx = ctxStack.pop();
 }
 */

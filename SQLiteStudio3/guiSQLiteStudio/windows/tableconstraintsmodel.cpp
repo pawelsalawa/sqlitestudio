@@ -1,7 +1,6 @@
 #include "tableconstraintsmodel.h"
 #include "iconmanager.h"
 #include "common/utils_sql.h"
-#include "common/unused.h"
 #include <QDebug>
 #include <QMimeData>
 
@@ -12,7 +11,7 @@ TableConstraintsModel::TableConstraintsModel(QObject *parent) :
 
 int TableConstraintsModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     if (createTable.isNull())
         return 0;
 
@@ -21,7 +20,7 @@ int TableConstraintsModel::rowCount(const QModelIndex& parent) const
 
 int TableConstraintsModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return 3;
 }
 
@@ -116,10 +115,10 @@ QMimeData* TableConstraintsModel::mimeData(const QModelIndexList& indexes) const
 
 bool TableConstraintsModel::canDropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent) const
 {
-    UNUSED(action);
-    UNUSED(row);
-    UNUSED(column);
-    UNUSED(parent);
+    Q_UNUSED(action);
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
 
     if (!data)
         return false;
@@ -132,7 +131,7 @@ bool TableConstraintsModel::canDropMimeData(const QMimeData* data, Qt::DropActio
 
 bool TableConstraintsModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
-    UNUSED(column);
+    Q_UNUSED(column);
 
     if (action == Qt::IgnoreAction)
         return true;

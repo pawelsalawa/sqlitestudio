@@ -1,5 +1,4 @@
 #include "pdfexport.h"
-#include "common/unused.h"
 #include "uiutils.h"
 #include <QtMath>
 #include <QPainter>
@@ -61,7 +60,7 @@ QString PdfExport::defaultFileExtension() const
 
 bool PdfExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(query);
+    Q_UNUSED(query);
 
     if (!beginDoc(tr("SQL query results")))
         return false;
@@ -88,9 +87,9 @@ bool PdfExport::exportQueryResultsRow(SqlResultsRowPtr row)
 
 bool PdfExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(columnNames);
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
         return false;
@@ -141,10 +140,10 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
 
 bool PdfExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(columnNames);
-    UNUSED(database);
-    UNUSED(ddl);
-    UNUSED(createTable);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
+    Q_UNUSED(createTable);
 
     if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
         return false;
@@ -222,8 +221,8 @@ bool PdfExport::beforeExportDatabase(const QString& database)
 
 bool PdfExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     exportObjectHeader(tr("Index: %1").arg(name));
 
@@ -260,8 +259,8 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
 
 bool PdfExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     exportObjectHeader(tr("Trigger: %1").arg(name));
 
@@ -296,8 +295,8 @@ bool PdfExport::exportTrigger(const QString& database, const QString& name, cons
 
 bool PdfExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view)
 {
-    UNUSED(database);
-    UNUSED(ddl);
+    Q_UNUSED(database);
+    Q_UNUSED(ddl);
 
     exportObjectHeader(tr("View: %1").arg(name));
     exportObjectColumnsHeader({tr("Query:")});

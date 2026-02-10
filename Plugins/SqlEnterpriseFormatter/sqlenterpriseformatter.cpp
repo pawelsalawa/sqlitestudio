@@ -1,6 +1,5 @@
 #include "sqlenterpriseformatter.h"
 #include "formatstatement.h"
-#include "common/unused.h"
 #include "common/global.h"
 #include <QDebug>
 #include <parser/lexer.h>
@@ -254,7 +253,7 @@ TokenList SqlEnterpriseFormatter::optimizeEndLineComments(const TokenList &input
 
 void SqlEnterpriseFormatter::indentMultiLineComments(const TokenList &inputTokens)
 {
-    UNUSED(inputTokens);
+    Q_UNUSED(inputTokens);
     // TODO
 }
 

@@ -2,7 +2,6 @@
 #include "completionhelper.h"
 #include "cli.h"
 #include "cli_config.h"
-#include "common/unused.h"
 #include "commands/clicommand.h"
 #include "parser/lexer.h"
 #include "commands/clicommandfactory.h"
@@ -37,7 +36,7 @@ CliCompleter* CliCompleter::getInstance()
 
 char** CliCompleter::complete(const char* text, int start, int end)
 {
-    UNUSED(start);
+    Q_UNUSED(start);
 
 #ifdef Q_OS_UNIX
     // Unix readline needs this to disable the completion using rl_completion_entry_function

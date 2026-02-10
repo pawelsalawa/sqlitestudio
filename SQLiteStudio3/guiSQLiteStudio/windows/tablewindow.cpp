@@ -2,7 +2,6 @@
 #include "ui_tablewindow.h"
 #include "services/dbmanager.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
 #include "datagrid/sqltablemodel.h"
@@ -778,7 +777,7 @@ void TableWindow::dbClosedFinalCleanup()
 
 void TableWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
 {
-    UNUSED(database);
+    Q_UNUSED(database);
 
     // TODO uncomment below when dbnames are supported
 //    if (this->database != database)

@@ -1,7 +1,6 @@
 #include "tablestructuremodel.h"
 #include "datagrid/sqlquerymodelcolumn.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include <QFont>
 #include <QDebug>
@@ -16,7 +15,7 @@ TableStructureModel::TableStructureModel(QObject *parent) :
 
 int TableStructureModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     if (createTable.isNull())
         return 0;
 
@@ -25,7 +24,7 @@ int TableStructureModel::rowCount(const QModelIndex& parent) const
 
 int TableStructureModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     if (createTable.isNull())
         return 0;
 
@@ -671,10 +670,10 @@ QMimeData* TableStructureModel::mimeData(const QModelIndexList& indexes) const
 
 bool TableStructureModel::canDropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent) const
 {
-    UNUSED(action);
-    UNUSED(row);
-    UNUSED(column);
-    UNUSED(parent);
+    Q_UNUSED(action);
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
 
     if (!data)
         return false;
@@ -687,7 +686,7 @@ bool TableStructureModel::canDropMimeData(const QMimeData* data, Qt::DropAction 
 
 bool TableStructureModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
-    UNUSED(column);
+    Q_UNUSED(column);
 
     if (action == Qt::IgnoreAction)
         return true;

@@ -1,7 +1,6 @@
 #include "sqlitestatement.h"
 #include "../token.h"
 #include "../lexer.h"
-#include "common/unused.h"
 #include "services/dbmanager.h"
 #include <QDebug>
 
@@ -383,7 +382,7 @@ TokenPtr SqliteStatement::getDbTokenFromNmDbnm(const QString &tokensMapKey1, con
 
     // It seems like checking tokensMapKey2 has no added value to the logic, while it prevents from reporting
     // database token in case of: SELECT * FROM dbName.    <- the valid query with "minor" error
-    UNUSED(tokensMapKey2);
+    Q_UNUSED(tokensMapKey2);
 //    if (!tokensMap.contains(tokensMapKey2))
 //    {
 //        qCritical() << "No '" << tokensMapKey2 << "' in tokens map when asked for it in getDbTokenFromNmDbnm().";

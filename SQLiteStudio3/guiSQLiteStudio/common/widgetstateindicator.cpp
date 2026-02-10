@@ -1,6 +1,5 @@
 #include "widgetstateindicator.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 #include "uiutils.h"
 #include "mdichild.h"
 #include <QLabel>

@@ -3,7 +3,6 @@
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
 #include "plugins/scriptingplugin.h"
-#include "common/unused.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
 #include "services/dbmanager.h"
@@ -417,7 +416,7 @@ QString FunctionManagerImpl::langUnsupportedError(const QString& name, int argCo
 
 QVariant FunctionManagerImpl::nativeRegExp(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 2)
     {
@@ -469,7 +468,7 @@ QVariant FunctionManagerImpl::nativeSqlFile(const QList<QVariant>& args, Db* db,
 
 QVariant FunctionManagerImpl::nativeReadFile(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -491,7 +490,7 @@ QVariant FunctionManagerImpl::nativeReadFile(const QList<QVariant>& args, Db* db
 
 QVariant FunctionManagerImpl::nativeWriteFile(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 2)
     {
@@ -564,7 +563,7 @@ QVariant FunctionManagerImpl::nativeScript(const QList<QVariant>& args, Db* db, 
 
 QVariant FunctionManagerImpl::nativeLangs(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 0)
     {
@@ -581,7 +580,7 @@ QVariant FunctionManagerImpl::nativeLangs(const QList<QVariant>& args, Db* db, b
 
 QVariant FunctionManagerImpl::nativeHtmlEscape(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -594,7 +593,7 @@ QVariant FunctionManagerImpl::nativeHtmlEscape(const QList<QVariant>& args, Db* 
 
 QVariant FunctionManagerImpl::nativeUrlEncode(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -607,7 +606,7 @@ QVariant FunctionManagerImpl::nativeUrlEncode(const QList<QVariant>& args, Db* d
 
 QVariant FunctionManagerImpl::nativeUrlDecode(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -620,7 +619,7 @@ QVariant FunctionManagerImpl::nativeUrlDecode(const QList<QVariant>& args, Db* d
 
 QVariant FunctionManagerImpl::nativeBase64Encode(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -633,7 +632,7 @@ QVariant FunctionManagerImpl::nativeBase64Encode(const QList<QVariant>& args, Db
 
 QVariant FunctionManagerImpl::nativeBase64Decode(const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -646,7 +645,7 @@ QVariant FunctionManagerImpl::nativeBase64Decode(const QList<QVariant>& args, Db
 
 QVariant FunctionManagerImpl::nativeCryptographicFunction(const QList<QVariant>& args, Db* db, bool& ok, QCryptographicHash::Algorithm algo)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
 
     if (args.size() != 1)
     {
@@ -780,9 +779,9 @@ QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, 
 
 QVariant FunctionManagerImpl::nativeImportFormats(const QList<QVariant> &args, Db *db, bool &ok)
 {
-    UNUSED(args);
-    UNUSED(db);
-    UNUSED(ok);
+    Q_UNUSED(args);
+    Q_UNUSED(db);
+    Q_UNUSED(ok);
     QStringList formats;
     QList<ImportPlugin*> importPlugins = PLUGINS->getLoadedPlugins<ImportPlugin>();
     for (ImportPlugin* plugin : importPlugins)
@@ -793,7 +792,7 @@ QVariant FunctionManagerImpl::nativeImportFormats(const QList<QVariant> &args, D
 
 QVariant FunctionManagerImpl::nativeImportOptions(const QList<QVariant> &args, Db *db, bool &ok)
 {
-    UNUSED(db);
+    Q_UNUSED(db);
     if (args.size() != 1)
     {
         qDebug() << "Missing 'type' parameter to import_options() function call.";
@@ -822,9 +821,9 @@ QVariant FunctionManagerImpl::nativeImportOptions(const QList<QVariant> &args, D
 
 QVariant FunctionManagerImpl::nativeCharsets(const QList<QVariant> &args, Db *db, bool &ok)
 {
-    UNUSED(args);
-    UNUSED(db);
-    UNUSED(ok);
+    Q_UNUSED(args);
+    Q_UNUSED(db);
+    Q_UNUSED(ok);
     return textCodecNames().join(" ");
 }
 

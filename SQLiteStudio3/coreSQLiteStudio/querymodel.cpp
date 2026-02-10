@@ -1,6 +1,5 @@
 #include "querymodel.h"
 #include "db/db.h"
-#include "common/unused.h"
 #include "db/sqlquery.h"
 
 QueryModel::QueryModel(Db* db, QObject *parent) :
@@ -42,13 +41,13 @@ QVariant QueryModel::data(const QModelIndex& index, int role) const
 
 int QueryModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return loadedRows.size();
 }
 
 int QueryModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return columns;
 }
 

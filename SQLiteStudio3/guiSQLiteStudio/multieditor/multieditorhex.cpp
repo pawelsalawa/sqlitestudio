@@ -1,6 +1,5 @@
 #include "multieditorhex.h"
 #include "qhexedit2/qhexedit.h"
-#include "common/unused.h"
 #include <QVBoxLayout>
 
 MultiEditorHex::MultiEditorHex()
@@ -54,7 +53,7 @@ MultiEditorWidget*MultiEditorHexPlugin::getInstance()
 
 bool MultiEditorHexPlugin::validFor(const DataType& dataType)
 {
-    UNUSED(dataType);
+    Q_UNUSED(dataType);
     return true;
 }
 

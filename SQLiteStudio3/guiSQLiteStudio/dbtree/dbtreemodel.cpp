@@ -5,7 +5,6 @@
 #include "uiconfig.h"
 #include "schemaresolver.h"
 #include "dbtreeitemfactory.h"
-#include "common/unused.h"
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
 #include "dbobjectorganizer.h"
@@ -1088,7 +1087,7 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
 
 bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
-    UNUSED(action);
+    Q_UNUSED(action);
     // The result means: do we want the old item to be removed from the tree?
     bool invokeStdAction = false;
     bool res = pasteData(data, row, column, parent, Qt::IgnoreAction, &invokeStdAction);

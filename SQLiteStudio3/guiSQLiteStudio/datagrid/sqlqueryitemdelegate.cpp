@@ -1,7 +1,6 @@
 #include "sqlqueryitemdelegate.h"
 #include "sqlquerymodel.h"
 #include "sqlqueryitem.h"
-#include "common/unused.h"
 #include "services/notifymanager.h"
 #include "sqlqueryview.h"
 #include "uiconfig.h"
@@ -52,7 +51,7 @@ void SqlQueryItemDelegate::handleUncommitedPainting(QPainter* painter, const QSt
 
 QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    UNUSED(option);
+    Q_UNUSED(option);
     if (!index.isValid())
         return nullptr;
 
@@ -97,7 +96,7 @@ void SqlQueryItemDelegate::destroyEditor(QWidget* editor, const QModelIndex& ind
 
 QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& locale) const
 {
-    UNUSED(locale);
+    Q_UNUSED(locale);
     if (value.userType() == QMetaType::Double)
         return doubleToString(value, CFG_UI.General.UseSciFormatForDoubles.get());
 
@@ -127,8 +126,8 @@ void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& ind
 
 void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const
 {
-    UNUSED(cb);
-    UNUSED(index);
+    Q_UNUSED(cb);
+    Q_UNUSED(index);
     // There used to be code here, but it's empty now.
     // All necessary data population happens in the fkDataReady().
     // Keeping this method just for this comment and for consistency across different kind of cell editors
@@ -237,7 +236,7 @@ SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index)
 
 QWidget* SqlQueryItemDelegate::getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const
 {
-    UNUSED(type);
+    Q_UNUSED(type);
     SqlQueryItemLineEdit *editor = new SqlQueryItemLineEdit(shouldSkipInitialSelection, parent);
     editor->setMaxLength(std::numeric_limits<int>::max());
     editor->setFrame(editor->style()->styleHint(QStyle::SH_ItemView_DrawDelegateFrame, 0, editor));

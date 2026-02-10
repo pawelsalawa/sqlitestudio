@@ -1,6 +1,5 @@
 #include "multieditornumeric.h"
 #include "common/numericspinbox.h"
-#include "common/unused.h"
 #include <QVariant>
 #include <QVBoxLayout>
 #include <QDebug>
@@ -80,7 +79,7 @@ bool MultiEditorNumericPlugin::validFor(const DataType& dataType)
 
 int MultiEditorNumericPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BIGINT:

@@ -1,6 +1,5 @@
 #include "xmlexport.h"
 #include "services/exportmanager.h"
-#include "common/unused.h"
 #include <QStringEncoder>
 
 const QString XmlExport::docBegin = QStringLiteral("<?xml version=\"1.0\" encoding=\"%1\"?>\n");
@@ -45,7 +44,7 @@ QString XmlExport::defaultFileExtension() const
 
 bool XmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
+    Q_UNUSED(providedData);
 
     setupConfig();
 
@@ -123,8 +122,8 @@ bool XmlExport::afterExportQueryResults()
 
 bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(columnNames);
-    UNUSED(providedData);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(providedData);
     if (isTableExport())
     {
         setupConfig();
@@ -198,7 +197,7 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
 
 bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
+    Q_UNUSED(providedData);
 
     if (isTableExport())
     {
@@ -292,7 +291,7 @@ bool XmlExport::exportIndex(const QString& database, const QString& name, const 
 
 bool XmlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
-    UNUSED(createTrigger);
+    Q_UNUSED(createTrigger);
     writeln("<trigger>");
     incrIndent();
 
@@ -330,7 +329,7 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
 
 bool XmlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
-    UNUSED(createView);
+    Q_UNUSED(createView);
     writeln("<view>");
     incrIndent();
 

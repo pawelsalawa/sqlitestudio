@@ -4,7 +4,6 @@
 #include "plugins/importplugin.h"
 #include "importworker.h"
 #include "db/db.h"
-#include "common/unused.h"
 #include <QThreadPool>
 #include <QDebug>
 
@@ -105,6 +104,6 @@ void ImportManager::finalizeImport(bool result, int rowCount)
 
 void ImportManager::handleTableCreated(Db* db, const QString& table)
 {
-    UNUSED(table);
+    Q_UNUSED(table);
     emit schemaModified(db);
 }

@@ -2,7 +2,6 @@
 
 #include "updatemanager.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include <QDebug>
 #include <QRegularExpression>
 #include <QCoreApplication>

@@ -1,5 +1,4 @@
 #include "constrainttabmodel.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 #include "common/utils_sql.h"
 #include <QDebug>
@@ -11,7 +10,7 @@ ConstraintTabModel::ConstraintTabModel(QObject *parent) :
 
 int ConstraintTabModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     if (createTable.isNull())
         return 0;
 
@@ -25,7 +24,7 @@ int ConstraintTabModel::rowCount(const QModelIndex& parent) const
 
 int ConstraintTabModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return 4;
 }
 

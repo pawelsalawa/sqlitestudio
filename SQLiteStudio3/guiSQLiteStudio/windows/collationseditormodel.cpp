@@ -1,5 +1,4 @@
 #include "collationseditormodel.h"
-#include "common/unused.h"
 #include "common/strhash.h"
 #include "iconmanager.h"
 #include "services/pluginmanager.h"
@@ -247,7 +246,7 @@ bool CollationsEditorModel::isValidRowIndex(int row) const
 
 int CollationsEditorModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return collationList.size();
 }
 

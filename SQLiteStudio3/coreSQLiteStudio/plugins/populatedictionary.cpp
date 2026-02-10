@@ -1,7 +1,6 @@
 #include "populatedictionary.h"
 #include "services/populatemanager.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -24,8 +23,8 @@ PopulateEngine*PopulateDictionary::createEngine()
 
 bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
 {
-    UNUSED(db);
-    UNUSED(table);
+    Q_UNUSED(db);
+    Q_UNUSED(table);
     QFile file(cfg.PopulateDictionary.File.get());
     if (!file.open(QIODevice::ReadOnly))
     {
@@ -54,7 +53,7 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
 
 QVariant PopulateDictionaryEngine::nextValue(bool& nextValueError)
 {
-    UNUSED(nextValueError);
+    Q_UNUSED(nextValueError);
     if (cfg.PopulateDictionary.Random.get())
     {
         int r = QRandomGenerator::system()->generate() % dictionarySize;

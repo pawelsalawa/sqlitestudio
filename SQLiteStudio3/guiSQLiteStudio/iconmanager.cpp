@@ -1,7 +1,6 @@
 #include "iconmanager.h"
 #include "sqlitestudio.h"
 #include "services/pluginmanager.h"
-#include "common/unused.h"
 #include "common/global.h"
 #include "common/utils.h"
 #include <QApplication>
@@ -89,7 +88,7 @@ void IconManager::rescanResources(const QString& pluginName)
 
 void IconManager::rescanResources(Plugin* plugin, PluginType* pluginType)
 {
-    UNUSED(pluginType);
+    Q_UNUSED(pluginType);
     rescanResources(plugin->getName());
 }
 

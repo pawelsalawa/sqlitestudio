@@ -1,5 +1,4 @@
 #include "uidebug.h"
-#include "common/unused.h"
 #include "qio.h"
 #include "debugconsole.h"
 #include "common/global.h"
@@ -19,7 +18,7 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
     if (!UI_DEBUG_ENABLED)
         return;
 
-    UNUSED(context);
+    Q_UNUSED(context);
 
     static const QString dbgMsg = QStringLiteral("[%1] DEBUG:    %2");
     static const QString wrnMsg = QStringLiteral("[%1] WARNING:  %2");

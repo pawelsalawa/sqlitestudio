@@ -1,5 +1,4 @@
 #include "codesnippeteditor.h"
-#include "common/unused.h"
 #include "ui_codesnippeteditor.h"
 #include "uiconfig.h"
 #include "windows/codesnippeteditormodel.h"
@@ -49,7 +48,7 @@ QVariant CodeSnippetEditor::saveSession()
 
 bool CodeSnippetEditor::restoreSession(const QVariant& sessionValue)
 {
-    UNUSED(sessionValue);
+    Q_UNUSED(sessionValue);
     return true;
 }
 
@@ -91,7 +90,7 @@ void CodeSnippetEditor::setupDefShortcuts()
 
 QToolBar* CodeSnippetEditor::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolBar;
 }
 

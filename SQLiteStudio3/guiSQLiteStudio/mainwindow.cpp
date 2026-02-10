@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "common/unused.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
 #include "iconmanager.h"
@@ -953,7 +952,7 @@ void MainWindow::updateCornerDocking()
 
 void MainWindow::messageFromSecondaryInstance(quint32 instanceId, QByteArray message)
 {
-    UNUSED(instanceId);
+    Q_UNUSED(instanceId);
     activateWindow();
     if (isMinimized())
         showMaximized();
@@ -1185,7 +1184,7 @@ bool MainWindow::isSafeMode()
 
 bool MainWindow::eventFilter(QObject* obj, QEvent* e)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     if (e->type() == QEvent::FileOpen)
     {
         QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();

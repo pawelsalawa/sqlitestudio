@@ -1,5 +1,4 @@
 #include "invaliddb.h"
-#include "common/unused.h"
 #include <QSet>
 
 InvalidDb::InvalidDb(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions) :
@@ -64,121 +63,121 @@ int InvalidDb::getTimeout() const
 
 QList<AliasedColumn> InvalidDb::columnsForQuery(const QString& query)
 {
-    UNUSED(query);
+    Q_UNUSED(query);
     return QList<AliasedColumn>();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, const QList<QVariant>& args, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(flags);
     return SqlQueryPtr();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, const QHash<QString, QVariant>& args, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(flags);
     return SqlQueryPtr();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(flags);
     return SqlQueryPtr();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, const QVariant& arg)
 {
-    UNUSED(query);
-    UNUSED(arg);
+    Q_UNUSED(query);
+    Q_UNUSED(arg);
     return SqlQueryPtr();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, std::initializer_list<QVariant> argList)
 {
-    UNUSED(query);
-    UNUSED(argList);
+    Q_UNUSED(query);
+    Q_UNUSED(argList);
     return SqlQueryPtr();
 }
 
 SqlQueryPtr InvalidDb::exec(const QString& query, std::initializer_list<std::pair<QString, QVariant> > argMap)
 {
-    UNUSED(query);
-    UNUSED(argMap);
+    Q_UNUSED(query);
+    Q_UNUSED(argMap);
     return SqlQueryPtr();
 }
 
 void InvalidDb::asyncExec(const QString& query, const QList<QVariant>& args, Db::QueryResultsHandler resultsHandler, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(resultsHandler);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(resultsHandler);
+    Q_UNUSED(flags);
 }
 
 void InvalidDb::asyncExec(const QString& query, const QHash<QString, QVariant>& args, Db::QueryResultsHandler resultsHandler, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(resultsHandler);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(resultsHandler);
+    Q_UNUSED(flags);
 }
 
 void InvalidDb::asyncExec(const QString& query, Db::QueryResultsHandler resultsHandler, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(resultsHandler);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(resultsHandler);
+    Q_UNUSED(flags);
 }
 
 quint32 InvalidDb::asyncExec(const QString& query, const QList<QVariant>& args, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(flags);
     return 0;
 }
 
 quint32 InvalidDb::asyncExec(const QString& query, const QHash<QString, QVariant>& args, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(args);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(args);
+    Q_UNUSED(flags);
     return 0;
 }
 
 quint32 InvalidDb::asyncExec(const QString& query, Db::Flags flags)
 {
-    UNUSED(query);
-    UNUSED(flags);
+    Q_UNUSED(query);
+    Q_UNUSED(flags);
     return 0;
 }
 
 SqlQueryPtr InvalidDb::prepare(const QString& query)
 {
-    UNUSED(query);
+    Q_UNUSED(query);
     return SqlQueryPtr();
 }
 
 bool InvalidDb::begin(bool noLock)
 {
-    UNUSED(noLock);
+    Q_UNUSED(noLock);
     return false;
 }
 
 bool InvalidDb::commit(bool noLock)
 {
-    UNUSED(noLock);
+    Q_UNUSED(noLock);
     return false;
 }
 
 bool InvalidDb::rollback(bool noLock)
 {
-    UNUSED(noLock);
+    Q_UNUSED(noLock);
     return false;
 }
 
@@ -198,20 +197,20 @@ bool InvalidDb::isWritable()
 
 QString InvalidDb::attach(Db* otherDb, bool silent)
 {
-    UNUSED(otherDb);
-    UNUSED(silent);
+    Q_UNUSED(otherDb);
+    Q_UNUSED(silent);
     return QString();
 }
 
 AttachGuard InvalidDb::guardedAttach(Db* otherDb, bool silent)
 {
-    UNUSED(silent);
+    Q_UNUSED(silent);
     return AttachGuard::create(this, otherDb, QString());
 }
 
 void InvalidDb::detach(Db* otherDb)
 {
-    UNUSED(otherDb);
+    Q_UNUSED(otherDb);
 }
 
 void InvalidDb::detachAll()
@@ -230,7 +229,7 @@ QSet<QString> InvalidDb::getAllAttaches()
 
 QString InvalidDb::getUniqueNewObjectName(const QString& attachedDbName)
 {
-    UNUSED(attachedDbName);
+    Q_UNUSED(attachedDbName);
     return QString();
 }
 
@@ -261,36 +260,36 @@ bool InvalidDb::initAfterCreated()
 
 bool InvalidDb::deregisterFunction(const QString& name, int argCount)
 {
-    UNUSED(name);
-    UNUSED(argCount);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
     return false;
 }
 
 bool InvalidDb::registerScalarFunction(const QString& name, int argCount, bool deterministic)
 {
-    UNUSED(name);
-    UNUSED(argCount);
-    UNUSED(deterministic);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
     return false;
 }
 
 bool InvalidDb::registerAggregateFunction(const QString& name, int argCount, bool deterministic)
 {
-    UNUSED(name);
-    UNUSED(argCount);
-    UNUSED(deterministic);
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
     return false;
 }
 
 bool InvalidDb::registerCollation(const QString& name)
 {
-    UNUSED(name);
+    Q_UNUSED(name);
     return false;
 }
 
 bool InvalidDb::deregisterCollation(const QString& name)
 {
-    UNUSED(name);
+    Q_UNUSED(name);
     return false;
 }
 
@@ -338,21 +337,21 @@ void InvalidDb::setError(const QString& value)
 
 bool InvalidDb::loadExtension(const QString& filePath, const QString& initFunc)
 {
-    UNUSED(filePath);
-    UNUSED(initFunc);
+    Q_UNUSED(filePath);
+    Q_UNUSED(initFunc);
     return false;
 }
 
 bool InvalidDb::loadExtensionManually(const QString &filePath, const QString &initFunc)
 {
-    UNUSED(filePath);
-    UNUSED(initFunc);
+    Q_UNUSED(filePath);
+    Q_UNUSED(initFunc);
     return false;
 }
 
 bool InvalidDb::isComplete(const QString& sql) const
 {
-    UNUSED(sql);
+    Q_UNUSED(sql);
     return false;
 }
 

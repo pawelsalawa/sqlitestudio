@@ -1,6 +1,5 @@
 #include "dbtreeitemfactory.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 
 DbTreeItem *DbTreeItemFactory::createDir(const QString &name, QObject *parent)
 {
@@ -69,6 +68,6 @@ DbTreeItem *DbTreeItemFactory::createColumns(QObject *parent)
 
 DbTreeItem *DbTreeItemFactory::createPrototype(QObject *parent)
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return new DbTreeItem();
 }

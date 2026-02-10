@@ -1,5 +1,4 @@
 #include "columndialogconstraintsmodel.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 
 ColumnDialogConstraintsModel::ColumnDialogConstraintsModel(QObject *parent) :
@@ -281,7 +280,7 @@ QString ColumnDialogConstraintsModel::getConstrDetails(SqliteCreateTable::Column
 
 int ColumnDialogConstraintsModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     if (column.isNull())
         return 0;
 
@@ -290,7 +289,7 @@ int ColumnDialogConstraintsModel::rowCount(const QModelIndex& parent) const
 
 int ColumnDialogConstraintsModel::columnCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return 3;
 }
 

@@ -1,6 +1,5 @@
 #include "plugin.h"
 #include "pluginloader.h"
-#include "unused.h"
 
 AbstractPluginLoader::~AbstractPluginLoader()
 {

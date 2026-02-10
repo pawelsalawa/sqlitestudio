@@ -1,5 +1,4 @@
 #include "erdchangemoveentity.h"
-#include "common/unused.h"
 
 ErdChangeMoveEntity::ErdChangeMoveEntity(const QString& entityName, const QPointF& fromPos, const QPointF& toPos, const QString& description) :
     ErdChange(description), entityName(entityName), fromPos(fromPos), toPos(toPos)
@@ -9,7 +8,7 @@ ErdChangeMoveEntity::ErdChangeMoveEntity(const QString& entityName, const QPoint
 void ErdChangeMoveEntity::apply(ErdScene::SceneChangeApi& api)
 {
     // Initial entity movements are already applied when the change is created.
-    UNUSED(api);
+    Q_UNUSED(api);
 }
 
 void ErdChangeMoveEntity::applyUndo(ErdScene::SceneChangeApi& api)

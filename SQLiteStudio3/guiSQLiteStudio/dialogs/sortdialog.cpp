@@ -1,7 +1,6 @@
 #include "sortdialog.h"
 #include "ui_sortdialog.h"
 #include "iconmanager.h"
-#include "common/unused.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QPushButton>
@@ -20,8 +19,8 @@ SortDialog::SortDialog(QWidget *parent) :
     connect(ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()), this, SLOT(reset()));
     connect(ui->list->model(), &QAbstractItemModel::rowsInserted, [=, this](const QModelIndex & parent, int start, int end)
     {
-        UNUSED(parent);
-        UNUSED(end);
+        Q_UNUSED(parent);
+        Q_UNUSED(end);
         rebuildComboForItem(ui->list->topLevelItem(start));
     });
 }
@@ -110,7 +109,7 @@ void SortDialog::setSortOrder(const QueryExecutor::SortList& sortOrder)
 
 QToolBar* SortDialog::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 

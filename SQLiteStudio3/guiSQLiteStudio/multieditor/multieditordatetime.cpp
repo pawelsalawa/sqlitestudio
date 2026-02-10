@@ -1,6 +1,5 @@
 #include "multieditordatetime.h"
 #include "common/utils.h"
-#include "common/unused.h"
 #include <QDateTimeEdit>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -159,7 +158,7 @@ void MultiEditorDateTime::dateChanged(const QDate& date)
 
 void MultiEditorDateTime::timeChanged(const QTime& time)
 {
-    UNUSED(time);
+    Q_UNUSED(time);
     emit valueModified();
 }
 
@@ -243,7 +242,7 @@ bool MultiEditorDateTimePlugin::validFor(const DataType& dataType)
 
 int MultiEditorDateTimePlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:

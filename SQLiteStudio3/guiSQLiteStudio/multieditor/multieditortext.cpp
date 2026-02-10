@@ -1,8 +1,6 @@
 #include "multieditortext.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
-#include "common/unused.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>
@@ -53,7 +51,7 @@ void MultiEditorText::setReadOnly(bool value)
 
 QToolBar* MultiEditorText::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 
@@ -157,13 +155,13 @@ MultiEditorWidget* MultiEditorTextPlugin::getInstance()
 
 bool MultiEditorTextPlugin::validFor(const DataType& dataType)
 {
-    UNUSED(dataType);
+    Q_UNUSED(dataType);
     return true;
 }
 
 int MultiEditorTextPlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:

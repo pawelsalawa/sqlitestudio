@@ -1,11 +1,10 @@
 #include "dbpluginsqlite3.h"
 #include "db/dbsqlite3.h"
-#include "common/unused.h"
 #include <QFileInfo>
 
 Db* DbPluginSqlite3::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage)
 {
-    UNUSED(errorMessage);
+    Q_UNUSED(errorMessage);
     Db* db = new DbSqlite3(name, path, options);
 
     if (!db->openForProbing())

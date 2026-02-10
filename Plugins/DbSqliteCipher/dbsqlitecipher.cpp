@@ -1,7 +1,6 @@
 #include "dbsqlitecipher.h"
 #include "sqlitestudio.h"
 #include "services/extralicensemanager.h"
-#include "common/unused.h"
 #include "dbsqlitecipherinstance.h"
 #include "services/notifymanager.h"
 #include <limits>

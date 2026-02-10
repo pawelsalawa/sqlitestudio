@@ -1,6 +1,5 @@
 #include "completeritemdelegate.h"
 #include "completermodel.h"
-#include "common/unused.h"
 #include <QPainter>
 #include <QIcon>
 #include <QApplication>
@@ -38,7 +37,7 @@ QSize CompleterItemDelegate::sizeHint(const QStyleOptionViewItem& option, const 
 
 void CompleterItemDelegate::paintBackground(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    UNUSED(index);
+    Q_UNUSED(index);
 
     painter->save();
     QPalette::ColorGroup cg = (option.state & QStyle::State_Enabled) ? QPalette::Normal : QPalette::Disabled;

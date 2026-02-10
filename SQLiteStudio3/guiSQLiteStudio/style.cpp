@@ -1,7 +1,6 @@
 #include "style.h"
 #include "themetuner.h"
 #include "mainwindow.h"
-#include "common/unused.h"
 #include "syntaxhighlighterplugin.h"
 #include "services/pluginmanager.h"
 #include <QApplication>
@@ -61,7 +60,7 @@ bool Style::isDark() const
 
 bool Style::eventFilter(QObject *obj, QEvent *ev)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     if (ev->type() == QEvent::PaletteChange)
     {
         if (extPalette.styleChanged(this, name()))

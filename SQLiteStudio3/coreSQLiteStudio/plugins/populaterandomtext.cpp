@@ -1,6 +1,5 @@
 #include "populaterandomtext.h"
 #include "common/utils.h"
-#include "common/unused.h"
 #include "services/populatemanager.h"
 
 #include <QRandomGenerator>
@@ -21,8 +20,8 @@ PopulateEngine* PopulateRandomText::createEngine()
 
 bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 {
-    UNUSED(db);
-    UNUSED(table);
+    Q_UNUSED(db);
+    Q_UNUSED(table);
     randomGenerator = QRandomGenerator::securelySeeded();
     range = cfg.PopulateRandomText.MaxLength.get() - cfg.PopulateRandomText.MinLength.get() + 1;
 
@@ -54,7 +53,7 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 
 QVariant PopulateRandomTextEngine::nextValue(bool& nextValueError)
 {
-    UNUSED(nextValueError);
+    Q_UNUSED(nextValueError);
     int lgt = (randomGenerator.generate() % range) + cfg.PopulateRandomText.MinLength.get();
     return randStr(lgt, chars);
 }
