@@ -107,7 +107,7 @@
     <message>
       <location filename="../configwidgets/cellrenderertable.cpp" line="34"/>
       <source>Default</source>
-      <translation type="unfinished">默认</translation>
+      <translation type="unfinished">Default</translation>
     </message>
   </context>
   <context>
@@ -1273,10 +1273,6 @@
       <translation>可用的编辑器：</translation>
     </message>
     <message>
-      <source>Editors selected for this data type:</source>
-      <translation type="vanished">已为该数据类型选择的编辑器：</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="978"/>
       <source>Schema editing</source>
       <translation>结构编辑</translation>
@@ -1456,12 +1452,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="899"/>
       <source>Preview of editors for this data type (drag to reorder):</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="923"/>
@@ -1471,7 +1467,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="942"/>
       <source>General.DataRenderers</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">General.DataRenderers</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="949"/>
@@ -1760,10 +1756,6 @@
       <location filename="../dialogs/configdialog.cpp" line="1823"/>
       <source>Delete selected data type</source>
       <translation>删除所选数据类型</translation>
-    </message>
-    <message>
-      <source>Help for configuring data type editors</source>
-      <translation type="vanished">配置数据类型编辑器帮助</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1909"/>
