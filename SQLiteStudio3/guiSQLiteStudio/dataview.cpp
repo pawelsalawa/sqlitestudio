@@ -505,7 +505,7 @@ void DataView::updateTabsMode()
 void DataView::setActionIcon(QAction *action, const QIcon &icon, QToolBar *toolbar)
 {
     action->setIcon(icon);
-    Q_Q_UNUSED(toolbar);
+    Q_UNUSED(toolbar);
 }
 
 void DataView::filterModeSelected()

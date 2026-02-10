@@ -12,8 +12,8 @@ CustomSplitter::CustomSplitter(Qt::Orientation orientation, QWidget *parent) : Q
 
 void CustomSplitter::onSplitterMoved(int pos, int index)
 {
-    Q_Q_UNUSED(pos);
-    Q_Q_UNUSED(index);
+    Q_UNUSED(pos);
+    Q_UNUSED(index);
 
     bool anyCollapsed = false;
     for (int i = 0; i < count(); ++i)

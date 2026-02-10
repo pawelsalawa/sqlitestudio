@@ -1659,7 +1659,7 @@ QList<Patch> diff_match_patch::patch_make(const QString &text1,
   // text2 is entirely unused.
   return patch_make(text1, diffs);
 
-  Q_Q_UNUSED(text2)
+  Q_UNUSED(text2)
 }
 
 

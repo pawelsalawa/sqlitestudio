@@ -102,7 +102,7 @@ void SingleApplicationPrivate::genBlockServerName( int timeout )
     // User level block requires a user specific data in the hash
     if( options & SingleApplication::Mode::User ) {
 #ifdef Q_OS_WIN
-        Q_Q_UNUSED(timeout);
+        Q_UNUSED(timeout);
         wchar_t username [ UNLEN + 1 ];
         // Specifies size of the buffer on input
         DWORD usernameLength = UNLEN + 1;
