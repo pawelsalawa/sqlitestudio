@@ -50,5 +50,11 @@ class GUI_API_EXPORT CellRendererPlugin : public virtual Plugin
          */
         virtual QString getRendererName() const = 0;
 
+        /**
+         * @brief Provides the preferred cell size for this renderer. This is used by the view to adjust row heights to fit the content better.
+         * @return Preferred cell size for this renderer. If the returned size is empty, then the view will use default cell size.
+         */
+        virtual QSize getPreferredCellSize() const = 0;
+
 };
 #endif // CELLRENDERERPLUGIN_H

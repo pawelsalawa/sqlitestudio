@@ -967,7 +967,7 @@ SqlQueryModelColumnPtr SqlQueryModel::getColumnModel(const QString& table, const
 QList<SqlQueryModelColumnPtr> SqlQueryModel::getTableColumnModels(const QString& database, const QString& table)
 {
     QList<SqlQueryModelColumnPtr> results;
-    for (SqlQueryModelColumnPtr modelColumn : columns)
+    for (SqlQueryModelColumnPtr& modelColumn : columns)
     {
         if (modelColumn->database.compare(database, Qt::CaseInsensitive) != 0)
             continue;
@@ -1322,7 +1322,7 @@ void SqlQueryModel::readColumnDetails()
             modelColumn->dataType = DataType(modelColumnType->name, modelColumnType->precision, modelColumnType->scale);
 
         // Column constraints
-        for (SqliteCreateTable::Column::ConstraintPtr constrPtr : colDetails.constraints)
+        for (SqliteCreateTable::Column::ConstraintPtr& constrPtr : colDetails.constraints)
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(constrPtr);
             if (modelConstraint)
@@ -1332,7 +1332,7 @@ void SqlQueryModel::readColumnDetails()
         }
 
         // Table constraints
-        for (SqliteCreateTable::ConstraintPtr constrPtr : details.constraints)
+        for (SqliteCreateTable::ConstraintPtr& constrPtr : details.constraints)
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(modelColumn->column, constrPtr);
             if (modelConstraint)
@@ -1418,7 +1418,7 @@ void SqlQueryModel::updateColumnsHeader()
 void SqlQueryModel::updateColumnHeaderLabels()
 {
     headerColumns.clear();
-    for (SqlQueryModelColumnPtr column : columns)
+    for (SqlQueryModelColumnPtr& column : columns)
     {
         headerColumns << column->displayName;
     }

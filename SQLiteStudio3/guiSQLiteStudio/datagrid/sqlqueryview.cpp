@@ -438,6 +438,44 @@ void SqlQueryView::invertSelection()
     }
 }
 
+void SqlQueryView::refreshColumnDelegates()
+{
+    for (int& colIdx : customColumnDelegates.keys())
+        setItemDelegateForColumn(colIdx, nullptr);
+
+    customColumnDelegates.clear();
+
+    CfgTypedEntry<QHash<QString,QString>>& cfg = CFG_UI.General.DataRenderers;
+    auto h = cfg.get();
+    StrHash<QString> typeToPlugin = h;
+    QHash<QString, CellRendererPlugin*> pluginByName = PLUGINS->getLoadedPlugins<CellRendererPlugin>()
+            | TO_HASH(plugin, {return plugin->getName();});
+
+    int i = 0;
+    for (const SqlQueryModelColumnPtr& column : getModel()->getColumns())
+    {
+        int colIdx = i++;
+        QString type = column->dataType.toString();
+        if (!typeToPlugin.contains(type, Qt::CaseInsensitive))
+            continue;
+
+        QString pluginName = typeToPlugin.value(type, Qt::CaseInsensitive);
+        if (pluginName.isEmpty())
+            continue;
+
+        if (!pluginByName.contains(pluginName))
+        {
+            qWarning() << "Type" << type << "is configured to be rendered with plugin" << pluginName << "but such plugin is not loaded.";;
+            continue;
+        }
+
+        CellRendererPlugin* plugin = pluginByName[pluginName];
+        QAbstractItemDelegate* delegate = plugin->createDelegate();
+        setItemDelegateForColumn(colIdx, delegate);
+        customColumnDelegates[colIdx] = plugin;
+    }
+}
+
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
@@ -692,6 +730,33 @@ void SqlQueryView::changeFontSize(int factor)
     auto f = CFG_UI.Fonts.DataView.get();
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DataView.set(f);
+}
+
+int SqlQueryView::getColumnCustomDelegateWidth(int colIdx)
+{
+    QSize size = getColumnCustomDelegateCellSize(colIdx);
+    if (!size.isEmpty())
+        return size.width();
+    else
+        return -1;
+}
+
+int SqlQueryView::getColumnCustomDelegateHeight(int colIdx)
+{
+    QSize size = getColumnCustomDelegateCellSize(colIdx);
+    if (!size.isEmpty())
+        return size.height();
+    else
+        return -1;
+}
+
+QSize SqlQueryView::getColumnCustomDelegateCellSize(int colIdx)
+{
+    if (!customColumnDelegates.contains(colIdx))
+        return QSize();
+
+    CellRendererPlugin* plugin = customColumnDelegates[colIdx];
+    return plugin->getPreferredCellSize();
 }
 
 bool SqlQueryView::getSimpleBrowserMode() const

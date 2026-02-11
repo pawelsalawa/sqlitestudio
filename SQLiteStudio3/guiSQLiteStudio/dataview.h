@@ -96,6 +96,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         void resizeColumnsInitiallyToContents();
+        void resizeRowsInitiallyByDelegates();
 
     private:
         enum class TabsPosition
@@ -178,6 +179,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QString lastSingleFilterValue;
         QWidget* filterLeftSpacer = nullptr;
         QWidget* filterRightSpacer = nullptr;
+        int initialDefaultRowHeight = -1;
 
     signals:
 

@@ -106,7 +106,7 @@ class CfgTypedEntry : public CfgEntry
         CfgTypedEntry(const CfgTypedEntry& other) :
             CfgEntry(other) {}
 
-        T get()
+        T get() const
         {
             QVariant v = CfgEntry::get();
             return v.value<T>();

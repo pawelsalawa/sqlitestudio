@@ -1,31 +1,24 @@
 #ifndef CELLRENDERERIMAGE_H
 #define CELLRENDERERIMAGE_H
 
-#include "cellrendererimage_global.h"
-#include "plugins/genericplugin.h"
-#include "datagrid/cellrendererplugin.h"
 #include "datagrid/sqlqueryitemdelegate.h"
+#include "config_builder/cfgentry.h"
 
 class CellRendererImage : public SqlQueryItemDelegate
 {
-    public:
-        explicit CellRendererImage(QObject *parent = 0);
-};
-
-class CELLRENDERERIMAGE_EXPORT CellRendererImagePlugin : public GenericPlugin, public CellRendererPlugin
-{
     Q_OBJECT
 
-    SQLITESTUDIO_PLUGIN("cellrendererimage.json")
-
     public:
-        QList<DataType> getPreferredTypes();
-        QAbstractItemDelegate* createDelegate();
-        void deinit();
-        QString getRendererName() const;
+        explicit CellRendererImage(CfgTypedEntry<int>* widthCfg, CfgTypedEntry<int>* heightCfg, QObject *parent = 0);
+
+        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+        QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+        QString	displayText(const QVariant & value, const QLocale & locale) const;
 
     private:
-        CellRendererImage* instance = nullptr;
+         CfgTypedEntry<int>* widthCfg = nullptr;
+         CfgTypedEntry<int>* heightCfg = nullptr;
 };
+
 
 #endif // CELLRENDERERIMAGE_H

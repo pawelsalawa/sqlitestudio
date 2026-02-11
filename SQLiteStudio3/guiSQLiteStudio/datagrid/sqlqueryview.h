@@ -92,6 +92,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setIgnoreColumnWidthChanges(bool ignore);
         QMenu* getHeaderContextMenu() const;
         void setReadOnly(bool value);
+        int getColumnCustomDelegateWidth(int colIdx);
+        int getColumnCustomDelegateHeight(int colIdx);
+        QSize getColumnCustomDelegateCellSize(int colIdx);
 
         static void staticInit();
 
@@ -138,6 +141,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool ignoreColumnWidthChanges = false;
         int beforeExecutionHorizontalPosition = -1;
         int beforeExecutionVerticalPosition = -1;
+        QHash<int, CellRendererPlugin*> customColumnDelegates;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);
@@ -165,6 +169,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void executionStarted();
         void executionEnded();
         void setCurrentRow(int row);
+        void refreshColumnDelegates();
         void copy();
         void copyWithHeader();
         void paste();

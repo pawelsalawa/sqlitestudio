@@ -117,8 +117,8 @@ void MainWindow::init()
 
     PLUGINS->registerPluginType<CustomConfigWidgetPlugin>(tr("Configuration widgets"));
     PLUGINS->registerPluginType<SyntaxHighlighterPlugin>(tr("Syntax highlighting engines"));
-    PLUGINS->registerPluginType<MultiEditorWidgetPlugin>(tr("Data editors"));
-    PLUGINS->registerPluginType<CellRendererPlugin>(tr("Data renderers"));
+    PLUGINS->registerPluginType<MultiEditorWidgetPlugin>(tr("Data editors"), "dataEditorsPluginsPage");
+    PLUGINS->registerPluginType<CellRendererPlugin>(tr("Data renderers"), "dataRenderersPluginsPage");
     PLUGINS->loadBuiltInPlugin(new SqliteHighlighterPlugin);
     PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
     MultiEditor::loadBuiltInEditors();

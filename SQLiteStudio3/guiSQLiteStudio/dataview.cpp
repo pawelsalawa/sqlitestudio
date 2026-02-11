@@ -310,6 +310,9 @@ void DataView::resizeColumnsInitiallyToContents()
             continue;
         }
 
+        int delegateWd = gridView->getColumnCustomDelegateWidth(i);
+        wd = qMax(wd, delegateWd);
+
         int headerMinSize = qMax(gridView->horizontalHeader()->sizeHintForColumn(i), 60);
         if (wd > CFG_UI.General.MaxInitialColumnWith.get())
             gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
@@ -317,6 +320,21 @@ void DataView::resizeColumnsInitiallyToContents()
             gridView->setColumnWidth(i, headerMinSize);
     }
     gridView->setIgnoreColumnWidthChanges(false);
+}
+
+void DataView::resizeRowsInitiallyByDelegates()
+{
+    if (initialDefaultRowHeight < 0)
+        initialDefaultRowHeight = gridView->verticalHeader()->defaultSectionSize();
+
+    int cols = model->columnCount();
+    int minHeight = initialDefaultRowHeight;
+    for (int i = 0; i < cols ; i++)
+    {
+        int delegateRowHeight = gridView->getColumnCustomDelegateHeight(i);
+        minHeight = qMax(minHeight, delegateRowHeight);
+    }
+    gridView->verticalHeader()->setDefaultSectionSize(minHeight);
 }
 
 void DataView::createStaticActions()
@@ -701,7 +719,9 @@ void DataView::dataLoadingEnded(bool successful)
     if (successful)
     {
         updatePageEdit();
+        gridView->refreshColumnDelegates();
         resizeColumnsInitiallyToContents();
+        resizeRowsInitiallyByDelegates();
         recreateFilterInputs();
     }
 

@@ -147,7 +147,7 @@ void CellRendererTableToHash::applyConfigToWidget(CfgEntry* key, QWidget* widget
 
 QVariant CellRendererTableToHash::getWidgetConfigValue(QWidget* widget, bool& ok)
 {
-    QHash<QString, QVariant> config;
+    QHash<QString, QString> config;
     CellRendererTable* table = dynamic_cast<CellRendererTable*>(widget);
     for (int row = 0, total = table->rowCount(); row < total; row++)
     {
@@ -162,7 +162,7 @@ QVariant CellRendererTableToHash::getWidgetConfigValue(QWidget* widget, bool& ok
     }
 
     ok = true;
-    return config;
+    return QVariant::fromValue(config);
 }
 
 const char* CellRendererTableToHash::getModifiedNotifier() const
