@@ -2,7 +2,6 @@
 #include "ui_ddlhistorywindow.h"
 #include "services/config.h"
 #include "ddlhistorymodel.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 #include <QDate>
 #include <QLineEdit>
@@ -61,7 +60,7 @@ void DdlHistoryWindow::init()
 
 void DdlHistoryWindow::activated(const QModelIndex& current, const QModelIndex& previous)
 {
-    UNUSED(previous);
+    Q_UNUSED(previous);
 
     int row = current.row();
     QString dbName = dataModel->data(dataModel->index(row, 0)).toString();
@@ -116,7 +115,7 @@ QVariant DdlHistoryWindow::saveSession()
 
 bool DdlHistoryWindow::restoreSession(const QVariant& sessionValue)
 {
-    UNUSED(sessionValue);
+    Q_UNUSED(sessionValue);
     return true;
 }
 
@@ -140,7 +139,7 @@ void DdlHistoryWindow::setupDefShortcuts()
 
 QToolBar* DdlHistoryWindow::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 

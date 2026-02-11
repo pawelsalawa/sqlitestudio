@@ -1,5 +1,4 @@
 #include "jsonexport.h"
-#include "common/unused.h"
 #include <QJsonDocument>
 
 JsonExport::JsonExport()
@@ -42,7 +41,7 @@ QString JsonExport::defaultFileExtension() const
 
 bool JsonExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
+    Q_UNUSED(providedData);
 
     beginObject();
     writeValue("type", "query results");
@@ -88,8 +87,8 @@ bool JsonExport::afterExportQueryResults()
 
 bool JsonExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
-    UNUSED(columnNames);
+    Q_UNUSED(providedData);
+    Q_UNUSED(columnNames);
 
     beginObject();
     writeValue("type", "table");
@@ -140,7 +139,7 @@ bool JsonExport::exportTable(const QString& database, const QString& table, cons
 
 bool JsonExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    UNUSED(providedData);
+    Q_UNUSED(providedData);
 
     beginObject();
     writeValue("type", "table");

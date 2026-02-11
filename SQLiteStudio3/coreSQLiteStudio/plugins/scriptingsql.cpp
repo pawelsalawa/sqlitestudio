@@ -1,5 +1,4 @@
 #include "scriptingsql.h"
-#include "common/unused.h"
 #include "db/db.h"
 #include "db/sqlquery.h"
 #include "services/dbmanager.h"

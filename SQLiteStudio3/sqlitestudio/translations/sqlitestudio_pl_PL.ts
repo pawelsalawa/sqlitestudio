@@ -4,92 +4,92 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../main.cpp" line="51"/>
+      <location filename="../main.cpp" line="52"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
       <translation>Interfejs graficzny dla SQLiteStudio, menadżera SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="56"/>
+      <location filename="../main.cpp" line="57"/>
       <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
       <translation type="unfinished">Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
+      <location filename="../main.cpp" line="58"/>
       <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
       <translation type="unfinished">Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="58"/>
+      <location filename="../main.cpp" line="59"/>
       <source>Enables debug messages in console (accessible with F12).</source>
       <translation>Włącza wiadomości debugujące w konsoli (dostępnej przez F12).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="59"/>
+      <location filename="../main.cpp" line="60"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
       <translation>Przekierowuje wiadomości debugujące na standardowe wyjście (wymusza tryb debugujący).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="60"/>
+      <location filename="../main.cpp" line="61"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
       <translation>Przekierowuje wiadomości debugujące do danego pliku (wymusza tryb debugujący).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="60"/>
+      <location filename="../main.cpp" line="61"/>
       <source>log file</source>
       <translation>plik logów</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="61"/>
+      <location filename="../main.cpp" line="62"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
       <translation>Włącza wiadomości debugujące analizatora Lemon dla asystenta kodu SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="62"/>
+      <location filename="../main.cpp" line="63"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
       <translation>Włacza debugowanie każdego pojedynczego zapytania SQL, wykonywanego na dowolnej bazie danych.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="63"/>
+      <location filename="../main.cpp" line="64"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
       <translation>Ogranicze wiadomości zapytań SQL do podanej &lt;bazy danych&gt;.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="63"/>
+      <location filename="../main.cpp" line="64"/>
       <source>database</source>
       <translation>baza danych</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="65"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
       <translation>Włącza debugowanie wykonawcy zapytań w SQLiteStudio.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="65"/>
+      <location filename="../main.cpp" line="66"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
       <translation>Wypisuje listę zainstalowanych w SQLiteStudio wtyczek i wychodzi.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="55"/>
+      <location filename="../main.cpp" line="56"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
       <translation>Wskazuje na główny plik konfiguracyjny. Więcej szczegółów w podręczniku na stronie wiki.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="55"/>
+      <location filename="../main.cpp" line="56"/>
       <source>settings file</source>
       <translation type="unfinished">settings file</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="78"/>
+      <location filename="../main.cpp" line="79"/>
       <source>file</source>
       <translation>plik</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="78"/>
+      <location filename="../main.cpp" line="79"/>
       <source>Database file to open</source>
       <translation>Baza danych do otwarcia</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="151"/>
+      <location filename="../main.cpp" line="152"/>
       <source>Select configuration directory</source>
       <translation>Wybierz katalog konfiguracyjny</translation>
     </message>

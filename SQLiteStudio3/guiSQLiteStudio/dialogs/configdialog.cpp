@@ -15,7 +15,6 @@
 #include "multieditor/multieditorwidgetplugin.h"
 #include "plugins/confignotifiableplugin.h"
 #include "mainwindow.h"
-#include "common/unused.h"
 #include "configmapper.h"
 #include "datatype.h"
 #include "uiutils.h"
@@ -186,7 +185,7 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 
 void ConfigDialog::showEvent(QShowEvent* event)
 {
-    UNUSED(event);
+    Q_UNUSED(event);
     ui->categoriesTree->resizeColumnToContents(0);
     int adjustedColumnWidth = ui->categoriesTree->columnWidth(0) + 4;
     if (adjustedColumnWidth > ui->categoriesTree->width()) {
@@ -1257,13 +1256,13 @@ void ConfigDialog::highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin)
 
 void ConfigDialog::dataTypeEditorPluginLoaded(MultiEditorWidgetPlugin* plugin)
 {
-    UNUSED(plugin);
+    Q_UNUSED(plugin);
     updateDataTypeEditors();
 }
 
 void ConfigDialog::dataTypeEditorPluginUnloaded(MultiEditorWidgetPlugin* plugin)
 {
-    UNUSED(plugin);
+    Q_UNUSED(plugin);
     updateDataTypeEditors();
 }
 

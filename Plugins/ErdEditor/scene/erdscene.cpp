@@ -14,7 +14,6 @@
 #include "changes/erdchangecolorentity.h"
 #include "db/chainexecutor.h"
 #include "services/notifymanager.h"
-#include "common/unused.h"
 #include "uiutils.h"
 #include "layouts/erdlayoutplanner.h"
 #include <QMessageBox>
@@ -701,7 +700,7 @@ void ErdScene::arrangeEntities(ErdLayoutPlanner::Algo algo)
 
 QPointF ErdScene::getPosForNewEntity(ErdEntity* entity, const QSet<ErdEntity*>& excludeFromCalculations) const
 {
-    UNUSED(entity);
+    Q_UNUSED(entity);
     bool first = true;
     QRectF layoutRect;
 

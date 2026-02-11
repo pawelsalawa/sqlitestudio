@@ -3,7 +3,6 @@
 #include "erdconnection.h"
 #include "icon.h"
 #include "style.h"
-#include "common/unused.h"
 #include "common/global.h"
 #include "common/deleteonfocusoutfilter.h"
 #include "uiutils.h"
@@ -184,8 +183,8 @@ void ErdEntity::updateConnectionIndexes()
 
 void ErdEntity::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-    UNUSED(option);
-    UNUSED(widget);
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
     int radius = 4;
     painter->setPen(pen());
     painter->setBrush(brush());
@@ -552,7 +551,7 @@ QString ErdEntity::Row::getText() const
 
 void ErdEntity::Row::applyColors(const QColor& bg, const QColor& fg)
 {
-    UNUSED(bg);
+    Q_UNUSED(bg);
     text->setBrush(fg);
     if (datatype)
         datatype->setBrush(fg);

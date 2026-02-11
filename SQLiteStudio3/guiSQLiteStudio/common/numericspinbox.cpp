@@ -1,5 +1,4 @@
 #include "numericspinbox.h"
-#include "common/unused.h"
 #include "common/utils.h"
 #include <QLineEdit>
 #include <QVariant>
@@ -33,8 +32,8 @@ void NumericSpinBox::stepBy(int steps)
 
 QValidator::State NumericSpinBox::validate(QString& input, int& pos) const
 {
-    UNUSED(input);
-    UNUSED(pos);
+    Q_UNUSED(input);
+    Q_UNUSED(pos);
 
     if (strict)
         return validateStrict(input, pos);

@@ -12,7 +12,6 @@
 #include "parser/lexer.h"
 #include "parser/parser.h"
 #include "parser/parsererror.h"
-#include "common/unused.h"
 #include "services/notifymanager.h"
 #include "dialogs/searchtextdialog.h"
 #include "dbobjectdialogs.h"
@@ -1663,7 +1662,7 @@ void SqlEditor::keyReleaseEvent(QKeyEvent* e)
 
 void SqlEditor::focusOutEvent(QFocusEvent* e)
 {
-    UNUSED(e);
+    Q_UNUSED(e);
     setObjectLinks(false);
     QPlainTextEdit::focusOutEvent(e);
 }
@@ -1774,7 +1773,7 @@ void SqlEditor::restoreSelection()
 
 QToolBar* SqlEditor::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 
@@ -1874,7 +1873,7 @@ void SqlEditor::changeEvent(QEvent* e)
 
 void SqlEditor::showEvent(QShowEvent* event)
 {
-    UNUSED(event);
+    Q_UNUSED(event);
     setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
 }
 

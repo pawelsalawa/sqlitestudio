@@ -1,5 +1,4 @@
 #include "multieditordate.h"
-#include "common/unused.h"
 #include <QDateEdit>
 
 QStringList MultiEditorDate::formats;
@@ -57,7 +56,7 @@ bool MultiEditorDatePlugin::validFor(const DataType& dataType)
 
 int MultiEditorDatePlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:

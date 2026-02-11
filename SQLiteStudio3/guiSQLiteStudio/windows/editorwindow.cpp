@@ -10,7 +10,6 @@
 #include "datagrid/sqlqueryview.h"
 #include "mainwindow.h"
 #include "mdiarea.h"
-#include "common/unused.h"
 #include "uiconfig.h"
 #include "services/config.h"
 #include "parser/lexer.h"
@@ -268,7 +267,7 @@ void EditorWindow::execute()
 
 QToolBar* EditorWindow::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolBar;
 }
 
@@ -676,7 +675,7 @@ void EditorWindow::focusEditorAbove()
 
 void EditorWindow::historyEntrySelected(const QModelIndex& current, const QModelIndex& previous)
 {
-    UNUSED(previous);
+    Q_UNUSED(previous);
     QString sql = ui->historyList->model()->index(current.row(), 5).data().toString();
     ui->historyContents->setPlainText(sql);
 }
@@ -803,7 +802,7 @@ QString EditorWindow::getQuitUncommittedConfirmMessage() const
 
 void EditorWindow::renameForFile(const QString fileName)
 {
-    UNUSED(fileName);
+    Q_UNUSED(fileName);
     updateWindowTitle();
     MDIAREA->getTaskByWindow(getMdiWindow())->setToolTip(fileName);
 }

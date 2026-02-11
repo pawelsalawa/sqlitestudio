@@ -4,7 +4,6 @@
 #include "schemaresolver.h"
 #include "selectresolver.h"
 #include "parser/ast/sqlitecreatetrigger.h"
-#include "common/unused.h"
 
 ViewModifier::ViewModifier(Db* db, const QString& view) :
     ViewModifier(db, "main", view)
@@ -67,7 +66,7 @@ void ViewModifier::handleTriggers()
 
 bool ViewModifier::handleNewColumns(SqliteCreateTriggerPtr trigger)
 {
-    UNUSED(trigger);
+    Q_UNUSED(trigger);
     // TODO update all occurances of columns in "UPDATE OF" and statements inside, just like it would be done in TableModifier.
     return true;
 }

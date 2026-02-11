@@ -1,9 +1,8 @@
 #include "printingexport.h"
-#include "common/unused.h"
 
 QPagedPaintDevice* PrintingExport::createPaintDevice(const QString& documentTitle, bool& takeOwnership)
 {
-    UNUSED(documentTitle);
+    Q_UNUSED(documentTitle);
     takeOwnership = false;
     return paintDevice;
 }

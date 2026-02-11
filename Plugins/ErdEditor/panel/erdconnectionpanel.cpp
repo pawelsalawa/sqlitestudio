@@ -7,7 +7,6 @@
 #include "scene/erdconnection.h"
 #include "erdcolumnfkpanel.h"
 #include "erdtablefkpanel.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 #include "services/notifymanager.h"
 #include <QDebug>
@@ -65,7 +64,7 @@ void ErdConnectionPanel::setupDefShortcuts()
 
 QToolBar *ErdConnectionPanel::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolBar;
 }
 

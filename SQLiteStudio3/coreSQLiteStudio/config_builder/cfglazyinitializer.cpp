@@ -1,12 +1,11 @@
 #include "cfglazyinitializer.h"
-#include "common/unused.h"
 
 QList<CfgLazyInitializer*>* CfgLazyInitializer::instances = nullptr;
 
 CfgLazyInitializer::CfgLazyInitializer(std::function<void ()> initFunc, const char *name) :
     initFunc(initFunc)
 {
-    UNUSED(name);
+    Q_UNUSED(name);
     if (!instances)
         instances = new QList<CfgLazyInitializer*>();
 

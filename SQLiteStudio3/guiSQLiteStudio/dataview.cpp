@@ -10,7 +10,6 @@
 #include "uiconfig.h"
 #include "datagrid/sqlqueryitem.h"
 #include "common/widgetcover.h"
-#include "common/unused.h"
 #include <QDebug>
 #include <QHeaderView>
 #include <QVBoxLayout>
@@ -586,7 +585,7 @@ void DataView::syncFilterScrollPosition()
 
 void DataView::resizeFilter(int section, int oldSize, int newSize)
 {
-    UNUSED(oldSize);
+    Q_UNUSED(oldSize);
     if (!model->features().testFlag(SqlQueryModel::FILTERING))
         return;
 

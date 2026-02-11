@@ -1,5 +1,4 @@
 #include "columndialog.h"
-#include "common/unused.h"
 #include "services/notifymanager.h"
 #include "ui_columndialog.h"
 #include "columndialogconstraintsmodel.h"
@@ -754,7 +753,7 @@ SqliteCreateTable::Column* ColumnDialog::getModifiedColumn()
 
 QToolBar* ColumnDialog::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return nullptr;
 }
 

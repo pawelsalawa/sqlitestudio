@@ -1,5 +1,4 @@
 #include "combodatawidget.h"
-#include "common/unused.h"
 #include "config_builder.h"
 #include "dialogs/configdialog.h"
 #include <QComboBox>
@@ -12,7 +11,7 @@ ComboDataWidget::ComboDataWidget(CfgEntry* key) :
 
 bool ComboDataWidget::isConfigForWidget(CfgEntry* key, QWidget* widget)
 {
-    UNUSED(widget);
+    Q_UNUSED(widget);
     return (assignedKey == key);
 }
 

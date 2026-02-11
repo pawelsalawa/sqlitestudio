@@ -4,7 +4,6 @@
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
-#include "common/unused.h"
 #include "uiutils.h"
 #include "uiconfig.h"
 #include "db/db.h"
@@ -52,7 +51,7 @@ QVariant SqliteExtensionEditor::saveSession()
 
 bool SqliteExtensionEditor::restoreSession(const QVariant& sessionValue)
 {
-    UNUSED(sessionValue);
+    Q_UNUSED(sessionValue);
     return true;
 }
 
@@ -86,7 +85,7 @@ void SqliteExtensionEditor::setupDefShortcuts()
 
 QToolBar* SqliteExtensionEditor::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolbar;
 }
 

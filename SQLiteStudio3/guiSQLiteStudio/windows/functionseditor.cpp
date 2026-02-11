@@ -1,6 +1,5 @@
 #include "functionseditor.h"
 #include "ui_functionseditor.h"
-#include "common/unused.h"
 #include "common/utils.h"
 #include "uiutils.h"
 #include "functionseditormodel.h"
@@ -41,7 +40,7 @@ bool FunctionsEditor::restoreSessionNextTime()
 
 bool FunctionsEditor::restoreSession(const QVariant &sessionValue)
 {
-    UNUSED(sessionValue);
+    Q_UNUSED(sessionValue);
     return true;
 }
 
@@ -89,7 +88,7 @@ void FunctionsEditor::setupDefShortcuts()
 
 QToolBar* FunctionsEditor::getToolBar(int toolbar) const
 {
-    UNUSED(toolbar);
+    Q_UNUSED(toolbar);
     return ui->toolBar;
 }
 

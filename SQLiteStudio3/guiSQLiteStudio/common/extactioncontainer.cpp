@@ -1,7 +1,6 @@
 #include "extactioncontainer.h"
 #include "iconmanager.h"
 #include "common/global.h"
-#include "common/unused.h"
 #include <QSignalMapper>
 #include <QToolButton>
 #include <QToolBar>

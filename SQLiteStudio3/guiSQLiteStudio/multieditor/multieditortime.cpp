@@ -1,5 +1,4 @@
 #include "multieditortime.h"
-#include "common/unused.h"
 #include <QTimeEdit>
 
 QStringList MultiEditorTime::formats;
@@ -60,7 +59,7 @@ bool MultiEditorTimePlugin::validFor(const DataType& dataType)
 
 int MultiEditorTimePlugin::getPriority(const QVariant& value, const DataType& dataType)
 {
-    UNUSED(value);
+    Q_UNUSED(value);
     switch (dataType.getType())
     {
         case DataType::BLOB:

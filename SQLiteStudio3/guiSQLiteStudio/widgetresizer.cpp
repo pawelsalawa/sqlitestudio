@@ -1,5 +1,4 @@
 #include "widgetresizer.h"
-#include "common/unused.h"
 #include <QMouseEvent>
 #include <QDebug>
 #include <QLayout>
@@ -58,7 +57,7 @@ void WidgetResizer::updateWidth()
 
 void WidgetResizer::mousePressEvent(QMouseEvent* event)
 {
-    UNUSED(event);
+    Q_UNUSED(event);
     if (!widget)
         return;
 
@@ -68,7 +67,7 @@ void WidgetResizer::mousePressEvent(QMouseEvent* event)
 
 void WidgetResizer::mouseMoveEvent(QMouseEvent* event)
 {
-    UNUSED(event);
+    Q_UNUSED(event);
     if (!widget)
         return;
 

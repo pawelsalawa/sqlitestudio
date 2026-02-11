@@ -1,7 +1,6 @@
 #include "clicommanddblist.h"
 #include "cli.h"
 #include "services/dbmanager.h"
-#include "common/unused.h"
 #include "common/utils.h"
 #include <QList>
 

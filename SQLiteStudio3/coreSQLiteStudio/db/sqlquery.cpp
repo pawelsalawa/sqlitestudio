@@ -1,7 +1,6 @@
 #include "sqlquery.h"
 #include "db/sqlerrorcodes.h"
 #include "common/utils_sql.h"
-#include "common/unused.h"
 
 SqlQuery::~SqlQuery()
 {
@@ -213,12 +212,12 @@ bool SqlQueryError::hasNextInternal()
 
 bool SqlQueryError::execInternal(const QList<QVariant>& args)
 {
-    UNUSED(args);
+    Q_UNUSED(args);
     return false;
 }
 
 bool SqlQueryError::execInternal(const QHash<QString, QVariant>& args)
 {
-    UNUSED(args);
+    Q_UNUSED(args);
     return false;
 }

@@ -1,5 +1,4 @@
 #include "widgetcover.h"
-#include "common/unused.h"
 #include <QVariantAnimation>
 #include <QDebug>
 #include <QGraphicsBlurEffect>
@@ -196,7 +195,7 @@ QGridLayout* WidgetCover::getContainerLayout()
 
 bool WidgetCover::eventFilter(QObject* obj, QEvent* e)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     if (e->type() == QEvent::Resize)
         widgetResized();
 

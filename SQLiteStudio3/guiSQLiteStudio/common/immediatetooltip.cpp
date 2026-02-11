@@ -1,5 +1,4 @@
 #include "immediatetooltip.h"
-#include "common/unused.h"
 #include <QEnterEvent>
 #include <QToolTip>
 #include <QWidget>
@@ -14,7 +13,7 @@ ImmediateTooltip::ImmediateTooltip(QWidget* parent)
 
 bool ImmediateTooltip::eventFilter(QObject* obj, QEvent* event)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     switch (event->type())
     {
         case QEvent::Enter:

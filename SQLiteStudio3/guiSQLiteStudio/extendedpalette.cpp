@@ -1,5 +1,4 @@
 #include "extendedpalette.h"
-#include "common/unused.h"
 #include <QStyle>
 #include <QDebug>
 
@@ -29,7 +28,7 @@ void ExtendedPalette::setEditorLineBase(const QBrush &value)
 
 bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
-    UNUSED(themeName);
+    Q_UNUSED(themeName);
     QPalette stdPalette = style->standardPalette();
     QVariant paletteVariant = stdPalette;
     if (paletteVariant == initializedForPalette)

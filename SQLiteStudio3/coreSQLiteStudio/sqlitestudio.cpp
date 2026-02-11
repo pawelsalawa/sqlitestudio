@@ -12,7 +12,6 @@
 #include "services/codeformatter.h"
 #include "plugins/generalpurposeplugin.h"
 #include "plugins/dbplugin.h"
-#include "common/unused.h"
 #include "services/functionmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "plugins/exportplugin.h"
@@ -457,20 +456,20 @@ void SQLiteStudio::updateCurrentCodeFormatter()
 
 void SQLiteStudio::pluginLoaded(Plugin* plugin, PluginType* pluginType)
 {
-    UNUSED(plugin);
+    Q_UNUSED(plugin);
     if (pluginType->isForPluginType<CodeFormatterPlugin>()) // TODO move this to slot of CodeFormatter
         updateCodeFormatter();
 }
 
 void SQLiteStudio::pluginToBeUnloaded(Plugin* plugin, PluginType* pluginType)
 {
-    UNUSED(plugin);
-    UNUSED(pluginType);
+    Q_UNUSED(plugin);
+    Q_UNUSED(pluginType);
 }
 
 void SQLiteStudio::pluginUnloaded(const QString& pluginName, PluginType* pluginType)
 {
-    UNUSED(pluginName);
+    Q_UNUSED(pluginName);
     if (pluginType->isForPluginType<CodeFormatterPlugin>()) // TODO move this to slot of CodeFormatter
         updateCodeFormatter();
 }

@@ -5,7 +5,6 @@
 //#include "parser/parsererror.h"
 #include "db/queryexecutor.h"
 #include "qio.h"
-#include "common/unused.h"
 #include "cli_config.h"
 #include "cliutils.h"
 #include <QList>
@@ -399,7 +398,7 @@ QString CliCommandSql::getValueString(const QVariant& value)
 
 void CliCommandSql::executionFailed(int code, const QString& msg)
 {
-    UNUSED(code);
+    Q_UNUSED(code);
     qOut << tr("Query execution error: %1").arg(msg) << "\n\n";
     qOut.flush();
 }

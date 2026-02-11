@@ -1,7 +1,6 @@
 #include "climsghandler.h"
 #include "qio.h"
 #include "cli_config.h"
-#include "common/unused.h"
 
 bool cliDebug = false;
 
@@ -10,7 +9,7 @@ void cliMessageHandler(QtMsgType type, const QMessageLogContext &context, const 
     if (!cliDebug)
         return;
 
-    UNUSED(context);
+    Q_UNUSED(context);
 
     QString txt;
     switch (type) {

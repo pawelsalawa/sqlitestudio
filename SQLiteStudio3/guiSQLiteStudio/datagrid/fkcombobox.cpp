@@ -1,5 +1,4 @@
 #include "fkcombobox.h"
-#include "common/unused.h"
 #include "datagrid/sqlqueryitem.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
@@ -396,7 +395,7 @@ FkComboBox::FkComboShowFilter::FkComboShowFilter(FkComboBox* parentCombo)
 
 bool FkComboBox::FkComboShowFilter::eventFilter(QObject* obj, QEvent* event)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     if (event->type() == QEvent::Show)
         dynamic_cast<FkComboBox*>(parent())->updateComboViewGeometry(true);
 

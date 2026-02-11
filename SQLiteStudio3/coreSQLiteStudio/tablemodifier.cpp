@@ -9,7 +9,6 @@
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqliteinsert.h"
 #include "parser/ast/sqlitedelete.h"
-#include "common/unused.h"
 #include <QDebug>
 
 // TODO no attach/temp db name support in this entire class
@@ -429,8 +428,8 @@ bool TableModifier::handleIndexedColumnsInitial(SqliteOrderBy* col, bool& modifi
 
 bool TableModifier::handleIndexedColumnsInitial(SqliteIndexedColumn* col, bool& modified)
 {
-    UNUSED(col);
-    UNUSED(modified);
+    Q_UNUSED(col);
+    Q_UNUSED(modified);
     return false;
 }
 

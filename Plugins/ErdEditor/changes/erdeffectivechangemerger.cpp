@@ -10,7 +10,6 @@
 #include "diff/diff_match_patch.h"
 #include "db/chainexecutor.h"
 #include "changes/erdchangecomposite.h"
-#include "common/unused.h"
 
 ErdEffectiveChangeMerger::ErdEffectiveChangeMerger(const QStringList& schemaBase, const QString& dbName) :
     schemaBase(schemaBase), dbName(dbName)

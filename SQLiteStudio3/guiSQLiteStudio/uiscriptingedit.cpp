@@ -1,5 +1,4 @@
 #include "uiscriptingedit.h"
-#include "common/unused.h"
 #include "services/pluginmanager.h"
 #include "syntaxhighlighterplugin.h"
 #include "pluginservicebase.h"
@@ -33,7 +32,7 @@ UiScriptingEdit::EditUpdater::EditUpdater(QWidget* widget) :
 
 bool UiScriptingEdit::EditUpdater::eventFilter(QObject* obj, QEvent* e)
 {
-    UNUSED(obj);
+    Q_UNUSED(obj);
     if (changingHighlighter)
         return false;
 

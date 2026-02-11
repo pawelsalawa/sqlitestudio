@@ -1,5 +1,4 @@
 #include "clicommandpwd.h"
-#include "common/unused.h"
 #include <QDir>
 
 void CliCommandPwd::execute()

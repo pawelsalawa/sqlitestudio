@@ -1,6 +1,5 @@
 #include "listtostringlisthash.h"
 #include "config_builder.h"
-#include "common/unused.h"
 #include <QListWidget>
 
 ListToStringListHash::ListToStringListHash(CfgEntry* key) :
@@ -10,13 +9,13 @@ ListToStringListHash::ListToStringListHash(CfgEntry* key) :
 
 bool ListToStringListHash::isConfigForWidget(CfgEntry* key, QWidget* widget)
 {
-    UNUSED(widget);
+    Q_UNUSED(widget);
     return (assignedKey == key);
 }
 
 void ListToStringListHash::applyConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
 {
-    UNUSED(key);
+    Q_UNUSED(key);
 
     QListWidget* list = dynamic_cast<QListWidget*>(widget);
     QHash<QString,QListWidgetItem*> itemsByName;

@@ -1,6 +1,5 @@
 #include "codesnippeteditormodel.h"
 #include "common/strhash.h"
-#include "common/unused.h"
 #include "iconmanager.h"
 
 #include <QKeySequence>
@@ -243,7 +242,7 @@ int CodeSnippetEditorModel::moveDown(int row)
 
 int CodeSnippetEditorModel::rowCount(const QModelIndex& parent) const
 {
-    UNUSED(parent);
+    Q_UNUSED(parent);
     return snippetList.size();
 }
 

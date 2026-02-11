@@ -1,6 +1,5 @@
 #include "viewwindow.h"
 #include "ui_viewwindow.h"
-#include "common/unused.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
 #include "services/dbmanager.h"
@@ -743,7 +742,7 @@ void ViewWindow::dbClosedFinalCleanup()
 
 void ViewWindow::checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type)
 {
-    UNUSED(database);
+    Q_UNUSED(database);
 
     if (type == DbObjectType::TRIGGER)
     {
@@ -1143,8 +1142,8 @@ void ViewWindow::dbChanged()
 
 void ViewWindow::handleObjectModified(Db* db, const QString& database, const QString& object)
 {
-    UNUSED(db);
-    UNUSED(database);
+    Q_UNUSED(db);
+    Q_UNUSED(database);
     if (object.compare(view, Qt::CaseInsensitive) != 0)
         return;
 
