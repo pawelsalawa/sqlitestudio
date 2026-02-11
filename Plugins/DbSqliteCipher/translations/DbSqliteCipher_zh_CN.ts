@@ -4,27 +4,27 @@
   <context>
     <name>DbSqliteCipher</name>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="30"/>
+      <location filename="../dbsqlitecipher.cpp" line="29"/>
       <source>Password (key)</source>
       <translation>密码（密钥）</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="31"/>
+      <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Leave empty to create or connect to decrypted database.</source>
       <translation>留空则创建或连接到已解密的数据库。</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="32"/>
+      <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Encryption password</source>
       <translation>加密密码</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="37"/>
+      <location filename="../dbsqlitecipher.cpp" line="36"/>
       <source>Cipher configuration (optional)</source>
       <translation>加密算法配置（可选）</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="38"/>
+      <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>

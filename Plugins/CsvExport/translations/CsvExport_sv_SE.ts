@@ -49,7 +49,7 @@
       <translation>[tom sträng]</translation>
     </message>
     <message>
-      <location filename="../csvexport.cpp" line="42"/>
+      <location filename="../csvexport.cpp" line="41"/>
       <source>Enter the custom separator character.</source>
       <translation>Ange det anpassade separatortecknet.</translation>
     </message>

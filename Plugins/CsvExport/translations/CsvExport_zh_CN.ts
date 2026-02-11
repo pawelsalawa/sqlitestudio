@@ -49,7 +49,7 @@
       <translation>空字符串</translation>
     </message>
     <message>
-      <location filename="../csvexport.cpp" line="42"/>
+      <location filename="../csvexport.cpp" line="41"/>
       <source>Enter the custom separator character.</source>
       <translation>请输入自定义的分隔符。</translation>
     </message>

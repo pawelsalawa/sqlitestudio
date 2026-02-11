@@ -4,22 +4,22 @@
   <context>
     <name>ScriptingTcl</name>
     <message>
-      <location filename="../scriptingtcl.cpp" line="429"/>
+      <location filename="../scriptingtcl.cpp" line="428"/>
       <source>No database available in current context, while called Tcl&apos;s &apos;%1&apos; command.</source>
       <translation>Tcl&apos;s &apos;%1&apos; komutu sonucunda, uygun bir veritabanı bulunmuyor.</translation>
     </message>
     <message>
-      <location filename="../scriptingtcl.cpp" line="451"/>
+      <location filename="../scriptingtcl.cpp" line="450"/>
       <source>Invalid &apos;%1&apos; command syntax. Should be: %2</source>
       <translation>Geçersiz &apos;%1&apos; komut sözdizimi. Şu olmalı: %2</translation>
     </message>
     <message>
-      <location filename="../scriptingtcl.cpp" line="463"/>
+      <location filename="../scriptingtcl.cpp" line="462"/>
       <source>Error from Tcl&apos;s &apos;%1&apos; command: %2</source>
       <translation>Tcl&apos;ın &apos;%1&apos; komutundan hata: %2</translation>
     </message>
     <message>
-      <location filename="../scriptingtcl.cpp" line="594"/>
+      <location filename="../scriptingtcl.cpp" line="593"/>
       <source>Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</source>
       <translation>Tcl&apos;s&apos; &apos;%1&apos;komutunda hata komut: %2</translation>
     </message>

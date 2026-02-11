@@ -4,27 +4,27 @@
   <context>
     <name>DbSqliteCipher</name>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="30"/>
+      <location filename="../dbsqlitecipher.cpp" line="29"/>
       <source>Password (key)</source>
       <translation>Contraseña (clave)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="31"/>
+      <location filename="../dbsqlitecipher.cpp" line="30"/>
       <source>Leave empty to create or connect to decrypted database.</source>
       <translation>Dejar en blanco para crear o conectarse a una base de datos desencriptada.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="32"/>
+      <location filename="../dbsqlitecipher.cpp" line="31"/>
       <source>Encryption password</source>
       <translation>Contraseña de encriptado</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="37"/>
+      <location filename="../dbsqlitecipher.cpp" line="36"/>
       <source>Cipher configuration (optional)</source>
       <translation type="unfinished">Cipher configuration (optional)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitecipher.cpp" line="38"/>
+      <location filename="../dbsqlitecipher.cpp" line="37"/>
       <source>PRAGMA statements to customize SQLCipher configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLCipher for details.</source>

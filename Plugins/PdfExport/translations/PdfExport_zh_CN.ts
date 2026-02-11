@@ -4,164 +4,164 @@
   <context>
     <name>PdfExport</name>
     <message>
-      <location filename="../pdfexport.cpp" line="33"/>
+      <location filename="../pdfexport.cpp" line="32"/>
       <source>SQLiteStudio v%1</source>
       <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="66"/>
+      <location filename="../pdfexport.cpp" line="65"/>
       <source>SQL query results</source>
       <translation>SQL 查询结果</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="95"/>
-      <location filename="../pdfexport.cpp" line="149"/>
+      <location filename="../pdfexport.cpp" line="94"/>
+      <location filename="../pdfexport.cpp" line="148"/>
       <source>Exported table: %1</source>
       <translation>导出的表：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="98"/>
-      <location filename="../pdfexport.cpp" line="164"/>
+      <location filename="../pdfexport.cpp" line="97"/>
+      <location filename="../pdfexport.cpp" line="163"/>
       <source>Table: %1</source>
       <translation>表：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="99"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Column</source>
       <translation>列</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
+      <location filename="../pdfexport.cpp" line="99"/>
       <source>Data type</source>
       <translation>数据类型</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
+      <location filename="../pdfexport.cpp" line="99"/>
       <source>Constraints</source>
       <translation>约束</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="131"/>
+      <location filename="../pdfexport.cpp" line="130"/>
       <source>Global table constraints</source>
       <translation>全局表约束</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="220"/>
+      <location filename="../pdfexport.cpp" line="219"/>
       <source>Exported database: %1</source>
       <translation>导出的数据库：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="228"/>
+      <location filename="../pdfexport.cpp" line="227"/>
       <source>Index: %1</source>
       <translation>索引：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="230"/>
+      <location filename="../pdfexport.cpp" line="229"/>
       <source>Property</source>
       <comment>index header</comment>
       <translation>属性</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="230"/>
+      <location filename="../pdfexport.cpp" line="229"/>
       <source>Value</source>
       <comment>index header</comment>
       <translation>值</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
+      <location filename="../pdfexport.cpp" line="232"/>
       <source>Indexed table</source>
       <translation>索引表</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>Unique index</source>
       <translation>唯一索引</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>Yes</source>
       <translation>是</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>No</source>
       <translation>否</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Collation</source>
       <translation>字符序</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Sort order</source>
       <translation>排序方式</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="252"/>
+      <location filename="../pdfexport.cpp" line="251"/>
       <source>Partial index condition</source>
       <translation>部分索引条件</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="266"/>
+      <location filename="../pdfexport.cpp" line="265"/>
       <source>Trigger: %1</source>
       <translation>触发器：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="268"/>
+      <location filename="../pdfexport.cpp" line="267"/>
       <source>Property</source>
       <comment>trigger header</comment>
       <translation>属性</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="268"/>
+      <location filename="../pdfexport.cpp" line="267"/>
       <source>Value</source>
       <comment>trigger header</comment>
       <translation>值</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="270"/>
+      <location filename="../pdfexport.cpp" line="269"/>
       <source>Activation time</source>
       <translation>激活时间</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="273"/>
+      <location filename="../pdfexport.cpp" line="272"/>
       <source>For action</source>
       <translation>对动作</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="277"/>
+      <location filename="../pdfexport.cpp" line="276"/>
       <source>On view</source>
       <translation>视图</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="279"/>
+      <location filename="../pdfexport.cpp" line="278"/>
       <source>On table</source>
       <translation>表</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="284"/>
+      <location filename="../pdfexport.cpp" line="283"/>
       <source>Activation condition</source>
       <translation>激活条件</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="290"/>
+      <location filename="../pdfexport.cpp" line="289"/>
       <source>Code executed</source>
       <translation>执行代码</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="302"/>
+      <location filename="../pdfexport.cpp" line="301"/>
       <source>View: %1</source>
       <translation>视图：%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="303"/>
+      <location filename="../pdfexport.cpp" line="302"/>
       <source>Query:</source>
       <translation>查询：</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="659"/>
+      <location filename="../pdfexport.cpp" line="658"/>
       <source>Document generated with SQLiteStudio v%1</source>
       <translation>使用 SQLiteStudio v%1 生成的文档</translation>
     </message>

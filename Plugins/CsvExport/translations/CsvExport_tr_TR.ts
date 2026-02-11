@@ -49,7 +49,7 @@
       <translation>Boş string</translation>
     </message>
     <message>
-      <location filename="../csvexport.cpp" line="42"/>
+      <location filename="../csvexport.cpp" line="41"/>
       <source>Enter the custom separator character.</source>
       <translation>Özel ayraç karakterini girin.</translation>
     </message>

@@ -4,27 +4,27 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../scriptingpython.cpp" line="731"/>
+      <location filename="../scriptingpython.cpp" line="730"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
       <translation>Utilisation non valide de la fonction %1. Attendait %2 arguments, mais en a obtenu %3.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="740"/>
+      <location filename="../scriptingpython.cpp" line="739"/>
       <source>Unknown error from function %1.</source>
       <translation>Erreur inconnue de la fonction %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="781"/>
+      <location filename="../scriptingpython.cpp" line="780"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
       <translation>Impossible de calculer la représentation de la chaîne de caractères de l&apos;objet Python passé comme argument à la fonction %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="803"/>
+      <location filename="../scriptingpython.cpp" line="802"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
       <translation>Impossible de trouver le contexte d&apos;exécution de la fonction %1. Ceci est un bug du plugin Python. Veuillez le signaler.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="828"/>
+      <location filename="../scriptingpython.cpp" line="827"/>
       <source>Error from Python function %1: %2</source>
       <translation>Erreur de la fonction Python %1 : %2</translation>
     </message>
@@ -42,7 +42,7 @@
       <translation>Choisissez un fichier de librairie Python</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="369"/>
+      <location filename="../scriptingpython.cpp" line="368"/>
       <source>The plugin is not configured properly.</source>
       <translation>Le plugin n&apos;est pas configurer correctement</translation>
     </message>

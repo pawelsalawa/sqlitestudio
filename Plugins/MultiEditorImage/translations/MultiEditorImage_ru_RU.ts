@@ -4,17 +4,17 @@
   <context>
     <name>MultiEditorImage</name>
     <message>
-      <location filename="../multieditorimage.cpp" line="27"/>
+      <location filename="../multieditorimage.cpp" line="26"/>
       <source>Zoom in by 25%</source>
       <translation>Приблизить на 25%</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="28"/>
+      <location filename="../multieditorimage.cpp" line="27"/>
       <source>Zoom out by 25%</source>
       <translation>Отдалить на 25%</translation>
     </message>
     <message>
-      <location filename="../multieditorimage.cpp" line="29"/>
+      <location filename="../multieditorimage.cpp" line="28"/>
       <source>Reset zoom</source>
       <translation>Сбросить масштаб</translation>
     </message>
@@ -22,7 +22,7 @@
   <context>
     <name>MultiEditorImagePlugin</name>
     <message>
-      <location filename="../multieditorimage.cpp" line="201"/>
+      <location filename="../multieditorimage.cpp" line="200"/>
       <source>Image</source>
       <translation>Изображение</translation>
     </message>
