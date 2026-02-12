@@ -4,27 +4,27 @@
   <context>
     <name>Printing</name>
     <message>
-      <location filename="../printing.cpp" line="36"/>
+      <location filename="../printing.cpp" line="35"/>
       <source>Print data</source>
       <translation>Adatok nyomtatása</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="38"/>
+      <location filename="../printing.cpp" line="37"/>
       <source>Print query</source>
       <translation>Lekérdezés nyomtatása</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="75"/>
+      <location filename="../printing.cpp" line="74"/>
       <source>No data to print.</source>
       <translation>Nincs nyomtatni való adat.</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="83"/>
+      <location filename="../printing.cpp" line="82"/>
       <source>Printing data.</source>
       <translation>Adatok nyomtatása folyamatban.</translation>
     </message>
     <message>
-      <location filename="../printing.cpp" line="109"/>
+      <location filename="../printing.cpp" line="108"/>
       <source>Printing query.</source>
       <translation>Lekérdezés nyomtatása folyamatban.</translation>
     </message>
@@ -32,7 +32,7 @@
   <context>
     <name>PrintingExport</name>
     <message>
-      <location filename="../printingexport.cpp" line="28"/>
+      <location filename="../printingexport.cpp" line="27"/>
       <source>Printing</source>
       <translation>Nyomtatás folyamatban</translation>
     </message>

@@ -4,27 +4,27 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../scriptingpython.cpp" line="731"/>
+      <location filename="../scriptingpython.cpp" line="730"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
       <translation>Nieprawidłowe użycie funkcji %1. Oczekiwano %2 argumentów, ale otrzymano %3.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="740"/>
+      <location filename="../scriptingpython.cpp" line="739"/>
       <source>Unknown error from function %1.</source>
       <translation>Nieznany błąd z funkcji %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="781"/>
+      <location filename="../scriptingpython.cpp" line="780"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
       <translation>Nie można przedstawić obiektu Pythona przekazanego jako argument do funkcji %1 jako reprezentacji ciągu znaków.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="803"/>
+      <location filename="../scriptingpython.cpp" line="802"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
       <translation>Nie można odnaleźć kontekstu wykonania funkcji %1. Jest to błąd wtyczki Pythona. Proszę, zgłoś to.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="828"/>
+      <location filename="../scriptingpython.cpp" line="827"/>
       <source>Error from Python function %1: %2</source>
       <translation>Błąd z funkcji Pythona %1: %2</translation>
     </message>
@@ -42,7 +42,7 @@
       <translation>Wybierz plik biblioteki Pythona</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="369"/>
+      <location filename="../scriptingpython.cpp" line="368"/>
       <source>The plugin is not configured properly.</source>
       <translation>Wtyczka nie jest poprawnie skonfigurowana.</translation>
     </message>

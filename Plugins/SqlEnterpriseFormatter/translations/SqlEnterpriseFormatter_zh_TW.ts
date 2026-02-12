@@ -4,8 +4,8 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../sqlenterpriseformatter.cpp" line="90"/>
-      <location filename="../sqlenterpriseformatter.cpp" line="97"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="89"/>
+      <location filename="../sqlenterpriseformatter.cpp" line="96"/>
       <source>name</source>
       <comment>example name wrapper</comment>
       <translation>名稱</translation>

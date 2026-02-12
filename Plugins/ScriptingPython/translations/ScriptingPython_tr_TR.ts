@@ -4,27 +4,27 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../scriptingpython.cpp" line="731"/>
+      <location filename="../scriptingpython.cpp" line="730"/>
       <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
       <translation>%1 işlevinin geçersiz kullanımı. Beklenen %2 argümanları, ancak %3 var.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="740"/>
+      <location filename="../scriptingpython.cpp" line="739"/>
       <source>Unknown error from function %1.</source>
       <translation>%1 fonksiyonundan bilinmeyen hata.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="781"/>
+      <location filename="../scriptingpython.cpp" line="780"/>
       <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
       <translation>%1 işlevine bağımsız değişken olarak geçirilen Python nesnesinin dize gösterimi hesaplanamadı.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="803"/>
+      <location filename="../scriptingpython.cpp" line="802"/>
       <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
       <translation>%1 işlevinin yürütme içeriği bulunamadı. Bu bir Python eklentisi hatasıdır. Lütfen rapor edin.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="828"/>
+      <location filename="../scriptingpython.cpp" line="827"/>
       <source>Error from Python function %1: %2</source>
       <translation>Python işlevinden %1 hatası: %2</translation>
     </message>
@@ -42,7 +42,7 @@
       <translation type="unfinished">Choose a Python library file</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="369"/>
+      <location filename="../scriptingpython.cpp" line="368"/>
       <source>The plugin is not configured properly.</source>
       <translation type="unfinished">The plugin is not configured properly.</translation>
     </message>

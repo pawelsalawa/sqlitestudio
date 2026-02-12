@@ -144,56 +144,56 @@
   <context>
     <name>CliCommandDbList</name>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="12"/>
+      <location filename="../commands/clicommanddblist.cpp" line="11"/>
       <source>No current working database defined.</source>
       <translation>Не указана текущая рабочая база данных.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="18"/>
+      <location filename="../commands/clicommanddblist.cpp" line="17"/>
       <source>Databases:</source>
       <translation>Базы данных:</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="23"/>
-      <location filename="../commands/clicommanddblist.cpp" line="34"/>
+      <location filename="../commands/clicommanddblist.cpp" line="22"/>
+      <location filename="../commands/clicommanddblist.cpp" line="33"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
       <translation>Имя</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="31"/>
-      <location filename="../commands/clicommanddblist.cpp" line="61"/>
+      <location filename="../commands/clicommanddblist.cpp" line="30"/>
+      <location filename="../commands/clicommanddblist.cpp" line="60"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
       <translation>Открыто</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="31"/>
-      <location filename="../commands/clicommanddblist.cpp" line="61"/>
+      <location filename="../commands/clicommanddblist.cpp" line="30"/>
+      <location filename="../commands/clicommanddblist.cpp" line="60"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
       <translation>Закрыто</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="32"/>
-      <location filename="../commands/clicommanddblist.cpp" line="36"/>
+      <location filename="../commands/clicommanddblist.cpp" line="31"/>
+      <location filename="../commands/clicommanddblist.cpp" line="35"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
       <translation>Соединение</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="38"/>
-      <location filename="../commands/clicommanddblist.cpp" line="45"/>
+      <location filename="../commands/clicommanddblist.cpp" line="37"/>
+      <location filename="../commands/clicommanddblist.cpp" line="44"/>
       <source>Database file path</source>
       <translation>Путь к файлу базы данных</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="70"/>
+      <location filename="../commands/clicommanddblist.cpp" line="69"/>
       <source>prints list of registered databases</source>
       <translation>выводит список зарегистрированных баз данных</translation>
     </message>
     <message>
-      <location filename="../commands/clicommanddblist.cpp" line="75"/>
+      <location filename="../commands/clicommanddblist.cpp" line="74"/>
       <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
       <translation>Выводит список баз данных, зарегистрированных в SQLiteStudio. Каждая база данных может быть либо открыта, либо закрыта, %1 это также указывает. Текущая рабочая база данных (она же база данных по умолчанию) дополнительно отмечена символом &apos;*&apos; в начале имени. Смотрите справку по команде %2 для сведений о базе данных по умолчанию.</translation>
     </message>
@@ -290,12 +290,12 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
   <context>
     <name>CliCommandExit</name>
     <message>
-      <location filename="../commands/clicommandexit.cpp" line="12"/>
+      <location filename="../commands/clicommandexit.cpp" line="11"/>
       <source>quits the application</source>
       <translation>выход из приложения</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandexit.cpp" line="17"/>
+      <location filename="../commands/clicommandexit.cpp" line="16"/>
       <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
       <translation>Осуществляет выход из приложения. Настройки сохраняются в конфигурационном файле и восстановятся при следующем запуске.</translation>
     </message>
@@ -398,27 +398,27 @@ Use -ql or --querylimit option to see the current limit value.</source>
   <context>
     <name>CliCommandMode</name>
     <message>
-      <location filename="../commands/clicommandmode.cpp" line="9"/>
+      <location filename="../commands/clicommandmode.cpp" line="8"/>
       <source>Current results printing mode: %1</source>
       <translation>Текущий режим вывода результатов: %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandmode.cpp" line="16"/>
+      <location filename="../commands/clicommandmode.cpp" line="15"/>
       <source>Invalid results printing mode: %1</source>
       <translation>Некорректный режим вывода результатов: %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandmode.cpp" line="21"/>
+      <location filename="../commands/clicommandmode.cpp" line="20"/>
       <source>New results printing mode: %1</source>
       <translation>Новый режим вывода результатов: %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandmode.cpp" line="26"/>
+      <location filename="../commands/clicommandmode.cpp" line="25"/>
       <source>tells or changes the query results format</source>
       <translation>отображает или изменяет формат вывода результатов запроса</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandmode.cpp" line="31"/>
+      <location filename="../commands/clicommandmode.cpp" line="30"/>
       <source>When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
 - CLASSIC - columns are separated by a comma, not aligned,
 - FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
@@ -515,12 +515,12 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
   <context>
     <name>CliCommandPwd</name>
     <message>
-      <location filename="../commands/clicommandpwd.cpp" line="13"/>
+      <location filename="../commands/clicommandpwd.cpp" line="12"/>
       <source>prints the current working directory</source>
       <translation>отображение текущего рабочего каталога</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandpwd.cpp" line="18"/>
+      <location filename="../commands/clicommandpwd.cpp" line="17"/>
       <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
       <translation>Аналог команды &apos;pwd&apos; в системах Unix и команды &apos;cd&apos; без аргументов в Windows. Команда отображает текущий рабочий каталог. Вы можете сменить текущий рабочий каталог командой %1, а также вывести содержимое текущего рабочего каталога командой %2.</translation>
     </message>
@@ -562,46 +562,46 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
   <context>
     <name>CliCommandSql</name>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="18"/>
+      <location filename="../commands/clicommandsql.cpp" line="17"/>
       <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
       <translation>Не указана рабочая база данных. Укажите рабочую базу данных командой %1. Для просмотра списка баз данных воспользуйтесь командой %2.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="29"/>
+      <location filename="../commands/clicommandsql.cpp" line="28"/>
       <source>Database is not open.</source>
       <translation>База данных не открыта.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="64"/>
+      <location filename="../commands/clicommandsql.cpp" line="63"/>
       <source>executes SQL query</source>
       <translation>выполнение запроса SQL</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="69"/>
+      <location filename="../commands/clicommandsql.cpp" line="68"/>
       <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
       <translation>Эта команда выполняется каждый раз, когда вы вводите запрос SQL в командную строку. Она выполняет запрос к текущей рабочей базе данных (см. справку к команде %1 для подробностей). Не нужно явно вызвать эту команду. Просто вводите запрос SQL в командную строку без указания команды.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="85"/>
+      <location filename="../commands/clicommandsql.cpp" line="84"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
       <translation>sql</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="134"/>
-      <location filename="../commands/clicommandsql.cpp" line="176"/>
+      <location filename="../commands/clicommandsql.cpp" line="133"/>
+      <location filename="../commands/clicommandsql.cpp" line="175"/>
       <source>Too many columns to display in %1 mode.</source>
       <translation>Слишком много столбцов для отображения в режиме %1.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="253"/>
+      <location filename="../commands/clicommandsql.cpp" line="252"/>
       <source>Row %1</source>
       <translation>Строка %1</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandsql.cpp" line="403"/>
+      <location filename="../commands/clicommandsql.cpp" line="402"/>
       <source>Query execution error: %1</source>
       <translation>Ошибка выполнения запроса: %1</translation>
     </message>
@@ -656,43 +656,43 @@ When the -s option is given, then system tables are also listed.</source>
   <context>
     <name>CliCommandTree</name>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="12"/>
+      <location filename="../commands/clicommandtree.cpp" line="11"/>
       <source>No current working database is selected. Use %1 to define one and then run %2.</source>
       <translation>Не выбрана рабочая база данных. Укажите рабочую базу данных командой %1, затем выполните команду %2.</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="54"/>
+      <location filename="../commands/clicommandtree.cpp" line="53"/>
       <source>Tables</source>
       <translation>Таблицы</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="58"/>
+      <location filename="../commands/clicommandtree.cpp" line="57"/>
       <source>Views</source>
       <translation>Представления</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="83"/>
+      <location filename="../commands/clicommandtree.cpp" line="82"/>
       <source>Columns</source>
       <translation>Столбцы</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="88"/>
+      <location filename="../commands/clicommandtree.cpp" line="87"/>
       <source>Indexes</source>
       <translation>Индексы</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="92"/>
-      <location filename="../commands/clicommandtree.cpp" line="113"/>
+      <location filename="../commands/clicommandtree.cpp" line="91"/>
+      <location filename="../commands/clicommandtree.cpp" line="112"/>
       <source>Triggers</source>
       <translation>Триггеры</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="132"/>
+      <location filename="../commands/clicommandtree.cpp" line="131"/>
       <source>prints all objects in the database as a tree</source>
       <translation>отображение всех объектов базы данных в виде дерева</translation>
     </message>
     <message>
-      <location filename="../commands/clicommandtree.cpp" line="137"/>
+      <location filename="../commands/clicommandtree.cpp" line="136"/>
       <source>Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).

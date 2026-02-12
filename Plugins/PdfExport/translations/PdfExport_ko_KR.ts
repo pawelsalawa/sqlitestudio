@@ -4,164 +4,164 @@
   <context>
     <name>PdfExport</name>
     <message>
-      <location filename="../pdfexport.cpp" line="33"/>
+      <location filename="../pdfexport.cpp" line="32"/>
       <source>SQLiteStudio v%1</source>
       <translation type="unfinished">SQLiteStudio v%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="66"/>
+      <location filename="../pdfexport.cpp" line="65"/>
       <source>SQL query results</source>
       <translation type="unfinished">SQL query results</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="95"/>
-      <location filename="../pdfexport.cpp" line="149"/>
+      <location filename="../pdfexport.cpp" line="94"/>
+      <location filename="../pdfexport.cpp" line="148"/>
       <source>Exported table: %1</source>
       <translation type="unfinished">Exported table: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="98"/>
-      <location filename="../pdfexport.cpp" line="164"/>
+      <location filename="../pdfexport.cpp" line="97"/>
+      <location filename="../pdfexport.cpp" line="163"/>
       <source>Table: %1</source>
       <translation type="unfinished">Table: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="99"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Column</source>
       <translation type="unfinished">Column</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
+      <location filename="../pdfexport.cpp" line="99"/>
       <source>Data type</source>
       <translation type="unfinished">Data type</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="100"/>
+      <location filename="../pdfexport.cpp" line="99"/>
       <source>Constraints</source>
       <translation type="unfinished">Constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="131"/>
+      <location filename="../pdfexport.cpp" line="130"/>
       <source>Global table constraints</source>
       <translation type="unfinished">Global table constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="220"/>
+      <location filename="../pdfexport.cpp" line="219"/>
       <source>Exported database: %1</source>
       <translation type="unfinished">Exported database: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="228"/>
+      <location filename="../pdfexport.cpp" line="227"/>
       <source>Index: %1</source>
       <translation type="unfinished">Index: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="230"/>
+      <location filename="../pdfexport.cpp" line="229"/>
       <source>Property</source>
       <comment>index header</comment>
       <translation type="unfinished">Property</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="230"/>
+      <location filename="../pdfexport.cpp" line="229"/>
       <source>Value</source>
       <comment>index header</comment>
       <translation type="unfinished">Value</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
+      <location filename="../pdfexport.cpp" line="232"/>
       <source>Indexed table</source>
       <translation type="unfinished">Indexed table</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>Unique index</source>
       <translation type="unfinished">Unique index</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>Yes</source>
       <translation type="unfinished">Yes</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="234"/>
+      <location filename="../pdfexport.cpp" line="233"/>
       <source>No</source>
       <translation type="unfinished">No</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Collation</source>
       <translation type="unfinished">Collation</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="236"/>
+      <location filename="../pdfexport.cpp" line="235"/>
       <source>Sort order</source>
       <translation type="unfinished">Sort order</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="252"/>
+      <location filename="../pdfexport.cpp" line="251"/>
       <source>Partial index condition</source>
       <translation type="unfinished">Partial index condition</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="266"/>
+      <location filename="../pdfexport.cpp" line="265"/>
       <source>Trigger: %1</source>
       <translation type="unfinished">Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="268"/>
+      <location filename="../pdfexport.cpp" line="267"/>
       <source>Property</source>
       <comment>trigger header</comment>
       <translation type="unfinished">Property</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="268"/>
+      <location filename="../pdfexport.cpp" line="267"/>
       <source>Value</source>
       <comment>trigger header</comment>
       <translation type="unfinished">Value</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="270"/>
+      <location filename="../pdfexport.cpp" line="269"/>
       <source>Activation time</source>
       <translation/>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="273"/>
+      <location filename="../pdfexport.cpp" line="272"/>
       <source>For action</source>
       <translation>For action</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="277"/>
+      <location filename="../pdfexport.cpp" line="276"/>
       <source>On view</source>
       <translation type="unfinished">On view</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="279"/>
+      <location filename="../pdfexport.cpp" line="278"/>
       <source>On table</source>
       <translation type="unfinished">On table</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="284"/>
+      <location filename="../pdfexport.cpp" line="283"/>
       <source>Activation condition</source>
       <translation type="unfinished">Activation condition</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="290"/>
+      <location filename="../pdfexport.cpp" line="289"/>
       <source>Code executed</source>
       <translation type="unfinished">Code executed</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="302"/>
+      <location filename="../pdfexport.cpp" line="301"/>
       <source>View: %1</source>
       <translation type="unfinished">View: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="303"/>
+      <location filename="../pdfexport.cpp" line="302"/>
       <source>Query:</source>
       <translation type="unfinished">Query:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="659"/>
+      <location filename="../pdfexport.cpp" line="658"/>
       <source>Document generated with SQLiteStudio v%1</source>
       <translation type="unfinished">Document generated with SQLiteStudio v%1</translation>
     </message>

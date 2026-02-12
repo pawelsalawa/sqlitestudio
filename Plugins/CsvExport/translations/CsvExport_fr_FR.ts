@@ -49,7 +49,7 @@
       <translation>Chaine de caractères vide</translation>
     </message>
     <message>
-      <location filename="../csvexport.cpp" line="42"/>
+      <location filename="../csvexport.cpp" line="41"/>
       <source>Enter the custom separator character.</source>
       <translation>Saisir le caractère séparateur personnalisé.</translation>
     </message>
