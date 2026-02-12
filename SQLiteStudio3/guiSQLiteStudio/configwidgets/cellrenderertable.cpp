@@ -88,6 +88,10 @@ void CellRendererTable::handlePluginUnload(Plugin* plugin, PluginType* type)
         {
             combo->removeItem(combo->currentIndex());
             combo->setCurrentIndex(0);
+
+            // If plugin was removed, try to remember it for possible restoration if it was selected.
+            if (!combo->property(COMBO_PLUGIN_TO_RESTORE).isValid())
+                combo->setProperty(COMBO_PLUGIN_TO_RESTORE, plugin->getName());
         }
     }
 }
@@ -107,6 +111,14 @@ void CellRendererTable::handlePluginLoaded(Plugin* plugin, PluginType* type)
 
         combo->addItem(rendererPlugin->getRendererName(), rendererPlugin->getName());
         defineAltStyleForRendererCombo(combo, combo->count() - 1);
+
+        // If plugin was added back, try to restore previous selection if it was this plugin.
+        QVariant restore = combo->property(COMBO_PLUGIN_TO_RESTORE);
+        if (restore.isValid() && restore.toString() == rendererPlugin->getName())
+        {
+            combo->setCurrentIndex(combo->count() - 1);
+            combo->setProperty(COMBO_PLUGIN_TO_RESTORE, QVariant());
+        }
     }
 }
 

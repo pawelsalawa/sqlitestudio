@@ -73,6 +73,9 @@ void SqlQueryView::init()
                             this, SLOT(fontSizeChangeRequested(int)),
                             viewport());
 
+    connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(handlePluginUnload(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(handlePluginLoaded(Plugin*,PluginType*)));
+
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
     updateFont();
@@ -729,6 +732,36 @@ void SqlQueryView::changeFontSize(int factor)
     auto f = CFG_UI.Fonts.DataView.get();
     f.setPointSize(f.pointSize() + factor);
     CFG_UI.Fonts.DataView.set(f);
+}
+
+void SqlQueryView::handlePluginLoaded(Plugin* plugin, PluginType* pluginType)
+{
+    Q_UNUSED(pluginType)
+    CellRendererPlugin* rendererPlugin = dynamic_cast<CellRendererPlugin*>(plugin);
+    if (!rendererPlugin)
+        return;
+
+    refreshColumnDelegates();
+}
+
+void SqlQueryView::handlePluginUnload(Plugin* plugin, PluginType* pluginType)
+{
+    Q_UNUSED(pluginType)
+    CellRendererPlugin* rendererPlugin = dynamic_cast<CellRendererPlugin*>(plugin);
+    if (!rendererPlugin)
+        return;
+
+    QMutableHashIterator<int, CellRendererPlugin*> it(customColumnDelegates);
+    while (it.hasNext())
+    {
+        it.next();
+        int colIdx = it.key();
+        if (it.value() == rendererPlugin)
+        {
+            setItemDelegateForColumn(colIdx, nullptr);
+            it.remove();
+        }
+    }
 }
 
 int SqlQueryView::getColumnCustomDelegateWidth(int colIdx)

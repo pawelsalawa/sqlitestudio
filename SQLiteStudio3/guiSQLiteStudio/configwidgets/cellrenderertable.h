@@ -23,6 +23,8 @@ class GUI_API_EXPORT CellRendererTable : public QTableWidget
         void defineAltStyleForRendererCombo(QComboBox* combo, int idx);
         void applyRendererComboStyle(QComboBox* combo, int idx);
 
+        static constexpr const char* COMBO_PLUGIN_TO_RESTORE = "pluginToRestore";
+
         ComboNoWheelFilter* comboNoWheelFilter = nullptr;
 
     private slots:
