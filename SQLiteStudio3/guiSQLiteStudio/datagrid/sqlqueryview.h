@@ -99,6 +99,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         int getColumnCustomDelegateWidth(int colIdx);
         int getColumnCustomDelegateHeight(int colIdx);
         QSize getColumnCustomDelegateCellSize(int colIdx);
+        QVariant getCustomDelegatesForSession() const;
+        void restoreCustomDelegatesFromSession(const QVariant& sessionValue);
 
         static void staticInit();
 
@@ -146,6 +148,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         int beforeExecutionHorizontalPosition = -1;
         int beforeExecutionVerticalPosition = -1;
         QHash<int, CellRendererPlugin*> customColumnDelegates;
+        QHash<QString, CellRendererPlugin*> manualCustomDelegates;
 
     private slots:
         void handlePluginLoaded(Plugin* plugin, PluginType* pluginType);

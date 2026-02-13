@@ -240,8 +240,6 @@ void SqlQueryView::setupHeaderMenu()
     horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(horizontalHeader(), &QWidget::customContextMenuRequested, this, &SqlQueryView::headerContextMenuRequested);
     headerContextMenu = new QMenu(horizontalHeader());
-    headerContextMenu->addAction(actionMap[SORT_DIALOG]);
-    headerContextMenu->addAction(actionMap[RESET_SORTING]);
 }
 
 QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
@@ -450,28 +448,53 @@ void SqlQueryView::refreshColumnDelegates()
     CfgTypedEntry<QHash<QString,QString>>& cfg = CFG_UI.General.DataRenderers;
     auto h = cfg.get();
     StrHash<QString> typeToPlugin = h;
-    QHash<QString, CellRendererPlugin*> pluginByName = PLUGINS->getLoadedPlugins<CellRendererPlugin>()
-            | TO_HASH(plugin, {return plugin->getName();});
+    QList<CellRendererPlugin*> plugins = PLUGINS->getLoadedPlugins<CellRendererPlugin>();
+    QHash<QString, CellRendererPlugin*> pluginByName = plugins | TO_HASH(plugin, {return plugin->getName();});
 
     int i = 0;
     for (const SqlQueryModelColumnPtr& column : getModel()->getColumns())
     {
         int colIdx = i++;
-        QString type = column->dataType.toString();
-        if (!typeToPlugin.contains(type, Qt::CaseInsensitive))
-            continue;
+        CellRendererPlugin* plugin = nullptr;
 
-        QString pluginName = typeToPlugin.value(type, Qt::CaseInsensitive);
-        if (pluginName.isEmpty())
-            continue;
-
-        if (!pluginByName.contains(pluginName))
+        QString bestId = column->bestEffortIdentifier();
+        if (manualCustomDelegates.contains(bestId))
         {
-            qWarning() << "Type" << type << "is configured to be rendered with plugin" << pluginName << "but such plugin is not loaded.";;
-            continue;
+            plugin = manualCustomDelegates.value(bestId);
+            if (plugin == nullptr)
+            {
+                // Manual renderer was set to Default (null),
+                // which means type-based renderer is overwritten by Default renderer.
+                continue;
+            }
+
+            if (!plugins.contains(plugin))
+            {
+                // Manually selected plugin was unloaded
+                manualCustomDelegates.remove(bestId);
+                plugin = nullptr;
+            }
         }
 
-        CellRendererPlugin* plugin = pluginByName[pluginName];
+        if (!plugin)
+        {
+            QString type = column->dataType.toString();
+            if (!typeToPlugin.contains(type, Qt::CaseInsensitive))
+                continue;
+
+            QString pluginName = typeToPlugin.value(type, Qt::CaseInsensitive);
+            if (pluginName.isEmpty())
+                continue;
+
+            if (!pluginByName.contains(pluginName))
+            {
+                qWarning() << "Type" << type << "is configured to be rendered with plugin" << pluginName << "but such plugin is not loaded.";;
+                continue;
+            }
+
+            plugin = pluginByName[pluginName];
+        }
+
         QAbstractItemDelegate* delegate = plugin->createDelegate();
         setItemDelegateForColumn(colIdx, delegate);
         customColumnDelegates[colIdx] = plugin;
@@ -791,6 +814,49 @@ QSize SqlQueryView::getColumnCustomDelegateCellSize(int colIdx)
     return plugin->getPreferredCellSize();
 }
 
+QVariant SqlQueryView::getCustomDelegatesForSession() const
+{
+    QHash<QString, QString> bestIdToPluginName;
+    QHashIterator<QString, CellRendererPlugin*> it(manualCustomDelegates);
+    while (it.hasNext())
+    {
+        it.next();
+        QString pluginName = it.value() ? it.value()->getName() : QString();
+        bestIdToPluginName[it.key()] = pluginName;
+    }
+    return QVariant::fromValue<QHash<QString, QString>>(bestIdToPluginName);
+}
+
+void SqlQueryView::restoreCustomDelegatesFromSession(const QVariant& sessionValue)
+{
+    if (!sessionValue.canConvert<QHash<QString, QString>>())
+        return;
+
+    QHash<QString, QString> bestIdToPluginName = sessionValue.value<QHash<QString, QString>>();
+    manualCustomDelegates.clear();
+    QHash<QString, CellRendererPlugin*> pluginByName = PLUGINS->getLoadedPlugins<CellRendererPlugin>()
+            | TO_HASH(p, {return p->getName();});
+
+    QHashIterator<QString, QString> it(bestIdToPluginName);
+    while (it.hasNext())
+    {
+        it.next();
+
+        QString pluginName = it.value();
+        if (pluginName.isEmpty())
+        {
+            manualCustomDelegates[it.key()] = nullptr;
+            continue;
+        }
+
+        CellRendererPlugin* plugin = pluginByName.value(pluginName, nullptr);
+        if (!plugin)
+            continue;
+
+        manualCustomDelegates[it.key()] = plugin;
+    }
+}
+
 bool SqlQueryView::getSimpleBrowserMode() const
 {
     return simpleBrowserMode;
@@ -901,13 +967,58 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
     if (simpleBrowserMode)
         return;
 
+    headerContextMenu->clear();
+    headerContextMenu->addAction(actionMap[SORT_DIALOG]);
+    headerContextMenu->addAction(actionMap[RESET_SORTING]);
+
+    int logicalIdx = horizontalHeader()->logicalIndexAt(pos);
+    QList<CellRendererPlugin*> rendererPlugins = PLUGINS->getLoadedPlugins<CellRendererPlugin>();
+    if (!rendererPlugins.isEmpty() && logicalIdx > -1)
+    {
+        QMenu* renderersMenu = new QMenu(headerContextMenu);
+        renderersMenu->setTitle(tr("Column renderer"));
+        headerContextMenu->addSeparator();
+        headerContextMenu->addMenu(renderersMenu);
+
+        QActionGroup* actGrp = new QActionGroup(renderersMenu);
+        actGrp->setExclusive(true);
+
+        QAction* act = new QAction(tr("Default"), actGrp);
+        connect(act, &QAction::triggered, [this, logicalIdx](bool)
+        {
+            setItemDelegateForColumn(logicalIdx, nullptr);
+            customColumnDelegates.remove(logicalIdx);
+            manualCustomDelegates[getModel()->getColumns()[logicalIdx]->bestEffortIdentifier()] = nullptr;
+        });
+        act->setCheckable(true);
+        act->setChecked(true); // by default this is the checked one, but it may be overridden in the loop below if there is a custom renderer for the column
+        renderersMenu->addAction(act);
+
+        int idx = 0;
+        for (CellRendererPlugin* rendererPlugin : rendererPlugins)
+        {
+            idx++;
+            act = new QAction(rendererPlugin->getRendererName(), actGrp);
+            act->setCheckable(true);
+            act->setChecked(customColumnDelegates.contains(logicalIdx) && customColumnDelegates[logicalIdx] == rendererPlugin);
+            connect(act, &QAction::triggered, [this, logicalIdx, rendererPlugin](bool)
+            {
+                QAbstractItemDelegate* delegate = rendererPlugin->createDelegate();
+                setItemDelegateForColumn(logicalIdx, delegate);
+                customColumnDelegates[logicalIdx] = rendererPlugin;
+                manualCustomDelegates[getModel()->getColumns()[logicalIdx]->bestEffortIdentifier()] = rendererPlugin;
+            });
+            renderersMenu->addAction(act);
+        }
+    }
+
     headerContextMenu->popup(horizontalHeader()->mapToGlobal(pos));
 }
 
 void SqlQueryView::openSortDialog()
 {
     QStringList columns;
-    for (SqlQueryModelColumnPtr col : getModel()->getColumns())
+    for (SqlQueryModelColumnPtr& col : getModel()->getColumns())
         columns << col->displayName;
 
     SortDialog dialog(this);

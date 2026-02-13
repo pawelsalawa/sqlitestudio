@@ -6,12 +6,13 @@
 - ADDED: #5237 ARM64 code compatibility.
 - ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
 - ADDED: #4027 Added data editor plugin for JSON - with syntax validation and highlighting for editing table data. Contributed by @calumk!
+- ADDED: #3886 Added image rendering for image data in the Grid View (plugin-based, so more renderers can be added in future).
 - ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
-- ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
 - ADDED: #5449 User can now change size of icons on toolbars.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
+- ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
 - ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
 - ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.

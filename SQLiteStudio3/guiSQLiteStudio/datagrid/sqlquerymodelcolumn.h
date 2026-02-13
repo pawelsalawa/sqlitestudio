@@ -174,6 +174,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QList<ConstraintFk*> getFkConstraints() const;
         ConstraintDefault* getDefaultConstraint() const;
         AliasedTable getAliasedTable() const;
+        QString bestEffortIdentifier() const;
 
         QString displayName;
         QString column;
@@ -185,7 +186,6 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QSet<EditionForbiddenReason> editionForbiddenReason;
         QList<Constraint*> constraints;
         QString queryExecutorAlias;
-        CellRendererPlugin* cellRenderer = nullptr;
 
     private:
         template <class T>

@@ -209,6 +209,24 @@ AliasedTable SqlQueryModelColumn::getAliasedTable() const
     return AliasedTable(database, table, tableAlias);
 }
 
+QString SqlQueryModelColumn::bestEffortIdentifier() const
+{
+    static_qstring(threeParts, "%1.%2.%3");
+    static_qstring(fourParts, "%1.%2.%3.%4");
+
+    if (!column.isNull())
+    {
+        if (!alias.isNull())
+            return fourParts.arg(database, table, column, alias);
+
+        return threeParts.arg(database, table, column);
+    }
+    else if (!alias.isNull())
+        return alias;
+
+    return displayName;
+}
+
 size_t qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
 {
     return static_cast<int>(reason);
