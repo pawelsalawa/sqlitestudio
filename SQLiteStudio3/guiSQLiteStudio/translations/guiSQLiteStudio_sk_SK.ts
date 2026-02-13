@@ -4762,78 +4762,78 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>Názov porovnánavania: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="21"/>
+      <location filename="../datagrid/sqlqueryview.h" line="25"/>
       <source>Data grid view</source>
       <translation>Tabuľkové zobrazenie dát</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="22"/>
+      <location filename="../datagrid/sqlqueryview.h" line="26"/>
       <source>Edit current cell inline</source>
       <translation type="unfinished">Edit current cell inline</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="23"/>
+      <location filename="../datagrid/sqlqueryview.h" line="27"/>
       <source>Copy cell(s) contents to clipboard</source>
       <translation>Kopírovať obsah buniek do schránky</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="24"/>
+      <location filename="../datagrid/sqlqueryview.h" line="28"/>
       <source>Copy cell(s) contents together with header to clipboard</source>
       <translation type="unfinished">Copy cell(s) contents together with header to clipboard</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="26"/>
+      <location filename="../datagrid/sqlqueryview.h" line="30"/>
       <source>Paste cell(s) contents from clipboard</source>
       <translation>Vložiť obsah buniek zo schránky</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="28"/>
+      <location filename="../datagrid/sqlqueryview.h" line="32"/>
       <source>Set empty value to selected cell(s)</source>
       <translation>Vymazať hodnoty z vybraných buniek</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="29"/>
+      <location filename="../datagrid/sqlqueryview.h" line="33"/>
       <source>Set NULL value to selected cell(s)</source>
       <translation>Nastaviť NULL hodnotu vo vybraných bunkách</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="30"/>
+      <location filename="../datagrid/sqlqueryview.h" line="34"/>
       <source>Commit changes to cell(s) contents</source>
       <translation>Potvrdiť zmeny v bunkách</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="31"/>
+      <location filename="../datagrid/sqlqueryview.h" line="35"/>
       <source>Rollback changes to cell(s) contents</source>
       <translation>Vrátiť späť zmeny v bunkách</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="32"/>
+      <location filename="../datagrid/sqlqueryview.h" line="36"/>
       <source>Delete selected data row</source>
       <translation>Vymazať vybraný riadok</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="33"/>
+      <location filename="../datagrid/sqlqueryview.h" line="37"/>
       <source>Insert new data row</source>
       <translation>Vložiť nový riadok</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="34"/>
+      <location filename="../datagrid/sqlqueryview.h" line="38"/>
       <source>Open contents of selected cell in a separate editor</source>
       <translation>Otvoriť obsah vybranej bunky v samostatnom editore</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="35"/>
+      <location filename="../datagrid/sqlqueryview.h" line="39"/>
       <source>Toggle the height adjustment of rows</source>
       <translation type="unfinished">Toggle the height adjustment of rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="36"/>
+      <location filename="../datagrid/sqlqueryview.h" line="40"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.h" line="37"/>
+      <location filename="../datagrid/sqlqueryview.h" line="41"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Decrease font size</translation>
@@ -5949,195 +5949,195 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
       <translation type="unfinished">Go to referenced row in...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="93"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
       <source>Copy</source>
       <translation>Kopírovať</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="94"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
       <source>Copy with headers</source>
       <translation type="unfinished">Copy with headers</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="95"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
       <source>Copy as...</source>
       <translation>Kopírovať ako...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="96"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
       <source>Paste</source>
       <translation>Vložiť</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
       <source>Paste as...</source>
       <translation>Vložiť ako...</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
       <source>Set NULL values</source>
       <translation>Nastaviť null hodnoty</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
       <source>Erase values</source>
       <translation>Vymazať hodnoty</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
       <source>Commit</source>
       <translation>Potvrdiť</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
       <source>Rollback</source>
       <translation>Vrátiť späť</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
       <source>Commit selected cells</source>
       <translation>Potvrdiť vybrané bunky</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
       <source>Rollback selected cells</source>
       <translation>Vrátiť späť vybrané bunky</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
       <source>Edit current cell inline</source>
       <translation type="unfinished">Edit current cell inline</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
       <source>Define columns to sort by</source>
       <translation>Vybrať stĺpce na zoradenie podľa</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="111"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
       <source>Remove custom sorting</source>
       <translation>Odstrániť užívateľské triedenie</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="112"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
       <source>Insert row</source>
       <translation>Vložiť riadok</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="113"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="116"/>
       <source>Insert multiple rows</source>
       <translation>Vložiť viacero riadkov</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
       <source>Delete selected row</source>
       <translation>Vymazať viacero riadkov</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
       <source>Adjust height of rows</source>
       <translation type="unfinished">Adjust height of rows</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="122"/>
       <source>Increase font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="123"/>
       <source>Decrease font size</source>
       <comment>data view</comment>
       <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="121"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="124"/>
       <source>Invert selection</source>
       <comment>data view</comment>
       <translation type="unfinished">Invert selection</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="174"/>
       <source>Edit value in editor</source>
       <translation>Upraviť hodnotu v editory</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="171"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="174"/>
       <source>Show value in a viewer</source>
       <translation type="unfinished">Show value in a viewer</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="189"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="192"/>
       <source>Generate query for selected cells</source>
       <translation type="unfinished">Generate query for selected cells</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="501"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="504"/>
       <source>No items selected to paste clipboard contents to.</source>
       <translation>Neboli vybrané žiadne položky na vloženie obsahu schránky.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="507"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
       <source>Cannot paste data. Details: %1</source>
       <translation type="unfinished">Cannot paste data. Details: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="507"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
       <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="577"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="580"/>
       <source>Cannot paste to a cell. Details: %1</source>
       <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="577"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="580"/>
       <source>The row is marked for deletion.</source>
       <translation type="unfinished">The row is marked for deletion.</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="588"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="591"/>
       <source>Cannot paste to column %1. Details: %2</source>
       <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="606"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="609"/>
       <source>Go to referenced row in table &apos;%1&apos;</source>
       <translation type="unfinished">Go to referenced row in table &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="618"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="621"/>
       <source>table &apos;%1&apos;</source>
       <translation type="unfinished">table &apos;%1&apos;</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="641"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="644"/>
       <source>Referenced row (%1)</source>
       <translation type="unfinished">Referenced row (%1)</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1019"/>
       <source>Trim pasted text?</source>
       <translation type="unfinished">Trim pasted text?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="987"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1020"/>
       <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
       <translation type="unfinished">The pasted text contains leading or trailing white space. Trim it automatically?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="995"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1028"/>
       <source>Paste &quot;NULL&quot; as null value?</source>
       <translation type="unfinished">Paste &quot;NULL&quot; as null value?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="996"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1029"/>
       <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
       <translation type="unfinished">The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</translation>
     </message>
     <message>
-      <location filename="../datagrid/sqlqueryview.cpp" line="1103"/>
+      <location filename="../datagrid/sqlqueryview.cpp" line="1136"/>
       <source>Edit value</source>
       <translation>Upraviť hodnotu</translation>
     </message>
