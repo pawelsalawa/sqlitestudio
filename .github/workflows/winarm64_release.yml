@@ -248,7 +248,6 @@ jobs:
                  xargs -I {} cp {} .
 
                 # Copy plugins dependencies
-                cp ${MINGW_PREFIX}/bin/libcrypto-3.dll .
                 cp ${MINGW_PREFIX}/bin/tcl86.dll .
 
             - name: Prepare portable distro (Resources)
