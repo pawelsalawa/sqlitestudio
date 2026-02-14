@@ -6119,12 +6119,12 @@ Takie usunięcie będzie trwałe. Czy na pewno chcesz je usunąć?</translation>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="979"/>
       <source>Column renderer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column renderer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
       <source>Default</source>
-      <translation type="unfinished">Wartość domyślna</translation>
+      <translation>Wartość domyślna</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="1130"/>

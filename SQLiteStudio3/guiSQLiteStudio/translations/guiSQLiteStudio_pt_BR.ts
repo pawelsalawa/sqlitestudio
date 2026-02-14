@@ -6120,12 +6120,12 @@ Essa exclusão será permanente. Tem certeza que deseja excluí-la?</translation
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="979"/>
       <source>Column renderer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column renderer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
       <source>Default</source>
-      <translation type="unfinished">Padrão</translation>
+      <translation>Padrão</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="1130"/>
