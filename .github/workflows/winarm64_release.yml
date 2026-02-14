@@ -1,7 +1,7 @@
 env:
     SQLITE_VERSION: '3510100'
-    ICU_VER: '75'
-    ICU_URL: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-icu-75.1-2-any.pkg.tar.zst
+    ICU_VER: '78'
+    ICU_URL: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-icu-78.2-1-any.pkg.tar.zst
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-25.10.1-windows-x64-installer.exe
@@ -226,8 +226,9 @@ jobs:
                   --no-system-d3d-compiler \
                   -printsupport -xml -qml
 
-                rm Qt6Quick*.dll
-                rm -r qmltooling
+                rm Qt6Quick*.dll Qt6QmlMeta.dll Qt6QmlModels.dll Qt6QmlWorkerScript.dll
+                rm tls/qcertonlybackend.dll
+                rm -r qml qmltooling generic networkinformation
 
             - name: Prepare portable distro (Deps)
               shell: msys2 {0}
