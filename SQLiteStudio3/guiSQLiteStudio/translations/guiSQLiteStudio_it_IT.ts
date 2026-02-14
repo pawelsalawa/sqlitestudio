@@ -6119,12 +6119,12 @@ Tale cancellazione sarà permanente. Sei sicuro di volerle cancellare?</translat
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="979"/>
       <source>Column renderer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column renderer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
       <source>Default</source>
-      <translation type="unfinished">Predefinito</translation>
+      <translation>Predefinito</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="1130"/>
