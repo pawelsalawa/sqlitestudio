@@ -21,7 +21,7 @@ HEADERS += scriptingtcl.h\
 OTHER_FILES += \
     scriptingtcl.json
 
-linux|macx {
+!win32 {
     isEmpty(TCL_CONFIG) {
         # Find tclsh
         TCLSH = $$system(echo "puts 1" | tclsh)
@@ -35,7 +35,7 @@ linux|macx {
         message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
 
         # Find tclConfig.sh
-        linux {
+        !macx {
             TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
             TCL_CONFIG = $$TCL_CONFIG_DIR/tclConfig.sh
             message("Looking for $$TCL_CONFIG")

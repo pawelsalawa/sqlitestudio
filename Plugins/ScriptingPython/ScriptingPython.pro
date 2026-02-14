@@ -35,11 +35,8 @@ dynamic_python {
     isEmpty(PYTHON_VERSION) {
         PYTHON_VERSION = 3.9
     }
-    linux: {
-        LIBS += -lpython$$PYTHON_VERSION
-    }
 
-    macx: {
+    !win32: {
         LIBS += -lpython$$PYTHON_VERSION
     }
     win32: {
