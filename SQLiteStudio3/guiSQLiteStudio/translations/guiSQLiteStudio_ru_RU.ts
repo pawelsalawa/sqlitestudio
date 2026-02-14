@@ -6116,12 +6116,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="979"/>
       <source>Column renderer</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Column renderer</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
       <source>Default</source>
-      <translation type="unfinished"/>
+      <translation type="unfinished">Default</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="1130"/>
