@@ -4,7 +4,7 @@
   <context>
     <name>XmlExport</name>
     <message>
-      <location filename="../xmlexport.cpp" line="37"/>
+      <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
       <translation>Geben Sie den zu verwendenden Namensraum ein (z.B. http://my.namespace.org)</translation>
     </message>
