@@ -370,48 +370,48 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="198"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="199"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
       <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="291"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="292"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation>Número inválido de argumentos para a função &apos;%1&apos;. Esperado %2, mas tem %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Nenhuma função registrada no SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="413"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="414"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>A função %1(%2) foi registrada no idioma %3, mas o plugin que suporta essa linguagem não está atualmente carregado.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="431"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="432"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Expressão regular inválida: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="450"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="451"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="484"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="505"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="506"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Não foi possível abrir o arquivo %1 para escrita: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="525"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="526"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Erro ao gravar o arquivo %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="543"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="544"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Idioma do script não suportado: %1</translation>
     </message>
@@ -419,7 +419,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>GenericExportPlugin</name>
     <message>
-      <location filename="../plugins/genericexportplugin.cpp" line="19"/>
+      <location filename="../plugins/genericexportplugin.cpp" line="20"/>
       <source>Could not initialize text codec for exporting. Using default codec: %1</source>
       <translation>Não foi possível inicializar o codec de texto para exportação. Usando o codec padrão: %1</translation>
     </message>
@@ -427,7 +427,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>ImportManager</name>
     <message>
-      <location filename="../services/importmanager.cpp" line="98"/>
+      <location filename="../services/importmanager.cpp" line="99"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
       <translation>Dados importados para a tabela &apos;%1&apos; com sucesso. Número de linhas importadas: %2</translation>
     </message>
@@ -487,33 +487,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="539"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="540"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="550"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="551"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Não foi possível carregar o plugin %1, porque sua dependência não foi carregada: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="560"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Não foi possível carregar o plugin %1. Detalhes do erro: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="576"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Não é possível carregar o plugin %1 (erro durante a inicialização do plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="736"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="738"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>max: %1</translation>
@@ -522,7 +522,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateConstant</name>
     <message>
-      <location filename="../plugins/populateconstant.cpp" line="9"/>
+      <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
       <translation>Constante</translation>
@@ -539,7 +539,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateDictionary</name>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="16"/>
+      <location filename="../plugins/populatedictionary.cpp" line="17"/>
       <source>Dictionary</source>
       <comment>dictionary populating plugin name</comment>
       <translation>Dicionário</translation>
@@ -599,7 +599,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateRandom</name>
     <message>
-      <location filename="../plugins/populaterandom.cpp" line="12"/>
+      <location filename="../plugins/populaterandom.cpp" line="13"/>
       <source>Random number</source>
       <translation>Número aleatório</translation>
     </message>
@@ -640,7 +640,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateRandomText</name>
     <message>
-      <location filename="../plugins/populaterandomtext.cpp" line="13"/>
+      <location filename="../plugins/populaterandomtext.cpp" line="14"/>
       <source>Random text</source>
       <translation>Texto aleatório</translation>
     </message>
@@ -716,7 +716,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateScript</name>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="33"/>
+      <location filename="../plugins/populatescript.cpp" line="34"/>
       <source>Script</source>
       <translation>Script</translation>
     </message>
@@ -747,7 +747,7 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
   <context>
     <name>PopulateSequence</name>
     <message>
-      <location filename="../plugins/populatesequence.cpp" line="12"/>
+      <location filename="../plugins/populatesequence.cpp" line="13"/>
       <source>Sequence</source>
       <translation>Sequência</translation>
     </message>
@@ -791,23 +791,23 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="420"/>
+      <location filename="../db/abstractdb3.h" line="421"/>
       <source>Could not open database: %1</source>
       <translation>Não foi possível abrir o banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="1251"/>
+      <location filename="../db/abstractdb3.h" line="1252"/>
       <source>Result set expired or no row available.</source>
       <translation>Conjunto de resultados expirado ou nenhuma linha disponível.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <location filename="../db/abstractdb3.h" line="336"/>
+      <location filename="../db/abstractdb3.h" line="333"/>
+      <location filename="../db/abstractdb3.h" line="337"/>
       <source>Could not load extension %1: %2</source>
       <translation>Não foi possível carregar a extensão %1: %2</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="444"/>
+      <location filename="../db/abstractdb3.h" line="445"/>
       <source>Could not close database: %1</source>
       <translation>Não foi possível fechar o banco de dados: %1</translation>
     </message>
@@ -823,67 +823,67 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Consulta incompleta.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2688"/>
       <source>Parser stack overflow</source>
       <translation>Parser stack overflow (estourado)</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6305"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6306"/>
       <source>Syntax error</source>
       <translation>Erro de sintaxe</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="31"/>
+      <location filename="../plugins/populatedictionary.cpp" line="32"/>
       <source>Could not open dictionary file %1 for reading.</source>
       <translation>Não foi possível abrir o arquivo de dicionário %1 para leitura.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatedictionary.cpp" line="92"/>
+      <location filename="../plugins/populatedictionary.cpp" line="93"/>
       <source>Dictionary file must exist and be readable.</source>
       <translation>Arquivo de dicionário deve existir e estar legível.</translation>
     </message>
     <message>
-      <location filename="../plugins/populaterandom.cpp" line="53"/>
+      <location filename="../plugins/populaterandom.cpp" line="54"/>
       <source>Maximum value cannot be less than minimum value.</source>
       <translation>O valor máximo não pode ser menor que o valor mínimo.</translation>
     </message>
     <message>
-      <location filename="../plugins/populaterandomtext.cpp" line="78"/>
+      <location filename="../plugins/populaterandomtext.cpp" line="79"/>
       <source>Maximum length cannot be less than minimum length.</source>
       <translation>O comprimento máximo não pode ser inferior ao comprimento mínimo.</translation>
     </message>
     <message>
-      <location filename="../plugins/populaterandomtext.cpp" line="89"/>
+      <location filename="../plugins/populaterandomtext.cpp" line="90"/>
       <source>Custom character set cannot be empty.</source>
       <translation>O conjunto de caracteres personalizado não pode estar vazio.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="60"/>
+      <location filename="../plugins/populatescript.cpp" line="61"/>
       <source>Could not find plugin to support scripting language: %1</source>
       <translation>Não foi possível encontrar o plugin para suportar o idioma do script: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="69"/>
+      <location filename="../plugins/populatescript.cpp" line="70"/>
       <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
       <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="83"/>
+      <location filename="../plugins/populatescript.cpp" line="84"/>
       <source>Error while executing populating initial code: %1</source>
       <translation>Erro ao executar o preenchimento do código inicial: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="105"/>
+      <location filename="../plugins/populatescript.cpp" line="106"/>
       <source>Error while executing populating code: %1</source>
       <translation>Erro ao executar o código de execução: %1</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="137"/>
+      <location filename="../plugins/populatescript.cpp" line="138"/>
       <source>Select implementation language.</source>
       <translation>Selecionar idioma de implementação.</translation>
     </message>
     <message>
-      <location filename="../plugins/populatescript.cpp" line="138"/>
+      <location filename="../plugins/populatescript.cpp" line="139"/>
       <source>Implementation code cannot be empty.</source>
       <translation>Código de implementação não pode ser vazio.</translation>
     </message>
@@ -903,98 +903,98 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
       <translation>Não foi possível inicializar o arquivo de configuração. Quaisquer alterações de configuração e histórico de consultas serão perdidos após a reinicialização do aplicativo. Não foi possível criar um arquivo nos seguintes locais: %1.</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="346"/>
+      <location filename="../sqlitestudio.cpp" line="347"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
       <translation>Objetivo geral</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="347"/>
+      <location filename="../sqlitestudio.cpp" line="348"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
       <translation>Suporte do banco de dados</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="348"/>
+      <location filename="../sqlitestudio.cpp" line="349"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
       <translation>Formatador de código</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="349"/>
+      <location filename="../sqlitestudio.cpp" line="350"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
       <translation>Linguagens dos scripts</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="351"/>
+      <location filename="../sqlitestudio.cpp" line="352"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation>Exportando</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="352"/>
+      <location filename="../sqlitestudio.cpp" line="353"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation>Importando</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="353"/>
+      <location filename="../sqlitestudio.cpp" line="354"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
       <translation>Preencher a tabela</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="286"/>
+      <location filename="../tablemodifier.cpp" line="287"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabela %1 é tabela de referência %2, mas a definição de chave estrangeira não será atualizada para uma nova definição de tabela devido a problemas ao analisar DDL da tabela %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="666"/>
+      <location filename="../tablemodifier.cpp" line="667"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Todas as colunas indexadas pelo índice %1 desapareceram. O índice não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="710"/>
+      <location filename="../tablemodifier.cpp" line="711"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Há um problema com a trigger %1. Ela pode não ser totalmente atualizada e precisará de sua atenção.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="725"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Todas as colunas cobertas pela trigger %1 desapareceram. A trigger não será recriada após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="757"/>
+      <location filename="../tablemodifier.cpp" line="758"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Não é possível atualizar trigger %1 de acordo com modificação da tabela %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="776"/>
+      <location filename="../tablemodifier.cpp" line="777"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Não é possível atualizar a exibição %1 de acordo com as modificações da tabela %2 .
 A visualização permanecerá como é.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="961"/>
-      <location filename="../tablemodifier.cpp" line="985"/>
-      <location filename="../tablemodifier.cpp" line="1004"/>
+      <location filename="../tablemodifier.cpp" line="962"/>
+      <location filename="../tablemodifier.cpp" line="986"/>
+      <location filename="../tablemodifier.cpp" line="1005"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Ocorreu um problema ao atualizar uma instrução %1 dentro do gatilho %2 . Uma das %1 substâncias que poderiam referir-se à tabela %3 não pode ser devidamente modificada. A atualização manual da trigger pode ser necessária.</translation>
     </message>
     <message>
-      <location filename="../viewmodifier.cpp" line="23"/>
+      <location filename="../viewmodifier.cpp" line="24"/>
       <source>Could not parse DDL of the view to be created. Details: %1</source>
       <translation>Não foi possível analisar DDL da view a ser criada. Detalhes: %1</translation>
     </message>
     <message>
-      <location filename="../viewmodifier.cpp" line="32"/>
+      <location filename="../viewmodifier.cpp" line="33"/>
       <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
       <translation>A consulta analisada não é CREATE VIEW. É: %1</translation>
     </message>
     <message>
-      <location filename="../viewmodifier.cpp" line="80"/>
+      <location filename="../viewmodifier.cpp" line="81"/>
       <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
       <translation>O SQLiteStudio não conseguiu resolver colunas retornadas pela nova visualização Portanto, ele não  é capaz de dizer quais trigger podem falhar durante o processo de recriação.</translation>
     </message>
@@ -1002,29 +1002,29 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="204"/>
+      <location filename="../db/queryexecutor.cpp" line="205"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="246"/>
       <source>Database is not open.</source>
       <translation>Banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="253"/>
+      <location filename="../db/queryexecutor.cpp" line="254"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="363"/>
-      <location filename="../db/queryexecutor.cpp" line="421"/>
-      <location filename="../db/queryexecutor.cpp" line="691"/>
+      <location filename="../db/queryexecutor.cpp" line="364"/>
+      <location filename="../db/queryexecutor.cpp" line="422"/>
+      <location filename="../db/queryexecutor.cpp" line="692"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="610"/>
+      <location filename="../db/queryexecutor.cpp" line="611"/>
       <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>SQLiteStudio não pôde extrair os metadados da consulta. Os resultados obtidos não serão editáveis.</translation>
     </message>
@@ -1124,12 +1124,12 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>T</name>
     <message>
-      <location filename="../db/abstractdb3.h" line="629"/>
+      <location filename="../db/abstractdb3.h" line="630"/>
       <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
       <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb3.h" line="882"/>
+      <location filename="../db/abstractdb3.h" line="883"/>
       <source>Registered default collation on demand, under name: %1</source>
       <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>
@@ -1137,7 +1137,7 @@ A visualização permanecerá como é.</translation>
   <context>
     <name>UpdateManager</name>
     <message>
-      <location filename="../services/updatemanager.cpp" line="94"/>
+      <location filename="../services/updatemanager.cpp" line="95"/>
       <source>Could not check for updates (%1).</source>
       <translation>Não foi possível verificar se há atualizações (%1).</translation>
     </message>
