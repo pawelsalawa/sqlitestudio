@@ -84,6 +84,10 @@ unix {
     icon_256.files = $$OBJECTS_DIR/icons/256x256/sqlitestudio.png
     icon_256.extra = install -D -m 644 ../guiSQLiteStudio/img/sqlitestudio_256.png "$$OBJECTS_DIR/icons/256x256/sqlitestudio.png"
     INSTALLS += icon_256
+
+    desktop_entry.path = $$DATADIR/applications
+    desktop_entry.files = sqlitestudio.desktop
+    INSTALLS += desktop_entry
 }
 
 RESOURCES += \
