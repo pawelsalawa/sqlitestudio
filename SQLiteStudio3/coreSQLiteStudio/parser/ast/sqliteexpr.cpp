@@ -603,9 +603,9 @@ void SqliteExpr::initId(const QString& column)
     }
 }
 
-TokenList SqliteExpr::rebuildTokensFromContents() const
+TokenList SqliteExpr::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     switch (mode)
     {
@@ -626,7 +626,7 @@ TokenList SqliteExpr::rebuildTokensFromContents() const
             builder.withBindParam(bindParam);
             break;
         case SqliteExpr::Mode::ID:
-            builder.withTokens(rebuildId());
+            builder.withTokens(rebuildId(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::UNARY_OP:
             builder.withOperator(unaryOp).withSpace().withStatement(expr1);
@@ -717,25 +717,25 @@ TokenList SqliteExpr::rebuildTokensFromContents() const
             builder.withStatement(expr1).withSpace().withKeyword("COLLATE").withSpace().withOther(collation);
             break;
         case SqliteExpr::Mode::LIKE:
-            builder.withTokens(rebuildLike());
+            builder.withTokens(rebuildLike(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::NULL_:
             builder.withKeyword("NULL");
             break;
         case SqliteExpr::Mode::NOTNULL:
-            builder.withStatement(expr1).withSpace().withTokens(rebuildNotNull());
+            builder.withStatement(expr1).withSpace().withTokens(rebuildNotNull(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::IS:
-            builder.withTokens(rebuildIs());
+            builder.withTokens(rebuildIs(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::DISTINCT:
-            builder.withTokens(rebuildDistinct());
+            builder.withTokens(rebuildDistinct(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::BETWEEN:
-            builder.withTokens(rebuildBetween());
+            builder.withTokens(rebuildBetween(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::IN:
-            builder.withTokens(rebuildIn());
+            builder.withTokens(rebuildIn(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::ROW_VALUE:
             builder.withParLeft().withStatementList(exprList).withParRight();
@@ -744,7 +744,7 @@ TokenList SqliteExpr::rebuildTokensFromContents() const
             builder.withKeyword("EXISTS").withParLeft().withStatement(select).withParRight();
             break;
         case SqliteExpr::Mode::CASE:
-            builder.withTokens(rebuildCase());
+            builder.withTokens(rebuildCase(replaceStatementTokens));
             break;
         case SqliteExpr::Mode::SUB_SELECT:
             builder.withParLeft().withStatement(select).withParRight();
@@ -762,9 +762,9 @@ void SqliteExpr::evaluatePostParsing()
     detectDoubleQuotes(false); // not recursively, as SqliteStatement will take care of recursiveness
 }
 
-TokenList SqliteExpr::rebuildId() const
+TokenList SqliteExpr::rebuildId(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (!database.isNull())
         builder.withOther(database).withOperator(".");
 
@@ -779,9 +779,9 @@ TokenList SqliteExpr::rebuildId() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildLike() const
+TokenList SqliteExpr::rebuildLike(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr1).withSpace();
     if (notKw)
         builder.withKeyword("NOT").withSpace();
@@ -793,9 +793,9 @@ TokenList SqliteExpr::rebuildLike() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildNotNull() const
+TokenList SqliteExpr::rebuildNotNull(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     switch (notNull)
     {
         case SqliteExpr::NotNull::ISNULL:
@@ -813,9 +813,9 @@ TokenList SqliteExpr::rebuildNotNull() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildIs() const
+TokenList SqliteExpr::rebuildIs(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr1).withSpace().withKeyword("IS");
     if (notKw)
         builder.withSpace().withKeyword("NOT");
@@ -824,9 +824,9 @@ TokenList SqliteExpr::rebuildIs() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildDistinct() const
+TokenList SqliteExpr::rebuildDistinct(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr1).withSpace().withKeyword("IS");
     if (notKw)
         builder.withSpace().withKeyword("NOT");
@@ -835,9 +835,9 @@ TokenList SqliteExpr::rebuildDistinct() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildBetween() const
+TokenList SqliteExpr::rebuildBetween(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr1);
 
     if (notKw)
@@ -847,9 +847,9 @@ TokenList SqliteExpr::rebuildBetween() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildIn() const
+TokenList SqliteExpr::rebuildIn(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr1);
 
     if (notKw)
@@ -874,9 +874,9 @@ TokenList SqliteExpr::rebuildIn() const
     return builder.build();
 }
 
-TokenList SqliteExpr::rebuildCase() const
+TokenList SqliteExpr::rebuildCase(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withKeyword("CASE");
     if (expr1)
         builder.withStatement(expr1);

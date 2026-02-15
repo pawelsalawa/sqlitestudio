@@ -211,10 +211,10 @@ QList<SqliteStatement::FullObject> SqliteUpdate::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteUpdate::rebuildTokensFromContents() const
+TokenList SqliteUpdate::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     if (with)
         builder.withStatement(with);
 

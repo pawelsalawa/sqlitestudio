@@ -45,7 +45,7 @@ class API_EXPORT SqliteWindowDefinition : public SqliteStatement
                                 SqliteExpr* expr = nullptr;
 
                             protected:
-                                TokenList rebuildTokensFromContents() const;
+                                TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                         };
 
                         enum class RangeOrRows
@@ -82,7 +82,7 @@ class API_EXPORT SqliteWindowDefinition : public SqliteStatement
                         Bound* endBound = nullptr;
 
                     protected:
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 enum class Mode
@@ -107,7 +107,7 @@ class API_EXPORT SqliteWindowDefinition : public SqliteStatement
                 Mode mode = Mode::null;
 
             protected:
-                TokenList rebuildTokensFromContents() const;
+                TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 
             private:
                 void initExprList(const QList<SqliteExpr*>& exprList);
@@ -125,7 +125,7 @@ class API_EXPORT SqliteWindowDefinition : public SqliteStatement
         Window* window = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 #endif // SQLITEWINDOWDEFINITION_H

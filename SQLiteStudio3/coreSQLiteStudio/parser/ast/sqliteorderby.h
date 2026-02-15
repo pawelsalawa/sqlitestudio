@@ -32,7 +32,7 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIn
         SqliteNulls nulls = SqliteNulls::null;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         void evaluatePostParsing();
 
     private:

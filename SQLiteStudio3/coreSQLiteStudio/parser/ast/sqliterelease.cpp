@@ -25,10 +25,10 @@ SqliteStatement*SqliteRelease::clone()
     return new SqliteRelease(*this);
 }
 
-TokenList SqliteRelease::rebuildTokensFromContents() const
+TokenList SqliteRelease::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("RELEASE").withSpace();
     if (savepointKw)
         builder.withKeyword("SAVEPOINT").withSpace();

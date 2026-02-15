@@ -22,7 +22,7 @@ class API_EXPORT SqliteRollback : public SqliteQuery
         QString name = QString();
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteRollback> SqliteRollPtr;

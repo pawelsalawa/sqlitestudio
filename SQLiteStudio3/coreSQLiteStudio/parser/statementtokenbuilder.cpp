@@ -4,6 +4,11 @@
 #include "common/global.h"
 #include <QVariant>
 
+StatementTokenBuilder::StatementTokenBuilder(bool replaceStatementTokens) :
+    replaceStatementTokens(replaceStatementTokens)
+{
+}
+
 StatementTokenBuilder& StatementTokenBuilder::withKeyword(const QString& value)
 {
     return with(Token::KEYWORD, value);
@@ -119,13 +124,21 @@ StatementTokenBuilder& StatementTokenBuilder::withStatement(SqliteStatement* stm
     if (!stmt)
         return *this;
 
-    stmt->rebuildTokens();
+    TokenList newTokens;
+    if (replaceStatementTokens)
+    {
+        stmt->rebuildTokens();
+        newTokens = stmt->tokens;
+    }
+    else
+        newTokens = stmt->produceTokens();
+
     if (stmt->tokens.size() > 0)
     {
         if (tokens.size() > 0 && !tokens.last()->isWhitespace() && tokens.last()->type != Token::PAR_LEFT)
             withSpace();
 
-        withTokens(stmt->tokens);
+        withTokens(newTokens);
         tokens.trimRight(Token::OPERATOR, ";");
         updateCurrentIdxFromTokens();
     }

@@ -19,7 +19,7 @@ class API_EXPORT SqliteColumnType : public SqliteStatement
 
         bool isPrecisionDouble();
         bool isScaleDouble();
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         DataType toDataType() const;
 
         QString name = QString();

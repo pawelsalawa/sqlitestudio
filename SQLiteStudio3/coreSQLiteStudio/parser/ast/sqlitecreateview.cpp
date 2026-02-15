@@ -92,10 +92,10 @@ QList<SqliteStatement::FullObject> SqliteCreateView::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteCreateView::rebuildTokensFromContents() const
+TokenList SqliteCreateView::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("CREATE").withSpace();
     if (tempKw)
         builder.withKeyword("TEMP").withSpace();
@@ -165,7 +165,7 @@ TokenList SqliteCreateView::equivalentSelectTokens() const
     }
     if (useCTE)
     {
-        StatementTokenBuilder builder;
+        StatementTokenBuilder builder(false);
         builder.withKeyword("WITH").withSpace().withOther(view).withParLeft();
         bool first = true;
         for (SqliteIndexedColumn *column : columns)
@@ -191,6 +191,5 @@ TokenList SqliteCreateView::equivalentSelectTokens() const
         column->asKw = true;
         column->alias = columns.at(n++)->name;
     }
-    selectCopy->rebuildTokens();
-    return selectCopy->tokens;
+    return selectCopy->produceTokens();
 }

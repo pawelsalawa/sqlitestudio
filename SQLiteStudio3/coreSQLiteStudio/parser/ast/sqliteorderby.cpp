@@ -104,9 +104,9 @@ void SqliteOrderBy::setCollation(const QString& name)
     expr = collationExpr;
 }
 
-TokenList SqliteOrderBy::rebuildTokensFromContents() const
+TokenList SqliteOrderBy::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(expr);
     if (order != SqliteSortOrder::null)
         builder.withSpace().withKeyword(sqliteSortOrder(order));

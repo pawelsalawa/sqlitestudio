@@ -41,7 +41,7 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
                 explicit Event(const QList<QString>& columns);
                 SqliteStatement* clone();
                 
-                TokenList rebuildTokensFromContents() const;
+                TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 
                 static QString typeToString(Type type);
                 static Type stringToType(const QString& type);
@@ -94,7 +94,7 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteCreateTrigger> SqliteCreateTriggerPtr;

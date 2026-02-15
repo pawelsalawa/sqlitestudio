@@ -60,10 +60,10 @@ QList<SqliteStatement::FullObject> SqliteDropIndex::getFullObjectsInStatement()
 }
 
 
-TokenList SqliteDropIndex::rebuildTokensFromContents() const
+TokenList SqliteDropIndex::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("DROP").withSpace().withKeyword("INDEX").withSpace();
 
     if (ifExistsKw)

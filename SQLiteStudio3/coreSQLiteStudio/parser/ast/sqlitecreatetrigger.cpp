@@ -243,9 +243,9 @@ SqliteStatement*SqliteCreateTrigger::Event::clone()
     return new SqliteCreateTrigger::Event(*this);
 }
 
-TokenList SqliteCreateTrigger::Event::rebuildTokensFromContents() const
+TokenList SqliteCreateTrigger::Event::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     switch (type)
     {
@@ -303,10 +303,10 @@ SqliteCreateTrigger::Event::Type SqliteCreateTrigger::Event::stringToType(const 
     return Event::null;
 }
 
-TokenList SqliteCreateTrigger::rebuildTokensFromContents() const
+TokenList SqliteCreateTrigger::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("CREATE").withSpace();
     if (tempKw)
         builder.withKeyword("TEMP").withSpace();

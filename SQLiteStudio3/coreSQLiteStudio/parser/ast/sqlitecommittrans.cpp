@@ -26,10 +26,10 @@ SqliteStatement* SqliteCommitTrans::clone()
     return new SqliteCommitTrans(*this);
 }
 
-TokenList SqliteCommitTrans::rebuildTokensFromContents() const
+TokenList SqliteCommitTrans::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     if (endKw)
         builder.withKeyword("END");
     else

@@ -66,9 +66,9 @@ SqliteStatement* SqliteUpsert::clone()
     return new SqliteUpsert(*this);
 }
 
-TokenList SqliteUpsert::rebuildTokensFromContents() const
+TokenList SqliteUpsert::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withKeyword("ON").withSpace().withKeyword("CONFLICT");
     if (!conflictColumns.isEmpty())

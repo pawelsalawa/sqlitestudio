@@ -25,7 +25,7 @@ class API_EXPORT SqliteLimit : public SqliteStatement
         bool offsetKw = false;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteLimit> SqliteLimitPtr;

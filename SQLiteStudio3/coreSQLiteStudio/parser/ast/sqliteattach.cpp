@@ -44,10 +44,10 @@ SqliteStatement* SqliteAttach::clone()
     return new SqliteAttach(*this);
 }
 
-TokenList SqliteAttach::rebuildTokensFromContents() const
+TokenList SqliteAttach::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("ATTACH").withSpace();
 
     if (databaseKw)

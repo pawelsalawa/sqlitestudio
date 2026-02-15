@@ -29,7 +29,7 @@ class SqliteUpsert : public SqliteStatement
         bool doNothing = false;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         QStringList getColumnsInStatement();
         TokenList getColumnTokensInStatement();
 };

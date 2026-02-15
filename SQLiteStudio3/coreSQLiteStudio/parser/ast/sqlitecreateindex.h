@@ -49,7 +49,7 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 
     private:
         QList<SqliteOrderBy*> toOrderColumns(const QList<SqliteIndexedColumn*>& columns);

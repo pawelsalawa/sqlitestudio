@@ -48,10 +48,10 @@ QString SqliteBeginTrans::typeToString(SqliteBeginTrans::Type type)
     return QString();
 }
 
-TokenList SqliteBeginTrans::rebuildTokensFromContents() const
+TokenList SqliteBeginTrans::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("BEGIN");
 
     if (type != Type::null)

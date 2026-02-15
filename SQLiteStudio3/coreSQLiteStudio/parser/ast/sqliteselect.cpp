@@ -588,9 +588,9 @@ SqliteStatement*SqliteSelect::Core::JoinSource::clone()
 }
 
 
-TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (star)
     {
         if (!table.isNull())
@@ -613,9 +613,9 @@ TokenList SqliteSelect::Core::ResultColumn::rebuildTokensFromContents() const
     return builder.build();
 }
 
-TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (!table.isNull())
     {
         if (!database.isNull())
@@ -670,9 +670,9 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents() const
     return builder.build();
 }
 
-TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (comma)
     {
         builder.withOperator(",");
@@ -707,9 +707,9 @@ TokenList SqliteSelect::Core::JoinOp::rebuildTokensFromContents() const
 }
 
 
-TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (expr)
         builder.withKeyword("ON").withStatement(expr);
     else
@@ -719,25 +719,25 @@ TokenList SqliteSelect::Core::JoinConstraint::rebuildTokensFromContents() const
 }
 
 
-TokenList SqliteSelect::Core::JoinSourceOther::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::JoinSourceOther::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(joinOp).withStatement(singleSource).withStatement(joinConstraint);
     return builder.build();
 }
 
 
-TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withStatement(singleSource).withStatementList(otherSources, "");
     return builder.build();
 }
 
 
-TokenList SqliteSelect::Core::rebuildTokensFromContents() const
+TokenList SqliteSelect::Core::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (valuesMode)
     {
         SqliteSelect* select = dynamic_cast<SqliteSelect*>(parentStatement());
@@ -781,10 +781,10 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents() const
     return builder.build();
 }
 
-TokenList SqliteSelect::rebuildTokensFromContents() const
+TokenList SqliteSelect::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     if (with)
         builder.withStatement(with);
 

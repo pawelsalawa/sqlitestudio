@@ -185,10 +185,10 @@ void SqliteInsert::init(const QString& name1, const QString& name2, const QStrin
         retCol->setParent(this);
 }
 
-TokenList SqliteInsert::rebuildTokensFromContents() const
+TokenList SqliteInsert::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     if (with)
         builder.withStatement(with);
 

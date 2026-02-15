@@ -295,10 +295,10 @@ QList<SqliteStatement::FullObject> SqliteCreateTable::getFullObjectsInStatement(
     return result;
 }
 
-TokenList SqliteCreateTable::rebuildTokensFromContents() const
+TokenList SqliteCreateTable::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("CREATE");
     if (tempKw)
         builder.withSpace().withKeyword("TEMP");
@@ -739,9 +739,9 @@ QStringList SqliteCreateTable::Constraint::getColumnNames() const
     return indexedColumns | MAP(idxCol, {return idxCol->getColumnName();});
 }
 
-TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents() const
+TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     if (!name.isNull())
         builder.withKeyword("CONSTRAINT").withSpace().withOther(name).withSpace();
@@ -896,7 +896,7 @@ void SqliteCreateTable::Column::fixTypeVsGeneratedAs()
     if (generatedConstr && !generatedConstr->generatedKw && type && type->name.toUpper().contains(GENERATED_ALWAYS_REGEXP))
     {
         type->name.replace(GENERATED_ALWAYS_REGEXP, "");
-        type->tokens = type->rebuildTokensFromContents();
+        type->tokens = type->rebuildTokensFromContents(true);
         type->tokensMap["typename"] = type->tokens;
         generatedConstr->generatedKw = true;
     }
@@ -917,16 +917,16 @@ TokenList SqliteCreateTable::Column::getColumnTokensInStatement()
     return getTokenListFromNamedKey("columnid");
 }
 
-TokenList SqliteCreateTable::Column::rebuildTokensFromContents() const
+TokenList SqliteCreateTable::Column::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withOther(name).withStatement(type).withStatementList(constraints, "");
     return builder.build();
 }
 
-TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents() const
+TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     if (!name.isNull())
         builder.withKeyword("CONSTRAINT").withSpace().withOther(name).withSpace();
 

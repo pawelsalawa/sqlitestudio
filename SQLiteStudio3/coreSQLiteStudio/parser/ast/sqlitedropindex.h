@@ -23,7 +23,7 @@ class API_EXPORT SqliteDropIndex : public SqliteQuery
         QStringList getDatabasesInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteDropIndex> SqliteDropIndexPtr;

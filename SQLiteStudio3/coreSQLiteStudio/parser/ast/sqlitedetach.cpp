@@ -33,10 +33,10 @@ SqliteStatement*SqliteDetach::clone()
     return new SqliteDetach(*this);
 }
 
-TokenList SqliteDetach::rebuildTokensFromContents() const
+TokenList SqliteDetach::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("DETACH").withSpace();
 
     if (databaseKw)

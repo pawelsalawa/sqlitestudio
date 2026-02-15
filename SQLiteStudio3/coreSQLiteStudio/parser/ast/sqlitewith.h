@@ -33,7 +33,7 @@ class API_EXPORT SqliteWith : public SqliteStatement
                 AsMode asMode = ANY;
 
             protected:
-                TokenList rebuildTokensFromContents() const;
+                TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         };
 
         SqliteWith();
@@ -46,7 +46,7 @@ class API_EXPORT SqliteWith : public SqliteStatement
         bool recursive = false;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteWith> SqliteWithPtr;

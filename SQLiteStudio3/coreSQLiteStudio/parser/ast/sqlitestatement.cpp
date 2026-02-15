@@ -224,8 +224,9 @@ QList<SqliteStatement::FullObject> SqliteStatement::getFullObjectsInStatement()
     return QList<SqliteStatement::FullObject>();
 }
 
-TokenList SqliteStatement::rebuildTokensFromContents() const
+TokenList SqliteStatement::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
+    Q_UNUSED(replaceStatementTokens);
     qCritical() << "called rebuildTokensFromContents() for SqliteStatement that has no implementation for it.";
     return TokenList();
 }
@@ -570,7 +571,7 @@ void SqliteStatement::rebuildTokens()
 {
     tokens.clear();
     tokensMap.clear();
-    tokens = rebuildTokensFromContents();
+    tokens = rebuildTokensFromContents(true);
     // TODO rebuild tokensMap as well
     // It shouldn't be hard to write unit tests that parse a query, remembers it tokensMap, then rebuilds tokens from contents
     // and then compare new tokens map with previous one. This way we should be able to get all maps correctly.
@@ -578,7 +579,7 @@ void SqliteStatement::rebuildTokens()
 
 TokenList SqliteStatement::produceTokens() const
 {
-    return rebuildTokensFromContents();
+    return rebuildTokensFromContents(false);
 }
 
 void SqliteStatement::attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach)

@@ -21,7 +21,7 @@ class API_EXPORT SqliteDetach : public SqliteQuery
         SqliteExpr* name = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteDetach> SqliteDetachPtr;

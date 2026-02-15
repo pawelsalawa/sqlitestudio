@@ -36,10 +36,10 @@ SqliteStatement*SqliteRollback::clone()
     return new SqliteRollback(*this);
 }
 
-TokenList SqliteRollback::rebuildTokensFromContents() const
+TokenList SqliteRollback::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("ROLLBACK").withSpace();
     if (transactionKw)
         builder.withKeyword("TRANSACTION").withSpace();

@@ -36,9 +36,9 @@ SqliteStatement* SqliteFilterOver::clone()
     return new SqliteFilterOver(*this);
 }
 
-TokenList SqliteFilterOver::rebuildTokensFromContents() const
+TokenList SqliteFilterOver::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     if (filter)
         builder.withStatement(filter);
@@ -85,9 +85,9 @@ SqliteStatement* SqliteFilterOver::Over::clone()
     return new SqliteFilterOver::Over(*this);
 }
 
-TokenList SqliteFilterOver::Over::rebuildTokensFromContents() const
+TokenList SqliteFilterOver::Over::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withKeyword("OVER").withSpace();
 
@@ -123,9 +123,9 @@ SqliteStatement* SqliteFilterOver::Filter::clone()
     return new SqliteFilterOver::Filter(*this);
 }
 
-TokenList SqliteFilterOver::Filter::rebuildTokensFromContents() const
+TokenList SqliteFilterOver::Filter::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withKeyword("FILTER").withSpace().withParLeft().withKeyword("WHERE").withSpace().withStatement(expr).withParRight();
 

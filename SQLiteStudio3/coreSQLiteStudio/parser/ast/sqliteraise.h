@@ -34,7 +34,7 @@ class API_EXPORT SqliteRaise : public SqliteStatement
         SqliteExpr* expr = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteRaise> SqliteRaisePtr;

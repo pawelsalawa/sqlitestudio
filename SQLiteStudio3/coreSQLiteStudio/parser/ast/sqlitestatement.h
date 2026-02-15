@@ -364,7 +364,7 @@ class API_EXPORT SqliteStatement : public QObject
         virtual TokenList getTableTokensInStatement();
         virtual TokenList getDatabaseTokensInStatement();
         virtual QList<FullObject> getFullObjectsInStatement();
-        virtual TokenList rebuildTokensFromContents() const;
+        virtual TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         virtual void evaluatePostParsing();
 
         static TokenList extractPrintableTokens(const TokenList& tokens, bool skipMeaningless = true);

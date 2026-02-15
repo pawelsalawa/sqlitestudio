@@ -134,10 +134,10 @@ bool SqlitePragma::handleBoolValue(const QVariant &value)
     return true;
 }
 
-TokenList SqlitePragma::rebuildTokensFromContents() const
+TokenList SqlitePragma::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("PRAGMA").withSpace();
 
     if (!database.isNull())

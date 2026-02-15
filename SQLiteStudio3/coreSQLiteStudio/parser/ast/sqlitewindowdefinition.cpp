@@ -29,9 +29,9 @@ SqliteStatement* SqliteWindowDefinition::clone()
     return new SqliteWindowDefinition(*this);
 }
 
-TokenList SqliteWindowDefinition::rebuildTokensFromContents() const
+TokenList SqliteWindowDefinition::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withOther(name).withSpace().withKeyword("AS").withParLeft().withStatement(window).withParRight();
 
@@ -79,9 +79,9 @@ void SqliteWindowDefinition::Window::init(const QString& name, SqliteWindowDefin
     initFrame(frame);
 }
 
-TokenList SqliteWindowDefinition::Window::rebuildTokensFromContents() const
+TokenList SqliteWindowDefinition::Window::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     if (!name.isNull())
         builder.withOther(name).withSpace();
@@ -222,9 +222,9 @@ SqliteStatement* SqliteWindowDefinition::Window::Frame::clone()
     return new Frame(*this);
 }
 
-TokenList SqliteWindowDefinition::Window::Frame::rebuildTokensFromContents() const
+TokenList SqliteWindowDefinition::Window::Frame::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     if (rangeOrRows != RangeOrRows::null)
         builder.withKeyword(fromRangeOrRows(rangeOrRows)).withSpace();
@@ -281,9 +281,9 @@ SqliteStatement* SqliteWindowDefinition::Window::Frame::Bound::clone()
     return new Bound(*this);
 }
 
-TokenList SqliteWindowDefinition::Window::Frame::Bound::rebuildTokensFromContents() const
+TokenList SqliteWindowDefinition::Window::Frame::Bound::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     switch (type)
     {

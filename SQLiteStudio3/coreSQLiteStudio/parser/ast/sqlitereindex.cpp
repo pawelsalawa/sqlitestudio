@@ -68,10 +68,10 @@ QList<SqliteStatement::FullObject> SqliteReindex::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteReindex::rebuildTokensFromContents() const
+TokenList SqliteReindex::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("REINDEX");
     if (!database.isNull())
         builder.withOther(database).withOperator(".");

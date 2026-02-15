@@ -26,9 +26,9 @@ SqliteStatement*SqliteWith::clone()
     return new SqliteWith(*this);
 }
 
-TokenList SqliteWith::rebuildTokensFromContents() const
+TokenList SqliteWith::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withKeyword("WITH").withSpace();
     if (recursive)
@@ -61,9 +61,9 @@ SqliteStatement* SqliteWith::CommonTableExpression::clone()
     return new SqliteWith::CommonTableExpression(*this);
 }
 
-TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents() const
+TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withOther(table);
 
     if (indexedColumns.size() > 0)

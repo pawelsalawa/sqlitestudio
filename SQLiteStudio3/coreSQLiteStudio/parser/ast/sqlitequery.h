@@ -24,7 +24,7 @@ class API_EXPORT SqliteQuery : public SqliteStatement
         bool queryPlan = false;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 /**

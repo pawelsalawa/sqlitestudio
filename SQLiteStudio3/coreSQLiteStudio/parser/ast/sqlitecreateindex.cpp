@@ -105,10 +105,10 @@ QList<SqliteStatement::FullObject> SqliteCreateIndex::getFullObjectsInStatement(
     return result;
 }
 
-TokenList SqliteCreateIndex::rebuildTokensFromContents() const
+TokenList SqliteCreateIndex::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("CREATE").withSpace();
     if (uniqueKw)
         builder.withKeyword("UNIQUE").withSpace();

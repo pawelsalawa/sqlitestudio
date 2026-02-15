@@ -116,9 +116,9 @@ QList<SqliteStatement::FullObject> SqliteForeignKey::getFullObjectsInStatement()
     return result;
 }
 
-TokenList SqliteForeignKey::rebuildTokensFromContents() const
+TokenList SqliteForeignKey::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     builder.withKeyword("REFERENCES").withSpace().withOther(foreignTable);
 
@@ -143,9 +143,9 @@ TokenList SqliteForeignKey::rebuildTokensFromContents() const
 }
 
 
-TokenList SqliteForeignKey::Condition::rebuildTokensFromContents() const
+TokenList SqliteForeignKey::Condition::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
 
     switch (action)
     {

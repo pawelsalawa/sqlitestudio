@@ -55,9 +55,9 @@ TokenList SqliteIndexedColumn::getColumnTokensInStatement()
 }
 
 
-TokenList SqliteIndexedColumn::rebuildTokensFromContents() const
+TokenList SqliteIndexedColumn::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withOther(name);
     if (!collate.isNull())
         builder.withSpace().withKeyword("COLLATE").withSpace().withOther(collate);

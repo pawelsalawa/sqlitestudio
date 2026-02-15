@@ -24,10 +24,10 @@ SqliteStatement*SqliteSavepoint::clone()
     return new SqliteSavepoint(*this);
 }
 
-TokenList SqliteSavepoint::rebuildTokensFromContents() const
+TokenList SqliteSavepoint::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
-    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
+    StatementTokenBuilder builder(replaceStatementTokens);
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents(replaceStatementTokens));
     builder.withKeyword("SAVEPOINT").withSpace().withOther(name).withOperator(";");
     return builder.build();
 }

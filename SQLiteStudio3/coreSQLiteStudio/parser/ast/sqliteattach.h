@@ -22,7 +22,7 @@ class API_EXPORT SqliteAttach : public SqliteQuery
         SqliteExpr* key = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteAttach> SqliteAttachPtr;

@@ -55,7 +55,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         QStringList getTablesInStatement();
                         TokenList getTableTokensInStatement();
                         QList<FullObject> getFullObjectsInStatement();
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 class JoinSource; // forward declaration
@@ -92,7 +92,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         TokenList getTableTokensInStatement();
                         TokenList getDatabaseTokensInStatement();
                         QList<FullObject> getFullObjectsInStatement();
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 class API_EXPORT JoinOp : public SqliteStatement
@@ -125,7 +125,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         QString customKw3 = QString();
 
                     protected:
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 class API_EXPORT JoinConstraint : public SqliteStatement
@@ -144,7 +144,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                     protected:
                         QStringList getColumnsInStatement();
                         TokenList getColumnTokensInStatement();
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 class API_EXPORT JoinSourceOther : public SqliteStatement
@@ -163,7 +163,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         JoinConstraint* joinConstraint = nullptr;
 
                     protected:
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 class API_EXPORT JoinSource : public SqliteStatement
@@ -179,7 +179,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         QList<JoinSourceOther*> otherSources;
 
                     protected:
-                        TokenList rebuildTokensFromContents() const;
+                        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
                 };
 
                 Core();
@@ -207,7 +207,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                 bool valuesMode = false;
 
             protected:
-                TokenList rebuildTokensFromContents() const;
+                TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
         };
 
         SqliteSelect();
@@ -228,7 +228,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
         SqliteWith* with = nullptr;
 
     protected:
-        TokenList rebuildTokensFromContents() const;
+        TokenList rebuildTokensFromContents(bool replaceStatementTokens) const;
 };
 
 typedef QSharedPointer<SqliteSelect> SqliteSelectPtr;

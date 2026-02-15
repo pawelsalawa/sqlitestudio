@@ -18,9 +18,9 @@ SqliteStatement*SqliteEmptyQuery::clone()
     return new SqliteEmptyQuery(*this);
 }
 
-TokenList SqliteEmptyQuery::rebuildTokensFromContents() const
+TokenList SqliteEmptyQuery::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
-    StatementTokenBuilder builder;
+    StatementTokenBuilder builder(replaceStatementTokens);
     builder.withOperator(";");
     return builder.build();
 }

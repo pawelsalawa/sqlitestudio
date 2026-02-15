@@ -45,6 +45,21 @@ class StatementTokenBuilder
 {
     public:
         /**
+         * @brief Constructor.
+         * @param replaceStatementTokens Defines whether tokens in statements passed to withStatement() and withStatementList()
+         *                               methods should be replaced with tokens built by those statements themselves.
+         *
+         * This makes all the difference between SqliteStatement::rebuildTokens() and SqliteStatement::produceTokens() methods.
+         * The first one replaces tokens in statements with the tokens produced by those statements,
+         * while the second one just takes tokens from statements without any modification. So if you want to produce tokens
+         * that are exactly the same as tokens from statements, pass false to this constructor. If you want to produce tokens
+         * that are built by statements themselves, pass true to this constructor. The default value is true, since in most cases
+         * you want to produce tokens built by statements, and not just take tokens from statements. The only case when you want to take
+         * tokens from statements is when you want to produce tokens for the statement that was not modified since it was parsed, so its tokens are still valid.
+         */
+        StatementTokenBuilder(bool replaceStatementTokens);
+
+        /**
          * @brief Adds keyword token.
          * @param value Value of the keyword token.
          * @return Reference to the builder for the further building.
@@ -272,6 +287,14 @@ class StatementTokenBuilder
          * Each added token increments this index by the value length.
          */
         int currentIdx = 0;
+
+        /**
+         * @brief Defines whether the tokens added for statements in withStatement() and withStatementList() methods should replace tokens of those statements.
+         *
+         * If false, then tokens of statements added with withStatement() and withStatementList() are kept as they are, and built tokens are to be only returned
+         * to the caller, without altering the statement.
+         */
+        bool replaceStatementTokens = false;
 };
 
 #endif // STATEMENTTOKENBUILDER_H
