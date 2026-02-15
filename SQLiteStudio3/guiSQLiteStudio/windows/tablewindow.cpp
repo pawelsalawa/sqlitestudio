@@ -171,6 +171,13 @@ void TableWindow::init()
     updateTabsOrder();
     createDbCombo();
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->structureToolBar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->tableConstraintsToolbar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_GRID));
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_FORM));
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->indexToolBar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->triggerToolBar);
+
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));

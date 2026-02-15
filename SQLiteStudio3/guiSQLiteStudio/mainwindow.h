@@ -42,6 +42,8 @@ class CodeSnippetEditor;
 #define NEXT_TASK_KEY_SEQ Qt::CTRL | Qt::Key_PageDown
 #endif
 
+
+class MouseShortcut;
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(OPEN_SQL_EDITOR,        Qt::ALT | Qt::Key_E,              QObject::tr("Open SQL editor"))
     CFG_KEY_ENTRY(OPEN_DDL_HISTORY,       Qt::CTRL | Qt::Key_H,             QObject::tr("Open DDL history window"))
@@ -147,6 +149,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
         EditorWindow* openSqlEditorForFile(Db* dbToSet, const QString& fileName);
+        void installToolbarSizeWheelHandler(QToolBar* toolbar);
 
         template <class T, typename... Args>
         T* openMdiWindow(Args&&... args);
@@ -191,6 +194,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void applyToolbarStyle(QToolBar* tb);
         void applyToolbarStyle(QList<QToolBar*> tbList);
         void updateToolbarStyleActionState();
+        void initToolbarSizeActionList();
 
         static bool confirmQuit(const QList<Committable*>& instances);
 
@@ -218,7 +222,12 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #endif
         WidgetCover* widgetCover = nullptr;
         QTimer* saveSessionTimer = nullptr;
+
+        QList<Action> toolbarSizeActionList;
+        QHash<Action, int> toolbarSizes;
+        QHash<int, Action> toolbarSizesReversed;
         static int defaultToolbarIconSize;
+        MouseShortcut* toolbarSizeWheelHandler = nullptr;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -271,6 +280,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updateMultipleSessionsSetting(const QVariant& newValue);
         void saveSession();
         void scheduleSessionSave();
+        void toolbarSizeChangeRequested(int steps);
 
     signals:
         void sessionValueChanged();

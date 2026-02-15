@@ -226,6 +226,11 @@ void ViewWindow::init()
     ui->queryEdit->setDb(db);
     ui->queryEdit->setOpenSaveActionsEnabled(false);
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->queryToolbar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_GRID));
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_FORM));
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->triggersToolbar);
+
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));

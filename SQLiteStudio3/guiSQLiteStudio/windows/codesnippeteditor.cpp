@@ -7,6 +7,7 @@
 #include "uiutils.h"
 #include "codesnippeteditormodel.h"
 #include "common/userinputfilter.h"
+#include "mainwindow.h"
 #include <QSortFilterProxyModel>
 #include <QItemSelection>
 #include <QDesktopServices>
@@ -108,6 +109,8 @@ void CodeSnippetEditor::init()
 
     new UserInputFilter(ui->snippetFilterEdit, this, SLOT(applyFilter(QString)));
     snippetFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
 
     initActions();
 

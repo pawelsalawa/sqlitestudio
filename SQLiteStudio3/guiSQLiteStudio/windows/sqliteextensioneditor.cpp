@@ -111,6 +111,8 @@ void SqliteExtensionEditor::init()
 
     model->setData(SQLITE_EXTENSIONS->getAllExtensions());
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->toolbar);
+
     connect(ui->extensionList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(extensionSelected(QItemSelection,QItemSelection)));
     connect(ui->extensionList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
     connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));

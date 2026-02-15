@@ -115,6 +115,10 @@ void EditorWindow::init()
     if (CFG_UI.General.SqlEditorCurrQueryHighlight.get())
         ui->sqlEdit->setCurrentQueryHighlighting(true);
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_GRID));
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_FORM));
+
     connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
     connect(ui->sqlEdit, SIGNAL(fileLoaded(QString)), this, SLOT(renameForFile(QString)));
     connect(ui->sqlEdit, SIGNAL(fileSaved(QString)), this, SLOT(renameForFile(QString)));

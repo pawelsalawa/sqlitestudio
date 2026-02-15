@@ -37,6 +37,7 @@
 #include "windows/codesnippeteditor.h"
 #include "uiutils.h"
 #include "datagrid/cellrendererplugin.h"
+#include "common/mouseshortcut.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -96,6 +97,7 @@ void MainWindow::init()
         statusField->close();
 
     initActions();
+    initToolbarSizeActionList();
 
     ui->mdiArea->setTaskBar(ui->taskBar);
     addToolBar(Qt::BottomToolBarArea, ui->taskBar);
@@ -109,6 +111,11 @@ void MainWindow::init()
     ui->mainToolBar->setIconSize(QSize(24, 24));
     ui->structureToolbar->setIconSize(QSize(24, 24));
     ui->dbToolbar->setIconSize(QSize(24, 24));
+
+    installToolbarSizeWheelHandler(ui->mainToolBar);
+    installToolbarSizeWheelHandler(ui->viewToolbar);
+    installToolbarSizeWheelHandler(ui->structureToolbar);
+    installToolbarSizeWheelHandler(ui->dbToolbar);
 
     formManager = new FormManager();
 
@@ -649,6 +656,14 @@ EditorWindow* MainWindow::openSqlEditorForFile(Db* dbToSet, const QString& fileN
     return win;
 }
 
+void MainWindow::installToolbarSizeWheelHandler(QToolBar* toolbar)
+{
+    if (!toolbarSizeWheelHandler)
+        toolbarSizeWheelHandler = MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(toolbarSizeChangeRequested(int)), toolbar);
+    else
+        toolbar->installEventFilter(toolbarSizeWheelHandler);
+}
+
 void MainWindow::saveSession(bool hide)
 {
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
@@ -667,6 +682,21 @@ void MainWindow::scheduleSessionSave()
 {
     if (saveSessionTimer)
         saveSessionTimer->start(saveSessionDelayMs);
+}
+
+void MainWindow::toolbarSizeChangeRequested(int steps)
+{
+    int idx = toolbarSizeActionList | INDEX_OF(act, {return actionMap[act]->isChecked();});
+    if (steps > 0)
+        idx++;
+    else if (steps < 0)
+        idx--;
+
+    if (idx < 0 || idx >= toolbarSizeActionList.size())
+        return;
+
+    int percInt = toolbarSizes[toolbarSizeActionList[idx]];
+    CFG_UI.General.ToolBarIconSize.set(percInt);
 }
 
 void MainWindow::updateToolbarStyle()
@@ -1014,20 +1044,14 @@ QMenu* MainWindow::createToolbarStyleMenu()
 
     QActionGroup* tbIconSizeGroup = new QActionGroup(menu);
     tbIconSizeGroup->setExclusive(true);
-    QMetaEnum actMetaEnum = QMetaEnum::fromType<Action>();
-    for (int actEnum = 0, total = actMetaEnum.keyCount(); actEnum < total; actEnum++)
+    for (Action& actEnum : toolbarSizeActionList)
     {
-        const char* key = actMetaEnum.key(actEnum);
-        if (!QString::fromLatin1(key).startsWith("TOOLBAR_ICON_SIZE_"))
-            continue;
-
-        QString perc = QString::fromLatin1(actMetaEnum.valueToKey(actEnum)).split('_').last();
-        actionMap[actEnum] = new QAction(tr("Size: %1%", "toolbar icons").arg(perc), this);
+        int percInt = toolbarSizes[actEnum];;
+        actionMap[actEnum] = new QAction(tr("Size: %1%", "toolbar icons").arg(percInt), this);
         actionMap[actEnum]->setCheckable(true);
         tbIconSizeGroup->addAction(actionMap[actEnum]);
         menu->addAction(actionMap[actEnum]);
 
-        int percInt = perc.toInt();
         if (percInt <= 0) // safety
             percInt = 100;
 
@@ -1067,16 +1091,31 @@ void MainWindow::applyToolbarStyle(QList<QToolBar*> tbList)
 void MainWindow::updateToolbarStyleActionState()
 {
     int iconSizePerc = CFG_UI.General.ToolBarIconSize.get();
-    QMetaEnum actMetaEnum = QMetaEnum::fromType<Action>();
-    static_qstring(tbIconSizeEnumTpl, "TOOLBAR_ICON_SIZE_%1");
-    int enumInt = actMetaEnum.keyToValue(tbIconSizeEnumTpl.arg(iconSizePerc).toLatin1());
-    if (enumInt == -1)
+    if (!toolbarSizesReversed.contains(iconSizePerc))
     {
         qCritical() << "Unexpected toolbar icon size in config:" << iconSizePerc << ", resetting to 100%.";
         CFG_UI.General.ToolBarIconSize.set(100);
         return;
     }
-    actionMap[static_cast<Action>(enumInt)]->setChecked(true);
+    Action act = toolbarSizesReversed[iconSizePerc];
+    actionMap[act]->setChecked(true);
+}
+
+void MainWindow::initToolbarSizeActionList()
+{
+    QMetaEnum actMetaEnum = QMetaEnum::fromType<Action>();
+    for (int actEnum = 0, total = actMetaEnum.keyCount(); actEnum < total; actEnum++)
+    {
+        const char* key = actMetaEnum.key(actEnum);
+        if (!QString::fromLatin1(key).startsWith("TOOLBAR_ICON_SIZE_"))
+            continue;
+
+        Action act = static_cast<Action>(actEnum);
+        int percInt = QString::fromLatin1(actMetaEnum.valueToKey(actEnum)).split('_').last().toInt();
+        toolbarSizeActionList << act;
+        toolbarSizes[act] = percInt;
+        toolbarSizesReversed[percInt] = act;
+    }
 }
 
 bool MainWindow::confirmQuit(const QList<Committable*>& instances)

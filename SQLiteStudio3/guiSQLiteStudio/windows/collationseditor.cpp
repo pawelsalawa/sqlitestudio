@@ -97,6 +97,8 @@ void CollationsEditor::init()
 
     model->setData(COLLATIONS->getAllCollations());
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->toolbar);
+
     new UserInputFilter(ui->collationFilterEdit, this, SLOT(applyFilter(QString)));
     collationFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 

@@ -117,6 +117,8 @@ void FunctionsEditor::init()
     new UserInputFilter(ui->functionFilterEdit, this, SLOT(applyFilter(QString)));
     functionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
+
     initActions();
 
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(functionSelected(QItemSelection,QItemSelection)));
