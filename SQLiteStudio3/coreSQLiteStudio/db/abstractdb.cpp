@@ -168,7 +168,7 @@ void AbstractDb::registerUserCollations()
 void AbstractDb::loadExtensions()
 {
     for (SqliteExtensionManager::ExtensionPtr& extPtr : SQLITE_EXTENSIONS->getExtensionForDatabase(getName()))
-        loadedExtensionCount += loadExtension(extPtr->filePath, extPtr->initFunc) ? 1 : 0;
+        loadedExtensionCount += loadExtension(extPtr->getResolvedPath(), extPtr->initFunc) ? 1 : 0;
 
     connect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(reloadExtensions()));
 }

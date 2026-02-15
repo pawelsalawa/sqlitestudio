@@ -45,8 +45,8 @@ void SqliteExtensionManagerImpl::init()
 
 void SqliteExtensionManagerImpl::scanExtensionDirs()
 {
-    extensionDirs += qApp->applicationDirPath() + "/extensions";
-    extensionDirs += qApp->applicationDirPath() + "/ext";
+    extensionDirs += APP_PATH_PREFIX + "/extensions";
+    extensionDirs += APP_PATH_PREFIX + "/ext";
     extensionDirs += QDir(CFG->getConfigDir()).absoluteFilePath("ext");
     extensionDirs += QDir(CFG->getConfigDir()).absoluteFilePath("extensions");
 #ifdef Q_OS_MACX
@@ -63,12 +63,13 @@ void SqliteExtensionManagerImpl::scanExtensionDirs()
 
     for (QString& extDirPath : extensionDirs)
     {
-        QDir extDir(extDirPath);
+        QDir extDir(extDirPath.replace(APP_PATH_PREFIX, QCoreApplication::applicationDirPath()));
         for (QString& fileName : extDir.entryList(sharedLibFileFilters(), QDir::Files))
         {
-            QString path = extDir.absoluteFilePath(fileName);
-            auto findIt = std::find_if(extensions.begin(), extensions.end(), [path](ExtensionPtr& ext) {return ext->filePath == path;});
-            if (findIt != extensions.end())
+            QString path = extDir.absoluteFilePath(fileName)
+                    .replace(QCoreApplication::applicationDirPath(), APP_PATH_PREFIX);
+            auto idx = extensions | INDEX_OF(ext, {return ext->filePath == path;});
+            if (idx > -1)
                 continue; // already on the list
 
             ExtensionPtr ext = ExtensionPtr::create();

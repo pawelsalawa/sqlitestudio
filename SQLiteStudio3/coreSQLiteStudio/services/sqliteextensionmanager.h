@@ -5,6 +5,7 @@
 #include "sqlitestudio.h"
 #include <QSharedPointer>
 #include <QObject>
+#include <QCoreApplication>
 
 class API_EXPORT SqliteExtensionManager : public QObject
 {
@@ -17,6 +18,11 @@ class API_EXPORT SqliteExtensionManager : public QObject
             QString initFunc;
             QStringList databases;
             bool allDatabases = true;
+
+            QString getResolvedPath() const
+            {
+                return resolvePath(filePath);
+            }
         };
 
         typedef QSharedPointer<Extension> ExtensionPtr;
@@ -25,6 +31,13 @@ class API_EXPORT SqliteExtensionManager : public QObject
         virtual QList<ExtensionPtr> getAllExtensions() const = 0;
         virtual QList<ExtensionPtr> getExtensionForDatabase(const QString& dbName) const = 0;
         virtual QStringList getExtensionDirs() const = 0;
+
+        static QString resolvePath(QString path)
+        {
+            return path.replace(APP_PATH_PREFIX, QCoreApplication::applicationDirPath());
+        }
+
+        inline static const QString APP_PATH_PREFIX = QStringLiteral("{APP_PATH}");
 
     signals:
         void extensionListChanged();

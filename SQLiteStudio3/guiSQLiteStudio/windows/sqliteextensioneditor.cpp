@@ -170,6 +170,11 @@ void SqliteExtensionEditor::extensionSelected(int srcRow)
     ui->fileEdit->setText(model->getFilePath(srcRow));
     ui->initEdit->setText(model->getInitFunction(srcRow));
 
+    if (ui->fileEdit->text().contains(SqliteExtensionManager::APP_PATH_PREFIX))
+        ui->fileEdit->setToolTip(SqliteExtensionManager::resolvePath(ui->fileEdit->text()));
+    else
+        ui->fileEdit->setToolTip(QString());
+
     // Databases
     dbListModel->setDatabases(model->getDatabases(srcRow));
     ui->databaseList->expandAll();
@@ -249,7 +254,8 @@ bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QSt
     bool localFileOk = true;
     bool localInitOk = true;
 
-    QFileInfo fileInfo(filePath);
+    QString resolvedPath = SqliteExtensionManager::resolvePath(filePath);
+    QFileInfo fileInfo(resolvedPath);
     if (!fileInfo.exists() || !fileInfo.isReadable())
     {
         localFileOk = false;
@@ -257,10 +263,10 @@ bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QSt
             *fileError = tr("File with given path does not exist or is not readable.");
     }
     else
-        localFileOk = tryToLoad(filePath, initFunc, fileError);
+        localFileOk = tryToLoad(resolvedPath, initFunc, fileError);
 
     if (!localFileOk && fileError && fileError->isEmpty())
-        *fileError = tr("Unable to load extension: %1").arg(filePath);
+        *fileError = tr("Unable to load extension: %1").arg(resolvedPath);
 
     static const QRegularExpression initFuncRegExp("^[a-zA-Z0-9_]*$");
     localInitOk = initFuncRegExp.match(initFunc).hasMatch();

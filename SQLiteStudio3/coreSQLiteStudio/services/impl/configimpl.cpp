@@ -1024,7 +1024,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
     static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
     db->begin();
-    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toSecsSinceEpoch(), queries});
+    db->exec(insert, {dbName, dbFile, QDateTime::currentSecsSinceEpoch(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
@@ -1054,7 +1054,7 @@ void ConfigImpl::asyncClearDdlHistory()
 void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
 {
     static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
-    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toSecsSinceEpoch(), title, url});
+    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentSecsSinceEpoch(), title, url});
     emit reportsHistoryRefreshNeeded();
 }
 
@@ -1145,6 +1145,7 @@ void ConfigImpl::updateConfigDb()
         }
         case 4:
         {
+            // 4->5
             QVariant oldFuncs = get("Internal", "Functions");
             if (!isNull(oldFuncs))
             {
@@ -1167,10 +1168,43 @@ void ConfigImpl::updateConfigDb()
         }
         case 5:
         {
+            // 5->6
             QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", Qt::SkipEmptyParts);
             loadedPlugins.removeIf([](auto el) {return el.startsWith("ConfigMigration");});
             loadedPlugins << "ConfigMigration=0";
             CFG_CORE.General.LoadedPlugins.set(loadedPlugins.join(","));
+            [[fallthrough]];
+        }
+        case 6:
+        {
+            // 6->7
+            QVariantList list = CFG_CORE.Internal.Extensions.get();
+            QVariantList newList;
+            QHash<QString,QVariant> extHash;
+            for (const QVariant& var : list)
+            {
+                extHash = var.toHash();
+                QString filePath = extHash["filePath"].toString();
+                QString normalizedPath = QDir::fromNativeSeparators(filePath);
+                QStringList parts = normalizedPath.split('/', Qt::SkipEmptyParts);
+                if (parts.size() < 3)
+                {
+                    newList << var;
+                    continue;
+                }
+                QString secondLast = parts[parts.size() - 2];
+                QString thirdLast = parts[parts.size() - 3];
+                if (thirdLast.contains("sqlitestudio", Qt::CaseInsensitive) && secondLast == "extensions")
+                {
+                    extHash["filePath"] = QString("%1/extensions/%2").arg(SqliteExtensionManager::APP_PATH_PREFIX, parts.last());
+                    qDebug() << "Migrating extension path from" << filePath << "to" << extHash["filePath"].toString();
+                    newList << extHash;
+                }
+                else
+                    newList << var;
+            }
+            CFG_CORE.Internal.Extensions.set(newList);
+            [[fallthrough]];
         }
         // Add cases here for next versions,
         // without a "break" instruction,

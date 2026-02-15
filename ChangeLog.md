@@ -27,8 +27,9 @@
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: #4688 Added metadata to Windows executables.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
-- BIGFIX: #3146 Fixed accent characters support under MacOS.
-- BIGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
+- BUGFIX: #3146 Fixed accent characters support under MacOS.
+- BUGFIX: #5497 Boundled SQLite extensions now use path relative to the running application.
+- BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).

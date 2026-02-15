@@ -12,7 +12,7 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 5;
+const int SQLITESTUDIO_CONFIG_VERSION = 7;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
