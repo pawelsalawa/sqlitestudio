@@ -114,7 +114,7 @@ void FormManager::load()
     formDirs += PLUGINS->getPluginDirs();
 
 #ifdef FORMS_DIR
-    formDirs += STRINGIFY(FORMS_DIR);
+    formDirs += FORMS_DIR;
 #endif
 
     for (QString dirPath : formDirs)

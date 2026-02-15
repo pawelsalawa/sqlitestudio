@@ -29,11 +29,11 @@ void PluginManagerImpl::init()
         pluginDirs += envDirs.split(PATH_LIST_SEPARATOR);
 
 #ifdef PLUGINS_DIR
-    pluginDirs += STRINGIFY(PLUGINS_DIR);
+    pluginDirs += PLUGINS_DIR;
 #endif
 
 #ifdef SYS_PLUGINS_DIR
-    pluginDirs += STRINGIFY(SYS_PLUGINS_DIR);
+    pluginDirs += SYS_PLUGINS_DIR;
 #endif
 
 #ifdef Q_OS_MACX

@@ -42,7 +42,7 @@ void IconManager::init()
         iconDirs += envDirs.split(PATH_LIST_SEPARATOR);
 
 #ifdef ICONS_DIR
-    iconDirs += STRINGIFY(ICONS_DIR);
+    iconDirs += ICONS_DIR;
 #endif
 
     iconFileExtensions << "*.png" << "*.PNG" << "*.jpg" << "*.JPG" << "*.svg" << "*.SVG";
