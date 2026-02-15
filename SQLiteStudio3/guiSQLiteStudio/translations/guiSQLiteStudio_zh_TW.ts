@@ -145,62 +145,62 @@
       <translation type="unfinished">Snippet code</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="41"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="42"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
       <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="62"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="63"/>
       <source>Code Snippets editor</source>
       <translation type="unfinished">Code Snippets editor</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="67"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="68"/>
       <source>Commit all snippet changes</source>
       <translation type="unfinished">Commit all snippet changes</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="68"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="69"/>
       <source>Rollback all snippet changes</source>
       <translation type="unfinished">Rollback all snippet changes</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="70"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="71"/>
       <source>Create new snippet</source>
       <translation type="unfinished">Create new snippet</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="71"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="72"/>
       <source>Delete selected snippet</source>
       <translation type="unfinished">Delete selected snippet</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="73"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Move the snippet up</source>
       <translation type="unfinished">Move the snippet up</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="74"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="75"/>
       <source>Move the snippet down</source>
       <translation type="unfinished">Move the snippet down</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="76"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="77"/>
       <source>Code snippets manual</source>
       <translation type="unfinished">Code snippets manual</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="288"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="291"/>
       <source>Enter a non-empty, unique name of the snippet.</source>
       <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="291"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="294"/>
       <source>Enter a non-empty snippet content.</source>
       <translation type="unfinished">Enter a non-empty snippet content.</translation>
     </message>
     <message>
-      <location filename="../windows/codesnippeteditor.cpp" line="295"/>
+      <location filename="../windows/codesnippeteditor.cpp" line="298"/>
       <source>This hotkey is not unique in context of a code assistant.</source>
       <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
     </message>
@@ -288,37 +288,37 @@
       <translation>手動編輯字元序</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="304"/>
+      <location filename="../windows/collationseditor.cpp" line="306"/>
       <source>Enter a non-empty, unique name of the collation.</source>
       <translation>請為字元序輸入一個非空且唯一的名稱。</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="314"/>
+      <location filename="../windows/collationseditor.cpp" line="316"/>
       <source>Pick the implementation language.</source>
       <translation>選擇實現語言。</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="319"/>
+      <location filename="../windows/collationseditor.cpp" line="321"/>
       <source>Registration code</source>
       <translation type="unfinished">Registration code</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="320"/>
+      <location filename="../windows/collationseditor.cpp" line="322"/>
       <source>Enter a non-empty registration code.</source>
       <translation type="unfinished">Enter a non-empty registration code.</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="324"/>
+      <location filename="../windows/collationseditor.cpp" line="326"/>
       <source>Implementation code</source>
       <translation type="unfinished">Implementation code</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="325"/>
+      <location filename="../windows/collationseditor.cpp" line="327"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>請輸入非空的實現程式碼。</translation>
     </message>
     <message>
-      <location filename="../windows/collationseditor.cpp" line="448"/>
+      <location filename="../windows/collationseditor.cpp" line="450"/>
       <source>Collations editor window has uncommitted modifications.</source>
       <translation>字元序編輯器有未提交的修改。</translation>
     </message>
@@ -2894,142 +2894,142 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>歷史</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="149"/>
+      <location filename="../windows/editorwindow.cpp" line="153"/>
       <source>Results in the separate tab</source>
       <translation>在新選項卡中顯示結果</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="150"/>
+      <location filename="../windows/editorwindow.cpp" line="154"/>
       <source>Results below the query</source>
       <translation>在查詢下方顯示結果</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="187"/>
-      <location filename="../windows/editorwindow.cpp" line="189"/>
+      <location filename="../windows/editorwindow.cpp" line="191"/>
+      <location filename="../windows/editorwindow.cpp" line="193"/>
       <source>SQL editor %1</source>
       <translation>SQL 編輯器 %1</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="80"/>
-      <location filename="../windows/editorwindow.cpp" line="365"/>
+      <location filename="../windows/editorwindow.cpp" line="369"/>
       <source>Results</source>
       <translation>結果</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="400"/>
+      <location filename="../windows/editorwindow.cpp" line="404"/>
       <source>Execute query</source>
       <translation>執行語句</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="401"/>
+      <location filename="../windows/editorwindow.cpp" line="405"/>
       <source>Explain query</source>
       <translation>解釋查詢</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="404"/>
+      <location filename="../windows/editorwindow.cpp" line="408"/>
       <source>Clear execution history</source>
       <comment>sql editor</comment>
       <translation>清除執行歷史</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="406"/>
+      <location filename="../windows/editorwindow.cpp" line="410"/>
       <source>Export results</source>
       <comment>sql editor</comment>
       <translation>匯出結果</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="408"/>
+      <location filename="../windows/editorwindow.cpp" line="412"/>
       <source>Create view from query</source>
       <comment>sql editor</comment>
       <translation>從查詢建立檢視</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="418"/>
+      <location filename="../windows/editorwindow.cpp" line="422"/>
       <source>Previous database</source>
       <translation>前一個數據庫</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="419"/>
+      <location filename="../windows/editorwindow.cpp" line="423"/>
       <source>Next database</source>
       <translation>後一個數據庫</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="422"/>
+      <location filename="../windows/editorwindow.cpp" line="426"/>
       <source>Show next tab</source>
       <comment>sql editor</comment>
       <translation>顯示下一個標籤</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="423"/>
+      <location filename="../windows/editorwindow.cpp" line="427"/>
       <source>Show previous tab</source>
       <comment>sql editor</comment>
       <translation>顯示上一個標籤</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="424"/>
+      <location filename="../windows/editorwindow.cpp" line="428"/>
       <source>Focus results below</source>
       <comment>sql editor</comment>
       <translation>切換焦點到下方的結果</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="425"/>
+      <location filename="../windows/editorwindow.cpp" line="429"/>
       <source>Focus SQL editor above</source>
       <comment>sql editor</comment>
       <translation>切換焦點到上方的 SQL 編輯器</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="426"/>
+      <location filename="../windows/editorwindow.cpp" line="430"/>
       <source>Delete selected SQL history entries</source>
       <comment>sql editor</comment>
       <translation>刪除選中的 SQL 歷史記錄項</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="427"/>
+      <location filename="../windows/editorwindow.cpp" line="431"/>
       <source>Execute single query under cursor</source>
       <translation type="unfinished">Execute single query under cursor</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="428"/>
+      <location filename="../windows/editorwindow.cpp" line="432"/>
       <source>Execute all queries in editor</source>
       <translation type="unfinished">Execute all queries in editor</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="478"/>
+      <location filename="../windows/editorwindow.cpp" line="482"/>
       <source>Active database (%1/%2)</source>
       <translation>活動資料庫 (%1/%2)</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="594"/>
+      <location filename="../windows/editorwindow.cpp" line="598"/>
       <source>Query finished in %1 second(s). Rows affected: %2</source>
       <translation>查詢用時 %1 秒。影響行數：%2</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="598"/>
+      <location filename="../windows/editorwindow.cpp" line="602"/>
       <source>Query finished in %1 second(s).</source>
       <translation>查詢用時 %1 秒。</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="712"/>
+      <location filename="../windows/editorwindow.cpp" line="716"/>
       <source>Clear execution history</source>
       <translation>清除執行歷史</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="712"/>
+      <location filename="../windows/editorwindow.cpp" line="716"/>
       <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
       <translation>確定要刪除全部的 SQL 執行歷史嗎？刪除後不能恢復。</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="737"/>
+      <location filename="../windows/editorwindow.cpp" line="741"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="758"/>
+      <location filename="../windows/editorwindow.cpp" line="762"/>
       <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
       <translation>沒有在 SQL 編輯器中選中資料庫。無法為未知的資料庫建立檢視。</translation>
     </message>
     <message>
-      <location filename="../windows/editorwindow.cpp" line="808"/>
+      <location filename="../windows/editorwindow.cpp" line="812"/>
       <source>Editor window &quot;%1&quot; has uncommitted data.</source>
       <translation>編輯器視窗“%1”內有未提交的資料。</translation>
     </message>
@@ -3495,7 +3495,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="326"/>
-      <location filename="../windows/functionseditor.cpp" line="445"/>
+      <location filename="../windows/functionseditor.cpp" line="447"/>
       <source>Function implementation code:</source>
       <translation>函式實現程式碼：</translation>
     </message>
@@ -3570,38 +3570,38 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>聚合函式</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="428"/>
+      <location filename="../windows/functionseditor.cpp" line="430"/>
       <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
       <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="441"/>
+      <location filename="../windows/functionseditor.cpp" line="443"/>
       <source>Pick the implementation language.</source>
       <translation>選擇實現語言。</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="445"/>
+      <location filename="../windows/functionseditor.cpp" line="447"/>
       <source>Per step code:</source>
       <translation>步進程式碼：</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="451"/>
+      <location filename="../windows/functionseditor.cpp" line="453"/>
       <source>Enter a non-empty implementation code.</source>
       <translation>請輸入非空的實現程式碼。</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="524"/>
+      <location filename="../windows/functionseditor.cpp" line="526"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
       <translation>引數</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="628"/>
+      <location filename="../windows/functionseditor.cpp" line="630"/>
       <source>Function argument cannot be empty and it cannot have duplicated name.</source>
       <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-      <location filename="../windows/functionseditor.cpp" line="676"/>
+      <location filename="../windows/functionseditor.cpp" line="678"/>
       <source>Functions editor window has uncommitted modifications.</source>
       <translation>函式編輯器視窗有未提交的更改。</translation>
     </message>
@@ -3927,315 +3927,315 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>檢視工具欄</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="117"/>
+      <location filename="../mainwindow.cpp" line="124"/>
       <source>Configuration widgets</source>
       <translation>設定檔部件</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="118"/>
+      <location filename="../mainwindow.cpp" line="125"/>
       <source>Syntax highlighting engines</source>
       <translation>語法高亮引擎</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="119"/>
+      <location filename="../mainwindow.cpp" line="126"/>
       <source>Data editors</source>
       <translation>資料編輯器</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="132"/>
+      <location filename="../mainwindow.cpp" line="139"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
       <translation>正在以除錯模式執行。按下 %1 或使用 幫助 - 開啟除錯控制檯 選單來開啟除錯控制檯。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="134"/>
+      <location filename="../mainwindow.cpp" line="141"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
       <translation>正在以除錯模式執行。除錯資訊將會被輸出在標準輸出中。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="234"/>
+      <location filename="../mainwindow.cpp" line="241"/>
       <source>You need to restart application to make the language change take effect.</source>
       <translation>語言變更在程式重啟後生效。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="279"/>
+      <location filename="../mainwindow.cpp" line="286"/>
       <source>Open SQL &amp;editor</source>
       <translation>開啟 SQL 編輯器(&amp;E)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="280"/>
+      <location filename="../mainwindow.cpp" line="287"/>
       <source>Open DDL &amp;history</source>
       <translation>開啟 DDL 歷史(&amp;H)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="281"/>
+      <location filename="../mainwindow.cpp" line="288"/>
       <source>Open SQL &amp;functions editor</source>
       <translation>開啟 SQL 函式編輯器(&amp;F)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="282"/>
+      <location filename="../mainwindow.cpp" line="289"/>
       <source>Open code &amp;snippets editor</source>
       <translation type="unfinished">Open code &amp;snippets editor</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="283"/>
+      <location filename="../mainwindow.cpp" line="290"/>
       <source>Open &amp;collations editor</source>
       <translation>開啟字元序編輯器(&amp;C)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="284"/>
+      <location filename="../mainwindow.cpp" line="291"/>
       <source>Open ex&amp;tension manager</source>
       <translation>開啟擴充套件管理器(&amp;T)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="285"/>
+      <location filename="../mainwindow.cpp" line="292"/>
       <source>&amp;Import</source>
       <translation>匯入(&amp;I)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="286"/>
+      <location filename="../mainwindow.cpp" line="293"/>
       <source>E&amp;xport</source>
       <translation>匯出(&amp;X)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="288"/>
+      <location filename="../mainwindow.cpp" line="295"/>
       <source>Open confi&amp;guration dialog</source>
       <translation>開啟設定檔對話方塊(&amp;G)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="290"/>
+      <location filename="../mainwindow.cpp" line="297"/>
       <source>&amp;Tile windows</source>
       <translation>平鋪視窗(&amp;T)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="291"/>
+      <location filename="../mainwindow.cpp" line="298"/>
       <source>Tile windows &amp;horizontally</source>
       <translation>水平排列視窗(&amp;H)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="292"/>
+      <location filename="../mainwindow.cpp" line="299"/>
       <source>Tile windows &amp;vertically</source>
       <translation>垂直排列視窗(&amp;V)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="293"/>
+      <location filename="../mainwindow.cpp" line="300"/>
       <source>&amp;Cascade windows</source>
       <translation>層疊視窗(&amp;C)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="294"/>
+      <location filename="../mainwindow.cpp" line="301"/>
       <source>Next window</source>
       <translation>下一個視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="295"/>
+      <location filename="../mainwindow.cpp" line="302"/>
       <source>Previous window</source>
       <translation>上一個視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="296"/>
+      <location filename="../mainwindow.cpp" line="303"/>
       <source>Hide status field</source>
       <translation>隱藏狀態列</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="300"/>
+      <location filename="../mainwindow.cpp" line="307"/>
       <source>Close &amp;all windows</source>
       <translation>關閉全部視窗(&amp;A)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="303"/>
+      <location filename="../mainwindow.cpp" line="310"/>
       <source>Re&amp;store recently closed window</source>
       <translation>還原最近關閉的視窗(&amp;S)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="298"/>
+      <location filename="../mainwindow.cpp" line="305"/>
       <source>Close current &amp;window</source>
       <translation>關閉目前視窗(&amp;W)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="120"/>
+      <location filename="../mainwindow.cpp" line="127"/>
       <source>Data renderers</source>
       <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="299"/>
+      <location filename="../mainwindow.cpp" line="306"/>
       <source>Close &amp;other windows</source>
       <translation>關閉其他視窗(&amp;O)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="301"/>
+      <location filename="../mainwindow.cpp" line="308"/>
       <source>Close windows on the &amp;left</source>
       <translation>關閉左側的視窗(&amp;L)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="302"/>
+      <location filename="../mainwindow.cpp" line="309"/>
       <source>Close windows on the &amp;right</source>
       <translation>關閉右側的視窗(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="304"/>
+      <location filename="../mainwindow.cpp" line="311"/>
       <source>Re&amp;name selected window</source>
       <translation>重新命名目前視窗(&amp;N)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="306"/>
+      <location filename="../mainwindow.cpp" line="313"/>
       <source>Open Debug Console</source>
       <translation>開啟除錯終端</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="307"/>
+      <location filename="../mainwindow.cpp" line="314"/>
       <source>Open CSS Console</source>
       <translation>開啟 CSS 控制檯</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="308"/>
+      <location filename="../mainwindow.cpp" line="315"/>
       <source>Report a &amp;bug</source>
       <translation>提報 Bug (&amp;B)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="309"/>
+      <location filename="../mainwindow.cpp" line="316"/>
       <source>D&amp;onate</source>
       <translation>捐贈(&amp;O)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="310"/>
+      <location filename="../mainwindow.cpp" line="317"/>
       <source>Propose a new &amp;feature</source>
       <translation>提議新增功能(&amp;F)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="311"/>
+      <location filename="../mainwindow.cpp" line="318"/>
       <source>&amp;About</source>
       <translation>關於(&amp;A)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="312"/>
+      <location filename="../mainwindow.cpp" line="319"/>
       <source>&amp;Licenses</source>
       <translation>許可協議(&amp;L)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="313"/>
+      <location filename="../mainwindow.cpp" line="320"/>
       <source>Open home &amp;page</source>
       <translation>訪問主頁(&amp;P)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="314"/>
+      <location filename="../mainwindow.cpp" line="321"/>
       <source>User &amp;Manual</source>
       <translation>使用者手冊(&amp;M)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="315"/>
+      <location filename="../mainwindow.cpp" line="322"/>
       <source>SQLite &amp;documentation</source>
       <translation>SQLite 文件(&amp;D)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="316"/>
+      <location filename="../mainwindow.cpp" line="323"/>
       <source>Bugs and feature &amp;requests</source>
       <translation>Bug 與功能請求(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="317"/>
+      <location filename="../mainwindow.cpp" line="324"/>
       <source>Quit</source>
       <translation>退出</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="319"/>
+      <location filename="../mainwindow.cpp" line="326"/>
       <source>Check for &amp;updates</source>
       <translation>檢查更新(&amp;U)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="342"/>
+      <location filename="../mainwindow.cpp" line="349"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
       <translation>資料庫(&amp;D)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="365"/>
+      <location filename="../mainwindow.cpp" line="372"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
       <translation>結構(&amp;S)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="389"/>
+      <location filename="../mainwindow.cpp" line="396"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
       <translation>檢視(&amp;V)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="393"/>
+      <location filename="../mainwindow.cpp" line="400"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
       <translation>視窗清單</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="416"/>
+      <location filename="../mainwindow.cpp" line="423"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
       <translation>工具(&amp;T)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="432"/>
+      <location filename="../mainwindow.cpp" line="439"/>
       <source>&amp;Help</source>
       <translation>幫助(&amp;H)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="610"/>
+      <location filename="../mainwindow.cpp" line="617"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>未能設定風格：%1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="762"/>
+      <location filename="../mainwindow.cpp" line="792"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="778"/>
+      <location filename="../mainwindow.cpp" line="808"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="821"/>
+      <location filename="../mainwindow.cpp" line="851"/>
       <source>Rename window</source>
       <translation>重新命名視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="821"/>
+      <location filename="../mainwindow.cpp" line="851"/>
       <source>Enter new name for the window:</source>
       <translation>請輸入視窗的新名稱：</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="923"/>
+      <location filename="../mainwindow.cpp" line="953"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;點此檢視更新詳情&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="929"/>
+      <location filename="../mainwindow.cpp" line="959"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1013"/>
+      <location filename="../mainwindow.cpp" line="1043"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
       <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1025"/>
+      <location filename="../mainwindow.cpp" line="1050"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
       <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1127"/>
+      <location filename="../mainwindow.cpp" line="1166"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>命令列引數傳遞的資料庫 (%1) 已在清單中，名為：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1134"/>
+      <location filename="../mainwindow.cpp" line="1173"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>命令列引數傳遞的資料庫 (%1) 已臨時新增到清單中，名為：%2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1139"/>
+      <location filename="../mainwindow.cpp" line="1178"/>
       <source>Could not add database %1 to list.</source>
       <translation>未能將資料 %1 新增到清單</translation>
     </message>
@@ -5002,82 +5002,82 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation>刪除當前行</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="45"/>
+      <location filename="../mainwindow.h" line="47"/>
       <source>Main window</source>
       <translation>主視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="46"/>
+      <location filename="../mainwindow.h" line="48"/>
       <source>Open SQL editor</source>
       <translation>開啟 SQL 編輯器</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="47"/>
+      <location filename="../mainwindow.h" line="49"/>
       <source>Open DDL history window</source>
       <translation type="unfinished">Open DDL history window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="48"/>
+      <location filename="../mainwindow.h" line="50"/>
       <source>Open snippets editor window</source>
       <translation type="unfinished">Open snippets editor window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="49"/>
+      <location filename="../mainwindow.h" line="51"/>
       <source>Open function editor window</source>
       <translation type="unfinished">Open function editor window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="50"/>
+      <location filename="../mainwindow.h" line="52"/>
       <source>Open collation editor window</source>
       <translation type="unfinished">Open collation editor window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="51"/>
+      <location filename="../mainwindow.h" line="53"/>
       <source>Open extension manager window</source>
       <translation type="unfinished">Open extension manager window</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="52"/>
+      <location filename="../mainwindow.h" line="54"/>
       <source>Previous window</source>
       <translation>上一個視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="53"/>
+      <location filename="../mainwindow.h" line="55"/>
       <source>Next window</source>
       <translation>下一個視窗</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="54"/>
+      <location filename="../mainwindow.h" line="56"/>
       <source>Hide status area</source>
       <translation>隱藏狀態列</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="55"/>
+      <location filename="../mainwindow.h" line="57"/>
       <source>Open user manual</source>
       <translation type="unfinished">Open user manual</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="56"/>
+      <location filename="../mainwindow.h" line="58"/>
       <source>Open configuration dialog</source>
       <translation>開啟設定檔對話方塊</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="57"/>
+      <location filename="../mainwindow.h" line="59"/>
       <source>Open Debug Console</source>
       <translation>開啟除錯終端</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="58"/>
+      <location filename="../mainwindow.h" line="60"/>
       <source>Open CSS Console</source>
       <translation>開啟 CSS 控制檯</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="59"/>
+      <location filename="../mainwindow.h" line="61"/>
       <source>Open the About dialog</source>
       <translation type="unfinished">Open the About dialog</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="60"/>
+      <location filename="../mainwindow.h" line="62"/>
       <source>Quit the application</source>
       <translation>退出程式</translation>
     </message>
@@ -6236,42 +6236,42 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>手動編輯擴充套件</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="255"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="257"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation>指定路徑的檔案不存在或無法讀取。</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="261"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="263"/>
       <source>Unable to load extension: %1</source>
       <translation>無法載入擴充套件：%1</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="376"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="378"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation>初始化函式名無效。函式名只能包含字母數字字元和下劃線。</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="445"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="447"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation>動態連結庫 (*.dll);;所有檔案 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="447"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="449"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation>共享庫 (*.so);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="449"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="451"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation>動態庫 (*.dylib);;所有檔案 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="451"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="453"/>
       <source>All files (*)</source>
       <translation>所有檔案 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="453"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="455"/>
       <source>Open file</source>
       <translation>開啟檔案</translation>
     </message>
@@ -6554,7 +6554,7 @@ NULL</source>
     </message>
     <message>
       <location filename="../windows/tablewindow.ui" line="213"/>
-      <location filename="../windows/tablewindow.cpp" line="1744"/>
+      <location filename="../windows/tablewindow.cpp" line="1751"/>
       <source>Data</source>
       <translation>資料</translation>
     </message>
@@ -6579,196 +6579,196 @@ NULL</source>
       <translation>DDL</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="208"/>
+      <location filename="../windows/tablewindow.cpp" line="215"/>
       <source>Export table</source>
       <comment>table window</comment>
       <translation>匯出表</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="209"/>
+      <location filename="../windows/tablewindow.cpp" line="216"/>
       <source>Import data to table</source>
       <comment>table window</comment>
       <translation>匯入資料至表</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="210"/>
+      <location filename="../windows/tablewindow.cpp" line="217"/>
       <source>Populate table</source>
       <comment>table window</comment>
       <translation>填充表</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="224"/>
+      <location filename="../windows/tablewindow.cpp" line="231"/>
       <source>Refresh structure</source>
       <comment>table window</comment>
       <translation>重新整理結構</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="226"/>
+      <location filename="../windows/tablewindow.cpp" line="233"/>
       <source>Commit structure changes</source>
       <comment>table window</comment>
       <translation>提交結構更改</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="227"/>
+      <location filename="../windows/tablewindow.cpp" line="234"/>
       <source>Rollback structure changes</source>
       <comment>table window</comment>
       <translation>回滾結構更改</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="228"/>
+      <location filename="../windows/tablewindow.cpp" line="235"/>
       <source>Add column</source>
       <comment>table window</comment>
       <translation>新增列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="229"/>
+      <location filename="../windows/tablewindow.cpp" line="236"/>
       <source>Edit column</source>
       <comment>table window</comment>
       <translation>編輯列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="230"/>
-      <location filename="../windows/tablewindow.cpp" line="325"/>
+      <location filename="../windows/tablewindow.cpp" line="237"/>
+      <location filename="../windows/tablewindow.cpp" line="332"/>
       <source>Delete column</source>
       <comment>table window</comment>
       <translation>刪除列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="231"/>
+      <location filename="../windows/tablewindow.cpp" line="238"/>
       <source>Move column up</source>
       <comment>table window</comment>
       <translation>上移列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="232"/>
+      <location filename="../windows/tablewindow.cpp" line="239"/>
       <source>Move column down</source>
       <comment>table window</comment>
       <translation>下移列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="241"/>
+      <location filename="../windows/tablewindow.cpp" line="248"/>
       <source>Create similar table</source>
       <comment>table window</comment>
       <translation>建立相似的表</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="242"/>
+      <location filename="../windows/tablewindow.cpp" line="249"/>
       <source>Reset autoincrement value</source>
       <comment>table window</comment>
       <translation>重置自動遞增值</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="245"/>
+      <location filename="../windows/tablewindow.cpp" line="252"/>
       <source>Add table constraint</source>
       <comment>table window</comment>
       <translation>新增表約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="246"/>
+      <location filename="../windows/tablewindow.cpp" line="253"/>
       <source>Edit table constraint</source>
       <comment>table window</comment>
       <translation>編輯表約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="247"/>
+      <location filename="../windows/tablewindow.cpp" line="254"/>
       <source>Delete table constraint</source>
       <comment>table window</comment>
       <translation>刪除表約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="248"/>
+      <location filename="../windows/tablewindow.cpp" line="255"/>
       <source>Move table constraint up</source>
       <comment>table window</comment>
       <translation>向上移動表約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="249"/>
+      <location filename="../windows/tablewindow.cpp" line="256"/>
       <source>Move table constraint down</source>
       <comment>table window</comment>
       <translation>向下一移動表約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="251"/>
+      <location filename="../windows/tablewindow.cpp" line="258"/>
       <source>Add table primary key</source>
       <comment>table window</comment>
       <translation>新增主鍵</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="252"/>
+      <location filename="../windows/tablewindow.cpp" line="259"/>
       <source>Add table foreign key</source>
       <comment>table window</comment>
       <translation>新增外來鍵</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="253"/>
+      <location filename="../windows/tablewindow.cpp" line="260"/>
       <source>Add table unique constraint</source>
       <comment>table window</comment>
       <translation>新增表唯一約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="254"/>
+      <location filename="../windows/tablewindow.cpp" line="261"/>
       <source>Add table check constraint</source>
       <comment>table window</comment>
       <translation>新增表檢查約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="272"/>
+      <location filename="../windows/tablewindow.cpp" line="279"/>
       <source>Refresh index list</source>
       <comment>table window</comment>
       <translation>重新整理索引清單</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="234"/>
-      <location filename="../windows/tablewindow.cpp" line="274"/>
+      <location filename="../windows/tablewindow.cpp" line="241"/>
+      <location filename="../windows/tablewindow.cpp" line="281"/>
       <source>Create index</source>
       <comment>table window</comment>
       <translation>建立索引</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="275"/>
+      <location filename="../windows/tablewindow.cpp" line="282"/>
       <source>Edit index</source>
       <comment>table window</comment>
       <translation>編輯索引</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="276"/>
+      <location filename="../windows/tablewindow.cpp" line="283"/>
       <source>Delete index</source>
       <comment>table window</comment>
       <translation>刪除索引</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="282"/>
+      <location filename="../windows/tablewindow.cpp" line="289"/>
       <source>Refresh trigger list</source>
       <comment>table window</comment>
       <translation>重新整理觸發器清單</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="235"/>
-      <location filename="../windows/tablewindow.cpp" line="284"/>
+      <location filename="../windows/tablewindow.cpp" line="242"/>
+      <location filename="../windows/tablewindow.cpp" line="291"/>
       <source>Create trigger</source>
       <comment>table window</comment>
       <translation>建立觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="285"/>
+      <location filename="../windows/tablewindow.cpp" line="292"/>
       <source>Edit trigger</source>
       <comment>table window</comment>
       <translation>編輯觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="286"/>
+      <location filename="../windows/tablewindow.cpp" line="293"/>
       <source>Delete trigger</source>
       <comment>table window</comment>
       <translation>刪除觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="324"/>
+      <location filename="../windows/tablewindow.cpp" line="331"/>
       <source>Are you sure you want to delete column &apos;%1&apos;?</source>
       <comment>table window</comment>
       <translation>您確定要刪除欄位“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="374"/>
+      <location filename="../windows/tablewindow.cpp" line="381"/>
       <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
       <comment>table window</comment>
@@ -6776,229 +6776,229 @@ Would you like to proceed?</source>
 是否繼續？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="376"/>
+      <location filename="../windows/tablewindow.cpp" line="383"/>
       <source>Table modification</source>
       <comment>table window</comment>
       <translation>修改表</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="501"/>
+      <location filename="../windows/tablewindow.cpp" line="508"/>
       <source>Could not load data for table %1. Error details: %2</source>
       <translation>無法載入表 %1 的資料。錯誤詳情：%2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="645"/>
+      <location filename="../windows/tablewindow.cpp" line="652"/>
       <source>Could not process the %1 table correctly. Unable to open a table window.</source>
       <translation>無法正確處理表 %1。無法開啟表視窗。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="669"/>
+      <location filename="../windows/tablewindow.cpp" line="676"/>
       <source>Database</source>
       <translation>資料庫</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="701"/>
+      <location filename="../windows/tablewindow.cpp" line="708"/>
       <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
       <translation>無法還原視窗 %1，此視窗中沒有儲存資料庫或表的會話。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="707"/>
+      <location filename="../windows/tablewindow.cpp" line="714"/>
       <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
       <translation>無法還原視窗“%1”，此視窗中沒有儲存資料庫或表的會話。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="714"/>
+      <location filename="../windows/tablewindow.cpp" line="721"/>
       <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
       <translation>無法還原視窗“%1”，無法解析資料庫 %2。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="723"/>
+      <location filename="../windows/tablewindow.cpp" line="730"/>
       <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
       <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="748"/>
-      <location filename="../windows/tablewindow.cpp" line="750"/>
+      <location filename="../windows/tablewindow.cpp" line="755"/>
+      <location filename="../windows/tablewindow.cpp" line="757"/>
       <source>New table %1</source>
       <translation>新表 %1</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="891"/>
+      <location filename="../windows/tablewindow.cpp" line="898"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
       <translation>成功提交表 &apos;%1&apos; 的修改。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="895"/>
+      <location filename="../windows/tablewindow.cpp" line="902"/>
       <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation>成功提交對錶 &apos;%1&apos; (原名 &apos;%2&apos;) 的更改。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="933"/>
+      <location filename="../windows/tablewindow.cpp" line="940"/>
       <source>Could not commit table structure. Error message: %1</source>
       <comment>table window</comment>
       <translation>無法提交表結構。錯誤資訊：%1</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="957"/>
+      <location filename="../windows/tablewindow.cpp" line="964"/>
       <source>Reset autoincrement</source>
       <translation>重置自動遞增</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="957"/>
+      <location filename="../windows/tablewindow.cpp" line="964"/>
       <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
       <translation>您確定要重置表“%1”的自動遞增值嗎？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="964"/>
+      <location filename="../windows/tablewindow.cpp" line="971"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation>重置表“%1”的自動遞增值時出錯：%2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="966"/>
+      <location filename="../windows/tablewindow.cpp" line="973"/>
       <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
       <translation>成功重置表“%1”的自動遞增值。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1054"/>
+      <location filename="../windows/tablewindow.cpp" line="1061"/>
       <source>Empty name</source>
       <translation>空名稱</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1054"/>
+      <location filename="../windows/tablewindow.cpp" line="1061"/>
       <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
       <translation>SQLite 允許為表使用空白名稱，但不推薦使用空白名稱。
 您確定要建立一個空白名稱的表？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1063"/>
+      <location filename="../windows/tablewindow.cpp" line="1070"/>
       <source>Cannot create a table without at least one column.</source>
       <translation>無法建立沒有任何列的表。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1089"/>
+      <location filename="../windows/tablewindow.cpp" line="1096"/>
       <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
       <translation>無法建立表 %1，沒有定義主鍵。取消選中 %2 或者定義一個主鍵。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1096"/>
+      <location filename="../windows/tablewindow.cpp" line="1103"/>
       <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
       <translation>使用 %1 語句時無法為主鍵使用自動遞增。取消選中 %2，或者將一個主鍵設為自動遞增。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1115"/>
+      <location filename="../windows/tablewindow.cpp" line="1122"/>
       <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
       <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1299"/>
+      <location filename="../windows/tablewindow.cpp" line="1306"/>
       <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
       <comment>table window</comment>
       <translation>您確定要刪除表約束“%1”嗎？</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1300"/>
+      <location filename="../windows/tablewindow.cpp" line="1307"/>
       <source>Delete constraint</source>
       <comment>table window</comment>
       <translation>刪除約束</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1355"/>
+      <location filename="../windows/tablewindow.cpp" line="1362"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1368"/>
+      <location filename="../windows/tablewindow.cpp" line="1375"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1401"/>
+      <location filename="../windows/tablewindow.cpp" line="1408"/>
       <source>Uncommitted changes</source>
       <translation>未提交的更改</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1402"/>
+      <location filename="../windows/tablewindow.cpp" line="1409"/>
       <source>There are uncommitted structure modifications.</source>
       <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1404"/>
+      <location filename="../windows/tablewindow.cpp" line="1411"/>
       <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
       <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1408"/>
+      <location filename="../windows/tablewindow.cpp" line="1415"/>
       <source>Commit modifications and browse data</source>
       <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1407"/>
+      <location filename="../windows/tablewindow.cpp" line="1414"/>
       <source>Go back to structure tab</source>
       <translation>返回結構選項卡</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1615"/>
+      <location filename="../windows/tablewindow.cpp" line="1622"/>
       <source>Name</source>
       <comment>table window indexes</comment>
       <translation>名稱</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1616"/>
+      <location filename="../windows/tablewindow.cpp" line="1623"/>
       <source>Unique</source>
       <comment>table window indexes</comment>
       <translation>唯一</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1617"/>
+      <location filename="../windows/tablewindow.cpp" line="1624"/>
       <source>Columns</source>
       <comment>table window indexes</comment>
       <translation>列</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1618"/>
+      <location filename="../windows/tablewindow.cpp" line="1625"/>
       <source>Partial index condition</source>
       <comment>table window indexes</comment>
       <translation>部分索引條件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1669"/>
+      <location filename="../windows/tablewindow.cpp" line="1676"/>
       <source>Name</source>
       <comment>table window triggers</comment>
       <translation>名稱</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1670"/>
+      <location filename="../windows/tablewindow.cpp" line="1677"/>
       <source>Event</source>
       <comment>table window triggers</comment>
       <translation>事件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1671"/>
+      <location filename="../windows/tablewindow.cpp" line="1678"/>
       <source>Condition</source>
       <comment>table window triggers</comment>
       <translation>條件</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1672"/>
+      <location filename="../windows/tablewindow.cpp" line="1679"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>詳情</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1786"/>
+      <location filename="../windows/tablewindow.cpp" line="1793"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation>表視窗“%1”有未提交的結構更改與資料。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1788"/>
+      <location filename="../windows/tablewindow.cpp" line="1795"/>
       <source>Table window &quot;%1&quot; has uncommitted data.</source>
       <translation>表視窗“%1”有未提交的資料。</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="1790"/>
+      <location filename="../windows/tablewindow.cpp" line="1797"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation>表視窗“%1”有未提交的結構更改。</translation>
     </message>
@@ -7171,7 +7171,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
       <location filename="../windows/viewwindow.ui" line="170"/>
-      <location filename="../windows/viewwindow.cpp" line="899"/>
+      <location filename="../windows/viewwindow.cpp" line="904"/>
       <source>Data</source>
       <translation>資料</translation>
     </message>
@@ -7213,235 +7213,235 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation>新檢視 %1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="280"/>
+      <location filename="../windows/viewwindow.cpp" line="285"/>
       <source>Database</source>
       <translation>資料庫</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="335"/>
+      <location filename="../windows/viewwindow.cpp" line="340"/>
       <source>Refresh the view</source>
       <comment>view window</comment>
       <translation>重新整理檢視</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="337"/>
+      <location filename="../windows/viewwindow.cpp" line="342"/>
       <source>Commit the view changes</source>
       <comment>view window</comment>
       <translation>提交檢視更改</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="338"/>
+      <location filename="../windows/viewwindow.cpp" line="343"/>
       <source>Rollback the view changes</source>
       <comment>view window</comment>
       <translation>回滾檢視更改</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="342"/>
+      <location filename="../windows/viewwindow.cpp" line="347"/>
       <source>Explicit column names</source>
       <translation>明確列名稱</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="348"/>
+      <location filename="../windows/viewwindow.cpp" line="353"/>
       <source>Generate output column names automatically basing on result columns of the view.</source>
       <translation>基於檢視的結果列自動生成輸出列名稱。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="349"/>
+      <location filename="../windows/viewwindow.cpp" line="354"/>
       <source>Add column</source>
       <comment>view window</comment>
       <translation>新增列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="350"/>
+      <location filename="../windows/viewwindow.cpp" line="355"/>
       <source>Edit column</source>
       <comment>view window</comment>
       <translation>編輯列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="351"/>
+      <location filename="../windows/viewwindow.cpp" line="356"/>
       <source>Delete column</source>
       <comment>view window</comment>
       <translation>刪除列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="352"/>
+      <location filename="../windows/viewwindow.cpp" line="357"/>
       <source>Move column up</source>
       <comment>view window</comment>
       <translation>上移列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="353"/>
+      <location filename="../windows/viewwindow.cpp" line="358"/>
       <source>Move column down</source>
       <comment>view window</comment>
       <translation>下移列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="359"/>
+      <location filename="../windows/viewwindow.cpp" line="364"/>
       <source>Refresh trigger list</source>
       <comment>view window</comment>
       <translation>重新整理觸發器清單</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="361"/>
+      <location filename="../windows/viewwindow.cpp" line="366"/>
       <source>Create new trigger</source>
       <comment>view window</comment>
       <translation>建立新觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="362"/>
+      <location filename="../windows/viewwindow.cpp" line="367"/>
       <source>Edit selected trigger</source>
       <comment>view window</comment>
       <translation>編輯選中觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="363"/>
+      <location filename="../windows/viewwindow.cpp" line="368"/>
       <source>Delete selected trigger</source>
       <comment>view window</comment>
       <translation>刪除選中觸發器</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="384"/>
+      <location filename="../windows/viewwindow.cpp" line="389"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
       <translation>檢視“%1”有未提交的結構更改和資料。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="386"/>
+      <location filename="../windows/viewwindow.cpp" line="391"/>
       <source>View window &quot;%1&quot; has uncommitted data.</source>
       <translation>檢視“%1”有未提交的資料。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="388"/>
+      <location filename="../windows/viewwindow.cpp" line="393"/>
       <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation>檢視“%1”有未提交的結構更改。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="611"/>
+      <location filename="../windows/viewwindow.cpp" line="616"/>
       <source>Could not load data for view %1. Error details: %2</source>
       <translation>無法載入檢視 %1 的資料。錯誤詳情：%2</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="623"/>
+      <location filename="../windows/viewwindow.cpp" line="628"/>
       <source>Uncommitted changes</source>
       <translation>未提交的更改</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="624"/>
+      <location filename="../windows/viewwindow.cpp" line="629"/>
       <source>There are uncommitted structure modifications.</source>
       <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="626"/>
+      <location filename="../windows/viewwindow.cpp" line="631"/>
       <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
       <translation type="unfinished">You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="630"/>
+      <location filename="../windows/viewwindow.cpp" line="635"/>
       <source>Commit modifications and browse data</source>
       <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="629"/>
+      <location filename="../windows/viewwindow.cpp" line="634"/>
       <source>Go back to structure tab</source>
       <translation>返回結構選項卡</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="682"/>
+      <location filename="../windows/viewwindow.cpp" line="687"/>
       <source>View &apos;%1&apos; was committed successfully.</source>
       <translation>成功提交檢視“%1”。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="684"/>
+      <location filename="../windows/viewwindow.cpp" line="689"/>
       <source>Committed changes for view &apos;%1&apos; successfully.</source>
       <translation>成功提交對檢視“%1”的更改。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="686"/>
+      <location filename="../windows/viewwindow.cpp" line="691"/>
       <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
       <translation>成功提交對檢視“%1” (原名“%2”)的更改。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="709"/>
+      <location filename="../windows/viewwindow.cpp" line="714"/>
       <source>Could not commit view changes. Error message: %1</source>
       <comment>view window</comment>
       <translation>無法提交檢視更改。錯誤資訊：%1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="853"/>
+      <location filename="../windows/viewwindow.cpp" line="858"/>
       <source>Override columns</source>
       <translation>覆蓋列</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="853"/>
+      <location filename="../windows/viewwindow.cpp" line="858"/>
       <source>Currently defined columns will be overriden. Do you want to continue?</source>
       <translation>當前定義的列將被覆蓋。您要繼續嗎？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="876"/>
+      <location filename="../windows/viewwindow.cpp" line="881"/>
       <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
       <translation>無法確定檢視所返回的列。查詢可能不完整或包含錯誤。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="931"/>
+      <location filename="../windows/viewwindow.cpp" line="936"/>
       <source>Name</source>
       <comment>view window triggers</comment>
       <translation>名稱</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="932"/>
+      <location filename="../windows/viewwindow.cpp" line="937"/>
       <source>Instead of</source>
       <comment>view window triggers</comment>
       <translation type="unfinished">Instead of</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="933"/>
+      <location filename="../windows/viewwindow.cpp" line="938"/>
       <source>Condition</source>
       <comment>view window triggers</comment>
       <translation>條件</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="934"/>
+      <location filename="../windows/viewwindow.cpp" line="939"/>
       <source>Details</source>
       <comment>table window triggers</comment>
       <translation>詳情</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="978"/>
+      <location filename="../windows/viewwindow.cpp" line="983"/>
       <source>Could not process the %1 view correctly. Unable to open a view window.</source>
       <translation>無法正確處理檢視 %1。無法開啟檢視視窗。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1024"/>
+      <location filename="../windows/viewwindow.cpp" line="1029"/>
       <source>Empty name</source>
       <translation>空名稱</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1024"/>
+      <location filename="../windows/viewwindow.cpp" line="1029"/>
       <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
       <translation>SQLite 允許為檢視使用空白名稱，但不推薦使用空白名稱。
 您確定要建立一個空白名稱的檢視？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1036"/>
+      <location filename="../windows/viewwindow.cpp" line="1041"/>
       <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
       <translation>SELECT 語句解析失敗。請更正查詢並重試。
 詳情：%1</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1044"/>
+      <location filename="../windows/viewwindow.cpp" line="1049"/>
       <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
       <translation>因 SQLiteStudio 內部錯誤，無法修改該檢視。請報告該問題！</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1070"/>
+      <location filename="../windows/viewwindow.cpp" line="1075"/>
       <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
       <translation>用於執行的檢視程式碼無法正確解析。這是 SQLiteStudio 的 bug，請報告。</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1082"/>
+      <location filename="../windows/viewwindow.cpp" line="1087"/>
       <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
       <comment>view window</comment>
@@ -7449,7 +7449,7 @@ Would you like to proceed?</source>
 是否繼續？</translation>
     </message>
     <message>
-      <location filename="../windows/viewwindow.cpp" line="1084"/>
+      <location filename="../windows/viewwindow.cpp" line="1089"/>
       <source>View modification</source>
       <comment>view window</comment>
       <translation>檢視更改</translation>

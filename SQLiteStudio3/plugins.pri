@@ -3,9 +3,9 @@ include($$PWD/common.pri)
 CONFIG += c++20 plugin
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
-OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
-MOC_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
-UI_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
+OBJECTS_DIR = $$OBJECTS_DIR/Plugins/$$TARGET
+MOC_DIR = $$MOC_DIR/Plugins/$$TARGET
+UI_DIR = $$UI_DIR/Plugins/$$TARGET
 
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
