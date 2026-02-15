@@ -47,6 +47,10 @@ unix: {
 	BINDIR = $$PREFIX/bin
     }
     export(BINDIR)
+    isEmpty(DATADIR) {
+	DATADIR = $$PREFIX/share
+    }
+    export(DATADIR)
 }
 
 # Enable automatic translation files processing globally
