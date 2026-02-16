@@ -1,0 +1,13 @@
+find_package(Qt6 REQUIRED COMPONENTS Core Test)
+find_package(SQLite3)
+
+add_subdirectory(TestUtils)
+add_subdirectory(CompletionHelperTest)
+add_subdirectory(SelectResolverTest)
+add_subdirectory(ParserTest)
+add_subdirectory(TableModifierTest)
+add_subdirectory(HashTablesTest)
+add_subdirectory(DsvFormatsTest)
+add_subdirectory(UtilsTest)
+add_subdirectory(LexerTest)
+add_subdirectory(FormatterTest)

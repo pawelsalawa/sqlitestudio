@@ -1,0 +1,101 @@
+find_package(Qt6 REQUIRED COMPONENTS Core)
+
+set(PROJECT_HEADERS
+    formataltertable.h
+    formatanalyze.h
+    formatattach.h
+    formatbegintrans.h
+    formatcolumntype.h
+    formatcommittrans.h
+    formatcreateindex.h
+    formatcreatetable.h
+    formatcreatetrigger.h
+    formatcreateview.h
+    formatcreatevirtualtable.h
+    formatdelete.h
+    formatdetach.h
+    formatdropindex.h
+    formatdroptable.h
+    formatdroptrigger.h
+    formatdropview.h
+    formatempty.h
+    formatexpr.h
+    formatfilterover.h
+    formatforeignkey.h
+    formatindexedcolumn.h
+    formatinsert.h
+    formatlimit.h
+    formatorderby.h
+    formatpragma.h
+    formatraise.h
+    formatreindex.h
+    formatrelease.h
+    formatrollback.h
+    formatsavepoint.h
+    formatselect.h
+    formatstatement.h
+    formatupdate.h
+    formatupsert.h
+    formatvacuum.h
+    formatwindowdefinition.h
+    formatwith.h
+    sqlenterpriseformatter_global.h
+    sqlenterpriseformatter.h
+)
+
+set(PROJECT_SOURCES
+    formataltertable.cpp
+    formatanalyze.cpp
+    formatattach.cpp
+    formatbegintrans.cpp
+    formatcolumntype.cpp
+    formatcommittrans.cpp
+    formatcreateindex.cpp
+    formatcreatetable.cpp
+    formatcreatetrigger.cpp
+    formatcreateview.cpp
+    formatcreatevirtualtable.cpp
+    formatdelete.cpp
+    formatdetach.cpp
+    formatdropindex.cpp
+    formatdroptable.cpp
+    formatdroptrigger.cpp
+    formatdropview.cpp
+    formatempty.cpp
+    formatexpr.cpp
+    formatfilterover.cpp
+    formatforeignkey.cpp
+    formatindexedcolumn.cpp
+    formatinsert.cpp
+    formatlimit.cpp
+    formatorderby.cpp
+    formatpragma.cpp
+    formatraise.cpp
+    formatreindex.cpp
+    formatrelease.cpp
+    formatrollback.cpp
+    formatsavepoint.cpp
+    formatselect.cpp
+    formatstatement.cpp
+    formatupdate.cpp
+    formatupsert.cpp
+    formatvacuum.cpp
+    formatwindowdefinition.cpp
+    formatwith.cpp
+    sqlenterpriseformatter.cpp
+)
+qt_add_resources(PROJECT_SOURCES
+    sqlenterpriseformatter.qrc
+)
+qt_wrap_ui(PROJECT_SOURCES
+    sqlenterpriseformatter.ui
+)
+
+add_library(SqlEnterpriseFormatter SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+sqlitestudio_set_plugin_properties(SqlEnterpriseFormatter)
+target_compile_definitions(SqlEnterpriseFormatter PRIVATE
+    SQLENTERPRISEFORMATTER_LIBRARY
+)
+target_link_libraries(SqlEnterpriseFormatter PRIVATE
+    Qt::Core
+)
