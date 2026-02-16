@@ -1204,7 +1204,6 @@ void ConfigImpl::updateConfigDb()
                     newList << var;
             }
             CFG_CORE.Internal.Extensions.set(newList);
-            [[fallthrough]];
         }
         // Add cases here for next versions,
         // without a "break" instruction,
