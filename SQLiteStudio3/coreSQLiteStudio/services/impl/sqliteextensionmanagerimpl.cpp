@@ -58,7 +58,7 @@ void SqliteExtensionManagerImpl::scanExtensionDirs()
         extensionDirs += envDirs.split(PATH_LIST_SEPARATOR);
 
 #ifdef SQLITE_EXTENSIONS_DIR
-    extensionDirs += STRINGIFY(SQLITE_EXTENSIONS_DIR);
+    extensionDirs += SQLITE_EXTENSIONS_DIR;
 #endif
 
     for (QString& extDirPath : extensionDirs)

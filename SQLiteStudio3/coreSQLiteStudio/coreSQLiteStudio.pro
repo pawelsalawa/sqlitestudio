@@ -34,8 +34,8 @@ win32: {
     }
 }
 
-linux: {
-    DEFINES += SYS_PLUGINS_DIR=$$LIBDIR/sqlitestudio
+unix:!macx: {
+    DEFINES += "SYS_PLUGINS_DIR=\"\\\"$$LIBDIR/sqlitestudio\\\"\""
     portable: {
         DESTDIR = $$DESTDIR/lib
     }
