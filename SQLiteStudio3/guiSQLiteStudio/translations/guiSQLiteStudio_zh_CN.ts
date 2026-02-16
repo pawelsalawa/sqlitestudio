@@ -6236,42 +6236,42 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
       <translation>手动编辑扩展</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="257"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="263"/>
       <source>File with given path does not exist or is not readable.</source>
       <translation>指定路径的文件不存在或无法读取。</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="263"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="269"/>
       <source>Unable to load extension: %1</source>
       <translation>无法加载扩展：%1</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="378"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="384"/>
       <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
       <translation>初始化函数名无效。函数名只能包含字母数字字符和下划线。</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="447"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="453"/>
       <source>Dynamic link libraries (*.dll);;All files (*)</source>
       <translation>动态链接库 (*.dll);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="449"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="455"/>
       <source>Shared objects (*.so);;All files (*)</source>
       <translation>共享库 (*.so);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="451"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="457"/>
       <source>Dynamic libraries (*.dylib);;All files (*)</source>
       <translation>动态库 (*.dylib);;所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="453"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="459"/>
       <source>All files (*)</source>
       <translation>所有文件 (*)</translation>
     </message>
     <message>
-      <location filename="../windows/sqliteextensioneditor.cpp" line="455"/>
+      <location filename="../windows/sqliteextensioneditor.cpp" line="461"/>
       <source>Open file</source>
       <translation>打开文件</translation>
     </message>
