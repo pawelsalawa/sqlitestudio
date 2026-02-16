@@ -149,6 +149,12 @@ class API_EXPORT Lexer
         static TokenList tokenize(const QString& sql);
 
         /**
+         * @brief Sets up prev and next links for tokens in the list.
+         * @param tokens List of tokens to set up links for.
+         */
+        static void setupPrevNextLinks(TokenList& tokens);
+
+        /**
          * @brief Translates token pointer into common token shared pointer.
          * @param token Token pointer to translate.
          * @return Shared pointer if found, or null pointer if not found.

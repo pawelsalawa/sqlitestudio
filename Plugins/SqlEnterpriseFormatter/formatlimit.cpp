@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatLimit::FormatLimit(SqliteLimit *limit) :
-    limit(limit)
+    FormatStatement(limit), limit(limit)
 {
 }
 

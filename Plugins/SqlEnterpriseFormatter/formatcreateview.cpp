@@ -4,7 +4,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 
 FormatCreateView::FormatCreateView(SqliteCreateView* createView) :
-    createView(createView)
+    FormatStatement(createView), createView(createView)
 {
 }
 

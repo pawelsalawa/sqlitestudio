@@ -1,7 +1,7 @@
 #include "formatforeignkey.h"
 
 FormatForeignKey::FormatForeignKey(SqliteForeignKey* fk) :
-    fk(fk)
+    FormatStatement(fk), fk(fk)
 {
 }
 
@@ -31,7 +31,7 @@ void FormatForeignKey::formatInternal()
 
 
 FormatForeignKeyCondition::FormatForeignKeyCondition(SqliteForeignKey::Condition* cond) :
-    cond(cond)
+    FormatStatement(cond), cond(cond)
 {
 }
 

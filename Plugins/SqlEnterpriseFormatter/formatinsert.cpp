@@ -5,7 +5,7 @@
 #include "formatwith.h"
 
 FormatInsert::FormatInsert(SqliteInsert* insert) :
-    insert(insert)
+    FormatStatement(insert), insert(insert)
 {
 }
 

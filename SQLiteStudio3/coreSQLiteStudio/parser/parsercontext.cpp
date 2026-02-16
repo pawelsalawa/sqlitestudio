@@ -196,6 +196,23 @@ bool ParserContext::isCandidateForMaxNegativeNumber() const
     return recentNumberIsCandidateForMaxNegative;
 }
 
+void ParserContext::addDanglingToken(Token* token)
+{
+    danglingTokens << getTokenPtr(token);
+}
+
+bool ParserContext::hasDanglingTokens() const
+{
+    return !danglingTokens.isEmpty();
+}
+
+TokenList ParserContext::takeDanglingTokens()
+{
+    TokenList res = danglingTokens;
+    danglingTokens.clear();
+    return res;
+}
+
 void ParserContext::cleanUp()
 {
     for (ParserError*& err : errors)

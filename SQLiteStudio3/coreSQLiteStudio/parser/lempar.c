@@ -221,11 +221,17 @@ void *ParseCopyParserState(void* other)
   return pParser;
 }
 
-void ParseAddToken(void* other, Token* token)
-{
+void ParseAddToken(
+  void* other,
+  Token* token
+  ParseARG_PDECL
+){
     yyParser *otherParser = (yyParser*)other;
     if (otherParser->yyidx < 0)
+    {
+        parserContext->addDanglingToken(token);
         return; // Nothing on stack yet. Might happen when parsing just whitespaces, nothing else.
+    }
 
     otherParser->yystack[otherParser->yyidx].tokens->append(token);
 }
@@ -713,13 +719,12 @@ static void yy_reduce(
           objectForTokens->tokens.clear();
       }
 
-      QList<Token*> tokens;
       for (int i = yypParser->yyidx - yysize + 1; i <= yypParser->yyidx; i++)
       {
-          tokens.clear();
+          QList<Token*> tokens;
           const char* fieldName = yyTokenName[yypParser->yystack[i].major];
 
-          // Adding token being subject of this reduction. It's usually not includes in the inherited tokens,
+          // Adding token being subject of this reduction. It's usually not included in the inherited tokens,
           // although if inheriting from simple statements, like "FAIL" or "ROLLBACK", this tends to be redundant with the inherited tokens.
           // That's why we're checking if it's not contained in the inherited tokens and add it only then.
           if (parserContext->isManagedToken(yypParser->yystack[i].minor.yy0) && !yypParser->yystack[i].tokens->contains(yypParser->yystack[i].minor.yy0))
@@ -749,6 +754,7 @@ static void yy_reduce(
           }
           allTokensWithAllInherited += tokens;
       }
+
       if (objectForTokens)
       {
           objectForTokens->tokens += parserContext->getTokenPtrList(allTokens);

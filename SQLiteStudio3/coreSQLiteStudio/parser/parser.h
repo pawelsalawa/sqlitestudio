@@ -306,7 +306,7 @@ class API_EXPORT Parser
          *
          * This method is used to add spaces and comments to the Lemon's stack.
          */
-        void  parseAddToken(void* other, TokenPtr token);
+        void  parseAddToken(void* other, TokenPtr token, ParserContext* parserContext);
 
         /**
          * @brief Flag indicating if the Lemon low-level debug messages are enabled.

@@ -3,7 +3,7 @@
 #include "parser/lexer.h"
 
 FormatCreateVirtualTable::FormatCreateVirtualTable(SqliteCreateVirtualTable* cvt) :
-    cvt(cvt)
+    FormatStatement(cvt), cvt(cvt)
 {
 }
 

@@ -4,7 +4,7 @@
 #include "parser/ast/sqliteorderby.h"
 
 FormatUpsert::FormatUpsert(SqliteUpsert* upsert) :
-    upsert(upsert)
+    FormatStatement(upsert), upsert(upsert)
 {
 
 }

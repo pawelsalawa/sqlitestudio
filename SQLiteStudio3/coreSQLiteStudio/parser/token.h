@@ -78,6 +78,11 @@ struct API_EXPORT Token
         SPACE = 0x0011,                 /**< White space(s), including new line characters and tabs. */
         BLOB = 0x0012,                  /**< Literal BLOB value (<tt>X'...'</tt> or <tt>x'...'</tt>). */
         KEYWORD = 0x0013,               /**< A keyword (see getKeywords3() and getKeywords2()). */
+
+        //
+        // Types below will never appear in a real parsed query, but they are used by the Parser to probe
+        // potential candidates for next valid token when Parser::getNextTokenCandidates() is called.
+        //
         CTX_COLUMN = 0x1014,            /**< Existing column name is valid at this token position. */
         CTX_TABLE = 0x1015,             /**< Existing table name is valid at this token potision. */
         CTX_DATABASE = 0x1016,          /**< Database name is valid at this token position. */
@@ -272,6 +277,16 @@ struct API_EXPORT Token
      * @brief End position (last character index) of the token in the query.
      */
     qint64 end;
+
+    /**
+     * @brief Weak pointer to the previous token in the query, or null if this is the first token.
+     */
+    QWeakPointer<Token> prevToken;
+
+    /**
+     * @brief Weak pointer to the next token in the query, or null if this is the last token.
+     */
+    QWeakPointer<Token> nextToken;
 };
 
 /**
@@ -658,6 +673,16 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          */
         TokenList mid(int pos, int length = -1) const;
 
+        /**
+         * @brief Normalizes white-space tokens in the list, by splitting whitespaces and new-lines into separate tokens.
+         */
+        void normalizeWhitespaceTokens();
+
+        /**
+         * @brief Re-indexes positions of tokens in the list, so they are consistent with their value length and order.
+         */
+        void reindexPositions();
+
     private:
         /**
          * @brief Finds first occurrence of token with given type.
@@ -699,7 +724,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          *
          * This method is used by the public findFirst() and indexOf() methods, as they share common logic.
          */
-        TokenPtr findFirst(const QString& value, Qt::CaseSensitivity caseSensitivity, int* idx) const;
+        TokenPtr findFirst(const QString& value, Qt::CaseSensitivity caseSensitivity, int* idx = nullptr) const;
 
         /**
          * @brief Finds last occurrence of token with given type.
@@ -712,7 +737,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          *
          * This method is used by the public findLast() and lastIndexOf() methods, as they share common logic.
          */
-        TokenPtr findLast(Token::Type type, int* idx) const;
+        TokenPtr findLast(Token::Type type, int* idx = nullptr) const;
 
         /**
          * @brief Finds last occurrence of token with given type and value.

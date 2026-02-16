@@ -405,6 +405,7 @@ class API_EXPORT SqliteStatement : public QObject
     private:
         QList<SqliteStatement*> getContextStatements(SqliteStatement* caller, bool checkParent, bool checkChilds);
         void prepareDbNames();
+
         static bool isPrintableToken(const TokenPtr& token, bool skipMeaningless);
 };
 

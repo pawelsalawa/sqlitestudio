@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitepragma.h"
 
 FormatPragma::FormatPragma(SqlitePragma* pragma) :
-    pragma(pragma)
+    FormatStatement(pragma), pragma(pragma)
 {
 }
 

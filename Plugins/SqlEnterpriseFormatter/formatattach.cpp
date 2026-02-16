@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatAttach::FormatAttach(SqliteAttach* att) :
-    att(att)
+    FormatStatement(att), att(att)
 {
 }
 

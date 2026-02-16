@@ -16,7 +16,7 @@ void  sqlite3_parseTrace(FILE *stream, char *zPrefix);
 void* sqlite3_parseCopyParserState(void* other);
 void  sqlite3_parseRestoreParserState(void* saved, void* target);
 void  sqlite3_parseFreeSavedState(void* other);
-void  sqlite3_parseAddToken(void* other, Token* token);
+void  sqlite3_parseAddToken(void* other, Token* token, ParserContext* parserContext);
 
 Parser::Parser()
 {
@@ -72,9 +72,9 @@ void Parser::parseFreeSavedState(void *other)
     sqlite3_parseFreeSavedState(other);
 }
 
-void Parser::parseAddToken(void *other, TokenPtr token)
+void Parser::parseAddToken(void *other, TokenPtr token, ParserContext *parserContext)
 {
-    sqlite3_parseAddToken(other, token.data());
+    sqlite3_parseAddToken(other, token.data(), parserContext);
 }
 
 bool Parser::parse(const QString &sql, bool ignoreMinorErrors)
@@ -112,7 +112,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
             token->type == Token::COMMENT ||
             token->type == Token::INVALID)
         {
-            parseAddToken(pParser, token);
+            parseAddToken(pParser, token, context);
             token = lexer->getToken();
             if (token)
                 context->addManagedToken(token);
@@ -150,9 +150,13 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
 
     context->flushErrors();
 
+    if (!context->parsedQueries.isEmpty() && context->hasDanglingTokens())
+        context->parsedQueries.first()->tokens.insert(0, context->takeDanglingTokens());
+
     if (context->isSuccessful())
     {
-        for (SqliteQueryPtr query : context->parsedQueries)
+        Lexer::setupPrevNextLinks(context->managedTokens);
+        for (SqliteQueryPtr& query : context->parsedQueries)
             query->processPostParsing();
     }
 
@@ -211,7 +215,7 @@ void Parser::expectedTokenLookup(void* pParser)
                 Token::BLOB, Token::STRING, Token::FLOAT, Token::INTEGER
             });
 
-    for (TokenPtr token : tokenSet)
+    for (const TokenPtr& token : tokenSet)
     {
         parse(pParser, token->lemonType, token, &tempContext);
 

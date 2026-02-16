@@ -15,7 +15,7 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 
     int wrapperIdx = cfg.SqlEnterpriseFormatter.Wrappers.get().indexOf(cfg.SqlEnterpriseFormatter.PrefferedWrapper.get());
 
-    NameWrapper wrapper = getAllNameWrappers()[wrapperIdx];
+    NameWrapper wrapper = getAllNameWrappers().value(wrapperIdx);
 
     FormatStatement *formatStmt = FormatStatement::forQuery(query.data());
     if (!formatStmt)
@@ -118,7 +118,7 @@ void SqlEnterpriseFormatter::configDialogClosed()
     disconnect(&cfg.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
 }
 
-QList<SqlEnterpriseFormatter::Comment *> SqlEnterpriseFormatter::collectComments(const TokenList &tokens)
+QList<SqlEnterpriseFormatter::Comment*> SqlEnterpriseFormatter::collectComments(const TokenList &tokens)
 {
     QList<Comment*> results;
 
@@ -130,7 +130,7 @@ QList<SqlEnterpriseFormatter::Comment *> SqlEnterpriseFormatter::collectComments
     int line = 0;
     for (const TokenList& tokensInLine : tokensInLines)
     {
-        tokensBefore = true;
+        tokensBefore = false;
         prevCommentInThisLine = nullptr;
         for (const TokenPtr& token : tokensInLine)
         {
@@ -190,25 +190,29 @@ TokenList SqlEnterpriseFormatter::adjustCommentsToEnd(const TokenList &inputToke
 {
     QList<TokenList> tokensInLines = tokensByLines(inputTokens, true);
     TokenList newTokens;
-    TokenList commentTokensForLine;
-    TokenPtr newLineToken;
     for (const TokenList& tokensInLine : tokensInLines)
     {
-        commentTokensForLine.clear();
-        newLineToken.clear();
+        TokenList commentTokensForLine;
+        TokenList regularTokensForLine;
+        TokenPtr newLineToken;
         for (const TokenPtr& token : tokensInLine)
         {
             if (token->type == Token::Type::COMMENT)
             {
                 wrapComment(token, true);
-                //token->value = " " + endLineCommentTpl.arg(token->value);
                 commentTokensForLine << token;
             }
             else if (token->type == Token::Type::SPACE && token->value.contains("\n"))
                 newLineToken = token;
             else
+            {
                 newTokens << token;
+                regularTokensForLine << token;
+            }
         }
+
+        if (!regularTokensForLine.isEmpty() && regularTokensForLine.last()->type != Token::SPACE && !commentTokensForLine.isEmpty())
+            newTokens << TokenPtr::create(Token::Type::SPACE, " ");
 
         newTokens += commentTokensForLine;
         if (newLineToken)
@@ -239,19 +243,40 @@ TokenList SqlEnterpriseFormatter::wrapOnlyComments(const TokenList &inputTokens)
     return reverse(newTokens);
 }
 
-TokenList SqlEnterpriseFormatter::optimizeInnerComments(const TokenList &inputTokens)
+void SqlEnterpriseFormatter::optimizeEndLineComments(TokenList& inputTokens)
 {
-    // TODO
-    return inputTokens;
+    bool lineUp = cfg.SqlEnterpriseFormatter.LineUpCommentsAtLineEnd.get();
+    QList<TokenList> lines = tokensByLines(inputTokens, true);
+
+    TokenList prevLine;
+    for (TokenList& line : lines)
+    {
+        line.reindexPositions();
+
+        TokenPtr token = line | FIND_FIRST(token, {return token->type != Token::Type::SPACE;});
+        if (token && token->type != Token::Type::COMMENT)
+        {
+            prevLine = line;
+            continue;
+        }
+
+        TokenPtr prevLineToken = prevLine | FIND_FIRST(token, {return token->type != Token::Type::SPACE;});
+        int prevIndent = prevLineToken ? prevLineToken->start : 0;
+
+        if (token->start < prevIndent)
+        {
+            int indentDiff = prevIndent - token->start;
+            TokenPtr indentToken = TokenPtr::create(Token::Type::SPACE, QString(indentDiff, ' '));
+            line.insert(0, indentToken);
+            inputTokens.insert(inputTokens.indexOf(token), indentToken);
+            line.reindexPositions();
+        }
+
+        prevLine = line;
+    }
 }
 
-TokenList SqlEnterpriseFormatter::optimizeEndLineComments(const TokenList &inputTokens)
-{
-    // TODO
-    return inputTokens;
-}
-
-void SqlEnterpriseFormatter::indentMultiLineComments(const TokenList &inputTokens)
+void SqlEnterpriseFormatter::indentMultiLineComments(const TokenList& inputTokens)
 {
     Q_UNUSED(inputTokens);
     // TODO
@@ -277,36 +302,58 @@ QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<Sq
     int currentCommentPosition = comments.first()->position;
 
     TokenList allTokens = Lexer::tokenize(formatted);
+    Lexer::setupPrevNextLinks(allTokens);
     TokenList newTokens;
     int currentTokenPosition = 0;
     for (const TokenPtr& token : allTokens)
     {
-        if (currentTokenPosition == currentCommentPosition)
+        bool tokenHasNewLine = token->type == Token::SPACE && token->value.contains("\n");
+        bool commentAfterComment = false;
+        bool isFinalToken = allTokens.indexOf(token) == allTokens.size() - 1; // final new-line, any ending comment's position is just before it
+        Comment* comment = nullptr;
+        while (currentTokenPosition == currentCommentPosition)
         {
-            newTokens << TokenPtr::create(Token::Type::COMMENT, comments.first()->contents);
-            comments.removeFirst();
+            comment = comments.takeFirst();
+
+            if (commentAfterComment || isFinalToken)
+                newTokens << TokenPtr::create(Token::Type::SPACE, "\n");
+
+            if (comment->tokensBefore)
+                newTokens << TokenPtr::create(Token::Type::SPACE, " ");
+
+            newTokens << TokenPtr::create(Token::Type::COMMENT, comment->contents);
+
             if (comments.size() > 0)
                 currentCommentPosition = comments.first()->position;
             else
                 currentCommentPosition = -1;
+
+            commentAfterComment = true;
         }
 
+        if (comment && !comment->tokensAfter && !tokenHasNewLine)
+            newTokens << TokenPtr::create(Token::Type::SPACE, "\n");
+
         newTokens << token;
-        if (token->type != Token::Type::SPACE)
+        if (!token->isWhitespace())
             currentTokenPosition++;
     }
 
     // Any remaining comments
     for (Comment* cmt : comments)
+    {
         newTokens << TokenPtr::create(Token::Type::COMMENT, cmt->contents);
+        newTokens << TokenPtr::create(Token::Type::SPACE, "\n");
+    }
+
+    newTokens.normalizeWhitespaceTokens();
 
     if (cfg.SqlEnterpriseFormatter.MoveAllCommentsToLineEnd.get())
         newTokens = adjustCommentsToEnd(newTokens);
     else
         newTokens = wrapOnlyComments(newTokens);
 
-    newTokens = optimizeInnerComments(newTokens);
-    newTokens = optimizeEndLineComments(newTokens);
+    optimizeEndLineComments(newTokens);
     indentMultiLineComments(newTokens);
 
     return newTokens.detokenize();

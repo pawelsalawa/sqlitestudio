@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitedroptrigger.h"
 
 FormatDropTrigger::FormatDropTrigger(SqliteDropTrigger* dropTrig) :
-    dropTrig(dropTrig)
+    FormatStatement(dropTrig), dropTrig(dropTrig)
 {
 }
 

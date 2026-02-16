@@ -189,6 +189,10 @@ class ParserContext
         QVariant* handleNumberToken(const QString& tokenValue);
         bool isCandidateForMaxNegativeNumber() const;
 
+        void addDanglingToken(Token* token);
+        bool hasDanglingTokens() const;
+        TokenList takeDanglingTokens();
+
         /**
          * @brief Flag indicating if the Lemon parser should setup token collections.
          *
@@ -252,6 +256,11 @@ class ParserContext
          * @brief Mapping from token pointer to it's shared pointer instance.
          */
         QHash<Token*, TokenPtr> tokenPtrMap;
+
+        /**
+         * @brief List of tokens that were parsed but not yet assigned to any AST object.
+         */
+        TokenList danglingTokens;
 
         /**
          * @brief Flag indicating successful or failure parsing.

@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitedroptable.h"
 
 FormatDropTable::FormatDropTable(SqliteDropTable* dropTable) :
-    dropTable(dropTable)
+    FormatStatement(dropTable), dropTable(dropTable)
 {
 }
 

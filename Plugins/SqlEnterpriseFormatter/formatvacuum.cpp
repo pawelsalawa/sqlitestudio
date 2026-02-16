@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatVacuum::FormatVacuum(SqliteVacuum* vacuum) :
-    vacuum(vacuum)
+    FormatStatement(vacuum), vacuum(vacuum)
 {
 }
 

@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatDetach::FormatDetach(SqliteDetach* detach) :
-    detach(detach)
+    FormatStatement(detach), detach(detach)
 {
 }
 

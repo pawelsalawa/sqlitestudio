@@ -76,7 +76,8 @@ const QString FormatStatement::SPACE = " ";
 const QString FormatStatement::NEWLINE = "\n";
 qint64 FormatStatement::nameSeq = 0;
 
-FormatStatement::FormatStatement()
+FormatStatement::FormatStatement(SqliteStatement* stmt) :
+    thisStatement(stmt)
 {
     static_qstring(nameTpl, "statement_%1");
 
