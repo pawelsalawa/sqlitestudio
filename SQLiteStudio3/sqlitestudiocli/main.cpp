@@ -59,7 +59,9 @@ bool cliHandleCmdLineArgs()
     parser.addOption(sqlFileCodecOption);
     parser.addOption(codecListOption);
     parser.addOption(ignoreErrorsOption);
+#ifdef PORTABLE_CONFIG
     parser.addOption(checkUpdatesOption);
+#endif
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
