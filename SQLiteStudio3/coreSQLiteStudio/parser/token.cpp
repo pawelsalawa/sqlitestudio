@@ -343,6 +343,15 @@ TokenPtr TokenList::atCursorPosition(quint64 cursorPosition) const
     return TokenPtr();
 }
 
+bool TokenList::hasMeaningfulToken() const
+{
+    for (const TokenPtr& token : *this)
+        if (token->isMeaningful())
+            return true;
+
+    return false;
+}
+
 void TokenList::insert(int i, const TokenList &list)
 {
     for (TokenPtr token : list)
@@ -546,8 +555,7 @@ TokenList TokenList::filterWhiteSpaces(bool includeComments) const
 
 TokenList TokenList::mid(int pos, int length) const
 {
-    TokenList newList = QList<TokenPtr>::mid(pos, length);
-    return newList;
+    return QList<TokenPtr>::mid(pos, length);
 }
 
 void TokenList::normalizeWhitespaceTokens()

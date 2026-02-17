@@ -481,6 +481,15 @@ class API_EXPORT TokenList : public QList<TokenPtr>
         TokenPtr atCursorPosition(quint64 cursorPosition) const;
 
         /**
+         * @brief Tests whether this list contains any meaningful token.
+         * @return true if there is at least one meaningful token in the list, or false otherwise.
+         *
+         * Meaningful tokens are those that are not white-space, not comment and not context marker. They are the ones
+         * that have real meaning in SQL syntax, like a keyword, an object name, a string, a number, etc.
+         */
+        bool hasMeaningfulToken() const;
+
+        /**
          * @brief Inserts tokens at given position in this list.
          * @param i Position to insert at.
          * @param list List of tokens to insert.

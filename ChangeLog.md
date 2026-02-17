@@ -26,6 +26,7 @@
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: #4688 Added metadata to Windows executables.
+- BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BUGFIX: #3146 Fixed accent characters support under MacOS.
 - BUGFIX: #5497 Boundled SQLite extensions now use path relative to the running application.
