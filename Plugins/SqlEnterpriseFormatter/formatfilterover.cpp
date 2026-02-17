@@ -2,7 +2,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatFilterOver::FormatFilterOver(SqliteFilterOver* filterOver) :
-    filterOver(filterOver)
+    FormatStatement(filterOver), filterOver(filterOver)
 {
 }
 
@@ -16,7 +16,7 @@ void FormatFilterOver::formatInternal()
 }
 
 FormatFilterOverFilter::FormatFilterOverFilter(SqliteFilterOver::Filter* filter) :
-    filter(filter)
+    FormatStatement(filter), filter(filter)
 {
 }
 
@@ -26,7 +26,7 @@ void FormatFilterOverFilter::formatInternal()
 }
 
 FormatFilterOverOver::FormatFilterOverOver(SqliteFilterOver::Over* over) :
-    over(over)
+    FormatStatement(over), over(over)
 {
 }
 

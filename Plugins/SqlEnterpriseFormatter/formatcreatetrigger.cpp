@@ -2,7 +2,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatCreateTrigger::FormatCreateTrigger(SqliteCreateTrigger* createTrig) :
-    createTrig(createTrig)
+    FormatStatement(createTrig), createTrig(createTrig)
 {
 }
 
@@ -78,7 +78,7 @@ void FormatCreateTrigger::formatInternal()
 
 
 FormatCreateTriggerEvent::FormatCreateTriggerEvent(SqliteCreateTrigger::Event* ev) :
-    ev(ev)
+    FormatStatement(ev), ev(ev)
 {
 }
 

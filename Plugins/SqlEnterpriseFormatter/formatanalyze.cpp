@@ -2,7 +2,7 @@
 #include "parser/ast/sqliteanalyze.h"
 
 FormatAnalyze::FormatAnalyze(SqliteAnalyze* analyze) :
-    analyze(analyze)
+    FormatStatement(analyze), analyze(analyze)
 {
 }
 

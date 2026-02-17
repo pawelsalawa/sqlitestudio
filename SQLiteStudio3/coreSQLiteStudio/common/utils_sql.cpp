@@ -275,6 +275,17 @@ QString stripObjName(QString &str)
     return str.mid(1, str.length()-2);
 }
 
+QString stripComment(const QString &str)
+{
+    if (str.startsWith("--"))
+        return str.mid(2).trimmed();
+
+    if (str.startsWith("/*") && str.endsWith("*/"))
+        return str.mid(2, str.length() - 4);
+
+    return str;
+}
+
 bool isObjWrapped(const QString& str)
 {
     return getObjWrapper(str) != NameWrapper::null;

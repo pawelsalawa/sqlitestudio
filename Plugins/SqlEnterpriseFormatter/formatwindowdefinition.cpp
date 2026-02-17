@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteorderby.h"
 
 FormatWindowDefinition::FormatWindowDefinition(SqliteWindowDefinition* windowDef) :
-    windowDef(windowDef)
+    FormatStatement(windowDef), windowDef(windowDef)
 {
 }
 
@@ -13,7 +13,7 @@ void FormatWindowDefinition::formatInternal()
 }
 
 FormatWindowDefinitionWindow::FormatWindowDefinitionWindow(SqliteWindowDefinition::Window* window) :
-    window(window)
+    FormatStatement(window), window(window)
 {
 }
 
@@ -41,7 +41,7 @@ void FormatWindowDefinitionWindow::formatInternal()
 }
 
 FormatWindowDefinitionWindowFrame::FormatWindowDefinitionWindowFrame(SqliteWindowDefinition::Window::Frame* frame) :
-    frame(frame)
+    FormatStatement(frame), frame(frame)
 {
 }
 
@@ -64,7 +64,7 @@ void FormatWindowDefinitionWindowFrame::formatInternal()
 }
 
 FormatWindowDefinitionWindowFrameBound::FormatWindowDefinitionWindowFrameBound(SqliteWindowDefinition::Window::Frame::Bound* bound) :
-    bound(bound)
+    FormatStatement(bound), bound(bound)
 {
 }
 

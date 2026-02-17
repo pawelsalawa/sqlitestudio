@@ -852,42 +852,42 @@ Expected one of: %2</source>
       <translation>在线检查更新并将结果打印到标准输出。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>file</source>
       <translation>文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>Database file to open</source>
       <translation>要打开的数据库文件</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="85"/>
+      <location filename="../main.cpp" line="87"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation>无效编解码器：%1。使用 -cl 选项列出可用的编解码器。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="120"/>
+      <location filename="../main.cpp" line="122"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation>在执行 SQL 文件时，数据库文件参数是强制性的。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="126"/>
+      <location filename="../main.cpp" line="128"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation>无法打开指定数据库以执行 SQL 文件。您可以尝试使用 -d 选项了解更多详情。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="171"/>
+      <location filename="../main.cpp" line="173"/>
       <source>New updates are available: %1. Url: %2</source>
       <translation>有新的更新可用: %1. Url: %2</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="175"/>
+      <location filename="../main.cpp" line="177"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>您当前运行的是最新版本，没有可用的更新。</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="179"/>
+      <location filename="../main.cpp" line="181"/>
       <source>Error checking for updates: %1</source>
       <translation>检查更新时出错：%1</translation>
     </message>

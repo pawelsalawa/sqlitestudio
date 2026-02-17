@@ -2,7 +2,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 
 FormatIndexedColumn::FormatIndexedColumn(SqliteIndexedColumn* idxCol) :
-    idxCol(idxCol)
+    FormatStatement(idxCol), idxCol(idxCol)
 {
 }
 

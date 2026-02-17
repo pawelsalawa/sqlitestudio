@@ -852,42 +852,42 @@ Expected one of: %2</source>
       <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>file</source>
       <translation>Fichier</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>Database file to open</source>
       <translation>Base de données à ouvrir</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="85"/>
+      <location filename="../main.cpp" line="87"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation>Codec invalide : %1. Utilisez l&apos;option -cl pour lister les codecs disponibles.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="120"/>
+      <location filename="../main.cpp" line="122"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation>L&apos;argument du fichier de la base de données est obligatoire lors de l&apos;exécution du fichier SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="126"/>
+      <location filename="../main.cpp" line="128"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation>Impossible d&apos;ouvrir la base de données spécifiée pour l&apos;exécution de fichier SQL. Vous devriez essayer d&apos;utiliser l&apos;option -d pour trouver plus de détails.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="171"/>
+      <location filename="../main.cpp" line="173"/>
       <source>New updates are available: %1. Url: %2</source>
       <translation type="unfinished">New updates are available: %1. Url: %2</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="175"/>
+      <location filename="../main.cpp" line="177"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="179"/>
+      <location filename="../main.cpp" line="181"/>
       <source>Error checking for updates: %1</source>
       <translation type="unfinished">Error checking for updates: %1</translation>
     </message>

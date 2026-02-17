@@ -854,42 +854,42 @@ Espera-se um de: %2</translation>
       <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>file</source>
       <translation>arquivo</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
+      <location filename="../main.cpp" line="66"/>
       <source>Database file to open</source>
       <translation>Arquivo do banco de dados para abrir</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="85"/>
+      <location filename="../main.cpp" line="87"/>
       <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
       <translation>Codec inválido: %1. Use a opção -cl para listar codecs disponíveis.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="120"/>
+      <location filename="../main.cpp" line="122"/>
       <source>Database file argument is mandatory when executing SQL file.</source>
       <translation>O argumento do arquivo de banco de dados é obrigatório para executar arquivo SQL.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="126"/>
+      <location filename="../main.cpp" line="128"/>
       <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
       <translation>Não foi possível abrir a base de dados especificada para executar um arquivo SQL. Você pode tentar usar a opção -d para descobrir mais detalhes.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="171"/>
+      <location filename="../main.cpp" line="173"/>
       <source>New updates are available: %1. Url: %2</source>
       <translation type="unfinished">New updates are available: %1. Url: %2</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="175"/>
+      <location filename="../main.cpp" line="177"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="179"/>
+      <location filename="../main.cpp" line="181"/>
       <source>Error checking for updates: %1</source>
       <translation type="unfinished">Error checking for updates: %1</translation>
     </message>

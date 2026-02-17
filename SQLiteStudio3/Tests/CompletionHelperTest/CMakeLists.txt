@@ -1,0 +1,4 @@
+add_executable(tst_completionhelpertest
+    tst_completionhelpertest.cpp
+)
+sqlitestudio_set_test_properties(tst_completionhelpertest)

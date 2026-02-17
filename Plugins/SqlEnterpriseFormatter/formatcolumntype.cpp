@@ -3,7 +3,7 @@
 #include "sqlenterpriseformatter.h"
 
 FormatColumnType::FormatColumnType(SqliteColumnType* colType) :
-    colType(colType)
+    FormatStatement(colType), colType(colType)
 {
 }
 

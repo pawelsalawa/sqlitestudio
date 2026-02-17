@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitedropview.h"
 
 FormatDropView::FormatDropView(SqliteDropView* dropView) :
-    dropView(dropView)
+    FormatStatement(dropView), dropView(dropView)
 {
 }
 

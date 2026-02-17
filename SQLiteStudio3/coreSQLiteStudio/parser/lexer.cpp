@@ -255,6 +255,23 @@ TokenList Lexer::tokenize(const QString& sql)
     return lexer.process(sql);
 }
 
+void Lexer::setupPrevNextLinks(TokenList& tokens)
+{
+    TokenPtr prev;
+    for (TokenPtr& token : tokens)
+    {
+        if (!prev)
+        {
+            prev = token;
+            continue;
+        }
+
+        prev->nextToken = token.toWeakRef();
+        token->prevToken = prev.toWeakRef();
+        prev = token;
+    }
+}
+
 TokenPtr Lexer::getEveryTokenTypePtr(Token *token)
 {
     if (everyTokenTypePtrMap.contains(token))

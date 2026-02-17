@@ -343,6 +343,15 @@ TokenPtr TokenList::atCursorPosition(quint64 cursorPosition) const
     return TokenPtr();
 }
 
+bool TokenList::hasMeaningfulToken() const
+{
+    for (const TokenPtr& token : *this)
+        if (token->isMeaningful())
+            return true;
+
+    return false;
+}
+
 void TokenList::insert(int i, const TokenList &list)
 {
     for (TokenPtr token : list)
@@ -546,8 +555,46 @@ TokenList TokenList::filterWhiteSpaces(bool includeComments) const
 
 TokenList TokenList::mid(int pos, int length) const
 {
-    TokenList newList = QList<TokenPtr>::mid(pos, length);
-    return newList;
+    return QList<TokenPtr>::mid(pos, length);
+}
+
+void TokenList::normalizeWhitespaceTokens()
+{
+    QMutableListIterator<TokenPtr> it(*this);
+    while (it.hasNext())
+    {
+        TokenPtr token = it.next();
+        QString val = token->value;
+        if (token->type == Token::SPACE && val.contains("\n") && !val.replace("\n", "").isEmpty())
+        {
+            it.remove();
+            bool first = true;
+            for (const QString& part : token->value.split("\n"))
+            {
+                if (!first)
+                    it.insert(TokenPtr::create(Token::Type::SPACE, "\n"));
+
+                if (!part.isEmpty())
+                    it.insert(TokenPtr::create(Token::Type::SPACE, part));
+
+                first = false;
+            }
+        }
+    }
+}
+
+void TokenList::reindexPositions()
+{
+    QListIterator<TokenPtr> it(*this);
+    qint64 pos = 0;
+    while (it.hasNext())
+    {
+        TokenPtr token = it.next();
+        qint64 length = token->value.length();
+        token->start = pos;
+        token->end = pos + length - 1;
+        pos += length;
+    }
 }
 
 TokenPtr TokenList::findFirst(Token::Type type, int *idx) const

@@ -4,7 +4,7 @@
 #include "formatwith.h"
 
 FormatUpdate::FormatUpdate(SqliteUpdate* upd) :
-    upd(upd)
+    FormatStatement(upd), upd(upd)
 {
 }
 

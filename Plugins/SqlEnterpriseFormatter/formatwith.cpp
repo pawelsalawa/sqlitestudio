@@ -2,7 +2,7 @@
 #include "parser/ast/sqliteselect.h"
 
 FormatWith::FormatWith(SqliteWith *with) :
-    with(with)
+    FormatStatement(with), with(with)
 {
 }
 
@@ -24,7 +24,7 @@ void FormatWith::formatInternal()
 
 
 FormatWithCommonTableExpression::FormatWithCommonTableExpression(SqliteWith::CommonTableExpression *cte) :
-    cte(cte)
+    FormatStatement(cte), cte(cte)
 {
 }
 

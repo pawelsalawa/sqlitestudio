@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitecommittrans.h"
 
 FormatCommitTrans::FormatCommitTrans(SqliteCommitTrans* ct) :
-    ct(ct)
+    FormatStatement(ct), ct(ct)
 {
 }
 

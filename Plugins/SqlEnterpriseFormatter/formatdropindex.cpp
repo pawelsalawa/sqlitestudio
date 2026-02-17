@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitedropindex.h"
 
 FormatDropIndex::FormatDropIndex(SqliteDropIndex* dropIndex) :
-    dropIndex(dropIndex)
+    FormatStatement(dropIndex), dropIndex(dropIndex)
 {
 }
 

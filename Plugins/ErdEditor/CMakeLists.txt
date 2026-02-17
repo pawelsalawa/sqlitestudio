@@ -1,0 +1,91 @@
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+
+set(PROJECT_HEADERS
+    changes/erdchange.h
+    changes/erdchangecolorentity.h
+    changes/erdchangecomposite.h
+    changes/erdchangedeleteconnection.h
+    changes/erdchangedeleteentity.h
+    changes/erdchangemodifyentity.h
+    changes/erdchangemoveentity.h
+    changes/erdchangenewentity.h
+    changes/erdchangeregistry.h
+    changes/erdchangeregistrydialog.h
+    changes/erdeffectivechange.h
+    changes/erdeffectivechangemerger.h
+    erdeditor_global.h
+    erdeditorplugin.h
+    erdwindow.h
+    layouts/erdlayout.h
+    layouts/erdlayoutfdp.h
+    layouts/erdlayoutneato.h
+    layouts/erdlayoutplanner.h
+    panel/erdcolumnfkpanel.h
+    panel/erdconnectionpanel.h
+    panel/erdpropertiespanel.h
+    panel/erdtablefkpanel.h
+    panel/erdtablewindow.h
+    scene/erdarrowitem.h
+    scene/erdconnection.h
+    scene/erdcurvyarrowitem.h
+    scene/erdentity.h
+    scene/erditem.h
+    scene/erdlinearrowitem.h
+    scene/erdscene.h
+    scene/erdsquarearrowitem.h
+    scene/erdview.h
+)
+
+set(PROJECT_SOURCES
+    changes/erdchange.cpp
+    changes/erdchangecolorentity.cpp
+    changes/erdchangecomposite.cpp
+    changes/erdchangedeleteconnection.cpp
+    changes/erdchangedeleteentity.cpp
+    changes/erdchangemodifyentity.cpp
+    changes/erdchangemoveentity.cpp
+    changes/erdchangenewentity.cpp
+    changes/erdchangeregistry.cpp
+    changes/erdchangeregistrydialog.cpp
+    changes/erdeffectivechange.cpp
+    changes/erdeffectivechangemerger.cpp
+    erdeditorplugin.cpp
+    erdwindow.cpp
+    layouts/erdlayout.cpp
+    layouts/erdlayoutfdp.cpp
+    layouts/erdlayoutneato.cpp
+    layouts/erdlayoutplanner.cpp
+    panel/erdcolumnfkpanel.cpp
+    panel/erdconnectionpanel.cpp
+    panel/erdtablefkpanel.cpp
+    panel/erdtablewindow.cpp
+    scene/erdarrowitem.cpp
+    scene/erdconnection.cpp
+    scene/erdcurvyarrowitem.cpp
+    scene/erdentity.cpp
+    scene/erditem.cpp
+    scene/erdlinearrowitem.cpp
+    scene/erdscene.cpp
+    scene/erdsquarearrowitem.cpp
+    scene/erdview.cpp
+)
+qt_add_resources(PROJECT_SOURCES
+    erdeditor.qrc
+)
+qt_wrap_ui(PROJECT_SOURCES
+    changes/erdchangeregistrydialog.ui
+    erdconfig.ui
+    erdwindow.ui
+    panel/erdconnectionpanel.ui
+)
+
+add_library(ErdEditor SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+sqlitestudio_set_plugin_properties(ErdEditor)
+target_compile_definitions(ErdEditor PRIVATE
+    ERDEDITOR_LIBRARY
+)
+target_link_libraries(ErdEditor PRIVATE
+    Qt::Core
+    Qt::Gui
+    Qt::Widgets
+)

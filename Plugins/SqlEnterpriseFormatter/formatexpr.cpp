@@ -11,7 +11,7 @@
 QRegularExpression FormatExpr::WORD_ONLY_RE = QRegularExpression("^[a-zA-Z]+$");
 
 FormatExpr::FormatExpr(SqliteExpr* expr) :
-    expr(expr)
+    FormatStatement(expr), expr(expr)
 {
 }
 

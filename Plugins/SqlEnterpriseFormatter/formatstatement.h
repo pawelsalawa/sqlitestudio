@@ -81,7 +81,7 @@ class FormatStatement
 
         typedef std::function<void(FormatStatement*)> FormatStatementEnricher;
 
-        FormatStatement();
+        FormatStatement(SqliteStatement *stmt);
         virtual ~FormatStatement();
 
         QString format();
@@ -201,7 +201,7 @@ class FormatStatement
         void formatId(const QString& value, bool wrappingRequested);
         int getLineUpValue(const QString& lineUpName);
 
-        static FormatStatement* forQuery(SqliteStatement *query, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
+        static FormatStatement* forQuery(SqliteStatement* query, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
 
         QHash<QString,int> kwLineUpPosition;
         QHash<QString,int> namedIndents;
@@ -213,6 +213,7 @@ class FormatStatement
         FormatToken* lastToken = nullptr;
         QString statementName;
         FormatStatement* parentFormatStatement = nullptr;
+        SqliteStatement* thisStatement = nullptr;
 
         static qint64 nameSeq;
         static const QString SPACE;

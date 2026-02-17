@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 
 FormatCreateIndex::FormatCreateIndex(SqliteCreateIndex* createIndex) :
-    createIndex(createIndex)
+    FormatStatement(createIndex), createIndex(createIndex)
 {
 }
 

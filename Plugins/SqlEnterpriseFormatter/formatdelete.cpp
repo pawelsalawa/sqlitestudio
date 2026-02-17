@@ -4,7 +4,7 @@
 #include "formatwith.h"
 
 FormatDelete::FormatDelete(SqliteDelete* del) :
-    del(del)
+    FormatStatement(del), del(del)
 {
 }
 

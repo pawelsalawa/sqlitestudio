@@ -197,11 +197,35 @@ T operator|(const QList<T>& list, const ListFindFirstOp<Predicate>& op)
 }
 
 /**
- * Finds first occcurrence of element complying with given predicate body
+ * Finds first occurrence of element complying with given predicate body
  * and returns it, or returns nullptr otherwise.
  */
 #define FIND_FIRST(param, body) \
     ListFindFirstOp{[&](auto&& param) body}
+
+// ==============================================
+// FIND_LAST: list → optional-like pointer (nullptr = not found)
+template <typename Fn>
+struct ListFindLastOp {
+        Fn fn;
+};
+
+template <typename T, typename Predicate>
+T operator|(const QList<T>& list, const ListFindLastOp<Predicate>& op)
+{
+    for (int i = list.size() - 1; i >= 0; --i)
+        if (op.fn(list[i]))
+            return list[i];
+
+    return nullptr;
+}
+
+/**
+ * Finds last occurrence of element complying with given predicate body
+ * and returns it, or returns nullptr otherwise.
+ */
+#define FIND_LAST(param, body) \
+    ListFindLastOp{[&](auto&& param) body}
 
 // ==============================================
 // INDEX_OF: list → index first occurrence

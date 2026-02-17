@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitereindex.h"
 
 FormatReindex::FormatReindex(SqliteReindex* reindex) :
-    reindex(reindex)
+    FormatStatement(reindex), reindex(reindex)
 {
 }
 

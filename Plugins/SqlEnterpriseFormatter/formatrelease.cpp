@@ -2,7 +2,7 @@
 #include "parser/ast/sqliterelease.h"
 
 FormatRelease::FormatRelease(SqliteRelease* release) :
-    release(release)
+    FormatStatement(release), release(release)
 {
 }
 

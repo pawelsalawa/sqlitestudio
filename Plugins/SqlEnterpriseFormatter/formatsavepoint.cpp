@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitesavepoint.h"
 
 FormatSavepoint::FormatSavepoint(SqliteSavepoint* savepoint) :
-    savepoint(savepoint)
+    FormatStatement(savepoint), savepoint(savepoint)
 {
 }
 

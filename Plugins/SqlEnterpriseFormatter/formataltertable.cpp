@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitealtertable.h"
 
 FormatAlterTable::FormatAlterTable(SqliteAlterTable* alterTable) :
-    alterTable(alterTable)
+    FormatStatement(alterTable), alterTable(alterTable)
 {
 }
 

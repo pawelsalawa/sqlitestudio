@@ -823,12 +823,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Incomplete query.</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="2687"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="2693"/>
       <source>Parser stack overflow</source>
       <translation type="unfinished">Parser stack overflow</translation>
     </message>
     <message>
-      <location filename="../parser/sqlite3_parse.cpp" line="6305"/>
+      <location filename="../parser/sqlite3_parse.cpp" line="6311"/>
       <source>Syntax error</source>
       <translation>Sözdizimi hatası</translation>
     </message>

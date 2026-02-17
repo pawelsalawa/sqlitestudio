@@ -21,7 +21,6 @@
 #include "parser_helper_stubs.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
-#include "common/unused.h"
 #include "parser/ast/sqlitealtertable.h"
 #include "parser/ast/sqliteanalyze.h"
 #include "parser/ast/sqliteattach.h"

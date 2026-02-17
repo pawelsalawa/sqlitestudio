@@ -1,4 +1,5 @@
 #include "parser/lexer.h"
+#include "parser/keywords.h"
 #include <QString>
 #include <QtTest>
 
@@ -18,10 +19,12 @@ class LexerTest : public QObject
         void testBindParam1();
         void testBlobLiteral();
         void testDollarId();
+        void testNormalizeWhitespaceTokens();
 };
 
 LexerTest::LexerTest()
 {
+    initKeywords();
 }
 
 void LexerTest::testStringCase1()
@@ -110,6 +113,39 @@ void LexerTest::testDollarId()
     QCOMPARE(tokens.size(), 3);
     QCOMPARE(tokens[2]->value, "v$test");
     QCOMPARE(tokens[2]->type, Token::OTHER);
+}
+
+void LexerTest::testNormalizeWhitespaceTokens()
+{
+    QString sql = "SELECT 1\n"
+                  "   FROM test\n  \n\n"
+                  "\tWHERE id = 5";
+
+    Lexer lex;
+    TokenList tokens = lex.tokenize(sql);
+    tokens.normalizeWhitespaceTokens();
+    int i = 0;
+    QCOMPARE(tokens.size(), 20);
+    QCOMPARE(tokens[i++]->type, Token::KEYWORD);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::INTEGER);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::KEYWORD);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::OTHER);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::KEYWORD);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::OTHER);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::OPERATOR);
+    QCOMPARE(tokens[i++]->type, Token::SPACE);
+    QCOMPARE(tokens[i++]->type, Token::INTEGER);
 }
 
 QTEST_APPLESS_MAIN(LexerTest)

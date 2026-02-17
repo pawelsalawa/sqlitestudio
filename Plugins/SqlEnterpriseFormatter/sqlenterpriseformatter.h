@@ -91,9 +91,10 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         QList<TokenList> tokensByLines(const TokenList& tokens, bool includeSpaces = false);
         TokenList adjustCommentsToEnd(const TokenList& inputTokens);
         TokenList wrapOnlyComments(const TokenList& inputTokens);
-        TokenList optimizeInnerComments(const TokenList& inputTokens);
-        TokenList optimizeEndLineComments(const TokenList& inputTokens);
-        void indentMultiLineComments(const TokenList& inputTokens);
+        void formatEndLineComments(TokenList& inputTokens, QList<TokenList>& lines);
+        void formatEndLineCommentsStandard(TokenList& inputTokens, QList<TokenList>& lines);
+        void formatEndLineCommentsLinedUp(TokenList& inputTokens, QList<TokenList>& lines);
+        void indentMultiLineComments(const TokenList& inputTokens, const QList<TokenList>& lines);
         void wrapComment(const TokenPtr& token, bool isAtLineEnd);
 
         QList<SqliteQueryPtr> previewQueries;

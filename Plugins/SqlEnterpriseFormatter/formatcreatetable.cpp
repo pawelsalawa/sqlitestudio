@@ -3,7 +3,7 @@
 #include "sqlenterpriseformatter.h"
 
 FormatCreateTable::FormatCreateTable(SqliteCreateTable* createTable) :
-    createTable(createTable)
+    FormatStatement(createTable), createTable(createTable)
 {
 }
 
@@ -101,7 +101,7 @@ int FormatCreateTable::getColNameLength(const QString& name)
 }
 
 FormatCreateTableColumn::FormatCreateTableColumn(SqliteCreateTable::Column* column) :
-    column(column)
+    FormatStatement(column), column(column)
 {
 }
 
@@ -127,7 +127,7 @@ void FormatCreateTableColumn::formatInternal()
 
 
 FormatCreateTableColumnConstraint::FormatCreateTableColumnConstraint(SqliteCreateTable::Column::Constraint* constr) :
-    constr(constr)
+    FormatStatement(constr), constr(constr)
 {
 }
 
@@ -225,7 +225,7 @@ void FormatCreateTableColumnConstraint::formatInternal()
 
 
 FormatCreateTableConstraint::FormatCreateTableConstraint(SqliteCreateTable::Constraint* constr) :
-    constr(constr)
+    FormatStatement(constr), constr(constr)
 {
 }
 

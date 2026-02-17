@@ -2,7 +2,7 @@
 #include "parser/ast/sqliterollback.h"
 
 FormatRollback::FormatRollback(SqliteRollback* rollback) :
-    rollback(rollback)
+    FormatStatement(rollback), rollback(rollback)
 {
 }
 

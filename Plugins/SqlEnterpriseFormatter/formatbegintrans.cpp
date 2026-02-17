@@ -2,7 +2,7 @@
 #include "parser/ast/sqlitebegintrans.h"
 
 FormatBeginTrans::FormatBeginTrans(SqliteBeginTrans* bt) :
-    bt(bt)
+    FormatStatement(bt), bt(bt)
 {
 }
 

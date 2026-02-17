@@ -3,7 +3,7 @@
 #include "parser/ast/sqliteexpr.h"
 
 FormatOrderBy::FormatOrderBy(SqliteOrderBy* orderBy) :
-    orderBy(orderBy)
+    FormatStatement(orderBy), orderBy(orderBy)
 {
 }
 
