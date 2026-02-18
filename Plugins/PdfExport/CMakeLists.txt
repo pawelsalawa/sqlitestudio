@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Core Pdf)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui)
 
 set(PROJECT_HEADERS
     pdfexport_global.h
@@ -22,5 +22,5 @@ target_compile_definitions(PdfExport PRIVATE
 )
 target_link_libraries(PdfExport PRIVATE
     Qt::Core
-    Qt::Pdf
+    Qt::Gui
 )

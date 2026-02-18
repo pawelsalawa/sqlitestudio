@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Core Pdf PrintSupport Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core PrintSupport Widgets)
 
 set(PROJECT_HEADERS
     printing_global.h
@@ -22,7 +22,6 @@ target_compile_definitions(Printing PRIVATE
 target_link_libraries(Printing PRIVATE
     Qt::Core
     Qt::Gui
-    Qt::Pdf
     Qt::PrintSupport
     Qt::Widgets
 )
