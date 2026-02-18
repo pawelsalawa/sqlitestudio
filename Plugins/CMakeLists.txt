@@ -8,7 +8,7 @@ find_package(TCL)
 if(WIN32 OR APPLE)
     set(WITH_PORTABLE_DEFAULT ON)
 endif()
-if(Qt6Pdf_FOUND AND Qt6PrintSupport_FOUND)
+if(Qt6PrintSupport_FOUND)
     set(WITH_Printing_DEFAULT ON)
 endif()
 
