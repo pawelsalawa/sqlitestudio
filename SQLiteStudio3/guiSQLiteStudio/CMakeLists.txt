@@ -407,7 +407,6 @@ sqlitestudio_set_output_properties(guiSQLiteStudio)
 set_target_properties(guiSQLiteStudio PROPERTIES
     VERSION 1.0.0
     SOVERSION 1
-    AUTOMOC ON
 )
 target_compile_definitions(guiSQLiteStudio PRIVATE
     GUISQLITESTUDIO_LIBRARY

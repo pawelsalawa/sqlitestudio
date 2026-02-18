@@ -20,7 +20,6 @@ qt_add_resources(PROJECT_SOURCES
 add_executable(sqlitestudio ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(sqlitestudio)
 set_target_properties(sqlitestudio PROPERTIES
-    AUTOMOC ON
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
 )

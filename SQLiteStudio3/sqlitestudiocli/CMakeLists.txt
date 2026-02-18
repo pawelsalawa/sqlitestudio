@@ -66,9 +66,6 @@ qt_add_resources(PROJECT_SOURCES
 
 add_executable(sqlitestudiocli ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(sqlitestudiocli)
-set_target_properties(sqlitestudiocli PROPERTIES
-    AUTOMOC ON
-)
 target_link_libraries(sqlitestudiocli PRIVATE
     Qt::Core
     coreSQLiteStudio

@@ -411,7 +411,6 @@ sqlitestudio_set_output_properties(coreSQLiteStudio)
 set_target_properties(coreSQLiteStudio PROPERTIES
     VERSION 1.0.0
     SOVERSION 1
-    AUTOMOC ON
 )
 target_compile_definitions(coreSQLiteStudio PRIVATE
     CORESQLITESTUDIO_LIBRARY
