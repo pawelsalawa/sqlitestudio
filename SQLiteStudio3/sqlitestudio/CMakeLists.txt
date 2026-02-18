@@ -17,6 +17,16 @@ qt_add_resources(PROJECT_SOURCES
     sqlitestudio.qrc
 )
 
+if(WIN32)
+    string(TIMESTAMP YEAR "%Y")
+    configure_file(windows.rc.in windows.rc @ONLY)
+    list(APPEND PROJECT_SOURCES
+        ../guiSQLiteStudio/img/sqlitestudio.ico
+        SQLiteStudio.exe.manifest
+        "${CMAKE_CURRENT_BINARY_DIR}/windows.rc"
+    )
+endif()
+
 add_executable(sqlitestudio ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(sqlitestudio)
 set_target_properties(sqlitestudio PROPERTIES
