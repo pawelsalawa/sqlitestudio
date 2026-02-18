@@ -2,34 +2,37 @@
 
 ### 4.0.0
 - ADDED: #2865 ERD editor - a diagram viewer and editor for database schema.
-- ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
-- ADDED: #5237 ARM64 code compatibility.
-- ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
-- ADDED: #4027 Added data editor plugin for JSON - with syntax validation and highlighting for editing table data. Contributed by @calumk!
+- ADDED: #5206 Windows ARM64 binaries provided.
+- ADDED: #5241 Linux ARM64 binaries provided.
+- ADDED: #4899 MacOS ARM64 (M1, M2, ...) binaries provided as Universal Binary (both x86_64 and ARM64 architectures supported by a single binary).
 - ADDED: #3886 Added image rendering for image data in the Grid View (plugin-based, so more renderers can be added in future).
-- ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
+- ADDED: #4027 Added data editor plugin for JSON - with syntax validation and highlighting for editing table data. Contributed by @calumk!
+- ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
+- ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
+- ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
+- ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
 - ADDED: #5449 User can now change size of icons on toolbars.
+- ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
-- ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
-- ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
-- CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
+- CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
 - CHANGE: #4862 SQL Editor is now tied to a file whenever loads or saves to that file and that tie is restored upon next application session. It also renames editor window to that file name.
 - CHANGE: #4762 Colors configuration for syntax highlighting now allows defining also bold/italic attributes.
 - CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two. Also views/triggers support got improved for cases with subselects.
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
+- CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
 - CHANGE: #4688 Added metadata to Windows executables.
+- CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BUGFIX: #3146 Fixed accent characters support under MacOS.
-- BUGFIX: #5497 Boundled SQLite extensions now use path relative to the running application.
 - BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 
 ### 3.4.21
