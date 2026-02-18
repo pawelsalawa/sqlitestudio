@@ -9,10 +9,13 @@ function(sqlitestudio_set_common_properties target)
         CXX_STANDARD_REQUIRED ON
         CXX_EXTENSIONS ON
         AUTOMOC ON
+        # Do not set AUTOUIC, the generated headers may be included by other
+        # targets so we need a predicable location. Use qt_wrap_ui() instead.
     )
 
     target_include_directories(${target} PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}"
+        # merely for generated ui_*.h
         "${CMAKE_CURRENT_BINARY_DIR}"
     )
 

@@ -9,11 +9,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>SalSoft, %YEAR%</string>
+	<string>SalSoft, @YEAR@</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
-	<string>%VERSION%</string>
+	<string>@SQLITESTUDIO_VERSION_STRING@</string>
 	<key>CFBundleExecutable</key>
 	<string>SQLiteStudio</string>
 	<key>CFBundleIdentifier</key>

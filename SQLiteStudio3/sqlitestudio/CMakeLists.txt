@@ -6,24 +6,44 @@ set(PROJECT_HEADERS
 )
 
 set(PROJECT_SOURCES
-    ../guiSQLiteStudio/img/sqlitestudio.icns
     main.cpp
     singleapplication/singleapplication.cpp
-)
-set_source_files_properties(../guiSQLiteStudio/img/sqlitestudio.icns PROPERTIES
-    MACOSX_PACKAGE_LOCATION "Resources"
 )
 qt_add_resources(PROJECT_SOURCES
     sqlitestudio.qrc
 )
 
+if(WIN32)
+    string(TIMESTAMP YEAR "%Y")
+    configure_file(windows.rc.in windows.rc @ONLY)
+    list(APPEND PROJECT_SOURCES
+        ../guiSQLiteStudio/img/sqlitestudio.ico
+        SQLiteStudio.exe.manifest
+        "${CMAKE_CURRENT_BINARY_DIR}/windows.rc"
+    )
+elseif(APPLE)
+    list(APPEND PROJECT_SOURCES ../guiSQLiteStudio/img/sqlitestudio.icns)
+    set_source_files_properties(../guiSQLiteStudio/img/sqlitestudio.icns PROPERTIES
+        MACOSX_PACKAGE_LOCATION "Resources"
+    )
+endif()
+
 add_executable(sqlitestudio ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(sqlitestudio)
 set_target_properties(sqlitestudio PROPERTIES
-    AUTOMOC ON
     WIN32_EXECUTABLE ON
-    MACOSX_BUNDLE ON
 )
+
+if(APPLE)
+    string(TIMESTAMP YEAR "%Y")
+    configure_file(Info.plist.in Info.plist @ONLY)
+
+    set_target_properties(sqlitestudio PROPERTIES
+        MACOSX_BUNDLE ON
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/Info.plist"
+    )
+endif()
+
 target_compile_definitions(sqlitestudio PRIVATE
     QAPPLICATION_CLASS=QApplication
 )
