@@ -7,7 +7,7 @@ function(sqlitestudio_set_common_properties target)
     set_target_properties(${target} PROPERTIES
         CXX_STANDARD 20
         CXX_STANDARD_REQUIRED ON
-        CXX_EXTENSIONS OFF
+        CXX_EXTENSIONS ON
         AUTOMOC ON
     )
 
