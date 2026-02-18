@@ -443,7 +443,7 @@ endif()
 if(UNIX AND NOT APPLE)
     if(NOT WITH_PORTABLE)
         target_compile_definitions(coreSQLiteStudio PRIVATE
-            "SYS_PLUGINS_DIR=\"${CMAKE_INSTALL_LIBDIR}/sqlitestudio\""
+            SYS_PLUGINS_DIR="\"${SQLITESTUDIO_INSTALL_PLUGINDIR}\""
         )
     endif()
 endif()
