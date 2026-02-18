@@ -443,7 +443,7 @@ endif()
 if(UNIX AND NOT APPLE)
     if(NOT WITH_PORTABLE)
         target_compile_definitions(coreSQLiteStudio PRIVATE
-            SYS_PLUGINS_DIR="\"${SQLITESTUDIO_INSTALL_PLUGINDIR}\""
+            SYS_PLUGINS_DIR="${SQLITESTUDIO_INSTALL_PLUGINDIR}"
         )
     endif()
 endif()
