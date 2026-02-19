@@ -16,12 +16,12 @@ option(WITH_GUI "Build GUI application" ON)
 
 option(WITH_PORTABLE "Create portable bundle" ${WITH_PORTABLE_DEFAULT})
 option(WITH_UPDATER "Enable update manager" ${WITH_PORTABLE})
-option(WITH_TESTS "Build tests" OFF)
 
 if(NOT WITH_CLI AND NOT WITH_GUI)
     message(FATAL_ERROR "At least one of WITH_CLI or WITH_GUI must be enabled")
 endif()
 
+include(CTest)
 include(common)
 
 add_subdirectory(coreSQLiteStudio)
@@ -32,8 +32,7 @@ if(WITH_GUI)
     add_subdirectory(guiSQLiteStudio)
     add_subdirectory(sqlitestudio)
 endif()
-if(WITH_TESTS)
-    # enable `ctest` at build dir
-    enable_testing()
+
+if(BUILD_TESTING)
     add_subdirectory(Tests)
 endif()
