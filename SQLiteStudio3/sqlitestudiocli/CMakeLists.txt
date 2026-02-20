@@ -73,7 +73,7 @@ target_link_libraries(sqlitestudiocli PRIVATE
 
 if(WIN32)
     target_link_libraries(sqlitestudiocli PRIVATE
-        edit_static
+        edit
     )
 endif()
 

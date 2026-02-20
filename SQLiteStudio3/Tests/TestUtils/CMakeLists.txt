@@ -1,5 +1,4 @@
 find_package(Qt6 REQUIRED COMPONENTS Core Test)
-find_package(SQLite3)
 
 set(PROJECT_HEADERS
     collationmanagermock.h

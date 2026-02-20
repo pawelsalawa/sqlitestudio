@@ -19,6 +19,11 @@ sqlitestudio_set_plugin_properties(Printing)
 target_compile_definitions(Printing PRIVATE
     PRINTING_LIBRARY
 )
+if(WIN32)
+	target_link_directories(Printing PRIVATE "${CMAKE_CURRENT_LIST_DIR}/../PdfExport")
+	target_link_libraries(Printing PRIVATE PdfExport)
+endif()
+
 target_link_libraries(Printing PRIVATE
     Qt::Core
     Qt::Gui

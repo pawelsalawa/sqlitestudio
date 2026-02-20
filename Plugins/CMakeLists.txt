@@ -132,6 +132,7 @@ if(WITH_PythonSyntaxHighlighter OR WITH_ALL_PLUGINS)
     add_subdirectory(PythonSyntaxHighlighter)
 endif()
 
+
 # show summary
 message(STATUS "---------------------------------------")
 message(STATUS "SQLiteStudio plugins:")

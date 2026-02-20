@@ -1,5 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS Core Network Qml Widgets)
-find_package(SQLite3)
+if(NOT CUSTOM_SQLITE3)
+	find_package(SQLite3)
+endif()
 
 set(PROJECT_HEADERS
     chillout/chillout.h
@@ -416,16 +418,13 @@ target_compile_definitions(coreSQLiteStudio PRIVATE
     CORESQLITESTUDIO_LIBRARY
 )
 target_link_libraries(coreSQLiteStudio PRIVATE
+	SQLite::SQLite3
     Qt::Core
     Qt::Network
     Qt::Qml
-    SQLite::SQLite3
 )
 
 if(WIN32)
-    target_compile_definitions(coreSQLiteStudio PUBILC
-        SQLITE_API=__declspec(dllexport)
-    )
     target_link_libraries(coreSQLiteStudio PRIVATE
         imagehlp
         psapi

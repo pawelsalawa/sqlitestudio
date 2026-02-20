@@ -9,7 +9,7 @@
 #include <QDebug>
 
 #if defined(Q_OS_WIN32)
-#include "readline.h"
+#include <editline/readline.h>
 #elif defined(Q_OS_UNIX)
 #include <readline/readline.h>
 #endif

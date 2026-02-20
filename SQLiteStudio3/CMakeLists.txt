@@ -21,6 +21,34 @@ if(NOT WITH_CLI AND NOT WITH_GUI)
     message(FATAL_ERROR "At least one of WITH_CLI or WITH_GUI must be enabled")
 endif()
 
+# Custom SQLite (dedicated for SQLiteStudio official builds)
+set(CUSTOM_SQLITE3 "" CACHE PATH "Path to directory where you placed your custom SQLite3 files (both library and header)")
+if(CUSTOM_SQLITE3)
+	message("Using custom SQLite3 from: ${CUSTOM_SQLITE3}")
+	set(_sqlite_include "${CUSTOM_SQLITE3}/sqlite3.h")
+	if(WIN32)
+		set(_sqlite_lib "${CUSTOM_SQLITE3}/libsqlite3.dll.a")
+	elseif(APPLE)
+		set(_sqlite_lib "${CUSTOM_SQLITE3}/libsqlite3.0.dylib")
+	else()
+		set(_sqlite_lib "${CUSTOM_SQLITE3}/libsqlite3.so")
+	endif()
+
+	if(NOT EXISTS "${_sqlite_lib}")
+		message(FATAL_ERROR "SQLite3 library not found: ${_sqlite_lib}")
+	endif()
+
+	if(NOT EXISTS "${_sqlite_include}")
+		message(FATAL_ERROR "SQLite3 include dir not found: ${_sqlite_include}")
+	endif()
+	
+	add_library(SQLite::SQLite3 UNKNOWN IMPORTED)
+	set_target_properties(SQLite::SQLite3 PROPERTIES
+		IMPORTED_LOCATION "${_sqlite_lib}"
+		INTERFACE_INCLUDE_DIRECTORIES "${_sqlite_include}"
+	)
+endif()
+
 include(CTest)
 include(common)
 
