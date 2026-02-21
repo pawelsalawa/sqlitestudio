@@ -154,27 +154,40 @@ jobs:
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
 
             - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
+              run: mkdir output output/build output/build-plugins
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    CONFIG+=portable \
-                    ../../SQLiteStudio3
-                make -j 4
+                # qmake \
+                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                #     CONFIG+=portable \
+                #     ../../SQLiteStudio3
+                cmake ../../SQLiteStudio3 \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_UPDATER=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Compile Plugins
-              working-directory: output/build/Plugins
+              working-directory: output/build-plugins
               run: |
-                qmake \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-                    "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
-                    ../../../Plugins
-                make -j 1
+                # qmake \
+                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                #     CONFIG+=portable \
+                #     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
+                #     "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
+                #     ../../../Plugins
+                cmake ../../Plugins \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_DYNAMIC_PYTHON=1 \
+                    -DWITH_ALL_PLUGINS=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
