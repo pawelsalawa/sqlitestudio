@@ -34,36 +34,6 @@ jobs:
         runs-on: windows-2022
 
         steps:
-            # - name: debug
-              # shell: bash
-              # run: |
-                # echo "PATH: $PATH"
-        
-            # - name: Cache Qt
-              # id: cache-qt
-              # uses: actions/cache@v4
-              # with:
-                # path: ${{ github.workspace }}\..\Qt
-                # key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
-
-            # - uses: actions/setup-python@v5
-              # with:
-                # python-version: ${{ env.PYTHON_VERSION }}
-                # architecture: 'x64'
-
-            # - name: Install Qt
-              # uses: jurplel/install-qt-action@v4
-              # with:
-                # cache: true
-                # version: ${{ env.QT_VERSION }}
-                # host: 'windows'
-                # arch: ${{ env.QT_ARCH }}
-                # jurplel/install-qt-action has a bug due to which we cannot use ${{ github.workspace }} for the "dir" property, because it will fail.
-                # dir: 'D:/'
-                # setup-python: 'false'
-                # aqtversion: '==3.1.21'
-                # modules: 'qtimageformats'
-
             - name: Install MSYS2
               uses: msys2/setup-msys2@v2
               with: 
@@ -106,29 +76,10 @@ jobs:
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
-            # - name: Install mingw
-              # if: steps.cache-qt.outputs.cache-hit != 'true'
-              # shell: bash
-              # run: |
-                # curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                # 7z x -o"../Qt" ../mingw.7z
-                # echo MINGW_DIR="$(realpath ../Qt/Tools/${{ env.MINGW_DIRNAME }})" >> $GITHUB_ENV
-
-            # - name: Mingw paths
-              # shell: bash
-              # run: |
-                # echo "${{ env.MINGW_DIR }}/bin" >> $GITHUB_PATH
-
             - name: Clone repo
               uses: actions/checkout@v3
               with:
                 ref: ${{ env.BRANCH_NAME }}
-
-            # - name: Install dependencies
-              # shell: bash
-              # run: |
-                # 7z x -o".." win_deps/win64_deps.zip
-                # echo "../lib" >> $GITHUB_PATH
 
             - name: Prepare ccache using action
               if: inputs.use_ccache || false
@@ -163,19 +114,6 @@ jobs:
                 cd sqlite
                 gendef sqlite3.dll
                 dlltool -d sqlite3.def -l libsqlite3.dll.a
-
-            # - name: Install extension dependencies
-              # shell: bash
-              # run: |
-                # cd ..
-                # curl -L "$ICU_URL" | tar -xf - --zstd
-                # mv mingw64 icu
-                # tee -a $GITHUB_ENV <<EOF_ENV
-                # ICU_CFLAGS=-I$(pwd)/icu/include
-                # ICU_LDFLAGS=-L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
-                # ICU_LIBDIR=$(pwd)/icu/bin
-                # ZLIB_FLAGS=-lzlib1
-                # EOF_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: msys2 {0}
@@ -218,18 +156,6 @@ jobs:
                     -DCUSTOM_SQLITE3=${{ github.workspace }}/../sqlite
                 ninja -j4 -v
                 ninja install -v
-              # shell: bash
-              # run: |
-                # set -x
-                # Exclude pre-installed mingw from PATH to avoid symbol conflicts at final linking
-                # export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | tr '\n' ':')
-                # export PATH="${PATH%:}:${{ env.MINGW_DIR }}/bin"
-                # qmake.exe \
-                    # CONFIG+=portable \
-                    # "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    # "QMAKE_LFLAGS+=-L${{ env.MINGW_DIR }}/lib" \
-                    # ../../SQLiteStudio3
-                # ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 4 VERBOSE=1
 
             - name: Compile Plugins
               working-directory: output/build-plugins
@@ -243,18 +169,6 @@ jobs:
                     -DWITH_ALL_PLUGINS=1
                 ninja -j4 -v
                 ninja install -v
-              # shell: bash
-              # run: |
-                # set -x
-                Exclude pre-installed mingw and python from PATH to avoid symbol conflicts at final linking
-                # export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/mingw64/bin" | grep -v "/c/hostedtoolcache/windows/Python/${{ env.PYTHON_VERSION }}" | tr '\n' ':')
-                # export PATH="${PATH%:}:${{ env.MINGW_DIR }}/bin"
-                # qmake.exe \
-                    # "QMAKE_CXX=${{ env.GXX_COMMAND }}" \
-                    # CONFIG+=portable \
-                    # "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" \
-                    # ../../../Plugins
-                # ${{ env.MINGW_DIR }}/bin/mingw32-make.exe -j 1 VERBOSE=1
 
             - name: Copy SQLite extensions to output dir
               shell: msys2 {0}
