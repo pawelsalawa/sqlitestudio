@@ -32,11 +32,18 @@ target_compile_definitions(ScriptingPython PRIVATE
 )
 target_link_libraries(ScriptingPython PRIVATE
     Qt::Core
-    Python::Python
 )
 
 if(WITH_DYNAMIC_PYTHON)
+    get_target_property(PYTHON_INCLUDE_DIRS Python::Python INTERFACE_INCLUDE_DIRECTORIES)
+    target_include_directories(ScriptingPython PRIVATE
+        ${PYTHON_INCLUDE_DIRS}
+    )
     target_compile_definitions(ScriptingPython PRIVATE
         PYTHON_DYNAMIC_BINDING
+    )
+else()
+    target_link_libraries(ScriptingPython PRIVATE
+        Python::Python
     )
 endif()
