@@ -146,9 +146,9 @@ jobs:
                 for f in csv decimal eval ieee754 percentile rot13 series sqlar uint uuid zorder; do
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
-                #for f in icu; do
-                #    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
-                #done
+                for f in icu; do
+                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                done
                 set +x
                 
                 ls -l ../ext/
@@ -158,7 +158,7 @@ jobs:
 
             - name: Install other tools/dependencies
               run: |
-                sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
+                sudo apt install libreadline-dev libncurses5-dev patchelf
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
 
             - name: Prepare output dir
@@ -167,10 +167,6 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                # qmake \
-                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                #     CONFIG+=portable \
-                #     ../../SQLiteStudio3
                 cmake ../../SQLiteStudio3 \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
@@ -182,12 +178,6 @@ jobs:
             - name: Compile Plugins
               working-directory: output/build-plugins
               run: |
-                # qmake \
-                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                #     CONFIG+=portable \
-                #     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-                #     "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" \
-                #     ../../../Plugins
                 cmake ../../Plugins \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
@@ -281,16 +271,11 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN          lib/libicu*.*.*
-                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
-                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                chrpath -l lib/libicu*.*.*
-                chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
-                chrpath -l sqlitestudio
-                chrpath -l sqlitestudiocli
+                patchelf --set-rpath '$ORIGIN/../lib'  platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so extensions/*.so 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN'          lib/libicu*.*.*
+                patchelf --set-rpath '$ORIGIN'          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN/lib'      sqlitestudio 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN/lib'      sqlitestudiocli 2>&1 >/dev/null
 
             - name: Final preparations for packaging
               run: |
@@ -304,7 +289,6 @@ jobs:
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so tls/*.so
-                # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
                   lib/libQt6Core.so.*.*.* \
                   lib/libreadline*

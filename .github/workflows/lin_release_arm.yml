@@ -152,7 +152,7 @@ jobs:
 
             - name: Install other tools/dependencies
               run: |
-                sudo apt install libreadline-dev libncurses5-dev patchelf chrpath
+                sudo apt install libreadline-dev libncurses5-dev patchelf
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
 
             - name: Prepare output dir
@@ -261,16 +261,11 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                chrpath -k -r \$ORIGIN/../lib   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN          lib/libicu*.*.*
-                chrpath -k -r \$ORIGIN          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudio 2>&1 >/dev/null
-                chrpath -k -r \$ORIGIN/lib      sqlitestudiocli 2>&1 >/dev/null
-                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so
-                chrpath -l lib/libicu*.*.*
-                chrpath -l lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so
-                chrpath -l sqlitestudio
-                chrpath -l sqlitestudiocli
+                patchelf --set-rpath '$ORIGIN/../lib'  platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so extensions/*.so 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN'          lib/libicu*.*.*
+                patchelf --set-rpath '$ORIGIN'          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN/lib'      sqlitestudio 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN/lib'      sqlitestudiocli 2>&1 >/dev/null
 
             - name: Final preparations for packaging
               run: |
