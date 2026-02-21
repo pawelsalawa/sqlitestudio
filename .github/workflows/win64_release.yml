@@ -224,14 +224,16 @@ jobs:
                 cd ../sqlite
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
-                # Copy dependencies of sqlitestudiocli.exe
+                cd ${ABSOLUTE_PORTABLE_DIR}
+
+                # Copy dependencies of sqlitestudio.exe
                 ntldd -R sqlitestudio.exe | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
                  sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
                  xargs -I {} cp -u {} .
 
-                # Copy dependencies of sqlitestudio.exe
+                # Copy dependencies of sqlitestudiocli.exe
                 ntldd sqlitestudiocli.exe | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
                  sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
