@@ -26,6 +26,14 @@ on:
             required: false
             type: boolean
             default: false
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
+            type: boolean
+            default: false
     schedule:
         - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
 
@@ -303,3 +311,21 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+
+            - name: Install Midnight Commander
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              run: pacman -S mc
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 10
