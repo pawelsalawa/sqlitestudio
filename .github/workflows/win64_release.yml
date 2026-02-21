@@ -69,6 +69,7 @@ jobs:
                   cmake:p
                   ninja:p
                   tools:p
+                  icu:p
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
@@ -140,7 +141,7 @@ jobs:
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dll
                 done
                 
-                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder icu; do
+                for f in csv decimal eval ieee754 percentile rot13 series uint uuid zorder; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -o ../ext/$f.dll
                 done
                 for f in icu; do
