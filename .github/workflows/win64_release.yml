@@ -58,8 +58,9 @@ jobs:
                   python:p
                   qt6-tools:p
                   tcl:p
-                  cmake
-                  ninja
+                  cmake:p
+                  ninja:p
+                  tools:p
 
             - name: Clone GH scripts
               uses: actions/checkout@v3
