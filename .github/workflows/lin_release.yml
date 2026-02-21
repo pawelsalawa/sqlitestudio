@@ -197,7 +197,7 @@ jobs:
             - name: Prepare portable dir
               working-directory: output
               run: |
-                mkdir portable
+                mkdir portable portable/lib
                 cp -R SQLiteStudio portable/
 
             - name: Copy SQLite3 to portable dir
