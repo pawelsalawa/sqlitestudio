@@ -31,6 +31,9 @@ sqlitestudio_set_common_properties(TestUtils)
 target_compile_definitions(TestUtils PUBLIC
     TESTUTILS_LIBRARY
 )
+if(NOT CUSTOM_SQLITE3)
+        find_package(SQLite3)
+endif()
 target_link_libraries(TestUtils PUBLIC
     Qt::Core
     SQLite::SQLite3
