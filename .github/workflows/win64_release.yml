@@ -319,6 +319,7 @@ jobs:
                     github.repository_owner == 'pawelsalawa'
                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
                 }}
+              shell: msys2 {0}
               run: pacman -S mc
 
             - name: Setup debugging SSH
