@@ -124,6 +124,7 @@ jobs:
                 cd sqlite
                 gendef sqlite3.dll
                 dlltool -d sqlite3.def -l libsqlite3.dll.a
+                pwd
                 ls -l
 
             - name: Compile additional SQLite3 extensions
@@ -164,7 +165,7 @@ jobs:
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1 \
-                    -DCUSTOM_SQLITE3=${{ github.workspace }}/../sqlite
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
                 ninja -j4 -v
                 ninja install -v
 
