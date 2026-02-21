@@ -124,6 +124,7 @@ jobs:
                 cd sqlite
                 gendef sqlite3.dll
                 dlltool -d sqlite3.def -l libsqlite3.dll.a
+                ls -l
 
             - name: Compile additional SQLite3 extensions
               shell: msys2 {0}
@@ -320,7 +321,7 @@ jobs:
                     && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
                 }}
               shell: msys2 {0}
-              run: pacman -S mc
+              run: pacman -S mc --noconfirm
 
             - name: Setup debugging SSH
               if: >
