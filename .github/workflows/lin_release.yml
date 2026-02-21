@@ -2,7 +2,7 @@ env:
     TARGET_ARCH: 'x86_64'
     QT_VERSION: '6.8.3'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3510100'
+    SQLITE_VERSION: '3510200'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
@@ -23,6 +23,14 @@ on:
           DEBUG:
             description: 'Enable workflow debug messages'
             required: false
+            type: boolean
+            default: false
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
     schedule:
@@ -346,3 +354,21 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+
+            - name: Install Midnight Commander
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              run: sudo apt install mc
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 10
