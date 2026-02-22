@@ -1,12 +1,13 @@
 env:
     TARGET_ARCH: 'x86_64'
     QT_VERSION: '6.8.3'
+    QT_ARCH: 'linux_gcc_64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3510200'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
     LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
     ICU_VERSION: '73.2'
@@ -58,6 +59,7 @@ jobs:
                 cache: true
                 version: ${{ env.QT_VERSION }}
                 host: 'linux'
+                arch: '${{ env.QT_ARCH }}'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'

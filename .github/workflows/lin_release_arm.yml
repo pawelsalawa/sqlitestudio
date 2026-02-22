@@ -1,15 +1,17 @@
 env:
     TARGET_ARCH: 'aarch64'
-    QT_VERSION: '6.7.3'
+    QT_VERSION: '6.8.3'
     QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3510100'
+    SQLITE_VERSION: '3510200'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-arm64-installer.run
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run
     LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
+    ICU_VERSION: '73.2'
+    ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz'
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux ARM64 release build
@@ -24,6 +26,14 @@ on:
           DEBUG:
             description: 'Enable workflow debug messages'
             required: false
+            type: boolean
+            default: false
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
     schedule:
@@ -124,6 +134,18 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
+            - name: Get ICU headers
+              if: steps.cache-icu.outputs.cache-hit != 'true'
+              shell: bash
+              run: |
+                cd ..
+                curl -fsSL -o icu-src.tgz "${ICU_URL}"
+                tar xzf icu-src.tgz
+
+                mkdir icu-headers icu-headers/unicode
+                cp icu/source/common/*.h icu-headers/
+                cp icu/source/common/unicode/*.h icu/source/i18n/unicode/*.h icu-headers/unicode/
+                echo "ICU_HEADERS=$(pwd)/icu-headers" >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -141,7 +163,7 @@ jobs:
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
                 for f in icu; do
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                    gcc icu/$f.c -L$QT_ROOT_DIR/lib $FLAGS -I$ICU_HEADERS -licui18n -licuuc -licudata -o ../ext/$f.so
                 done
                 set +x
                 
@@ -156,26 +178,30 @@ jobs:
                 echo "${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
 
             - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
+              run: mkdir output output/build output/build-plugins
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    CONFIG+=portable \
-                    ../../SQLiteStudio3
-                make -j 4
+                cmake ../../SQLiteStudio3 \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_UPDATER=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Compile Plugins
-              working-directory: output/build/Plugins
+              working-directory: output/build-plugins
               run: |
-                qmake \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" "LIBS += -L$pythonLocation/lib" \
-                    ../../../Plugins
-                make -j 1
+                cmake ../../Plugins \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_DYNAMIC_PYTHON=1 \
+                    -DWITH_ALL_PLUGINS=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
@@ -185,7 +211,7 @@ jobs:
             - name: Prepare portable dir
               working-directory: output
               run: |
-                mkdir portable
+                mkdir portable portable/lib
                 cp -R SQLiteStudio portable/
 
             - name: Copy SQLite3 to portable dir
@@ -329,3 +355,21 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+
+            - name: Install Midnight Commander
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              run: sudo apt install mc
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 10
