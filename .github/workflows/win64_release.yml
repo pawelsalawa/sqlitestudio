@@ -229,28 +229,28 @@ jobs:
                 # Copy dependencies of sqlitestudio.exe
                 ntldd -R sqlitestudio.exe | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
                  xargs -I {} cp -u {} .
 
                 # Copy dependencies of sqlitestudiocli.exe
                 ntldd sqlitestudiocli.exe | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
                  xargs -I {} cp -u {} .
 
                 # Copy dependencies of plugins
                 ntldd -R plugins/*.dll | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
                  xargs -I {} cp -u {} .
                 
                 # Copy dependencies of extensions
                 ntldd -R ext/*.dll | \
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${CLANG_PREFIX} | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
                  xargs -I {} cp -u {} .
 
