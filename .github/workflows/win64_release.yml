@@ -246,17 +246,19 @@ jobs:
 
                 # Copy dependencies of plugins
                 ntldd -R plugins/*.dll | \
-                 sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
-                 xargs -I {} cygpath -u {} | \
-                 xargs -I {} cp -u {} .
-                
+                  sed -n 's/.*=> \(.*\) (0x.*/\1/p' | \
+                  tr '\\' '/' | \
+                  awk -v pfx="${MINGW_PREFIX}" 'index($0, pfx)' | \
+                  xargs -r -I {} cygpath -u {} | \
+                  xargs -r -I {} cp -u {} .
+
                 # Copy dependencies of extensions
                 ntldd -R ext/*.dll | \
-                 sed 's/.*=> \(.*\) (0x.*/\1/' | \
-                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
-                 xargs -I {} cygpath -u {} | \
-                 xargs -I {} cp -u {} .
+                  sed -n 's/.*=> \(.*\) (0x.*/\1/p' | \
+                  tr '\\' '/' | \
+                  awk -v pfx="${MINGW_PREFIX}" 'index($0, pfx)' | \
+                  xargs -r -I {} cygpath -u {} | \
+                  xargs -r -I {} cp -u {} .
 
             - name: Prepare portable distro (Resources)
               shell: msys2 {0}
