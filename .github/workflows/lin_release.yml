@@ -10,7 +10,7 @@ env:
     LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
     ICU_VERSION: '73.2'
-    ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.zip'
+    ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz'
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build
