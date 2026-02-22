@@ -222,6 +222,9 @@ jobs:
               shell: msys2 {0}
               run: |
                 set -x
+                set -e
+                set -o pipefail
+
                 cd ../sqlite
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
