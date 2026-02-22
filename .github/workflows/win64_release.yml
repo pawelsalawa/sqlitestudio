@@ -221,6 +221,7 @@ jobs:
             - name: Prepare portable distro (Deps)
               shell: msys2 {0}
               run: |
+                set -x
                 cd ../sqlite
                 cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
