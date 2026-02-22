@@ -9,6 +9,8 @@ env:
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-24.11.1-linux-x64-installer.run
     LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
     LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+    ICU_VERSION: '73.2'
+    ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.zip'
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build
@@ -130,6 +132,18 @@ jobs:
                 ls -l /usr/local/lib/libsqlite3*
                 ls -l /usr/local/include/sqlite*
 
+            - name: Get ICU headers
+              if: steps.cache-icu.outputs.cache-hit != 'true'
+              shell: bash
+              run: |
+                cd ..
+                curl -fsSL -o icu-src.tgz "${ICU_URL}"
+                tar xf icu-src.tgz
+
+                mkdir icu-headers icu-headers/unicode
+                cp icu/source/common/*.h icu-headers/
+                cp icu/source/common/unicode/*.h icu/source/i18n/unicode/*.h icu-headers/unicode/
+                echo "ICU_HEADERS=$(pwd)/icu-headers" >> $GITHUB_ENV
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -147,7 +161,7 @@ jobs:
                     gcc misc/$f.c $FLAGS -o ../ext/$f.so
                 done
                 for f in icu; do
-                    gcc icu/$f.c $FLAGS `pkg-config --libs --cflags icu-uc icu-io` -o ../ext/$f.so
+                    gcc icu/$f.c -L$QT_ROOT_DIR/lib $FLAGS -I$ICU_HEADERS -licui18n -licuuc -licudata -o ../ext/$f.so
                 done
                 set +x
                 
