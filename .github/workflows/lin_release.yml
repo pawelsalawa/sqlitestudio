@@ -138,7 +138,7 @@ jobs:
               run: |
                 cd ..
                 curl -fsSL -o icu-src.tgz "${ICU_URL}"
-                tar xf icu-src.tgz
+                tar xzf icu-src.tgz
 
                 mkdir icu-headers icu-headers/unicode
                 cp icu/source/common/*.h icu-headers/
