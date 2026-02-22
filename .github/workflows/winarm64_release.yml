@@ -1,10 +1,8 @@
 env:
-    SQLITE_VERSION: '3510100'
-    ICU_VER: '78'
-    ICU_URL: https://repo.msys2.org/mingw/clangarm64/mingw-w64-clang-aarch64-icu-78.2-1-any.pkg.tar.zst
+    SQLITE_VERSION: '3510200'
     PORTABLE_DIR: output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-25.10.1-windows-x64-installer.exe
+    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-windows-x64-installer.exe
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Windows ARM 64-bit release build
@@ -21,10 +19,16 @@ on:
             required: false
             type: boolean
             default: false
+          debug_ssh:
+            description: "Open SSH tunnel at the end"
+            type: boolean
+            default: false
+          debug_on_failure:
+            description: "Open SSH tunnel if job fails"
+            type: boolean
+            default: false
     schedule:
         - cron: '0 2 * * 1' # run at 2 AM UTC every Monday
-    repository_dispatch:
-        types: [winarm64_release]
 
 jobs:
     build:
@@ -39,7 +43,6 @@ jobs:
                 install: unzip
                 pacboy: >-
                   cc-libs:p
-                  openssl:p
                   qt6-base:p
                   qt6-declarative:p
                   qt6-imageformats:p
@@ -56,6 +59,10 @@ jobs:
                   python:p
                   qt6-tools:p
                   tcl:p
+                  cmake:p
+                  ninja:p
+                  tools:p
+                  icu:p
 
             - name: Clone GH scripts
               uses: actions/checkout@v5
@@ -71,17 +78,6 @@ jobs:
                 cd ..
                 echo "GH_SCRIPTS=$(pwd)/gh-scripts/scripts" >> $GITHUB_ENV
                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
-
-            - name: Adjust MSYS2 environment
-              shell: msys2 {0}
-              run: |
-                set -x
-
-                # Remove system wide SQLite, since we want the pre-built version
-                pacman -R --noconfirm -dd mingw-w64-clang-aarch64-sqlite3
-
-                # The makefile requires the editline static library to be called edit_static
-                cp ${MINGW_PREFIX}/lib/libedit.a ${MINGW_PREFIX}/lib/libedit_static.a
 
             - name: Clone repo
               uses: actions/checkout@v5
@@ -116,21 +112,13 @@ jobs:
                 SQLITE3_ZIP=sqlite3-windows-arm64-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
-                unzip $SQLITE3_ZIP sqlite3.dll -d lib
-                unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d include
+                unzip $SQLITE3_ZIP sqlite3.dll sqlite3.h sqlite3ext.h -d sqlite
 
-            - name: Install extension dependencies
-              shell: msys2 {0}
-              run: |
-                cd ..
-                curl -L "$ICU_URL" | tar -xf - --zstd
-                mv clangarm64 icu
-                tee -a $GITHUB_ENV <<EOF_ENV
-                ICU_CFLAGS=-I$(pwd)/icu/include
-                ICU_LDFLAGS=-L$(pwd)/icu/lib -licuio -licuin -licuuc -licudt
-                ICU_LIBDIR=$(pwd)/icu/bin
-                ZLIB_FLAGS=-lzlib1
-                EOF_ENV
+                cd sqlite
+                gendef sqlite3.dll
+                dlltool -d sqlite3.def -l libsqlite3.dll.a
+                pwd
+                ls -l
 
             - name: Compile additional SQLite3 extensions
               shell: msys2 {0}
@@ -142,7 +130,7 @@ jobs:
                 mkdir ext-src
                 unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
                 cd ext-src
-                FLAGS="-shared -Os -fpic -DWIN64 -m64 -I../include -L../lib -lsqlite3"
+                FLAGS="-shared -Os -I../sqlite -L../sqlite -lsqlite3"
                 set -x
                 for f in compress sqlar; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dll
@@ -153,7 +141,7 @@ jobs:
                 done
 
                 for f in icu; do
-                    $GCC_COMMAND icu/$f.c $ICU_CFLAGS $ICU_LDFLAGS $FLAGS -o ../ext/$f.dll
+                    $GCC_COMMAND icu/$f.c `pkg-config --libs --cflags icu-uc icu-io` $FLAGS -o ../ext/$f.dll
                 done
 
                 set +x
@@ -161,38 +149,33 @@ jobs:
 
             - name: Prepare output dir
               shell: msys2 {0}
-              run: mkdir output output/build output/build/Plugins
+              run: mkdir output output/build output/build-plugins
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
               shell: msys2 {0}
               run: |
                 set -x
-
-                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake \
-                  CONFIG+=portable \
-                  QMAKE_CXXFLAGS+=`pkgconf --cflags wineditline` \
-                  ../../SQLiteStudio3
-
-                # MSYS2_ARG_CONV_EXCL again for QMake called during the build
-                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/mingw32-make.exe -j 4 VERBOSE=1
+                cmake ../../SQLiteStudio3/ \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_UPDATER=1 \
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
+                ninja -j4 -v
+                ninja install -v
 
             - name: Compile Plugins
-              working-directory: output/build/Plugins
+              working-directory: output/build-plugins
               shell: msys2 {0}
               run: |
                 set -x
-
-                MSYS2_ARG_CONV_EXCL="QMAKE_CXXFLAGS=" \
-                ${MINGW_PREFIX}/bin/qmake \
-                  CONFIG+=portable \
-                  QMAKE_CXXFLAGS+=`pkgconf --cflags python3` \
-                  PYTHON_VERSION=${PYTHON_VERSION} \
-                  ../../../Plugins
-
-                ${MINGW_PREFIX}/bin/mingw32-make.exe -j 1
+                cmake ../../Plugins/ \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_DYNAMIC_PYTHON=1 \
+                    -DWITH_ALL_PLUGINS=1
+                ninja -j4 -v
+                ninja install -v
 
             - name: Copy SQLite extensions to output dir
               shell: msys2 {0}
@@ -233,11 +216,12 @@ jobs:
             - name: Prepare portable distro (Deps)
               shell: msys2 {0}
               run: |
-                cd ../lib
-                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
+                set -x
+                set -e
+                set -o pipefail
 
-                cd "$ICU_LIBDIR"
-                cp libicuio$ICU_VER.dll libicuin$ICU_VER.dll libicuuc$ICU_VER.dll libicudt$ICU_VER.dll "$ABSOLUTE_PORTABLE_DIR"
+                cd ../sqlite
+                cp *.dll "$ABSOLUTE_PORTABLE_DIR"
 
                 cd ${ABSOLUTE_PORTABLE_DIR}
 
@@ -246,10 +230,30 @@ jobs:
                  sed 's/.*=> \(.*\) (0x.*/\1/' | \
                  sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
                  xargs -I {} cygpath -u {} | \
-                 xargs -I {} cp {} .
+                 xargs -I {} cp -u {} .
 
-                # Copy plugins dependencies
-                cp ${MINGW_PREFIX}/bin/tcl86.dll .
+                # Copy dependencies of sqlitestudiocli.exe
+                ntldd sqlitestudiocli.exe | \
+                 sed 's/.*=> \(.*\) (0x.*/\1/' | \
+                 sed 's/\\/\//g' | grep ${MINGW_PREFIX} | \
+                 xargs -I {} cygpath -u {} | \
+                 xargs -I {} cp -u {} .
+
+                # Copy dependencies of plugins
+                ntldd -R plugins/*.dll | \
+                  sed -n 's/.*=> \(.*\) (0x.*/\1/p' | \
+                  tr '\\' '/' | \
+                  awk -v pfx="${MINGW_PREFIX}" 'index($0, pfx)' | \
+                  xargs -r -I {} cygpath -u {} | \
+                  xargs -r -I {} cp -u {} .
+
+                # Copy dependencies of extensions
+                ntldd -R ext/*.dll | \
+                  sed -n 's/.*=> \(.*\) (0x.*/\1/p' | \
+                  tr '\\' '/' | \
+                  awk -v pfx="${MINGW_PREFIX}" 'index($0, pfx)' | \
+                  xargs -r -I {} cygpath -u {} | \
+                  xargs -r -I {} cp -u {} .
 
             - name: Prepare portable distro (Resources)
               shell: msys2 {0}
@@ -299,9 +303,9 @@ jobs:
             - name: SHA256 checksums
               shell: msys2 {0}
               run: |
-                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
                 sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
-                sha256sum SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -312,5 +316,15 @@ jobs:
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
-                name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
-                path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-arm64-installer.exe
+                name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+
+            - name: Setup debugging SSH
+              if: >
+                ${{
+                    github.repository_owner == 'pawelsalawa'
+                    && (inputs.debug_ssh || (failure() && inputs.debug_on_failure))
+                }}
+              uses: owenthereal/action-upterm@v1
+              with:
+                wait-timeout-minutes: 10
