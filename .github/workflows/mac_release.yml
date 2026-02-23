@@ -247,9 +247,9 @@ jobs:
                 SQLITE3_ZIP=sqlite3-macos-universal-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
-                unzip $SQLITE3_ZIP sqlite3.dll sqlite3.h sqlite3ext.h -d sqlite
+                unzip $SQLITE3_ZIP libsqlite3.0.dylib sqlite3.h sqlite3ext.h -d sqlite
                 cd sqlite
-                sudo ln -f -s libsqlite3.0.dylib libsqlite3.dylib
+                ln -f -s libsqlite3.0.dylib libsqlite3.dylib
                 echo "DYLD_LIBRARY_PATH=$(pwd)" >> $GITHUB_ENV
                 ls -l
 
