@@ -307,25 +307,48 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake ${{ matrix.qmake_flags }} \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                    CONFIG+=portable \
-                    ../../SQLiteStudio3
-                make -j 4
+                cmake ../../SQLiteStudio3 \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64" \
+                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET"
+                    -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_UPDATER=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
+
+                # qmake ${{ matrix.qmake_flags }} \
+                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                #     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
+                #     CONFIG+=portable \
+                #     ../../SQLiteStudio3
+                # make -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake ${{ matrix.qmake_flags }} \
-                    $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                    QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                    CONFIG+=portable \
-                    "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
-                    "LIBS += -L$pythonLocation/lib" \
-                    "TCL_CONFIG=$TCL_ROOT_DIR/lib/tclConfig.sh" \
-                    ../../../Plugins
-                make -j 1
+                cmake ../../Plugins \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64"
+                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET"
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_DYNAMIC_PYTHON=1 \
+                    -DWITH_ALL_PLUGINS=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
+
+                # qmake ${{ matrix.qmake_flags }} \
+                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
+                #     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
+                #     CONFIG+=portable \
+                #     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
+                #     "LIBS += -L$pythonLocation/lib" \
+                #     "TCL_CONFIG=$TCL_ROOT_DIR/lib/tclConfig.sh" \
+                #     ../../../Plugins
+                # make -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
