@@ -288,8 +288,6 @@ jobs:
             - name: Prepare deps
               run: |
                 mkdir ../lib ../include
-                cp /usr/local/lib/libsqlite3* ../lib
-                cp /usr/local/include/sqlite3* ../include
                 cp $ICU_ROOT_DIR/lib/libicuio.dylib \
                    $ICU_ROOT_DIR/lib/libicui18n.dylib \
                    $ICU_ROOT_DIR/lib/libicuuc.dylib \
