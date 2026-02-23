@@ -247,12 +247,11 @@ jobs:
                 SQLITE3_ZIP=sqlite3-macos-universal-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
-                sudo unzip $SQLITE3_ZIP libsqlite3.0.dylib -d /usr/local/lib
-                sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
-                sudo ln -f -s /usr/local/lib/libsqlite3.0.dylib /usr/local/lib/libsqlite3.dylib
-                echo "DYLD_LIBRARY_PATH=/usr/local/lib" >> $GITHUB_ENV
-                ls -l /usr/local/lib/libsqlite3*
-                ls -l /usr/local/include/sqlite*
+                unzip $SQLITE3_ZIP sqlite3.dll sqlite3.h sqlite3ext.h -d sqlite
+                cd sqlite
+                sudo ln -f -s libsqlite3.0.dylib libsqlite3.dylib
+                echo "DYLD_LIBRARY_PATH=$(pwd)" >> $GITHUB_ENV
+                ls -l
 
             - name: Compile additional SQLite3 extensions
               shell: bash
@@ -268,7 +267,7 @@ jobs:
                 cd ext-src
                 ls -l
 
-                FLAGS="$CFLAGS -ldl -Os -fpic -shared -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                FLAGS="$CFLAGS -ldl -Os -fpic -shared -I../sqlite -L../sqlite -lsqlite3"
                 set -x
                 for f in compress sqlar; do
                     gcc misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dylib
@@ -298,9 +297,6 @@ jobs:
                    ../lib
                 cp $TCL_ROOT_DIR/lib/libtcl*.dylib ../lib
 
-            # TODO does online updates (https) checking work without cryto?
-            # cp /usr/local/opt/openssl/lib/libcrypto*.dylib ../lib
-
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
 
@@ -310,20 +306,14 @@ jobs:
                 cmake ../../SQLiteStudio3 \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64" \
-                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET"
+                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
                     -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1
-                make -j 4 VERBOSE=1
+                make -j 3 VERBOSE=1
                 make install VERBOSE=1
-
-                # qmake ${{ matrix.qmake_flags }} \
-                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                #     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                #     CONFIG+=portable \
-                #     ../../SQLiteStudio3
-                # make -j 4
 
             - name: Compile Plugins
               working-directory: output/build/Plugins
@@ -331,24 +321,15 @@ jobs:
                 cmake ../../Plugins \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64"
-                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET"
+                    -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
-                make -j 4 VERBOSE=1
+                make -j 3 VERBOSE=1
                 make install VERBOSE=1
-
-                # qmake ${{ matrix.qmake_flags }} \
-                #     $([ ${{ inputs.use_ccache || false }} = false ] || echo "CONFIG+=ccache") \
-                #     QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64" \
-                #     CONFIG+=portable \
-                #     "INCLUDEPATH+=$pythonLocation/include/python$PYTHON_VERSION" \
-                #     "LIBS += -L$pythonLocation/lib" \
-                #     "TCL_CONFIG=$TCL_ROOT_DIR/lib/tclConfig.sh" \
-                #     ../../../Plugins
-                # make -j 1
 
             - name: Copy SQLite extensions to output dir
               shell: bash
@@ -385,30 +366,10 @@ jobs:
               run: |
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}.dmg sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
 
-#             - name: Create installer package
-#               shell: bash
-#               env:
-#                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
-#               run: |
-#                 echo "$IB_LICENSE" > lic.xml
-#                 hdiutil attach output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-#                 echo "Volumes:"
-#                 ls -l /Volumes
-#                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder build SQLiteStudio-installer.xml \
-#                     --license lic.xml \
-#                     --setvars project.outputDirectory=$(pwd) \
-#                     --setvars project.version=${{ env.SQLITESTUDIO_VERSION }}
-#                 echo "Installer file before renaming:"
-#                 ls -l *.dmg
-#                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-osx-installer.dmg SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-#                 echo "Installer file after renaming:"
-#                 ls -l *.dmg
-#
             - name: SHA256 checksums
               shell: bash
               run: |
                 sha256sum output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-            # sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -433,9 +394,3 @@ jobs:
               uses: owenthereal/action-upterm@v1
               with:
                 wait-timeout-minutes: 10
-
-            # - name: Upload installer artifact
-            #   uses: actions/upload-artifact@v4
-            #   with:
-            #     name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
-            #     path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.dmg
