@@ -318,7 +318,7 @@ jobs:
               run: |
                 cmake ../../Plugins \
                     -DCMAKE_BUILD_TYPE=Release \
-                    -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64"
+                    -DCMAKE_OSX_ARCHITECTURE="x86_64;arm64" \
                     -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
