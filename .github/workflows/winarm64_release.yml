@@ -130,7 +130,7 @@ jobs:
                 mkdir ext-src
                 unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
                 cd ext-src
-                FLAGS="-shared -Os -I../sqlite -L../sqlite -lsqlite3"
+                FLAGS="-shared -O2 -I../sqlite -L../sqlite -lsqlite3"
                 set -x
                 for f in compress sqlar; do
                     $GCC_COMMAND misc/$f.c -Imisc $FLAGS -lz -o ../ext/$f.dll
@@ -157,6 +157,7 @@ jobs:
               run: |
                 set -x
                 cmake ../../SQLiteStudio3/ \
+                    -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1 \
@@ -170,6 +171,7 @@ jobs:
               run: |
                 set -x
                 cmake ../../Plugins/ \
+                    -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \

@@ -159,7 +159,7 @@ jobs:
                 mkdir ext
                 
                 cd ext-src
-                FLAGS="-ldl -Os -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
+                FLAGS="-ldl -O2 -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 set -x
                 for f in compress; do
                     gcc misc/$f.c $FLAGS -lz -o ../ext/$f.so
@@ -189,6 +189,7 @@ jobs:
               working-directory: output/build
               run: |
                 cmake ../../SQLiteStudio3 \
+                    -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
@@ -200,6 +201,7 @@ jobs:
               working-directory: output/build-plugins
               run: |
                 cmake ../../Plugins \
+                    -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
