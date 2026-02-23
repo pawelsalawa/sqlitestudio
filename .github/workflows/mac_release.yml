@@ -307,7 +307,7 @@ jobs:
                     -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
                     -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
-                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite \
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1
                 make -j 3 VERBOSE=1
@@ -322,7 +322,7 @@ jobs:
                     -DCMAKE_OSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
-                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite \
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
