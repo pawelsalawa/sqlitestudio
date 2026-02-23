@@ -20,7 +20,7 @@ function(sqlitestudio_set_common_properties target)
     )
 
     if(APPLE)
-        target_compile_options(${target}
+        target_compile_options(${target} PRIVATE
             -Wno-gnu-zero-variadic-macro-arguments
             -Wno-overloaded-virtual
         )
