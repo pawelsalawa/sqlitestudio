@@ -1,6 +1,6 @@
 env:
     TARGET_ARCH: 'aarch64'
-    QT_VERSION: '6.8.3'
+    QT_VERSION: '6.7.3'
     QT_ARCH: 'linux_gcc_arm64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3510200'
@@ -305,7 +305,6 @@ jobs:
                 cp `ldd sqlitestudiocli | grep readline | awk '{print $3}'` lib/
                 cp `ldd lib/libreadline* | grep tinfo | awk '{print $3}'` lib/
                 strip lib/*.so sqlitestudio sqlitestudiocli platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so tls/*.so
-                # These may have no initial rpath/runpath so chrpath does not work on them
                 patchelf --set-rpath '$ORIGIN' \
                   lib/libQt6Core.so.*.*.* \
                   lib/libreadline*

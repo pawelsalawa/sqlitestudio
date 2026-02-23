@@ -216,7 +216,7 @@ jobs:
 
             - name: Copy SQLite3 to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: cp -P /usr/local/lib/libsqlite3.so* lib/
+              run: cp -P /usr/local/lib/libsqlite3.so lib/
 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
@@ -287,11 +287,13 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 set -x
-                patchelf --set-rpath '$ORIGIN/../lib'  platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so extensions/*.so 2>&1 >/dev/null
+                patchelf --set-rpath '$ORIGIN/../lib'   platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so plugins/*.so wayland-*/*.so tls/*.so extensions/*.so 2>&1 >/dev/null
                 patchelf --set-rpath '$ORIGIN'          lib/libicu*.*.*
                 patchelf --set-rpath '$ORIGIN'          lib/libcoreSQLiteStudio.so lib/libguiSQLiteStudio.so 2>&1 >/dev/null
                 patchelf --set-rpath '$ORIGIN/lib'      sqlitestudio 2>&1 >/dev/null
                 patchelf --set-rpath '$ORIGIN/lib'      sqlitestudiocli 2>&1 >/dev/null
+                # CMake may consider manually installed SQLite as "IMPORTED", therefore linking it with a full path. We need to fix it.
+                patchelf --replace-needed /usr/local/lib/libsqlite3.so libsqlite3.so lib/libcoreSQLiteStudio.so
 
             - name: Final preparations for packaging
               run: |
