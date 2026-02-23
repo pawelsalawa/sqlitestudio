@@ -296,7 +296,7 @@ jobs:
                 cp $TCL_ROOT_DIR/lib/libtcl*.dylib ../lib
 
             - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
+              run: mkdir output output/build output/build-plugins
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
@@ -314,7 +314,7 @@ jobs:
                 make install VERBOSE=1
 
             - name: Compile Plugins
-              working-directory: output/build/Plugins
+              working-directory: output/build-plugins
               run: |
                 cmake ../../Plugins \
                     -DCMAKE_BUILD_TYPE=Release \
