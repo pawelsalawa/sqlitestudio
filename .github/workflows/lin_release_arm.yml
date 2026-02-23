@@ -49,6 +49,11 @@ jobs:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'arm64'
 
+            # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
+            # The problem is that cmake files in Qt 6.7 have bugged dependency on Cups headers, making them mandatory in the OS.
+            - name: Workaround for Qt 6.7.x CUPS bug
+              run: sudo apt install libcups2-dev
+
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
