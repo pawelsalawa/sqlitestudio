@@ -19,18 +19,23 @@ function(sqlitestudio_set_plugin_properties target)
         "${DIR_OF_COMMON_CMAKE}/../guiSQLiteStudio"
     )
 
-	if(WIN32 OR APPLE)
-		target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}")
-		target_link_libraries(${target} PRIVATE coreSQLiteStudio)
-		if(Qt6Gui_FOUND)
-			target_link_libraries(${target} PRIVATE guiSQLiteStudio)
-		endif()
-	endif()
+    if(WIN32 OR APPLE)
+        target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}")
+        target_link_libraries(${target} PRIVATE coreSQLiteStudio)
+        if(Qt6Gui_FOUND)
+            target_link_libraries(${target} PRIVATE guiSQLiteStudio)
+        endif()
+        if(APPLE)
+            target_link_directories(${target} PRIVATE
+                "${CMAKE_INSTALL_PREFIX}"/lib
+            )
+        endif()
+    endif()
 
     install(
         TARGETS ${target}
         LIBRARY DESTINATION "${SQLITESTUDIO_INSTALL_PLUGINDIR}" # macOS/Linux (.dylib/.so)
-		RUNTIME DESTINATION "${SQLITESTUDIO_INSTALL_PLUGINDIR}" # Windows (.dll)
+        RUNTIME DESTINATION "${SQLITESTUDIO_INSTALL_PLUGINDIR}" # Windows (.dll)
     )
 endfunction()
 
@@ -46,6 +51,6 @@ function(sqlitestudio_set_style_properties target)
     install(
         TARGETS ${target}
         LIBRARY DESTINATION "${SQLITESTUDIO_INSTALL_STYLEDIR}" # macOS/Linux (.dylib/.so)
-		RUNTIME DESTINATION "${SQLITESTUDIO_INSTALL_STYLEDIR}" # Windows (.dll)
+        RUNTIME DESTINATION "${SQLITESTUDIO_INSTALL_STYLEDIR}" # Windows (.dll)
     )
 endfunction()
