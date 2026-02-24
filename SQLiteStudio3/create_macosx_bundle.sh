@@ -142,7 +142,7 @@ mv SQLiteStudio.app/Contents/plugins SQLiteStudio.app/Contents/PlugIns
 mkdir -p SQLiteStudio.app/Contents/PlugIns/styles
 cp -RP styles/* SQLiteStudio.app/Contents/PlugIns/styles
 
-cp -RP lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
+cp -RP lib/lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
 
 # Determine our version before any patching, while we have a presumably working binary
 VERSION="$(./sqlitestudiocli -v | awk '{print $2}')"

@@ -41,6 +41,7 @@ if(APPLE)
     set_target_properties(sqlitestudio PROPERTIES
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/Info.plist"
+        OUTPUT_NAME "SQLiteStudio"
     )
 endif()
 
