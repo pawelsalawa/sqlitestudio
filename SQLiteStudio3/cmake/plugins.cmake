@@ -20,15 +20,15 @@ function(sqlitestudio_set_plugin_properties target)
     )
 
     if(WIN32 OR APPLE)
-        target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}")
+        if(APPLE)
+            target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}/lib")
+        else()
+            target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}")
+        endif()
+
         target_link_libraries(${target} PRIVATE coreSQLiteStudio)
         if(Qt6Gui_FOUND)
             target_link_libraries(${target} PRIVATE guiSQLiteStudio)
-        endif()
-        if(APPLE)
-            target_link_directories(${target} PRIVATE
-                "${CMAKE_INSTALL_PREFIX}"/lib
-            )
         endif()
     endif()
 
