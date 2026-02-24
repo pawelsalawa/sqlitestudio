@@ -292,7 +292,7 @@ jobs:
                    $ICU_ROOT_DIR/lib/libicui18n.dylib \
                    $ICU_ROOT_DIR/lib/libicuuc.dylib \
                    $ICU_ROOT_DIR/lib/libicudata.dylib \
-                   ../sqlite/libsqlite3*.dylib
+                   ../sqlite/libsqlite3*.dylib \
                    ../lib
                 cp $TCL_ROOT_DIR/lib/libtcl*.dylib ../lib
 
