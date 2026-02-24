@@ -335,7 +335,6 @@ jobs:
                 cp -R ../ext output/SQLiteStudio/SQLiteStudio.app/Contents/extensions
 
             - name: Build packages
-              working-directory: output/build
               run: |
                 chmod +x SQLiteStudio3/create_macosx_bundle.sh
                 DEBUG_LEVEL=3 SQLiteStudio3/create_macosx_bundle.sh $QT_ROOT_DIR output
