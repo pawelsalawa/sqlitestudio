@@ -26,6 +26,9 @@ elseif(APPLE)
     set_source_files_properties(../guiSQLiteStudio/img/sqlitestudio.icns PROPERTIES
         MACOSX_PACKAGE_LOCATION "Resources"
     )
+
+    set(CMAKE_INSTALL_RPATH "@executable_path/../Frameworks")
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 endif()
 
 add_executable(sqlitestudio ${PROJECT_HEADERS} ${PROJECT_SOURCES})

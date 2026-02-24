@@ -292,6 +292,7 @@ jobs:
                    $ICU_ROOT_DIR/lib/libicui18n.dylib \
                    $ICU_ROOT_DIR/lib/libicuuc.dylib \
                    $ICU_ROOT_DIR/lib/libicudata.dylib \
+                   ../sqlite/libsqlite3*.dylib
                    ../lib
                 cp $TCL_ROOT_DIR/lib/libtcl*.dylib ../lib
 
@@ -337,6 +338,7 @@ jobs:
             - name: Build packages
               run: |
                 chmod +x SQLiteStudio3/create_macosx_bundle.sh
+                export DEP_LIB_DIR="$(cd ../lib && pwd)"
                 DEBUG_LEVEL=3 SQLiteStudio3/create_macosx_bundle.sh output $QT_ROOT_DIR dist
 
             - name: Determine SQLiteStudio version

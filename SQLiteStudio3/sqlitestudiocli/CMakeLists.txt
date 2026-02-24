@@ -64,6 +64,11 @@ qt_add_resources(PROJECT_SOURCES
     sqlitestudiocli.qrc
 )
 
+if(APPLE)
+    set(CMAKE_INSTALL_RPATH "@executable_path/../Frameworks")
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+endif()
+
 add_executable(sqlitestudiocli ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(sqlitestudiocli)
 target_link_libraries(sqlitestudiocli PRIVATE
