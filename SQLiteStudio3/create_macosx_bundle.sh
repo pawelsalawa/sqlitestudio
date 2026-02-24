@@ -249,8 +249,8 @@ elif [ "$3" = "dist" ]; then
     deploy_qt SQLiteStudio.app -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio
 
     # Fix executable's RPATH
-    install_name_tool -add_rpath @executable_path/../Frameworks sqlitestudiocli
-    install_name_tool -add_rpath @executable_path/../Frameworks sqlitestudio
+    run install_name_tool -add_rpath @executable_path/../Frameworks SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+    run install_name_tool -add_rpath @executable_path/../Frameworks SQLiteStudio.app/Contents/MacOS/SQLiteStudio
 
     # Fix sqlite3 file in the image
     embed_libsqlite3 SQLiteStudio.app
