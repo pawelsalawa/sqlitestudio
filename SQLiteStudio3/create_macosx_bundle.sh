@@ -3,7 +3,7 @@
 set -e
 
 printUsage() {
-    echo "$0 [-q]... <sqlitestudio build output directory> <qmake path> [dmg|dist|dist_full]"
+    echo "$0 [-q]... <sqlitestudio build output directory> <Qt path> [dmg|dist|dist_full]"
 }
 
 quiet=0
@@ -121,18 +121,11 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
   exit 1
 fi
 
-qt_version="$("$2" -v | awk '/Qt version/ { print $4 }')"
-info "Qt version detected: $qt_version"
-case "$qt_version" in
-  5*) qt_version_path=5 ;;
-  6*) qt_version_path=A ;;
-esac
-qmake_basename="${2##*/}"
-qt_deploy_bin="$(echo "$2" | sed "s/$qmake_basename\$/macdeployqt/")"
-info "macdeployqt executable found: $qt_deploy_bin"
+qt_deploy_bin="$2/bin"
 if [ ! -x "$qt_deploy_bin" ]; then
     abort "$qt_deploy_bin program missing!"
 fi
+info "macdeployqt executable found: $qt_deploy_bin"
 
 cd "$1/SQLiteStudio" || abort "Could not chdir to $1/SQLiteStudio!"
 
@@ -159,7 +152,7 @@ BUILD_ARCHS="$(lipo -archs SQLiteStudio.app/Contents/MacOS/SQLiteStudio)"
 
 # CLI paths
 qtcore_path=`otool -L sqlitestudiocli | awk '/QtCore/ {print $1;}'`
-new_qtcore_path="@rpath/QtCore.framework/Versions/$qt_version_path/QtCore"
+new_qtcore_path="@rpath/QtCore.framework/Versions/A/QtCore"
 
 cp -P sqlitestudiocli SQLiteStudio.app/Contents/MacOS
 install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
