@@ -337,7 +337,7 @@ jobs:
             - name: Build packages
               run: |
                 chmod +x SQLiteStudio3/create_macosx_bundle.sh
-                DEBUG_LEVEL=3 SQLiteStudio3/create_macosx_bundle.sh $QT_ROOT_DIR output
+                DEBUG_LEVEL=3 SQLiteStudio3/create_macosx_bundle.sh output $QT_ROOT_DIR dist
 
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
