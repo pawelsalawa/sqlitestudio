@@ -1,15 +1,10 @@
 env:
     TARGET_ARCH: 'x86_64'
-    QT_VERSION: '6.8.3'
-    QT_ARCH: 'linux_gcc_64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3510200'
     PYTHON_VERSION: '3.13'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     INSTALLBUILDER_DIR: ../ib
-    INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
-    LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-    LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
     ICU_VERSION: '73.2'
     ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz'
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -41,13 +36,42 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-22.04
+        strategy:
+            matrix:
+                include:
+                    - OS: ubuntu-22.04
+                      QT_VERSION: '6.8.3'
+                      QT_ARCH: 'linux_gcc_64'
+                      QT_HOST: 'linux'
+                      INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
+                      LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
+                      LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+                      PYTHON_ARCH: 'x64'
+                      SQLITE_ARCH: 'x64'
+                      OUTPUT_FILE_ARCH: 'x64'
+                    - OS: ubuntu-22.04-arm
+                      QT_VERSION: '6.7.3' # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
+                      QT_ARCH: 'linux_gcc_arm64'
+                      QT_HOST: 'linux_arm64'
+                      INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run
+                      LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
+                      LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
+                      PYTHON_ARCH: 'arm64'
+                      SQLITE_ARCH: 'arm'
+                      OUTPUT_FILE_ARCH: 'arm'
+
+        runs-on: ${{ matrix.OS }}
 
         steps:
             - uses: actions/setup-python@v4
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
+                architecture: ${{ matrix.PYTHON_ARCH }}
+
+            # CMake files in Qt 6.7 have bugged dependency on Cups headers, making them mandatory in the OS.
+            # It's easy and fast to install it.
+            - name: Workaround for Qt 6.7.x CUPS bug
+              run: sudo apt install libcups2-dev
 
             - name: Qt installation dir
               id: qt-installation-dir
@@ -58,7 +82,7 @@ jobs:
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
-                host: 'linux'
+                host: ${{ matrix.QT_HOST }}
                 arch: '${{ env.QT_ARCH }}'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
@@ -101,10 +125,10 @@ jobs:
               run: |
                 SQLITE_DOT_VERSION=$($GH_SCRIPTS/convert_int_ver.sh $SQLITE_VERSION)
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
-                
+
                 cd ..
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/sqlite3-extensions-src-$SQLITE_VERSION.zip --output sqlite3-extensions-src-$SQLITE_VERSION.zip
-                
+
                 mkdir ext-src
                 unzip sqlite3-extensions-src-$SQLITE_VERSION.zip -d ext-src
 
@@ -123,7 +147,7 @@ jobs:
             - name: Install SQLite3
               run: |
                 cd ..
-                SQLITE3_ZIP=sqlite3-linux-x64-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-linux-${{ matrix.SQLITE_ARCH }}-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
                 sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/$TARGET_ARCH-linux-gnu/libsqlite*
@@ -152,7 +176,7 @@ jobs:
               run: |
                 cd ..
                 mkdir ext
-                
+
                 cd ext-src
                 FLAGS="-ldl -O2 -fpic -shared -Imisc -I/usr/local/include -L/usr/local/lib -lsqlite3"
                 set -x
@@ -166,7 +190,7 @@ jobs:
                     gcc icu/$f.c -L$QT_ROOT_DIR/lib $FLAGS -I$ICU_HEADERS -licui18n -licuuc -licudata -o ../ext/$f.so
                 done
                 set +x
-                
+
                 ls -l ../ext/
 
             - name: Install Tcl
@@ -318,7 +342,7 @@ jobs:
               run: |
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli --version | cut -f 2 -d ' ')
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-linux-${{ matrix.OUTPUT_FILE_ARCH }}" >> $GITHUB_ENV
 
             - name: Assemble portable package
               shell: bash
