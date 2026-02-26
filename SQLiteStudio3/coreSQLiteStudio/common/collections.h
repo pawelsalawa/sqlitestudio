@@ -370,8 +370,8 @@ struct ListToHashOp2 {
     FnVal valFn;
 };
 
-template <typename Fn>
-ListToHashOp2(Fn) -> ListToHashOp2<Fn>; // Needed by older clang
+template <typename FnKey, typename FnVal>
+ListToHashOp2(FnKey, FnVal) -> ListToHashOp2<FnKey, FnVal>; // Needed by older clang
 
 template <typename V, typename Mapper>
 auto operator|(const QList<V>& list, const ListToHashOp<Mapper>& op)
