@@ -13,6 +13,9 @@ struct ListFilterOp {
     Fn fn;
 };
 
+template <typename Fn>
+ListFilterOp(Fn) -> ListFilterOp<Fn>; // Needed by older clang
+
 template <typename T, typename Predicate>
 QList<T> operator|(const QList<T>& list, const ListFilterOp<Predicate>& op)
 {
@@ -57,6 +60,9 @@ template <typename Fn>
 struct ListMapOp {
     Fn fn;
 };
+
+template <typename Fn>
+ListMapOp(Fn) -> ListMapOp<Fn>; // Needed by older clang
 
 template <typename T, typename Mapper>
 auto operator|(const QList<T>& list, const ListMapOp<Mapper>& op)
@@ -119,6 +125,9 @@ template <typename Fn>
 struct ListNnMapOp {
         Fn fn;
 };
+
+template <typename Fn>
+ListNnMapOp(Fn) -> ListNnMapOp<Fn>; // Needed by older clang
 
 template <typename T, typename Mapper>
 auto operator|(const QList<T>& list, const ListNnMapOp<Mapper>& op)
@@ -186,6 +195,9 @@ struct ListFindFirstOp {
     Fn fn;
 };
 
+template <typename Fn>
+ListFindFirstOp(Fn) -> ListFindFirstOp<Fn>; // Needed by older clang
+
 template <typename T, typename Predicate>
 T operator|(const QList<T>& list, const ListFindFirstOp<Predicate>& op)
 {
@@ -210,6 +222,9 @@ struct ListFindLastOp {
         Fn fn;
 };
 
+template <typename Fn>
+ListFindLastOp(Fn) -> ListFindLastOp<Fn>; // Needed by older clang
+
 template <typename T, typename Predicate>
 T operator|(const QList<T>& list, const ListFindLastOp<Predicate>& op)
 {
@@ -233,6 +248,9 @@ template <typename Fn>
 struct ListIndexOfOp {
     Fn fn;
 };
+
+template <typename Fn>
+ListIndexOfOp(Fn) -> ListIndexOfOp<Fn>; // Needed by older clang
 
 template <typename T, typename Predicate>
 int operator|(const QList<T>& list, const ListIndexOfOp<Predicate>& op)
@@ -278,6 +296,9 @@ struct ListIndexOfLastOp {
     Fn fn;
 };
 
+template <typename Fn>
+ListIndexOfLastOp(Fn) -> ListIndexOfLastOp<Fn>; // Needed by older clang
+
 template <typename T, typename Predicate>
 int operator|(const QList<T>& list, const ListIndexOfLastOp<Predicate>& op)
 {
@@ -301,6 +322,9 @@ template <typename Fn>
 struct ListContainsOp {
     Fn fn;
 };
+
+template <typename Fn>
+ListContainsOp(Fn) -> ListContainsOp<Fn>; // Needed by older clang
 
 template <typename T, typename Predicate>
 bool operator|(const QList<T>& list, const ListContainsOp<Predicate>& op)
@@ -337,11 +361,17 @@ struct ListToHashOp {
     Fn fn;
 };
 
+template <typename Fn>
+ListToHashOp(Fn) -> ListToHashOp<Fn>; // Needed by older clang
+
 template <typename FnKey, typename FnVal>
 struct ListToHashOp2 {
     FnKey keyFn;
     FnVal valFn;
 };
+
+template <typename Fn>
+ListToHashOp2(Fn) -> ListToHashOp2<Fn>; // Needed by older clang
 
 template <typename V, typename Mapper>
 auto operator|(const QList<V>& list, const ListToHashOp<Mapper>& op)
@@ -420,6 +450,9 @@ template <typename Fn>
 struct ListGroupByOp {
     Fn fn;
 };
+
+template <typename Fn>
+ListGroupByOp(Fn) -> ListGroupByOp<Fn>; // Needed by older clang
 
 template <typename V, typename Mapper>
 auto operator|(const QList<V>& list, const ListGroupByOp<Mapper>& op)
