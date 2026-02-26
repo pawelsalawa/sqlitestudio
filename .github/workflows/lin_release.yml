@@ -109,7 +109,7 @@ jobs:
             - name: Install the InstalBuilder
               shell: bash
               run: |
-                curl -L ${{ matrixx.INSTALLBUILDER_URL }} --output ib.run
+                curl -L ${{ matrix.INSTALLBUILDER_URL }} --output ib.run
                 chmod +x ib.run
                 ./ib.run --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
