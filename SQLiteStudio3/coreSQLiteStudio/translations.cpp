@@ -5,9 +5,24 @@
 #include <QDir>
 #include <QDebug>
 #include <QRegularExpression>
+#include <QStandardPaths>
 
 QHash<QString,QTranslator*> SQLITESTUDIO_TRANSLATIONS;
-QStringList SQLITESTUDIO_TRANSLATION_DIRS = QStringList({"msg", "translations", ":/msg", ":/msg/translations"});
+
+static QStringList getTranslationDirs()
+{
+    QStringList translationDirs({"translations"});
+
+    // AppDataLocation, but APPNAME should be a fixed value
+    for (const QString& path : QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation))
+        translationDirs += QDir::cleanPath(path + "/sqlitestudio/translations");
+
+    translationDirs += ":/msg/translations";
+
+    return translationDirs;
+}
+
+QStringList SQLITESTUDIO_TRANSLATION_DIRS = getTranslationDirs();
 
 void loadTranslation(const QString& baseName)
 {

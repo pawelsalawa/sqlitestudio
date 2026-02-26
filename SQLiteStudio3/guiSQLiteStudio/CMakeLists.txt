@@ -346,8 +346,12 @@ set(PROJECT_SOURCES
 )
 qt_add_resources(PROJECT_SOURCES
     guiSQLiteStudio.qrc
-    icons.qrc
 )
+if(NOT WITH_SHARED_RES)
+    qt_add_resources(PROJECT_SOURCES
+        icons.qrc
+    )
+endif()
 qt_wrap_ui(PROJECT_SOURCES
     common/fontedit.ui
     completer/completerwindow.ui
@@ -425,3 +429,11 @@ install(
     TARGETS guiSQLiteStudio
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
 )
+
+if(WITH_SHARED_RES)
+    file(GLOB icons_files img/*)
+    install(
+        FILES ${icons_files}
+        DESTINATION "${SQLITESTUDIO_INSTALL_DATADIR}/img"
+    )
+endif()

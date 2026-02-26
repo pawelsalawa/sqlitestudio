@@ -45,6 +45,7 @@ option(WITH_MultiEditorJson "Build MultiEditorJson plugin" ON)
 option(WITH_PythonSyntaxHighlighter "Build PythonSyntaxHighlighter plugin" ON)
 
 option(WITH_PORTABLE "Install plugins within portable bundle" ${WITH_PORTABLE_DEFAULT})
+option(WITH_SHARED_RES "Install resources as separate files (distro packaging only)" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../SQLiteStudio3/cmake")
 

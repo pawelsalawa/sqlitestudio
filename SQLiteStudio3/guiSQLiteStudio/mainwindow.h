@@ -217,7 +217,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* tbStyleMenu = nullptr;
         QMenu* toolsMenu = nullptr;
         QMenu* sqlitestudioMenu = nullptr;
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
         QPointer<NewVersionDialog> newVersionDialog;
 #endif
         WidgetCover* widgetCover = nullptr;
@@ -269,7 +269,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void reportBug();
         void requestFeature();
         void aboutSqlitestudio();
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
         void updateAvailable(const QString& version, const QString& url);
         void noUpdatesAvailable(bool enforced);
         void checkForUpdates();

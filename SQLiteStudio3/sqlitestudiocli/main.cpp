@@ -47,7 +47,7 @@ bool cliHandleCmdLineArgs()
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("Enables debug messages on standard error output."));
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
     QCommandLineOption listPluginsOption({"lp", "list-plugins"}, QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     QCommandLineOption checkUpdatesOption({"cu", "check-updates"},
                                           QObject::tr("Checks for updates online and prints the result to standard output."));
 #endif
@@ -59,7 +59,7 @@ bool cliHandleCmdLineArgs()
     parser.addOption(sqlFileCodecOption);
     parser.addOption(codecListOption);
     parser.addOption(ignoreErrorsOption);
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     parser.addOption(checkUpdatesOption);
 #endif
 
@@ -95,7 +95,7 @@ bool cliHandleCmdLineArgs()
     if (parser.isSet(ignoreErrorsOption))
         CliOpts::ignoreErrors = true;
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     if (parser.isSet(checkUpdatesOption))
         CliOpts::checkForUpdates = true;
 #endif
@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     if (CliOpts::checkForUpdates)
     {
         QEventLoop loop;
