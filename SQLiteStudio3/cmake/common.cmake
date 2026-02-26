@@ -89,7 +89,7 @@ function(sqlitestudio_set_output_properties target)
             )
         elseif(UNIX)
             set_target_properties(${target} PROPERTIES
-                INSTALL_RPATH "$ORIGIN"
+                INSTALL_RPATH "$ORIGIN:$ORIGIN/lib"
             )
         endif()
     endif()
