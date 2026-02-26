@@ -130,8 +130,6 @@ jobs:
             - name: Run tests
               working-directory: output/SQLiteStudio
               run: |
-                sudo cp -P /usr/local/lib/libsqlite3.so* ./lib/
-                export LD_LIBRARY_PATH="./lib"
                 ldd tst_tablemodifiertest
                 for f in tst_*; do ./$f; done
 
