@@ -144,7 +144,7 @@ jobs:
             - name: Run tests
               working-directory: output/build/Tests
               run: |
-                ldd tst_tablemodifiertest
+                ldd TableModifierTest/tst_tablemodifiertest
                 for f in $(find . -name "tst_*" -type f -perm -a=x); do ./$f; done
 
             - name: Install Midnight Commander
