@@ -59,7 +59,7 @@ jobs:
                       LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
                       PYTHON_ARCH: 'arm64'
                       SQLITE_ARCH: 'arm'
-                      OUTPUT_FILE_ARCH: 'arm'
+                      OUTPUT_FILE_ARCH: 'arm64'
 
         runs-on: ${{ matrix.OS }}
 
