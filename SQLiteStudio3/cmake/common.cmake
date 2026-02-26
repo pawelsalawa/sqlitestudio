@@ -45,10 +45,21 @@ function(sqlitestudio_set_translations target)
         find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
         file(GLOB PROJECT_TRANSLATIONS "${CMAKE_CURRENT_SOURCE_DIR}/translations/*.ts")
-        qt_add_translations(${target}
-            TS_FILES ${PROJECT_TRANSLATIONS}
-            RESOURCE_PREFIX /msg/translations
-        )
+        if(NOT WITH_SHARED_RES)
+            qt_add_translations(${target}
+                TS_FILES ${PROJECT_TRANSLATIONS}
+                RESOURCE_PREFIX /msg/translations
+            )
+        else()
+            qt_add_translations(${target}
+                TS_FILES ${PROJECT_TRANSLATIONS}
+                QM_FILES_OUTPUT_VARIABLE qm_files
+            )
+            install(
+                FILES ${qm_files}
+                DESTINATION "${SQLITESTUDIO_INSTALL_DATADIR}/translations"
+            )
+        endif()
     endif()
 endfunction()
 
@@ -78,18 +89,21 @@ function(sqlitestudio_set_output_properties target)
 
     if(WITH_UPDATER)
         target_compile_definitions(${target} PUBLIC
-            PORTABLE_CONFIG
+            HAS_UPDATEMANAGER
         )
     endif()
 
     if(WITH_PORTABLE)
+        target_compile_definitions(${target} PUBLIC
+            PORTABLE_CONFIG
+        )
         if(APPLE)
             set_target_properties(${target} PROPERTIES
                 INSTALL_RPATH "@loader_path"
             )
         elseif(UNIX)
             set_target_properties(${target} PROPERTIES
-                INSTALL_RPATH "$ORIGIN"
+                INSTALL_RPATH "$ORIGIN:$ORIGIN/lib"
             )
         endif()
     endif()

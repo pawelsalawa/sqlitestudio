@@ -141,7 +141,7 @@ void MainWindow::init()
             notifyInfo(tr("Running in debug mode. Debug messages are printed to the standard output."));
     }
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     // For some reason these two signal-slot connections are not made correctly if method-reference syntax is used
     // and it affects Windows builds only. Therefore they have to be the old-fashion SIGNAL() and SLOT().
     connect(UPDATES, SIGNAL(updateAvailable(QString,QString)), this, SLOT(updateAvailable(QString,QString)));
@@ -322,7 +322,7 @@ void MainWindow::createActions()
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite &documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Bugs and feature &requests"), this, SLOT(reportHistory()), this);
     createAction(QUIT, ICONS.QUIT, tr("Quit"), this, SLOT(quit()), this);
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
 
@@ -447,7 +447,7 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
     sqlitestudioMenu->addSeparator();
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     if (UPDATES->isPlatformEligibleForUpdate())
     {
         sqlitestudioMenu->addAction(actionMap[CHECK_FOR_UPDATES]);
@@ -921,7 +921,7 @@ void MainWindow::donate()
 
 void MainWindow::statusFieldLinkClicked(const QString& link)
 {
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     if (link == openUpdatesUrl && newVersionDialog)
     {
         newVersionDialog->exec();
@@ -945,7 +945,7 @@ void MainWindow::updateMultipleSessionsSetting()
     Config::getSettings()->setValue(ALLOW_MULTIPLE_SESSIONS_SETTING, CFG_UI.General.AllowMultipleSessions.get());
 }
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
 void MainWindow::updateAvailable(const QString& version, const QString& url)
 {
     newVersionDialog = new NewVersionDialog(this);

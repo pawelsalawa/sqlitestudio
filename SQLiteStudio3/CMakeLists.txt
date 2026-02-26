@@ -16,6 +16,7 @@ option(WITH_GUI "Build GUI application" ON)
 
 option(WITH_PORTABLE "Create portable bundle" ${WITH_PORTABLE_DEFAULT})
 option(WITH_UPDATER "Enable update manager" ${WITH_PORTABLE})
+option(WITH_SHARED_RES "Install resources as separate files (distro packaging only)" OFF)
 
 if(NOT WITH_CLI AND NOT WITH_GUI)
     message(FATAL_ERROR "At least one of WITH_CLI or WITH_GUI must be enabled")
@@ -51,6 +52,11 @@ endif()
 
 include(CTest)
 include(common)
+
+if(NOT WITH_PORTABLE)
+    set(SYS_PLUGINS_DIR_DEFAULT "${SQLITESTUDIO_INSTALL_PLUGINDIR}")
+endif()
+set(SYS_PLUGINS_DIR "${SYS_PLUGINS_DIR_DEFAULT}" CACHE PATH "Path to system plugins directory")
 
 add_subdirectory(coreSQLiteStudio)
 if(WITH_CLI)

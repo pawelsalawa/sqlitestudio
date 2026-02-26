@@ -1,4 +1,4 @@
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
 
 #include "newversiondialog.h"
 #include "services/pluginmanager.h"
@@ -57,4 +57,4 @@ void NewVersionDialog::showEvent(QShowEvent*)
     ui->checkOnStartupCheck->setChecked(CFG_CORE.General.CheckUpdatesOnStartup.get());
 }
 
-#endif // PORTABLE_CONFIG
+#endif // HAS_UPDATEMANAGER

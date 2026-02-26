@@ -25,7 +25,7 @@ class ExportManager;
 class ImportManager;
 class PopulateManager;
 class PluginLoadingHandler;
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
 class UpdateManager;
 #endif
 class ExtraLicenseManager;
@@ -151,7 +151,7 @@ class API_EXPORT SQLiteStudio : public QObject
         QString getDonatePage() const;
         QString getNewIssuePage() const;
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
         UpdateManager* getUpdateManager() const;
         void setUpdateManager(UpdateManager* value);
 #endif
@@ -222,7 +222,7 @@ class API_EXPORT SQLiteStudio : public QObject
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
         CodeSnippetManager* codeSnippetManager = nullptr;
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
         UpdateManager* updateManager = nullptr;
 #endif
         ExtraLicenseManager* extraLicenseManager = nullptr;
