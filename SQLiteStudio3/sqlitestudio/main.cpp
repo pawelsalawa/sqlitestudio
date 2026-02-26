@@ -216,7 +216,7 @@ int main(int argc, char *argv[])
     if (!dbToOpen.isNull())
         MainWindow::getInstance()->openDb(dbToOpen);
 
-#ifdef PORTABLE_CONFIG
+#ifdef HAS_UPDATEMANAGER
     UPDATES->checkForUpdates();
 #endif
 

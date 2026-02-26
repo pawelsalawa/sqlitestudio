@@ -256,7 +256,7 @@ void ConfigDialog::init()
 
     ui->hideBuiltInPluginsCheck->setChecked(true);
 
-#ifndef PORTABLE_CONFIG
+#ifndef HAS_UPDATEMANAGER
     ui->updatesGroup->setVisible(false);
 #endif
 

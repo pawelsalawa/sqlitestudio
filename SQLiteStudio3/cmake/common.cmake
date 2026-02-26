@@ -78,11 +78,14 @@ function(sqlitestudio_set_output_properties target)
 
     if(WITH_UPDATER)
         target_compile_definitions(${target} PUBLIC
-            PORTABLE_CONFIG
+            HAS_UPDATEMANAGER
         )
     endif()
 
     if(WITH_PORTABLE)
+        target_compile_definitions(${target} PUBLIC
+            PORTABLE_CONFIG
+        )
         if(APPLE)
             set_target_properties(${target} PROPERTIES
                 INSTALL_RPATH "@loader_path"
