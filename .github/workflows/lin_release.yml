@@ -1,5 +1,4 @@
 env:
-    TARGET_ARCH: 'x86_64'
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3510200'
     PYTHON_VERSION: '3.13'
@@ -40,6 +39,7 @@ jobs:
             matrix:
                 include:
                     - OS: ubuntu-22.04
+                      TARGET_ARCH: 'x86_64'
                       QT_VERSION: '6.8.3'
                       QT_ARCH: 'linux_gcc_64'
                       QT_HOST: 'linux'
@@ -50,6 +50,7 @@ jobs:
                       SQLITE_ARCH: 'x64'
                       OUTPUT_FILE_ARCH: 'x64'
                     - OS: ubuntu-22.04-arm
+                      TARGET_ARCH: 'aarch64'
                       QT_VERSION: '6.7.3' # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
                       QT_ARCH: 'linux_gcc_arm64'
                       QT_HOST: 'linux_arm64'
@@ -81,9 +82,9 @@ jobs:
               uses: jurplel/install-qt-action@v4
               with:
                 cache: true
-                version: ${{ env.QT_VERSION }}
+                version: ${{ matrix.QT_VERSION }}
                 host: ${{ matrix.QT_HOST }}
-                arch: '${{ env.QT_ARCH }}'
+                arch: '${{ matrix.QT_ARCH }}'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 setup-python: 'false'
                 extra: '--external 7z'
@@ -108,7 +109,7 @@ jobs:
             - name: Install the InstalBuilder
               shell: bash
               run: |
-                curl -L ${{ env.INSTALLBUILDER_URL }} --output ib.run
+                curl -L ${{ matrixx.INSTALLBUILDER_URL }} --output ib.run
                 chmod +x ib.run
                 ./ib.run --mode unattended --prefix ${{ env.INSTALLBUILDER_DIR }}
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder --version
@@ -150,7 +151,7 @@ jobs:
                 SQLITE3_ZIP=sqlite3-linux-${{ matrix.SQLITE_ARCH }}-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
 
-                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/$TARGET_ARCH-linux-gnu/libsqlite*
+                sudo rm -f /usr/lib/libsqlite* /usr/local/lib/libsqlite* /usr/include/sqlite* /usr/local/include/sqlite* /usr/lib/${{ matrix.TARGET_ARCH }}-linux-gnu/libsqlite*
                 sudo unzip $SQLITE3_ZIP libsqlite3.so -d /usr/local/lib
                 sudo unzip $SQLITE3_ZIP sqlite3.h sqlite3ext.h -d /usr/local/include
                 sudo ln -s /usr/local/lib/libsqlite3.so /usr/local/lib/libsqlite3.so.0
@@ -246,10 +247,10 @@ jobs:
 
             - name: Copy Qt's libcrypto and libssl to portable dir (#4577)
               run: |
-                wget ${{ env.LIBSSL_DIR_URL }}${{ env.LIBSSL_DEB }}
-                dpkg-deb -xv ${{ env.LIBSSL_DEB }} .
-                cp ./usr/lib/$TARGET_ARCH-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
-                cp ./usr/lib/$TARGET_ARCH-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                wget ${{ matrix.LIBSSL_DIR_URL }}${{ matrix.LIBSSL_DEB }}
+                dpkg-deb -xv ${{ matrix.LIBSSL_DEB }} .
+                cp ./usr/lib/${{ matrix.TARGET_ARCH }}-linux-gnu/libssl.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
+                cp ./usr/lib/${{ matrix.TARGET_ARCH }}-linux-gnu/libcrypto.so.1.1 ${{ env.PORTABLE_DIR }}/lib/
 
             - name: Copy Qt to portable dir
               working-directory: ${{ env.PORTABLE_DIR }}
@@ -295,7 +296,7 @@ jobs:
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                libdir=/usr/lib/$TARGET_ARCH-linux-gnu
+                libdir=/usr/lib/${{ matrix.TARGET_ARCH }}-linux-gnu
                 if ldd lib/libQt${QT_VERSION_MAJ}XcbQpa.so | grep -q libxcb-; then
                     # These are not installed by default on Xubuntu 22.04:
                     cp -P $libdir/libxcb-xkb.so* lib/
