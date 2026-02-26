@@ -45,10 +45,21 @@ function(sqlitestudio_set_translations target)
         find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
         file(GLOB PROJECT_TRANSLATIONS "${CMAKE_CURRENT_SOURCE_DIR}/translations/*.ts")
-        qt_add_translations(${target}
-            TS_FILES ${PROJECT_TRANSLATIONS}
-            RESOURCE_PREFIX /msg/translations
-        )
+        if(NOT WITH_SHARED_RES)
+            qt_add_translations(${target}
+                TS_FILES ${PROJECT_TRANSLATIONS}
+                RESOURCE_PREFIX /msg/translations
+            )
+        else()
+            qt_add_translations(${target}
+                TS_FILES ${PROJECT_TRANSLATIONS}
+                QM_FILES_OUTPUT_VARIABLE qm_files
+            )
+            install(
+                FILES ${qm_files}
+                DESTINATION "${SQLITESTUDIO_INSTALL_DATADIR}/translations"
+            )
+        endif()
     endif()
 endfunction()
 
