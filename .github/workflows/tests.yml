@@ -113,25 +113,39 @@ jobs:
                 echo "${{ github.workspace }}/../Qt/${{ matrix.QT_VERSION }}/gcc_64/bin" >> $GITHUB_PATH
 
             - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
+              run: mkdir output output/build output/build-plugins
 
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests ../../SQLiteStudio3
-                make -j 2
+                cmake ../../SQLiteStudio3 \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_UPDATER=1 \
+                    -DBUILD_TESTING=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Compile Plugins
-              working-directory: output/build/Plugins
+              working-directory: output/build-plugins
               run: |
-                qmake CONFIG+=portable CONFIG+=debug DEFINES+=tests "INCLUDEPATH+=$pythonLocation/include/python${{ matrix.PYTHON_VERSION }}" "LIBS += -L$pythonLocation/lib" ../../../Plugins
-                make -j 1
+                cmake ../../Plugins \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
+                    -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
+                    -DWITH_PORTABLE=1 \
+                    -DWITH_DYNAMIC_PYTHON=1 \
+                    -DWITH_ALL_PLUGINS=1
+                make -j 4 VERBOSE=1
+                make install VERBOSE=1
 
             - name: Run tests
-              working-directory: output/SQLiteStudio
+              working-directory: output/build/Tests
               run: |
                 ldd tst_tablemodifiertest
-                for f in tst_*; do ./$f; done
+                for f in $(find . -name "tst_*" -type f -perm -a=x); do ./$f; done
 
             - name: Install Midnight Commander
               if: >
