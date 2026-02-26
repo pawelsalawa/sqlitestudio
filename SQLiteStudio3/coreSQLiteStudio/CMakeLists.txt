@@ -438,12 +438,10 @@ if(WIN32)
     endif()
 endif()
 
-if(UNIX AND NOT APPLE)
-    if(NOT WITH_PORTABLE)
-        target_compile_definitions(coreSQLiteStudio PRIVATE
-            SYS_PLUGINS_DIR="${SQLITESTUDIO_INSTALL_PLUGINDIR}"
-        )
-    endif()
+if(SYS_PLUGINS_DIR)
+    target_compile_definitions(coreSQLiteStudio PRIVATE
+        SYS_PLUGINS_DIR="${SYS_PLUGINS_DIR}"
+    )
 endif()
 
 install(

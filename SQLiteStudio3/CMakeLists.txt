@@ -53,6 +53,11 @@ endif()
 include(CTest)
 include(common)
 
+if(NOT WITH_PORTABLE)
+    set(SYS_PLUGINS_DIR_DEFAULT "${SQLITESTUDIO_INSTALL_PLUGINDIR}")
+endif()
+set(SYS_PLUGINS_DIR "${SYS_PLUGINS_DIR_DEFAULT}" CACHE PATH "Path to system plugins directory")
+
 add_subdirectory(coreSQLiteStudio)
 if(WITH_CLI)
     add_subdirectory(sqlitestudiocli)
