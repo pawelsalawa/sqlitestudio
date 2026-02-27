@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1292,7 +1292,7 @@
              <property name="title">
               <string>Code syntax colors</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_3">
+             <layout class="QGridLayout" name="gridLayout_3" rowminimumheight="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" columnminimumwidth="0,0,30,30">
               <item row="0" column="0">
                <widget class="QCheckBox" name="regularFgCheck">
                 <property name="text">
@@ -1305,6 +1305,12 @@
               </item>
               <item row="0" column="1">
                <widget class="ColorButton" name="regularFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1324,8 +1330,20 @@
               </item>
               <item row="0" column="2">
                <widget class="BoolToolButton" name="regularBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1340,8 +1358,20 @@
               </item>
               <item row="0" column="3">
                <widget class="BoolToolButton" name="regularItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1366,6 +1396,12 @@
               </item>
               <item row="1" column="1">
                <widget class="ColorButton" name="stringFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1385,8 +1421,20 @@
               </item>
               <item row="1" column="2">
                <widget class="BoolToolButton" name="stringFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1401,8 +1449,20 @@
               </item>
               <item row="1" column="3">
                <widget class="BoolToolButton" name="stringFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1427,6 +1487,12 @@
               </item>
               <item row="3" column="1">
                <widget class="ColorButton" name="keywordFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1446,8 +1512,20 @@
               </item>
               <item row="3" column="2">
                <widget class="BoolToolButton" name="keywordFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1462,8 +1540,20 @@
               </item>
               <item row="3" column="3">
                <widget class="BoolToolButton" name="keywordFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1488,6 +1578,12 @@
               </item>
               <item row="5" column="1">
                <widget class="ColorButton" name="numberFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1507,8 +1603,20 @@
               </item>
               <item row="5" column="2">
                <widget class="BoolToolButton" name="numberFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1523,8 +1631,20 @@
               </item>
               <item row="5" column="3">
                <widget class="BoolToolButton" name="numberFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1549,6 +1669,12 @@
               </item>
               <item row="7" column="1">
                <widget class="ColorButton" name="commentFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1568,8 +1694,20 @@
               </item>
               <item row="7" column="2">
                <widget class="BoolToolButton" name="commentFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1584,8 +1722,20 @@
               </item>
               <item row="7" column="3">
                <widget class="BoolToolButton" name="commentFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1610,6 +1760,12 @@
               </item>
               <item row="9" column="1">
                <widget class="ColorButton" name="validObjectsFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1629,8 +1785,20 @@
               </item>
               <item row="9" column="2">
                <widget class="BoolToolButton" name="validObjectsFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1645,8 +1813,20 @@
               </item>
               <item row="9" column="3">
                <widget class="BoolToolButton" name="validObjectsFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1671,6 +1851,12 @@
               </item>
               <item row="11" column="1">
                <widget class="ColorButton" name="blobFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1690,8 +1876,20 @@
               </item>
               <item row="11" column="2">
                <widget class="BoolToolButton" name="blobFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1706,8 +1904,20 @@
               </item>
               <item row="11" column="3">
                <widget class="BoolToolButton" name="blobFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1732,6 +1942,12 @@
               </item>
               <item row="13" column="1">
                <widget class="ColorButton" name="bindParamFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1751,8 +1967,20 @@
               </item>
               <item row="13" column="2">
                <widget class="BoolToolButton" name="bindParamFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1767,8 +1995,20 @@
               </item>
               <item row="13" column="3">
                <widget class="BoolToolButton" name="bindParamFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1793,6 +2033,18 @@
               </item>
               <item row="15" column="1">
                <widget class="ColorButton" name="currLineBgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1822,6 +2074,18 @@
               </item>
               <item row="17" column="1">
                <widget class="ColorButton" name="currQueryBgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1854,6 +2118,18 @@
               </item>
               <item row="19" column="1">
                <widget class="ColorButton" name="matchedParBgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -1883,6 +2159,12 @@
               </item>
               <item row="21" column="1">
                <widget class="ColorButton" name="matchedParFgBtn">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="text">
                  <string notr="true"/>
                 </property>
@@ -1896,8 +2178,20 @@
               </item>
               <item row="21" column="2">
                <widget class="BoolToolButton" name="matchedParFgBoldBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <fontweight>ExtraBold</fontweight>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>B</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1912,8 +2206,20 @@
               </item>
               <item row="21" column="3">
                <widget class="BoolToolButton" name="matchedParFgItalicBtn">
-                <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <italic>true</italic>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>I</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
