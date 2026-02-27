@@ -119,7 +119,7 @@ jobs:
               working-directory: output/build
               run: |
                 cmake ../../SQLiteStudio3 -G Ninja \
-                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_BUILD_TYPE=Debug
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
@@ -132,7 +132,7 @@ jobs:
               working-directory: output/build-plugins
               run: |
                 cmake ../../Plugins -G Ninja \
-                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_BUILD_TYPE=Debug
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
