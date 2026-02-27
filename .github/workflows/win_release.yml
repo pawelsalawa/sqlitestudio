@@ -32,14 +32,44 @@ on:
 
 jobs:
     build:
-        runs-on: windows-2022
+        strategy:
+            matrix:
+                include:
+                    - OS: windows-2022
+                      MSYSTEM: CLANG64
+                      CACHE_KEY: win64-qt${{ env.QT_VERSION }}-release
+                      # TARGET_ARCH: 'x86_64'
+                      # QT_VERSION: '6.8.3'
+                      # QT_ARCH: 'linux_gcc_64'
+                      # QT_HOST: 'linux'
+                      # INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
+                      # LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
+                      # LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+                      # PYTHON_ARCH: 'x64'
+                      SQLITE_ARCH: 'x64'
+                      OUTPUT_FILE_ARCH: 'x64'
+                    - OS: windows-11-arm
+                      MSYSTEM: CLANGARM64
+                      CACHE_KEY: winarm64-qt${{ env.QT_VERSION }}-release
+                      # TARGET_ARCH: 'aarch64'
+                      # QT_VERSION: '6.7.3' # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
+                      # QT_ARCH: 'linux_gcc_arm64'
+                      # QT_HOST: 'linux_arm64'
+                      # INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run
+                      # LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
+                      # LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
+                      # PYTHON_ARCH: 'arm64'
+                      SQLITE_ARCH: 'arm'
+                      OUTPUT_FILE_ARCH: 'arm64'
+
+        runs-on: ${{ matrix.OS }}
 
         steps:
             - name: Install MSYS2
               uses: msys2/setup-msys2@v2
               with: 
                 update: true
-                msystem: CLANG64
+                msystem: ${{ matrix.MSYSTEM }}
                 install: unzip
                 pacboy: >-
                   cc-libs:p
@@ -65,7 +95,7 @@ jobs:
                   icu:p
 
             - name: Clone GH scripts
-              uses: actions/checkout@v3
+              uses: actions/checkout@v5
               with:
                 repository: pawelsalawa/gh-action-scripts
                 ref: main
@@ -80,7 +110,7 @@ jobs:
                 echo "DEBUG=${{ inputs.DEBUG }}" >> $GITHUB_ENV
 
             - name: Clone repo
-              uses: actions/checkout@v3
+              uses: actions/checkout@v5
               with:
                 ref: ${{ env.BRANCH_NAME }}
 
@@ -88,18 +118,18 @@ jobs:
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2
               with:
-                key: win64-qt${{ env.QT_VERSION }}-release
+                key: ${{ matrix.CACHE_KEY }}
                 max-size: "24M"
 
             - name: Configure ccache (or not ccache)
               shell: msys2 {0}
               run: |
                 if [ ${{ inputs.use_ccache || false }} = false ]; then
-                    echo GCC_COMMAND="$(which cc.exe)"
-                    echo GXX_COMMAND="$(which c++.exe)"
+                    echo GCC_COMMAND="$(which clang.exe)"
+                    echo GXX_COMMAND="$(which clang++.exe)"
                 else
-                    echo GCC_COMMAND="$CCACHE_COMMAND cc.exe"
-                    echo GXX_COMMAND="$CCACHE_COMMAND c++.exe"
+                    echo GCC_COMMAND="$CCACHE_COMMAND clang.exe"
+                    echo GXX_COMMAND="$CCACHE_COMMAND clang++.exe"
                 fi >> $GITHUB_ENV
 
             - name: Install SQLite3
@@ -109,7 +139,7 @@ jobs:
                 echo "SQLITE_DOT_VERSION=$SQLITE_DOT_VERSION" >> $GITHUB_ENV
 
                 cd ..
-                SQLITE3_ZIP=sqlite3-windows-x64-$SQLITE_VERSION.zip
+                SQLITE3_ZIP=sqlite3-windows-${{ matrix.SQLITE_ARCH }}-$SQLITE_VERSION.zip
                 curl -L https://github.com/pawelsalawa/sqlite3-sqls/releases/download/v$SQLITE_DOT_VERSION/$SQLITE3_ZIP --output $SQLITE3_ZIP
                 
                 unzip $SQLITE3_ZIP sqlite3.dll sqlite3.h sqlite3ext.h -d sqlite
@@ -272,7 +302,7 @@ jobs:
                 SQLITESTUDIO_VERSION=$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
                 [ -n "$SQLITESTUDIO_VERSION" ] || exit 1
                 echo "SQLITESTUDIO_VERSION=$SQLITESTUDIO_VERSION" >> $GITHUB_ENV
-                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-x64" >> $GITHUB_ENV
+                echo "PACKAGE_VERSION=${SQLITESTUDIO_VERSION}-windows-${{ matrix.OUTPUT_FILE_ARCH }}" >> $GITHUB_ENV
                 
             - name: Assemble portable package
               shell: msys2 {0}
@@ -301,6 +331,12 @@ jobs:
                     --setvars project.outputDirectory=$(pwd) \
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
+
+            - name: SHA256 checksums
+              if: ${{ matrix.OUTPUT_FILE_ARCH == 'arm64' }}
+              shell: msys2 {0}
+              run: |
+                mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: SHA256 checksums
               shell: msys2 {0}

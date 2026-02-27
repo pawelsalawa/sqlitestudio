@@ -1,6 +1,6 @@
 env:
     PYTHON_VERSION: '3.9'
-    QT_VERSION: '5.15.2'
+    QT_VERSION: '6.8.3'
     TCL_VERSION: '8.6'
 
 name: Update messages
@@ -26,7 +26,7 @@ jobs:
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
               
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
+              uses: jurplel/install-qt-action@v4
               with:
                 cache: true
                 version: ${{ env.QT_VERSION }}
@@ -48,9 +48,9 @@ jobs:
             - name: Install xmllint
               run: sudo apt install libxml2-utils
 
-            - name: Executing lang update
-              working-directory: SQLiteStudio3
-              run: tclsh lang.tcl update
+            # - name: Executing lang update
+              # working-directory: SQLiteStudio3
+              # run: tclsh lang.tcl update
 
             - name: Listing Git status
               run: |
