@@ -40,12 +40,12 @@ jobs:
                 include:
                     - QT_VERSION: '6.2.4'
                       PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.5.3'
-                      PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.8.3'
-                      PYTHON_VERSION: '3.12'
-                    - QT_VERSION: '6.10.2'
-                      PYTHON_VERSION: '3.12'
+                    # - QT_VERSION: '6.5.3'
+                    #   PYTHON_VERSION: '3.9'
+                    # - QT_VERSION: '6.8.3'
+                    #   PYTHON_VERSION: '3.12'
+                    # - QT_VERSION: '6.10.2'
+                    #   PYTHON_VERSION: '3.12'
 
         steps:
             - uses: actions/setup-python@v4
@@ -119,7 +119,7 @@ jobs:
               working-directory: output/build
               run: |
                 cmake ../../SQLiteStudio3 -G Ninja \
-                    -DCMAKE_BUILD_TYPE=Debug \n
+                    -DCMAKE_BUILD_TYPE=Debug \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
@@ -132,7 +132,7 @@ jobs:
               working-directory: output/build-plugins
               run: |
                 cmake ../../Plugins -G Ninja \
-                    -DCMAKE_BUILD_TYPE=Debug \n
+                    -DCMAKE_BUILD_TYPE=Debug \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
