@@ -30,14 +30,6 @@ on:
             description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
-          debug_ssh:
-            description: "Open SSH tunnel at the end"
-            type: boolean
-            default: false
-          debug_on_failure:
-            description: "Open SSH tunnel if job fails"
-            type: boolean
-            default: false
 
 jobs:
     build:
