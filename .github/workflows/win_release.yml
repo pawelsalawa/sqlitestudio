@@ -37,28 +37,12 @@ jobs:
                 include:
                     - OS: windows-2022
                       MSYSTEM: CLANG64
-                      CACHE_KEY: win64-qt${{ env.QT_VERSION }}-release
-                      # TARGET_ARCH: 'x86_64'
-                      # QT_VERSION: '6.8.3'
-                      # QT_ARCH: 'linux_gcc_64'
-                      # QT_HOST: 'linux'
-                      # INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
-                      # LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-                      # LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
-                      # PYTHON_ARCH: 'x64'
+                      CCACHE_KEY: win64-release
                       SQLITE_ARCH: 'x64'
                       OUTPUT_FILE_ARCH: 'x64'
                     - OS: windows-11-arm
                       MSYSTEM: CLANGARM64
-                      CACHE_KEY: winarm64-qt${{ env.QT_VERSION }}-release
-                      # TARGET_ARCH: 'aarch64'
-                      # QT_VERSION: '6.7.3' # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
-                      # QT_ARCH: 'linux_gcc_arm64'
-                      # QT_HOST: 'linux_arm64'
-                      # INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run
-                      # LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
-                      # LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
-                      # PYTHON_ARCH: 'arm64'
+                      CCACHE_KEY: winarm64-release
                       SQLITE_ARCH: 'arm'
                       OUTPUT_FILE_ARCH: 'arm64'
 
@@ -118,7 +102,7 @@ jobs:
               if: inputs.use_ccache || false
               uses: hendrikmuhs/ccache-action@v1.2
               with:
-                key: ${{ matrix.CACHE_KEY }}
+                key: ${{ matrix.CCACHE_KEY }}
                 max-size: "24M"
 
             - name: Configure ccache (or not ccache)
