@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1">
-  <context>
+<context>
     <name>QObject</name>
     <message>
-      <location filename="../main.cpp" line="52"/>
-      <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="52"/>
+        <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
-      <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="57"/>
+        <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="58"/>
-      <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="58"/>
+        <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="59"/>
-      <source>Enables debug messages in console (accessible with F12).</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="59"/>
+        <source>Enables debug messages in console (accessible with F12).</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="60"/>
-      <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="60"/>
+        <source>Redirects debug messages into standard output (forces debug mode).</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="61"/>
-      <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="61"/>
+        <source>Redirects debug messages into given file (forces debug mode).</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="61"/>
-      <source>log file</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="61"/>
+        <source>log file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="62"/>
-      <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="62"/>
+        <source>Enables Lemon parser debug messages for SQL code assistant.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="63"/>
-      <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="63"/>
+        <source>Enables debugging of every single SQL query being sent to any database.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
-      <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="64"/>
+        <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
-      <source>database</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="64"/>
+        <source>database</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="65"/>
-      <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="65"/>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="66"/>
-      <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="66"/>
+        <source>Lists plugins installed in the SQLiteStudio and quits.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="56"/>
-      <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="56"/>
-      <source>settings file</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>settings file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="79"/>
-      <source>file</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="79"/>
+        <source>file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="79"/>
-      <source>Database file to open</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="79"/>
+        <source>Database file to open</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="152"/>
-      <source>Select configuration directory</source>
-      <translation type="unfinished"/>
+        <location filename="../main.cpp" line="152"/>
+        <source>Select configuration directory</source>
+        <translation type="unfinished"></translation>
     </message>
-  </context>
+</context>
 </TS>

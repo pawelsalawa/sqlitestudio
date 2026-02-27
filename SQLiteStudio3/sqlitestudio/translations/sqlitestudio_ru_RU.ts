@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="ru" sourcelanguage="en">
-  <context>
+<context>
     <name>QObject</name>
     <message>
-      <location filename="../main.cpp" line="52"/>
-      <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation>Графический интерфейс для SQLiteStudio, менеджера баз данных SQLite.</translation>
+        <location filename="../main.cpp" line="52"/>
+        <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
+        <translation>Графический интерфейс для SQLiteStudio, менеджера баз данных SQLite.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="57"/>
-      <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
-      <translation>Запуск приложения в безопасном режиме без восстановления предыдущей сессии. Используется для решения проблем, вызванных повреждённой сессией.</translation>
+        <location filename="../main.cpp" line="57"/>
+        <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
+        <translation>Запуск приложения в безопасном режиме без восстановления предыдущей сессии. Используется для решения проблем, вызванных повреждённой сессией.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="58"/>
-      <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
-      <translation type="unfinished">Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</translation>
+        <location filename="../main.cpp" line="58"/>
+        <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
+        <translation type="unfinished">Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="59"/>
-      <source>Enables debug messages in console (accessible with F12).</source>
-      <translation>Включает вывод отладочных сообщений в консоль (доступную по нажатию F12).</translation>
+        <location filename="../main.cpp" line="59"/>
+        <source>Enables debug messages in console (accessible with F12).</source>
+        <translation>Включает вывод отладочных сообщений в консоль (доступную по нажатию F12).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="60"/>
-      <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation>Перенаправляет отладочные сообщения в стандартный поток (принудительный отладочный режим).</translation>
+        <location filename="../main.cpp" line="60"/>
+        <source>Redirects debug messages into standard output (forces debug mode).</source>
+        <translation>Перенаправляет отладочные сообщения в стандартный поток (принудительный отладочный режим).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="61"/>
-      <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation>Перенаправляет отладочные сообщения в указанный файл (принудительный отладочный режим).</translation>
+        <location filename="../main.cpp" line="61"/>
+        <source>Redirects debug messages into given file (forces debug mode).</source>
+        <translation>Перенаправляет отладочные сообщения в указанный файл (принудительный отладочный режим).</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="61"/>
-      <source>log file</source>
-      <translation>файл журнала</translation>
+        <location filename="../main.cpp" line="61"/>
+        <source>log file</source>
+        <translation>файл журнала</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="62"/>
-      <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation>Включает вывод отладочных сообщений анализатора Lemon для автодополнения SQL кода.</translation>
+        <location filename="../main.cpp" line="62"/>
+        <source>Enables Lemon parser debug messages for SQL code assistant.</source>
+        <translation>Включает вывод отладочных сообщений анализатора Lemon для автодополнения SQL кода.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="63"/>
-      <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation>Включает отладку каждого запроса SQL, посылаемого к любой базе данных.</translation>
+        <location filename="../main.cpp" line="63"/>
+        <source>Enables debugging of every single SQL query being sent to any database.</source>
+        <translation>Включает отладку каждого запроса SQL, посылаемого к любой базе данных.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
-      <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation>Ограничивает сообщения запросов SQL только для указанной &lt;базы данных&gt;.</translation>
+        <location filename="../main.cpp" line="64"/>
+        <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
+        <translation>Ограничивает сообщения запросов SQL только для указанной &lt;базы данных&gt;.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="64"/>
-      <source>database</source>
-      <translation>база данных</translation>
+        <location filename="../main.cpp" line="64"/>
+        <source>database</source>
+        <translation>база данных</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="65"/>
-      <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation>Включает отладку обработчика запросов SQLiteStudio.</translation>
+        <location filename="../main.cpp" line="65"/>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation>Включает отладку обработчика запросов SQLiteStudio.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="66"/>
-      <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation>Выводит список установленных в SQLiteStudio модулей и осуществляет выход.</translation>
+        <location filename="../main.cpp" line="66"/>
+        <source>Lists plugins installed in the SQLiteStudio and quits.</source>
+        <translation>Выводит список установленных в SQLiteStudio модулей и осуществляет выход.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="56"/>
-      <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation>Указывает основной файл конфигурации. Детальная информация содержится в инструкции на wiki-странице.</translation>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation>Указывает основной файл конфигурации. Детальная информация содержится в инструкции на wiki-странице.</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="56"/>
-      <source>settings file</source>
-      <translation>файл настроек</translation>
+        <location filename="../main.cpp" line="56"/>
+        <source>settings file</source>
+        <translation>файл настроек</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="79"/>
-      <source>file</source>
-      <translation>файл</translation>
+        <location filename="../main.cpp" line="79"/>
+        <source>file</source>
+        <translation>файл</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="79"/>
-      <source>Database file to open</source>
-      <translation>Файл базы данных для открытия</translation>
+        <location filename="../main.cpp" line="79"/>
+        <source>Database file to open</source>
+        <translation>Файл базы данных для открытия</translation>
     </message>
     <message>
-      <location filename="../main.cpp" line="152"/>
-      <source>Select configuration directory</source>
-      <translation>Выберите каталог конфигурации</translation>
+        <location filename="../main.cpp" line="152"/>
+        <source>Select configuration directory</source>
+        <translation>Выберите каталог конфигурации</translation>
     </message>
-  </context>
+</context>
 </TS>
