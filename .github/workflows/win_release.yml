@@ -43,7 +43,7 @@ jobs:
                     - OS: windows-11-arm
                       MSYSTEM: CLANGARM64
                       CCACHE_KEY: winarm64-release
-                      SQLITE_ARCH: 'arm'
+                      SQLITE_ARCH: 'arm64'
                       OUTPUT_FILE_ARCH: 'arm64'
 
         runs-on: ${{ matrix.OS }}
