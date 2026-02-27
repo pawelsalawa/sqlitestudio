@@ -145,7 +145,7 @@ jobs:
               working-directory: output/SQLiteStudio
               run: |
                 export LD_LIBRARY_PATH=./lib
-                ldd TableModifierTest/tst_tablemodifiertest
+                ldd tst_tablemodifiertest
                 for f in tst_*
                 do
                     ./$f
