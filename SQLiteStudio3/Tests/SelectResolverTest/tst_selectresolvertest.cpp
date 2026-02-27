@@ -53,6 +53,8 @@ SelectResolverTest::SelectResolverTest()
 
 void SelectResolverTest::loadSchema(const QString &schemaFile)
 {
+    QDir d(":/");
+    qDebug() << d.entryList();
     SqlFileExecutor fileExecutor;
     fileExecutor.execSqlFromFile(db, ":/schemas/" + schemaFile, false, defaultCodecName(), false);
 }

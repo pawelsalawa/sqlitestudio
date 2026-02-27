@@ -72,6 +72,13 @@ function(sqlitestudio_set_test_properties target)
         NAME ${target}
         COMMAND $<TARGET_FILE:${target}>
     )
+
+    if(BUILD_TESTING)
+        install(TARGETS ${target}
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+            COMPONENT tests
+        )
+    endif()
 endfunction()
 
 
