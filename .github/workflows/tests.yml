@@ -144,7 +144,10 @@ jobs:
             - name: Run tests
               working-directory: output/SQLiteStudio
               run: |
-                export LD_LIBRARY_PATH=./lib
+                set -x
+                export LD_LIBRARY_PATH=./lib:${{ env.QT_ROOT_DIR }}/lib:/usr/local/lib
+                readelf -a tst_tablemodifiertest | grep RUNPATH
+                readelf -a tst_tablemodifiertest | grep RPATH
                 ldd tst_tablemodifiertest
                 for f in tst_*
                 do
