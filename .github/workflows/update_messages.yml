@@ -16,11 +16,6 @@ jobs:
         runs-on: ubuntu-22.04
 
         steps:
-            - uses: actions/setup-python@v4
-              with:
-                python-version: ${{ env.PYTHON_VERSION }}
-                architecture: 'x64'
-
             - name: Qt installation dir
               id: qt-installation-dir
               run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
@@ -29,11 +24,10 @@ jobs:
               uses: jurplel/install-qt-action@v4
               with:
                 cache: true
-                version: ${{ matrix.QT_VERSION }}
+                version: ${{ env.QT_VERSION }}
                 host: 'linux'
                 dir: '${{ steps.qt-installation-dir.DIR }}'
                 py7zrversion: '==0.20.*'
-                setup-python: 'false'
                 extra: '--external 7z'
 
             - name: Clone repo
