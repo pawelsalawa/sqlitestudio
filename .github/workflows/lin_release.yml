@@ -208,27 +208,28 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                cmake ../../SQLiteStudio3 \
+                cmake ../../SQLiteStudio3 -G Ninja \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
-                    -DWITH_UPDATER=1
-                make -j 4 VERBOSE=1
-                make install VERBOSE=1
+                    -DWITH_UPDATER=1 \
+                    -DBUILD_TESTING=0
+                ninja -v
+                ninja install -v
 
             - name: Compile Plugins
               working-directory: output/build-plugins
               run: |
-                cmake ../../Plugins \
+                cmake ../../Plugins -G Ninja \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_PREFIX_PATH="${{ env.QT_ROOT_DIR }}:${{ env.Python3_ROOT_DIR }}" \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
-                make -j 4 VERBOSE=1
-                make install VERBOSE=1
+                ninja -v
+                ninja install -v
 
             - name: Copy SQLite extensions to output dir
               shell: bash

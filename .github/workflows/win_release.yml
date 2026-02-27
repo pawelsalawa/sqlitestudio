@@ -170,13 +170,14 @@ jobs:
               shell: msys2 {0}
               run: |
                 set -x
-                cmake ../../SQLiteStudio3/ \
+                cmake ../../SQLiteStudio3/ -G Ninja \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1 \
+                    -DBUILD_TESTING=0 \
                     -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
-                ninja -j4 -v
+                ninja -v
                 ninja install -v
 
             - name: Compile Plugins
@@ -184,13 +185,13 @@ jobs:
               shell: msys2 {0}
               run: |
                 set -x
-                cmake ../../Plugins/ \
+                cmake ../../Plugins/ -G Ninja \
                     -DCMAKE_BUILD_TYPE=Release \
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
-                ninja -j4 -v
+                ninja -v
                 ninja install -v
 
             - name: Copy SQLite extensions to output dir
