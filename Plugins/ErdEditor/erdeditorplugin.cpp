@@ -5,6 +5,7 @@
 #include "dbtree/dbtree.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
+#include "changes/erdchange.h"
 #include <QAction>
 
 ErdEditorPlugin* ErdEditorPlugin::instance = nullptr;
@@ -22,6 +23,8 @@ bool ErdEditorPlugin::init()
     QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);
     MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->insertAction(ddlHistoryAction, openErdEditorAction);
     MAINWINDOW->getToolsMenu()->insertAction(ddlHistoryAction, openErdEditorAction);
+
+    qRegisterMetaType<ErdChange*>();
 
     return GenericPlugin::init();
 }
