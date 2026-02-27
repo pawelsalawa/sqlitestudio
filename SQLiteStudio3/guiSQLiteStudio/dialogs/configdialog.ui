@@ -1339,7 +1339,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1430,7 +1429,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1521,7 +1519,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1612,7 +1609,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1703,7 +1699,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1794,7 +1789,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1885,7 +1879,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -1976,7 +1969,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
@@ -2187,7 +2179,6 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <fontweight>ExtraBold</fontweight>
                  </font>
                 </property>
                 <property name="text">
