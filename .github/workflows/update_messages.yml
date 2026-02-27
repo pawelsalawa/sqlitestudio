@@ -42,15 +42,28 @@ jobs:
               with:
                 ref: ${{ env.GITHUB_REF }}
 
-            - name: Install Tcl
-              run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
+            - name: Update translations
+              run: |
+                set -euo pipefail
+                echo "Using lupdate: $(which lupdate) ($(lupdate -version))"
 
-            - name: Install xmllint
-              run: sudo apt install libxml2-utils
+                dirs=()
 
-            # - name: Executing lang update
-              # working-directory: SQLiteStudio3
-              # run: tclsh lang.tcl update
+                for p in coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli
+                do
+                    dirs+=("SQLiteStudio3/$p")
+                done
+
+                for d in Plugins/*
+                do
+                    [ -d "$d" ] || continue
+                    dirs+=("$d")
+                done
+
+                for d in "${dirs[@]}"
+                do
+                    lupdate "$d" -ts "$d"/translations/*.ts
+                done
 
             - name: Listing Git status
               run: |
