@@ -1,6 +1,6 @@
 env:
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3490000'
+    SQLITE_VERSION: '3510200'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
 name: Unit tests
