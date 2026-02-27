@@ -5,7 +5,7 @@ env:
     INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-windows-x64-installer.exe
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
-name: Windows x86 64-bit release build
+name: Windows release build
 
 on:
     workflow_dispatch:
