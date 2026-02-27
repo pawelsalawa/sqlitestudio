@@ -125,8 +125,8 @@ jobs:
                     -DWITH_PORTABLE=1 \
                     -DWITH_UPDATER=1 \
                     -DBUILD_TESTING=1
-                ninja -v
-                ninja install -v
+                cmake --build . --verbose
+                cmake --install . --verbose
 
             - name: Compile Plugins
               working-directory: output/build-plugins
@@ -138,8 +138,8 @@ jobs:
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
-                ninja -v
-                ninja install -v
+                cmake --build . --verbose
+                cmake --install . --verbose
 
             - name: Run tests
               working-directory: output/SQLiteStudio

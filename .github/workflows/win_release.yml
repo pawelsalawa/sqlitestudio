@@ -177,8 +177,8 @@ jobs:
                     -DWITH_UPDATER=1 \
                     -DBUILD_TESTING=0 \
                     -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
-                ninja -v
-                ninja install -v
+                cmake --build . --verbose
+                cmake --install . --verbose
 
             - name: Compile Plugins
               working-directory: output/build-plugins
@@ -191,8 +191,8 @@ jobs:
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
                     -DWITH_ALL_PLUGINS=1
-                ninja -v
-                ninja install -v
+                cmake --build . --verbose
+                cmake --install . --verbose
 
             - name: Copy SQLite extensions to output dir
               shell: msys2 {0}
