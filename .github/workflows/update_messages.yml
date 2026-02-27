@@ -55,6 +55,7 @@ jobs:
 
                 for d in "${dirs[@]}"
                 do
+                    [ -d "$d"/translations ] || continue
                     lupdate "$d" -ts "$d"/translations/*.ts
                 done
 
