@@ -335,7 +335,7 @@ jobs:
                 mkdir signing signing/signed
                 echo "SIGNED_DIR=signing/signed" >> $GITHUB_ENV
 
-            - name: "[Code Signing] Prepare artifact for code signing"
+            - name: "[Code Signing] Prepare portable artifact for code signing"
               if: ${{ inputs.CODE_SIGN }}
               shell: msys2 {0}
               run: |
@@ -350,7 +350,7 @@ jobs:
                 name: sqlitestudio-portable.zip
                 path: signing/*.zip
 
-            - name: "[Code Signing] Sign artifacts"
+            - name: "[Code Signing] Sign portable artifact"
               if: ${{ inputs.CODE_SIGN }}
               uses: signpath/github-action-submit-signing-request@v2
               with:
@@ -363,17 +363,15 @@ jobs:
                 wait-for-completion: true
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
 
-            - name: "[Code Signing] Unzip signed files"
+            - name: "[Code Signing] Unzip signed portable files to use for the installer"
               if: ${{ inputs.CODE_SIGN }}
               shell: msys2 {0}
               working-directory: ${{ env.SIGNED_DIR }}
               run: |
                 set -x
                 ls -l
-                7z x sqlitestudio-portable.zip
-
-                # Unzip signed artifact and update installbuilder path to use signed files
                 7z x sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                ls -l
                 echo "INSTALLER_BIN_PREFIX=$(pwd)/SQLiteStudio" >> $GITHUB_ENV
 
             - name: "[Assembling] Create installer package"
@@ -418,15 +416,6 @@ jobs:
                 github-token: '${{ secrets.SIGNPATH_GITHUB_TOKEN }}'
                 wait-for-completion: true
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
-
-            - name: "[Code Signing] Unzip signed files"
-              if: ${{ inputs.CODE_SIGN }}
-              shell: msys2 {0}
-              working-directory: ${{ env.SIGNED_DIR }}
-              run: |
-                set -x
-                ls -l
-                7z x sqlitestudio-installer.zip
 
             - name: "[Assembling] SHA256 checksums"
               shell: msys2 {0}
