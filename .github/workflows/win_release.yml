@@ -327,6 +327,7 @@ jobs:
             - name: Prepare artifact for code signing
               shell: msys2 {0}
               run: |
+                set -x
                 mkdir signing
                 cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
                     SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe \
@@ -334,7 +335,7 @@ jobs:
 
                 cd signing
                 7z a sqlitestudio-unsigned.zip \
-                    sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                    sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
                     SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
                 mkdir signed && cd signed
@@ -355,6 +356,7 @@ jobs:
                 project-slug: 'sqlitestudio'
                 signing-policy-slug: 'test-signing'
                 github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+                github-token: '${{ secrets.SIGNPATH_GITHUB_TOKEN }}'
                 wait-for-completion: true
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
 
