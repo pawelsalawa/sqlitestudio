@@ -344,7 +344,7 @@ jobs:
 
             - name: "[Code Signing] Upload unsigned portable artifact"
               if: ${{ inputs.CODE_SIGN }}
-              id: upload-unsigned-artifact
+              id: upload-unsigned-artifact-portable
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-portable.zip
@@ -358,7 +358,7 @@ jobs:
                 organization-id: '78b5c545-92b8-4428-a8f9-31676f9553ba'
                 project-slug: 'sqlitestudio'
                 signing-policy-slug: 'test-signing'
-                github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+                github-artifact-id: '${{ steps.upload-unsigned-artifact-portable.outputs.artifact-id }}'
                 github-token: '${{ secrets.SIGNPATH_GITHUB_TOKEN }}'
                 wait-for-completion: true
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
@@ -400,7 +400,7 @@ jobs:
 
             - name: "[Code Signing] Upload unsigned installer artifact"
               if: ${{ inputs.CODE_SIGN }}
-              id: upload-unsigned-artifact
+              id: upload-unsigned-artifact-installer
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-installer.zip
@@ -414,7 +414,7 @@ jobs:
                 organization-id: '78b5c545-92b8-4428-a8f9-31676f9553ba'
                 project-slug: 'sqlitestudio'
                 signing-policy-slug: 'test-signing'
-                github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+                github-artifact-id: '${{ steps.upload-unsigned-artifact-installer.outputs.artifact-id }}'
                 github-token: '${{ secrets.SIGNPATH_GITHUB_TOKEN }}'
                 wait-for-completion: true
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
