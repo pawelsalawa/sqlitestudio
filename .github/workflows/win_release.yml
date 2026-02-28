@@ -347,7 +347,7 @@ jobs:
               id: upload-unsigned-artifact-portable
               uses: actions/upload-artifact@v4
               with:
-                name: unsigned-sqlitestudio-portable.zip
+                name: unsigned-sqlitestudio-${{ matrix.OUTPUT_FILE_ARCH }}-portable.zip
                 path: signing/*.zip
 
             - name: "[Code Signing] Sign portable artifact"
@@ -401,7 +401,7 @@ jobs:
               id: upload-unsigned-artifact-installer
               uses: actions/upload-artifact@v4
               with:
-                name: unsigned-sqlitestudio-installer.zip
+                name: unsigned-sqlitestudio-${{ matrix.OUTPUT_FILE_ARCH }}-installer.zip
                 path: signing/*.exe
 
             - name: "[Code Signing] Sign installer artifact"
