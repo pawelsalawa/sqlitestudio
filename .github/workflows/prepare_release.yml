@@ -1,30 +1,36 @@
 env:
     RELEASE_META: |
         {
-            "win64_release": {
-                "os": "Windows x64",
-                "installer_url": "",
-                "portable_url": ""
-            },
-            "win32_release": {
-                "os": "Windows i386",
-                "installer_url": "",
-                "portable_url": ""
+            "win_release": {
+                "x64": {
+                    "os": "Windows x86_64",
+                    "installer_url": "",
+                    "portable_url": ""
+                },
+                "arm64": {
+                    "os": "Windows ARM64",
+                    "installer_url": "",
+                    "portable_url": ""
+                }
             },
             "mac_release": {
-                "os": "MacOS X universal (x64 & ARM64)",
-                "installer_url": "",
-                "portable_url": ""
+                "universal": {
+                    "os": "MacOS X universal (x64 & ARM64)",
+                    "installer_url": "",
+                    "portable_url": ""
+                }
             },
             "lin_release": {
-                "os": "Linux x64",
-                "installer_url": "",
-                "portable_url": ""
-            },
-            "lin_release_arm": {
-                "os": "Linux ARM64",
-                "installer_url": "",
-                "portable_url": ""
+                "x64": {
+                    "os": "Linux x64",
+                    "installer_url": "",
+                    "portable_url": ""
+                },
+                "arm64": {
+                    "os": "Linux ARM64",
+                    "installer_url": "",
+                    "portable_url": ""
+                }
             }
         }
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -196,6 +202,17 @@ jobs:
                             url_type=portable_url
                         fi
 
+                        if [[ "$file" == *x64* ]]; then
+                            arch="x64"
+                        elif [[ "$file" == *arm64* ]]; then
+                            arch="arm64"
+                        elif [[ "$file" == *universal* ]]; then
+                            arch="universal"
+                        else
+                            echo "Unexpected archictecture for: $file"
+                            exit 1
+                        fi
+
                         echo "Uploading $file..."
                         url=$($SCRIPTS/upload_artifact.sh $RELEASE_ID "$file")
                         url=$(echo $url | sed -E "s/untagged-[^\/]*/$SQLITESTUDIO_VERSION/")
@@ -206,8 +223,9 @@ jobs:
                                 jq -c \
                                    --arg dir "$dir" \
                                    --arg url "$url" \
+                                   --arg arch "$arch" \
                                    --arg url_type "$url_type" \
-                                   '.[$dir][$url_type] = $url'
+                                   '.[$dir][$arch][$url_type] = $url'
                            )
                     done
                     
@@ -228,13 +246,26 @@ jobs:
                 for dir in *
                 do
                     cd $dir
-                    os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].os')
-                    portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
-                    installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
                     
                     for file in *
                     do
                         checksum=$(sha256sum $file | cut -d ' ' -f 1)
+
+                        if [[ "$file" == *x64* ]]; then
+                            arch="x64"
+                        elif [[ "$file" == *arm64* ]]; then
+                            arch="arm64"
+                        elif [[ "$file" == *universal* ]]; then
+                            arch="universal"
+                        else
+                            echo "Unexpected archictecture for: $file"
+                            exit 1
+                        fi
+
+                        os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].os')
+                        portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
+                        installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
+
                         if [[ "$file" == *"installer"* ]]
                         then
                             url=$installer_url
@@ -243,7 +274,7 @@ jobs:
                             url=$portable_url
                             type="Portable"
                         fi
-                        
+
                         body_lines+=("| $os | $type | [$file]($url) | \`$checksum\` |")
                     done
                     
