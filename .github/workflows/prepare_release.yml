@@ -191,8 +191,11 @@ jobs:
                     
                     for file in *
                     do
-                        unzip $file
-                        rm -f $file
+                        # Adding uniq_ prefix, cause inner zip file may have exactly same name
+                        mv $file uniq_$file
+                        unzip uniq_$file
+                        rm -f uniq_$file
+
                         file="${file%.*}"
                     
                         if [[ "$file" == *"installer"* ]]
