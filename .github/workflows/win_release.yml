@@ -353,9 +353,9 @@ jobs:
                     signing/
 
                 cd signing
-                7z a sqlitestudio-unsigned.zip \
-                    sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
-                    SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                # 7z a sqlitestudio-unsigned.zip \
+                #     sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
+                #     SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
                 mkdir signed && cd signed
                 echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
@@ -366,7 +366,9 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-unsigned.zip
-                path: signing/sqlitestudio-unsigned.zip
+                path: |
+                    signing/*.zip
+                    signing/*.exe
 
             - name: Sign artifacts
               if: ${{ inputs.CODE_SIGN }}
