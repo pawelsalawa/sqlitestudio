@@ -352,13 +352,8 @@ jobs:
                     SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe \
                     signing/
 
-                cd signing
-                # 7z a sqlitestudio-unsigned.zip \
-                #     sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
-                #     SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
-
-                mkdir signed && cd signed
-                echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
+                mkdir signing/signed
+                echo "SIGNED_DIR=signing/signed" >> $GITHUB_ENV
 
             - name: Upload unsigned artifact
               if: ${{ inputs.CODE_SIGN }}
