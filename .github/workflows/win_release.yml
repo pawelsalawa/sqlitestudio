@@ -10,6 +10,11 @@ name: Windows release build
 on:
     workflow_dispatch:
         inputs:
+          CODE_SIGN:
+            description: 'Sign artifacts with SignPath'
+            required: true
+            type: boolean
+            default: true
           use_ccache:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
@@ -324,7 +329,21 @@ jobs:
               run: |
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
+            - name: Prepare artifact for uploading without signing
+              if: ${{ !inputs.CODE_SIGN }}
+              shell: msys2 {0}
+              run: |
+                set -x
+                mkdir unsigned
+                cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
+                    ../SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe \
+                    unsigned/
+
+                cd unsigned
+                echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
+
             - name: Prepare artifact for code signing
+              if: ${{ inputs.CODE_SIGN }}
               shell: msys2 {0}
               run: |
                 set -x
@@ -342,6 +361,7 @@ jobs:
                 echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
 
             - name: Upload unsigned artifact
+              if: ${{ inputs.CODE_SIGN }}
               id: upload-unsigned-artifact
               uses: actions/upload-artifact@v4
               with:
@@ -349,6 +369,7 @@ jobs:
                 path: ${{ env.SIGNED_DIR }}/sqlitestudio-unsigned.zip
 
             - name: Sign artifacts
+              if: ${{ inputs.CODE_SIGN }}
               uses: signpath/github-action-submit-signing-request@v2
               with:
                 api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -361,6 +382,7 @@ jobs:
                 output-artifact-directory: '${{ env.SIGNED_DIR }}'
 
             - name: Unzip signed files
+              if: ${{ inputs.CODE_SIGN }}
               shell: msys2 {0}
               working-directory: ${{ env.SIGNED_DIR }}
               run: |
