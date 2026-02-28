@@ -156,6 +156,7 @@ jobs:
                     cd $REL_NAME
                     
                     $SCRIPTS/download_artifacts.sh $runid
+                    rm -f unsigned*
                     
                     cd ..
                 done
