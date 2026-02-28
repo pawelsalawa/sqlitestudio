@@ -40,11 +40,11 @@ jobs:
                       CCACHE_KEY: win64-release
                       SQLITE_ARCH: 'x64'
                       OUTPUT_FILE_ARCH: 'x64'
-                    - OS: windows-11-arm
-                      MSYSTEM: CLANGARM64
-                      CCACHE_KEY: winarm64-release
-                      SQLITE_ARCH: 'arm64'
-                      OUTPUT_FILE_ARCH: 'arm64'
+                    # - OS: windows-11-arm
+                    #   MSYSTEM: CLANGARM64
+                    #   CCACHE_KEY: winarm64-release
+                    #   SQLITE_ARCH: 'arm64'
+                    #   OUTPUT_FILE_ARCH: 'arm64'
 
         runs-on: ${{ matrix.OS }}
 
@@ -210,6 +210,7 @@ jobs:
               shell: msys2 {0}
               run: |
                 cd ${{ env.PORTABLE_DIR }}
+                rm -rf lib # it contains only *.a files
                 rm -f *.a
                 rm -f plugins/*.a
                 rm -f styles/*.a
@@ -317,29 +318,72 @@ jobs:
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
 
-            - name: SHA256 checksums
+            - name: Name fix for arm64
               if: ${{ matrix.OUTPUT_FILE_ARCH == 'arm64' }}
               shell: msys2 {0}
               run: |
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
-            - name: SHA256 checksums
+            - name: Prepare artifact for code signing
               shell: msys2 {0}
               run: |
-                sha256sum output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                mkdir signing
+                cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
+                    SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe \
+                    signing/
+
+                cd signing
+                7z a sqlitestudio-unsigned.zip \
+                    sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                    SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+
+                mkdir signed && cd signed
+                echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
+
+            - name: Upload unsigned artifact
+              id: upload-unsigned-artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: sqlitestudio-unsigned.zip
+                path: ${{ env.SIGNED_DIR }}/sqlitestudio-unsigned.zip
+
+            - name: Sign artifacts
+              uses: signpath/github-action-submit-signing-request@v2
+              with:
+                api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+                organization-id: '78b5c545-92b8-4428-a8f9-31676f9553ba'
+                project-slug: 'sqlitestudio'
+                signing-policy-slug: 'test-signing'
+                github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+                wait-for-completion: true
+                output-artifact-directory: '${{ env.SIGNED_DIR }}'
+
+            - name: Unzip signed files
+              shell: msys2 {0}
+              working-directory: ${{ env.SIGNED_DIR }}
+              run: |
+                set -x
+                ls -l
+                7z x sqlitestudio-unsigned.zip
+
+            - name: SHA256 checksums
+              shell: msys2 {0}
+              working-directory: ${{ env.SIGNED_DIR }}
+              run: |
+                sha256sum sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
                 sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
-                path: output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                path: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload installer artifact
               uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
-                path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                path: ${{ env.SIGNED_DIR }}/SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: Setup debugging SSH
               if: >
