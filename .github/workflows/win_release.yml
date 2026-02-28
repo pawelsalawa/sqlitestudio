@@ -366,7 +366,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: sqlitestudio-unsigned.zip
-                path: ${{ env.SIGNED_DIR }}/sqlitestudio-unsigned.zip
+                path: signing/sqlitestudio-unsigned.zip
 
             - name: Sign artifacts
               if: ${{ inputs.CODE_SIGN }}
