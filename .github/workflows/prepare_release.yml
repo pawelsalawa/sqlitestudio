@@ -193,12 +193,13 @@ jobs:
                     for file in *
                     do
                         # Adding uniq_ prefix, cause inner zip file may have exactly same name
-                        mv $file uniq_$file
-                        unzip uniq_$file
-                        rm -f uniq_$file
+                        uniq_nm=uniq_$file
+                        mv $file $uniq_nm
+                        unzip $uniq_nm
+                        file="$(unzip -Z1 $uniq_nm)"
+                        rm -f $uniq_nm
 
-                        file="${file%.*}"
-                    
+
                         if [[ "$file" == *"installer"* ]]
                         then
                             url_type=installer_url
@@ -266,9 +267,9 @@ jobs:
                             exit 1
                         fi
 
-                        os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].os')
-                        portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].portable_url')
-                        installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir].installer_url')
+                        os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].os')
+                        portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].portable_url')
+                        installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].installer_url')
 
                         if [[ "$file" == *"installer"* ]]
                         then
