@@ -267,9 +267,9 @@ jobs:
                             exit 1
                         fi
 
-                        os=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].os')
-                        portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].portable_url')
-                        installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir '.[$dir][$arch].installer_url')
+                        os=$(echo $RELEASE_META | jq -r --arg dir $dir --arg arch "$arch" '.[$dir][$arch].os')
+                        portable_url=$(echo $RELEASE_META | jq -r --arg dir $dir --arg arch "$arch" '.[$dir][$arch].portable_url')
+                        installer_url=$(echo $RELEASE_META | jq -r --arg dir $dir --arg arch "$arch" '.[$dir][$arch].installer_url')
 
                         if [[ "$file" == *"installer"* ]]
                         then
