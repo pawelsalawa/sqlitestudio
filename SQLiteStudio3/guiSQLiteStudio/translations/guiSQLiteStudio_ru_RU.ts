@@ -898,7 +898,7 @@
       <location filename="../completer/completerwindow.cpp" line="244"/>
       <source>Join condition: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Join condition: %1</translation>
+      <translation>Условие соединения (Join): %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="287"/>
@@ -969,12 +969,12 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="1110"/>
       <source>SQL Editor</source>
-      <translation type="unfinished">SQL Editor</translation>
+      <translation>Редактор SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
       <source>sqlEditorPage</source>
-      <translation type="unfinished">sqlEditorPage</translation>
+      <translation>sqlEditorPage</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="207"/>
@@ -1105,27 +1105,27 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="550"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Преобразует разделители строки Unicode (U+2028, U+2029) в стандартный символ LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) при редактировании текста в режиме формы.&lt;/p&gt;&lt;p&gt;Отключите для сохранения оригинальных символов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="553"/>
       <source>Convert Unicode line separators to LF (\n) in form view editors</source>
-      <translation type="unfinished">Convert Unicode line separators to LF (\n) in form view editors</translation>
+      <translation>Преобразовать разделители строк Unicode в LF (\n) в редакторе режима формы</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="556"/>
       <source>General.UseLfForMultilineEditors</source>
-      <translation type="unfinished">General.UseLfForMultilineEditors</translation>
+      <translation>General.UseLfForMultilineEditors</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="563"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При включении SQLiteStudio автоматически переключится на экспоненциальную запись для очень маленьких вещественных чисел (например &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Десятичная запись будет использоваться для значений, масштаб которых позволяет представить их в читаемом десятичном формате.&lt;/p&gt;&lt;p&gt;При отключении вещественные числа всегда будут отображаться в десятичной записи, даже если это приведёт к очень длинной дробной части.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="566"/>
       <source>Use scientific notation for very small real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for very small real numbers in the grid view</translation>
+      <translation>Использовать экспоненциальную запись для очень маленьких вещественных чисел в табличном виде</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="592"/>
@@ -1447,27 +1447,27 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="219"/>
       <source>Data renderers</source>
-      <translation type="unfinished">Data renderers</translation>
+      <translation>Визуализаторы данных</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="883"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Задайте, какие редакторы данных доступны для конкретных типов столбцов в &lt;span style=&quot; font-weight:700;&quot;&gt;Режиме формы&lt;/span&gt; и во &lt;span style=&quot; font-weight:700;&quot;&gt;всплывающем диалоге редактирования&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="899"/>
       <source>Preview of editors for this data type (drag to reorder):</source>
-      <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
+      <translation>Предпросмотр редакторов для этого типа данных (перетащите для изменения порядка):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="923"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Вы можете задать, какие визуализаторы ячеек используются для конкретных типов данных, объявленных в столбцах таблиц (без учета регистра). Если для данного типа не задан визуализатор, используется визуализатор по умолчанию.&lt;/p&gt;&lt;p&gt;Некоторые плагины могут предоставлять дополнительные визуализаторы и устанавливать их собственные сопоставления по умолчанию для типов данных, которые вы по-прежнему можете переопределить здесь.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="942"/>
       <source>General.DataRenderers</source>
-      <translation type="unfinished">General.DataRenderers</translation>
+      <translation>General.DataRenderers</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="949"/>
@@ -1477,27 +1477,27 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="954"/>
       <source>Renderer</source>
-      <translation type="unfinished">Renderer</translation>
+      <translation>Визуализатор</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1116"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При наличии нескольких запросов выполнится только запрос под курсором.&lt;br/&gt;Если отключено, выполнятся все запросы.&lt;br/&gt;Вы также можете выполнять выбранные запросы или использовать сочетания клавиш (%1 для одного, %2 для всех).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1129"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Подсвечивает запрос под курсором – запрос, который будет выполнен при нажатии&lt;span style=&quot; font-style:italic;&quot;&gt;Выполнить запрос&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1155"/>
       <source>Disable blinking text cursor</source>
-      <translation type="unfinished">Disable blinking text cursor</translation>
+      <translation>Отключить мигающий текстовый курсор</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1177"/>
       <source>Trigger assistant after typing a dot</source>
-      <translation type="unfinished">Trigger assistant after typing a dot</translation>
+      <translation>Вызов автодополнения после ввода точки</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1190"/>
@@ -1507,7 +1507,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1199"/>
       <source>Query history size:</source>
-      <translation type="unfinished">Query history size:</translation>
+      <translation>Размер истории запросов:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1482"/>
@@ -1588,23 +1588,23 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2174"/>
       <source>Toolbars</source>
-      <translation type="unfinished">Toolbars</translation>
+      <translation>Панели инструментов</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2180"/>
       <location filename="../dialogs/configdialog.ui" line="2190"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Указывается в процентах от размера по умолчанию.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2183"/>
       <source>Icon size</source>
-      <translation type="unfinished">Icon size</translation>
+      <translation>Размер значка</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2193"/>
       <source>General.ToolBarIconSize</source>
-      <translation type="unfinished">General.ToolBarIconSize</translation>
+      <translation>General.ToolBarIconSize</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2308"/>
@@ -1639,7 +1639,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2627"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Подсказка:&lt;/span&gt; В дополнение к настройкам, доступным здесь, размер шрифта также может быть динамически изменён у большинства элементов интерфейса путём удерживания клавиши &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; и прокрутки &lt;span style=&quot; font-weight:700;&quot;&gt;колёсика мыши&lt;/span&gt; над элементом, размер шрифта которого вы хотите изменить.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2643"/>
@@ -4053,7 +4053,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="127"/>
       <source>Data renderers</source>
-      <translation type="unfinished">Data renderers</translation>
+      <translation>Визуализаторы данных</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="306"/>
@@ -4215,13 +4215,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="1043"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
-      <translation type="unfinished">Toolbar &amp;icons</translation>
+      <translation>&amp;Значки панели инструментов</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1050"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
-      <translation type="unfinished">Size: %1%</translation>
+      <translation>Размер: %1%</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="1166"/>
@@ -4268,12 +4268,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="77"/>
       <source>Save this value to a file</source>
-      <translation type="unfinished">Save this value to a file</translation>
+      <translation>Сохранить это значение в файл</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="80"/>
       <source>Load this value from a file</source>
-      <translation type="unfinished">Load this value from a file</translation>
+      <translation>Загрузить это значение из файла</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="91"/>
@@ -4298,37 +4298,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="386"/>
       <source>Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</source>
-      <translation type="unfinished">Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</translation>
+      <translation>Текстовые файлы (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="388"/>
       <source>SQL files (*.sql)</source>
-      <translation type="unfinished">SQL files (*.sql)</translation>
+      <translation>SQL-файлы (*.sql)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="390"/>
       <source>Binary data (*.bin *.dat *.raw)</source>
-      <translation type="unfinished">Binary data (*.bin *.dat *.raw)</translation>
+      <translation>Двоичные данные (*.bin *.dat *.raw)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="392"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</translation>
+      <translation>Изображения (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="394"/>
       <source>Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</source>
-      <translation type="unfinished">Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</translation>
+      <translation>Архивы (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="396"/>
       <source>Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</source>
-      <translation type="unfinished">Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</translation>
+      <translation>Документы (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="398"/>
       <source>Executables (*.exe *.dll *.so *.dylib)</source>
-      <translation type="unfinished">Executables (*.exe *.dll *.so *.dylib)</translation>
+      <translation>Исполняемые файлы (*.exe *.dll *.so *.dylib)</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="422"/>
@@ -4350,27 +4350,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditor.cpp" line="636"/>
       <source>Open</source>
-      <translation type="unfinished">Open</translation>
+      <translation>Открыть</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="645"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>Невозможно открыть файл %1 для чтения.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="661"/>
       <source>Save</source>
-      <translation type="unfinished">Save</translation>
+      <translation>Сохранить</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="670"/>
       <source>Could not open file %1 for writting.</source>
-      <translation type="unfinished">Could not open file %1 for writting.</translation>
+      <translation>Невозможно открыть файл %1 для записи.</translation>
     </message>
     <message>
       <location filename="../multieditor/multieditor.cpp" line="720"/>
       <source>Could not write data into the file %1</source>
-      <translation type="unfinished">Could not write data into the file %1</translation>
+      <translation>Не удалось записать данные в файл %1</translation>
     </message>
   </context>
   <context>
@@ -4402,7 +4402,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../multieditor/multieditorfk.cpp" line="25"/>
       <source>Selected value preview</source>
-      <translation type="unfinished">Selected value preview</translation>
+      <translation>Предпросмотр выбранного значения</translation>
     </message>
   </context>
   <context>
@@ -4589,7 +4589,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../common/passwordtogglehelper.cpp" line="11"/>
       <source>Show / hide password</source>
-      <translation type="unfinished">Show / hide password</translation>
+      <translation>Показать / скрыть пароль</translation>
     </message>
   </context>
   <context>
@@ -4899,7 +4899,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dbtree/dbtree.h" line="36"/>
       <source>Edit selected database</source>
-      <translation type="unfinished">Edit selected database</translation>
+      <translation>Редактировать выбранную базу данных</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.h" line="37"/>
@@ -5479,7 +5479,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Are you sure you want to quit the application?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Following items are pending:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Вы уверены, что хотите выйти из приложения?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Следующие объекты ожидают подтверждения:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -6116,12 +6116,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="979"/>
       <source>Column renderer</source>
-      <translation type="unfinished">Column renderer</translation>
+      <translation>Визуализатор столбцов</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="986"/>
       <source>Default</source>
-      <translation type="unfinished">Default</translation>
+      <translation>По умолчанию</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="1130"/>
@@ -6324,17 +6324,17 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation>Связанная таблица:</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="56"/>
       <source>Referencing column</source>
-      <translation type="unfinished">Referencing column</translation>
+      <translation>Связываемый столбец</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="68"/>
       <source>Referenced column</source>
-      <translation type="unfinished">Referenced column</translation>
+      <translation>Связанный столбец</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.ui" line="104"/>
@@ -6379,7 +6379,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="178"/>
       <source>Column with the same name</source>
-      <translation type="unfinished">Column with the same name</translation>
+      <translation>Столбец с тем же именем</translation>
     </message>
     <message>
       <location filename="../constraints/tableforeignkeypanel.cpp" line="217"/>
