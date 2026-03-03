@@ -186,6 +186,7 @@ class GUI_API_EXPORT ExtActionContainer
         {
             public:
                 bool eventFilter(QObject* watched, QEvent* e);
+                QObject* installedIn = nullptr;
         };
 
         void refreshShortcuts();

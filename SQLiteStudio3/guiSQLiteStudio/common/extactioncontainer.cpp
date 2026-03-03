@@ -7,6 +7,7 @@
 #include <QMenu>
 #include <QDebug>
 #include <QEvent>
+#include <QtSystemDetection>
 
 ExtActionContainer::ClassNameToToolBarAndAction ExtActionContainer::extraActions;
 QList<ExtActionContainer*> ExtActionContainer::instances;
@@ -28,6 +29,7 @@ ExtActionContainer::~ExtActionContainer()
 
 void ExtActionContainer::initActions()
 {
+    keySeqFilter.installedIn = dynamic_cast<QObject*>(this);
     createActions();
     setupDefShortcuts();
     refreshShortcuts();
@@ -303,5 +305,11 @@ bool ExtActionContainer::KeySequenceFilter::eventFilter(QObject* watched, QEvent
         qobject_cast<QAction*>(watched)->activate(QAction::Trigger);
         return true;
     }
+#ifdef Q_OS_MAC
+    // On Mac calling QObject::event(e) from here causes crash if the event comes from the
+    // macOS native menubar. Still it should be fine to just return false.
+    return false;
+#else
     return QObject::event(e);
+#endif
 }
