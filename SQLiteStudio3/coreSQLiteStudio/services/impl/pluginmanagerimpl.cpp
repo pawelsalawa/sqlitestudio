@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QtSystemDetection>
 
 PluginManagerImpl::PluginManagerImpl()
 {
@@ -108,22 +109,10 @@ PluginType* PluginManagerImpl::getPluginType(Plugin* plugin) const
 
 void PluginManagerImpl::scanPlugins()
 {
-    QPluginLoader* loader = nullptr;
     for (QString& pluginDirPath : pluginDirs)
     {
         QDir pluginDir(pluginDirPath);
-        for (QString& fileName : pluginDir.entryList(sharedLibFileFilters(), QDir::Files))
-        {
-            fileName = pluginDir.absoluteFilePath(fileName);
-            loader = new QPluginLoader(fileName);
-            loader->setLoadHints(QLibrary::ExportExternalSymbolsHint|QLibrary::ResolveAllSymbolsHint);
-
-            if (!initPlugin(loader, fileName))
-            {
-                qDebug() << "File" << fileName << "was loaded as plugin, but SQLiteStudio couldn't initialize plugin.";
-                delete loader;
-            }
-        }
+        scanPlugins(pluginDir);
     }
 
     QStringList names;
@@ -134,6 +123,30 @@ void PluginManagerImpl::scanPlugins()
     }
 
     qDebug() << "Following plugins found:" << names;
+}
+
+void PluginManagerImpl::scanPlugins(const QDir& dirToScan)
+{
+    qDebug() << "Scanning dir for plugins" << dirToScan.absolutePath();
+    for (QFileInfo& fileInfo : dirToScan.entryInfoList(sharedLibFileFilters(), QDir::Files))
+    {
+        QString fileName = fileInfo.absoluteFilePath();
+        qDebug() << "Found potential plugin:" << fileName;
+        QPluginLoader* loader = new QPluginLoader(fileName);
+        loader->setLoadHints(QLibrary::ExportExternalSymbolsHint|QLibrary::ResolveAllSymbolsHint);
+
+        if (!initPlugin(loader, fileName))
+        {
+            qDebug() << "File" << fileName << "was loaded as plugin, but SQLiteStudio couldn't initialize plugin.";
+            delete loader;
+        }
+    }
+
+    for (QFileInfo& fileInfo : dirToScan.entryInfoList(QDir::Dirs|QDir::NoDotAndDotDot))
+    {
+        QDir pluginDir(fileInfo.absoluteFilePath());
+        scanPlugins(pluginDir);
+    }
 }
 
 void PluginManagerImpl::loadPlugins()
@@ -171,6 +184,9 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
 
     QString pluginName = pluginMetaData.value("className").toString();
     QJsonObject metaObject = pluginMetaData.value("MetaData").toObject();
+
+    if (pluginContainer.contains(pluginName))
+        return false; // already loaded from different location
 
     if (!checkPluginRequirements(pluginName, metaObject))
         return false;

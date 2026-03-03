@@ -195,6 +195,8 @@ class API_EXPORT PluginManagerImpl : public PluginManager
          */
         void scanPlugins();
 
+        void scanPlugins(const QDir& dirToScan);
+
         /**
          * @brief Loads plugins defined in configuration.
          *
