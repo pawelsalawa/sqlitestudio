@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
+#include <QtSystemDetection>
 
 class QUiLoader;
 class DbTree;

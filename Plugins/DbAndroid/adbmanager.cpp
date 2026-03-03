@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QRegularExpression>
+#include <QtSystemDetection>
 
 AdbManager::AdbManager(DbAndroid* dbAndroidPlugin) :
     QObject(dbAndroidPlugin), plugin(dbAndroidPlugin)

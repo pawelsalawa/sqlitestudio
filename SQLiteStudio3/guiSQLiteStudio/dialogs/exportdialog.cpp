@@ -23,6 +23,7 @@
 #include <QFileDialog>
 #include <QUiLoader>
 #include <QMimeData>
+#include <QtSystemDetection>
 
 static const QString EXPORT_DIALOG_CFG_GROUP = "ExportDialog";
 static const QString EXPORT_DIALOG_CFG_CODEC = "codec";

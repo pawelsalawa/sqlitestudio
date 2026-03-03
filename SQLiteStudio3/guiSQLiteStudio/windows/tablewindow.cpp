@@ -41,6 +41,7 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QStyleFactory>
+#include <QtSystemDetection>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.

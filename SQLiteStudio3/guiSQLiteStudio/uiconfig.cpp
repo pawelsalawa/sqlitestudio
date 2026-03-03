@@ -6,6 +6,7 @@
 #include <QStandardItem>
 #include <QDir>
 #include <QDebug>
+#include <QtSystemDetection>
 
 #define DEFINE_FORMAT_FN_BG_FG(FN_NAME, BG_COLOR_NAME, FG_COLOR_NAME) \
     QTextCharFormat FN_NAME() \

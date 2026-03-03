@@ -12,6 +12,7 @@
 #include <QItemSelection>
 #include <QDesktopServices>
 #include <QStyleFactory>
+#include <QtSystemDetection>
 
 CFG_KEYS_DEFINE(CodeSnippetEditor)
 

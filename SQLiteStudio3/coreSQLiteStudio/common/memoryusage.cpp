@@ -1,5 +1,6 @@
 #include "memoryusage.h"
 #include <QtGlobal>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_LINUX
 #include <QFile>

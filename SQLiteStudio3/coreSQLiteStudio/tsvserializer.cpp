@@ -1,4 +1,5 @@
 #include "tsvserializer.h"
+#include <QtSystemDetection>
 
 #ifdef Q_OS_MACX
 QString TsvSerializer::rowSeparator = "\r";

@@ -18,6 +18,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QKeyEvent>
+#include <QtSystemDetection>
 
 static const QString IMPORT_DIALOG_CFG_GROUP = "ImportDialog";
 static const QString IMPORT_DIALOG_CFG_CODEC = "codec";

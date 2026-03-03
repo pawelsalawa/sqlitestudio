@@ -16,6 +16,7 @@
 #include <QDesktopServices>
 #include <QStyleFactory>
 #include <QSyntaxHighlighter>
+#include <QtSystemDetection>
 
 // TODO handle plugin loading/unloading to update editor state
 

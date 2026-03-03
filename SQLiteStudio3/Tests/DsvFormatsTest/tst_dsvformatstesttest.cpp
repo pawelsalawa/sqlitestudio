@@ -4,6 +4,7 @@
 #include <QtTest>
 #include "tsvserializer.h"
 #include "csvserializer.h"
+#include <QtSystemDetection>
 
 // TODO Add tests for CsvSerializer
 

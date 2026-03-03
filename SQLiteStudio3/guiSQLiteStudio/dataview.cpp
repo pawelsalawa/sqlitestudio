@@ -22,6 +22,7 @@
 #include <QSizePolicy>
 #include <QScrollBar>
 #include <QToolButton>
+#include <QtSystemDetection>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::TabsPosition DataView::tabsPosition;

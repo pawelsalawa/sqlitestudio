@@ -1,5 +1,4 @@
 #include "common/utils.h"
-#include "QtGui/qwindowdefs.h"
 #include "common/global.h"
 #include "dbobjecttype.h"
 #include "rsa/RSA.h"
@@ -25,6 +24,7 @@
 #include <QDataStream>
 #include <QRandomGenerator>
 #include <QThreadPool>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>

@@ -7,6 +7,7 @@
 #include "common/utils_sql.h"
 #include <QDebug>
 #include <QMutexLocker>
+#include <QtSystemDetection>
 
 #ifdef PYTHON_DYNAMIC_BINDING
 #include <QDir>

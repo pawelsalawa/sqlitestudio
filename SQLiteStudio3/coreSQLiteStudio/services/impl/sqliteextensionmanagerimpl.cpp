@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
+#include <QtSystemDetection>
 
 SqliteExtensionManagerImpl::SqliteExtensionManagerImpl()
 {
