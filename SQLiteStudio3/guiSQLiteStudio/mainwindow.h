@@ -9,7 +9,11 @@
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 class QUiLoader;
 class DbTree;

@@ -8,7 +8,11 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonValue>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 PluginManagerImpl::PluginManagerImpl()
 {

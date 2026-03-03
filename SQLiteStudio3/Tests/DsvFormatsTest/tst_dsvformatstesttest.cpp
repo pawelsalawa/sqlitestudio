@@ -4,7 +4,11 @@
 #include <QtTest>
 #include "tsvserializer.h"
 #include "csvserializer.h"
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 // TODO Add tests for CsvSerializer
 

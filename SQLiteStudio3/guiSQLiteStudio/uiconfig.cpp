@@ -6,7 +6,11 @@
 #include <QStandardItem>
 #include <QDir>
 #include <QDebug>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 #define DEFINE_FORMAT_FN_BG_FG(FN_NAME, BG_COLOR_NAME, FG_COLOR_NAME) \
     QTextCharFormat FN_NAME() \

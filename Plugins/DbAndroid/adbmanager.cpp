@@ -5,7 +5,11 @@
 #include <QDebug>
 #include <QTimer>
 #include <QRegularExpression>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 AdbManager::AdbManager(DbAndroid* dbAndroidPlugin) :
     QObject(dbAndroidPlugin), plugin(dbAndroidPlugin)
