@@ -314,16 +314,13 @@ jobs:
                 echo "INSTALLER_SRC_PREFIX=$(pwd)" >> $GITHUB_ENV
                 echo "INSTALLER_BIN_PREFIX=$ABSOLUTE_PORTABLE_DIR" >> $GITHUB_ENV
 
-            - name: "[Assembling] Prepare artifact for uploading without signing"
+            - name: "[Assembling] Prepare portable artifact for uploading without signing"
               if: ${{ !inputs.CODE_SIGN }}
               shell: msys2 {0}
               run: |
                 set -x
                 mkdir unsigned
-                cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip \
-                    ../SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe \
-                    unsigned/
-
+                cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip unsigned/
                 cd unsigned
                 echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
 
@@ -388,6 +385,13 @@ jobs:
               shell: msys2 {0}
               run: |
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+
+            - name: "[Assembling] Prepare installer for uploading without signing"
+              if: ${{ !inputs.CODE_SIGN }}
+              shell: msys2 {0}
+              run: |
+                set -x
+                cp SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe unsigned/
 
             - name: "[Code Signing] Prepare installer artifact for code signing"
               if: ${{ inputs.CODE_SIGN }}
