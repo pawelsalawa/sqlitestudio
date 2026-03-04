@@ -45,6 +45,11 @@ on:
             required: false
             default: ''
             type: string
+          CODE_SIGN:
+            description: 'Sign artifacts'
+            required: true
+            type: boolean
+            default: true
           TEST_RUN:
             description: 'Test run (-test suffix for release)'
             required: false
@@ -93,6 +98,10 @@ jobs:
                 if [ "${DEBUG}" = "true" ]
                 then
                     inputs=$(echo $inputs | jq -c '.DEBUG = "true"')
+                fi
+                if [ "${CODE_SIGN}" = "true" ]
+                then
+                    inputs=$(echo $inputs | jq -c '.CODE_SIGN = "true"')
                 fi
                 
                 for wname in ${WORKFLOWS[@]}
