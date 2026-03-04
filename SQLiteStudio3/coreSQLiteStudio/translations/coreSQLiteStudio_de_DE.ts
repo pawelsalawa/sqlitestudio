@@ -487,33 +487,33 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="539"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Plugin %1 konnte nicht geladen werden, weil ein Konflikt besteht mit Plugin %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="550"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Plugin %1 konnte nicht geladen werden, da dessen Abhängigkeiten nicht geladen worden sind: %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Plugin %1 konnte nicht geladen. Problembeschreibung: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Plugin %1 konnte wegen eines Fehlers bei der Initialisierung nicht geladen werden.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="736"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>Min: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>Max: %1</translation>
@@ -786,7 +786,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../common/utils.cpp" line="949"/>
+        <location filename="../common/utils.cpp" line="953"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>

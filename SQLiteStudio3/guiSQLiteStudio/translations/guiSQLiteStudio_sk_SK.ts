@@ -145,62 +145,62 @@
         <translation type="unfinished">Snippet code</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="42"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="47"/>
         <source>Code Snippets editor window has uncommitted modifications.</source>
         <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="63"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="68"/>
         <source>Code Snippets editor</source>
         <translation type="unfinished">Code Snippets editor</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="68"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="73"/>
         <source>Commit all snippet changes</source>
         <translation type="unfinished">Commit all snippet changes</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="69"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="74"/>
         <source>Rollback all snippet changes</source>
         <translation type="unfinished">Rollback all snippet changes</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="71"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="76"/>
         <source>Create new snippet</source>
         <translation type="unfinished">Create new snippet</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="72"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="77"/>
         <source>Delete selected snippet</source>
         <translation type="unfinished">Delete selected snippet</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="74"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="79"/>
         <source>Move the snippet up</source>
         <translation type="unfinished">Move the snippet up</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="75"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="80"/>
         <source>Move the snippet down</source>
         <translation type="unfinished">Move the snippet down</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="77"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="82"/>
         <source>Code snippets manual</source>
         <translation type="unfinished">Code snippets manual</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="291"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="296"/>
         <source>Enter a non-empty, unique name of the snippet.</source>
         <translation type="unfinished">Enter a non-empty, unique name of the snippet.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="294"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="299"/>
         <source>Enter a non-empty snippet content.</source>
         <translation type="unfinished">Enter a non-empty snippet content.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="298"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="303"/>
         <source>This hotkey is not unique in context of a code assistant.</source>
         <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
     </message>
@@ -811,97 +811,97 @@
 <context>
     <name>CompleterWindow</name>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="206"/>
+        <location filename="../completer/completerwindow.cpp" line="216"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
         <translation>Stĺpec: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="208"/>
+        <location filename="../completer/completerwindow.cpp" line="218"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
         <translation>Tabuľka: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="210"/>
+        <location filename="../completer/completerwindow.cpp" line="220"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
         <translation type="unfinished">Index: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="212"/>
+        <location filename="../completer/completerwindow.cpp" line="222"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
         <translation>Spúšťač: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="214"/>
+        <location filename="../completer/completerwindow.cpp" line="224"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
         <translation>Pohľad: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="216"/>
+        <location filename="../completer/completerwindow.cpp" line="226"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
         <translation>Databáza: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="228"/>
+        <location filename="../completer/completerwindow.cpp" line="238"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
         <translation>Kľúčové slovo: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="230"/>
+        <location filename="../completer/completerwindow.cpp" line="240"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
         <translation>Funkcia: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="232"/>
+        <location filename="../completer/completerwindow.cpp" line="242"/>
         <source>Operator: %1</source>
         <comment>completer statusbar</comment>
         <translation>Operátor: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="234"/>
+        <location filename="../completer/completerwindow.cpp" line="244"/>
         <source>String</source>
         <comment>completer statusbar</comment>
         <translation>Reťazec</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="236"/>
+        <location filename="../completer/completerwindow.cpp" line="246"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
         <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="238"/>
+        <location filename="../completer/completerwindow.cpp" line="248"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
         <translation>Binárne dáta</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="240"/>
+        <location filename="../completer/completerwindow.cpp" line="250"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
         <translation>Porovnávanie: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="242"/>
+        <location filename="../completer/completerwindow.cpp" line="252"/>
         <source>Pragma function: %1</source>
         <comment>completer statusbar</comment>
         <translation>Pragma funkcia : %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="244"/>
+        <location filename="../completer/completerwindow.cpp" line="254"/>
         <source>Join condition: %1</source>
         <comment>completer statusbar</comment>
         <translation type="unfinished">Join condition: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="287"/>
+        <location filename="../completer/completerwindow.cpp" line="297"/>
         <source>Insert a code snippet</source>
         <translation type="unfinished">Insert a code snippet</translation>
     </message>
@@ -1952,159 +1952,159 @@
 <context>
     <name>DataView</name>
     <message>
-        <location filename="../dataview.cpp" line="104"/>
+        <location filename="../dataview.cpp" line="109"/>
         <source>Filter data</source>
         <comment>data view</comment>
         <translation>Filtrovať</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="113"/>
+        <location filename="../dataview.cpp" line="118"/>
         <source>Grid view</source>
         <translation>Tabuľkové zobrazenie</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="114"/>
+        <location filename="../dataview.cpp" line="119"/>
         <source>Form view</source>
         <translation>Formulárové zobrazenie</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="205"/>
+        <location filename="../dataview.cpp" line="210"/>
         <source>Refresh table data</source>
         <comment>data view</comment>
         <translation>Obnoviť dáta v tabuľke</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="222"/>
+        <location filename="../dataview.cpp" line="227"/>
         <source>First page</source>
         <comment>data view</comment>
         <translation>Prvá strana</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="223"/>
+        <location filename="../dataview.cpp" line="228"/>
         <source>Previous page</source>
         <comment>data view</comment>
         <translation>Predchádzajúca strana</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="225"/>
+        <location filename="../dataview.cpp" line="230"/>
         <source>Next page</source>
         <comment>data view</comment>
         <translation>Nasledujúca strana</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="226"/>
+        <location filename="../dataview.cpp" line="231"/>
         <source>Last page</source>
         <comment>data view</comment>
         <translation>Posledná strana</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="235"/>
+        <location filename="../dataview.cpp" line="240"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
         <translation>Potvrdiť zmeny pre vybrané bunky</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="236"/>
+        <location filename="../dataview.cpp" line="241"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
         <translation>Vrátiť späť zmeny pre vybrané bunky</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="237"/>
+        <location filename="../dataview.cpp" line="242"/>
         <source>Show grid view of results</source>
         <comment>data view</comment>
         <translation>Výsledky zobraziť v tabuľke</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="238"/>
+        <location filename="../dataview.cpp" line="243"/>
         <source>Show form view of results</source>
         <comment>data view</comment>
         <translation>Výsledky zobraziť vo formulári</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1033"/>
+        <location filename="../dataview.cpp" line="1038"/>
         <source>Filter by text (if contains)</source>
         <comment>data view</comment>
         <translation type="unfinished">Filter by text (if contains)</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1034"/>
+        <location filename="../dataview.cpp" line="1039"/>
         <source>Filter strictly by text (if equals)</source>
         <comment>data view</comment>
         <translation type="unfinished">Filter strictly by text (if equals)</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="342"/>
+        <location filename="../dataview.cpp" line="347"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
         <translation>Záložky hore</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="343"/>
+        <location filename="../dataview.cpp" line="348"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
         <translation>Záložky dole</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="368"/>
+        <location filename="../dataview.cpp" line="373"/>
         <source>Place new rows above selected row</source>
         <comment>data view</comment>
         <translation type="unfinished">Place new rows above selected row</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="369"/>
+        <location filename="../dataview.cpp" line="374"/>
         <source>Place new rows below selected row</source>
         <comment>data view</comment>
         <translation type="unfinished">Place new rows below selected row</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="370"/>
+        <location filename="../dataview.cpp" line="375"/>
         <source>Place new rows at the end of the data view</source>
         <comment>data view</comment>
         <translation type="unfinished">Place new rows at the end of the data view</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="689"/>
+        <location filename="../dataview.cpp" line="694"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
         <translation>Spočítava sa celkový počet riadkov.
 Prezeranie ďalších strán bude možné až po dokončení spočítavania.</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="700"/>
+        <location filename="../dataview.cpp" line="705"/>
         <source>Row: %1</source>
         <translation>Riadok:%1</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1002"/>
+        <location filename="../dataview.cpp" line="1007"/>
         <source>Filter</source>
         <translation type="unfinished">Filter</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1005"/>
+        <location filename="../dataview.cpp" line="1010"/>
         <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
         <translation type="unfinished">Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1035"/>
+        <location filename="../dataview.cpp" line="1040"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
         <translation>Filtrovať pomocou regulárneho výrazu</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1036"/>
+        <location filename="../dataview.cpp" line="1041"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
         <translation>Filtrovať pomocou SQL výrazu</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1055"/>
+        <location filename="../dataview.cpp" line="1060"/>
         <source>Show filter inputs per column</source>
         <comment>data view</comment>
         <translation type="unfinished">Show filter inputs per column</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1059"/>
+        <location filename="../dataview.cpp" line="1064"/>
         <source>Apply filter</source>
         <comment>data view</comment>
         <translation>Aplikovať filter</translation>
@@ -3291,64 +3291,64 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Možnosti formátu exportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="61"/>
+        <location filename="../dialogs/exportdialog.cpp" line="66"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="161"/>
-        <location filename="../dialogs/exportdialog.cpp" line="186"/>
-        <location filename="../dialogs/exportdialog.cpp" line="210"/>
+        <location filename="../dialogs/exportdialog.cpp" line="166"/>
+        <location filename="../dialogs/exportdialog.cpp" line="191"/>
+        <location filename="../dialogs/exportdialog.cpp" line="215"/>
         <source>Select database to export.</source>
         <translation>Vyberte databázu, ktorú chcete exportovať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="162"/>
+        <location filename="../dialogs/exportdialog.cpp" line="167"/>
         <source>Select table to export.</source>
         <translation>Vyberte tabuľku, ktorú chcete exportovať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="187"/>
+        <location filename="../dialogs/exportdialog.cpp" line="192"/>
         <source>Enter valid query to export.</source>
         <translation>Zadajte platný dotaz pre export.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="211"/>
+        <location filename="../dialogs/exportdialog.cpp" line="216"/>
         <source>Select at least one object to export.</source>
         <translation>Vyberte aspoň jeden objekt pre export.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="234"/>
+        <location filename="../dialogs/exportdialog.cpp" line="239"/>
         <source>You must provide a file name to export to.</source>
         <translation>Musíte zadať názov súboru, do ktorého sa budú exportovať dáta.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="241"/>
+        <location filename="../dialogs/exportdialog.cpp" line="246"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Cesta, ktorú ste zadali je existujúci adresár. Nemôžte ho prepísať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="247"/>
+        <location filename="../dialogs/exportdialog.cpp" line="252"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Adresár %1 neexistuje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="253"/>
+        <location filename="../dialogs/exportdialog.cpp" line="258"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Súbor %1 už existuje a bude prepísaný.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="433"/>
+        <location filename="../dialogs/exportdialog.cpp" line="438"/>
         <source>All files (*)</source>
         <translation>Všetky súbory (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="436"/>
+        <location filename="../dialogs/exportdialog.cpp" line="441"/>
         <source>Pick file to export to</source>
         <translation>Výber súboru do ktorého sa budú exportovať dáta</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="798"/>
+        <location filename="../dialogs/exportdialog.cpp" line="803"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Počas exportu sa vyskytla interná chyba. Toto je chyba v programe. Prosím nahláste ju.</translation>
     </message>
@@ -3521,7 +3521,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="326"/>
-        <location filename="../windows/functionseditor.cpp" line="447"/>
+        <location filename="../windows/functionseditor.cpp" line="452"/>
         <source>Function implementation code:</source>
         <translation type="unfinished">Function implementation code:</translation>
     </message>
@@ -3531,103 +3531,103 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Final step implementation code:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="54"/>
+        <location filename="../windows/functionseditor.cpp" line="59"/>
         <source>SQL functions editor</source>
         <translation type="unfinished">SQL functions editor</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="59"/>
+        <location filename="../windows/functionseditor.cpp" line="64"/>
         <source>Commit all function changes</source>
         <translation type="unfinished">Commit all function changes</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="60"/>
+        <location filename="../windows/functionseditor.cpp" line="65"/>
         <source>Rollback all function changes</source>
         <translation type="unfinished">Rollback all function changes</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="62"/>
+        <location filename="../windows/functionseditor.cpp" line="67"/>
         <source>Create new function</source>
         <translation type="unfinished">Create new function</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="63"/>
+        <location filename="../windows/functionseditor.cpp" line="68"/>
         <source>Delete selected function</source>
         <translation type="unfinished">Delete selected function</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="65"/>
+        <location filename="../windows/functionseditor.cpp" line="70"/>
         <source>Custom SQL functions manual</source>
         <translation type="unfinished">Custom SQL functions manual</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="68"/>
+        <location filename="../windows/functionseditor.cpp" line="73"/>
         <source>Add function argument</source>
         <translation type="unfinished">Add function argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="69"/>
+        <location filename="../windows/functionseditor.cpp" line="74"/>
         <source>Rename function argument</source>
         <translation type="unfinished">Rename function argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="70"/>
+        <location filename="../windows/functionseditor.cpp" line="75"/>
         <source>Delete function argument</source>
         <translation type="unfinished">Delete function argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="72"/>
+        <location filename="../windows/functionseditor.cpp" line="77"/>
         <source>Move function argument up</source>
         <translation type="unfinished">Move function argument up</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="73"/>
+        <location filename="../windows/functionseditor.cpp" line="78"/>
         <source>Move function argument down</source>
         <translation type="unfinished">Move function argument down</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="114"/>
+        <location filename="../windows/functionseditor.cpp" line="119"/>
         <source>Scalar</source>
         <translation type="unfinished">Scalar</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="115"/>
+        <location filename="../windows/functionseditor.cpp" line="120"/>
         <source>Aggregate</source>
         <translation type="unfinished">Aggregate</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="430"/>
+        <location filename="../windows/functionseditor.cpp" line="435"/>
         <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
         <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="443"/>
+        <location filename="../windows/functionseditor.cpp" line="448"/>
         <source>Pick the implementation language.</source>
         <translation>Vyberte implementačný jazyk.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="447"/>
+        <location filename="../windows/functionseditor.cpp" line="452"/>
         <source>Per step code:</source>
         <translation type="unfinished">Per step code:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="453"/>
+        <location filename="../windows/functionseditor.cpp" line="458"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Zadajte implementačný kód.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="526"/>
+        <location filename="../windows/functionseditor.cpp" line="531"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
         <translation type="unfinished">argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="630"/>
+        <location filename="../windows/functionseditor.cpp" line="635"/>
         <source>Function argument cannot be empty and it cannot have duplicated name.</source>
         <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="678"/>
+        <location filename="../windows/functionseditor.cpp" line="683"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
     </message>
@@ -3695,42 +3695,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Nastavenia dátového zdroja</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="115"/>
+        <location filename="../dialogs/importdialog.cpp" line="120"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="146"/>
+        <location filename="../dialogs/importdialog.cpp" line="151"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Ak zadáte názov neexistujúcej tabuľky, tak bude vytvorená.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="146"/>
+        <location filename="../dialogs/importdialog.cpp" line="151"/>
         <source>Enter the table name</source>
         <translation>Zadajte názov tabuľky</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="164"/>
+        <location filename="../dialogs/importdialog.cpp" line="169"/>
         <source>Select import plugin.</source>
         <translation>Vyberte importný plugin.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="173"/>
+        <location filename="../dialogs/importdialog.cpp" line="178"/>
         <source>You must provide a file to import from.</source>
         <translation>Musíte zadať súbor, z ktorého sa budú importovať dáta.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="180"/>
+        <location filename="../dialogs/importdialog.cpp" line="185"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Súbor %1 neexistuje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="186"/>
+        <location filename="../dialogs/importdialog.cpp" line="191"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Cesta, ktorú ste zadali je adresár. Prosím zadajte celú cestu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="366"/>
+        <location filename="../dialogs/importdialog.cpp" line="371"/>
         <source>Pick file to import from</source>
         <translation>Výber súboru, z ktorého sa budú importovať dáta</translation>
     </message>
@@ -3954,315 +3954,315 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Lišta pohľadov</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="124"/>
+        <location filename="../mainwindow.cpp" line="129"/>
         <source>Configuration widgets</source>
         <translation type="unfinished">Configuration widgets</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="125"/>
+        <location filename="../mainwindow.cpp" line="130"/>
         <source>Syntax highlighting engines</source>
         <translation type="unfinished">Syntax highlighting engines</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="126"/>
+        <location filename="../mainwindow.cpp" line="131"/>
         <source>Data editors</source>
         <translation>Editory dát</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="144"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
         <translation type="unfinished">Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="141"/>
+        <location filename="../mainwindow.cpp" line="146"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
         <translation>Beží v ladiacom móde. Ladiace správy sú vypisované na štandardný výstup.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="241"/>
+        <location filename="../mainwindow.cpp" line="246"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="291"/>
         <source>Open SQL &amp;editor</source>
         <translation type="unfinished">Open SQL &amp;editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="287"/>
+        <location filename="../mainwindow.cpp" line="292"/>
         <source>Open DDL &amp;history</source>
         <translation type="unfinished">Open DDL &amp;history</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="293"/>
         <source>Open SQL &amp;functions editor</source>
         <translation type="unfinished">Open SQL &amp;functions editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Open code &amp;snippets editor</source>
         <translation type="unfinished">Open code &amp;snippets editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="295"/>
         <source>Open &amp;collations editor</source>
         <translation type="unfinished">Open &amp;collations editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="291"/>
+        <location filename="../mainwindow.cpp" line="296"/>
         <source>Open ex&amp;tension manager</source>
         <translation type="unfinished">Open ex&amp;tension manager</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="292"/>
+        <location filename="../mainwindow.cpp" line="297"/>
         <source>&amp;Import</source>
         <translation type="unfinished">&amp;Import</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="293"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>E&amp;xport</source>
         <translation type="unfinished">E&amp;xport</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="295"/>
+        <location filename="../mainwindow.cpp" line="300"/>
         <source>Open confi&amp;guration dialog</source>
         <translation type="unfinished">Open confi&amp;guration dialog</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="297"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>&amp;Tile windows</source>
         <translation type="unfinished">&amp;Tile windows</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="303"/>
         <source>Tile windows &amp;horizontally</source>
         <translation type="unfinished">Tile windows &amp;horizontally</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="299"/>
+        <location filename="../mainwindow.cpp" line="304"/>
         <source>Tile windows &amp;vertically</source>
         <translation type="unfinished">Tile windows &amp;vertically</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="305"/>
         <source>&amp;Cascade windows</source>
         <translation type="unfinished">&amp;Cascade windows</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="306"/>
         <source>Next window</source>
         <translation>Nasledujúce okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="307"/>
         <source>Previous window</source>
         <translation>Predchádzajúce okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Hide status field</source>
         <translation type="unfinished">Hide status field</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="312"/>
         <source>Close &amp;all windows</source>
         <translation type="unfinished">Close &amp;all windows</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="315"/>
         <source>Re&amp;store recently closed window</source>
         <translation type="unfinished">Re&amp;store recently closed window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>Close current &amp;window</source>
         <translation type="unfinished">Close current &amp;window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="127"/>
+        <location filename="../mainwindow.cpp" line="132"/>
         <source>Data renderers</source>
         <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Close &amp;other windows</source>
         <translation type="unfinished">Close &amp;other windows</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="313"/>
         <source>Close windows on the &amp;left</source>
         <translation type="unfinished">Close windows on the &amp;left</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>Close windows on the &amp;right</source>
         <translation type="unfinished">Close windows on the &amp;right</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="316"/>
         <source>Re&amp;name selected window</source>
         <translation type="unfinished">Re&amp;name selected window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="318"/>
         <source>Open Debug Console</source>
         <translation>Otvoriť ladiacu konzolu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>Open CSS Console</source>
         <translation>Otvoriť CSS konzolu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="315"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>Report a &amp;bug</source>
         <translation type="unfinished">Report a &amp;bug</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source>D&amp;onate</source>
         <translation type="unfinished">D&amp;onate</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>Propose a new &amp;feature</source>
         <translation type="unfinished">Propose a new &amp;feature</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>&amp;About</source>
         <translation type="unfinished">&amp;About</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source>&amp;Licenses</source>
         <translation type="unfinished">&amp;Licenses</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="325"/>
         <source>Open home &amp;page</source>
         <translation type="unfinished">Open home &amp;page</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="321"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>User &amp;Manual</source>
         <translation type="unfinished">User &amp;Manual</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>SQLite &amp;documentation</source>
         <translation type="unfinished">SQLite &amp;documentation</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>Bugs and feature &amp;requests</source>
         <translation type="unfinished">Bugs and feature &amp;requests</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Quit</source>
         <translation type="unfinished">Quit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="331"/>
         <source>Check for &amp;updates</source>
         <translation type="unfinished">Check for &amp;updates</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="349"/>
+        <location filename="../mainwindow.cpp" line="354"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Structure</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="401"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;View</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>Lišta okien</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="423"/>
+        <location filename="../mainwindow.cpp" line="428"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Tools</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="439"/>
+        <location filename="../mainwindow.cpp" line="444"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Help</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="622"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>Nemôžem nastaviť štýl: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="792"/>
+        <location filename="../mainwindow.cpp" line="797"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="808"/>
+        <location filename="../mainwindow.cpp" line="813"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="851"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Rename window</source>
         <translation>Premenovať okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="851"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Enter new name for the window:</source>
         <translation>Zadajte nový názov pre okno:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="953"/>
+        <location filename="../mainwindow.cpp" line="958"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Nové aktualizácie sú dostupné. &lt;a href=&quot;%1&quot;&gt;Kliknite sem pre zobrazenie detailov&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="959"/>
+        <location filename="../mainwindow.cpp" line="964"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Niesú dostupné žiadne aktualizácie. Používate aktuálnu verziu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1043"/>
+        <location filename="../mainwindow.cpp" line="1048"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1050"/>
+        <location filename="../mainwindow.cpp" line="1055"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1166"/>
+        <location filename="../mainwindow.cpp" line="1171"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>Databáza prebratá z príkazového riadka (%1) už je v zozname pod názvom: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1173"/>
+        <location filename="../mainwindow.cpp" line="1178"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Databáza prebratá z príkazového riadka (%1) bola dočasne pridaná do zoznamu pod názvom: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1178"/>
+        <location filename="../mainwindow.cpp" line="1183"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nemôžem pridať databázu %1 do zoznamu.</translation>
     </message>
@@ -4893,12 +4893,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="666"/>
+        <location filename="../dataview.cpp" line="671"/>
         <source>Total pages available: %1</source>
         <translation>Celkový počet strán: %1</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="676"/>
+        <location filename="../dataview.cpp" line="681"/>
         <source>Total rows loaded: %1</source>
         <translation>Celkový počet riadkov: %1</translation>
     </message>
@@ -5057,82 +5057,82 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Vymazať aktuálny riadok</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="47"/>
+        <location filename="../mainwindow.h" line="52"/>
         <source>Main window</source>
         <translation>Hlavné okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="48"/>
+        <location filename="../mainwindow.h" line="53"/>
         <source>Open SQL editor</source>
         <translation>Otvoriť SQL editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="49"/>
+        <location filename="../mainwindow.h" line="54"/>
         <source>Open DDL history window</source>
         <translation type="unfinished">Open DDL history window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="50"/>
+        <location filename="../mainwindow.h" line="55"/>
         <source>Open snippets editor window</source>
         <translation type="unfinished">Open snippets editor window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="51"/>
+        <location filename="../mainwindow.h" line="56"/>
         <source>Open function editor window</source>
         <translation type="unfinished">Open function editor window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="52"/>
+        <location filename="../mainwindow.h" line="57"/>
         <source>Open collation editor window</source>
         <translation type="unfinished">Open collation editor window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="53"/>
+        <location filename="../mainwindow.h" line="58"/>
         <source>Open extension manager window</source>
         <translation type="unfinished">Open extension manager window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="54"/>
+        <location filename="../mainwindow.h" line="59"/>
         <source>Previous window</source>
         <translation>Predchádzajúce okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="55"/>
+        <location filename="../mainwindow.h" line="60"/>
         <source>Next window</source>
         <translation>Nasledujúce okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="56"/>
+        <location filename="../mainwindow.h" line="61"/>
         <source>Hide status area</source>
         <translation>Skryť status okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="57"/>
+        <location filename="../mainwindow.h" line="62"/>
         <source>Open user manual</source>
         <translation type="unfinished">Open user manual</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="58"/>
+        <location filename="../mainwindow.h" line="63"/>
         <source>Open configuration dialog</source>
         <translation>Otvoriť konfiguračné okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="59"/>
+        <location filename="../mainwindow.h" line="64"/>
         <source>Open Debug Console</source>
         <translation>Otvoriť ladiacu konzolu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="60"/>
+        <location filename="../mainwindow.h" line="65"/>
         <source>Open CSS Console</source>
         <translation>Otvoriť CSS konzolu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="61"/>
+        <location filename="../mainwindow.h" line="66"/>
         <source>Open the About dialog</source>
         <translation type="unfinished">Open the About dialog</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="62"/>
+        <location filename="../mainwindow.h" line="67"/>
         <source>Quit the application</source>
         <translation type="unfinished">Quit the application</translation>
     </message>
@@ -6613,7 +6613,7 @@ NULL</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1751"/>
+        <location filename="../windows/tablewindow.cpp" line="1756"/>
         <source>Data</source>
         <translation>Dáta</translation>
     </message>
@@ -6638,196 +6638,196 @@ NULL</translation>
         <translation type="unfinished">DDL</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="215"/>
+        <location filename="../windows/tablewindow.cpp" line="220"/>
         <source>Export table</source>
         <comment>table window</comment>
         <translation>Exportovať tabuľku</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="216"/>
+        <location filename="../windows/tablewindow.cpp" line="221"/>
         <source>Import data to table</source>
         <comment>table window</comment>
         <translation>Importovať dáta do tabuľky</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="217"/>
+        <location filename="../windows/tablewindow.cpp" line="222"/>
         <source>Populate table</source>
         <comment>table window</comment>
         <translation>Naplniť tabuľku</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="231"/>
+        <location filename="../windows/tablewindow.cpp" line="236"/>
         <source>Refresh structure</source>
         <comment>table window</comment>
         <translation>Obnoviť štruktúru</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="233"/>
+        <location filename="../windows/tablewindow.cpp" line="238"/>
         <source>Commit structure changes</source>
         <comment>table window</comment>
         <translation>Potvrdiť zmeny štruktúr</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="234"/>
+        <location filename="../windows/tablewindow.cpp" line="239"/>
         <source>Rollback structure changes</source>
         <comment>table window</comment>
         <translation>Vrátiť späť zmeny štruktúr</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="235"/>
+        <location filename="../windows/tablewindow.cpp" line="240"/>
         <source>Add column</source>
         <comment>table window</comment>
         <translation>Pridať stĺpec</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="236"/>
+        <location filename="../windows/tablewindow.cpp" line="241"/>
         <source>Edit column</source>
         <comment>table window</comment>
         <translation>Upraviť stĺpec</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="237"/>
-        <location filename="../windows/tablewindow.cpp" line="332"/>
+        <location filename="../windows/tablewindow.cpp" line="242"/>
+        <location filename="../windows/tablewindow.cpp" line="337"/>
         <source>Delete column</source>
         <comment>table window</comment>
         <translation>Vymazať stĺpec</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="238"/>
+        <location filename="../windows/tablewindow.cpp" line="243"/>
         <source>Move column up</source>
         <comment>table window</comment>
         <translation>Posunúť stĺpec hore</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="239"/>
+        <location filename="../windows/tablewindow.cpp" line="244"/>
         <source>Move column down</source>
         <comment>table window</comment>
         <translation>Posunúť stĺpec dole</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="248"/>
+        <location filename="../windows/tablewindow.cpp" line="253"/>
         <source>Create similar table</source>
         <comment>table window</comment>
         <translation>Vytvoriť rovnakú tabuľku</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="249"/>
+        <location filename="../windows/tablewindow.cpp" line="254"/>
         <source>Reset autoincrement value</source>
         <comment>table window</comment>
         <translation>Resetovať hodnotu autoinkrementu</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="252"/>
+        <location filename="../windows/tablewindow.cpp" line="257"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
         <translation>Pridať obmedzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="253"/>
+        <location filename="../windows/tablewindow.cpp" line="258"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
         <translation>Upraviť obmedzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="254"/>
+        <location filename="../windows/tablewindow.cpp" line="259"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
         <translation>Vymazať obmedzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="255"/>
+        <location filename="../windows/tablewindow.cpp" line="260"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
         <translation>Posunúť obmedzenie hore</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="256"/>
+        <location filename="../windows/tablewindow.cpp" line="261"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
         <translation>Posunúť obmedzenie dole</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="258"/>
+        <location filename="../windows/tablewindow.cpp" line="263"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
         <translation>Pridať primárny kľúč</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="259"/>
+        <location filename="../windows/tablewindow.cpp" line="264"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
         <translation>Pridať cudzí kľúč</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="260"/>
+        <location filename="../windows/tablewindow.cpp" line="265"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
         <translation>Pridať jedinečné obmedzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="261"/>
+        <location filename="../windows/tablewindow.cpp" line="266"/>
         <source>Add table check constraint</source>
         <comment>table window</comment>
         <translation type="unfinished">Add table check constraint</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="279"/>
+        <location filename="../windows/tablewindow.cpp" line="284"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
         <translation>Obnoviť zoznam indexov</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="241"/>
-        <location filename="../windows/tablewindow.cpp" line="281"/>
+        <location filename="../windows/tablewindow.cpp" line="246"/>
+        <location filename="../windows/tablewindow.cpp" line="286"/>
         <source>Create index</source>
         <comment>table window</comment>
         <translation>Vytvoriť index</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="282"/>
+        <location filename="../windows/tablewindow.cpp" line="287"/>
         <source>Edit index</source>
         <comment>table window</comment>
         <translation>Upraviť index</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="283"/>
+        <location filename="../windows/tablewindow.cpp" line="288"/>
         <source>Delete index</source>
         <comment>table window</comment>
         <translation>Vymazať index</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="289"/>
+        <location filename="../windows/tablewindow.cpp" line="294"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
         <translation>Obnoviť zoznam spúšťačov</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="242"/>
-        <location filename="../windows/tablewindow.cpp" line="291"/>
+        <location filename="../windows/tablewindow.cpp" line="247"/>
+        <location filename="../windows/tablewindow.cpp" line="296"/>
         <source>Create trigger</source>
         <comment>table window</comment>
         <translation>Vytvoriť spúšťač</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="292"/>
+        <location filename="../windows/tablewindow.cpp" line="297"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
         <translation>Upraviť spúšťač</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="293"/>
+        <location filename="../windows/tablewindow.cpp" line="298"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
         <translation>Vymazať spúšťač</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="331"/>
+        <location filename="../windows/tablewindow.cpp" line="336"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Ste si istý, že chcete vymazať stĺpec &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="381"/>
+        <location filename="../windows/tablewindow.cpp" line="386"/>
         <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
         <comment>table window</comment>
@@ -6835,229 +6835,229 @@ Would you like to proceed?</source>
 Would you like to proceed?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="383"/>
+        <location filename="../windows/tablewindow.cpp" line="388"/>
         <source>Table modification</source>
         <comment>table window</comment>
         <translation type="unfinished">Table modification</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="508"/>
+        <location filename="../windows/tablewindow.cpp" line="513"/>
         <source>Could not load data for table %1. Error details: %2</source>
         <translation type="unfinished">Could not load data for table %1. Error details: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="652"/>
+        <location filename="../windows/tablewindow.cpp" line="657"/>
         <source>Could not process the %1 table correctly. Unable to open a table window.</source>
         <translation type="unfinished">Could not process the %1 table correctly. Unable to open a table window.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="676"/>
+        <location filename="../windows/tablewindow.cpp" line="681"/>
         <source>Database</source>
         <translation type="unfinished">Database</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="708"/>
+        <location filename="../windows/tablewindow.cpp" line="713"/>
         <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
         <translation type="unfinished">Could not restore window %1, because no database or table was stored in session for this window.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="714"/>
+        <location filename="../windows/tablewindow.cpp" line="719"/>
         <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
         <translation type="unfinished">Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="721"/>
+        <location filename="../windows/tablewindow.cpp" line="726"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation type="unfinished">Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="730"/>
+        <location filename="../windows/tablewindow.cpp" line="735"/>
         <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
         <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="755"/>
-        <location filename="../windows/tablewindow.cpp" line="757"/>
+        <location filename="../windows/tablewindow.cpp" line="760"/>
+        <location filename="../windows/tablewindow.cpp" line="762"/>
         <source>New table %1</source>
         <translation type="unfinished">New table %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="898"/>
+        <location filename="../windows/tablewindow.cpp" line="903"/>
         <source>Committed changes for table &apos;%1&apos; successfully.</source>
         <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="902"/>
+        <location filename="../windows/tablewindow.cpp" line="907"/>
         <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation type="unfinished">Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="940"/>
+        <location filename="../windows/tablewindow.cpp" line="945"/>
         <source>Could not commit table structure. Error message: %1</source>
         <comment>table window</comment>
         <translation type="unfinished">Could not commit table structure. Error message: %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="964"/>
+        <location filename="../windows/tablewindow.cpp" line="969"/>
         <source>Reset autoincrement</source>
         <translation>Resetovať autoinkrement</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="964"/>
+        <location filename="../windows/tablewindow.cpp" line="969"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Ste si istý, že chcete zresetovať hodnotu autoinkrementu pre tabuľku %1 ?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="971"/>
+        <location filename="../windows/tablewindow.cpp" line="976"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Vyskytla sa chyba pri pokuse o zresetovanie hodnoty autoinkrementu pre tebuľku &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="973"/>
+        <location filename="../windows/tablewindow.cpp" line="978"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfully.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1061"/>
+        <location filename="../windows/tablewindow.cpp" line="1066"/>
         <source>Empty name</source>
         <translation type="unfinished">Empty name</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1061"/>
+        <location filename="../windows/tablewindow.cpp" line="1066"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation type="unfinished">A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1070"/>
+        <location filename="../windows/tablewindow.cpp" line="1075"/>
         <source>Cannot create a table without at least one column.</source>
         <translation type="unfinished">Cannot create a table without at least one column.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1096"/>
+        <location filename="../windows/tablewindow.cpp" line="1101"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation type="unfinished">Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1103"/>
+        <location filename="../windows/tablewindow.cpp" line="1108"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation type="unfinished">Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1122"/>
+        <location filename="../windows/tablewindow.cpp" line="1127"/>
         <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
         <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1306"/>
+        <location filename="../windows/tablewindow.cpp" line="1311"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Ste si istý, že chcete vymazať obmedzenie &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1307"/>
+        <location filename="../windows/tablewindow.cpp" line="1312"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>Vymazať obmedzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1362"/>
+        <location filename="../windows/tablewindow.cpp" line="1367"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1375"/>
+        <location filename="../windows/tablewindow.cpp" line="1380"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1408"/>
+        <location filename="../windows/tablewindow.cpp" line="1413"/>
         <source>Uncommitted changes</source>
         <translation type="unfinished">Uncommitted changes</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1409"/>
+        <location filename="../windows/tablewindow.cpp" line="1414"/>
         <source>There are uncommitted structure modifications.</source>
         <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1411"/>
+        <location filename="../windows/tablewindow.cpp" line="1416"/>
         <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1415"/>
+        <location filename="../windows/tablewindow.cpp" line="1420"/>
         <source>Commit modifications and browse data</source>
         <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1414"/>
+        <location filename="../windows/tablewindow.cpp" line="1419"/>
         <source>Go back to structure tab</source>
         <translation>Choď späť na záložku štruktúr</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1622"/>
+        <location filename="../windows/tablewindow.cpp" line="1627"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1623"/>
+        <location filename="../windows/tablewindow.cpp" line="1628"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>Jedinečný</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1624"/>
+        <location filename="../windows/tablewindow.cpp" line="1629"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>Stĺpce</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1625"/>
+        <location filename="../windows/tablewindow.cpp" line="1630"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation type="unfinished">Partial index condition</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1676"/>
+        <location filename="../windows/tablewindow.cpp" line="1681"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1677"/>
+        <location filename="../windows/tablewindow.cpp" line="1682"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Udalosť</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1678"/>
+        <location filename="../windows/tablewindow.cpp" line="1683"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Podmienka</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1679"/>
+        <location filename="../windows/tablewindow.cpp" line="1684"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Detaily</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1793"/>
+        <location filename="../windows/tablewindow.cpp" line="1798"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications and data.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1795"/>
+        <location filename="../windows/tablewindow.cpp" line="1800"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation type="unfinished">Table window &quot;%1&quot; has uncommitted data.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1797"/>
+        <location filename="../windows/tablewindow.cpp" line="1802"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
     </message>
