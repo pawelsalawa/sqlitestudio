@@ -11,6 +11,11 @@
 #include <QShortcut>
 #include <QDebug>
 #include <QListWidget>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QtSystemDetection>
+#else
+#include <qsystemdetection.h>
+#endif
 
 CompleterWindow::CompleterWindow(SqlEditor *parent) :
     QDialog(parent, Qt::FramelessWindowHint),
@@ -188,6 +193,11 @@ void CompleterWindow::keyPressEvent(QKeyEvent* e)
     if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter)
     {
         accept();
+#ifdef Q_OS_MAC
+        // It appears, that under macOS, the Qt 6.5-6.7 (not sure about further versions of Qt)
+        // does not emit the accepted() signal on the accept() method called.
+        emit accepted();
+#endif
         return;
     }
 
