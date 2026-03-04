@@ -321,8 +321,7 @@ jobs:
                 set -x
                 mkdir unsigned
                 cp output/portable/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip unsigned/
-                cd unsigned
-                echo "SIGNED_DIR=$(pwd)" >> $GITHUB_ENV
+                echo "SIGNED_DIR=unsigned" >> $GITHUB_ENV
 
             - name: "[Code Signing] Prepare for code signing"
               if: ${{ inputs.CODE_SIGN }}
