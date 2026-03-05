@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="fr" sourcelanguage="en">
-  <context>
+<context>
     <name>HtmlExport</name>
     <message>
-      <location filename="../htmlexport.cpp" line="45"/>
-      <source>SQL query results</source>
-      <translation>Résultats de la requête SQL</translation>
+        <location filename="../htmlexport.cpp" line="45"/>
+        <source>SQL query results</source>
+        <translation>Résultats de la requête SQL</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="77"/>
-      <location filename="../htmlexport.cpp" line="154"/>
-      <source>no type</source>
-      <translation>aucun type</translation>
+        <location filename="../htmlexport.cpp" line="77"/>
+        <location filename="../htmlexport.cpp" line="154"/>
+        <source>no type</source>
+        <translation>aucun type</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="114"/>
-      <location filename="../htmlexport.cpp" line="242"/>
-      <source>Exported table: %1</source>
-      <translation>Tables exportées : %1</translation>
+        <location filename="../htmlexport.cpp" line="114"/>
+        <location filename="../htmlexport.cpp" line="242"/>
+        <source>Exported table: %1</source>
+        <translation>Tables exportées : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="126"/>
-      <location filename="../htmlexport.cpp" line="254"/>
-      <source>Table: %1</source>
-      <translation>Tableau : %1</translation>
+        <location filename="../htmlexport.cpp" line="126"/>
+        <location filename="../htmlexport.cpp" line="254"/>
+        <source>Table: %1</source>
+        <translation>Tableau : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="254"/>
-      <source>virtual</source>
-      <translation>virtuel</translation>
+        <location filename="../htmlexport.cpp" line="254"/>
+        <source>virtual</source>
+        <translation>virtuel</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="307"/>
-      <source>Exported database: %1</source>
-      <translation>Base de données exportée : %1</translation>
+        <location filename="../htmlexport.cpp" line="307"/>
+        <source>Exported database: %1</source>
+        <translation>Base de données exportée : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="323"/>
-      <source>Index: %1</source>
-      <translation>Index : %1</translation>
+        <location filename="../htmlexport.cpp" line="323"/>
+        <source>Index: %1</source>
+        <translation>Index : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="329"/>
-      <source>For table:</source>
-      <translation>Pour la table :</translation>
+        <location filename="../htmlexport.cpp" line="329"/>
+        <source>For table:</source>
+        <translation>Pour la table :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="336"/>
-      <source>Unique:</source>
-      <translation>Unique :</translation>
+        <location filename="../htmlexport.cpp" line="336"/>
+        <source>Unique:</source>
+        <translation>Unique :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="337"/>
-      <source>Yes</source>
-      <translation>Oui</translation>
+        <location filename="../htmlexport.cpp" line="337"/>
+        <source>Yes</source>
+        <translation>Oui</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="337"/>
-      <source>No</source>
-      <translation>Non</translation>
+        <location filename="../htmlexport.cpp" line="337"/>
+        <source>No</source>
+        <translation>Non</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="343"/>
-      <source>Column</source>
-      <translation>Colonne</translation>
+        <location filename="../htmlexport.cpp" line="343"/>
+        <source>Column</source>
+        <translation>Colonne</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="344"/>
-      <source>Collating</source>
-      <translation>Collation</translation>
+        <location filename="../htmlexport.cpp" line="344"/>
+        <source>Collating</source>
+        <translation>Collation</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="345"/>
-      <source>Sort order</source>
-      <translation>Ordre de tri</translation>
+        <location filename="../htmlexport.cpp" line="345"/>
+        <source>Sort order</source>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="379"/>
-      <source>Trigger: %1</source>
-      <translation>Déclencheur : %1</translation>
+        <location filename="../htmlexport.cpp" line="379"/>
+        <source>Trigger: %1</source>
+        <translation>Déclencheur : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="385"/>
-      <source>Activated:</source>
-      <translation>Activé :</translation>
+        <location filename="../htmlexport.cpp" line="385"/>
+        <source>Activated:</source>
+        <translation>Activé :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="393"/>
-      <source>Action:</source>
-      <translation>Action :</translation>
+        <location filename="../htmlexport.cpp" line="393"/>
+        <source>Action:</source>
+        <translation>Action :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="400"/>
-      <source>On view:</source>
-      <translation>Sur la vue :</translation>
+        <location filename="../htmlexport.cpp" line="400"/>
+        <source>On view:</source>
+        <translation>Sur la vue :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="402"/>
-      <source>On table:</source>
-      <translation>Sur le tableau :</translation>
+        <location filename="../htmlexport.cpp" line="402"/>
+        <source>On table:</source>
+        <translation>Sur le tableau :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="413"/>
-      <source>Activate condition:</source>
-      <translation>Activé la condition :</translation>
+        <location filename="../htmlexport.cpp" line="413"/>
+        <source>Activate condition:</source>
+        <translation>Activé la condition :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="420"/>
-      <source>Code executed:</source>
-      <translation>Exécuter le code :</translation>
+        <location filename="../htmlexport.cpp" line="420"/>
+        <source>Code executed:</source>
+        <translation>Exécuter le code :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="454"/>
-      <source>View: %1</source>
-      <translation>Vue : %1</translation>
+        <location filename="../htmlexport.cpp" line="454"/>
+        <source>View: %1</source>
+        <translation>Vue : %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="479"/>
-      <source>Document generated by SQLiteStudio v%1 on %2</source>
-      <translation>Document généré par SQLiteStudio v%1 de %2</translation>
+        <location filename="../htmlexport.cpp" line="479"/>
+        <source>Document generated by SQLiteStudio v%1 on %2</source>
+        <translation>Document généré par SQLiteStudio v%1 de %2</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>HtmlExportConfig</name>
     <message>
-      <location filename="../htmlexport.ui" line="36"/>
-      <source>Maximum number of characters per cell:</source>
-      <translation>Nombre de caractères maximum par cellule :</translation>
+        <location filename="../htmlexport.ui" line="36"/>
+        <source>Maximum number of characters per cell:</source>
+        <translation>Nombre de caractères maximum par cellule :</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="43"/>
-      <source>Include data types in first row</source>
-      <translation>Types données incluses dans la première ligne</translation>
+        <location filename="../htmlexport.ui" line="43"/>
+        <source>Include data types in first row</source>
+        <translation>Types données incluses dans la première ligne</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="53"/>
-      <source>Column names as first row</source>
-      <translation>Nom des colonnes dans la première ligne</translation>
+        <location filename="../htmlexport.ui" line="53"/>
+        <source>Column names as first row</source>
+        <translation>Nom des colonnes dans la première ligne</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="63"/>
-      <source>Row numbers as first column</source>
-      <translation>Numéro de ligne dans la première colonne</translation>
+        <location filename="../htmlexport.ui" line="63"/>
+        <source>Row numbers as first column</source>
+        <translation>Numéro de ligne dans la première colonne</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="73"/>
-      <source>Output format</source>
-      <translation>Format de sortie</translation>
+        <location filename="../htmlexport.ui" line="73"/>
+        <source>Output format</source>
+        <translation>Format de sortie</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="79"/>
-      <source>Format document (new lines, indentation)</source>
-      <translation>Format document (nouvelles ligne, indentation)</translation>
+        <location filename="../htmlexport.ui" line="79"/>
+        <source>Format document (new lines, indentation)</source>
+        <translation>Format document (nouvelles ligne, indentation)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="92"/>
-      <source>Compress (everything in one line)</source>
-      <translation>Condensé (tout en une ligne)</translation>
+        <location filename="../htmlexport.ui" line="92"/>
+        <source>Compress (everything in one line)</source>
+        <translation>Condensé (tout en une ligne)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="108"/>
-      <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;Quand activé, les caractères HTML tel que &amp;lt;, &amp;gt; and &amp; ne sont pas échappé dans les valeurs exportées. Ceci vous permet par exemple d&apos;exporter des documents avec hyper-liens, mais cela peut aussi produire des documents HTML  incorrects (déséquilibre entre les caractères &lt; and &gt;). Soyez attentif.&lt;/p&gt;</translation>
+        <location filename="../htmlexport.ui" line="108"/>
+        <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Quand activé, les caractères HTML tel que &amp;lt;, &amp;gt; and &amp; ne sont pas échappé dans les valeurs exportées. Ceci vous permet par exemple d&apos;exporter des documents avec hyper-liens, mais cela peut aussi produire des documents HTML  incorrects (déséquilibre entre les caractères &lt; and &gt;). Soyez attentif.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="111"/>
-      <source>Don&apos;t escape HTML characters</source>
-      <translation>N&apos;échappez pas les caractères HTML</translation>
+        <location filename="../htmlexport.ui" line="111"/>
+        <source>Don&apos;t escape HTML characters</source>
+        <translation>N&apos;échappez pas les caractères HTML</translation>
     </message>
-  </context>
+</context>
 </TS>
