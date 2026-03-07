@@ -1194,9 +1194,9 @@ void ConfigImpl::updateConfigDb()
                 }
                 QString secondLast = parts[parts.size() - 2];
                 QString thirdLast = parts[parts.size() - 3];
-                if (thirdLast.contains("sqlitestudio", Qt::CaseInsensitive) && secondLast == "extensions")
+                if (thirdLast.contains("sqlitestudio", Qt::CaseInsensitive) && (secondLast == "extensions" || secondLast == "ext"))
                 {
-                    extHash["filePath"] = QString("%1/extensions/%2").arg(SqliteExtensionManager::APP_PATH_PREFIX, parts.last());
+                    extHash["filePath"] = QString("%1/%2/%3").arg(SqliteExtensionManager::APP_PATH_PREFIX, secondLast, parts.last());
                     qDebug() << "Migrating extension path from" << filePath << "to" << extHash["filePath"].toString();
                     newList << extHash;
                 }
