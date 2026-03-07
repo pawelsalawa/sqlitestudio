@@ -487,33 +487,33 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="539"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Nie udało się załadować wtyczki %1, ponieważ jest ona w konflikcie z wtyczką %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="550"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Nie udało się załadować wtyczki %1, ponieważ jej zależność nie została załadowana: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Nie udało się załadować wtyczki %1. Szczegóły błędu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Nie udało się załadować wtyczki %1 (błąd podczas inicjalizacji wtyczki).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="736"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>min: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>maks: %1</translation>
@@ -786,7 +786,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../common/utils.cpp" line="949"/>
+        <location filename="../common/utils.cpp" line="953"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>

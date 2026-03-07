@@ -486,33 +486,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="539"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="550"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="736"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation type="unfinished"></translation>
@@ -785,7 +785,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../common/utils.cpp" line="949"/>
+        <location filename="../common/utils.cpp" line="953"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation type="unfinished"></translation>
     </message>

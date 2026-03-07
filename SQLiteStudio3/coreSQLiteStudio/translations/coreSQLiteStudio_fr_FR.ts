@@ -487,33 +487,33 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="539"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Chargement impossible du plugin %1 celui-ci est en conflit avec le plugin %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="550"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Chargement impossible du plugin %1, les dépendances n’ont pa été chargées : %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Chargement impossible du plugin %1, Détails de l’erreur : %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Chargement impossible du plugin %1 (erreur à initialisation du plugin).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="736"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>min : %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="737"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>max : %1</translation>
@@ -786,7 +786,7 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../common/utils.cpp" line="949"/>
+        <location filename="../common/utils.cpp" line="953"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; pour la lecture&#xa0;: %2</translation>
     </message>
