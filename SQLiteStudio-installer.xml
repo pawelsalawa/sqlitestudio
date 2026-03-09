@@ -298,6 +298,8 @@ MimeType=application/vnd.sqlite3
             <program>explorer.exe</program>
             <programArguments>"${installdir.dos}\SQLiteStudio.exe"</programArguments>
             <progressText>Launch ${project.fullName} now.</progressText>
+            <showMessageOnError>0</showMessageOnError>
+            <abortOnError>0</abortOnError>
             <ruleList>
                 <platformTest type="windows"/>
             </ruleList>
