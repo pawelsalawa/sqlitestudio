@@ -109,6 +109,9 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QHash<Key,ScriptFunction*> functionsByKey;
         QList<NativeFunction*> nativeFunctions;
         QHash<Key,NativeFunction*> nativeFunctionsByKey;
+
+    private slots:
+        void handleDbUpdated(const QString& oldName, Db* db);
 };
 
 size_t qHash(const FunctionManagerImpl::Key& key);

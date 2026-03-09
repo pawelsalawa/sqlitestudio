@@ -291,6 +291,7 @@ void FunctionManagerImpl::init()
     loadFromConfig();
     initNativeFunctions();
     refreshFunctionsByKey();
+    connect(DBLIST, &DbManager::dbUpdated, this, &FunctionManagerImpl::handleDbUpdated);
 }
 
 void FunctionManagerImpl::initNativeFunctions()
@@ -832,6 +833,23 @@ QVariant FunctionManagerImpl::nativeLoadExtension(const QList<QVariant> &args, D
     QString path = args[0].toString();
     QString initFunc = args.size() == 2 ? args[1].toString() : QString();
     return db->loadExtensionManually(path, initFunc);
+}
+
+void FunctionManagerImpl::handleDbUpdated(const QString& oldName, Db* db)
+{
+    if (oldName.isEmpty())
+        return;
+
+    for (ScriptFunction* func : functions)
+    {
+        if (func->databases.contains(oldName, Qt::CaseInsensitive))
+        {
+            func->databases.removeAll(oldName);
+            func->databases << db->getName();
+        }
+    }
+
+    storeInConfig();
 }
 
 QStringList FunctionManagerImpl::getArgMarkers(int argCount)
