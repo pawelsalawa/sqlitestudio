@@ -220,8 +220,8 @@
                     <commandList>
                         <command>
                             <makeDefault>1</makeDefault>
-                            <runProgram>${installdir}\SQLiteStudio.exe</runProgram>
-                            <runProgramArguments>"%1"</runProgramArguments>
+                            <runProgram>explorer.exe</runProgram>
+                            <runProgramArguments>${installdir}\SQLiteStudio.exe</runProgramArguments>
                             <verb>Open</verb>
                         </command>
                     </commandList>
