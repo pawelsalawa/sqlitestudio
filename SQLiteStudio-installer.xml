@@ -296,7 +296,7 @@ MimeType=application/vnd.sqlite3
     <finalPageActionList>
         <runProgram>
             <program>explorer.exe</program>
-            <programArguments>"${installdir}/SQLiteStudio.exe" &amp;</programArguments>
+            <programArguments>"${installdir.dos}\SQLiteStudio.exe"</programArguments>
             <progressText>Launch ${project.fullName} now.</progressText>
             <ruleList>
                 <platformTest type="windows"/>
