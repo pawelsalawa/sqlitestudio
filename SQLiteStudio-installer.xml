@@ -220,8 +220,8 @@
                     <commandList>
                         <command>
                             <makeDefault>1</makeDefault>
-                            <runProgram>explorer.exe</runProgram>
-                            <runProgramArguments>${installdir}\SQLiteStudio.exe</runProgramArguments>
+                            <runProgram>${installdir}\SQLiteStudio.exe</runProgram>
+                            <runProgramArguments>"%1"</runProgramArguments>
                             <verb>Open</verb>
                         </command>
                     </commandList>
@@ -295,8 +295,8 @@ MimeType=application/vnd.sqlite3
     <windowsExecutableIcon>${src_prefix}/SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_opt.ico</windowsExecutableIcon>
     <finalPageActionList>
         <runProgram>
-            <program>${installdir}/SQLiteStudio.exe</program>
-            <programArguments>&amp;</programArguments>
+            <program>explorer.exe</program>
+            <programArguments>${installdir}/SQLiteStudio.exe</programArguments>
             <progressText>Launch ${project.fullName} now.</progressText>
             <ruleList>
                 <platformTest type="windows"/>
