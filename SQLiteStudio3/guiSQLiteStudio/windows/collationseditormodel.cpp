@@ -264,7 +264,7 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
         bool isExtension = coll->type == CollationManager::CollationType::EXTENSION_BASED;
         if (isExtension || langToIcon.contains(coll->lang))
         {
-            return isExtension ? langToIcon[coll->lang] : ICONS.CONSTRAINT_COLLATION_ERROR;
+            return isExtension ? ICONS.CONSTRAINT_COLLATION: langToIcon[coll->lang];
         }
     }
 

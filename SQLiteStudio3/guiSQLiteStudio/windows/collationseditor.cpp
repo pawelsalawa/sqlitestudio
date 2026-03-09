@@ -121,6 +121,7 @@ void CollationsEditor::init()
     for (SyntaxHighlighterPlugin* plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
         highlighterPlugins[plugin->getLanguageName()] = plugin;
 
+    updateCurrentCollationState();
     updateState();
 }
 
