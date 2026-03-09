@@ -99,6 +99,7 @@ void CollationManagerImpl::init()
 {
     loadFromConfig();
     refreshCollationsByKey();
+    connect(DBLIST, &DbManager::dbUpdated, this, &CollationManagerImpl::handleDbUpdated);
 }
 
 void CollationManagerImpl::storeInConfig()
@@ -155,4 +156,21 @@ QString CollationManagerImpl::updateScriptingQtLang(const QString& lang) const
         return QStringLiteral("JavaScript");
 
     return lang;
+}
+
+void CollationManagerImpl::handleDbUpdated(const QString& oldName, Db* db)
+{
+    if (oldName.isEmpty())
+        return;
+
+    for (CollationPtr coll : collations)
+    {
+        if (coll->databases.contains(oldName, Qt::CaseInsensitive))
+        {
+            coll->databases.removeAll(oldName);
+            coll->databases << db->getName();
+        }
+    }
+
+    storeInConfig();
 }

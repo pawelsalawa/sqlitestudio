@@ -21,6 +21,9 @@ class SqliteExtensionManagerImpl : public SqliteExtensionManager
 
         QList<ExtensionPtr> extensions;
         QStringList extensionDirs;
+
+    private slots:
+        void handleDbUpdated(const QString& oldName, Db* db);
 };
 
 #endif // SQLITEEXTENSIONMANAGERIMPL_H

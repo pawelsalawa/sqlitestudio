@@ -46,6 +46,7 @@ void SqliteExtensionManagerImpl::init()
 {
     loadFromConfig();
     scanExtensionDirs();
+    connect(DBLIST, &DbManager::dbUpdated, this, &SqliteExtensionManagerImpl::handleDbUpdated);
 }
 
 void SqliteExtensionManagerImpl::scanExtensionDirs()
@@ -121,4 +122,21 @@ void SqliteExtensionManagerImpl::loadFromConfig()
         extensions << ext;
         qDebug() << "SQLite extension from config:" << ext->filePath;
     }
+}
+
+void SqliteExtensionManagerImpl::handleDbUpdated(const QString& oldName, Db* db)
+{
+    if (oldName.isEmpty())
+        return;
+
+    for (ExtensionPtr& ext : extensions)
+    {
+        if (ext->databases.contains(oldName, Qt::CaseInsensitive))
+        {
+            ext->databases.removeAll(oldName);
+            ext->databases << db->getName();
+        }
+    }
+
+    storeInConfig();
 }

@@ -33,8 +33,7 @@ class API_EXPORT CollationManagerImpl : public CollationManager
         QHash<QString,ScriptingPlugin*> scriptingPlugins;
 
     private slots:
-        void pluginLoaded(Plugin* plugin, PluginType* type);
-        void pluginUnloaded(Plugin* plugin, PluginType* type);
+        void handleDbUpdated(const QString& oldName, Db* db);
 };
 
 #endif // COLLATIONMANAGERIMPL_H
