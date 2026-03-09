@@ -102,6 +102,8 @@
             {return Prefix##sqlite3_create_function(a1, a2, a3, a4, a5, a6, a7, a8);} \
         static int create_function_v2(handle *a1, const char *a2, int a3, int a4, void *a5, void (*a6)(context*,int,value**), void (*a7)(context*,int,value**), void (*a8)(context*), void(*a9)(void*)) \
             {return Prefix##sqlite3_create_function_v2(a1, a2, a3, a4, a5, a6, a7, a8, a9);} \
+        static int create_window_function(handle *a1, const char *a2, int a3, int a4, void *a5, void (*a6)(context*,int,value**), void (*a7)(context*), void (*a8)(context*), void (*a9)(context*,int,value**), void(*a10)(void*)) \
+            {return Prefix##sqlite3_create_window_function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);} \
         static int create_collation_v2(handle* a1, const char *a2, int a3, void *a4, int(*a5)(void*,int,const void*,int,const void*), void(*a6)(void*)) \
             {return Prefix##sqlite3_create_collation_v2(a1, a2, a3, a4, a5, a6);} \
         static int complete(const char* arg) {return Prefix##sqlite3_complete(arg);} \

@@ -66,7 +66,17 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         QToolBar* getToolBar(int toolbar) const;
 
     private:
+        enum CodeTab
+        {
+            SCALAR,
+            INIT,
+            STEP,
+            INVERSE,
+            FINAL
+        };
+
         void init();
+        void initCodeTabs();
         int getCurrentFunctionRow() const;
         void functionDeselected(int srcRow);
         void functionSelected(int srcRow);
@@ -78,6 +88,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         QStringList getCurrentArgList() const;
         QStringList getCurrentDatabases() const;
         FunctionManager::ScriptFunction::Type getCurrentFunctionType() const;
+        void safeClearHighlighter(QSyntaxHighlighter*& highlighterPtr);
 
         Ui::FunctionsEditor *ui = nullptr;
         FunctionsEditorModel* model = nullptr;
@@ -87,10 +98,13 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         QHash<QString,SyntaxHighlighterPlugin*> highlighterPlugins;
         SelectableDbModel* dbListModel = nullptr;
         QString currentHighlighterLang;
-        QSyntaxHighlighter* currentMainHighlighter = nullptr;
+        QSyntaxHighlighter* currentScalarHighlighter = nullptr;
+        QSyntaxHighlighter* currentStepHighlighter = nullptr;
         QSyntaxHighlighter* currentFinalHighlighter = nullptr;
         QSyntaxHighlighter* currentInitHighlighter = nullptr;
+        QSyntaxHighlighter* currentInverseHighlighter = nullptr;
         bool updatesForSelection = false;
+        QHash<CodeTab, int> tabIdx;
 
     private slots:
         void commit();

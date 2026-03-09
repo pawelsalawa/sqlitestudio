@@ -690,8 +690,8 @@ void ConfigImpl::initTables()
         db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
 
     if (!tables.contains("script_functions"))
-        db->exec("CREATE TABLE script_functions (name TEXT, lang TEXT, code TEXT, \"initCode\" TEXT, \"finalCode\" TEXT, databases TEXT, arguments TEXT,"
-                 " \"type\" INTEGER, \"undefinedArgs\" BOOLEAN, \"allDatabases\" BOOLEAN, deterministic BOOLEAN)");
+        db->exec("CREATE TABLE script_functions (name TEXT, lang TEXT, code TEXT, initCode TEXT, finalCode TEXT, inverseCode TEXT, databases TEXT,"
+                 " arguments TEXT, [type] INTEGER, undefinedArgs BOOLEAN, allDatabases BOOLEAN, deterministic BOOLEAN)");
 }
 
 void ConfigImpl::initDbFile()
@@ -1204,6 +1204,12 @@ void ConfigImpl::updateConfigDb()
                     newList << var;
             }
             CFG_CORE.Internal.Extensions.set(newList);
+            [[fallthrough]];
+        }
+        case 7:
+        {
+            // 7->8
+            db->exec("ALTER TABLE script_functions ADD COLUMN inverseCode TEXT");
         }
         // Add cases here for next versions,
         // without a "break" instruction,
@@ -1273,11 +1279,11 @@ void ConfigImpl::setScriptFunctions(const QList<QHash<QString, QVariant> >& newF
     for (const QHash<QString, QVariant>& fnHash : newFunctions)
     {
         db->exec("INSERT INTO script_functions"
-                 " (name, lang, code, \"initCode\", \"finalCode\", databases, arguments,"
-                 "  \"type\", \"undefinedArgs\", \"allDatabases\", deterministic)"
-                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                 {fnHash["name"].toString(), fnHash["lang"].toString(),
-                  fnHash["code"].toString(), fnHash["initCode"].toString(), fnHash["finalCode"].toString(),
+                 " (name, lang, code, initCode, finalCode, inverseCode, databases, arguments,"
+                 "  [type], undefinedArgs, allDatabases, deterministic)"
+                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                 {fnHash["name"].toString(), fnHash["lang"].toString(), fnHash["code"].toString(),
+                  fnHash["initCode"].toString(), fnHash["finalCode"].toString(), fnHash["inverseCode"].toString(),
                   QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["databases"].toList())).toJson(QJsonDocument::Compact)),
                   QString::fromUtf8(QJsonDocument(QJsonArray::fromVariantList(fnHash["arguments"].toList())).toJson(QJsonDocument::Compact)),
                   fnHash["type"], fnHash["undefinedArgs"], fnHash["allDatabases"], fnHash["deterministic"]});

@@ -21,7 +21,8 @@ class API_EXPORT FunctionManager : public QObject
             enum Type
             {
                 SCALAR = 0,
-                AGGREGATE = 1
+                AGGREGATE = 1,
+                AGG_WINDOW = 2
             };
 
             FunctionBase();
@@ -44,6 +45,7 @@ class API_EXPORT FunctionManager : public QObject
             QString lang;
             QString code;
             QString initCode;
+            QString inverseCode;
             QString finalCode;
             QStringList databases;
             bool allDatabases = true;
@@ -62,10 +64,15 @@ class API_EXPORT FunctionManager : public QObject
         virtual QList<NativeFunction*> getAllNativeFunctions() const = 0;
 
         virtual QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok) = 0;
-        virtual void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage) = 0;
+        virtual void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage,
+                                              FunctionBase::Type type) = 0;
         virtual void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
+                                           QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type type) = 0;
+        virtual QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage,
+                                                FunctionBase::Type type) = 0;
+        virtual QVariant evaluateWindowValue(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage) = 0;
+        virtual void evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
                                            QHash<QString, QVariant>& aggregateStorage) = 0;
-        virtual QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage) = 0;
 
     signals:
         void functionListChanged();

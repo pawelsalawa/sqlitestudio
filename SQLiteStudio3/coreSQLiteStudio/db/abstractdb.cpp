@@ -624,7 +624,7 @@ QVariant AbstractDb::evaluateScalar(void* dataPtr, const QList<QVariant>& argLis
     return FUNCTIONS->evaluateScalar(userData->name, userData->argCount, argList, userData->db, ok);
 }
 
-void AbstractDb::evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList)
+void AbstractDb::evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList, FunctionManager::FunctionBase::Type type)
 {
     if (!dataPtr)
         return;
@@ -634,15 +634,15 @@ void AbstractDb::evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& 
     QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
     if (!aggregateContext.contains("initExecuted"))
     {
-        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage);
+        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage, type);
         aggregateContext["initExecuted"] = true;
     }
 
-    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage);
+    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage, type);
     aggregateContext["storage"] = storage;
 }
 
-QVariant AbstractDb::evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok)
+QVariant AbstractDb::evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok, FunctionManager::FunctionBase::Type type)
 {
     if (!dataPtr)
         return QVariant();
@@ -650,7 +650,30 @@ QVariant AbstractDb::evaluateAggregateFinal(void* dataPtr, QHash<QString, QVaria
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
     QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
 
-    return FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage);
+    return FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage, type);
+}
+
+QVariant AbstractDb::evaluateWindowValue(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok)
+{
+    if (!dataPtr)
+        return QVariant();
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+
+    return FUNCTIONS->evaluateWindowValue(userData->name, userData->argCount, userData->db, ok, storage);
+}
+
+void AbstractDb::evaluateWindowInverse(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList)
+{
+    if (!dataPtr)
+        return;
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+    FUNCTIONS->evaluateWindowInverse(userData->name, userData->argCount, argList, userData->db, storage);
+    aggregateContext["storage"] = storage;
 }
 
 quint32 AbstractDb::asyncExec(const QString &query, Flags flags)
@@ -945,6 +968,9 @@ void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function
             break;
         case FunctionManager::ScriptFunction::AGGREGATE:
             successful = registerAggregateFunction(function.name, function.argCount, function.deterministic);
+            break;
+        case FunctionManager::ScriptFunction::AGG_WINDOW:
+            successful = registerAggregateWindowFunction(function.name, function.argCount, function.deterministic);
             break;
     }
 

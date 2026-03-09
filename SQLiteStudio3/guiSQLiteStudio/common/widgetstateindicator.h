@@ -26,6 +26,7 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
             GROUP_BOX,
             LABEL,
             CHECK_BOX,
+            TAB_WIDGET,
         };
 
         ~WidgetStateIndicator();
@@ -73,6 +74,7 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         QLabel* label = nullptr;
         Mode mode = Mode::ERROR;
         QWidget* widget = nullptr;
+        QWidget* showHideEventSource = nullptr;
         QString message;
         QString processedMessage;
         QGraphicsColorizeEffect* highlightingEffect = nullptr;
@@ -91,6 +93,7 @@ class GUI_API_EXPORT WidgetStateIndicator : public QObject
         void updatePositionGroupBox();
         void updatePositionLabel();
         void updatePositionCheckBox();
+        void updatePositionTab();
         void updateVisibility();
 
 };

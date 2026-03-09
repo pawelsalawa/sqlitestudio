@@ -9,7 +9,6 @@
 #include "uiconfig.h"
 #include "services/config.h"
 #include "uiutils.h"
-#include "db/sqlite3.h"
 #include "indexexprcolumndialog.h"
 #include "windows/editorwindow.h"
 #include "services/codeformatter.h"
@@ -20,6 +19,7 @@
 #include <QScrollBar>
 #include <QPushButton>
 #include <QMessageBox>
+#include <sqlite3.h>
 
 IndexDialog::IndexDialog(Db* db, QWidget *parent) :
     QDialog(parent),

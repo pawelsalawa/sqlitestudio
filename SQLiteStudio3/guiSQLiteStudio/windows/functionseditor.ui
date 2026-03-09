@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>621</height>
+    <height>924</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -113,19 +113,7 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QSplitter" name="splitter_2">
             <property name="orientation">
@@ -163,15 +151,11 @@
                  <string>Input arguments</string>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_2">
-                 <item row="0" column="0">
-                  <widget class="QCheckBox" name="undefArgsCheck">
-                   <property name="text">
-                    <string>Undefined</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="0" rowspan="5" colspan="3">
                   <widget class="QListWidget" name="argsList">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="dragEnabled">
                     <bool>true</bool>
                    </property>
@@ -195,6 +179,16 @@
                     </size>
                    </property>
                   </spacer>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QCheckBox" name="undefArgsCheck">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>Undefined</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -234,7 +228,7 @@
                     <bool>false</bool>
                    </attribute>
                    <attribute name="headerDefaultSectionSize">
-                    <number>35</number>
+                    <number>38</number>
                    </attribute>
                   </widget>
                  </item>
@@ -261,10 +255,18 @@
                   </widget>
                  </item>
                  <item row="1" column="3">
-                  <widget class="QComboBox" name="langCombo"/>
+                  <widget class="QComboBox" name="langCombo">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="1" column="2">
-                  <widget class="QComboBox" name="typeCombo"/>
+                  <widget class="QComboBox" name="typeCombo">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="nameLabel">
@@ -285,6 +287,9 @@
                  </item>
                  <item row="1" column="1">
                   <widget class="QCheckBox" name="deterministicCheck">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="text">
                     <string>Deterministic</string>
                    </property>
@@ -295,65 +300,101 @@
               </item>
              </layout>
             </widget>
-            <widget class="QGroupBox" name="initCodeGroup">
+            <widget class="QTabWidget" name="codeTabs">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
-               <verstretch>2</verstretch>
+               <verstretch>10</verstretch>
               </sizepolicy>
              </property>
-             <property name="title">
-              <string>Initialization code:</string>
+             <property name="currentIndex">
+              <number>0</number>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <widget class="QPlainTextEdit" name="initCodeEdit">
-                <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QGroupBox" name="mainCodeGroup">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>2</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="title">
-              <string>Function implementation code:</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item>
-               <widget class="QPlainTextEdit" name="mainCodeEdit">
-                <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QGroupBox" name="finalCodeGroup">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>2</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="title">
-              <string>Final step implementation code:</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QPlainTextEdit" name="finalCodeEdit">
-                <property name="lineWrapMode">
-                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QWidget" name="scalarCodeTab">
+              <attribute name="title">
+               <string>Function code</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QPlainTextEdit" name="scalarCodeEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="initCodeTab">
+              <attribute name="title">
+               <string>Initialization</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QPlainTextEdit" name="initCodeEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="stepCodeTab">
+              <attribute name="title">
+               <string>Step</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QPlainTextEdit" name="stepCodeEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="inverseCodeTab">
+              <attribute name="title">
+               <string>Inverse</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QPlainTextEdit" name="inverseCodeEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="finalCodeTab">
+              <attribute name="title">
+               <string>Aggregated value</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QPlainTextEdit" name="finalCodeEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </widget>
           </item>
@@ -374,9 +415,6 @@
   <tabstop>allDatabasesRadio</tabstop>
   <tabstop>selDatabasesRadio</tabstop>
   <tabstop>databasesList</tabstop>
-  <tabstop>initCodeEdit</tabstop>
-  <tabstop>mainCodeEdit</tabstop>
-  <tabstop>finalCodeEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>

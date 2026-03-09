@@ -20,17 +20,15 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QList<ScriptFunction*> getScriptFunctionsForDatabase(const QString& dbName) const;
         QList<NativeFunction*> getAllNativeFunctions() const;
         QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
-        void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateScriptScalar(ScriptFunction* func, const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
-        void evaluateScriptAggregateInitial(ScriptFunction* func, Db* db,
-                                            QHash<QString, QVariant>& aggregateStorage);
-        void evaluateScriptAggregateStep(ScriptFunction* func, const QList<QVariant>& args, Db* db,
-                                         QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok,
-                                              QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateNativeScalar(NativeFunction* func, const QList<QVariant>& args, Db* db, bool& ok);
+        void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage,
+                                      FunctionBase::Type type);
+        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
+                                   QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type type);
+        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok,
+                                        QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type type);
+        QVariant evaluateWindowValue(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
+        void evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
+                                           QHash<QString, QVariant>& aggregateStorage);
 
     private:
         struct Key
@@ -57,6 +55,23 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QString langUnsupportedError(const QString& name, int argCount, const QString& lang);
         void registerNativeFunction(const QString& name, const QStringList& args, NativeFunction::ImplementationFunction funcPtr);
         QString updateScriptingQtLang(const QString& lang) const;
+
+        QVariant evaluateScriptScalar(ScriptFunction* func, const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
+        void evaluateScriptAggregateInitial(ScriptFunction* func, Db* db,
+                                            QHash<QString, QVariant>& aggregateStorage);
+        void evaluateScriptAggregateStep(ScriptFunction* func, const QList<QVariant>& args, Db* db,
+                                         QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok,
+                                              QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateScriptWindowValue(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok,
+                                           QHash<QString, QVariant>& aggregateStorage);
+        void evaluateScriptWindowInverse(ScriptFunction* func, const QList<QVariant>& args, Db* db,
+                                         QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateNativeScalar(NativeFunction* func, const QList<QVariant>& args, Db* db, bool& ok);
+        void evaluateScriptAggregateStepCode(ScriptFunction* func, const QString& code, const QList<QVariant>& args, Db* db,
+                                         QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok,
+                                              QHash<QString, QVariant>& aggregateStorage, bool doReleaseContext);
 
         static QStringList getArgMarkers(int argCount);
         static QVariant nativeRegExp(const QList<QVariant>& args, Db* db, bool& ok);

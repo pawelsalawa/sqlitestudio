@@ -12,6 +12,8 @@
 #include <QScrollArea>
 #include <QToolTip>
 #include <QEnterEvent>
+#include <QTabWidget>
+#include <QTabBar>
 
 QHash<QWidget*,WidgetStateIndicator*> WidgetStateIndicator::instances;
 
@@ -79,6 +81,22 @@ void WidgetStateIndicator::initPositionMode()
         positionMode = PositionMode::LABEL;
     else if (dynamic_cast<QCheckBox*>(widget))
         positionMode = PositionMode::CHECK_BOX;
+    else
+    {
+        QWidget* pw = widget->parentWidget();
+        if (pw)
+        {
+            // Block of tests if pw is present
+            QTabWidget* tabs = dynamic_cast<QTabWidget*>(pw->parentWidget());
+            if (tabs)
+            {
+                widget->removeEventFilter(this);
+                tabs->installEventFilter(this);
+                showHideEventSource = tabs;
+                positionMode = PositionMode::TAB_WIDGET;
+            }
+        }
+    }
 }
 
 void WidgetStateIndicator::finalInit()
@@ -201,7 +219,7 @@ WidgetStateIndicator* WidgetStateIndicator::getInstance(QWidget* widget)
 
 bool WidgetStateIndicator::eventFilter(QObject* obj, QEvent* ev)
 {
-    if (obj == widget)
+    if (obj == widget || showHideEventSource && obj == showHideEventSource)
         return eventFilterFromWidget(ev);
     else if (obj == windowParent)
         return eventFilterFromParentWidget(ev);
@@ -250,6 +268,9 @@ void WidgetStateIndicator::updatePosition()
         case PositionMode::CHECK_BOX:
             updatePositionCheckBox();
             break;
+        case PositionMode::TAB_WIDGET:
+            updatePositionTab();
+            break;
     }
 }
 
@@ -284,17 +305,30 @@ void WidgetStateIndicator::updatePositionCheckBox()
     labelParent->move(xy + QPoint(-6, -2));
 }
 
+void WidgetStateIndicator::updatePositionTab()
+{
+    QTabWidget* tabWidget = qobject_cast<QTabWidget*>(widget->parentWidget()->parentWidget());
+    int tabIdx = tabWidget->indexOf(widget);
+    if (tabIdx < 0)
+        return;
+
+    QRect tabRect = tabWidget->tabBar()->tabRect(tabIdx);
+    QPoint xy = tabWidget->mapTo(windowParent, tabRect.topLeft());
+    labelParent->move(xy + QPoint(6, -4));
+}
+
 void WidgetStateIndicator::updateVisibility()
 {
     if (shouldHide())
     {
         labelParent->setVisible(false);
+        return;
     }
-    else if (shouldShow())
-    {
-        updatePosition();
+
+    if (shouldShow())
         labelParent->setVisible(true);
-    }
+
+    updatePosition();
 }
 
 bool WidgetStateIndicator::shouldHide()

@@ -23,6 +23,8 @@ QString FunctionManager::FunctionBase::typeString(Type type)
             return "SCALAR";
         case ScriptFunction::AGGREGATE:
             return "AGGREGATE";
+        case ScriptFunction::AGG_WINDOW:
+            return "AGG_WINDOW";
     }
     return QString();
 }
@@ -34,6 +36,9 @@ FunctionManager::ScriptFunction::Type FunctionManager::FunctionBase::typeString(
 
     if (type == "AGGREGATE")
         return ScriptFunction::AGGREGATE;
+
+    if (type == "AGG_WINDOW")
+        return ScriptFunction::AGG_WINDOW;
 
     return ScriptFunction::SCALAR;
 }

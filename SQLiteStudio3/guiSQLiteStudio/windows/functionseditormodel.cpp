@@ -100,6 +100,26 @@ QString FunctionsEditorModel::getFinalCode(int row) const
     GETTER(functionList[row]->data.finalCode, QString());
 }
 
+void FunctionsEditorModel::setStepCode(int row, const QString& code)
+{
+    SETTER(functionList[row]->data.code, code);
+}
+
+QString FunctionsEditorModel::getStepCode(int row) const
+{
+    GETTER(functionList[row]->data.code, QString());
+}
+
+void FunctionsEditorModel::setInverseCode(int row, const QString& code)
+{
+    SETTER(functionList[row]->data.inverseCode, code);
+}
+
+QString FunctionsEditorModel::getInverseCode(int row) const
+{
+    GETTER(functionList[row]->data.inverseCode, QString());
+}
+
 void FunctionsEditorModel::setInitCode(int row, const QString& code)
 {
     SETTER(functionList[row]->data.initCode, code);
@@ -163,6 +183,17 @@ void FunctionsEditorModel::setType(int row, FunctionManager::ScriptFunction::Typ
 bool FunctionsEditorModel::isAggregate(int row) const
 {
     GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::AGGREGATE, false);
+}
+
+bool FunctionsEditorModel::isAggregateWindow(int row) const
+{
+    GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::AGG_WINDOW, false);
+}
+
+bool FunctionsEditorModel::isAnyAggregate(int row) const
+{
+    GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::AGG_WINDOW ||
+           functionList[row]->data.type == FunctionManager::ScriptFunction::AGGREGATE, false);
 }
 
 bool FunctionsEditorModel::isScalar(int row) const

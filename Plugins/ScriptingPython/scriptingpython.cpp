@@ -1,10 +1,10 @@
 #include "scriptingpython.h"
 #include "common/global.h"
 #include "db/db.h"
-#include "db/sqlite3.h"
 #include "parser/lexer.h"
 #include "parser/token.h"
 #include "common/utils_sql.h"
+#include <sqlite3.h>
 #include <QDebug>
 #include <QMutexLocker>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)

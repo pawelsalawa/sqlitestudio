@@ -98,6 +98,15 @@ bool DbAndroidInstance::registerAggregateFunction(const QString& name, int argCo
     return true;
 }
 
+bool DbAndroidInstance::registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic)
+{
+    // Unsupported by native Android driver
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
+    return true;
+}
+
 bool DbAndroidInstance::initAfterCreated()
 {
     version = 3;

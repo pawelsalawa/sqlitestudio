@@ -3,7 +3,7 @@
 
 #include "abstractdb3.h"
 #include "stdsqlite3driver.h"
-#include "db/sqlite3.h"
+#include <sqlite3.h>
 
 STD_SQLITE3_DRIVER(Sqlite3, "SQLite 3",,)
 

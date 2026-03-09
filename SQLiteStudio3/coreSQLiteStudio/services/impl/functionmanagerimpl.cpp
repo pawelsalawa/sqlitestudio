@@ -114,12 +114,18 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
     return cannotFindFunctionError(name, argCount);
 }
 
-void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage)
+void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage, FunctionBase::Type type)
 {
+    if (type != ScriptFunction::AGGREGATE && type != ScriptFunction::AGG_WINDOW)
+    {
+        qCritical() << "Passed non-aggregate to FunctionManagerImpl::evaluateAggregateInitial:" << type;
+        return;
+    }
+
     Key key;
     key.name = name;
     key.argCount = argCount;
-    key.type = ScriptFunction::AGGREGATE;
+    key.type = type;
     if (functionsByKey.contains(key))
     {
         ScriptFunction* function = functionsByKey[key];
@@ -127,12 +133,12 @@ void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argC
     }
 }
 
-void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString,QVariant>& aggregateStorage)
+void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString,QVariant>& aggregateStorage, FunctionBase::Type type)
 {
     Key key;
     key.name = name;
     key.argCount = argCount;
-    key.type = ScriptFunction::AGGREGATE;
+    key.type = type;
     if (functionsByKey.contains(key))
     {
         ScriptFunction* function = functionsByKey[key];
@@ -140,12 +146,12 @@ void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCoun
     }
 }
 
-QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString,QVariant>& aggregateStorage)
+QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString,QVariant>& aggregateStorage, FunctionBase::Type type)
 {
     Key key;
     key.name = name;
     key.argCount = argCount;
-    key.type = ScriptFunction::AGGREGATE;
+    key.type = type;
     if (functionsByKey.contains(key))
     {
         ScriptFunction* function = functionsByKey[key];
@@ -154,6 +160,35 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
 
     ok = false;
     return cannotFindFunctionError(name, argCount);
+}
+
+QVariant FunctionManagerImpl::evaluateWindowValue(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage)
+{
+    Key key;
+    key.name = name;
+    key.argCount = argCount;
+    key.type = ScriptFunction::AGG_WINDOW;
+    if (functionsByKey.contains(key))
+    {
+        ScriptFunction* function = functionsByKey[key];
+        return evaluateScriptWindowValue(function, name, argCount, db, ok, aggregateStorage);
+    }
+
+    ok = false;
+    return cannotFindFunctionError(name, argCount);
+}
+
+void FunctionManagerImpl::evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage)
+{
+    Key key;
+    key.name = name;
+    key.argCount = argCount;
+    key.type = ScriptFunction::AGG_WINDOW;
+    if (functionsByKey.contains(key))
+    {
+        ScriptFunction* function = functionsByKey[key];
+        evaluateScriptWindowInverse(function, args, db, aggregateStorage);
+    }
 }
 
 QVariant FunctionManagerImpl::evaluateScriptScalar(ScriptFunction* func, const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok)
@@ -216,66 +251,22 @@ void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, D
 
 void FunctionManagerImpl::evaluateScriptAggregateStep(ScriptFunction* func, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage)
 {
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
-    if (!plugin)
-        return;
-
-    if (aggregateStorage.contains("error"))
-        return;
-
-    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
-    FunctionInfoImpl info(func);
-
-    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
-    if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, func->code, info, args, db, false);
-    else
-        plugin->evaluate(ctx, func->code, info, args);
-
-    if (plugin->hasError(ctx))
-    {
-        aggregateStorage["error"] = true;
-        aggregateStorage["errorMessage"] = plugin->getErrorMessage(ctx);
-    }
+    evaluateScriptAggregateStepCode(func, func->code, args, db, aggregateStorage);
 }
 
 QVariant FunctionManagerImpl::evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage)
 {
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
-    if (!plugin)
-    {
-        ok = false;
-        return langUnsupportedError(name, argCount, func->lang);
-    }
+    return evaluateScriptAggregateFinal(func, name, argCount, db, ok, aggregateStorage, true);
+}
 
-    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
-    if (aggregateStorage.contains("error"))
-    {
-        ok = false;
-        plugin->releaseContext(ctx);
-        return aggregateStorage["errorMessage"];
-    }
+QVariant FunctionManagerImpl::evaluateScriptWindowValue(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage)
+{
+    return evaluateScriptAggregateFinal(func, name, argCount, db, ok, aggregateStorage, false);
+}
 
-    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
-
-    FunctionInfoImpl info(func);
-
-    QVariant result;
-    if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(ctx, func->finalCode, info, {}, db, false);
-    else
-        result = plugin->evaluate(ctx, func->finalCode, info, {});
-
-    if (plugin->hasError(ctx))
-    {
-        ok = false;
-        QString msg = plugin->getErrorMessage(ctx);
-        plugin->releaseContext(ctx);
-        return msg;
-    }
-
-    plugin->releaseContext(ctx);
-    return result;
+void FunctionManagerImpl::evaluateScriptWindowInverse(ScriptFunction* func, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage)
+{
+    evaluateScriptAggregateStepCode(func, func->inverseCode, args, db, aggregateStorage);
 }
 
 QList<FunctionManager::NativeFunction*> FunctionManagerImpl::getAllNativeFunctions() const
@@ -356,6 +347,7 @@ void FunctionManagerImpl::storeInConfig()
         fnHash["lang"] = func->lang;
         fnHash["code"] = func->code;
         fnHash["initCode"] = func->initCode;
+        fnHash["inverseCode"] = func->inverseCode;
         fnHash["finalCode"] = func->finalCode;
         fnHash["databases"] = common(DBLIST->getDbNames(), func->databases);
         fnHash["arguments"] = func->arguments;
@@ -382,6 +374,7 @@ void FunctionManagerImpl::loadFromConfig()
         func->lang = updateScriptingQtLang(fnHash["lang"].toString());
         func->code = fnHash["code"].toString();
         func->initCode = fnHash["initCode"].toString();
+        func->inverseCode = fnHash["inverseCode"].toString();
         func->finalCode = fnHash["finalCode"].toString();
         func->databases = fnHash["databases"].toStringList();
         func->arguments = fnHash["arguments"].toStringList();
@@ -404,14 +397,14 @@ void FunctionManagerImpl::clearFunctions()
 QString FunctionManagerImpl::cannotFindFunctionError(const QString& name, int argCount)
 {
     QStringList argMarkers = getArgMarkers(argCount);
-    return tr("No such function registered in SQLiteStudio: %1(%2)").arg(name).arg(argMarkers.join(","));
+    return tr("No such function registered in SQLiteStudio: %1(%2)").arg(name, argMarkers.join(","));
 }
 
 QString FunctionManagerImpl::langUnsupportedError(const QString& name, int argCount, const QString& lang)
 {
     QStringList argMarkers = getArgMarkers(argCount);
     return tr("Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.")
-            .arg(name).arg(argMarkers.join(",")).arg(lang);
+            .arg(name, argMarkers.join(","), lang);
 }
 
 QVariant FunctionManagerImpl::nativeRegExp(const QList<QVariant>& args, Db* db, bool& ok)
@@ -867,6 +860,76 @@ QString FunctionManagerImpl::updateScriptingQtLang(const QString& lang) const
         return QStringLiteral("JavaScript");
 
     return lang;
+}
+
+void FunctionManagerImpl::evaluateScriptAggregateStepCode(ScriptFunction* func, const QString& code, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage)
+{
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
+    if (!plugin)
+        return;
+
+    if (aggregateStorage.contains("error"))
+        return;
+
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+    FunctionInfoImpl info(func);
+
+    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
+    if (dbAwarePlugin)
+        dbAwarePlugin->evaluate(ctx, code, info, args, db, false);
+    else
+        plugin->evaluate(ctx, code, info, args);
+
+    if (plugin->hasError(ctx))
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = plugin->getErrorMessage(ctx);
+    }
+}
+
+QVariant FunctionManagerImpl::evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage, bool doReleaseContext)
+{
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
+    if (!plugin)
+    {
+        ok = false;
+        return langUnsupportedError(name, argCount, func->lang);
+    }
+
+    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
+    if (aggregateStorage.contains("error"))
+    {
+        ok = false;
+        if (doReleaseContext)
+            plugin->releaseContext(ctx);
+
+        return aggregateStorage["errorMessage"];
+    }
+
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+
+    FunctionInfoImpl info(func);
+
+    QVariant result;
+    if (dbAwarePlugin)
+        result = dbAwarePlugin->evaluate(ctx, func->finalCode, info, {}, db, false);
+    else
+        result = plugin->evaluate(ctx, func->finalCode, info, {});
+
+    if (plugin->hasError(ctx))
+    {
+        ok = false;
+        QString msg = plugin->getErrorMessage(ctx);
+        if (doReleaseContext)
+            plugin->releaseContext(ctx);
+
+        return msg;
+    }
+
+    if (doReleaseContext)
+        plugin->releaseContext(ctx);
+
+    return result;
 }
 
 size_t qHash(const FunctionManagerImpl::Key& key)

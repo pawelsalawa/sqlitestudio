@@ -101,8 +101,7 @@ void FunctionsEditor::init()
 {
     ui->setupUi(this);
     clearEdits();
-    ui->initCodeGroup->setVisible(false);
-    ui->finalCodeGroup->setVisible(false);
+    initCodeTabs();
 
     setFont(CFG_UI.Fonts.SqlEditor.get());
 
@@ -118,6 +117,7 @@ void FunctionsEditor::init()
 
     ui->typeCombo->addItem(tr("Scalar"), FunctionManager::ScriptFunction::SCALAR);
     ui->typeCombo->addItem(tr("Aggregate"), FunctionManager::ScriptFunction::AGGREGATE);
+    ui->typeCombo->addItem(tr("Window"), FunctionManager::ScriptFunction::AGG_WINDOW);
 
     new UserInputFilter(ui->functionFilterEdit, this, SLOT(applyFilter(QString)));
     functionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -129,7 +129,9 @@ void FunctionsEditor::init()
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(functionSelected(QItemSelection,QItemSelection)));
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
     connect(ui->initCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
-    connect(ui->mainCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
+    connect(ui->inverseCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
+    connect(ui->stepCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
+    connect(ui->scalarCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->finalCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->undefArgsCheck, SIGNAL(toggled(bool)), this, SLOT(updateModified()));
@@ -160,7 +162,22 @@ void FunctionsEditor::init()
     for (SyntaxHighlighterPlugin*& plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
         highlighterPlugins[plugin->getLanguageName()] = plugin;
 
+    updateCurrentFunctionState();
     updateState();
+}
+
+void FunctionsEditor::initCodeTabs()
+{
+    tabIdx[SCALAR] = ui->codeTabs->indexOf(ui->scalarCodeTab);
+    tabIdx[INIT] = ui->codeTabs->indexOf(ui->initCodeTab);
+    tabIdx[STEP] = ui->codeTabs->indexOf(ui->stepCodeTab);
+    tabIdx[INVERSE] = ui->codeTabs->indexOf(ui->inverseCodeTab);
+    tabIdx[FINAL] = ui->codeTabs->indexOf(ui->finalCodeTab);
+
+    ui->codeTabs->setTabVisible(tabIdx[INIT], false);
+    ui->codeTabs->setTabVisible(tabIdx[STEP], false);
+    ui->codeTabs->setTabVisible(tabIdx[INVERSE], false);
+    ui->codeTabs->setTabVisible(tabIdx[FINAL], false);
 }
 
 int FunctionsEditor::getCurrentFunctionRow() const
@@ -182,18 +199,30 @@ void FunctionsEditor::functionDeselected(int srcRow)
     model->setLang(srcRow, ui->langCombo->currentText());
     model->setType(srcRow, getCurrentFunctionType());
     model->setAllDatabases(srcRow, ui->allDatabasesRadio->isChecked());
-    model->setCode(srcRow, ui->mainCodeEdit->toPlainText());
     model->setDeterministic(srcRow, ui->deterministicCheck->isChecked());
     model->setModified(srcRow, currentModified);
 
-    if (model->isAggregate(srcRow))
+    if (model->isAggregateWindow(srcRow))
     {
         model->setInitCode(srcRow, ui->initCodeEdit->toPlainText());
+        model->setStepCode(srcRow, ui->stepCodeEdit->toPlainText());
+        model->setInverseCode(srcRow, ui->inverseCodeEdit->toPlainText());
         model->setFinalCode(srcRow, ui->finalCodeEdit->toPlainText());
+        // Do not clear "code" field in model, as it is shared for step code
+    }
+    else if (model->isAggregate(srcRow))
+    {
+        model->setInitCode(srcRow, ui->initCodeEdit->toPlainText());
+        model->setStepCode(srcRow, ui->stepCodeEdit->toPlainText());
+        model->setFinalCode(srcRow, ui->finalCodeEdit->toPlainText());
+        model->setInverseCode(srcRow, QString());
+        // Do not clear "code" field in model, as it is shared for step code
     }
     else
     {
+        model->setCode(srcRow, ui->scalarCodeEdit->toPlainText());
         model->setInitCode(srcRow, QString());
+        model->setInverseCode(srcRow, QString());
         model->setFinalCode(srcRow, QString());
     }
 
@@ -207,8 +236,18 @@ void FunctionsEditor::functionSelected(int srcRow)
 {
     updatesForSelection = true;
     ui->nameEdit->setText(model->getName(srcRow));
+    if (model->isAnyAggregate(srcRow))
+    {
+        ui->stepCodeEdit->setPlainText(model->getStepCode(srcRow));
+        ui->scalarCodeEdit->clear();
+    }
+    else
+    {
+        ui->scalarCodeEdit->setPlainText(model->getCode(srcRow));
+        ui->stepCodeEdit->clear();
+    }
     ui->initCodeEdit->setPlainText(model->getInitCode(srcRow));
-    ui->mainCodeEdit->setPlainText(model->getCode(srcRow));
+    ui->inverseCodeEdit->setPlainText(model->getInverseCode(srcRow));
     ui->finalCodeEdit->setPlainText(model->getFinalCode(srcRow));
     ui->undefArgsCheck->setChecked(model->getUndefinedArgs(srcRow));
     ui->langCombo->setCurrentText(model->getLang(srcRow));
@@ -253,7 +292,11 @@ void FunctionsEditor::functionSelected(int srcRow)
 void FunctionsEditor::clearEdits()
 {
     ui->nameEdit->setText(QString());
-    ui->mainCodeEdit->setPlainText(QString());
+    ui->scalarCodeEdit->setPlainText(QString());
+    ui->initCodeEdit->setPlainText(QString());
+    ui->stepCodeEdit->setPlainText(QString());
+    ui->inverseCodeEdit->setPlainText(QString());
+    ui->finalCodeEdit->setPlainText(QString());
     ui->langCombo->setCurrentText(QString());
     ui->undefArgsCheck->setChecked(true);
     ui->argsList->clear();
@@ -273,8 +316,10 @@ void FunctionsEditor::selectFunction(int srcRow)
 
 void FunctionsEditor::setFont(const QFont& font)
 {
+    ui->scalarCodeEdit->setFont(font);
     ui->initCodeEdit->setFont(font);
-    ui->mainCodeEdit->setFont(font);
+    ui->stepCodeEdit->setFont(font);
+    ui->inverseCodeEdit->setFont(font);
     ui->finalCodeEdit->setFont(font);
 }
 
@@ -311,6 +356,17 @@ FunctionManager::ScriptFunction::Type FunctionsEditor::getCurrentFunctionType() 
 {
     int intValue = ui->typeCombo->itemData(ui->typeCombo->currentIndex()).toInt();
     return static_cast<FunctionManager::ScriptFunction::Type>(intValue);
+}
+
+void FunctionsEditor::safeClearHighlighter(QSyntaxHighlighter*& highlighterPtr)
+{
+    // A pointers swap with local var - this is necessary, cause deleting highlighter
+    // triggers textChanged on QPlainTextEdit, which then calls this method,
+    // so it becomes an infinite recursion with deleting the same pointer.
+    // We set the pointer to null first, then delete it. That way it's safe.
+    QSyntaxHighlighter* highlighter = highlighterPtr;
+    highlighterPtr = nullptr;
+    delete highlighter;
 }
 
 void FunctionsEditor::commit()
@@ -365,11 +421,12 @@ void FunctionsEditor::deleteFunction()
 {
     int srcRow = getCurrentFunctionRow();
     model->deleteFunction(srcRow);
-    clearEdits();
 
     srcRow = getCurrentFunctionRow();
     if (model->isValidRowIndex(srcRow))
         functionSelected(srcRow);
+    else
+        clearEdits();
 
     updateState();
 }
@@ -383,8 +440,16 @@ void FunctionsEditor::updateModified()
     if (model->isValidRowIndex(row))
     {
         bool nameDiff = model->getName(row) != ui->nameEdit->text();
-        bool codeDiff = model->getCode(row) != ui->mainCodeEdit->toPlainText();
+
+        bool codeDiff = false;
+        bool stepCodeDiff = false;
+        if (model->isAnyAggregate(row))
+            stepCodeDiff = model->getStepCode(row) != ui->stepCodeEdit->toPlainText();
+        else
+            codeDiff = model->getCode(row) != ui->scalarCodeEdit->toPlainText();
+
         bool initCodeDiff = model->getInitCode(row) != ui->initCodeEdit->toPlainText();
+        bool inverseCodeDiff = model->getInverseCode(row) != ui->inverseCodeEdit->toPlainText();
         bool finalCodeDiff = model->getFinalCode(row) != ui->finalCodeEdit->toPlainText();
         bool langDiff = model->getLang(row) != ui->langCombo->currentText();
         bool undefArgsDiff = model->getUndefinedArgs(row) != ui->undefArgsCheck->isChecked();
@@ -395,7 +460,7 @@ void FunctionsEditor::updateModified()
         bool deterministicDiff = model->isDeterministic(row) != ui->deterministicCheck->isChecked();
 
         currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff ||
-                           initCodeDiff || finalCodeDiff || deterministicDiff);
+                           initCodeDiff || finalCodeDiff || stepCodeDiff || inverseCodeDiff || deterministicDiff);
 
         if (langDiff)
             model->setLang(row, ui->langCombo->currentText());
@@ -423,8 +488,9 @@ void FunctionsEditor::updateCurrentFunctionState()
     {
         setValidState(ui->langCombo, true);
         setValidState(ui->nameEdit, true);
-        setValidState(ui->mainCodeEdit, true);
-        setValidState(ui->finalCodeEdit, true);
+        setValidState(ui->scalarCodeTab, true);
+        setValidState(ui->stepCodeTab, true);
+        setValidState(ui->finalCodeTab, true);
         return;
     }
 
@@ -435,9 +501,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     setValidState(ui->nameEdit, nameOk, tr("Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs."));
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
-    ui->initCodeGroup->setEnabled(langOk);
-    ui->mainCodeGroup->setEnabled(langOk);
-    ui->finalCodeGroup->setEnabled(langOk);
+    ui->codeTabs->setEnabled(langOk);
     ui->argsGroup->setEnabled(langOk);
     ui->deterministicCheck->setEnabled(langOk);
     ui->databasesGroup->setEnabled(langOk);
@@ -447,56 +511,51 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->typeLabel->setEnabled(langOk);
     setValidState(ui->langCombo, langOk, tr("Pick the implementation language."));
 
-    bool aggregate = getCurrentFunctionType() == FunctionManager::ScriptFunction::AGGREGATE;
-    ui->initCodeGroup->setVisible(aggregate);
-    ui->mainCodeGroup->setTitle(aggregate ? tr("Per step code:") : tr("Function implementation code:"));
-    ui->finalCodeGroup->setVisible(aggregate);
+    FunctionManager::FunctionBase::Type funType = getCurrentFunctionType();
+    bool aggWindow = funType == FunctionManager::ScriptFunction::AGG_WINDOW;
+    bool aggregate = funType == FunctionManager::ScriptFunction::AGGREGATE || aggWindow;
+    ui->codeTabs->setTabVisible(tabIdx[SCALAR], !aggregate);
+    ui->codeTabs->setTabVisible(tabIdx[INIT], aggregate);
+    ui->codeTabs->setTabVisible(tabIdx[STEP], aggregate);
+    ui->codeTabs->setTabVisible(tabIdx[INVERSE], aggWindow);
+    ui->codeTabs->setTabVisible(tabIdx[FINAL], aggregate);
 
     ui->databasesList->setEnabled(ui->selDatabasesRadio->isChecked());
 
-    bool codeOk = !ui->mainCodeEdit->toPlainText().trimmed().isEmpty();
-    setValidState(ui->mainCodeEdit, codeOk, tr("Enter a non-empty implementation code."));
+    // Declare mandatory code fields
+    bool codeOk = true;
+    if (!aggregate)
+        codeOk = !ui->scalarCodeEdit->toPlainText().trimmed().isEmpty();
 
+    setValidState(ui->scalarCodeTab, codeOk, tr("Enter a non-empty implementation code."));
+
+    bool stepCodeOk = true;
     bool finalCodeOk = true;
     if (aggregate)
+    {
+        stepCodeOk = !ui->stepCodeEdit->toPlainText().trimmed().isEmpty();
         finalCodeOk = !ui->finalCodeEdit->toPlainText().trimmed().isEmpty();
+    }
 
-    setValidState(ui->finalCodeEdit, finalCodeOk);
+    setValidState(ui->stepCodeTab, stepCodeOk, tr("Enter a non-empty implementation code."));
+    setValidState(ui->finalCodeTab, finalCodeOk, tr("Enter a non-empty implementation code."));
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
     if (lang != currentHighlighterLang)
     {
-        QSyntaxHighlighter* highlighter = nullptr;
-        if (currentMainHighlighter)
-        {
-            // A pointers swap with local var - this is necessary, cause deleting highlighter
-            // triggers textChanged on QPlainTextEdit, which then calls this method,
-            // so it becomes an infinite recursion with deleting the same pointer.
-            // We set the pointer to null first, then delete it. That way it's safe.
-            highlighter = currentMainHighlighter;
-            currentMainHighlighter = nullptr;
-            delete highlighter;
-        }
-
-        if (currentFinalHighlighter)
-        {
-            highlighter = currentFinalHighlighter;
-            currentFinalHighlighter = nullptr;
-            delete highlighter;
-        }
-
-        if (currentInitHighlighter)
-        {
-            highlighter = currentInitHighlighter;
-            currentInitHighlighter = nullptr;
-            delete highlighter;
-        }
+        safeClearHighlighter(currentScalarHighlighter);
+        safeClearHighlighter(currentInitHighlighter);
+        safeClearHighlighter(currentStepHighlighter);
+        safeClearHighlighter(currentInverseHighlighter);
+        safeClearHighlighter(currentFinalHighlighter);
 
         if (langOk && highlighterPlugins.contains(lang))
         {
+            currentScalarHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->scalarCodeEdit);
             currentInitHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->initCodeEdit);
-            currentMainHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->mainCodeEdit);
+            currentStepHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->stepCodeEdit);
+            currentInverseHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->inverseCodeEdit);
             currentFinalHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->finalCodeEdit);
         }
 
@@ -504,7 +563,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     }
 
     bool argsOk = updateArgsState();
-    model->setValid(srcRow, langOk && codeOk && finalCodeOk && nameOk && argsOk);
+    model->setValid(srcRow, langOk && codeOk && stepCodeOk && finalCodeOk && nameOk && argsOk);
     updateState();
 }
 

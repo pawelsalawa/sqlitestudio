@@ -26,6 +26,7 @@ class DbAndroidInstance : public AbstractDb
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
+        bool registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic);
         bool initAfterCreated();
         bool loadExtension(const QString& filePath, const QString& initFunc);
         bool isComplete(const QString& sql) const;

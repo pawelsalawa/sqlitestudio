@@ -75,7 +75,6 @@ set(PROJECT_HEADERS
     db/queryexecutorsteps/queryexecutorwrapdistinctresults.h
     db/sqlerrorcodes.h
     db/sqlerrorresults.h
-    db/sqlite3.h
     db/sqlquery.h
     db/sqlresultsrow.h
     db/stdsqlite3driver.h

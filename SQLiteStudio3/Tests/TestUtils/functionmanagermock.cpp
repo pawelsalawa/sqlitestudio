@@ -24,15 +24,24 @@ QVariant FunctionManagerMock::evaluateScalar(const QString&, int, const QList<QV
     return QVariant();
 }
 
-void FunctionManagerMock::evaluateAggregateInitial(const QString&, int, Db*, QHash<QString, QVariant>&)
+void FunctionManagerMock::evaluateAggregateInitial(const QString&, int, Db*, QHash<QString, QVariant>&, FunctionBase::Type)
 {
 }
 
-void FunctionManagerMock::evaluateAggregateStep(const QString&, int, const QList<QVariant>&, Db*, QHash<QString, QVariant>&)
+void FunctionManagerMock::evaluateAggregateStep(const QString&, int, const QList<QVariant>&, Db*, QHash<QString, QVariant>&, FunctionBase::Type)
 {
 }
 
-QVariant FunctionManagerMock::evaluateAggregateFinal(const QString&, int, Db*, bool&, QHash<QString, QVariant>&)
+QVariant FunctionManagerMock::evaluateAggregateFinal(const QString&, int, Db*, bool&, QHash<QString, QVariant>&, FunctionBase::Type)
 {
     return QVariant();
+}
+
+QVariant FunctionManagerMock::evaluateWindowValue(const QString&, int, Db*, bool&, QHash<QString, QVariant>&)
+{
+    return QVariant();
+}
+
+void FunctionManagerMock::evaluateWindowInverse(const QString&, int, const QList<QVariant>&, Db*, QHash<QString, QVariant>&)
+{
 }

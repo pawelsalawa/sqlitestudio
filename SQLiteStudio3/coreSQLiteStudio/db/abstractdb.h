@@ -252,8 +252,10 @@ class API_EXPORT AbstractDb : public Db
          * This method is called for scalar functions.
          */
         static QVariant evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok);
-        static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
-        static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);
+        static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList, FunctionManager::ScriptFunction::Type type);
+        static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok, FunctionManager::ScriptFunction::Type type);
+        static QVariant evaluateWindowValue(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);
+        static void evaluateWindowInverse(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
 
         /**
          * @brief Database name.

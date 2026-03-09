@@ -281,6 +281,14 @@ bool InvalidDb::registerAggregateFunction(const QString& name, int argCount, boo
     return false;
 }
 
+bool InvalidDb::registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic)
+{
+    Q_UNUSED(name);
+    Q_UNUSED(argCount);
+    Q_UNUSED(deterministic);
+    return false;
+}
+
 bool InvalidDb::registerCollation(const QString& name)
 {
     Q_UNUSED(name);

@@ -34,6 +34,10 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         QString getCode(int row) const;
         void setFinalCode(int row, const QString& code);
         QString getFinalCode(int row) const;
+        void setStepCode(int row, const QString& code);
+        QString getStepCode(int row) const;
+        void setInverseCode(int row, const QString& code);
+        QString getInverseCode(int row) const;
         void setInitCode(int row, const QString& code);
         QString getInitCode(int row) const;
         void setName(int row, const QString& newName);
@@ -47,6 +51,8 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         FunctionManager::ScriptFunction::Type getType(int row) const;
         void setType(int row, FunctionManager::ScriptFunction::Type type);
         bool isAggregate(int row) const;
+        bool isAggregateWindow(int row) const;
+        bool isAnyAggregate(int row) const;
         bool isScalar(int row) const;
         void setDeterministic(int row, bool value);
         bool isDeterministic(int row) const;

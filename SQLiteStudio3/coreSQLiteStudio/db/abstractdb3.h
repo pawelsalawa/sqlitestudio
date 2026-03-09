@@ -62,6 +62,7 @@ class AbstractDb3 : public AbstractDb
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount, bool deterministic);
         bool registerAggregateFunction(const QString& name, int argCount, bool deterministic);
+        bool registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
         bool isTransactionActive() const;
@@ -190,6 +191,12 @@ class AbstractDb3 : public AbstractDb
          * @see DbQt::evaluateAggregateStep()
          */
         static void evaluateAggregateStep(typename T::context* context, int argCount, typename T::value** args);
+        static void evaluateWindowStep(typename T::context* context, int argCount, typename T::value** args);
+
+        /**
+         * Passes AGGREGATE or AGG_WINDOW function type to function manager, so it resolves proper function by name and argCount.
+         */
+        static void typedEvaluateAggregateStep(typename T::context* context, int argCount, typename T::value** args, FunctionManager::FunctionBase::Type type);
 
         /**
          * @brief Evaluates "final" code for aggregate function.
@@ -201,6 +208,38 @@ class AbstractDb3 : public AbstractDb
          * It executes "final" code of the function implementation.
          */
         static void evaluateAggregateFinal(typename T::context* context);
+        static void evaluateWindowFinal(typename T::context* context);
+
+        /**
+         * Same as evaluateAggregateFinal(), but for window functions.
+         * Passes AGGREGATE or AGG_WINDOW function type to function manager, so it resolves proper function by name and argCount.
+         */
+        static void typedEvaluateAggregateFinal(typename T::context* context, FunctionManager::FunctionBase::Type type);
+
+        /**
+         * @brief Evaluates "window current value" code for window function.
+         * @param context SQL function call context.
+         *
+         * This method is called for Aggregate Window functions.
+         * It's called when SQLite3 considers it necessary.
+         * It should provide current result value of the aggregate within the window.
+         */
+        static void evaluateWindowValue(typename T::context* context);
+
+        /**
+         * @brief Evaluates "window inverse" code for window function.
+         * @param context SQL function call context.
+         * @param argCount Number of arguments passed to the function.
+         * @param args Arguments passed to the function.
+         *
+         * This method is called for aggregate window functions.
+         * It's called when SQLite3 considers it necessary, with arguments that should be removed from the current window frame.
+         * It should update the aggregate value within the window by "removing" the arguments passed to this function call.
+         * This is used for example in moving average functions, where when the window moves, we need to "remove" the value
+         * that is no more in the window frame and "add" the new value that entered the window frame. The "add" part is done
+         * in evaluateAggregateStep(), while the "remove" part is done in this method.
+         */
+        static void evaluateWindowInverse(typename T::context* context, int argCount, typename T::value** args);
 
         /**
          * @brief Evaluates code of the collation.
@@ -528,10 +567,35 @@ bool AbstractDb3<T>::registerAggregateFunction(const QString& name, int argCount
         opts |= T::DETERMINISTIC;
 
     int res = T::create_function_v2(dbHandle, name.toUtf8().constData(), argCount, opts, userData,
-                                         nullptr,
-                                         &AbstractDb3<T>::evaluateAggregateStep,
-                                         &AbstractDb3<T>::evaluateAggregateFinal,
-                                         &AbstractDb3<T>::deleteUserData);
+                                    nullptr,
+                                    &AbstractDb3<T>::evaluateAggregateStep,
+                                    &AbstractDb3<T>::evaluateAggregateFinal,
+                                    &AbstractDb3<T>::deleteUserData);
+
+    return res == T::OK;
+}
+
+template<class T>
+inline bool AbstractDb3<T>::registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic)
+{
+    if (!dbHandle)
+        return false;
+
+    FunctionUserData* userData = new FunctionUserData;
+    userData->db = this;
+    userData->name = name;
+    userData->argCount = argCount;
+
+    int opts = T::UTF8;
+    if (deterministic)
+        opts |= T::DETERMINISTIC;
+
+    int res = T::create_window_function(dbHandle, name.toUtf8().constData(), argCount, opts, userData,
+                                        &AbstractDb3<T>::evaluateWindowStep,
+                                        &AbstractDb3<T>::evaluateWindowFinal,
+                                        &AbstractDb3<T>::evaluateWindowValue,
+                                        &AbstractDb3<T>::evaluateWindowInverse,
+                                        &AbstractDb3<T>::deleteUserData);
 
     return res == T::OK;
 }
@@ -756,11 +820,23 @@ void AbstractDb3<T>::evaluateScalar(typename T::context* context, int argCount, 
 template <class T>
 void AbstractDb3<T>::evaluateAggregateStep(typename T::context* context, int argCount, typename T::value** args)
 {
+    typedEvaluateAggregateStep(context, argCount, args, FunctionManager::FunctionBase::AGGREGATE);
+}
+
+template<class T>
+inline void AbstractDb3<T>::evaluateWindowStep(T::context* context, int argCount, T::value** args)
+{
+    typedEvaluateAggregateStep(context, argCount, args, FunctionManager::FunctionBase::AGG_WINDOW);
+}
+
+template<class T>
+inline void AbstractDb3<T>::typedEvaluateAggregateStep(T::context* context, int argCount, T::value** args, FunctionManager::FunctionBase::Type type)
+{
     void* dataPtr = T::user_data(context);
     QList<QVariant> argList = getArgs(argCount, args);
     QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
 
-    AbstractDb::evaluateAggregateStep(dataPtr, aggregateContext, argList);
+    AbstractDb::evaluateAggregateStep(dataPtr, aggregateContext, argList, type);
 
     setAggregateContext(context, aggregateContext);
 }
@@ -768,14 +844,50 @@ void AbstractDb3<T>::evaluateAggregateStep(typename T::context* context, int arg
 template <class T>
 void AbstractDb3<T>::evaluateAggregateFinal(typename T::context* context)
 {
+    typedEvaluateAggregateFinal(context, FunctionManager::FunctionBase::AGGREGATE);
+}
+
+template<class T>
+inline void AbstractDb3<T>::evaluateWindowFinal(T::context* context)
+{
+    typedEvaluateAggregateFinal(context, FunctionManager::FunctionBase::AGG_WINDOW);
+}
+
+template<class T>
+inline void AbstractDb3<T>::typedEvaluateAggregateFinal(T::context* context, FunctionManager::FunctionBase::Type type)
+{
     void* dataPtr = T::user_data(context);
     QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
 
     bool ok = true;
-    QVariant result = AbstractDb::evaluateAggregateFinal(dataPtr, aggregateContext, ok);
+    QVariant result = AbstractDb::evaluateAggregateFinal(dataPtr, aggregateContext, ok, type);
 
     storeResult(context, result, ok);
     releaseAggregateContext(context);
+}
+
+template <class T>
+void AbstractDb3<T>::evaluateWindowValue(typename T::context* context)
+{
+    void* dataPtr = T::user_data(context);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
+
+    bool ok = true;
+    QVariant result = AbstractDb::evaluateWindowValue(dataPtr, aggregateContext, ok);
+
+    storeResult(context, result, ok);
+}
+
+template <class T>
+void AbstractDb3<T>::evaluateWindowInverse(typename T::context* context, int argCount, typename T::value** args)
+{
+    void* dataPtr = T::user_data(context);
+    QList<QVariant> argList = getArgs(argCount, args);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
+
+    AbstractDb::evaluateWindowInverse(dataPtr, aggregateContext, argList);
+
+    setAggregateContext(context, aggregateContext);
 }
 
 template <class T>

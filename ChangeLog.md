@@ -8,6 +8,7 @@
 - ADDED: #3886 Added image rendering for image data in the Grid View (plugin-based, so more renderers can be added in future).
 - ADDED: #4027 Added data editor plugin for JSON - with syntax validation and highlighting for editing table data. Contributed by @calumk!
 - ADDED: #5445 Added AUTOINCR option directly to column dialog, reducing clicks needed to create the INTEGER PRIMARY KEY AUTOINCREMENT column.
+- ADDED: #3930 Added support for defining user-defined Aggregate Window Functions in the Functions Editor.
 - ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
 - ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!

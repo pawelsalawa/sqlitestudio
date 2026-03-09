@@ -689,6 +689,22 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool registerAggregateFunction(const QString& name, int argCount, bool deterministic) = 0;
 
         /**
+         * @brief Registers aggregate window custom SQL function.
+         * @param name Name of the function.
+         * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @param deterministic The deterministic function flag used when registering the function.
+         * @return true on success, false on failure.
+         *
+         * Aggregate window functions are similar to aggregate functions, but they can be used as window functions, that is with OVER() clause.
+         * They are used to aggregate data in a window of rows, which is defined by OVER() clause. The difference between aggregate and aggregate window function
+         * is that the latter one doesn't collapse rows into single row, but rather returns aggregated value for each row in the window.
+         *
+         * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
+         * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
+         */
+        virtual bool registerAggregateWindowFunction(const QString& name, int argCount, bool deterministic) = 0;
+
+        /**
          * @brief Registers a collation sequence implementation in the database.
          * @param name Name of the collation.
          * @return true on success, false on failure.
