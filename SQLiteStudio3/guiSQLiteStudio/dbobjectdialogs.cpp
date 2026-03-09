@@ -306,7 +306,6 @@ ChainExecutor* DbObjectDialogs::executeSql(Db* db, const QStringList& sqls)
     executor->setDb(db);
     executor->setAsync(false);
     executor->setDisableForeignKeys(false);
-    executor->setDisableObjectDropsDetection(true);
     executor->setQueries(sqls);
     executor->exec();
     executor->deleteLater();
