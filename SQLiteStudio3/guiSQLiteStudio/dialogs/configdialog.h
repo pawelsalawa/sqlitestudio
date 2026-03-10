@@ -116,7 +116,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QList<CfgCategory*> getShortcutsCfgCategories() const;
         void refreshColorsInSyntaxHighlighters();
         void colorChanged();
-        QList<QWidget*> prepareCodeSyntaxColorsForStyle();
+        QList<QWidget*> getUnmodifiedSyntaxSettingWidgets();
         void adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors);
         void highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin);
         void highlighterPluginUnloaded(SyntaxHighlighterPlugin* plugin);

@@ -13,25 +13,15 @@ class GUI_API_EXPORT ExtendedPalette
     public:
         ExtendedPalette();
 
-        QBrush editorString() const;
-        void setEditorString(const QBrush &value);
-
-        QBrush editorLineBase() const;
-        void setEditorLineBase(const QBrush &value);
-
         bool styleChanged(QStyle* style, const QString& themeName);
 
+        QBrush editorString() const;
+        QBrush editorLineBase() const;
         QBrush mdiAreaBase() const;
-        void setMdiAreaBase(const QBrush& value);
-
         QBrush editorExpression() const;
-        void setEditorExpression(const QBrush& value);
-
         const QBrush& editorCurrentQueryBase() const;
-        void setEditorCurrentQueryBase(const QBrush& newEditorCurrentQueryBrush);
-
         const QBrush& editorLineNumberBase() const;
-        void setEditorLineNumberBaseBrush(const QBrush& newEditorLineNumberBaseBrush);
+        QBrush editorComment() const;
 
     private:
         QBrush editorStringBrush;
@@ -39,6 +29,7 @@ class GUI_API_EXPORT ExtendedPalette
         QBrush editorLineBaseBrush;
         QBrush editorLineNumberBaseBrush;
         QBrush editorCurrentQueryBrush;
+        QBrush editorCommentBrush;
         QBrush mdiAreaBaseBrush;
 
         QVariant initializedForPalette;

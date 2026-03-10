@@ -4,6 +4,7 @@
 #include "iconmanager.h"
 #include "uiconfig.h"
 #include "sqlqueryview.h"
+#include "style.h"
 #include <QDate>
 #include <QDebug>
 #include <QApplication>
@@ -368,7 +369,7 @@ QVariant SqlQueryItem::data(int role) const
         {
             QVariant value = getValue();
             if (isNull(value))
-                return QApplication::style()->standardPalette().dark();
+                return Cfg::getSyntaxCommentFormat().foreground().color();
 
             break;
         }

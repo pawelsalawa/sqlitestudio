@@ -284,18 +284,13 @@ void ConfigDialog::save()
 {
     if (MainWindow::getInstance()->currentStyle().compare(ui->activeStyleCombo->currentText(), Qt::CaseInsensitive) != 0)
     {
-        QList<QWidget*> unmodifiedColors = prepareCodeSyntaxColorsForStyle();
+        QList<QWidget*> unmodifiedColors = getUnmodifiedSyntaxSettingWidgets();
         bool wasDark = STYLE->isDark();
 
         MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
 
         if (STYLE->isDark() != wasDark)
-        {
-            resettingColors = true; // to avoid mass events of color change on syntax page
             adjustSyntaxColorsForStyle(unmodifiedColors);
-            resettingColors = false;
-            colorChanged();
-        }
     }
 
     QString loadedPlugins = collectLoadedPlugins();
@@ -1185,12 +1180,8 @@ void ConfigDialog::notifyPluginsAboutModification(QWidget*, CfgEntry* key, const
 
 void ConfigDialog::resetCodeSyntaxColors()
 {
-    resettingColors = true;
-    for (QWidget*& widget : configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup))
-        configMapper->applyConfigDefaultValueToWidget(widget);
-
-    resettingColors = false;
-    colorChanged();
+    QList<QWidget*> allColors = configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup);
+    adjustSyntaxColorsForStyle(allColors);
 }
 
 void ConfigDialog::colorChanged()
@@ -1203,10 +1194,14 @@ void ConfigDialog::colorChanged()
         codePreviewSqlEditor->colorsConfigChanged();
 }
 
-void ConfigDialog::adjustSyntaxColorsForStyle(QList<QWidget*>& unmodifiedColors)
+void ConfigDialog::adjustSyntaxColorsForStyle(QList<QWidget*>& colors)
 {
-    for (QWidget*& w : unmodifiedColors)
+    resettingColors = true; // to avoid mass events of color change on syntax page
+    for (QWidget*& w : colors)
         configMapper->applyConfigDefaultValueToWidget(w);
+
+    resettingColors = false;
+    colorChanged();
 }
 
 void ConfigDialog::highlighterPluginLoaded(SyntaxHighlighterPlugin* plugin)
@@ -1289,14 +1284,24 @@ void ConfigDialog::restoreLastUsedPage()
     }
 }
 
-QList<QWidget*> ConfigDialog::prepareCodeSyntaxColorsForStyle()
+QList<QWidget*> ConfigDialog::getUnmodifiedSyntaxSettingWidgets()
 {
     QList<QWidget*> unmodified;
     for (QWidget*& w : configMapper->getAllConfigWidgets(ui->commonCodeColorsGroup))
     {
-        CfgEntry* entry = configMapper->getConfigForWidget(w);
-        if (entry->getDefaultValue() == entry->get())
-            unmodified << w;
+        // Checkboxes themselves are not considered for refreshing as unmodified syntax setting.
+        // They are only enablers of other settings, so if they are disabled, their related settings are not applied
+        // and thus not considered modified even if their value is different from default.
+        if (qobject_cast<QCheckBox*>(w))
+            continue;
+
+        // This is Color button or Bold/Italic button - let's check if they are enabled.
+        // If not, they are not considered modified even if their value is different from default,
+        // because they are not applied until enabled.
+        if (w->isEnabled())
+            continue;
+
+        unmodified << w;
     }
     return unmodified;
 }

@@ -6,26 +6,6 @@ ExtendedPalette::ExtendedPalette()
 {
 }
 
-QBrush ExtendedPalette::editorString() const
-{
-    return editorStringBrush;
-}
-
-void ExtendedPalette::setEditorString(const QBrush &value)
-{
-    editorStringBrush = value;
-}
-
-QBrush ExtendedPalette::editorLineBase() const
-{
-    return editorLineBaseBrush;
-}
-
-void ExtendedPalette::setEditorLineBase(const QBrush &value)
-{
-    editorLineBaseBrush = value;
-}
-
 bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
     Q_UNUSED(themeName);
@@ -55,16 +35,28 @@ bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
         editorLineNumberBaseBrush = stdPalette.base().color().lighter(130);
         editorLineBaseBrush = stdPalette.base().color().lighter(130);
         editorCurrentQueryBrush = stdPalette.base().color().lighter(120);
+        editorCommentBrush = stdPalette.text().color().darker(210);
     }
     else
     {
         editorLineNumberBaseBrush = stdPalette.base().color().darker(120);
         editorLineBaseBrush = stdPalette.base().color().darker(120);
         editorCurrentQueryBrush = stdPalette.base().color().darker(110);
+        editorCommentBrush = stdPalette.base().color().darker(160);
         mdiAreaBaseBrush = QColor(138, 138, 138);
     }
 
     return true;
+}
+
+QBrush ExtendedPalette::editorString() const
+{
+    return editorStringBrush;
+}
+
+QBrush ExtendedPalette::editorLineBase() const
+{
+    return editorLineBaseBrush;
 }
 
 QBrush ExtendedPalette::mdiAreaBase() const
@@ -72,19 +64,9 @@ QBrush ExtendedPalette::mdiAreaBase() const
     return mdiAreaBaseBrush;
 }
 
-void ExtendedPalette::setMdiAreaBase(const QBrush& value)
-{
-    mdiAreaBaseBrush = value;
-}
-
 QBrush ExtendedPalette::editorExpression() const
 {
     return editorExpressionBrush;
-}
-
-void ExtendedPalette::setEditorExpression(const QBrush& value)
-{
-    editorExpressionBrush = value;
 }
 
 const QBrush& ExtendedPalette::editorCurrentQueryBase() const
@@ -92,17 +74,12 @@ const QBrush& ExtendedPalette::editorCurrentQueryBase() const
     return editorCurrentQueryBrush;
 }
 
-void ExtendedPalette::setEditorCurrentQueryBase(const QBrush& value)
-{
-    editorCurrentQueryBrush = value;
-}
-
 const QBrush& ExtendedPalette::editorLineNumberBase() const
 {
     return editorLineNumberBaseBrush;
 }
 
-void ExtendedPalette::setEditorLineNumberBaseBrush(const QBrush& newEditorLineNumberBaseBrush)
+QBrush ExtendedPalette::editorComment() const
 {
-    editorLineNumberBaseBrush = newEditorLineNumberBaseBrush;
+    return editorCommentBrush;
 }

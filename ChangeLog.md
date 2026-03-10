@@ -33,6 +33,7 @@
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #4986 Unique indexes are allowed for expressions, as they should be.
+- BUGFIX: #5498 Empty/null cells resulting from LEFT JOINs are not editable anymore.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BUGFIX: #3146 Fixed accent characters support under MacOS.
 - BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.

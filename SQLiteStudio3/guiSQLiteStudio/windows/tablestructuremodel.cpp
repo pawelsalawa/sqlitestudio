@@ -2,6 +2,7 @@
 #include "datagrid/sqlquerymodelcolumn.h"
 #include "iconmanager.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include "uiconfig.h"
 #include <QFont>
 #include <QDebug>
 #include <QMimeData>
@@ -437,7 +438,7 @@ QVariant TableStructureModel::getColumnDefaultColor(int row) const
 {
     QVariant value = getColumnDefault(row);
     if (isNull(value))
-        return QApplication::style()->standardPalette().dark().color();
+        return Cfg::getSyntaxCommentFormat().foreground().color();
 
     return QVariant();
 }
