@@ -1634,17 +1634,22 @@ void TableWindow::updateIndexes()
 
     QTableWidgetItem* item = nullptr;
     int row = 0;
-    for (SqliteCreateIndexPtr index : indexes)
+    for (SqliteCreateIndexPtr& index : indexes)
     {
         item = new QTableWidgetItem(index->index);
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
         ui->indexList->setItem(row, 0, item);
 
-        // TODO a delegate to make the checkbox in the center, or use setCellWidget()
-        item = new QTableWidgetItem();
-        item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
-        item->setCheckState(index->uniqueKw ? Qt::Checked : Qt::Unchecked);
-        ui->indexList->setItem(row, 1, item);
+        QCheckBox *check = new QCheckBox(ui->indexList);
+        check->setChecked(index->uniqueKw);
+        check->setAttribute(Qt::WA_TransparentForMouseEvents);
+        check->setFocusPolicy(Qt::NoFocus);
+        QWidget *container = new QWidget(ui->indexList);
+        QHBoxLayout *layout = new QHBoxLayout(container);
+        layout->addWidget(check);
+        layout->setAlignment(Qt::AlignCenter);
+        layout->setContentsMargins(0, 0, 0, 0);
+        ui->indexList->setCellWidget(row, 1, container);
 
         item = new QTableWidgetItem(indexColumnTokens(index).detokenize());
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);

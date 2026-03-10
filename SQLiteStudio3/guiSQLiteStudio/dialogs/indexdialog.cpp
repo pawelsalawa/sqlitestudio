@@ -192,14 +192,12 @@ void IndexDialog::updateValidation()
     bool partialConditionOk = (!ui->partialIndexCheck->isChecked() ||
                            (ui->partialIndexEdit->isSyntaxChecked() && !ui->partialIndexEdit->haveErrors()));
 
-    bool uniqueAndExprOk = !(ui->uniqueCheck->isChecked() && hasExprColumn);
 
-    setValidState(ui->uniqueCheck, uniqueAndExprOk, tr("Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option."));
     setValidState(ui->tableCombo, tableOk, tr("Pick the table for the index."));
     setValidState(ui->columnsTable, colSelected, tr("Select at least one column."));
     setValidState(ui->partialIndexCheck, partialConditionOk, tr("Enter a valid condition."));
 
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk && uniqueAndExprOk);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk);
 }
 
 void IndexDialog::setTable(const QString& value)
