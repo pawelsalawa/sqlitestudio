@@ -288,37 +288,37 @@
         <translation>Podręcznik edycji sekwencji porządkowania</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="306"/>
+        <location filename="../windows/collationseditor.cpp" line="307"/>
         <source>Enter a non-empty, unique name of the collation.</source>
         <translation>Podaj niepustą, unikalną nazwę sekwencji porządkowania.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="316"/>
+        <location filename="../windows/collationseditor.cpp" line="317"/>
         <source>Pick the implementation language.</source>
         <translation>Wybierz język implementacji.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="321"/>
+        <location filename="../windows/collationseditor.cpp" line="322"/>
         <source>Registration code</source>
         <translation>Kod rejestracyjny</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="322"/>
+        <location filename="../windows/collationseditor.cpp" line="323"/>
         <source>Enter a non-empty registration code.</source>
         <translation>Wprowadź niepusty kod rejestracyjny.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="326"/>
+        <location filename="../windows/collationseditor.cpp" line="327"/>
         <source>Implementation code</source>
         <translation>Kod implementacji</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="327"/>
+        <location filename="../windows/collationseditor.cpp" line="328"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Wprowadź niepusty kod implementacji.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="450"/>
+        <location filename="../windows/collationseditor.cpp" line="451"/>
         <source>Collations editor window has uncommitted modifications.</source>
         <translation>Okno edytora sekwencji porządkowania ma niezatwierdzone zmiany.</translation>
     </message>
@@ -2274,29 +2274,29 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="214"/>
-        <location filename="../dbobjectdialogs.cpp" line="347"/>
+        <location filename="../dbobjectdialogs.cpp" line="346"/>
         <source>Error while dropping %1: %2</source>
         <translation>Błąd podczas porzucania %1: %2</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="323"/>
+        <location filename="../dbobjectdialogs.cpp" line="322"/>
         <source>Delete objects</source>
         <translation>Usuń obiekty</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="324"/>
+        <location filename="../dbobjectdialogs.cpp" line="323"/>
         <source>Are you sure you want to delete following objects:
 %1</source>
         <translation>Czy na pewno chcesz usunąć następujące obiekty:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="331"/>
+        <location filename="../dbobjectdialogs.cpp" line="330"/>
         <source>Cannot start transaction. Details: %1</source>
         <translation>Nie można wystartować transakcji. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../dbobjectdialogs.cpp" line="358"/>
+        <location filename="../dbobjectdialogs.cpp" line="357"/>
         <source>Cannot commit transaction. Details: %1</source>
         <translation>Nie można zatwierdzić transakcji. Szczegóły: %1</translation>
     </message>
@@ -3470,65 +3470,136 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Filtruj funkcje</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="163"/>
+        <location filename="../windows/functionseditor.ui" line="151"/>
         <source>Input arguments</source>
         <translation>Argumenty wejściowe</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="169"/>
+        <location filename="../windows/functionseditor.ui" line="157"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="186"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="189"/>
         <source>Undefined</source>
         <translation>Niezdefiniowane</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="211"/>
+        <location filename="../windows/functionseditor.ui" line="205"/>
         <source>Databases</source>
         <translation>Bazy danych</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="217"/>
+        <location filename="../windows/functionseditor.ui" line="211"/>
         <source>Register in all databases</source>
         <translation>Zarejestruj we wszystkich bazach danych</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="224"/>
+        <location filename="../windows/functionseditor.ui" line="218"/>
         <source>Register in following databases:</source>
         <translation>Zarejestruj w następujących bazach danych:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="259"/>
+        <location filename="../windows/functionseditor.ui" line="253"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="272"/>
+        <location filename="../windows/functionseditor.ui" line="260"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="267"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="274"/>
         <source>Function name:</source>
         <translation>Nazwa funkcji:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="282"/>
+        <location filename="../windows/functionseditor.ui" line="284"/>
         <source>Implementation language:</source>
         <translation>Język implementacji:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="289"/>
+        <location filename="../windows/functionseditor.ui" line="291"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="294"/>
         <source>Deterministic</source>
         <translation>Deterministyczna</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="306"/>
+        <location filename="../windows/functionseditor.ui" line="315"/>
+        <source>Function code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="321"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="332"/>
+        <source>Initialization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="338"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="349"/>
+        <source>Step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="355"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="366"/>
+        <source>Inverse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="372"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="383"/>
+        <source>Aggregated value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.ui" line="389"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Initialization code:</source>
-        <translation>Kod inicjalizacji:</translation>
+        <translation type="vanished">Kod inicjalizacji:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="326"/>
-        <location filename="../windows/functionseditor.cpp" line="452"/>
         <source>Function implementation code:</source>
-        <translation>Kod implementacji funkcji:</translation>
+        <translation type="vanished">Kod implementacji funkcji:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.ui" line="346"/>
         <source>Final step implementation code:</source>
-        <translation>Kod implementacji ostatniego kroku:</translation>
+        <translation type="vanished">Kod implementacji ostatniego kroku:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3586,48 +3657,54 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Przesuń argument funkcji w dół</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="119"/>
+        <location filename="../windows/functionseditor.cpp" line="118"/>
         <source>Scalar</source>
         <translation>Skalarna</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="120"/>
+        <location filename="../windows/functionseditor.cpp" line="119"/>
         <source>Aggregate</source>
         <translation>Agregacyjna</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="435"/>
+        <location filename="../windows/functionseditor.cpp" line="120"/>
+        <source>Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/functionseditor.cpp" line="501"/>
         <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
         <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="448"/>
+        <location filename="../windows/functionseditor.cpp" line="512"/>
         <source>Pick the implementation language.</source>
         <translation>Wybierz język implementacji.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="452"/>
         <source>Per step code:</source>
-        <translation>Kod pojedynczego kroku:</translation>
+        <translation type="vanished">Kod pojedynczego kroku:</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="458"/>
+        <location filename="../windows/functionseditor.cpp" line="530"/>
+        <location filename="../windows/functionseditor.cpp" line="540"/>
+        <location filename="../windows/functionseditor.cpp" line="541"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Wprowadź niepusty kod implementacji.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="531"/>
+        <location filename="../windows/functionseditor.cpp" line="590"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
         <translation>argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="635"/>
+        <location filename="../windows/functionseditor.cpp" line="694"/>
         <source>Function argument cannot be empty and it cannot have duplicated name.</source>
         <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="683"/>
+        <location filename="../windows/functionseditor.cpp" line="742"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation>Okno edytora funkcji ma niezatwierdzone modyfikacje.</translation>
     </message>
