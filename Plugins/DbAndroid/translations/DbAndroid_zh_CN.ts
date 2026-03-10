@@ -77,12 +77,12 @@
 <context>
     <name>DbAndroidInstance</name>
     <message>
-        <location filename="../dbandroidinstance.cpp" line="112"/>
+        <location filename="../dbandroidinstance.cpp" line="121"/>
         <source>Android SQLite driver does not support loadable extensions.</source>
         <translation>Android SQLite 驱动程序不支持可加载的扩展。</translation>
     </message>
     <message>
-        <location filename="../dbandroidinstance.cpp" line="210"/>
+        <location filename="../dbandroidinstance.cpp" line="219"/>
         <source>Connection with Android database &apos;%1&apos; lost.</source>
         <translation>与 Android 数据库 &apos;%1&apos; 的连接丢失。</translation>
     </message>

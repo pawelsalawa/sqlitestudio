@@ -10,7 +10,7 @@
         <translation>无法在关闭的数据库上执行查询。</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="726"/>
+        <location filename="../db/abstractdb.cpp" line="749"/>
         <source>Error attaching database %1: %2</source>
         <translation>附加数据库 %1 时发生错误：%2</translation>
     </message>
@@ -370,48 +370,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="198"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
         <translation>无法创建脚本上下文，可能是插件配置不正确</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="291"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>无效的参数个数。对于函数 %1，需要 %2 个，但得到 %3 个。</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>SQLiteStudio 中没有注册该函数：%1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="413"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>函数 %1(%2) 以 %3 语言注册，但是支持该语言的插件没有被正确加载。</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="431"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>无效的正则表达式模式：%1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="450"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="505"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="525"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
         <source>Error while writting to file %1: %2</source>
         <translation>写入文件 %1 时发生错误：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="543"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
         <source>Unsupported scripting language: %1</source>
         <translation>不支持的脚本语言：%1</translation>
     </message>
@@ -791,23 +791,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>无法以读模式打开文件 &apos;%1&apos;：%2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="420"/>
+        <location filename="../db/abstractdb3.h" line="459"/>
         <source>Could not open database: %1</source>
         <translation>无法打开数据库：%1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="1251"/>
+        <location filename="../db/abstractdb3.h" line="1363"/>
         <source>Result set expired or no row available.</source>
         <translation>结果集过期或者无可用的行。</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="332"/>
-        <location filename="../db/abstractdb3.h" line="336"/>
+        <location filename="../db/abstractdb3.h" line="371"/>
+        <location filename="../db/abstractdb3.h" line="375"/>
         <source>Could not load extension %1: %2</source>
         <translation>无法加载扩展 %1：%2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="444"/>
+        <location filename="../db/abstractdb3.h" line="483"/>
         <source>Could not close database: %1</source>
         <translation>无法关闭数据库：%1</translation>
     </message>
@@ -1124,12 +1124,12 @@ The view will remain as it is.</source>
 <context>
     <name>T</name>
     <message>
-        <location filename="../db/abstractdb3.h" line="629"/>
+        <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
         <translation>数据库文件“%1”已被新版本的 SQLite（格式 %2）修改，而当前应用程序最高支持格式 %3。某些功能可能无法正常工作。</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="882"/>
+        <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
         <translation>已根据需要注册默认排序规则，名称为：%1</translation>
     </message>

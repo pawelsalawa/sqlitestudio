@@ -10,7 +10,7 @@
         <translation>Неможливо виконати запит в закритій базі даних.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="726"/>
+        <location filename="../db/abstractdb.cpp" line="749"/>
         <source>Error attaching database %1: %2</source>
         <translation>Помилка підключення бази даних %1: %2</translation>
     </message>
@@ -370,48 +370,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="198"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
         <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="291"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>Некоректна кількість аргументів для функції &apos;%1&apos;. Очікувалось %2, але отримано %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Немає такої функції, зареєстрованої в SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="413"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>Функція %1(%2) була зареєстрована на мові %3, але плагін, що підтримує мову, наразі не завантажений.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="431"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Невірний шаблон регулярного виразу: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="450"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Неможливо відкрити файл %1 для читання: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="505"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Неможливо відкрити файл %1 для запису: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="525"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Помилка при запису в файл %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="543"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Непідтримуваний скриптова мова: %1</translation>
     </message>
@@ -791,23 +791,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Не вдалося відкрити файл &apos;%1&apos; для читання: %2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="420"/>
+        <location filename="../db/abstractdb3.h" line="459"/>
         <source>Could not open database: %1</source>
         <translation>Не вдалося відкрити базу даних: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="1251"/>
+        <location filename="../db/abstractdb3.h" line="1363"/>
         <source>Result set expired or no row available.</source>
         <translation>Результуюча вибірка застаріла або жоден рядок не доступний.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="332"/>
-        <location filename="../db/abstractdb3.h" line="336"/>
+        <location filename="../db/abstractdb3.h" line="371"/>
+        <location filename="../db/abstractdb3.h" line="375"/>
         <source>Could not load extension %1: %2</source>
         <translation>Не вдалося завантажити розширення %1: %2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="444"/>
+        <location filename="../db/abstractdb3.h" line="483"/>
         <source>Could not close database: %1</source>
         <translation>Не вдалося закрити базу даних: %1</translation>
     </message>
@@ -1124,12 +1124,12 @@ The view will remain as it is.</source>
 <context>
     <name>T</name>
     <message>
-        <location filename="../db/abstractdb3.h" line="629"/>
+        <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
         <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="882"/>
+        <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
         <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>

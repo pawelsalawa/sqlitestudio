@@ -10,7 +10,7 @@
         <translation>Impossibile eseguire la query su un database chiuso.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="726"/>
+        <location filename="../db/abstractdb.cpp" line="749"/>
         <source>Error attaching database %1: %2</source>
         <translation>Errore nell&apos;allegare il database %1: %2</translation>
     </message>
@@ -370,48 +370,48 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="198"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
         <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="291"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>Numero di argomenti non valido per la funzione &apos;%1&apos;. Atteso %2, ma ottenuto %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Funzione inesistente non registrata in SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="413"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>La funzione %1(%2) è stata registrata con la lingua %3, ma il plugin che supporta tale lingua non è attualmente caricato.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="431"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Modello di espressione regolare non valido: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="450"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Apertura del file %1 in lettura fallita: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="505"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Apertura del file %1 in scrittura fallita: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="525"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Errore durante la scrittura sul file %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="543"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Linguaggio di scripting non supportato: %1</translation>
     </message>
@@ -791,23 +791,23 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
         <translation>Impossibile aprire il file &apos;%1&apos; in lettura: %2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="420"/>
+        <location filename="../db/abstractdb3.h" line="459"/>
         <source>Could not open database: %1</source>
         <translation>Impossibile aprire il database: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="1251"/>
+        <location filename="../db/abstractdb3.h" line="1363"/>
         <source>Result set expired or no row available.</source>
         <translation>Risultato impostato scaduto o nessuna riga disponibile.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="332"/>
-        <location filename="../db/abstractdb3.h" line="336"/>
+        <location filename="../db/abstractdb3.h" line="371"/>
+        <location filename="../db/abstractdb3.h" line="375"/>
         <source>Could not load extension %1: %2</source>
         <translation>Impossibile caricare l&apos;estensione %1: %2</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="444"/>
+        <location filename="../db/abstractdb3.h" line="483"/>
         <source>Could not close database: %1</source>
         <translation>Impossibile chiudere il database: %1</translation>
     </message>
@@ -1124,12 +1124,12 @@ La vista rimarrà così com&apos;è.</translation>
 <context>
     <name>T</name>
     <message>
-        <location filename="../db/abstractdb3.h" line="629"/>
+        <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
         <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="882"/>
+        <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
         <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
     </message>
