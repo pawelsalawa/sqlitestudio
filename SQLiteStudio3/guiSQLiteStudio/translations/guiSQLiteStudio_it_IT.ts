@@ -1698,65 +1698,65 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se questa opzione è abilitata, l&apos;assistente del codice verrà attivato quando l&apos;utente preme per esempio &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; per proporre colonne della tabella. Se l&apos;opzione è disabilitata, l&apos;utente dovrà premere esplicitamente il tasto di scelta rapida dell&apos;assistente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="976"/>
+        <location filename="../dialogs/configdialog.cpp" line="977"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Descrizione:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="977"/>
+        <location filename="../dialogs/configdialog.cpp" line="978"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Categoria:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="978"/>
+        <location filename="../dialogs/configdialog.cpp" line="979"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Versione:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="979"/>
+        <location filename="../dialogs/configdialog.cpp" line="980"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Autore:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="981"/>
+        <location filename="../dialogs/configdialog.cpp" line="982"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Nome interno:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="982"/>
+        <location filename="../dialogs/configdialog.cpp" line="983"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Dipendenze:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="983"/>
+        <location filename="../dialogs/configdialog.cpp" line="984"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Conflitti:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="987"/>
+        <location filename="../dialogs/configdialog.cpp" line="988"/>
         <source>Plugin details</source>
         <translation>Dettagli plugin</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1597"/>
+        <location filename="../dialogs/configdialog.cpp" line="1572"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>I plugin vengono caricati/scaricati immediatamente quando selezionati/non selezionati, ma l&apos;elenco modificato dei plugin da caricare all&apos;avvio non viene salvato fino a quando non si effettua il commit dell&apos;intera finestra di configurazione.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1661"/>
+        <location filename="../dialogs/configdialog.cpp" line="1630"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (integrato)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1674"/>
+        <location filename="../dialogs/configdialog.cpp" line="1672"/>
         <source>Details</source>
         <translation>Dettagli</translation>
     </message>
@@ -1766,35 +1766,35 @@
         <translation>Nessun plugin in questa categoria.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1790"/>
-        <location filename="../dialogs/configdialog.cpp" line="1819"/>
+        <location filename="../dialogs/configdialog.cpp" line="1786"/>
+        <location filename="../dialogs/configdialog.cpp" line="1815"/>
         <source>Add new data type</source>
         <translation>Aggiungi un nuovo tipo di file</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1794"/>
-        <location filename="../dialogs/configdialog.cpp" line="1823"/>
+        <location filename="../dialogs/configdialog.cpp" line="1790"/>
+        <location filename="../dialogs/configdialog.cpp" line="1819"/>
         <source>Rename selected data type</source>
         <translation>Rinomina il tipo di dati selezionato</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1798"/>
-        <location filename="../dialogs/configdialog.cpp" line="1827"/>
+        <location filename="../dialogs/configdialog.cpp" line="1794"/>
+        <location filename="../dialogs/configdialog.cpp" line="1823"/>
         <source>Delete selected data type</source>
         <translation>Elimina il tipo di dati selezionato</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1913"/>
+        <location filename="../dialogs/configdialog.cpp" line="1909"/>
         <source>Clear hotkey for this action</source>
         <translation type="unfinished">Clear hotkey for this action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1925"/>
+        <location filename="../dialogs/configdialog.cpp" line="1921"/>
         <source>Restore original hotkey for this action</source>
         <translation type="unfinished">Restore original hotkey for this action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1968"/>
+        <location filename="../dialogs/configdialog.cpp" line="1964"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
     </message>
