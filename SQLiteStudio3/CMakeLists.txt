@@ -7,6 +7,12 @@ include(version)
 sqlitestudio_find_version()
 project(SQLiteStudio3 VERSION "${SQLITESTUDIO_VERSION_STRING}")
 
+add_custom_target(MiscFiles)
+target_sources(MiscFiles PRIVATE
+	../ChangeLog.md
+	../README.md
+)
+
 if(WIN32 OR APPLE)
     set(WITH_PORTABLE_DEFAULT ON)
 endif()

@@ -407,6 +407,10 @@ qt_wrap_ui(PROJECT_SOURCES
     plugins/populatesequence.ui
 )
 
+target_sources(MiscFiles PRIVATE
+        parser/sqlite3_parse.y
+)
+
 add_library(coreSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(coreSQLiteStudio)
 set_target_properties(coreSQLiteStudio PROPERTIES
@@ -417,7 +421,7 @@ target_compile_definitions(coreSQLiteStudio PRIVATE
     CORESQLITESTUDIO_LIBRARY
 )
 target_link_libraries(coreSQLiteStudio PRIVATE
-	SQLite::SQLite3
+    SQLite::SQLite3
     Qt::Core
     Qt::Network
     Qt::Qml
