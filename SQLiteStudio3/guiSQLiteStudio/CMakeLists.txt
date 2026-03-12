@@ -25,6 +25,7 @@ set(PROJECT_HEADERS
     common/immediatetooltip.h
     common/intvalidator.h
     common/ipvalidator.h
+    common/materialswitch.h
     common/mouseshortcut.h
     common/numericspinbox.h
     common/passwordtogglehelper.h
@@ -200,6 +201,7 @@ set(PROJECT_SOURCES
     common/immediatetooltip.cpp
     common/intvalidator.cpp
     common/ipvalidator.cpp
+    common/materialswitch.cpp
     common/mouseshortcut.cpp
     common/numericspinbox.cpp
     common/passwordtogglehelper.cpp

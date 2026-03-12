@@ -1071,6 +1071,10 @@ RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, const SqlQueryModelColu
         QString col = it.next().key();
         if (row->contains(col))
         {
+            QVariant rid = row->value(col);
+            if (rid.isNull()) // may happen for LEFT JOINs, etc, so we won't be able to update such cells
+                return RowId();
+
             // It does, do let's put the actual column name into the RowId and assign the RowId value to it.
             // Using the actucal column name as a key will let create a proper query for updates, etc, later on.
             rowId[it.value()] = row->value(col);

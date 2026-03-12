@@ -76,6 +76,12 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         return nullptr;
     }
 
+    if (item->getRowId().isEmpty())
+    {
+        notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("ROWID is not available for this cell.")));
+        return nullptr;
+    }
+
     bool skipInitSelection = item->shoulSkipInitialFocusSelection();
     if (!item->getColumn()->getFkConstraints().isEmpty())
         return getFkEditor(item, skipInitSelection, parent, model);

@@ -1698,103 +1698,103 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用该选项，当用户键入例如 &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; 到提出表格的列。 如果禁用该选项，用户就必须明确点击助手热键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="981"/>
+        <location filename="../dialogs/configdialog.cpp" line="977"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="982"/>
+        <location filename="../dialogs/configdialog.cpp" line="978"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>分类：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="983"/>
+        <location filename="../dialogs/configdialog.cpp" line="979"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="984"/>
+        <location filename="../dialogs/configdialog.cpp" line="980"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>作者：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="986"/>
+        <location filename="../dialogs/configdialog.cpp" line="982"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>内部名称：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="987"/>
+        <location filename="../dialogs/configdialog.cpp" line="983"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>依赖：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="988"/>
+        <location filename="../dialogs/configdialog.cpp" line="984"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>冲突：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="992"/>
+        <location filename="../dialogs/configdialog.cpp" line="988"/>
         <source>Plugin details</source>
         <translation>插件详情</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1592"/>
+        <location filename="../dialogs/configdialog.cpp" line="1572"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>切换时插件会立即加载/卸载。但此列表的修改仅在点击确定按钮后被保存。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1656"/>
+        <location filename="../dialogs/configdialog.cpp" line="1630"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1（内置）</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1669"/>
+        <location filename="../dialogs/configdialog.cpp" line="1672"/>
         <source>Details</source>
         <translation>详情</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1681"/>
+        <location filename="../dialogs/configdialog.cpp" line="1686"/>
         <source>No plugins in this category.</source>
         <translation>没有此分类下的插件。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1785"/>
-        <location filename="../dialogs/configdialog.cpp" line="1814"/>
+        <location filename="../dialogs/configdialog.cpp" line="1786"/>
+        <location filename="../dialogs/configdialog.cpp" line="1815"/>
         <source>Add new data type</source>
         <translation>添加新的数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1789"/>
-        <location filename="../dialogs/configdialog.cpp" line="1818"/>
+        <location filename="../dialogs/configdialog.cpp" line="1790"/>
+        <location filename="../dialogs/configdialog.cpp" line="1819"/>
         <source>Rename selected data type</source>
         <translation>重命名所选数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1793"/>
-        <location filename="../dialogs/configdialog.cpp" line="1822"/>
+        <location filename="../dialogs/configdialog.cpp" line="1794"/>
+        <location filename="../dialogs/configdialog.cpp" line="1823"/>
         <source>Delete selected data type</source>
         <translation>删除所选数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1908"/>
+        <location filename="../dialogs/configdialog.cpp" line="1909"/>
         <source>Clear hotkey for this action</source>
         <translation>清除该操作的热键</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1920"/>
+        <location filename="../dialogs/configdialog.cpp" line="1921"/>
         <source>Restore original hotkey for this action</source>
         <translation>恢复此操作的原始热键</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1963"/>
+        <location filename="../dialogs/configdialog.cpp" line="1964"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation>您可以在此配置代码语法高亮的颜色。这些颜色在不同语言中共享，不仅适用于 SQL，也适用于 JavaScript 和其他语言。默认情况下使用基于主题的颜色。要定义自己的颜色，请选择特定颜色旁边的复选框，启用自定义颜色。</translation>
     </message>
@@ -3477,12 +3477,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="189"/>
@@ -3512,12 +3512,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="267"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="274"/>
@@ -3532,7 +3532,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="291"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="294"/>
@@ -3542,64 +3542,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="315"/>
         <source>Function code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Function code</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="332"/>
         <source>Initialization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Initialization</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="338"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="349"/>
         <source>Step</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Step</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="355"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="366"/>
         <source>Inverse</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inverse</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="372"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="383"/>
         <source>Aggregated value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aggregated value</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Initialization code:</source>
-        <translation type="vanished">初始化代码：</translation>
-    </message>
-    <message>
-        <source>Function implementation code:</source>
-        <translation type="vanished">函数实现代码：</translation>
-    </message>
-    <message>
-        <source>Final step implementation code:</source>
-        <translation type="vanished">最终一步实现代码：</translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3669,7 +3657,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="120"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Window</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="501"/>
@@ -3680,10 +3668,6 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/functionseditor.cpp" line="512"/>
         <source>Pick the implementation language.</source>
         <translation>选择实现语言。</translation>
-    </message>
-    <message>
-        <source>Per step code:</source>
-        <translation type="vanished">步进代码：</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="530"/>
@@ -3896,51 +3880,50 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>无法正确处理索引 %1。无法打开索引对话框。</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="197"/>
         <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-        <translation>唯一索引不能有索引表达式。从下面的列表中删除表达式，或取消选中此选项。</translation>
+        <translation type="vanished">唯一索引不能有索引表达式。从下面的列表中删除表达式，或取消选中此选项。</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="198"/>
+        <location filename="../dialogs/indexdialog.cpp" line="196"/>
         <source>Pick the table for the index.</source>
         <translation>为索引选择一个表。</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="199"/>
+        <location filename="../dialogs/indexdialog.cpp" line="197"/>
         <source>Select at least one column.</source>
         <translation>选择至少一个列。</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="200"/>
+        <location filename="../dialogs/indexdialog.cpp" line="198"/>
         <source>Enter a valid condition.</source>
         <translation>输入一个有效的条件。</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="272"/>
+        <location filename="../dialogs/indexdialog.cpp" line="270"/>
         <source>default</source>
         <comment>index dialog</comment>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="276"/>
+        <location filename="../dialogs/indexdialog.cpp" line="274"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
         <translation>排序</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="770"/>
-        <location filename="../dialogs/indexdialog.cpp" line="783"/>
+        <location filename="../dialogs/indexdialog.cpp" line="768"/>
+        <location filename="../dialogs/indexdialog.cpp" line="781"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="771"/>
+        <location filename="../dialogs/indexdialog.cpp" line="769"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>无法创建唯一索引，因为选中的列中的值不是唯一的。您想要执行 SELECT 查询以查看有问题的值吗？</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="783"/>
+        <location filename="../dialogs/indexdialog.cpp" line="781"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>在执行 SQL 语句时发生了错误：%1</translation>
@@ -5905,31 +5888,31 @@ find next</source>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="242"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="243"/>
         <source>Committing error:</source>
         <comment>data view tooltip</comment>
         <translation>提交出错：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="246"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="247"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>列：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="247"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="248"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>数据类型：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="250"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>表：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="280"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="281"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>约束：</translation>
@@ -5941,7 +5924,8 @@ find next</source>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="63"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="69"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="262"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
         <source>Cannot edit this cell. Details: %1</source>
         <translation>无法编辑此单元格。详情：%1</translation>
     </message>
@@ -5952,17 +5936,22 @@ find next</source>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="262"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
         <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>在上次加载数据后，此表的结构已更改。重新加载数据以继续。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="224"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
+        <source>ROWID is not available for this cell.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="230"/>
         <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
         <translation>在内联单元格编辑器中编辑庞大的内容并不是一个好主意。它可能会变得缓慢而不方便。它&apos;s 最好在表单视图或弹出编辑器（右键菜单下可用）中编辑这些大内容。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="254"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="260"/>
         <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
         <translation>列 %2 的外键有超过 %1 个可能的值。这太多而不能显示在下拉列表。您需要手动编辑值。</translation>
     </message>
@@ -6031,39 +6020,39 @@ find next</source>
         <translation>数据视图中，已因列数（%2）将每页行数减小（%1）。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1432"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1448"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1497"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1436"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1452"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1501"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>在数据库“%1”执行 SQL 查询时发生错误：%2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1494"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1498"/>
         <source>Error while loading query results: %1</source>
         <translation>在加载查询结果时出错：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1661"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1665"/>
         <source>There are less columns in the new query, sort order has been reset.</source>
         <translation>新查询中的列较少，排序顺序已重置。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1980"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1984"/>
         <source>Insert multiple rows</source>
         <translation>插入多行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1980"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1984"/>
         <source>Number of rows to insert:</source>
         <translation>要插入的行数：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2035"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2039"/>
         <source>Delete rows</source>
         <translation>删除行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2036"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2040"/>
         <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation>您即将删除未提交的新插入的行。行数：%1
@@ -6598,64 +6587,64 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
 <context>
     <name>TableStructureModel</name>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="316"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="317"/>
         <source>Name</source>
         <comment>table structure columns</comment>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="318"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="319"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
         <translation>数据类型</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="320"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="321"/>
         <source>Primary
 Key</source>
         <comment>table structure columns</comment>
         <translation>主键</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="322"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="323"/>
         <source>Foreign
 Key</source>
         <comment>table structure columns</comment>
         <translation>外键</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="324"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="325"/>
         <source>Unique</source>
         <comment>table structure columns</comment>
         <translation>唯一</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="326"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="327"/>
         <source>Check</source>
         <comment>table structure columns</comment>
         <translation>条件</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="328"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="329"/>
         <source>Not
 NULL</source>
         <comment>table structure columns</comment>
         <translation>非空</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="330"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="331"/>
         <source>Collate</source>
         <comment>table structure columns</comment>
         <translation>字符序</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="332"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="333"/>
         <source>Generated</source>
         <comment>table structure columns</comment>
         <translation>生成</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="334"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="335"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
         <translation>默认值</translation>
@@ -6685,7 +6674,7 @@ NULL</source>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1756"/>
+        <location filename="../windows/tablewindow.cpp" line="1761"/>
         <source>Data</source>
         <translation>数据</translation>
     </message>
@@ -7095,41 +7084,41 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>部分索引条件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1681"/>
+        <location filename="../windows/tablewindow.cpp" line="1686"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1682"/>
+        <location filename="../windows/tablewindow.cpp" line="1687"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>事件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1683"/>
+        <location filename="../windows/tablewindow.cpp" line="1688"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>条件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1684"/>
+        <location filename="../windows/tablewindow.cpp" line="1689"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>详情</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1798"/>
+        <location filename="../windows/tablewindow.cpp" line="1803"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>表窗口“%1”有未提交的结构更改与数据。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1800"/>
+        <location filename="../windows/tablewindow.cpp" line="1805"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation>表窗口“%1”有未提交的数据。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1802"/>
+        <location filename="../windows/tablewindow.cpp" line="1807"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>表窗口“%1”有未提交的结构更改。</translation>
     </message>

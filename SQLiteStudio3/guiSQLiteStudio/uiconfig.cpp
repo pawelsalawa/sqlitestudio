@@ -131,7 +131,7 @@ namespace Cfg
 
     QVariant getDefaultSyntaxCommentFg()
     {
-        return STYLE->standardPalette().dark();
+        return STYLE->extendedPalette().editorComment();
     }
 
     QVariant getDefaultSyntaxNumberFg()

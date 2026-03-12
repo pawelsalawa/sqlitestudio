@@ -1699,103 +1699,103 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si cette option est activée, l&apos;assistant de code sera déclenché dans certains cas, par exemple lorsque l&apos;utilisateur écris &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; pour proposer certaines colonnes de la table. Si l&apos;option est désactivée, l&apos;utilisateur devra appuyer explicitement sur la touche de raccourci assistant.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="981"/>
+        <location filename="../dialogs/configdialog.cpp" line="977"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Description :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="982"/>
+        <location filename="../dialogs/configdialog.cpp" line="978"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="983"/>
+        <location filename="../dialogs/configdialog.cpp" line="979"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Version :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="984"/>
+        <location filename="../dialogs/configdialog.cpp" line="980"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Auteur :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="986"/>
+        <location filename="../dialogs/configdialog.cpp" line="982"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Nom interne :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="987"/>
+        <location filename="../dialogs/configdialog.cpp" line="983"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Dépendances :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="988"/>
+        <location filename="../dialogs/configdialog.cpp" line="984"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Conflits :</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="992"/>
+        <location filename="../dialogs/configdialog.cpp" line="988"/>
         <source>Plugin details</source>
         <translation>Détails du plugin</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1592"/>
+        <location filename="../dialogs/configdialog.cpp" line="1572"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>Les plugins sont chargés/déchargés immédiatement avec vérifié/non vérifié, mais les modifications de la liste de plugins à charger au lancement ne sont pas enregistrées avant l’enregistrement de la configuration entière.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1656"/>
+        <location filename="../dialogs/configdialog.cpp" line="1630"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (intégré)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1669"/>
+        <location filename="../dialogs/configdialog.cpp" line="1672"/>
         <source>Details</source>
         <translation>Détails</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1681"/>
+        <location filename="../dialogs/configdialog.cpp" line="1686"/>
         <source>No plugins in this category.</source>
         <translation>Pas de plugins dans cette catégorie.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1785"/>
-        <location filename="../dialogs/configdialog.cpp" line="1814"/>
+        <location filename="../dialogs/configdialog.cpp" line="1786"/>
+        <location filename="../dialogs/configdialog.cpp" line="1815"/>
         <source>Add new data type</source>
         <translation>Ajouter un nouveau type de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1789"/>
-        <location filename="../dialogs/configdialog.cpp" line="1818"/>
+        <location filename="../dialogs/configdialog.cpp" line="1790"/>
+        <location filename="../dialogs/configdialog.cpp" line="1819"/>
         <source>Rename selected data type</source>
         <translation>Renommer le type de données sélectionné</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1793"/>
-        <location filename="../dialogs/configdialog.cpp" line="1822"/>
+        <location filename="../dialogs/configdialog.cpp" line="1794"/>
+        <location filename="../dialogs/configdialog.cpp" line="1823"/>
         <source>Delete selected data type</source>
         <translation>Supprimer le type de données sélectionnées</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1908"/>
+        <location filename="../dialogs/configdialog.cpp" line="1909"/>
         <source>Clear hotkey for this action</source>
         <translation>Effacer le raccourci clavier pour cette action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1920"/>
+        <location filename="../dialogs/configdialog.cpp" line="1921"/>
         <source>Restore original hotkey for this action</source>
         <translation>Restaurer le raccourci clavier original pour cette action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1963"/>
+        <location filename="../dialogs/configdialog.cpp" line="1964"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation>Ici, vous pouvez configurer les couleurs pour la coloration syntaxique du code. Elles sont partagées entre les différentes languages - non seulement pour SQL, mais aussi pour JavaScript et autres. Par défaut, les couleurs sont basées sur le thème utilisée. Pour définir vos propres couleurs, activez l&apos;une des couleurs personnalisées en cochant la case située à côté.</translation>
     </message>
@@ -3477,12 +3477,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="189"/>
@@ -3512,12 +3512,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="267"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="274"/>
@@ -3532,7 +3532,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/functionseditor.ui" line="291"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="294"/>
@@ -3542,64 +3542,52 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/functionseditor.ui" line="315"/>
         <source>Function code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Function code</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="332"/>
         <source>Initialization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Initialization</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="338"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="349"/>
         <source>Step</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Step</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="355"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="366"/>
         <source>Inverse</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inverse</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="372"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="383"/>
         <source>Aggregated value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aggregated value</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Initialization code:</source>
-        <translation type="vanished">Code d’initialisation :</translation>
-    </message>
-    <message>
-        <source>Function implementation code:</source>
-        <translation type="vanished">Fonction de code d’implémentation :</translation>
-    </message>
-    <message>
-        <source>Final step implementation code:</source>
-        <translation type="vanished">Etape finale de code d’implémentaion :</translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3669,7 +3657,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/functionseditor.cpp" line="120"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Window</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="501"/>
@@ -3680,10 +3668,6 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
         <location filename="../windows/functionseditor.cpp" line="512"/>
         <source>Pick the implementation language.</source>
         <translation>Choississez un langage.</translation>
-    </message>
-    <message>
-        <source>Per step code:</source>
-        <translation type="vanished">Code par étape :</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="530"/>
@@ -3896,51 +3880,50 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
         <translation>Impossible de définir l’index %1 correctement. Ouvrir un dialogue d’index valide.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="197"/>
         <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-        <translation>Un index unique ne peut pas avoir d&apos;expressions indexées. Supprimez les expressions de la liste ci-dessous ou décochez cette option.</translation>
+        <translation type="vanished">Un index unique ne peut pas avoir d&apos;expressions indexées. Supprimez les expressions de la liste ci-dessous ou décochez cette option.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="198"/>
+        <location filename="../dialogs/indexdialog.cpp" line="196"/>
         <source>Pick the table for the index.</source>
         <translation>Sélectionnez la table pour l’index.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="199"/>
+        <location filename="../dialogs/indexdialog.cpp" line="197"/>
         <source>Select at least one column.</source>
         <translation>Selectionnez au moins une colonne.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="200"/>
+        <location filename="../dialogs/indexdialog.cpp" line="198"/>
         <source>Enter a valid condition.</source>
         <translation>Saississez une condition valide.</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="272"/>
+        <location filename="../dialogs/indexdialog.cpp" line="270"/>
         <source>default</source>
         <comment>index dialog</comment>
         <translation>defaut</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="276"/>
+        <location filename="../dialogs/indexdialog.cpp" line="274"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
         <translation>Ordre de tri</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="770"/>
-        <location filename="../dialogs/indexdialog.cpp" line="783"/>
+        <location filename="../dialogs/indexdialog.cpp" line="768"/>
+        <location filename="../dialogs/indexdialog.cpp" line="781"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="771"/>
+        <location filename="../dialogs/indexdialog.cpp" line="769"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>Impossible de créer un index, car les valeurs des colonnes sélectionnées ne sont pas uniques. Voulez-vous exécuter une requête SELECT pour voir les valeurs problématiques ?</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="783"/>
+        <location filename="../dialogs/indexdialog.cpp" line="781"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>Une erreur survenue à l’exécution de l’SQL :
@@ -5907,31 +5890,31 @@ recherche suivant</translation>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="242"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="243"/>
         <source>Committing error:</source>
         <comment>data view tooltip</comment>
         <translation>Erreur de validation :</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="246"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="247"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>Colonne :</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="247"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="248"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>Type de données :</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="250"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>Table :</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="280"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="281"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>Contrainte :</translation>
@@ -5943,7 +5926,8 @@ recherche suivant</translation>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="63"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="69"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="262"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
         <source>Cannot edit this cell. Details: %1</source>
         <translation>Impossible de modifier cette cellule. Détails : %1</translation>
     </message>
@@ -5954,17 +5938,22 @@ recherche suivant</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="262"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
         <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>La structure de cette table a changé depuis que les dernières données ont été chargés. Rechargez les données pour continuer.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="224"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
+        <source>ROWID is not available for this cell.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="230"/>
         <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
         <translation>La modification de beaucoup de contenu dans un éditeur de cellules en ligne est une mauvaise idée, elle peut devenir lente et gênante. Il est préférable d&apos;éditer de tels contenus dans une vue formulaire, ou dans l&apos;éditeur contextuel (disponible sous le menu du clic droit).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="254"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="260"/>
         <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
         <translation>La clé étrangère de la colonne %2 a plus de %1 valeurs possibles. C&apos;est trop pour être affiché dans la liste déroulante. Vous devez modifier la valeur manuellement.</translation>
     </message>
@@ -6033,39 +6022,39 @@ recherche suivant</translation>
         <translation>Le nombre de lignes par page a été réduit à %1 en raison du nombre de colonnes (%2) dans la vue des données.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1432"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1448"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1497"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1436"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1452"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1501"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Erreur pendant l’exécution de la requête sur la base de données « %1 » : %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1494"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1498"/>
         <source>Error while loading query results: %1</source>
         <translation>Erreur lors du chargement des résultats de la requête : %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1661"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1665"/>
         <source>There are less columns in the new query, sort order has been reset.</source>
         <translation>Il y a moins de colonnes dans la nouvelle requête, l&apos;ordre tri a été réinitialisé.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1980"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1984"/>
         <source>Insert multiple rows</source>
         <translation>Insérer plusieurs lignes</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1980"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1984"/>
         <source>Number of rows to insert:</source>
         <translation>Nombre de lignes à inserer :</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2035"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2039"/>
         <source>Delete rows</source>
         <translation>Supprimer les lignes</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2036"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2040"/>
         <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation>Vous vous apprêtez à supprimer des lignes nouvellement insérées qui ne sont pas encore validées. Numéros de ligne : %1
@@ -6600,26 +6589,26 @@ Cette suppression sera permanente. Êtes-vous sûr de vouloir les supprimer ?</t
 <context>
     <name>TableStructureModel</name>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="316"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="317"/>
         <source>Name</source>
         <comment>table structure columns</comment>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="318"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="319"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
         <translation>Type de données</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="320"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="321"/>
         <source>Primary
 Key</source>
         <comment>table structure columns</comment>
         <translation>Clé primaire</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="322"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="323"/>
         <source>Foreign
 Key</source>
         <comment>table structure columns</comment>
@@ -6627,19 +6616,19 @@ Key</source>
 étrangère</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="324"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="325"/>
         <source>Unique</source>
         <comment>table structure columns</comment>
         <translation>Unique</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="326"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="327"/>
         <source>Check</source>
         <comment>table structure columns</comment>
         <translation>Contrôle</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="328"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="329"/>
         <source>Not
 NULL</source>
         <comment>table structure columns</comment>
@@ -6647,19 +6636,19 @@ NULL</source>
 NULL</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="330"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="331"/>
         <source>Collate</source>
         <comment>table structure columns</comment>
         <translation>Collecter</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="332"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="333"/>
         <source>Generated</source>
         <comment>table structure columns</comment>
         <translation>Généré</translation>
     </message>
     <message>
-        <location filename="../windows/tablestructuremodel.cpp" line="334"/>
+        <location filename="../windows/tablestructuremodel.cpp" line="335"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
         <translation>Valeur par défaut</translation>
@@ -6689,7 +6678,7 @@ NULL</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1756"/>
+        <location filename="../windows/tablewindow.cpp" line="1761"/>
         <source>Data</source>
         <translation>Données</translation>
     </message>
@@ -7099,41 +7088,41 @@ Voulez-vous valider la structure ou voulez-vous retourner à l&apos;onglet struc
         <translation>Condition partielle d’index</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1681"/>
+        <location filename="../windows/tablewindow.cpp" line="1686"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1682"/>
+        <location filename="../windows/tablewindow.cpp" line="1687"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Événement</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1683"/>
+        <location filename="../windows/tablewindow.cpp" line="1688"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Condition</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1684"/>
+        <location filename="../windows/tablewindow.cpp" line="1689"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Détails</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1798"/>
+        <location filename="../windows/tablewindow.cpp" line="1803"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>La fenêtre de la table &quot;%1&quot; a des modifications de structure et des données invalidées.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1800"/>
+        <location filename="../windows/tablewindow.cpp" line="1805"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation>La fenêtre de la table &quot;%1&quot; a des données invalidées.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1802"/>
+        <location filename="../windows/tablewindow.cpp" line="1807"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>La fenêtre de la table &quot;%1&quot; a des modifications de structure invalidées.</translation>
     </message>
