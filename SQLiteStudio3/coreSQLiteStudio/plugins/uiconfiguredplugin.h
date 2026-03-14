@@ -3,7 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 
-class API_EXPORT UiConfiguredPlugin
+class UiConfiguredPlugin
 {
     public:
         /**
