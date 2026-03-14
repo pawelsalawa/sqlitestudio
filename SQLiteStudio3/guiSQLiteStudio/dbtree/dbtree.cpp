@@ -71,9 +71,6 @@ void DbTree::init()
     ui->setupUi(this);
     initDndTypes();
 
-    QLabel* titleLabel = new QLabel(windowTitle(), this);
-    setTitleBarWidget(titleLabel);
-
     QGridLayout* layout = dynamic_cast<QGridLayout*>(ui->dockWidgetContents->layout());
     layout->setVerticalSpacing(3);
     layout->setContentsMargins(0, 0, 0, 0);
