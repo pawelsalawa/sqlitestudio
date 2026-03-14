@@ -266,8 +266,14 @@ void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
 
     updatingEntry = false;
 
-    for (QWidget* widget : allConfigWidgets)
-        handleDependencySettings(widget);
+    for (CfgEntry* entry : allConfigEntries.values())
+    {
+        if (!configEntryToWidgets.contains(entry))
+            continue;
+
+        QWidget* entryWidget = configEntryToWidgets.value(entry);
+        handleDependencySettings(entry, entryWidget);
+    }
 }
 
 void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
@@ -281,7 +287,7 @@ void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
     applyCommonConfigToWidget(widget, configValue, config);
     updatingEntry = false;
 
-    handleDependencySettings(widget);
+    handleDependencySettings(config, widget);
 }
 
 void ConfigMapper::saveFromWidget(QWidget *widget, bool noTransaction)
@@ -307,7 +313,12 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
         return;
 
     QVariant configValue;
-    if (config.contains(cfgEntry->getFullKey()))
+    if (!cfgEntry->isDependencySatisfied())
+    {
+        // This setting is disabled by the dependency setting.
+        configValue = cfgEntry->getDefaultValue();
+    }
+    else if (config.contains(cfgEntry->getFullKey()))
     {
         configValue = config[cfgEntry->getFullKey()];
         if (!configValue.isValid())
@@ -570,9 +581,9 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
     return results;
 }
 
-void ConfigMapper::handleDependencySettings(QWidget* widget)
+void ConfigMapper::handleDependencySettings(CfgEntry* entry, QWidget* widget)
 {
-    QString boolDependency = widget->property(CFG_BOOL_DEPENDENCY_PROPERTY).toString();
+    QString boolDependency = entry->getDependencyFullKey();
     if (!boolDependency.isNull())
     {
         handleBoolDependencySettings(boolDependency, widget);

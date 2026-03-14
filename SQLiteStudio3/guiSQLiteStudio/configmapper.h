@@ -99,7 +99,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
-        void handleDependencySettings(QWidget* widget);
+        void handleDependencySettings(CfgEntry *entry, QWidget* widget);
         void handleBoolDependencySettings(const QString& boolDependency, QWidget* widget);
         void handleDependencyChange(QWidget* widget);
         bool handleBoolDependencyChange(QWidget* widget);
@@ -119,7 +119,6 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QHash<QWidget*, QList<QWidget*>> boolDependencyToDependingWidget;
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
-        static constexpr const char* CFG_BOOL_DEPENDENCY_PROPERTY = "boolDependency";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";
         static constexpr const char* CFG_PREVIEW_PROPERTY = "preview";
         static constexpr const char* CFG_DATA_DRIVEN_COMBO_PROPERTY = "dataDrivenCombo";

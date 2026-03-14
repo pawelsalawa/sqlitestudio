@@ -81,62 +81,62 @@ namespace Cfg
 
     QVariant getDefaultSyntaxParenthesisBg()
     {
-        return STYLE->standardPalette().windowText();
+        return STYLE->standardPalette().windowText().color();
     }
 
     QVariant getDefaultSyntaxParenthesisFg()
     {
-        return STYLE->standardPalette().window();
+        return STYLE->standardPalette().window().color();
     }
 
     QVariant getDefaultSyntaxCurrentLineBg()
     {
-        return STYLE->extendedPalette().editorLineBase();
+        return STYLE->extendedPalette().editorLineBase().color();
     }
 
     QVariant getDefaultSyntaxCurrentQueryBg()
     {
-        return STYLE->extendedPalette().editorCurrentQueryBase();
+        return STYLE->extendedPalette().editorCurrentQueryBase().color();
     }
 
     QVariant getDefaultSyntaxValidObject()
     {
-        return STYLE->standardPalette().link();
+        return STYLE->standardPalette().link().color();
     }
 
     QVariant getDefaultSyntaxForeground()
     {
-        return STYLE->standardPalette().text();
+        return STYLE->standardPalette().text().color();
     }
 
     QVariant getDefaultSyntaxStringFg()
     {
-        return STYLE->extendedPalette().editorString();
+        return STYLE->extendedPalette().editorString().color();
     }
 
     QVariant getDefaultSyntaxKeywordFg()
     {
-        return STYLE->standardPalette().windowText();
+        return STYLE->standardPalette().windowText().color();
     }
 
     QVariant getDefaultSyntaxBindParamFg()
     {
-        return STYLE->standardPalette().linkVisited();
+        return STYLE->standardPalette().linkVisited().color();
     }
 
     QVariant getDefaultSyntaxBlobFg()
     {
-        return STYLE->standardPalette().text();
+        return STYLE->standardPalette().text().color();
     }
 
     QVariant getDefaultSyntaxCommentFg()
     {
-        return STYLE->extendedPalette().editorComment();
+        return STYLE->extendedPalette().editorComment().color();
     }
 
     QVariant getDefaultSyntaxNumberFg()
     {
-        return STYLE->standardPalette().text();
+        return STYLE->standardPalette().text().color();
     }
 
     DEFINE_FORMAT_FN_BG_FG(getSyntaxParenthesisFormat, SyntaxParenthesisBg, SyntaxParenthesisFg)

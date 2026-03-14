@@ -64,16 +64,7 @@ bool Style::eventFilter(QObject *obj, QEvent *ev)
     if (ev->type() == QEvent::PaletteChange)
     {
         if (extPalette.styleChanged(this, name()))
-        {
-            QList<SyntaxHighlighterPlugin*> plugins = PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>();
-            auto it = plugins.begin();
-            while (it != plugins.end())
-            {
-                (*it)->refreshFormats();
-                it++;
-            }
             emit paletteChanged();
-        }
     }
 
     return false;

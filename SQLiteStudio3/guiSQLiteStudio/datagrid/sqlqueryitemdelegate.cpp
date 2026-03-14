@@ -218,7 +218,7 @@ void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractI
 void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const
 {
     QVariant value = index.data(Qt::EditRole);
-    if (value.userType() == QVariant::Double)
+    if (value.userType() == QMetaType::Double)
     {
         le->setText(doubleToString(value, !CFG_UI.General.UseSciFormatForDoubles.get()));
         return;
