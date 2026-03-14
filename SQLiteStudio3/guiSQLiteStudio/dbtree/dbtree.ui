@@ -50,39 +50,7 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QWidget" name="top" native="true">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QLineEdit" name="nameFilter">
-         <property name="placeholderText">
-          <string>Filter by name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="linkButton">
-         <property name="text">
-          <string notr="true"/>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <widget class="QToolBar" name="toolbar"/>
     </item>
    </layout>
   </widget>
@@ -95,7 +63,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>nameFilter</tabstop>
   <tabstop>treeView</tabstop>
  </tabstops>
  <resources/>

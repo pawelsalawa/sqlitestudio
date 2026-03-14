@@ -9,6 +9,7 @@
 #include <QDockWidget>
 #include <QSet>
 #include <QAtomicInt>
+#include <QLineEdit>
 
 class WidgetCover;
 class QAction;
@@ -98,6 +99,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             EXEC_SQL_FROM_FILE,
             INCR_FONT_SIZE,
             DECR_FONT_SIZE,
+            LINK_WITH_MDI,
             _separator // Never use it directly, it's just for menu setup
         };
         Q_ENUM(Action)
@@ -136,7 +138,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
     private:
         typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;
 
-        void initSmallToolbarButtons();
+        void initSmallToolbarActions();
         void setActionEnabled(int action, bool enabled);
         TableWindow* openTable(DbTreeItem* item);
         TableWindow* openTable(Db* db, const QString& database, const QString& table);
@@ -171,6 +173,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         WidgetCover* treeRefreshWidgetCover = nullptr;
         WidgetCover* fileExecWidgetCover = nullptr;
         SqlFileExecutor* fileExecutor = nullptr;
+        QLineEdit* nameFilter = nullptr;
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
@@ -247,6 +250,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void decrFontSize();
         void resetFilterValueAfterInterrupting();
         void linkWithMdiAreaChanged(const QVariant&);
+        void linkStateToggled(bool checked);
         void updateLinkButtonState();
 
     signals:

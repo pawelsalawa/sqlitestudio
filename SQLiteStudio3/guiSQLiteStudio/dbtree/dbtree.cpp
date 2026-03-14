@@ -70,16 +70,18 @@ void DbTree::init()
 {
     ui->setupUi(this);
     initDndTypes();
+    ui->toolbar->setProperty(MainWindow::CONSTANT_ICON_SIZE, true);
 
     QGridLayout* layout = dynamic_cast<QGridLayout*>(ui->dockWidgetContents->layout());
     layout->setVerticalSpacing(3);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    initSmallToolbarButtons();
-
     fileExecutor = new SqlFileExecutor(this);
 
-    ui->nameFilter->setClearButtonEnabled(true);
+    nameFilter = new QLineEdit(ui->toolbar);
+    nameFilter->setClearButtonEnabled(true);
+    nameFilter->setPlaceholderText(tr("Filter by name"));
+    ui->toolbar->addWidget(nameFilter);
 
     treeRefreshWidgetCover = new WidgetCover(this);
     treeRefreshWidgetCover->initWithInterruptContainer();
@@ -100,7 +102,7 @@ void DbTree::init()
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
 
-    new UserInputFilter(ui->nameFilter, treeModel, SLOT(applyFilter(QString)), true);
+    new UserInputFilter(nameFilter, treeModel, SLOT(applyFilter(QString)), true);
 
     ui->treeView->setDbTree(this);
     ui->treeView->setModel(treeModel);
@@ -132,6 +134,8 @@ void DbTree::init()
 
 void DbTree::createActions()
 {
+    initSmallToolbarActions();
+
     createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
     createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
     createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(selectAll()), this);
@@ -168,7 +172,7 @@ void DbTree::createActions()
     createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete the column"), this, SLOT(delColumn()), this);
     createAction(DEL_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), this, SLOT(deleteSelected()), this);
-    createAction(CLEAR_FILTER, tr("Clear filter"), ui->nameFilter, SLOT(clear()), this);
+    createAction(CLEAR_FILTER, tr("Clear filter"), nameFilter, SLOT(clear()), this);
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("&Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Re&fresh selected database schema"), this, SLOT(refreshSchema()), this);
     createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
@@ -352,7 +356,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             enabled << ADD_TABLE << ADD_VIEW;
     }
 
-    enabled << REFRESH_SCHEMAS;
+    enabled << REFRESH_SCHEMAS << LINK_WITH_MDI;
 
     for (int action : actionMap.keys())
         setActionEnabled(action, enabled.contains(action));
@@ -1935,7 +1939,7 @@ void DbTree::decrFontSize()
 
 void DbTree::resetFilterValueAfterInterrupting()
 {
-    ui->nameFilter->clear();
+    nameFilter->clear();
 }
 
 void DbTree::linkWithMdiAreaChanged(const QVariant&)
@@ -1944,31 +1948,40 @@ void DbTree::linkWithMdiAreaChanged(const QVariant&)
     updateLinkButtonState();
 }
 
+void DbTree::linkStateToggled(bool checked)
+{
+    CFG_UI.DbList.LinkWithMdiArea.set(checked);
+}
+
 void DbTree::updateLinkButtonState()
 {
     if (CFG_UI.DbList.LinkWithMdiArea.get())
     {
-        ui->linkButton->setIcon(ICONS.LINK);
-        ui->linkButton->setToolTip("<html>"
-                                   "<body>"
-                                   "<p>Disable list sync</p>"
-                                   "<p>Currently enabled. The list follows the active window "
-                                   "and automatically selects and reveals the corresponding "
-                                   "database object.</p>"
-                                   "</body>"
-                                   "</html");
+        actionMap[LINK_WITH_MDI]->setIcon(ICONS.LINK);
+        actionMap[LINK_WITH_MDI]->setToolTip(
+                    "<html>"
+                    "<body>"
+                    "<p>Disable list sync</p>"
+                    "<p>Currently enabled. The list follows the active window "
+                    "and automatically selects and reveals the corresponding "
+                    "database object.</p>"
+                    "</body>"
+                    "</html"
+                    );
     }
     else
     {
-        ui->linkButton->setIcon(ICONS.UNLINK);
-        ui->linkButton->setToolTip("<html>"
-                                   "<body>"
-                                   "<p>Enable list sync</p>"
-                                   "<p>Currently disabled. When enabled, the object tree will "
-                                   "follow the active editor and automatically select the "
-                                   "corresponding database object.</p>"
-                                   "</body>"
-                                   "</html");
+        actionMap[LINK_WITH_MDI]->setIcon(ICONS.UNLINK);
+        actionMap[LINK_WITH_MDI]->setToolTip(
+                    "<html>"
+                    "<body>"
+                    "<p>Enable list sync</p>"
+                    "<p>Currently disabled. When enabled, the object tree will "
+                    "follow the active editor and automatically select the "
+                    "corresponding database object.</p>"
+                    "</body>"
+                    "</html"
+                    );
     }
 }
 
@@ -2081,13 +2094,18 @@ void DbTree::setupDefShortcuts()
     BIND_SHORTCUTS(DbTree, Action);
 }
 
-void DbTree::initSmallToolbarButtons()
+void DbTree::initSmallToolbarActions()
 {
+    QAction* linkAction = new QAction("", this);
+    linkAction->setCheckable(true);
+    ui->toolbar->addAction(linkAction);
+    actionMap[LINK_WITH_MDI] = linkAction;
+
     if (CFG_UI.DbList.LinkWithMdiArea.get())
-        ui->linkButton->setChecked(true);
+        actionMap[LINK_WITH_MDI]->setChecked(true);
 
     updateLinkButtonState();
-    connect(ui->linkButton, &QAbstractButton::toggled, this, [this](bool checked) {CFG_UI.DbList.LinkWithMdiArea.set(checked);});
+    connect(actionMap[LINK_WITH_MDI], SIGNAL(toggled(bool)), this, SLOT(linkStateToggled(bool)));
     connect(CFG_UI.DbList.LinkWithMdiArea, SIGNAL(changed(QVariant)), this, SLOT(linkWithMdiAreaChanged(QVariant)));
 }
 
