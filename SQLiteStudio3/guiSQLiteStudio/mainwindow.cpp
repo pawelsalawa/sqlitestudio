@@ -59,6 +59,7 @@
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
 bool MainWindow::safeModeEnabled = false;
+bool MainWindow::sessionRestoringFinished = false;
 int MainWindow::defaultToolbarIconSize = 24;
 
 MainWindow::MainWindow() :
@@ -502,6 +503,8 @@ void MainWindow::saveSession(MdiWindow* currWindow)
 
 void MainWindow::restoreSession()
 {
+    auto cleanup = qScopeGuard([] { sessionRestoringFinished = true;});
+
     if (safeModeEnabled)
     {
         qInfo() << "Safe-Mode active. Skipping last saved session.";
@@ -849,7 +852,7 @@ void MainWindow::closeSelectedWindow()
 
 void MainWindow::renameWindow()
 {
-    MdiWindow* win = ui->mdiArea->getActiveWindow();
+    MdiWindow* win = ui->mdiArea->getCurrentWindow();
     if (!win)
         return;
 
@@ -1224,6 +1227,11 @@ void MainWindow::setSafeMode(bool enabled)
 bool MainWindow::isSafeMode()
 {
     return safeModeEnabled;
+}
+
+bool MainWindow::isSessionRestoringFinished()
+{
+    return sessionRestoringFinished;
 }
 
 bool MainWindow::eventFilter(QObject* obj, QEvent* e)

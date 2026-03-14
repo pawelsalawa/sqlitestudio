@@ -41,6 +41,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QElapsedTimer>
+#include <QLabel>
 #include <QtConcurrent/QtConcurrentRun>
 
 CFG_KEYS_DEFINE(DbTree)
@@ -70,7 +71,11 @@ void DbTree::init()
     ui->setupUi(this);
     initDndTypes();
 
-    THEME_TUNER->manageCompactLayout(widget());
+    QGridLayout* layout = dynamic_cast<QGridLayout*>(ui->dockWidgetContents->layout());
+    layout->setVerticalSpacing(3);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    initSmallToolbarButtons();
 
     fileExecutor = new SqlFileExecutor(this);
 
@@ -659,7 +664,7 @@ void DbTree::restoreSession(const QVariant& sessionValue)
 {
     QHash<QString, QVariant> session = sessionValue.toHash();
     QHash<QString, QVariant> selectionState = session["selectionState"].toHash();
-    if (!selectionState.isEmpty())
+    if (!selectionState.isEmpty() && !CFG_UI.DbList.LinkWithMdiArea.get())
         treeModel->restoreSelectionState(selectionState);
 }
 
@@ -1771,12 +1776,20 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     QSet<Db*> deletedDatabases;
     QSet<Db*> databasesToRefresh;
     QHash<Db*, QList<DbTreeItem*>> tableItemsByDb;
+    QHash<Db*, bool> fkEnforcementWasEnabled;
     for (DbTreeItem* item : items)
     {
+        Db* db = item->getDb();
         if (item->getType() == DbTreeItem::Type::DB)
-            deletedDatabases << item->getDb();
+            deletedDatabases << db;
 
-        databasesToRefresh << item->getDb();
+        databasesToRefresh << db;
+        if (!fkEnforcementWasEnabled.contains(db))
+        {
+            fkEnforcementWasEnabled[db] = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+            if (fkEnforcementWasEnabled[db])
+                db->exec("PRAGMA foreign_keys = 0");
+        }
 
         if (item->getType() == DbTreeItem::Type::TABLE)
             tableItemsByDb[item->getDb()] << item; // tables need preliminary sorting to ensure simplest DDL possible
@@ -1804,6 +1817,14 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
         for (DbTreeItem*& tableItem : tableItems)
             deleteItem(tableItem);
+    }
+
+    QHashIterator<Db*, bool> it(fkEnforcementWasEnabled);
+    while (it.hasNext())
+    {
+        it.next();
+        if (it.value())
+            it.key()->exec("PRAGMA foreign_keys = 1");
     }
 
     for (Db* dbToRefresh : databasesToRefresh)
@@ -1841,6 +1862,46 @@ void DbTree::updateActionsForCurrent()
     updateActionStates(ui->treeView->currentItem());
 }
 
+void DbTree::updateMdiAreaLink()
+{
+    MdiWindow* win = MDIAREA->getCurrentWindow();
+    updateMdiAreaLink(win);
+}
+
+void DbTree::updateMdiAreaLink(MdiWindow* subWin)
+{
+    if (!MainWindow::isSessionRestoringFinished() || !CFG_UI.DbList.LinkWithMdiArea.get())
+        return;
+
+    if (!subWin)
+        return;
+
+    QPair<Db*, QString> dbObj = subWin->getMdiChild()->getSoftDbObjectAssociation();
+    if (!dbObj.first)
+        return;
+
+    DbTreeItem* dbItem = treeModel->findItem(DbTreeItem::Type::DB, dbObj.first);
+    if (!dbItem)
+        return;
+
+    DbTreeItem* itemToSelect = dbItem;
+
+    // First always scroll to the DB item, so it's in the view when table is selected - whenever it's possible.
+    ui->treeView->scrollTo(dbItem->index());
+
+    if (!dbObj.second.isEmpty())
+    {
+        DbTreeItem* objItem = treeModel->findItem(dbItem, DbTreeItem::Type::TABLE, dbObj.second);
+        if (!objItem)
+            objItem = treeModel->findItem(dbItem, DbTreeItem::Type::VIEW, dbObj.second);
+
+        if (objItem)
+            itemToSelect = objItem;
+    }
+    setSelectedItem(itemToSelect);
+    ui->treeView->scrollTo(itemToSelect->index());
+}
+
 void DbTree::setFileExecProgress(int newValue)
 {
     fileExecWidgetCover->setProgress(newValue);
@@ -1875,6 +1936,40 @@ void DbTree::decrFontSize()
 void DbTree::resetFilterValueAfterInterrupting()
 {
     ui->nameFilter->clear();
+}
+
+void DbTree::linkWithMdiAreaChanged(const QVariant&)
+{
+    updateMdiAreaLink();
+    updateLinkButtonState();
+}
+
+void DbTree::updateLinkButtonState()
+{
+    if (CFG_UI.DbList.LinkWithMdiArea.get())
+    {
+        ui->linkButton->setIcon(ICONS.LINK);
+        ui->linkButton->setToolTip("<html>"
+                                   "<body>"
+                                   "<p>Disable list sync</p>"
+                                   "<p>Currently enabled. The list follows the active window "
+                                   "and automatically selects and reveals the corresponding "
+                                   "database object.</p>"
+                                   "</body>"
+                                   "</html");
+    }
+    else
+    {
+        ui->linkButton->setIcon(ICONS.UNLINK);
+        ui->linkButton->setToolTip("<html>"
+                                   "<body>"
+                                   "<p>Enable list sync</p>"
+                                   "<p>Currently disabled. When enabled, the object tree will "
+                                   "follow the active editor and automatically select the "
+                                   "corresponding database object.</p>"
+                                   "</body>"
+                                   "</html");
+    }
 }
 
 void DbTree::dbConnected(Db* db)
@@ -1984,6 +2079,16 @@ void DbTree::setupDefShortcuts()
                        }, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(DbTree, Action);
+}
+
+void DbTree::initSmallToolbarButtons()
+{
+    if (CFG_UI.DbList.LinkWithMdiArea.get())
+        ui->linkButton->setChecked(true);
+
+    updateLinkButtonState();
+    connect(ui->linkButton, &QAbstractButton::toggled, this, [this](bool checked) {CFG_UI.DbList.LinkWithMdiArea.set(checked);});
+    connect(CFG_UI.DbList.LinkWithMdiArea, SIGNAL(changed(QVariant)), this, SLOT(linkWithMdiAreaChanged(QVariant)));
 }
 
 size_t qHash(DbTree::Action action)

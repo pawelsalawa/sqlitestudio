@@ -40,7 +40,7 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     QStyledItemDelegate::paint(painter, opt, index);
 
-    if (!CFG_UI.General.ShowDbTreeLabels.get())
+    if (!CFG_UI.DbList.ShowDbTreeLabels.get())
         return;
 
     switch (item->getType())
@@ -111,7 +111,7 @@ void DbTreeItemDelegate::paintTableLabel(QPainter* painter, const QStyleOptionVi
         return;
     }
 
-    if (!CFG_UI.General.ShowRegularTableLabels.get())
+    if (!CFG_UI.DbList.ShowRegularTableLabels.get())
         return;
 
     int columnsCount = item->child(0)->rowCount();
@@ -122,7 +122,7 @@ void DbTreeItemDelegate::paintTableLabel(QPainter* painter, const QStyleOptionVi
 
 void DbTreeItemDelegate::paintVirtualTableLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const
 {
-    if (!CFG_UI.General.ShowVirtualTableLabels.get())
+    if (!CFG_UI.DbList.ShowVirtualTableLabels.get())
         return;
 
     paintLabel(painter, option, index, item, tr("(virtual)", "virtual table label"));

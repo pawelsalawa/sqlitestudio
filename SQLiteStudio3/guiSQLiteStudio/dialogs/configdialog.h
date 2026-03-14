@@ -181,8 +181,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void configureFormatter(const QString& pluginTitle);
         void activeFormatterChanged();
         void detailsClicked(const QString& pluginName);
-        void failedToLoadPlugin(const QString& pluginName);
-        void loadUnloadPlugin(QTreeWidgetItem* item, int column);
+        void loadUnloadPlugin(const QString& pluginName, bool checked);
         void pluginAboutToUnload(Plugin* plugin, PluginType* type);
         void pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfigLoading = false);
         void pluginUnloaded(const QString& pluginName, PluginType* type);

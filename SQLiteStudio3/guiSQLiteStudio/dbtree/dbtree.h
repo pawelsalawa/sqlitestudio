@@ -136,6 +136,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
     private:
         typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;
 
+        void initSmallToolbarButtons();
         void setActionEnabled(int action, bool enabled);
         TableWindow* openTable(DbTreeItem* item);
         TableWindow* openTable(Db* db, const QString& database, const QString& table);
@@ -180,6 +181,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void refreshSchemas();
         void interrupt();
         void updateActionsForCurrent();
+        void updateMdiAreaLink();
+        void updateMdiAreaLink(MdiWindow* subWin);
 
     private slots:
         void copy();
@@ -223,7 +226,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void delColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
         void deleteSelected();
-        void deleteSelected(ItemFilterFunc filterFunc);
+        void deleteSelected(DbTree::ItemFilterFunc filterFunc);
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);
         void refreshSchema();
         void dbConnected(Db* db);
@@ -243,6 +246,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void incrFontSize();
         void decrFontSize();
         void resetFilterValueAfterInterrupting();
+        void linkWithMdiAreaChanged(const QVariant&);
+        void updateLinkButtonState();
 
     signals:
         void updateFileExecProgress(int value);

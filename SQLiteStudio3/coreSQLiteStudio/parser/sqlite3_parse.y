@@ -2620,18 +2620,21 @@ cmd ::= ANALYZE ID_DB|ID_IDX|ID_TAB.        {}
 //////////////////////// ALTER TABLE table ... ////////////////////////////////
 cmd(X) ::= ALTER TABLE fullname(FN) RENAME
             TO nm(N).                       {
-                                                X = new SqliteAlterTable(
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initRenameTable(
                                                         FN->name1,
                                                         FN->name2,
                                                         *(N)
                                                     );
                                                 delete N;
                                                 delete FN;
+                                                X = alter;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= ALTER TABLE fullname(FN) ADD
             kwcolumn_opt(K) column(C).      {
-                                                X = new SqliteAlterTable(
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initAddColumn(
                                                         FN->name1,
                                                         FN->name2,
                                                         *(K),
@@ -2639,11 +2642,13 @@ cmd(X) ::= ALTER TABLE fullname(FN) ADD
                                                     );
                                                 delete K;
                                                 delete FN;
+                                                X = alter;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= ALTER TABLE fullname(FN) DROP
-           kwcolumn_opt(K) nm(N).           {
-                                                X = new SqliteAlterTable(
+            kwcolumn_opt(K) nm(N).          {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initDropColumn(
                                                         FN->name1,
                                                         FN->name2,
                                                         *(K),
@@ -2652,12 +2657,14 @@ cmd(X) ::= ALTER TABLE fullname(FN) DROP
                                                 delete K;
                                                 delete FN;
                                                 delete N;
+                                                X = alter;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= ALTER TABLE fullname(FN) RENAME
-           kwcolumn_opt(K) nm(N2) TO
-           nm(N3).                          {
-                                               X = new SqliteAlterTable(
+            kwcolumn_opt(K) nm(N2) TO
+            nm(N3).                         {
+                                               auto alter = new SqliteAlterTable();
+                                               alter->initRenameColumn(
                                                        FN->name1,
                                                        FN->name2,
                                                        *(K),
@@ -2668,7 +2675,86 @@ cmd(X) ::= ALTER TABLE fullname(FN) RENAME
                                                delete FN;
                                                delete N2;
                                                delete N3;
+                                               X = alter;
                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) ALTER
+            kwcolumn_opt(K) nm(N2) SET
+            NOT NULL onconf(C).             {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initColumnSetNotNull(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(K),
+                                                        *(N2),
+                                                        *(C)
+                                                    );
+                                                delete K;
+                                                delete N2;
+                                                delete FN;
+                                                delete C;
+                                                X = alter;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) ALTER
+            kwcolumn_opt(K) nm(N2) DROP
+            NOT NULL.                       {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initColumnDropNotNull(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(K),
+                                                        *(N2)
+                                                    );
+                                                delete K;
+                                                delete N2;
+                                                delete FN;
+                                                X = alter;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) ADD
+            CONSTRAINT nm(N2)
+            CHECK LP expr(E) RP onconf(C).  {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initAddCheck(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(N2),
+                                                        E,
+                                                        *(C)
+                                                    );
+                                                delete FN;
+                                                delete N2;
+                                                delete C;
+                                                X = alter;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) ADD
+            CHECK LP expr(E) RP onconf(C).  {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initAddCheck(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        E,
+                                                        *(C)
+                                                    );
+                                                delete FN;
+                                                delete C;
+                                                X = alter;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) DROP
+            CONSTRAINT nm(N2).              {
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initDropConstraint(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(N2)
+                                                    );
+                                                delete FN;
+                                                delete N2;
+                                                X = alter;
+                                                objectForTokens = X;
                                             }
 
 cmd ::= ALTER TABLE fullname RENAME TO
@@ -2678,7 +2764,8 @@ cmd ::= ALTER TABLE fullname RENAME
 cmd(X) ::= ALTER TABLE fullname(FN) RENAME
         kwcolumn_opt(K).                    {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
-                                                X = new SqliteAlterTable(
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initRenameColumn(
                                                         FN->name1,
                                                         FN->name2,
                                                         *(K),
@@ -2687,11 +2774,30 @@ cmd(X) ::= ALTER TABLE fullname(FN) RENAME
                                                     );
                                                 delete K;
                                                 delete FN;
+                                                X = alter;
+                                                objectForTokens = X;
+                                            }
+cmd(X) ::= ALTER TABLE fullname(FN) ALTER
+        kwcolumn_opt(K).                    {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                auto alter = new SqliteAlterTable();
+                                                alter->initColumnSetNotNull(
+                                                        FN->name1,
+                                                        FN->name2,
+                                                        *(K),
+                                                        QString(),
+                                                        SqliteConflictAlgo::null
+                                                    );
+                                                delete K;
+                                                delete FN;
+                                                X = alter;
                                                 objectForTokens = X;
                                             }
 cmd ::= ALTER TABLE fullname RENAME
         kwcolumn_opt nm TO ID_COL_NEW.      {}
 cmd ::= ALTER TABLE nm DOT ID_TAB.          {}
+cmd ::= ALTER TABLE fullname ALTER
+        kwcolumn_opt ID_COL.                {}
 cmd ::= ALTER TABLE ID_DB|ID_TAB.           {}
 
 

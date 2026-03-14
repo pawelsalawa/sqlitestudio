@@ -108,6 +108,17 @@ CFG_UI_CATEGORIES(Ui,
     )
 
     CFG_CATEGORY(DbList,
+        CFG_ENTRY(bool,                    ExpandTables,                true)
+        CFG_ENTRY(bool,                    ExpandViews,                 true)
+        CFG_ENTRY(bool,                    SortObjects,                 true)
+        CFG_ENTRY(bool,                    SortColumns,                 false)
+        CFG_ENTRY(bool,                    ShowSystemObjects,           false)
+        CFG_ENTRY(bool,                    ShowDbTreeLabels,            true) // any labels at all
+        CFG_ENTRY(bool,                    ShowRegularTableLabels,      false)
+        CFG_ENTRY(bool,                    ShowVirtualTableLabels,      true)
+        CFG_ENTRY(bool,                    NewDbNotPermanentByDefault,  false)
+        CFG_ENTRY(bool,                    BypassDbDialogWhenDropped,   true)
+        CFG_ENTRY(bool,                    LinkWithMdiArea,             true)
     )
 
     CFG_CATEGORY(General,
@@ -117,15 +128,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    SqlEditorWrapWords,          false)
         CFG_ENTRY(bool,                    SqlEditorCurrQueryHighlight, true)
         CFG_ENTRY(bool,                    DisableBlinkingCursor,       false)
-        CFG_ENTRY(bool,                    ExpandTables,                true)
-        CFG_ENTRY(bool,                    ExpandViews,                 true)
-        CFG_ENTRY(bool,                    SortObjects,                 true)
-        CFG_ENTRY(bool,                    SortColumns,                 false)
         CFG_ENTRY(bool,                    ExecuteCurrentQueryOnly,     true)
-        CFG_ENTRY(bool,                    ShowSystemObjects,           false)
-        CFG_ENTRY(bool,                    ShowDbTreeLabels,            true) // any labels at all
-        CFG_ENTRY(bool,                    ShowRegularTableLabels,      false)
-        CFG_ENTRY(bool,                    ShowVirtualTableLabels,      true)
         CFG_ENTRY(int,                     NumberOfRowsPerPage,         1000)
         CFG_ENTRY(bool,                    LimitRowsForManyColumns,     true)
         CFG_ENTRY(QString,                 Style,                       &Cfg::getStyleDefaultValue)
@@ -138,8 +141,6 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    OpenViewsOnData,             false)
         CFG_ENTRY(bool,                    DataTabAsFirstInViews,       false)
         CFG_ENTRY(bool,                    AutoOpenStatusField,         true)
-        CFG_ENTRY(bool,                    NewDbNotPermanentByDefault,  false)
-        CFG_ENTRY(bool,                    BypassDbDialogWhenDropped,   false)
         CFG_ENTRY(Cfg::DataEditorsOrder,   DataEditorsOrder,            Cfg::DataEditorsOrder())
         CFG_ENTRY(Cfg::DataRenderers,      DataRenderers,               Cfg::DataRenderers())
         CFG_ENTRY(QString,                 FileDialogLastPath,          QString())

@@ -1210,6 +1210,16 @@ void ConfigImpl::updateConfigDb()
         {
             // 7->8
             db->exec("ALTER TABLE script_functions ADD COLUMN inverseCode TEXT");
+            [[fallthrough]];
+        }
+        case 8:
+        {
+            // 8->9
+            db->exec("UPDATE settings SET [group] = 'DbList' WHERE [group] = 'General' AND [key] IN ("
+                     "       'ExpandTables', 'ExpandViews', 'SortObjects', 'SortColumns', 'ShowSystemObjects',"
+                     "       'ShowDbTreeLabels', 'ShowRegularTableLabels', 'ShowVirtualTableLabels',"
+                     "       'NewDbNotPermanentByDefault', 'BypassDbDialogWhenDropped'"
+                     "       )");
         }
         // Add cases here for next versions,
         // without a "break" instruction,

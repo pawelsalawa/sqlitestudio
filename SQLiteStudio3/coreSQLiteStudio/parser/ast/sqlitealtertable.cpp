@@ -14,16 +14,18 @@ SqliteAlterTable::SqliteAlterTable(const SqliteAlterTable& other)
     DEEP_COPY_FIELD(SqliteCreateTable::Column, newColumn);
 }
 
-SqliteAlterTable::SqliteAlterTable(const QString &name1, const QString &name2, const QString &newName)
-    : SqliteAlterTable()
+SqliteAlterTable::~SqliteAlterTable()
+{
+}
+
+void SqliteAlterTable::initRenameTable(const QString &name1, const QString &name2, const QString &newName)
 {
     command = Command::RENAME;
     initName(name1, name2);
     this->newName = newName;
 }
 
-SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, SqliteCreateTable::Column *column)
-    : SqliteAlterTable()
+void SqliteAlterTable::initAddColumn(const QString& name1, const QString& name2, bool columnKw, SqliteCreateTable::Column *column)
 {
     command = Command::ADD_COLUMN;
     initName(name1, name2);
@@ -33,8 +35,7 @@ SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, b
         column->setParent(this);
 }
 
-SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, const QString& dropColumn)
-    : SqliteAlterTable()
+void SqliteAlterTable::initDropColumn(const QString& name1, const QString& name2, bool columnKw, const QString& dropColumn)
 {
     command = Command::DROP_COLUMN;
     initName(name1, name2);
@@ -42,18 +43,65 @@ SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, b
     this->dropColumnName = dropColumn;
 }
 
-SqliteAlterTable::SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, const QString& oldColumnName, const QString& newColumnName)
-    : SqliteAlterTable()
+void SqliteAlterTable::initRenameColumn(const QString& name1, const QString& name2, bool columnKw, const QString& oldColumnName, const QString& newColumnName)
 {
     command = Command::RENAME_COLUMN;
     initName(name1, name2);
     this->columnKw = columnKw;
-    this->oldColumnName = oldColumnName;
+    this->columnName = oldColumnName;
     this->newColumnName = newColumnName;
 }
 
-SqliteAlterTable::~SqliteAlterTable()
+void SqliteAlterTable::initColumnSetNotNull(const QString& name1, const QString& name2, bool columnKw, const QString& colName, SqliteConflictAlgo algo)
 {
+    command = Command::SET_NOT_NULL;
+    initName(name1, name2);
+    this->columnKw = columnKw;
+    this->columnName = colName;
+    this->onConflict = algo;
+}
+
+void SqliteAlterTable::initColumnDropNotNull(const QString& name1, const QString& name2, bool columnKw, const QString& colName)
+{
+    command = Command::DROP_NOT_NULL;
+    initName(name1, name2);
+    this->columnKw = columnKw;
+    this->columnName = colName;
+}
+
+void SqliteAlterTable::initAddCheck(const QString& name1, const QString& name2, const QString& constrName, SqliteExpr* checkExpr, SqliteConflictAlgo algo)
+{
+    command = Command::ADD_CHECK;
+    initName(name1, name2);
+    this->constraintName = constrName;
+    this->expr = checkExpr;
+    this->onConflict = algo;
+}
+
+void SqliteAlterTable::initAddCheck(const QString& name1, const QString& name2, SqliteExpr* checkExpr, SqliteConflictAlgo algo)
+{
+    command = Command::ADD_CHECK;
+    initName(name1, name2);
+    this->expr = checkExpr;
+    this->onConflict = algo;
+}
+
+void SqliteAlterTable::initDropConstraint(const QString& name1, const QString& name2, const QString& constrName)
+{
+    command = Command::DROP_CONSTRAINT;
+    initName(name1, name2);
+    this->constraintName = constrName;
+}
+
+void SqliteAlterTable::initName(const QString &name1, const QString &name2)
+{
+    if (!name2.isNull())
+    {
+        database = name1;
+        table = name2;
+    }
+    else
+        table = name1;
 }
 
 SqliteStatement* SqliteAlterTable::clone()
@@ -89,8 +137,25 @@ QStringList SqliteAlterTable::getDatabasesInStatement()
 
 TokenList SqliteAlterTable::getColumnTokensInStatement()
 {
-    if (command == Command::DROP_COLUMN && tokensMap.contains("nm"))
-        return extractPrintableTokens(tokensMap["nm"]);
+    switch (command)
+    {
+        case SqliteAlterTable::Command::DROP_COLUMN:
+        case SqliteAlterTable::Command::RENAME_COLUMN:
+        case SqliteAlterTable::Command::SET_NOT_NULL:
+        case SqliteAlterTable::Command::DROP_NOT_NULL:
+        {
+            if (tokensMap.contains("nm"))
+                return extractPrintableTokens(tokensMap["nm"]);
+
+            break;
+        }
+        case SqliteAlterTable::Command::RENAME:
+        case SqliteAlterTable::Command::ADD_COLUMN:
+        case SqliteAlterTable::Command::ADD_CHECK:
+        case SqliteAlterTable::Command::DROP_CONSTRAINT:
+        case SqliteAlterTable::Command::null:
+            break;
+    }
 
     return TokenList();
 }
@@ -123,17 +188,6 @@ QList<SqliteStatement::FullObject> SqliteAlterTable::getFullObjectsInStatement()
     return result;
 }
 
-void SqliteAlterTable::initName(const QString &name1, const QString &name2)
-{
-    if (!name2.isNull())
-    {
-        database = name1;
-        table = name2;
-    }
-    else
-        table = name1;
-}
-
 TokenList SqliteAlterTable::rebuildTokensFromContents(bool replaceStatementTokens) const
 {
     StatementTokenBuilder builder(replaceStatementTokens);
@@ -145,39 +199,62 @@ TokenList SqliteAlterTable::rebuildTokensFromContents(bool replaceStatementToken
 
     builder.withOther(table).withSpace();
 
-    switch (command) {
+    switch (command)
+    {
+        case SqliteAlterTable::Command::SET_NOT_NULL:
+            builder.withKeyword("ALTER").withSpace();
+            if (columnKw)
+                builder.withKeyword("COLUMN").withSpace();
+
+            builder.withOther(columnName).withSpace().withKeyword("SET")
+                    .withSpace().withKeyword("NOT").withSpace().withKeyword("NULL")
+                    .withConflict(onConflict);
+
+            break;
+        case SqliteAlterTable::Command::DROP_NOT_NULL:
+            builder.withKeyword("ALTER").withSpace();
+            if (columnKw)
+                builder.withKeyword("COLUMN").withSpace();
+
+            builder.withOther(columnName).withSpace().withKeyword("DROP")
+                    .withSpace().withKeyword("NOT").withSpace().withKeyword("NULL");
+            break;
+        case SqliteAlterTable::Command::ADD_CHECK:
+            builder.withKeyword("ADD").withSpace();
+            if (!constraintName.isNull())
+                builder.withKeyword("CONSTRAINT").withSpace().withOther(constraintName).withSpace();
+
+            builder.withKeyword("CHECK").withSpace().withParLeft().withStatement(expr).withParRight()
+                    .withConflict(onConflict);
+
+            break;
+        case SqliteAlterTable::Command::DROP_CONSTRAINT:
+            builder.withKeyword("DROP").withSpace().withKeyword("CONSTRAINT").withSpace().withOther(constraintName);
+            break;
         case Command::RENAME:
-        {
             builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName);
             break;
-        }
         case Command::ADD_COLUMN:
-        {
             builder.withKeyword("ADD").withSpace();
             if (columnKw)
                 builder.withKeyword("COLUMN").withSpace();
 
             builder.withStatement(newColumn);
             break;
-        }
         case Command::DROP_COLUMN:
-        {
             builder.withKeyword("DROP").withSpace();
             if (columnKw)
                 builder.withKeyword("COLUMN").withSpace();
 
             builder.withOther(dropColumnName);
             break;
-        }
         case Command::RENAME_COLUMN:
-        {
             builder.withKeyword("RENAME").withSpace();
             if (columnKw)
                 builder.withKeyword("COLUMN").withSpace();
 
-            builder.withOther(oldColumnName).withSpace().withKeyword("TO").withSpace().withOther(newColumnName);
+            builder.withOther(columnName).withSpace().withKeyword("TO").withSpace().withOther(newColumnName);
             break;
-        }
         case Command::null:
             break;
     }

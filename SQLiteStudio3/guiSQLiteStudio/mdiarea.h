@@ -17,7 +17,6 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
         explicit MdiArea(QWidget *parent = 0);
 
         MdiWindow* addSubWindow(MdiChild* mdiChild);
-        MdiWindow* getActiveWindow();
         MdiWindow* getWindowByTitle(const QString& title);
         MdiWindow* getWindowByChild(MdiChild* child);
         MdiWindow* getCurrentWindow();

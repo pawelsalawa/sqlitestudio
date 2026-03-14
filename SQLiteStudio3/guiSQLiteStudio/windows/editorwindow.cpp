@@ -355,6 +355,11 @@ Db* EditorWindow::getCurrentDb()
     return dbCombo->currentDb();
 }
 
+QPair<Db*, QString> EditorWindow::getSoftDbObjectAssociation() const
+{
+    return {dbCombo->currentDb(), QString()};
+}
+
 void EditorWindow::updateResultsDisplayMode()
 {
     switch (resultsDisplayMode)
@@ -585,6 +590,7 @@ void EditorWindow::dbChanged()
 {
     Db* currentDb = getCurrentDb();
     ui->sqlEdit->setDb(currentDb);
+    DBTREE->updateMdiAreaLink();
 }
 
 void EditorWindow::executionSuccessful()

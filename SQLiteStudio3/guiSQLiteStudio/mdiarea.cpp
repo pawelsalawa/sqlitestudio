@@ -5,6 +5,7 @@
 #include "mdiwindow.h"
 #include "taskbar.h"
 #include "uiconfig.h"
+#include "dbtree/dbtree.h"
 #include <QMdiSubWindow>
 #include <QAction>
 #include <QActionGroup>
@@ -47,11 +48,6 @@ MdiWindow *MdiArea::addSubWindow(MdiChild *mdiChild)
     emit windowListChanged();
     emit sessionValueChanged();
     return mdiWin;
-}
-
-MdiWindow *MdiArea::getActiveWindow()
-{
-    return dynamic_cast<MdiWindow*>(activeSubWindow());
 }
 
 void MdiArea::setTaskBar(TaskBar* value)
@@ -126,6 +122,24 @@ void MdiArea::taskActivated()
     emit sessionValueChanged();
 }
 
+void MdiArea::windowActivated()
+{
+    if (!taskBar)
+        return;
+
+    MdiWindow* subWin = dynamic_cast<MdiWindow*>(sender());
+    if (!subWin)
+    {
+        qWarning() << "MdiArea::windowActivated() slot called by sender that is not QMdiSubWindow.";
+        return;
+    }
+
+    QAction* action = winToActionMap[subWin];
+    action->setChecked(true);
+    DBTREE->updateMdiAreaLink(subWin);
+    emit sessionValueChanged();
+}
+
 void MdiArea::windowDestroyed(MdiWindow* window)
 {
     if (!taskBar)
@@ -154,23 +168,6 @@ void MdiArea::windowDestroyed(MdiWindow* window)
 
     if (taskToSelect)
         taskBar->setActiveTask(taskToSelect);
-}
-
-void MdiArea::windowActivated()
-{
-    if (!taskBar)
-        return;
-
-    MdiWindow* subWin = dynamic_cast<MdiWindow*>(sender());
-    if (!subWin)
-    {
-        qWarning() << "MdiArea::windowActivated() slot called by sender that is not QMdiSubWindow.";
-        return;
-    }
-
-    QAction* action = winToActionMap[subWin];
-    action->setChecked(true);
-    emit sessionValueChanged();
 }
 
 void MdiArea::tileHorizontally()

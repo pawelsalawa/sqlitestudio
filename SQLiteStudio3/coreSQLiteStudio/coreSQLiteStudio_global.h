@@ -8,8 +8,7 @@
 #if defined(CORESQLITESTUDIO_LIBRARY)
 #  define API_EXPORT Q_DECL_EXPORT
 #else
-#  define API_EXPORT
-//#  define API_EXPORT Q_DECL_IMPORT
+#  define API_EXPORT Q_DECL_IMPORT
 #endif
 
 #ifdef Q_OS_WIN

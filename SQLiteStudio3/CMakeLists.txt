@@ -7,6 +7,12 @@ include(version)
 sqlitestudio_find_version()
 project(SQLiteStudio3 VERSION "${SQLITESTUDIO_VERSION_STRING}")
 
+add_custom_target(MiscFiles)
+target_sources(MiscFiles PRIVATE
+	../ChangeLog.md
+	../README.md
+)
+
 if(WIN32 OR APPLE)
     set(WITH_PORTABLE_DEFAULT ON)
 endif()
@@ -26,7 +32,7 @@ endif()
 set(CUSTOM_SQLITE3 "" CACHE PATH "Path to directory where you placed your custom SQLite3 files (both library and header)")
 if(CUSTOM_SQLITE3)
 	message("Using custom SQLite3 from: ${CUSTOM_SQLITE3}")
-	set(_sqlite_include "${CUSTOM_SQLITE3}/sqlite3.h")
+	set(_sqlite_include "${CUSTOM_SQLITE3}")
 	if(WIN32)
 		set(_sqlite_lib "${CUSTOM_SQLITE3}/libsqlite3.dll.a")
 	elseif(APPLE)
@@ -39,7 +45,7 @@ if(CUSTOM_SQLITE3)
 		message(FATAL_ERROR "SQLite3 library not found: ${_sqlite_lib}")
 	endif()
 
-	if(NOT EXISTS "${_sqlite_include}")
+	if(NOT EXISTS "${_sqlite_include}/sqlite3.h")
 		message(FATAL_ERROR "SQLite3 include dir not found: ${_sqlite_include}")
 	endif()
 	

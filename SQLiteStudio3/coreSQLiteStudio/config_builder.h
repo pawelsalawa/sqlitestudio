@@ -6,7 +6,15 @@
 #include "config_builder/cfgentry.h"
 #include "config_builder/cfglazyinitializer.h"
 
-#define CFG_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),API_EXPORT)
+#if defined(CORESQLITESTUDIO_LIBRARY)
+#define CFG_EXPORT Q_DECL_EXPORT
+#elif defined(GUISQLITESTUDIO_LIBRARY)
+#define CFG_EXPORT Q_DECL_EXPORT
+#else
+#define CFG_EXPORT
+#endif
+
+#define CFG_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),CFG_EXPORT)
 
 #define CFG_CATEGORY(Name,Body) \
     _CFG_CATEGORY_WITH_TITLE(Name,Body,QString())
@@ -44,10 +52,10 @@
 // They are called from macros above.
 
 #define _CFG_CATEGORIES_WITH_METANAME(Type,Body,MetaName) \
-    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,QString(),API_EXPORT)
+    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,QString(),CFG_EXPORT)
 
 #define _CFG_CATEGORIES_WITH_TITLE(Type,Body,Title) \
-    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",Title,API_EXPORT)
+    _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",Title,CFG_EXPORT)
 
 #define _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,MetaName,Title,ExportType) \
     namespace Cfg\
@@ -71,7 +79,7 @@
     }
 
 #define _CFG_CATEGORY_WITH_TITLE(Name,Body,Title) \
-    struct API_EXPORT _##Name##Type : public CfgCategory\
+    struct CFG_EXPORT _##Name##Type : public CfgCategory\
     {\
         _##Name##Type() : CfgCategory(#Name, Title) {}\
         Body\

@@ -1826,6 +1826,14 @@ Db* TableWindow::getAssociatedDb() const
     return db;
 }
 
+QPair<Db*, QString> TableWindow::getSoftDbObjectAssociation() const
+{
+    if (!existingTable)
+        return {db, QString()};
+
+    return {db, table};
+}
+
 bool TableWindow::isWindowClosingBlocked() const
 {
     return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() ||

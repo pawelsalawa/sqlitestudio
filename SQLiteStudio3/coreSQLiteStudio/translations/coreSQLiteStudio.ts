@@ -822,12 +822,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../parser/sqlite3_parse.cpp" line="2693"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2723"/>
         <source>Parser stack overflow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../parser/sqlite3_parse.cpp" line="6311"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="6456"/>
         <source>Syntax error</source>
         <translation type="unfinished"></translation>
     </message>

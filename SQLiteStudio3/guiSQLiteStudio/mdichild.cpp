@@ -78,6 +78,11 @@ Db* MdiChild::getAssociatedDb() const
     return nullptr;
 }
 
+QPair<Db*, QString> MdiChild::getSoftDbObjectAssociation() const
+{
+    return QPair<Db*, QString>();
+}
+
 void MdiChild::dbClosedFinalCleanup()
 {
 }

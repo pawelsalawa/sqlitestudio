@@ -403,6 +403,14 @@ Db* ViewWindow::getAssociatedDb() const
     return db;
 }
 
+QPair<Db*, QString> ViewWindow::getSoftDbObjectAssociation() const
+{
+    if (!existingView)
+        return {db, QString()};
+
+    return {db, view};
+}
+
 bool ViewWindow::isWindowClosingBlocked() const
 {
     return structureExecutor->isExecuting() || dataModel->isExecutionInProgress() ||
