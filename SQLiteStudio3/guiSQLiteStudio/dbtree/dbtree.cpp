@@ -1779,12 +1779,20 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     QSet<Db*> deletedDatabases;
     QSet<Db*> databasesToRefresh;
     QHash<Db*, QList<DbTreeItem*>> tableItemsByDb;
+    QHash<Db*, bool> fkEnforcementWasEnabled;
     for (DbTreeItem* item : items)
     {
+        Db* db = item->getDb();
         if (item->getType() == DbTreeItem::Type::DB)
-            deletedDatabases << item->getDb();
+            deletedDatabases << db;
 
-        databasesToRefresh << item->getDb();
+        databasesToRefresh << db;
+        if (!fkEnforcementWasEnabled.contains(db))
+        {
+            fkEnforcementWasEnabled[db] = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+            if (fkEnforcementWasEnabled[db])
+                db->exec("PRAGMA foreign_keys = 0");
+        }
 
         if (item->getType() == DbTreeItem::Type::TABLE)
             tableItemsByDb[item->getDb()] << item; // tables need preliminary sorting to ensure simplest DDL possible
@@ -1812,6 +1820,14 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
         for (DbTreeItem*& tableItem : tableItems)
             deleteItem(tableItem);
+    }
+
+    QHashIterator<Db*, bool> it(fkEnforcementWasEnabled);
+    while (it.hasNext())
+    {
+        it.next();
+        if (it.value())
+            it.key()->exec("PRAGMA foreign_keys = 1");
     }
 
     for (Db* dbToRefresh : databasesToRefresh)
