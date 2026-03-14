@@ -155,7 +155,7 @@ void DbDialog::init()
 
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 
-    if (mode == Mode::ADD && CFG_UI.General.NewDbNotPermanentByDefault.get())
+    if (mode == Mode::ADD && CFG_UI.DbList.NewDbNotPermanentByDefault.get())
         ui->permamentCheckBox->setChecked(false);
 
     validate();

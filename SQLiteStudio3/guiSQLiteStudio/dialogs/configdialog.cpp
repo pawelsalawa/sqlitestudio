@@ -238,12 +238,12 @@ void ConfigDialog::init()
     connect(ui->codeColorsResetBtn, SIGNAL(pressed()), this, SLOT(resetCodeSyntaxColors()));
 
     QList<CfgEntry*> entries;
-    entries << CFG_UI.General.SortObjects
-            << CFG_UI.General.SortColumns
-            << CFG_UI.General.ShowDbTreeLabels
-            << CFG_UI.General.ShowRegularTableLabels
-            << CFG_UI.General.ShowSystemObjects
-            << CFG_UI.General.ShowVirtualTableLabels;
+    entries << CFG_UI.DbList.SortObjects
+            << CFG_UI.DbList.SortColumns
+            << CFG_UI.DbList.ShowDbTreeLabels
+            << CFG_UI.DbList.ShowRegularTableLabels
+            << CFG_UI.DbList.ShowSystemObjects
+            << CFG_UI.DbList.ShowVirtualTableLabels;
 
     for (CfgEntry*& cfg : entries)
         connect(cfg, SIGNAL(changed(QVariant)), this, SLOT(markRequiresSchemasRefresh()));

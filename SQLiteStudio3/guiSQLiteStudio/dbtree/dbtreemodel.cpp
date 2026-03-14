@@ -36,7 +36,7 @@ DbTreeModel::DbTreeModel()
 
     connect(CFG, SIGNAL(massSaveBegins()), this, SLOT(massSaveBegins()));
     connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(massSaveCommitted()));
-    connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
+    connect(CFG_UI.DbList.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 
     dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict, confirmConversion, confirmConversionErrors);
     dbOrganizer->setAutoDelete(false);
@@ -558,10 +558,10 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
 
     // Now prepare to create new branch
     SchemaResolver resolver(db);
-    resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
+    resolver.setIgnoreSystemObjects(!CFG_UI.DbList.ShowSystemObjects.get());
 
     // Collect all db objects and build the db branch
-    bool sort = CFG_UI.General.SortObjects.get();
+    bool sort = CFG_UI.DbList.SortObjects.get();
     QList<SchemaResolver::TableListItem> tableListItems = resolver.getAllTableListItems();
     QStringList tables;
     QStringList views;
@@ -627,7 +627,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
 
 QList<QStandardItem*> DbTreeModel::refreshSchemaTableColumns(const QStringList& columns)
 {
-    bool doSort = CFG_UI.General.SortColumns.get();
+    bool doSort = CFG_UI.DbList.SortColumns.get();
 
     QStringList sortedColumns = columns;
     if (doSort)
@@ -699,9 +699,9 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
     QString table = tableItem->text();
 
     SchemaResolver resolver(db);
-    resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
+    resolver.setIgnoreSystemObjects(!CFG_UI.DbList.ShowSystemObjects.get());
 
-    bool sort = CFG_UI.General.SortObjects.get();
+    bool sort = CFG_UI.DbList.SortObjects.get();
 
     DbTreeItem* columnsItem = tableItem->findFirstItem(DbTreeItem::Type::COLUMNS);
     DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
@@ -736,9 +736,9 @@ void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
     QString view = viewItem->text();
 
     SchemaResolver resolver(db);
-    resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
+    resolver.setIgnoreSystemObjects(!CFG_UI.DbList.ShowSystemObjects.get());
 
-    bool sort = CFG_UI.General.SortObjects.get();
+    bool sort = CFG_UI.DbList.SortObjects.get();
 
     DbTreeItem* triggersItem = viewItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
@@ -812,10 +812,10 @@ void DbTreeModel::dbConnected(Db* db, bool expandItem)
     if (expandItem)
     {
         treeView->expand(item->index());
-        if (CFG_UI.General.ExpandTables.get())
+        if (CFG_UI.DbList.ExpandTables.get())
             treeView->expand(item->model()->index(0, 0, item->index())); // also expand tables
 
-        if (CFG_UI.General.ExpandViews.get())
+        if (CFG_UI.DbList.ExpandViews.get())
             treeView->expand(item->model()->index(1, 0, item->index())); // also expand views
     }
     treeView->setCurrentIndex(item->index());
@@ -1333,7 +1333,7 @@ bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
 
         autoTest = false;
         filePath = url.toLocalFile();
-        if (CFG_UI.General.BypassDbDialogWhenDropped.get())
+        if (CFG_UI.DbList.BypassDbDialogWhenDropped.get())
         {
             if (quickAddDroppedDb(filePath))
             {
@@ -1363,7 +1363,7 @@ bool DbTreeModel::quickAddDroppedDb(const QString& filePath)
     QString name = DBLIST->generateUniqueDbName(plugin, filePath);
     QHash<QString,QVariant> opts;
     opts[DB_PLUGIN] = plugin->getName();
-    return DBLIST->addDb(name, filePath, opts, !CFG_UI.General.NewDbNotPermanentByDefault.get());
+    return DBLIST->addDb(name, filePath, opts, !CFG_UI.DbList.NewDbNotPermanentByDefault.get());
 }
 
 void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers)

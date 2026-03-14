@@ -80,6 +80,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         bool isUncommitted() const;
         QString getQuitUncommittedConfirmMessage() const;
         Db* getAssociatedDb() const;
+        QPair<Db*, QString> getSoftDbObjectAssociation() const;
         bool isWindowClosingBlocked() const;
 
         static void staticInit();

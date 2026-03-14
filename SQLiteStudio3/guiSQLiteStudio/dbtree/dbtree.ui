@@ -25,7 +25,7 @@
      <number>0</number>
     </property>
     <property name="verticalSpacing">
-     <number>0</number>
+     <number>3</number>
     </property>
     <item row="1" column="0">
      <widget class="DbTreeView" name="treeView">
@@ -68,6 +68,16 @@
         <widget class="QLineEdit" name="nameFilter">
          <property name="placeholderText">
           <string>Filter by name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="linkButton">
+         <property name="text">
+          <string notr="true"/>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

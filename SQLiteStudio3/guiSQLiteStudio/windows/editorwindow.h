@@ -110,6 +110,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         bool isUncommitted() const;
         QString getQuitUncommittedConfirmMessage() const;
         Db* getCurrentDb();
+        QPair<Db*, QString> getSoftDbObjectAssociation() const;
 
     protected:
         void changeEvent(QEvent *e);
