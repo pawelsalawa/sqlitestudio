@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -445,8 +445,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>456</width>
-                <height>754</height>
+                <width>432</width>
+                <height>731</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -1323,9 +1323,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxForeground</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxForegroundCustom</string>
-                </property>
                </widget>
               </item>
               <item row="0" column="2">
@@ -1349,9 +1346,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxForegroundBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxForegroundCustom</string>
                 </property>
                </widget>
               </item>
@@ -1377,9 +1371,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxForegroundItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxForegroundCustom</string>
                 </property>
                </widget>
               </item>
@@ -1413,9 +1404,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxStringFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxStringFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="1" column="2">
@@ -1439,9 +1427,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxStringFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxStringFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1467,9 +1452,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxStringFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxStringFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1503,9 +1485,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxKeywordFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxKeywordFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="3" column="2">
@@ -1529,9 +1508,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxKeywordFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxKeywordFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1557,9 +1533,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxKeywordFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxKeywordFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1593,9 +1566,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxNumberFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxNumberFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="5" column="2">
@@ -1619,9 +1589,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxNumberFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxNumberFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1647,9 +1614,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxNumberFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxNumberFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1683,9 +1647,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxCommentFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxCommentFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="7" column="2">
@@ -1709,9 +1670,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxCommentFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxCommentFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1737,9 +1695,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxCommentFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxCommentFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1773,9 +1728,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxValidObject</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxValidObjectCustom</string>
-                </property>
                </widget>
               </item>
               <item row="9" column="2">
@@ -1799,9 +1751,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxValidObjectBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxValidObjectCustom</string>
                 </property>
                </widget>
               </item>
@@ -1827,9 +1776,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxValidObjectItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxValidObjectCustom</string>
                 </property>
                </widget>
               </item>
@@ -1863,9 +1809,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBlobFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBlobFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="11" column="2">
@@ -1889,9 +1832,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBlobFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBlobFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1917,9 +1857,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBlobFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBlobFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -1953,9 +1890,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBindParamFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBindParamFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="13" column="2">
@@ -1979,9 +1913,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBindParamFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBindParamFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -2007,9 +1938,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxBindParamFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxBindParamFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -2048,9 +1976,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxCurrentLineBg</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxCurrentLineBgCustom</string>
                 </property>
                </widget>
               </item>
@@ -2093,9 +2018,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxCurrentQueryBg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxCurrentQueryBgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="19" column="0">
@@ -2134,9 +2056,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxParenthesisBg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxParenthesisBgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="21" column="0">
@@ -2163,9 +2082,6 @@
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxParenthesisFg</string>
                 </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxParenthesisFgCustom</string>
-                </property>
                </widget>
               </item>
               <item row="21" column="2">
@@ -2189,9 +2105,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxParenthesisFgBold</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxParenthesisFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -2217,9 +2130,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">Colors.SyntaxParenthesisFgItalic</string>
-                </property>
-                <property name="boolDependency" stdset="0">
-                 <string notr="true">Colors.SyntaxParenthesisFgCustom</string>
                 </property>
                </widget>
               </item>
@@ -2366,8 +2276,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>389</width>
-                <height>363</height>
+                <width>364</width>
+                <height>353</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2822,7 +2732,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -2913,8 +2823,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>235</width>
-                <height>493</height>
+                <width>222</width>
+                <height>481</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">

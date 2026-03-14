@@ -288,6 +288,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void saveSession();
         void scheduleSessionSave();
         void toolbarSizeChangeRequested(int steps);
+        void refreshSyntaxColors();
 
     signals:
         void sessionValueChanged();

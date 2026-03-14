@@ -38,7 +38,7 @@ QVariant CfgEntry::get() const
         return cachedValue;
 
     QVariant cfgVal;
-    if (persistable)
+    if (persistable && isDependencySatisfied())
         cfgVal = CFG->get(parent->toString(), name);
 
     cachedValue = cfgVal;
@@ -69,7 +69,7 @@ void CfgEntry::set(const QVariant &value)
     bool doPersist = persistable && !transaction;
     bool wasChanged = (value != cachedValue);
 
-    if (doPersist && wasChanged)
+    if (doPersist && wasChanged && isDependencySatisfied())
         CFG->set(parent->toString(), name, value);
 
     if (wasChanged)
@@ -194,7 +194,60 @@ CfgEntry::operator CfgEntry*()
     return this;
 }
 
+bool CfgEntry::isDependencySatisfied() const
+{
+    if (!dependencyDef)
+        return true;
+
+    if (!resolvedDependency)
+    {
+        if (dependencyDef->categoryName.isNull())
+        {
+            resolvedDependency = getCategory()->getEntryByName(dependencyDef->entryName);
+        }
+        else
+        {
+            CfgCategory* cat = getMain()->getCategoryByName(dependencyDef->categoryName);
+            if (cat)
+                resolvedDependency = cat->getEntryByName(dependencyDef->entryName);
+        }
+    }
+
+    if (!resolvedDependency)
+    {
+        return true;
+    }
+
+    return resolvedDependency->get().toBool();
+}
+
+QString CfgEntry::getDependencyFullKey() const
+{
+    if (!dependencyDef)
+        return QString();
+
+    static_qstring(keyTpl, "%1.%2");
+    return keyTpl.arg(
+            dependencyDef->categoryName.isNull() ? getCategory()->toString() : dependencyDef->categoryName,
+            dependencyDef->entryName
+        );
+}
+
 CfgEntry::operator QString() const
 {
     return name;
+}
+
+CfgEntry::CfgDependency::CfgDependency(const QString &key)
+{
+    QStringList parts = key.split(".");
+    if (parts.size() >= 2)
+    {
+        categoryName = parts[0];
+        entryName = parts[1];
+    }
+    else if (parts.size() == 1)
+    {
+        entryName = parts[0];
+    }
 }

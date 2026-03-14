@@ -11,12 +11,19 @@ class CfgMain;
 
 class API_EXPORT CfgEntry : public QObject
 {
-        Q_OBJECT
+    Q_OBJECT
 
     friend class CfgCategory;
 
     public:
         typedef QVariant (*DefaultValueProviderFunc)();
+        struct API_EXPORT CfgDependency
+        {
+            explicit CfgDependency(const QString& key);
+
+            QString categoryName;
+            QString entryName;
+        };
 
         explicit CfgEntry(const CfgEntry& other);
         CfgEntry(const QString& name, const QVariant& defValue, const QString& title);
@@ -42,6 +49,8 @@ class API_EXPORT CfgEntry : public QObject
         void rollback();
         CfgCategory* getCategory() const;
         CfgMain* getMain() const;
+        bool isDependencySatisfied() const;
+        QString getDependencyFullKey() const;
 
         /**
          * @brief operator CfgEntry *
@@ -63,6 +72,8 @@ class API_EXPORT CfgEntry : public QObject
         mutable bool cached = false;
         mutable QVariant cachedValue;
         DefaultValueProviderFunc defValueFunc = nullptr;
+        CfgDependency* dependencyDef = nullptr;
+        mutable CfgEntry* resolvedDependency = nullptr;
 
     signals:
         void changed(const QVariant& newValue);
@@ -84,6 +95,18 @@ class CfgTypedEntry : public CfgEntry
 
         CfgTypedEntry(const QString& name, DefaultValueProviderFunc func) :
             CfgTypedEntry(name, func, QString()) {}
+
+        CfgTypedEntry(const QString& name, DefaultValueProviderFunc func, CfgDependency* dependency) :
+            CfgTypedEntry(name, func, QString())
+        {
+            this->dependencyDef = dependency;
+        }
+
+        CfgTypedEntry(const QString& name, const T& defValue, CfgDependency* dependency) :
+            CfgTypedEntry(name, defValue, QString())
+        {
+            this->dependencyDef = dependency;
+        }
 
         CfgTypedEntry(const QString& name, const T& defValue, bool persistable) :
             CfgTypedEntry(name, defValue, QString())

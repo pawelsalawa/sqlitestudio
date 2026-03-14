@@ -168,6 +168,8 @@ void MainWindow::init()
     fixToolbars();
     observeSessionChanges();
 
+    connect(STYLE, SIGNAL(paletteChanged()), this, SLOT(refreshSyntaxColors()));
+
     SQLITESTUDIO->installCrashHandler([this]()
     {
         saveSession();
@@ -516,6 +518,9 @@ void MainWindow::restoreSession()
     {
         THEME_TUNER->tuneCurrentTheme();
         restoreState(saveState()); // workaround for probable Qt bug (?), reported in #3421
+#ifdef Q_OS_WIN
+        setStyle("fusion");
+#endif
         return;
     }
 
@@ -525,7 +530,13 @@ void MainWindow::restoreSession()
         setStyle(styleName);
     }
     else
+    {
+#ifdef Q_OS_WIN
+        setStyle("fusion");
+#else
         THEME_TUNER->tuneCurrentTheme();
+#endif
+    }
 
     QString styleName = currentStyle();
     CFG_UI.General.Style.set(styleName);
@@ -628,6 +639,8 @@ bool MainWindow::setStyle(const QString& styleName)
 
     STYLE->setStyle(style, styleName);
     statusField->refreshColors();
+    CFG_UI.General.Style.set(styleName);
+
     return true;
 }
 
@@ -705,6 +718,38 @@ void MainWindow::toolbarSizeChangeRequested(int steps)
 
     int percInt = toolbarSizes[toolbarSizeActionList[idx]];
     CFG_UI.General.ToolBarIconSize.set(percInt);
+}
+
+void MainWindow::refreshSyntaxColors()
+{
+    QHashIterator<QString, CfgEntry*> it = CFG_UI.Colors.getEntries();
+    while (it.hasNext())
+    {
+        it.next();
+        if (it.value()->getDefaultValue().metaType() != QMetaType::fromType<QColor>())
+            continue;
+
+        CfgEntry* customEntry = CFG_UI.Colors.getEntryByName(it.key() + "Custom");
+        if (!customEntry)
+        {
+            qWarning() << "Color setting" << it.value()->getFullKey() << "has no associated"
+                       << (it.value()->getFullKey() + "Custom") << "setting";
+            continue;
+        }
+
+        if (customEntry->get().toBool())
+            continue; // customized by user
+
+        it.value()->reset();
+    }
+
+    QList<SyntaxHighlighterPlugin*> plugins = PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>();
+    auto pluginIt = plugins.begin();
+    while (pluginIt != plugins.end())
+    {
+        (*pluginIt)->refreshFormats();
+        pluginIt++;
+    }
 }
 
 void MainWindow::updateToolbarStyle()
