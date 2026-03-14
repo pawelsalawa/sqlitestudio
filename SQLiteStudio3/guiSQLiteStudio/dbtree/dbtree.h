@@ -63,6 +63,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             DELETE_DB,
             CONNECT_TO_DB,
             DISCONNECT_FROM_DB,
+            CONNECT_DISCONNECT_DB,
             IMPORT_INTO_DB,
             EXPORT_DB,
             VACUUM_DB,
@@ -163,6 +164,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
         void changeFontSize(int factor);
         void updateIconSize();
+        void updateConnectDisconnectAction(bool isDbOpen);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
@@ -252,6 +254,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void linkWithMdiAreaChanged(const QVariant&);
         void linkStateToggled(bool checked);
         void updateLinkButtonState();
+        void connectDisconnectClicked();
 
     signals:
         void updateFileExecProgress(int value);

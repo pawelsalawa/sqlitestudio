@@ -27,6 +27,7 @@
 - CHANGE: #4862 SQL Editor is now tied to a file whenever loads or saves to that file and that tie is restored upon next application session. It also renames editor window to that file name.
 - CHANGE: #4762 Colors configuration for syntax highlighting now allows defining also bold/italic attributes.
 - CHANGE: #5541 Plugins Page in Configuration Dialog uses now a material-design-like toggle for loading/unloading plugins + each plugin has more vertical padding and is clickable as a whole row, not just a small box.
+- CHANGE: #5561 Database actions on main toolbar simplified, partially moved to Database List panel.
 - CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two. Also views/triggers support got improved for cases with subselects.
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.

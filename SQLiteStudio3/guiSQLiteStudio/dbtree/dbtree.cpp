@@ -70,18 +70,12 @@ void DbTree::init()
 {
     ui->setupUi(this);
     initDndTypes();
-    ui->toolbar->setProperty(MainWindow::CONSTANT_ICON_SIZE, true);
 
     QGridLayout* layout = dynamic_cast<QGridLayout*>(ui->dockWidgetContents->layout());
     layout->setVerticalSpacing(3);
     layout->setContentsMargins(0, 0, 0, 0);
 
     fileExecutor = new SqlFileExecutor(this);
-
-    nameFilter = new QLineEdit(ui->toolbar);
-    nameFilter->setClearButtonEnabled(true);
-    nameFilter->setPlaceholderText(tr("Filter by name"));
-    ui->toolbar->addWidget(nameFilter);
 
     treeRefreshWidgetCover = new WidgetCover(this);
     treeRefreshWidgetCover->initWithInterruptContainer();
@@ -134,8 +128,6 @@ void DbTree::init()
 
 void DbTree::createActions()
 {
-    initSmallToolbarActions();
-
     createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
     createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
     createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(selectAll()), this);
@@ -184,6 +176,8 @@ void DbTree::createActions()
     createAction(EXEC_SQL_FROM_FILE, ICONS.EXEC_SQL_FROM_FILE, tr("Execute SQL from file"), this, SLOT(execSqlFromFile()), this);
     createAction(INCR_FONT_SIZE, tr("Increase font size", "database list"), this, SLOT(incrFontSize()), this);
     createAction(DECR_FONT_SIZE, tr("Decrease font size", "database list"), this, SLOT(decrFontSize()), this);
+
+    initSmallToolbarActions();
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
@@ -210,7 +204,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
         if (dbTreeItem->getDb())
         {
-            enabled << DELETE_DB << EDIT_DB;
+            enabled << DELETE_DB << EDIT_DB << CONNECT_DISCONNECT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
                 enabled << DISCONNECT_FROM_DB << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA
@@ -341,10 +335,12 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 break;
             }
         }
+        updateConnectDisconnectAction(isDbOpen);
     }
     else
     {
         enabled << CREATE_GROUP << ADD_DB;
+        updateConnectDisconnectAction(false);
     }
 
     if (treeModel->rowCount() > 0)
@@ -1961,8 +1957,9 @@ void DbTree::updateLinkButtonState()
         actionMap[LINK_WITH_MDI]->setToolTip(
                     "<html>"
                     "<body>"
-                    "<p>Disable list sync</p>"
-                    "<p>Currently enabled. The list follows the active window "
+                    "<p>List sync enabled.</p>"
+                    "<p>Click to disable.</p>"
+                    "<p>The list follows the active window "
                     "and automatically selects and reveals the corresponding "
                     "database object.</p>"
                     "</body>"
@@ -1975,14 +1972,24 @@ void DbTree::updateLinkButtonState()
         actionMap[LINK_WITH_MDI]->setToolTip(
                     "<html>"
                     "<body>"
-                    "<p>Enable list sync</p>"
-                    "<p>Currently disabled. When enabled, the object tree will "
+                    "<p>List sync disabled.</p>"
+                    "<p>Click to enable.</p>"
+                    "<p>When enabled, the object tree will "
                     "follow the active editor and automatically select the "
                     "corresponding database object.</p>"
                     "</body>"
                     "</html"
                     );
     }
+}
+
+void DbTree::connectDisconnectClicked()
+{
+    bool isDbOpen = actionMap[CONNECT_DISCONNECT_DB]->data().toBool();
+    if (isDbOpen)
+        disconnectFromDb();
+    else
+        connectToDb();
 }
 
 void DbTree::dbConnected(Db* db)
@@ -2096,10 +2103,22 @@ void DbTree::setupDefShortcuts()
 
 void DbTree::initSmallToolbarActions()
 {
-    QAction* linkAction = new QAction("", this);
-    linkAction->setCheckable(true);
-    ui->toolbar->addAction(linkAction);
-    actionMap[LINK_WITH_MDI] = linkAction;
+    nameFilter = new QLineEdit(ui->toolbar);
+    nameFilter->setClearButtonEnabled(true);
+    nameFilter->setPlaceholderText(tr("Filter by name"));
+    nameFilter->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    ui->toolbar->addWidget(nameFilter);
+    ui->toolbar->addSeparator();
+
+    createAction(CONNECT_DISCONNECT_DB, "", this, SLOT(connectDisconnectClicked()), this);
+    updateConnectDisconnectAction(false);
+
+    ui->toolbar->addAction(actionMap[CONNECT_DISCONNECT_DB]);
+    ui->toolbar->addSeparator();
+
+    actionMap[LINK_WITH_MDI] = new QAction("", this);
+    actionMap[LINK_WITH_MDI]->setCheckable(true);
+    ui->toolbar->addAction(actionMap[LINK_WITH_MDI]);
 
     if (CFG_UI.DbList.LinkWithMdiArea.get())
         actionMap[LINK_WITH_MDI]->setChecked(true);
@@ -2107,6 +2126,29 @@ void DbTree::initSmallToolbarActions()
     updateLinkButtonState();
     connect(actionMap[LINK_WITH_MDI], SIGNAL(toggled(bool)), this, SLOT(linkStateToggled(bool)));
     connect(CFG_UI.DbList.LinkWithMdiArea, SIGNAL(changed(QVariant)), this, SLOT(linkWithMdiAreaChanged(QVariant)));
+}
+
+void DbTree::updateConnectDisconnectAction(bool isDbOpen)
+{
+    actionMap[CONNECT_DISCONNECT_DB]->setText(isDbOpen ?
+                tr(
+                    "<html>"
+                    "<body>"
+                    "<p>Connected.</p>"
+                    "<p>Click to disconnect.</p>"
+                    "</body>"
+                    "</html>"
+                ) :
+                tr(
+                    "<html>"
+                    "<body>"
+                    "<p>Disconnected.</p>"
+                    "<p>Click to connect.</p>"
+                    "</body>"
+                    "</html>"
+                ));
+    actionMap[CONNECT_DISCONNECT_DB]->setIcon(isDbOpen ? ICONS.DATABASE_CONNECT : ICONS.DATABASE_DISCONNECT);
+    actionMap[CONNECT_DISCONNECT_DB]->setData(isDbOpen);
 }
 
 size_t qHash(DbTree::Action action)

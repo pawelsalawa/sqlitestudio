@@ -337,9 +337,6 @@ void MainWindow::createActions()
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
 
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
-    ui->dbToolbar->addSeparator();
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::ADD_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
