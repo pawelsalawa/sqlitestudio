@@ -13,10 +13,6 @@
 #include <functional>
 #include <QVariant>
 #include <QDataStream>
-#include <QtSystemDetection>
-#ifdef Q_OS_WIN
-#include <QMetaMethod>
-#endif
 
 class QStringConverter;
 class QStringEncoder;
