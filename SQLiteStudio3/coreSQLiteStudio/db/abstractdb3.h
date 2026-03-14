@@ -824,13 +824,13 @@ void AbstractDb3<T>::evaluateAggregateStep(typename T::context* context, int arg
 }
 
 template<class T>
-inline void AbstractDb3<T>::evaluateWindowStep(T::context* context, int argCount, T::value** args)
+inline void AbstractDb3<T>::evaluateWindowStep(typename T::context* context, int argCount, typename T::value** args)
 {
     typedEvaluateAggregateStep(context, argCount, args, FunctionManager::FunctionBase::AGG_WINDOW);
 }
 
 template<class T>
-inline void AbstractDb3<T>::typedEvaluateAggregateStep(T::context* context, int argCount, T::value** args, FunctionManager::FunctionBase::Type type)
+inline void AbstractDb3<T>::typedEvaluateAggregateStep(typename T::context* context, int argCount, typename T::value** args, FunctionManager::FunctionBase::Type type)
 {
     void* dataPtr = T::user_data(context);
     QList<QVariant> argList = getArgs(argCount, args);
@@ -848,13 +848,13 @@ void AbstractDb3<T>::evaluateAggregateFinal(typename T::context* context)
 }
 
 template<class T>
-inline void AbstractDb3<T>::evaluateWindowFinal(T::context* context)
+inline void AbstractDb3<T>::evaluateWindowFinal(typename T::context* context)
 {
     typedEvaluateAggregateFinal(context, FunctionManager::FunctionBase::AGG_WINDOW);
 }
 
 template<class T>
-inline void AbstractDb3<T>::typedEvaluateAggregateFinal(T::context* context, FunctionManager::FunctionBase::Type type)
+inline void AbstractDb3<T>::typedEvaluateAggregateFinal(typename T::context* context, FunctionManager::FunctionBase::Type type)
 {
     void* dataPtr = T::user_data(context);
     QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
