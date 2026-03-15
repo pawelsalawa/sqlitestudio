@@ -256,7 +256,7 @@ void TableWindow::createStructureActions()
     // Table constraints
     createAction(ADD_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_ADD, tr("Add table constraint", "table window"), this, SLOT(addConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(EDIT_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_EDIT, tr("Edit table constraint", "table window"), this, SLOT(editConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(DEL_TABLE_CONSTRAINT, ICONS.TABLE_COLUMN_DELETE, tr("Delete table constraint", "table window"), this, SLOT(delConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(DEL_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_DELETE, tr("Delete table constraint", "table window"), this, SLOT(delConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(MOVE_CONSTRAINT_UP, ICONS.MOVE_UP, tr("Move table constraint up", "table window"), this, SLOT(moveConstraintUp()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     createAction(MOVE_CONSTRAINT_DOWN, ICONS.MOVE_DOWN, tr("Move table constraint down", "table window"), this, SLOT(moveConstraintDown()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     separatorAfterAction[MOVE_CONSTRAINT_DOWN] = ui->tableConstraintsToolbar->addSeparator();
