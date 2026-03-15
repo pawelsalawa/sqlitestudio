@@ -20,9 +20,9 @@ bool ErdEditorPlugin::init()
     openErdEditorAction = new QAction(QIcon(":/icons/erdeditor.svg"), tr("Open ERD editor"), this);
     connect(openErdEditorAction, SIGNAL(triggered()), this, SLOT(openEditor()));
 
-    QAction* ddlHistoryAction = MAINWINDOW->getAction(MainWindow::OPEN_DDL_HISTORY);
-    MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->insertAction(ddlHistoryAction, openErdEditorAction);
-    MAINWINDOW->getToolsMenu()->insertAction(ddlHistoryAction, openErdEditorAction);
+    QAction* functionsEditorAction = MAINWINDOW->getAction(MainWindow::OPEN_FUNCTION_EDITOR);
+    MAINWINDOW->getToolBar(MainWindow::TOOLBAR_MAIN)->insertAction(functionsEditorAction, openErdEditorAction);
+    MAINWINDOW->getToolsMenu()->insertAction(functionsEditorAction, openErdEditorAction);
 
     qRegisterMetaType<ErdChange*>();
 

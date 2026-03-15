@@ -22,10 +22,9 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     ui->tabWidget->setTabVisible(ui->tabWidget->indexOf(ui->triggersTab), false);
 
     ui->structureToolBar->removeAction(actionMap[REFRESH_STRUCTURE]);
-    ui->structureToolBar->removeAction(separatorAfterAction[REFRESH_STRUCTURE]);
+    ui->structureToolBar->removeAction(actionMap[CREATE_SIMILAR]);
+    ui->structureToolBar->removeAction(actionMap[RESET_AUTOINCREMENT]);
     ui->structureToolBar->removeAction(separatorAfterAction[MOVE_COLUMN_DOWN]);
-    ui->structureToolBar->removeAction(actionMap[ADD_INDEX_STRUCT]);
-    ui->structureToolBar->removeAction(actionMap[ADD_TRIGGER_STRUCT]);
 
     QString commitText = tr("Apply changes to diagram", "ERD editor");
     QString cancelText = tr("Abort changes", "ERD editor");
@@ -33,11 +32,6 @@ ErdTableWindow::ErdTableWindow(Db* db, ErdEntity* entity, QWidget* parent)
     actionMap[COMMIT_STRUCTURE]->setToolTip(commitText);
     actionMap[ROLLBACK_STRUCTURE]->setText(cancelText);
     actionMap[ROLLBACK_STRUCTURE]->setToolTip(cancelText);
-
-    QList<QAction*> structActions = ui->structureToolBar->actions();
-    int removeFrom = structActions.indexOf(separatorAfterAction[ADD_TRIGGER_STRUCT]);
-    for (QAction*& act : structActions.mid(removeFrom))
-        ui->structureToolBar->removeAction(act);
 
     initDbAndTable();
     updateAfterInit();

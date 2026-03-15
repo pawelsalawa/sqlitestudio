@@ -243,13 +243,6 @@ void TableWindow::createStructureActions()
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
     separatorAfterAction[MOVE_COLUMN_DOWN] = ui->structureToolBar->addSeparator();
-    createAction(ADD_INDEX_STRUCT, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->structureToolBar, ui->structureView);
-    createAction(ADD_TRIGGER_STRUCT, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->structureToolBar, ui->structureView);
-    separatorAfterAction[ADD_TRIGGER_STRUCT] = ui->structureToolBar->addSeparator();
-    ui->structureToolBar->addAction(actionMap[IMPORT]);
-    ui->structureToolBar->addAction(actionMap[EXPORT]);
-    ui->structureToolBar->addAction(actionMap[POPULATE]);
-    separatorAfterAction[POPULATE] = ui->structureToolBar->addSeparator();
     createAction(CREATE_SIMILAR, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
     createAction(RESET_AUTOINCREMENT, ICONS.RESET_AUTOINCREMENT, tr("Reset autoincrement value", "table window"), this, SLOT(resetAutoincrement()), ui->structureToolBar);
 
@@ -1256,8 +1249,6 @@ void TableWindow::updateNewTableState()
     actionMap[CREATE_SIMILAR]->setEnabled(existingTable);
     actionMap[RESET_AUTOINCREMENT]->setEnabled(existingTable);
     actionMap[REFRESH_STRUCTURE]->setEnabled(existingTable);
-    actionMap[ADD_INDEX_STRUCT]->setEnabled(existingTable);
-    actionMap[ADD_TRIGGER_STRUCT]->setEnabled(existingTable);
 }
 
 void TableWindow::addConstraint()

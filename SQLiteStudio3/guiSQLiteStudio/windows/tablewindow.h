@@ -78,8 +78,6 @@ class GUI_API_EXPORT TableWindow : public MdiChild
             ADD_TABLE_CHECK,
             MOVE_CONSTRAINT_UP,
             MOVE_CONSTRAINT_DOWN,
-            ADD_INDEX_STRUCT,
-            ADD_TRIGGER_STRUCT,
             EXPORT,
             IMPORT,
             POPULATE,

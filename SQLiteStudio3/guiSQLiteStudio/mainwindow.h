@@ -201,6 +201,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void applyToolbarStyle(QList<QToolBar*> tbList);
         void updateToolbarStyleActionState();
         void initToolbarSizeActionList();
+        void handlePostRestoreConfigUpdates();
 
         static bool confirmQuit(const QList<Committable*>& instances);
 

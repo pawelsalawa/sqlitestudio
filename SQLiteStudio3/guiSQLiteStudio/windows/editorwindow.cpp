@@ -69,6 +69,11 @@ void EditorWindow::insertAction(ExtActionPrototype* action, EditorWindow::ToolBa
     return ExtActionContainer::insertAction<EditorWindow>(action, toolbar);
 }
 
+void EditorWindow::insertAction(ExtActionPrototype* action)
+{
+    return ExtActionContainer::insertAction<EditorWindow>(action, -1);
+}
+
 void EditorWindow::insertActionBefore(ExtActionPrototype* action, EditorWindow::Action beforeAction, EditorWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionBefore<EditorWindow>(action, beforeAction, toolbar);
@@ -82,6 +87,11 @@ void EditorWindow::insertActionAfter(ExtActionPrototype* action, EditorWindow::A
 void EditorWindow::removeAction(ExtActionPrototype* action, EditorWindow::ToolBar toolbar)
 {
     ExtActionContainer::removeAction<EditorWindow>(action, toolbar);
+}
+
+void EditorWindow::removeAction(ExtActionPrototype* action)
+{
+    ExtActionContainer::removeAction<EditorWindow>(action, -1);
 }
 
 void EditorWindow::init()
@@ -126,6 +136,9 @@ void EditorWindow::init()
     connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(resultsModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
     connect(resultsModel, SIGNAL(storeExecutionInHistory()), this, SLOT(storeExecutionInHistory()));
+
+    for (QAction* extraAct : getNonToolbarExtraActions())
+        ui->sqlEdit->addContextMenuExtraAction(extraAct);
 
     // SQL history list
     ui->historyList->setModel(CFG->getSqlHistoryModel());
@@ -412,15 +425,11 @@ void EditorWindow::createActions()
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FORMAT_SQL));
     createAction(CLEAR_HISTORY, ICONS.CLEAR_HISTORY, tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->toolBar);
     ui->toolBar->addSeparator();
-    createAction(EXPORT_RESULTS, ICONS.TABLE_EXPORT, tr("Export results", "sql editor"), this, SLOT(exportResults()), ui->toolBar);
-    ui->toolBar->addSeparator();
     createAction(CREATE_VIEW_FROM_QUERY, ICONS.VIEW_ADD, tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE));
     attachActionInMenu(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE), ui->sqlEdit->getAction(SqlEditor::SAVE_AS_SQL_FILE), ui->toolBar);
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
-    ui->toolBar->addSeparator();
-    ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FIND));
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);
@@ -435,6 +444,11 @@ void EditorWindow::createActions()
     createAction(DELETE_SINGLE_HISTORY_SQL, tr("Delete selected SQL history entries", "sql editor"), this, SLOT(deleteSelectedSqlHistory()), ui->historyList);
     createAction(EXEC_ONE_QUERY, ICONS.EXEC_QUERY, tr("Execute single query under cursor"), this, SLOT(execOneQuery()), this);
     createAction(EXEC_ALL_QUERIES, ICONS.EXEC_QUERY, tr("Execute all queries in editor"), this, SLOT(execAllQueries()), this);
+    createAction(EXPORT_RESULTS, ICONS.TABLE_EXPORT, tr("Export results", "sql editor"), this, SLOT(exportResults()), this);
+
+    QAction* before = ui->dataView->getAction(DataView::GRID_TOTAL_ROWS);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[EXPORT_RESULTS]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertSeparator(before);
 
     // Static action triggers
     connect(staticActions[RESULTS_IN_TAB], SIGNAL(triggered()), this, SLOT(updateResultsDisplayMode()));

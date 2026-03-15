@@ -41,7 +41,7 @@ bool Printing::init()
 
     DataView::insertActionAfter(printDataAction, DataView::LAST_PAGE);
     DataView::insertActionAfter(separatorAction, DataView::LAST_PAGE);
-    EditorWindow::insertActionAfter(printQueryAction, EditorWindow::EXPORT_RESULTS);
+    EditorWindow::insertAction(printQueryAction);
 
     return true;
 }
