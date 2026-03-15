@@ -397,10 +397,6 @@ void MainWindow::initMenuBar()
 
     // View menu
     viewMenu = createPopupMenu();
-    viewMenu->addSeparator();
-    tbStyleMenu = createToolbarStyleMenu();
-    viewMenu->addMenu(tbStyleMenu);
-    viewMenu->setTitle(tr("&View", "menubar"));
     menuBar()->addMenu(viewMenu);
 
     mdiMenu = new QMenu(viewMenu);
@@ -685,6 +681,18 @@ void MainWindow::installToolbarSizeWheelHandler(QToolBar* toolbar)
         toolbarSizeWheelHandler = MouseShortcut::forWheel(Qt::ControlModifier, this, SLOT(toolbarSizeChangeRequested(int)), toolbar);
     else
         toolbar->installEventFilter(toolbarSizeWheelHandler);
+}
+
+QMenu* MainWindow::createPopupMenu()
+{
+    QMenu* m = QMainWindow::createPopupMenu();
+    m->addSeparator();
+    if (!tbStyleMenu)
+        tbStyleMenu = createToolbarStyleMenu(m);
+
+    m->addMenu(tbStyleMenu);
+    m->setTitle(tr("&View", "menubar"));
+    return m;
 }
 
 void MainWindow::saveSession(bool hide)
@@ -1093,9 +1101,9 @@ void MainWindow::fixToolbars()
     fixToolbarTooltips(ui->dbToolbar);
 }
 
-QMenu* MainWindow::createToolbarStyleMenu()
+QMenu* MainWindow::createToolbarStyleMenu(QMenu* parentMenu)
 {
-    QMenu* menu = new QMenu(viewMenu);
+    QMenu* menu = new QMenu(parentMenu);
     menu->setTitle(tr("Toolbar &icons", "menubar"));
 
     QActionGroup* tbIconSizeGroup = new QActionGroup(menu);

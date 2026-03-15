@@ -83,6 +83,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             TOOLBAR_ICON_SIZE_100,
             TOOLBAR_ICON_SIZE_125,
             TOOLBAR_ICON_SIZE_150,
+            TOOLBAR_ICON_SIZE_175,
             TOOLBAR_ICON_SIZE_200,
             TOOLBAR_ICON_SIZE_250,
             TOOLBAR_ICON_SIZE_300,
@@ -156,6 +157,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
         EditorWindow* openSqlEditorForFile(Db* dbToSet, const QString& fileName);
         void installToolbarSizeWheelHandler(QToolBar* toolbar);
+        QMenu* createPopupMenu();
 
         template <class T, typename... Args>
         T* openMdiWindow(Args&&... args);
@@ -196,7 +198,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
         void fixToolbars();
-        QMenu* createToolbarStyleMenu();
+        QMenu* createToolbarStyleMenu(QMenu* parentMenu);
         void applyToolbarStyle(QToolBar* tb);
         void applyToolbarStyle(QList<QToolBar*> tbList);
         void updateToolbarStyleActionState();
