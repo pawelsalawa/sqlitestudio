@@ -110,6 +110,7 @@ CFG_UI_CATEGORIES(Ui,
     CFG_CATEGORY(DbList,
         CFG_ENTRY(bool,                    ExpandTables,                true)
         CFG_ENTRY(bool,                    ExpandViews,                 true)
+        CFG_ENTRY(bool,                    ExpandSubNodes,              true)
         CFG_ENTRY(bool,                    SortObjects,                 true)
         CFG_ENTRY(bool,                    SortColumns,                 false)
         CFG_ENTRY(bool,                    ShowSystemObjects,           false)

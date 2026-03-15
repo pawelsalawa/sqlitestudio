@@ -255,6 +255,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void linkStateToggled(bool checked);
         void updateLinkButtonState();
         void connectDisconnectClicked();
+        void nodeExpanded(const QModelIndex& idx);
 
     signals:
         void updateFileExecProgress(int value);

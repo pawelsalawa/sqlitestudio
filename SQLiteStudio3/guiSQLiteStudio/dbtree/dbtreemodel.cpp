@@ -1171,6 +1171,14 @@ QList<DbTreeItem*> DbTreeModel::getItemsForIndexes(const QModelIndexList& indexe
     return items;
 }
 
+DbTreeItem* DbTreeModel::getItemForIndex(const QModelIndex& index) const
+{
+    if (index.isValid())
+        return dynamic_cast<DbTreeItem*>(itemFromIndex(index));
+
+    return nullptr;
+}
+
 QHash<QString, QVariant> DbTreeModel::collectSelectionState()
 {
     DbTreeItem* activeItem = treeView->currentItem();
