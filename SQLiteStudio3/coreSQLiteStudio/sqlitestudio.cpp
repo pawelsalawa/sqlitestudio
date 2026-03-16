@@ -384,7 +384,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     codeSnippetManager = new CodeSnippetManager(config);
 
     extraLicenseManager->addLicense("SQLiteStudio license (GPL v3)", ":/docs/licenses/sqlitestudio_license.txt");
-    extraLicenseManager->addLicense("Fugue icons", ":/docs/licenses/fugue_icons.txt");
     extraLicenseManager->addLicense("Qt, QHexEdit (LGPL v2.1)", ":/docs/licenses/lgpl.txt");
     extraLicenseManager->addLicense("diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
     extraLicenseManager->addLicense("RSA library (GPL v3)", ":/docs/licenses/gpl.txt");

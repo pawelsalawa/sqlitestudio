@@ -856,7 +856,6 @@ QStringList concat(const QList<QStringList>& list)
     return result;
 }
 
-
 QString doubleToString(const QVariant& val, bool enforceDecimal)
 {
     double d = val.toDouble();
