@@ -50,6 +50,7 @@ option(WITH_SHARED_RES "Install resources as separate files (distro packaging on
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../SQLiteStudio3/cmake")
 
 include(plugins)
+include(custom_sqlite3)
 
 if(WITH_CellRendererImage)
     add_subdirectory(CellRendererImage)
