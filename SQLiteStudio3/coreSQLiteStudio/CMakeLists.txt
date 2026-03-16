@@ -420,8 +420,10 @@ set_target_properties(coreSQLiteStudio PROPERTIES
 target_compile_definitions(coreSQLiteStudio PRIVATE
     CORESQLITESTUDIO_LIBRARY
 )
-target_link_libraries(coreSQLiteStudio PRIVATE
+target_link_libraries(coreSQLiteStudio PUBLIC
     SQLite::SQLite3
+)
+target_link_libraries(coreSQLiteStudio PRIVATE
     Qt::Core
     Qt::Network
     Qt::Qml
