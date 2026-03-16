@@ -144,6 +144,7 @@ void DbDialog::init()
     ui->typeCombo->addItems(typeLabels);
 
     ui->testConnIcon->setVisible(false);
+    initialBrowseTooltip = ui->browseOpenButton->toolTip();
 
     connect(ui->existingDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateCreateMode()));
     connect(ui->createDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateCreateMode()));
@@ -174,8 +175,10 @@ void DbDialog::updateOptions()
 
     customBrowseHandler = nullptr;
     ui->pathGroup->setTitle(tr("File"));
-    ui->existingDatabaseRadio->setChecked(true);
+    ui->createDatabaseRadio->setVisible(true);
     ui->createDatabaseRadio->setChecked(false);
+    ui->existingDatabaseRadio->setChecked(true);
+    ui->browseOpenButton->setToolTip(initialBrowseTooltip);
     updateCreateMode();
 
     optionWidgets.clear();

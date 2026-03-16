@@ -76,6 +76,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         bool nameManuallyEdited = false;
         bool createMode = false;
         ImmediateTooltip* connIconTooltip = nullptr;
+        QString initialBrowseTooltip;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
 
