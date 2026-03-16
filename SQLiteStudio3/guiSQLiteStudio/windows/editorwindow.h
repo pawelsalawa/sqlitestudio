@@ -93,10 +93,12 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         ~EditorWindow();
 
         static void staticInit();
-        static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_MAIN);
+        static void insertAction(ExtActionPrototype* action, ToolBar toolbar);
+        static void insertAction(ExtActionPrototype* action);
         static void insertActionBefore(ExtActionPrototype* action, Action beforeAction, ToolBar toolbar = TOOLBAR_MAIN);
         static void insertActionAfter(ExtActionPrototype* action, Action afterAction, ToolBar toolbar = TOOLBAR_MAIN);
-        static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_MAIN);
+        static void removeAction(ExtActionPrototype* action, ToolBar toolbar);
+        static void removeAction(ExtActionPrototype* action);
 
         QSize sizeHint() const;
         QAction* getAction(Action action);
@@ -169,12 +171,12 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void deleteSelectedSqlHistory();
         void clearHistory();
         void sqlHistoryContextMenuRequested(const QPoint &pos);
-        void exportResults();
         void createViewFromQuery();
         void updateState();
         void checkTextChangedForSession();
         void queryHighlightingConfigChanged(const QVariant& enabled);
         void renameForFile(const QString fileName);
+        void exportResults();
 
     public slots:
         void openFile(const QString& fileName);

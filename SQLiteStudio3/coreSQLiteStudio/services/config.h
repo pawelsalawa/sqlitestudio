@@ -12,18 +12,19 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 9;
+const int SQLITESTUDIO_CONFIG_VERSION = 10;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-        CFG_ENTRY(int,          SqlHistorySize,          10000)
-        CFG_ENTRY(int,          DdlHistorySize,          1000)
-        CFG_ENTRY(int,          BindParamsCacheSize,     1000)
-        CFG_ENTRY(int,          PopulateHistorySize,     100)
-        CFG_ENTRY(QString,      LoadedPlugins,           "")
-        CFG_ENTRY(QVariantHash, ActiveCodeFormatter,     QVariantHash())
-        CFG_ENTRY(bool,         CheckUpdatesOnStartup,   true)
-        CFG_ENTRY(QString,      Language,                "en")
+        CFG_ENTRY(int,          SqlHistorySize,           10000)
+        CFG_ENTRY(int,          DdlHistorySize,           1000)
+        CFG_ENTRY(int,          BindParamsCacheSize,      1000)
+        CFG_ENTRY(int,          PopulateHistorySize,      100)
+        CFG_ENTRY(QString,      LoadedPlugins,            "")
+        CFG_ENTRY(QVariantHash, ActiveCodeFormatter,      QVariantHash())
+        CFG_ENTRY(bool,         CheckUpdatesOnStartup,    true)
+        CFG_ENTRY(QString,      Language,                 "en")
+        CFG_ENTRY(QVariantHash, PostRestoreConfigUpdates, QVariantHash())
     )
     CFG_CATEGORY(Console,
         CFG_ENTRY(int,          HistorySize,             100)

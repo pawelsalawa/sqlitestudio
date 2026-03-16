@@ -53,6 +53,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool hasDbTreeItem(const QMimeData* data);
         QList<DbTreeItem*> getDragItems(const QMimeData* data);
         QList<DbTreeItem*> getItemsForIndexes(const QModelIndexList& indexes) const;
+        DbTreeItem* getItemForIndex(const QModelIndex& index) const;
         QHash<QString, QVariant> collectSelectionState();
         void restoreSelectionState(const QHash<QString, QVariant>& selectionState);
 

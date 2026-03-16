@@ -1220,6 +1220,15 @@ void ConfigImpl::updateConfigDb()
                      "       'ShowDbTreeLabels', 'ShowRegularTableLabels', 'ShowVirtualTableLabels',"
                      "       'NewDbNotPermanentByDefault', 'BypassDbDialogWhenDropped'"
                      "       )");
+            [[fallthrough]];
+        }
+        case 9:
+        {
+            // 9->10
+            // #5562
+            QVariantHash updates = CFG_CORE.General.PostRestoreConfigUpdates.get();
+            updates["HideTheViewToolbar"] = true;
+            CFG_CORE.General.PostRestoreConfigUpdates.set(updates);
         }
         // Add cases here for next versions,
         // without a "break" instruction,

@@ -176,8 +176,9 @@ class GUI_API_EXPORT ExtActionContainer
          */
         virtual QToolBar* getToolBar(int toolbar) const = 0;
 
-        void handleActionInsert(int toolbar, ActionDetails* details);
-        void handleActionRemoval(int toolbar, ActionDetails* details);
+        void handleActionInsert(int toolbarIdx, ActionDetails* details);
+        void handleActionRemoval(int toolbarIdx, ActionDetails* details);
+        QList<QAction*> getNonToolbarExtraActions() const;
 
     private:
         typedef QPair<int,ActionDetails*> ToolbarAndProto;

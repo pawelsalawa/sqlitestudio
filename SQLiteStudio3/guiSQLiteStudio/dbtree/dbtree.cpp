@@ -121,6 +121,7 @@ void DbTree::init()
     connect(treeModel, &DbTreeModel::filteringInterrupted, this, &DbTree::resetFilterValueAfterInterrupting);
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SIGNAL(sessionValueChanged()));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SIGNAL(sessionValueChanged()));
+    connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(nodeExpanded(QModelIndex)));
 
     updateIconSize();
     updateActionsForCurrent();
@@ -1990,6 +1991,32 @@ void DbTree::connectDisconnectClicked()
         disconnectFromDb();
     else
         connectToDb();
+}
+
+void DbTree::nodeExpanded(const QModelIndex& idx)
+{
+    DbTreeItem* item = treeModel->getItemForIndex(idx);
+    if (!item)
+        return;
+
+    if ((item->getType() == DbTreeItem::Type::TABLE ||
+         item->getType() == DbTreeItem::Type::VIRTUAL_TABLE ||
+         item->getType() == DbTreeItem::Type::VIEW)
+        && CFG_UI.DbList.ExpandSubNodes.get())
+    {
+        for (DbTreeItem::Type type : {
+             DbTreeItem::Type::COLUMNS,
+             DbTreeItem::Type::INDEXES,
+             DbTreeItem::Type::TRIGGERS
+            })
+        {
+            DbTreeItem* subItem = treeModel->findFirstItem(item, type);
+            if (!subItem)
+                continue;
+
+            ui->treeView->expand(subItem->index());
+        }
+    }
 }
 
 void DbTree::dbConnected(Db* db)

@@ -117,6 +117,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void setVirtualSqlCompleteSemicolon(bool value);
         bool getHighlightingSyntax() const;
         void setOpenSaveActionsEnabled(bool value);
+        void addContextMenuExtraAction(QAction* act);
 
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
@@ -254,6 +255,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QBrush currentQueryBrush;
         QTimer* currentQueryTimer = nullptr;
         bool openSaveActionsEnabled = true;
+        QList<QAction*> contextMenuExtraActions;
+        QAction* extraActionsSeparator = nullptr;
 
         /**
          * @brief virtualSqlExpression

@@ -112,6 +112,7 @@ void MainWindow::init()
     insertToolBar(ui->viewToolbar, ui->mainToolBar);
     insertToolBar(ui->mainToolBar, ui->structureToolbar);
     insertToolBar(ui->structureToolbar, ui->dbToolbar);
+    ui->viewToolbar->setVisible(false);
 
     ui->viewToolbar->setIconSize(QSize(24, 24));
     ui->mainToolBar->setIconSize(QSize(24, 24));
@@ -292,13 +293,10 @@ void MainWindow::closeEvent(QCloseEvent* event)
 void MainWindow::createActions()
 {
     createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL &editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
-    createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTIONS_EDITOR, tr("Open SQL &functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
     createAction(OPEN_SNIPPETS_EDITOR, ICONS.CODE_SNIPPETS, tr("Open code &snippets editor"), this, SLOT(openCodeSnippetsEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.COLLATIONS_EDITOR, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION_EDITOR, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
-    createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
-    createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
     ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open confi&guration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
 
@@ -333,6 +331,10 @@ void MainWindow::createActions()
 #ifdef HAS_UPDATEMANAGER
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
+
+    createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), this);
+    createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), this);
+    createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), this);
 
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
@@ -395,10 +397,6 @@ void MainWindow::initMenuBar()
 
     // View menu
     viewMenu = createPopupMenu();
-    viewMenu->addSeparator();
-    tbStyleMenu = createToolbarStyleMenu();
-    viewMenu->addMenu(tbStyleMenu);
-    viewMenu->setTitle(tr("&View", "menubar"));
     menuBar()->addMenu(viewMenu);
 
     mdiMenu = new QMenu(viewMenu);
@@ -542,7 +540,10 @@ void MainWindow::restoreSession()
         restoreGeometry(sessionValue["geometry"].toByteArray());
 
     if (sessionValue.contains("state"))
+    {
         restoreState(sessionValue["state"].toByteArray());
+        handlePostRestoreConfigUpdates();
+    }
     else
         restoreState(saveState()); // workaround for probable Qt bug (?), reported in #3421
 
@@ -682,6 +683,18 @@ void MainWindow::installToolbarSizeWheelHandler(QToolBar* toolbar)
         toolbar->installEventFilter(toolbarSizeWheelHandler);
 }
 
+QMenu* MainWindow::createPopupMenu()
+{
+    QMenu* m = QMainWindow::createPopupMenu();
+    m->addSeparator();
+    if (!tbStyleMenu)
+        tbStyleMenu = createToolbarStyleMenu(m);
+
+    m->addMenu(tbStyleMenu);
+    m->setTitle(tr("&View", "menubar"));
+    return m;
+}
+
 void MainWindow::saveSession(bool hide)
 {
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
@@ -794,6 +807,7 @@ void MainWindow::refreshMdiWindows()
 
     for (const QString& name : actionNames)
         mdiMenu->addAction(nameToAction[name]);
+
     fixToolbarTooltips(ui->viewToolbar);
 
     updateWindowActions();
@@ -1087,9 +1101,9 @@ void MainWindow::fixToolbars()
     fixToolbarTooltips(ui->dbToolbar);
 }
 
-QMenu* MainWindow::createToolbarStyleMenu()
+QMenu* MainWindow::createToolbarStyleMenu(QMenu* parentMenu)
 {
-    QMenu* menu = new QMenu(viewMenu);
+    QMenu* menu = new QMenu(parentMenu);
     menu->setTitle(tr("Toolbar &icons", "menubar"));
 
     QActionGroup* tbIconSizeGroup = new QActionGroup(menu);
@@ -1165,6 +1179,17 @@ void MainWindow::initToolbarSizeActionList()
         toolbarSizeActionList << act;
         toolbarSizes[act] = percInt;
         toolbarSizesReversed[percInt] = act;
+    }
+}
+
+void MainWindow::handlePostRestoreConfigUpdates()
+{
+    QVariantHash updates = CFG_CORE.General.PostRestoreConfigUpdates.get();
+    if (updates.contains("HideTheViewToolbar"))
+    {
+        ui->viewToolbar->setVisible(false);
+        updates.remove("HideTheViewToolbar");
+        CFG_CORE.General.PostRestoreConfigUpdates.set(updates);
     }
 }
 

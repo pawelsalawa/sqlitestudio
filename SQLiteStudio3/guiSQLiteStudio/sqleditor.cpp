@@ -355,6 +355,14 @@ void SqlEditor::setOpenSaveActionsEnabled(bool value)
         noConfigShortcutActions << SAVE_SQL_FILE << SAVE_AS_SQL_FILE << OPEN_SQL_FILE;
 }
 
+void SqlEditor::addContextMenuExtraAction(QAction* act)
+{
+    if (!extraActionsSeparator)
+        extraActionsSeparator = contextMenu->insertSeparator(actionMap[UNDO]);
+
+    contextMenu->insertAction(extraActionsSeparator, act);
+}
+
 void SqlEditor::updateUndoAction(bool enabled)
 {
     actionMap[UNDO]->setEnabled(enabled);
