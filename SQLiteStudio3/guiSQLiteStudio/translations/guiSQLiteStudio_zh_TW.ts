@@ -910,7 +910,7 @@
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="2801"/>
+        <location filename="../dialogs/configdialog.ui" line="2814"/>
         <source>Configuration</source>
         <translation>設定檔</translation>
     </message>
@@ -956,7 +956,7 @@
         <translation>資料庫清單</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1168"/>
+        <location filename="../dialogs/configdialog.ui" line="1181"/>
         <source>Code assistant</source>
         <translation type="unfinished">Code assistant</translation>
     </message>
@@ -967,7 +967,7 @@
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="172"/>
-        <location filename="../dialogs/configdialog.ui" line="1110"/>
+        <location filename="../dialogs/configdialog.ui" line="1123"/>
         <source>SQL Editor</source>
         <translation type="unfinished">SQL Editor</translation>
     </message>
@@ -997,450 +997,450 @@
         <translation type="unfinished">Scripting languages</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="283"/>
+        <location filename="../dialogs/configdialog.ui" line="373"/>
         <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
         <translation>如果關閉，列將按照 CREATE TABLE 中的順序排序。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="286"/>
+        <location filename="../dialogs/configdialog.ui" line="376"/>
         <source>Sort table columns alphabetically</source>
         <translation>按字母順序列出表的列</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="296"/>
+        <location filename="../dialogs/configdialog.ui" line="293"/>
         <source>Expand tables node when connected to a database</source>
         <translation>連線到資料庫時展開表節點</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="306"/>
+        <location filename="../dialogs/configdialog.ui" line="313"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
         <translation>&lt;p&gt;附加標籤是顯示在資料庫清單的名稱旁邊的文字標籤 (除非另有設定檔，否則為藍色)。啟用此選項將為資料庫、無效資料庫和聚合節點 (列組、索引組、觸發器組) 顯示標籤。更多標籤見下方選項。&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="309"/>
+        <location filename="../dialogs/configdialog.ui" line="316"/>
         <source>Display additional labels on the list</source>
         <translation>在清單中顯示附加標籤</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="324"/>
+        <location filename="../dialogs/configdialog.ui" line="331"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
         <translation>對於普通表，標籤將顯示每個表的列、索引和觸發器的數量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="327"/>
+        <location filename="../dialogs/configdialog.ui" line="334"/>
         <source>Display labels for regular tables</source>
         <translation>為普通表顯示標籤</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="337"/>
+        <location filename="../dialogs/configdialog.ui" line="344"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
         <translation>虛擬表將附以“虛擬”標籤。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="340"/>
+        <location filename="../dialogs/configdialog.ui" line="347"/>
         <source>Display labels for virtual tables</source>
         <translation>為虛擬表顯示標籤</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="353"/>
+        <location filename="../dialogs/configdialog.ui" line="303"/>
         <source>Expand views node when connected to a database</source>
         <translation>連線到資料庫時展開檢視節點</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="363"/>
+        <location filename="../dialogs/configdialog.ui" line="360"/>
         <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
         <translation>如果關閉此選項，則物件將按照 sqlite_master 表中的順序 (即它們被建立的順序) 排列</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="366"/>
+        <location filename="../dialogs/configdialog.ui" line="363"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
         <translation>按字母順序排列物件 (表、索引、觸發器及檢視)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="376"/>
+        <location filename="../dialogs/configdialog.ui" line="283"/>
         <source>Display system tables and indexes on the list</source>
         <translation>在清單中顯示系統表和索引</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="389"/>
+        <location filename="../dialogs/configdialog.ui" line="402"/>
         <source>Database dialog window</source>
         <translation>資料庫對話方塊視窗</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="395"/>
+        <location filename="../dialogs/configdialog.ui" line="408"/>
         <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
         <translation>&lt;p&gt;新增新的資料庫時，預設會將其標記為“永久”(儲存在設定檔檔案中)。選中此選項則新新增的資料庫將預設不標記為“永久”。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="398"/>
+        <location filename="../dialogs/configdialog.ui" line="411"/>
         <source>Do not mark database to be &quot;permanent&quot; by default</source>
         <translation>預設不將新新增的資料庫標為“永久”</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="408"/>
+        <location filename="../dialogs/configdialog.ui" line="421"/>
         <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
         <translation>&lt;p&gt;啟用此選項後，將檔案從檔案管理器拖放到資料庫清單中時，將自動繞過標準的資料庫對話方塊，直接新增到清單中。如果由於各種原因自動處理失敗，則還會向用戶顯示標準對話方塊。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="411"/>
+        <location filename="../dialogs/configdialog.ui" line="424"/>
         <source>Try to bypass dialog completly when dropping database file onto the list</source>
         <translation>拖放資料庫檔案到清單中時嘗試完全繞過對話方塊</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="456"/>
+        <location filename="../dialogs/configdialog.ui" line="469"/>
         <source>Data browsing and editing</source>
         <translation>瀏覽和編輯資料</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="495"/>
         <location filename="../dialogs/configdialog.ui" line="508"/>
+        <location filename="../dialogs/configdialog.ui" line="521"/>
         <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;在設定檔檔案中儲存，“表填充”對話方塊中的最大數量。值 100 應已足夠。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="511"/>
+        <location filename="../dialogs/configdialog.ui" line="524"/>
         <source>Number of memorized table populating configurations</source>
         <translation>表填充設定檔中的預設填充行數</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="550"/>
+        <location filename="../dialogs/configdialog.ui" line="563"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="553"/>
+        <location filename="../dialogs/configdialog.ui" line="566"/>
         <source>Convert Unicode line separators to LF (\n) in form view editors</source>
         <translation type="unfinished">Convert Unicode line separators to LF (\n) in form view editors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="556"/>
+        <location filename="../dialogs/configdialog.ui" line="569"/>
         <source>General.UseLfForMultilineEditors</source>
         <translation type="unfinished">General.UseLfForMultilineEditors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="563"/>
+        <location filename="../dialogs/configdialog.ui" line="576"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="566"/>
+        <location filename="../dialogs/configdialog.ui" line="579"/>
         <source>Use scientific notation for very small real numbers in the grid view</source>
         <translation type="unfinished">Use scientific notation for very small real numbers in the grid view</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="592"/>
+        <location filename="../dialogs/configdialog.ui" line="605"/>
         <source>Data column width</source>
         <translation type="unfinished">Data column width</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="598"/>
+        <location filename="../dialogs/configdialog.ui" line="611"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="601"/>
+        <location filename="../dialogs/configdialog.ui" line="614"/>
         <source>Enlarge column when entering value longer than current width</source>
         <translation type="unfinished">Enlarge column when entering value longer than current width</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="617"/>
+        <location filename="../dialogs/configdialog.ui" line="630"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
         <translation>&lt;p&gt;當資料被載入到網格檢視時，列寬會自動調整。此值限制初始化時的列寬度，之後您仍可以手動調整列寬，不受此限制。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="475"/>
+        <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of data rows per page:</source>
         <translation>每頁資料行數：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="482"/>
+        <location filename="../dialogs/configdialog.ui" line="495"/>
         <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
         <translation>&lt;p&gt;此項啟用後，使用者滑鼠懸停在任意資料檢視 (查詢結果、表資料、檢視資料) 的單元格上時，工具提示將顯示該單元格的詳細資訊——包括列資料型別、約束、ROWID 等。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="485"/>
+        <location filename="../dialogs/configdialog.ui" line="498"/>
         <source>Show column and row details tooltip in data view</source>
         <translation>在資料檢視中展示列與行的詳細資訊</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="462"/>
+        <location filename="../dialogs/configdialog.ui" line="475"/>
         <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
         <translation>&lt;p&gt;編輯一個過去為 NULL 值的單元格且新輸入的值為空字串時，此選項啟用則該單元格的值保持 NULL 不變，此選項未啟用則空字串覆蓋原 NULL 值。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="465"/>
+        <location filename="../dialogs/configdialog.ui" line="478"/>
         <source>Keep NULL value when entering empty value</source>
         <translation>當輸入空值時保持 NULL 值</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="576"/>
+        <location filename="../dialogs/configdialog.ui" line="589"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;啟用此選項後，提交一個 NULL 值時，如果該列已定義 DEFAULT 值，即使該列允許包含 NULL 值，也始終採用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此選項則僅在列有非空 (NOT NULL) 約束時將 NULL 值轉變為 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="579"/>
+        <location filename="../dialogs/configdialog.ui" line="592"/>
         <source>Use DEFAULT value (if defined), when committing NULL value</source>
         <translation>提交 NULL 值時使用 DEFAULT 值 (如果已定義)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="537"/>
+        <location filename="../dialogs/configdialog.ui" line="550"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果查詢結果包含數十乃至上百個列，則載入可能佔用數個 GB 的空閒記憶體。SQLiteStudio 在這種情況下可能限制一頁上顯示的結果數量以保護您的計算機。如果您瞭解自己不會在如此大的資料庫上作業，則可以禁用此限制以始終在一頁上看到大量的行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="540"/>
+        <location filename="../dialogs/configdialog.ui" line="553"/>
         <source>Limit number of rows for in case of dozens of columns</source>
         <translation>列數過多時限制每頁顯示的行數</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="662"/>
+        <location filename="../dialogs/configdialog.ui" line="675"/>
         <source>Inserting new row in data grid</source>
         <translation>網格檢視中插入新行時</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="668"/>
+        <location filename="../dialogs/configdialog.ui" line="681"/>
         <source>Before currently selected row</source>
         <translation>在選中行之前</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="684"/>
+        <location filename="../dialogs/configdialog.ui" line="697"/>
         <source>After currently selected row</source>
         <translation>在選中行之後</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="697"/>
+        <location filename="../dialogs/configdialog.ui" line="710"/>
         <source>At the end of data view</source>
         <translation>在資料檢視的末尾</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="713"/>
+        <location filename="../dialogs/configdialog.ui" line="726"/>
         <source>Table windows</source>
         <translation>表視窗</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="719"/>
+        <location filename="../dialogs/configdialog.ui" line="732"/>
         <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;啟用後，表視窗將顯示資料選項卡，而不是結構選項卡。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="722"/>
+        <location filename="../dialogs/configdialog.ui" line="735"/>
         <source>Open Table Windows with the data tab for start</source>
         <translation>開啟表視窗時顯示“資料”選項卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="732"/>
+        <location filename="../dialogs/configdialog.ui" line="745"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;啟用後，“資料”選項卡將作為第一個選項卡放置在每個表視窗中，而不是位於第二位。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="735"/>
+        <location filename="../dialogs/configdialog.ui" line="748"/>
         <source>Place data tab as first tab in a Table Window</source>
         <translation>將資料作為表視窗的第一項</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="748"/>
+        <location filename="../dialogs/configdialog.ui" line="761"/>
         <source>View windows</source>
         <translation>檢視視窗</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="754"/>
+        <location filename="../dialogs/configdialog.ui" line="767"/>
         <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;啟用後，檢視視窗將顯示資料選項卡，而不是結構選項卡。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="757"/>
+        <location filename="../dialogs/configdialog.ui" line="770"/>
         <source>Open View Windows with the data tab for start</source>
         <translation>開啟檢視視窗時顯示“資料”選項卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="767"/>
+        <location filename="../dialogs/configdialog.ui" line="780"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;啟用後，“資料”選項卡將作為第一個選項卡放置在每個檢視視窗中，而不是位於第二個位置。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="770"/>
+        <location filename="../dialogs/configdialog.ui" line="783"/>
         <source>Place data tab as first tab in a View Window</source>
         <translation>將“資料”選項卡放置為檢視視窗的首個選項卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="814"/>
+        <location filename="../dialogs/configdialog.ui" line="827"/>
         <source>Data types</source>
         <translation>資料型別</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="867"/>
+        <location filename="../dialogs/configdialog.ui" line="880"/>
         <source>Available editors:</source>
         <translation>可用的編輯器：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="978"/>
+        <location filename="../dialogs/configdialog.ui" line="991"/>
         <source>Schema editing</source>
         <translation>結構編輯</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="990"/>
+        <location filename="../dialogs/configdialog.ui" line="1003"/>
         <source>Number of DDL changes kept in history.</source>
         <translation>DDL 變更歷史的記錄數量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1003"/>
+        <location filename="../dialogs/configdialog.ui" line="1016"/>
         <source>DDL history size:</source>
         <translation>DDL 歷史大小：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1010"/>
+        <location filename="../dialogs/configdialog.ui" line="1023"/>
         <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
         <translation>提交結構更改時不顯示 DDL 預覽對話方塊</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1196"/>
-        <location filename="../dialogs/configdialog.ui" line="1212"/>
+        <location filename="../dialogs/configdialog.ui" line="1209"/>
+        <location filename="../dialogs/configdialog.ui" line="1225"/>
         <source>Number of queries kept in the history.</source>
         <translation>查詢歷史記錄數量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1225"/>
-        <location filename="../dialogs/configdialog.ui" line="1235"/>
+        <location filename="../dialogs/configdialog.ui" line="1238"/>
+        <location filename="../dialogs/configdialog.ui" line="1248"/>
         <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;歷史記錄中儲存查詢引數 (:param, @param, $param, ?) 的最大數量。當您重新在同一名稱/位置下使用引數時，SQLiteStudio 將使用最近記憶的值預填充初始化它 (仍可修改)。值 1000 應已足夠。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1119"/>
+        <location filename="../dialogs/configdialog.ui" line="1132"/>
         <source>Execute only the query under the cursor</source>
         <translation>只執行輸入符所在行的語句</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1228"/>
+        <location filename="../dialogs/configdialog.ui" line="1241"/>
         <source>Number of memorized query parameters</source>
         <translation>預設的查詢引數數量</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="636"/>
+        <location filename="../dialogs/configdialog.ui" line="649"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="639"/>
+        <location filename="../dialogs/configdialog.ui" line="652"/>
         <source>Limit automatic data column width to (in pixels):</source>
         <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="646"/>
+        <location filename="../dialogs/configdialog.ui" line="659"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="649"/>
+        <location filename="../dialogs/configdialog.ui" line="662"/>
         <source>Keep at least the width to show complete column name</source>
         <translation type="unfinished">Keep at least the width to show complete column name</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1142"/>
+        <location filename="../dialogs/configdialog.ui" line="1155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1145"/>
+        <location filename="../dialogs/configdialog.ui" line="1158"/>
         <source>Wrap lines in SQL editor</source>
         <translation type="unfinished">Wrap lines in SQL editor</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1132"/>
+        <location filename="../dialogs/configdialog.ui" line="1145"/>
         <source>Highlight current query</source>
         <translation type="unfinished">Highlight current query</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1023"/>
+        <location filename="../dialogs/configdialog.ui" line="1036"/>
         <source>Updates</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1029"/>
+        <location filename="../dialogs/configdialog.ui" line="1042"/>
         <source>Automatically check for updates at startup</source>
         <translation>啟動時自動檢查更新</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1042"/>
+        <location filename="../dialogs/configdialog.ui" line="1055"/>
         <source>Session</source>
         <translation>會話</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1048"/>
+        <location filename="../dialogs/configdialog.ui" line="1061"/>
         <source>Restore last session (active MDI windows) after startup</source>
         <translation>啟動後恢復上一次會話</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1058"/>
+        <location filename="../dialogs/configdialog.ui" line="1071"/>
         <source>Allow multiple instances of the application at the same time</source>
         <translation>允許同時開啟多個此程式</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1071"/>
+        <location filename="../dialogs/configdialog.ui" line="1084"/>
         <source>Status Field</source>
         <translation>狀態列</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1077"/>
+        <location filename="../dialogs/configdialog.ui" line="1090"/>
         <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
         <translation>&lt;p&gt;在使用者手動關閉了狀態面板後，此選項能確保有新訊息被出現時狀態面板自動被重新開啟。如果禁用，狀態面板只能由使用者手動透過“檢視”選單來重新開啟。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1080"/>
+        <location filename="../dialogs/configdialog.ui" line="1093"/>
         <source>Always open Status panel when new message is printed</source>
         <translation>有新訊息輸出時就開啟狀態面板</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1293"/>
+        <location filename="../dialogs/configdialog.ui" line="1306"/>
         <source>Code syntax colors</source>
         <translation type="unfinished">Code syntax colors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1461"/>
+        <location filename="../dialogs/configdialog.ui" line="1474"/>
         <source>Keyword foreground</source>
         <translation type="unfinished">Keyword foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1299"/>
+        <location filename="../dialogs/configdialog.ui" line="1312"/>
         <source>Regular foreground</source>
         <translation type="unfinished">Regular foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1380"/>
+        <location filename="../dialogs/configdialog.ui" line="1393"/>
         <source>String foreground</source>
         <translation type="unfinished">String foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1623"/>
+        <location filename="../dialogs/configdialog.ui" line="1636"/>
         <source>Comment foreground</source>
         <translation type="unfinished">Comment foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1704"/>
+        <location filename="../dialogs/configdialog.ui" line="1717"/>
         <source>Valid objects foreground</source>
         <translation type="unfinished">Valid objects foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1985"/>
+        <location filename="../dialogs/configdialog.ui" line="1998"/>
         <source>Current query background</source>
         <translation type="unfinished">Current query background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1866"/>
+        <location filename="../dialogs/configdialog.ui" line="1879"/>
         <source>Bind parameter foreground</source>
         <translation type="unfinished">Bind parameter foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1947"/>
+        <location filename="../dialogs/configdialog.ui" line="1960"/>
         <source>Current line background</source>
         <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2026"/>
+        <location filename="../dialogs/configdialog.ui" line="2039"/>
         <source>Matched parenthesis background</source>
         <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2013"/>
+        <location filename="../dialogs/configdialog.ui" line="2026"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1450,250 +1450,265 @@
         <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="883"/>
+        <location filename="../dialogs/configdialog.ui" line="386"/>
+        <source>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="389"/>
+        <source>Expand columns, indexes and triggers together with the table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="392"/>
+        <source>DbList.ExpandSubNodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="896"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="899"/>
+        <location filename="../dialogs/configdialog.ui" line="912"/>
         <source>Preview of editors for this data type (drag to reorder):</source>
         <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="923"/>
+        <location filename="../dialogs/configdialog.ui" line="936"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="942"/>
+        <location filename="../dialogs/configdialog.ui" line="955"/>
         <source>General.DataRenderers</source>
         <translation type="unfinished">General.DataRenderers</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="949"/>
+        <location filename="../dialogs/configdialog.ui" line="962"/>
         <source>Data type</source>
         <translation>資料型別</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="954"/>
+        <location filename="../dialogs/configdialog.ui" line="967"/>
         <source>Renderer</source>
         <translation type="unfinished">Renderer</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1116"/>
+        <location filename="../dialogs/configdialog.ui" line="1129"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1129"/>
+        <location filename="../dialogs/configdialog.ui" line="1142"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1155"/>
+        <location filename="../dialogs/configdialog.ui" line="1168"/>
         <source>Disable blinking text cursor</source>
         <translation type="unfinished">Disable blinking text cursor</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1177"/>
+        <location filename="../dialogs/configdialog.ui" line="1190"/>
         <source>Trigger assistant after typing a dot</source>
         <translation type="unfinished">Trigger assistant after typing a dot</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1190"/>
+        <location filename="../dialogs/configdialog.ui" line="1203"/>
         <source>History</source>
         <translation>歷史</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1199"/>
+        <location filename="../dialogs/configdialog.ui" line="1212"/>
         <source>Query history size:</source>
         <translation type="unfinished">Query history size:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1342"/>
-        <location filename="../dialogs/configdialog.ui" line="1423"/>
-        <location filename="../dialogs/configdialog.ui" line="1504"/>
-        <location filename="../dialogs/configdialog.ui" line="1585"/>
-        <location filename="../dialogs/configdialog.ui" line="1666"/>
-        <location filename="../dialogs/configdialog.ui" line="1747"/>
-        <location filename="../dialogs/configdialog.ui" line="1828"/>
-        <location filename="../dialogs/configdialog.ui" line="1909"/>
-        <location filename="../dialogs/configdialog.ui" line="2101"/>
+        <location filename="../dialogs/configdialog.ui" line="1355"/>
+        <location filename="../dialogs/configdialog.ui" line="1436"/>
+        <location filename="../dialogs/configdialog.ui" line="1517"/>
+        <location filename="../dialogs/configdialog.ui" line="1598"/>
+        <location filename="../dialogs/configdialog.ui" line="1679"/>
+        <location filename="../dialogs/configdialog.ui" line="1760"/>
+        <location filename="../dialogs/configdialog.ui" line="1841"/>
+        <location filename="../dialogs/configdialog.ui" line="1922"/>
+        <location filename="../dialogs/configdialog.ui" line="2114"/>
         <source>B</source>
         <translation type="unfinished">B</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1367"/>
-        <location filename="../dialogs/configdialog.ui" line="1448"/>
-        <location filename="../dialogs/configdialog.ui" line="1529"/>
-        <location filename="../dialogs/configdialog.ui" line="1610"/>
-        <location filename="../dialogs/configdialog.ui" line="1691"/>
-        <location filename="../dialogs/configdialog.ui" line="1772"/>
-        <location filename="../dialogs/configdialog.ui" line="1853"/>
-        <location filename="../dialogs/configdialog.ui" line="1934"/>
-        <location filename="../dialogs/configdialog.ui" line="2126"/>
+        <location filename="../dialogs/configdialog.ui" line="1380"/>
+        <location filename="../dialogs/configdialog.ui" line="1461"/>
+        <location filename="../dialogs/configdialog.ui" line="1542"/>
+        <location filename="../dialogs/configdialog.ui" line="1623"/>
+        <location filename="../dialogs/configdialog.ui" line="1704"/>
+        <location filename="../dialogs/configdialog.ui" line="1785"/>
+        <location filename="../dialogs/configdialog.ui" line="1866"/>
+        <location filename="../dialogs/configdialog.ui" line="1947"/>
+        <location filename="../dialogs/configdialog.ui" line="2139"/>
         <source>I</source>
         <translation type="unfinished">I</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1542"/>
+        <location filename="../dialogs/configdialog.ui" line="1555"/>
         <source>Number foreground</source>
         <translation type="unfinished">Number foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1785"/>
+        <location filename="../dialogs/configdialog.ui" line="1798"/>
         <source>BLOB value foreground</source>
         <translation type="unfinished">BLOB value foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2064"/>
+        <location filename="../dialogs/configdialog.ui" line="2077"/>
         <source>Matched parenthesis foreground</source>
         <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2166"/>
+        <location filename="../dialogs/configdialog.ui" line="2179"/>
         <source>Reset to defaults</source>
         <translation>重置為預設值</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2192"/>
+        <location filename="../dialogs/configdialog.ui" line="2205"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>以名稱或按鍵組合篩選快捷鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2233"/>
+        <location filename="../dialogs/configdialog.ui" line="2246"/>
         <source>Action</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2238"/>
+        <location filename="../dialogs/configdialog.ui" line="2251"/>
         <source>Key combination</source>
         <translation>按鍵組合</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2287"/>
-        <location filename="../dialogs/configdialog.ui" line="2791"/>
+        <location filename="../dialogs/configdialog.ui" line="2300"/>
+        <location filename="../dialogs/configdialog.ui" line="2804"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2293"/>
+        <location filename="../dialogs/configdialog.ui" line="2306"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>語言變更在程式重啟後生效。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2310"/>
+        <location filename="../dialogs/configdialog.ui" line="2323"/>
         <source>Compact layout</source>
         <translation>緊湊佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2316"/>
+        <location filename="../dialogs/configdialog.ui" line="2329"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation>&lt;p&gt;緊湊佈局會將介面中的邊框與留白減至最小，然後用這些區域展示更多資料。這會使介面看起來有一點不美觀，但將可以同時展示更多的資料。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2319"/>
+        <location filename="../dialogs/configdialog.ui" line="2332"/>
         <source>Use compact layout</source>
         <translation>使用緊湊佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2335"/>
+        <location filename="../dialogs/configdialog.ui" line="2348"/>
         <source>Main window dock areas</source>
         <translation>主視窗停靠區域</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2341"/>
+        <location filename="../dialogs/configdialog.ui" line="2354"/>
         <source>Left and right areas occupy corners</source>
         <translation>左右佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2361"/>
+        <location filename="../dialogs/configdialog.ui" line="2374"/>
         <source>Top and bottom areas occupy corners</source>
         <translation>上下佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2381"/>
+        <location filename="../dialogs/configdialog.ui" line="2394"/>
         <source>Toolbars</source>
         <translation type="unfinished">Toolbars</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2387"/>
-        <location filename="../dialogs/configdialog.ui" line="2397"/>
+        <location filename="../dialogs/configdialog.ui" line="2400"/>
+        <location filename="../dialogs/configdialog.ui" line="2410"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2390"/>
+        <location filename="../dialogs/configdialog.ui" line="2403"/>
         <source>Icon size</source>
         <translation type="unfinished">Icon size</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2400"/>
+        <location filename="../dialogs/configdialog.ui" line="2413"/>
         <source>General.ToolBarIconSize</source>
         <translation type="unfinished">General.ToolBarIconSize</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2515"/>
+        <location filename="../dialogs/configdialog.ui" line="2528"/>
         <source>Hide built-in plugins</source>
         <translation>隱藏內建外掛</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2544"/>
+        <location filename="../dialogs/configdialog.ui" line="2557"/>
         <source>Current style:</source>
         <translation>當前風格：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2561"/>
+        <location filename="../dialogs/configdialog.ui" line="2574"/>
         <source>Preview</source>
         <translation>預覽</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2571"/>
+        <location filename="../dialogs/configdialog.ui" line="2584"/>
         <source>Enabled</source>
         <translation>已啟用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2747"/>
+        <location filename="../dialogs/configdialog.ui" line="2760"/>
         <source>Disabled</source>
         <translation>已禁用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2796"/>
+        <location filename="../dialogs/configdialog.ui" line="2809"/>
         <source>Active formatter plugin</source>
         <translation>啟用格式化外掛</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2834"/>
+        <location filename="../dialogs/configdialog.ui" line="2847"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2850"/>
+        <location filename="../dialogs/configdialog.ui" line="2863"/>
         <source>SQL editor font</source>
         <translation>SQL 編輯器字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2866"/>
+        <location filename="../dialogs/configdialog.ui" line="2879"/>
         <source>Database list font</source>
         <translation>資料庫清單字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2882"/>
+        <location filename="../dialogs/configdialog.ui" line="2895"/>
         <source>Database list additional label font</source>
         <translation>資料庫清單額外資訊字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2898"/>
+        <location filename="../dialogs/configdialog.ui" line="2911"/>
         <source>Data view font</source>
         <translation>資料檢視字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2914"/>
+        <location filename="../dialogs/configdialog.ui" line="2927"/>
         <source>Status field font</source>
         <translation>狀態列字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1174"/>
+        <location filename="../dialogs/configdialog.ui" line="1187"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -2309,383 +2324,383 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>資料庫</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2108"/>
+        <location filename="../dbtree/dbtree.cpp" line="2135"/>
         <source>Filter by name</source>
         <translation>按名稱過濾</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="131"/>
+        <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="132"/>
+        <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Paste</source>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="133"/>
+        <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Select all</source>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="134"/>
+        <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Create a group</source>
         <translation>建立分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="135"/>
+        <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Delete the group</source>
         <translation>刪除分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="136"/>
+        <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Rename the group</source>
         <translation>重新命名分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="137"/>
+        <location filename="../dbtree/dbtree.cpp" line="138"/>
         <source>&amp;Add a database</source>
         <translation>新增資料庫(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="138"/>
+        <location filename="../dbtree/dbtree.cpp" line="139"/>
         <source>&amp;Edit the database</source>
         <translation>編輯資料庫(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="139"/>
+        <location filename="../dbtree/dbtree.cpp" line="140"/>
         <source>&amp;Remove the database</source>
         <translation>移除資料庫(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="140"/>
+        <location filename="../dbtree/dbtree.cpp" line="141"/>
         <source>&amp;Connect to the database</source>
         <translation>連線到資料庫(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="141"/>
+        <location filename="../dbtree/dbtree.cpp" line="142"/>
         <source>&amp;Disconnect from the database</source>
         <translation>斷開資料庫連線(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="142"/>
+        <location filename="../dbtree/dbtree.cpp" line="143"/>
         <source>Import</source>
         <translation>匯入</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="143"/>
+        <location filename="../dbtree/dbtree.cpp" line="144"/>
         <source>&amp;Export the database</source>
         <translation>匯出資料庫(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="144"/>
+        <location filename="../dbtree/dbtree.cpp" line="145"/>
         <source>Vac&amp;uum</source>
         <translation>釋放空閒佔用 (VACUUM) (&amp;U)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="145"/>
+        <location filename="../dbtree/dbtree.cpp" line="146"/>
         <source>&amp;Integrity check</source>
         <translation>檢查完整性(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="146"/>
+        <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>Create a &amp;table</source>
         <translation>新建表(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="147"/>
+        <location filename="../dbtree/dbtree.cpp" line="148"/>
         <source>Edit the t&amp;able</source>
         <translation>編輯表(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="148"/>
+        <location filename="../dbtree/dbtree.cpp" line="149"/>
         <source>Delete the ta&amp;ble</source>
         <translation>刪除表(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="149"/>
+        <location filename="../dbtree/dbtree.cpp" line="150"/>
         <source>Export the table</source>
         <translation>匯出表</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="150"/>
+        <location filename="../dbtree/dbtree.cpp" line="151"/>
         <source>Import into the table</source>
         <translation>匯入到表</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="151"/>
+        <location filename="../dbtree/dbtree.cpp" line="152"/>
         <source>Populate table</source>
         <translation>填充表</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="152"/>
+        <location filename="../dbtree/dbtree.cpp" line="153"/>
         <source>Create similar table</source>
         <translation>建立相似的表</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="153"/>
+        <location filename="../dbtree/dbtree.cpp" line="154"/>
         <source>Reset autoincrement sequence</source>
         <translation>重置自動遞增序列</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="154"/>
+        <location filename="../dbtree/dbtree.cpp" line="155"/>
         <source>Create an &amp;index</source>
         <translation>建立索引(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="155"/>
+        <location filename="../dbtree/dbtree.cpp" line="156"/>
         <source>Edit the i&amp;ndex</source>
         <translation>編輯索引(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="156"/>
+        <location filename="../dbtree/dbtree.cpp" line="157"/>
         <source>Delete the in&amp;dex</source>
         <translation>刪除索引(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="157"/>
+        <location filename="../dbtree/dbtree.cpp" line="158"/>
         <source>Create a trig&amp;ger</source>
         <translation>建立觸發器(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="158"/>
+        <location filename="../dbtree/dbtree.cpp" line="159"/>
         <source>Edit the trigg&amp;er</source>
         <translation>編輯觸發器(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="159"/>
+        <location filename="../dbtree/dbtree.cpp" line="160"/>
         <source>Delete the trigge&amp;r</source>
         <translation>刪除觸發器(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="160"/>
+        <location filename="../dbtree/dbtree.cpp" line="161"/>
         <source>Create a &amp;view</source>
         <translation>建立檢視(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="161"/>
+        <location filename="../dbtree/dbtree.cpp" line="162"/>
         <source>Edit the v&amp;iew</source>
         <translation>編輯檢視(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="162"/>
+        <location filename="../dbtree/dbtree.cpp" line="163"/>
         <source>Delete the vi&amp;ew</source>
         <translation>刪除檢視(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="163"/>
+        <location filename="../dbtree/dbtree.cpp" line="164"/>
         <source>Add a column</source>
         <translation>新增欄位</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="164"/>
+        <location filename="../dbtree/dbtree.cpp" line="165"/>
         <source>Edit the column</source>
         <translation>編輯欄位</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="165"/>
+        <location filename="../dbtree/dbtree.cpp" line="166"/>
         <source>Delete the column</source>
         <translation>刪除欄位</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="166"/>
+        <location filename="../dbtree/dbtree.cpp" line="167"/>
         <source>Delete selected items</source>
         <translation>刪除已選專案</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="167"/>
+        <location filename="../dbtree/dbtree.cpp" line="168"/>
         <source>Clear filter</source>
         <translation>清除過濾器</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="168"/>
+        <location filename="../dbtree/dbtree.cpp" line="169"/>
         <source>&amp;Refresh all database schemas</source>
         <translation>重新整理全部資料庫結構(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="169"/>
+        <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Re&amp;fresh selected database schema</source>
         <translation>重新整理已選資料庫結構(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="170"/>
-        <location filename="../dbtree/dbtree.cpp" line="1606"/>
+        <location filename="../dbtree/dbtree.cpp" line="171"/>
+        <location filename="../dbtree/dbtree.cpp" line="1607"/>
         <source>Erase table data</source>
         <translation>擦除表資料</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="175"/>
+        <location filename="../dbtree/dbtree.cpp" line="176"/>
         <source>Open file&apos;s directory</source>
         <translation>開啟檔案所在目錄</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="176"/>
+        <location filename="../dbtree/dbtree.cpp" line="177"/>
         <source>Execute SQL from file</source>
         <translation>從檔案執行 SQL</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="177"/>
+        <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Increase font size</source>
         <comment>database list</comment>
         <translation>提升字型大小</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="178"/>
+        <location filename="../dbtree/dbtree.cpp" line="179"/>
         <source>Decrease font size</source>
         <comment>database list</comment>
         <translation>降低字型大小</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="365"/>
-        <location filename="../dbtree/dbtree.cpp" line="370"/>
+        <location filename="../dbtree/dbtree.cpp" line="366"/>
+        <location filename="../dbtree/dbtree.cpp" line="371"/>
         <source>Database</source>
         <translation>資料庫</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="380"/>
+        <location filename="../dbtree/dbtree.cpp" line="381"/>
         <source>Grouping</source>
         <translation>分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="385"/>
+        <location filename="../dbtree/dbtree.cpp" line="386"/>
         <source>Generate query for table</source>
         <translation>生成對錶的查詢</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1122"/>
-        <location filename="../dbtree/dbtree.cpp" line="1125"/>
+        <location filename="../dbtree/dbtree.cpp" line="1123"/>
+        <location filename="../dbtree/dbtree.cpp" line="1126"/>
         <source>Create group</source>
         <translation>建立分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1122"/>
+        <location filename="../dbtree/dbtree.cpp" line="1123"/>
         <source>Group name</source>
         <translation>分組名</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1125"/>
+        <location filename="../dbtree/dbtree.cpp" line="1126"/>
         <source>Entry with name %1 already exists in group %2.</source>
         <translation>名稱 %1 在分組 %2 中已存在。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1143"/>
+        <location filename="../dbtree/dbtree.cpp" line="1144"/>
         <source>Delete group</source>
         <translation>刪除分組</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1144"/>
+        <location filename="../dbtree/dbtree.cpp" line="1145"/>
         <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
         <translation>確認刪除組 %1 嗎？
 刪除後該組下的全部內容將被移動到其所屬的父分組中。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1207"/>
+        <location filename="../dbtree/dbtree.cpp" line="1208"/>
         <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
         <translation>確定要移除資料庫 %1 嗎？</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1215"/>
+        <location filename="../dbtree/dbtree.cpp" line="1216"/>
         <source>Are you sure you want to remove following databases from the list:
 %1</source>
         <translation>確定要從清單中移除下列資料庫嗎：
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1217"/>
+        <location filename="../dbtree/dbtree.cpp" line="1218"/>
         <source>Remove database</source>
         <translation>移除資料庫</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1257"/>
-        <location filename="../dbtree/dbtree.cpp" line="1462"/>
+        <location filename="../dbtree/dbtree.cpp" line="1258"/>
+        <location filename="../dbtree/dbtree.cpp" line="1463"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1277"/>
-        <location filename="../dbtree/dbtree.cpp" line="1437"/>
+        <location filename="../dbtree/dbtree.cpp" line="1278"/>
+        <location filename="../dbtree/dbtree.cpp" line="1438"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1527"/>
+        <location filename="../dbtree/dbtree.cpp" line="1528"/>
         <source>Vacuum (%1)</source>
         <translation>釋放空閒佔用 (VACUUM) (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1541"/>
+        <location filename="../dbtree/dbtree.cpp" line="1542"/>
         <source>Integrity check (%1)</source>
         <translation>完整性檢查 (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1577"/>
+        <location filename="../dbtree/dbtree.cpp" line="1578"/>
         <source>Reset autoincrement</source>
         <translation>重置自動遞增</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1577"/>
+        <location filename="../dbtree/dbtree.cpp" line="1578"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>您確定要重置表“%1”的自動遞增值嗎？</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1584"/>
+        <location filename="../dbtree/dbtree.cpp" line="1585"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>重置表“%1”的自動遞增值時出錯：%2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1586"/>
+        <location filename="../dbtree/dbtree.cpp" line="1587"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>成功重置表“%1”的自動遞增值。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1606"/>
+        <location filename="../dbtree/dbtree.cpp" line="1607"/>
         <source>Are you sure you want to delete all data from table(s): %1?</source>
         <translation>您確定要刪除表 %1 的所有資料嗎？</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1618"/>
+        <location filename="../dbtree/dbtree.cpp" line="1619"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
         <translation>刪除表“%1”中的資料時出錯：%2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1622"/>
+        <location filename="../dbtree/dbtree.cpp" line="1623"/>
         <source>All data has been deleted for table &apos;%1&apos;.</source>
         <translation>表“%1”中的全部資料已被刪除。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1761"/>
+        <location filename="../dbtree/dbtree.cpp" line="1762"/>
         <source>Following objects will be deleted: %1.</source>
         <translation>下列物件將被刪除：%1。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1764"/>
+        <location filename="../dbtree/dbtree.cpp" line="1765"/>
         <source>Following databases will be removed from list: %1.</source>
         <translation>下列資料庫將從清單中移除：%1。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1767"/>
+        <location filename="../dbtree/dbtree.cpp" line="1768"/>
         <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
         <translation>已刪除分組中的剩餘物件將被移開。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1769"/>
+        <location filename="../dbtree/dbtree.cpp" line="1770"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
         <translation>%1&lt;br&gt;&lt;br&gt;確定繼續？</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1771"/>
+        <location filename="../dbtree/dbtree.cpp" line="1772"/>
         <source>Delete objects</source>
         <translation>刪除物件</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2134"/>
+        <location filename="../dbtree/dbtree.cpp" line="2161"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click to disconnect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2142"/>
+        <location filename="../dbtree/dbtree.cpp" line="2169"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click to connect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2780,76 +2795,76 @@ All objects from this group will be moved to parent group.</source>
         <translation>觸發器 (%1)：</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1278"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1286"/>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1279"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1287"/>
         <source>Move</source>
         <translation>移動</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1281"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1289"/>
         <source>Include data</source>
         <translation>包含資料</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1282"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1290"/>
         <source>Include indexes</source>
         <translation>包含索引</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1283"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1291"/>
         <source>Include triggers</source>
         <translation>包含觸發器</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1285"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1293"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1344"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1352"/>
         <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
         <translation>無法自動新增拖放的資料庫檔案 &apos;%1&apos;。需要手動設定。</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1408"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1416"/>
         <source>Referenced tables</source>
         <translation>引用的表</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1409"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1417"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>是否要包含以下引用的表：
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1418"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1426"/>
         <source>Name conflict</source>
         <translation>名稱衝突</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1419"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1427"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>下列物件已存在於目標資料庫。
 請輸入一個新的不重複的名稱，或按下 &apos;%1&apos; 中止操作：</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1432"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1440"/>
         <source>SQL statements conversion</source>
         <translation>SQL 語句轉換</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1440"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1448"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>將 SQL 語句轉換為目標 SQLite 版本時發生以下錯誤：</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1441"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1449"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>是否忽略錯誤並繼續？</translation>
     </message>
@@ -2930,142 +2945,142 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="153"/>
+        <location filename="../windows/editorwindow.cpp" line="166"/>
         <source>Results in the separate tab</source>
         <translation>在新選項卡中顯示結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="154"/>
+        <location filename="../windows/editorwindow.cpp" line="167"/>
         <source>Results below the query</source>
         <translation>在查詢下方顯示結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="191"/>
-        <location filename="../windows/editorwindow.cpp" line="193"/>
+        <location filename="../windows/editorwindow.cpp" line="204"/>
+        <location filename="../windows/editorwindow.cpp" line="206"/>
         <source>SQL editor %1</source>
         <translation>SQL 編輯器 %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.ui" line="80"/>
-        <location filename="../windows/editorwindow.cpp" line="374"/>
+        <location filename="../windows/editorwindow.cpp" line="387"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="409"/>
+        <location filename="../windows/editorwindow.cpp" line="422"/>
         <source>Execute query</source>
         <translation>執行語句</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="410"/>
+        <location filename="../windows/editorwindow.cpp" line="423"/>
         <source>Explain query</source>
         <translation>解釋查詢</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="413"/>
+        <location filename="../windows/editorwindow.cpp" line="426"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
         <translation>清除執行歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="415"/>
+        <location filename="../windows/editorwindow.cpp" line="447"/>
         <source>Export results</source>
         <comment>sql editor</comment>
         <translation>匯出結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="417"/>
+        <location filename="../windows/editorwindow.cpp" line="428"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
         <translation>從查詢建立檢視</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="427"/>
+        <location filename="../windows/editorwindow.cpp" line="436"/>
         <source>Previous database</source>
         <translation>前一個數據庫</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="428"/>
+        <location filename="../windows/editorwindow.cpp" line="437"/>
         <source>Next database</source>
         <translation>後一個數據庫</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="431"/>
+        <location filename="../windows/editorwindow.cpp" line="440"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>顯示下一個標籤</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="432"/>
+        <location filename="../windows/editorwindow.cpp" line="441"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>顯示上一個標籤</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="433"/>
+        <location filename="../windows/editorwindow.cpp" line="442"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>切換焦點到下方的結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="434"/>
+        <location filename="../windows/editorwindow.cpp" line="443"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>切換焦點到上方的 SQL 編輯器</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="435"/>
+        <location filename="../windows/editorwindow.cpp" line="444"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>刪除選中的 SQL 歷史記錄項</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="436"/>
+        <location filename="../windows/editorwindow.cpp" line="445"/>
         <source>Execute single query under cursor</source>
         <translation type="unfinished">Execute single query under cursor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="437"/>
+        <location filename="../windows/editorwindow.cpp" line="446"/>
         <source>Execute all queries in editor</source>
         <translation type="unfinished">Execute all queries in editor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="487"/>
+        <location filename="../windows/editorwindow.cpp" line="501"/>
         <source>Active database (%1/%2)</source>
         <translation>活動資料庫 (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="604"/>
+        <location filename="../windows/editorwindow.cpp" line="618"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>查詢用時 %1 秒。影響行數：%2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="608"/>
+        <location filename="../windows/editorwindow.cpp" line="622"/>
         <source>Query finished in %1 second(s).</source>
         <translation>查詢用時 %1 秒。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="722"/>
+        <location filename="../windows/editorwindow.cpp" line="736"/>
         <source>Clear execution history</source>
         <translation>清除執行歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="722"/>
+        <location filename="../windows/editorwindow.cpp" line="736"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>確定要刪除全部的 SQL 執行歷史嗎？刪除後不能恢復。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="747"/>
+        <location filename="../windows/editorwindow.cpp" line="761"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="768"/>
+        <location filename="../windows/editorwindow.cpp" line="782"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>沒有在 SQL 編輯器中選中資料庫。無法為未知的資料庫建立檢視。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="818"/>
+        <location filename="../windows/editorwindow.cpp" line="832"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>編輯器視窗“%1”內有未提交的資料。</translation>
     </message>
@@ -4019,42 +4034,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>檢視工具欄</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="130"/>
+        <location filename="../mainwindow.cpp" line="131"/>
         <source>Configuration widgets</source>
         <translation>設定檔部件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="131"/>
+        <location filename="../mainwindow.cpp" line="132"/>
         <source>Syntax highlighting engines</source>
         <translation>語法高亮引擎</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="132"/>
+        <location filename="../mainwindow.cpp" line="133"/>
         <source>Data editors</source>
         <translation>資料編輯器</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="146"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
         <translation>正在以除錯模式執行。按下 %1 或使用 幫助 - 開啟除錯控制檯 選單來開啟除錯控制檯。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
         <translation>正在以除錯模式執行。除錯資訊將會被輸出在標準輸出中。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="249"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>語言變更在程式重啟後生效。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="294"/>
+        <location filename="../mainwindow.cpp" line="295"/>
         <source>Open SQL &amp;editor</source>
         <translation>開啟 SQL 編輯器(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="295"/>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>Open DDL &amp;history</source>
         <translation>開啟 DDL 歷史(&amp;H)</translation>
     </message>
@@ -4079,255 +4094,255 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>開啟擴充套件管理器(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>&amp;Import</source>
         <translation>匯入(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="337"/>
         <source>E&amp;xport</source>
         <translation>匯出(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="301"/>
         <source>Open confi&amp;guration dialog</source>
         <translation>開啟設定檔對話方塊(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="303"/>
         <source>&amp;Tile windows</source>
         <translation>平鋪視窗(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="304"/>
         <source>Tile windows &amp;horizontally</source>
         <translation>水平排列視窗(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="305"/>
         <source>Tile windows &amp;vertically</source>
         <translation>垂直排列視窗(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="306"/>
         <source>&amp;Cascade windows</source>
         <translation>層疊視窗(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="307"/>
         <source>Next window</source>
         <translation>下一個視窗</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Previous window</source>
         <translation>上一個視窗</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="309"/>
         <source>Hide status field</source>
         <translation>隱藏狀態列</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="315"/>
+        <location filename="../mainwindow.cpp" line="313"/>
         <source>Close &amp;all windows</source>
         <translation>關閉全部視窗(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="316"/>
         <source>Re&amp;store recently closed window</source>
         <translation>還原最近關閉的視窗(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Close current &amp;window</source>
         <translation>關閉目前視窗(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="133"/>
+        <location filename="../mainwindow.cpp" line="134"/>
         <source>Data renderers</source>
         <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="312"/>
         <source>Close &amp;other windows</source>
         <translation>關閉其他視窗(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>Close windows on the &amp;left</source>
         <translation>關閉左側的視窗(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="315"/>
         <source>Close windows on the &amp;right</source>
         <translation>關閉右側的視窗(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="317"/>
         <source>Re&amp;name selected window</source>
         <translation>重新命名目前視窗(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="321"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>Open Debug Console</source>
         <translation>開啟除錯終端</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>Open CSS Console</source>
         <translation>開啟 CSS 控制檯</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source>Report a &amp;bug</source>
         <translation>提報 Bug (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>D&amp;onate</source>
         <translation>捐贈(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="325"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Propose a new &amp;feature</source>
         <translation>提議新增功能(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source>&amp;About</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="325"/>
         <source>&amp;Licenses</source>
         <translation>許可協議(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>Open home &amp;page</source>
         <translation>訪問主頁(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>User &amp;Manual</source>
         <translation>使用者手冊(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="330"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>SQLite &amp;documentation</source>
         <translation>SQLite 文件(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="331"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Bugs and feature &amp;requests</source>
         <translation>Bug 與功能請求(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="332"/>
+        <location filename="../mainwindow.cpp" line="330"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="332"/>
         <source>Check for &amp;updates</source>
         <translation>檢查更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="354"/>
+        <location filename="../mainwindow.cpp" line="356"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation>資料庫(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="377"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation>結構(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="694"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation>檢視(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="405"/>
+        <location filename="../mainwindow.cpp" line="403"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>視窗清單</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="428"/>
+        <location filename="../mainwindow.cpp" line="426"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="444"/>
+        <location filename="../mainwindow.cpp" line="442"/>
         <source>&amp;Help</source>
         <translation>幫助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="634"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>未能設定風格：%1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="858"/>
+        <location filename="../mainwindow.cpp" line="872"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="901"/>
+        <location filename="../mainwindow.cpp" line="915"/>
         <source>Rename window</source>
         <translation>重新命名視窗</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="901"/>
+        <location filename="../mainwindow.cpp" line="915"/>
         <source>Enter new name for the window:</source>
         <translation>請輸入視窗的新名稱：</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1003"/>
+        <location filename="../mainwindow.cpp" line="1017"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;點此檢視更新詳情&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1009"/>
+        <location filename="../mainwindow.cpp" line="1023"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1093"/>
+        <location filename="../mainwindow.cpp" line="1107"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1100"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1216"/>
+        <location filename="../mainwindow.cpp" line="1241"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>命令列引數傳遞的資料庫 (%1) 已在清單中，名為：%2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1223"/>
+        <location filename="../mainwindow.cpp" line="1248"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>命令列引數傳遞的資料庫 (%1) 已臨時新增到清單中，名為：%2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1253"/>
         <source>Could not add database %1 to list.</source>
         <translation>未能將資料 %1 新增到清單</translation>
     </message>
@@ -5850,43 +5865,43 @@ find next</source>
         <translation>儲存 SQL 內容至檔案：%1</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="534"/>
+        <location filename="../sqleditor.cpp" line="542"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
         <translation>SQL 編輯器的語法補全功能僅當存在有效資料庫時可用。</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1162"/>
+        <location filename="../sqleditor.cpp" line="1170"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>SQL 編輯器有大量內容，因此錯誤偵測和現有物件的高亮顯示功能被暫時禁用。</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1197"/>
+        <location filename="../sqleditor.cpp" line="1205"/>
         <source>Save to file</source>
         <translation>儲存到檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1212"/>
+        <location filename="../sqleditor.cpp" line="1220"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>SQL檔案 (*.sql);;所有檔案 (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1213"/>
-        <location filename="../sqleditor.cpp" line="1230"/>
+        <location filename="../sqleditor.cpp" line="1221"/>
+        <location filename="../sqleditor.cpp" line="1238"/>
         <source>Open file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1231"/>
+        <location filename="../sqleditor.cpp" line="1239"/>
         <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
         <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1252"/>
+        <location filename="../sqleditor.cpp" line="1260"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>無法以讀模式開啟檔案 %1：%2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1458"/>
+        <location filename="../sqleditor.cpp" line="1466"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>已到文件底部。再次點選查詢將從頭開始搜尋。</translation>
     </message>
@@ -6680,7 +6695,7 @@ NULL</source>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1761"/>
+        <location filename="../windows/tablewindow.cpp" line="1752"/>
         <source>Data</source>
         <translation>資料</translation>
     </message>
@@ -6754,7 +6769,7 @@ NULL</source>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="242"/>
-        <location filename="../windows/tablewindow.cpp" line="337"/>
+        <location filename="../windows/tablewindow.cpp" line="330"/>
         <source>Delete column</source>
         <comment>table window</comment>
         <translation>刪除列</translation>
@@ -6772,129 +6787,127 @@ NULL</source>
         <translation>下移列</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="253"/>
+        <location filename="../windows/tablewindow.cpp" line="246"/>
         <source>Create similar table</source>
         <comment>table window</comment>
         <translation>建立相似的表</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="254"/>
+        <location filename="../windows/tablewindow.cpp" line="247"/>
         <source>Reset autoincrement value</source>
         <comment>table window</comment>
         <translation>重置自動遞增值</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="257"/>
+        <location filename="../windows/tablewindow.cpp" line="250"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
         <translation>新增表約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="258"/>
+        <location filename="../windows/tablewindow.cpp" line="251"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
         <translation>編輯表約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="259"/>
+        <location filename="../windows/tablewindow.cpp" line="252"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
         <translation>刪除表約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="260"/>
+        <location filename="../windows/tablewindow.cpp" line="253"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
         <translation>向上移動表約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="261"/>
+        <location filename="../windows/tablewindow.cpp" line="254"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
         <translation>向下一移動表約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="263"/>
+        <location filename="../windows/tablewindow.cpp" line="256"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
         <translation>新增主鍵</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="264"/>
+        <location filename="../windows/tablewindow.cpp" line="257"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
         <translation>新增外來鍵</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="265"/>
+        <location filename="../windows/tablewindow.cpp" line="258"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
         <translation>新增表唯一約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="266"/>
+        <location filename="../windows/tablewindow.cpp" line="259"/>
         <source>Add table check constraint</source>
         <comment>table window</comment>
         <translation>新增表檢查約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="284"/>
+        <location filename="../windows/tablewindow.cpp" line="277"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
         <translation>重新整理索引清單</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="246"/>
-        <location filename="../windows/tablewindow.cpp" line="286"/>
+        <location filename="../windows/tablewindow.cpp" line="279"/>
         <source>Create index</source>
         <comment>table window</comment>
         <translation>建立索引</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="287"/>
+        <location filename="../windows/tablewindow.cpp" line="280"/>
         <source>Edit index</source>
         <comment>table window</comment>
         <translation>編輯索引</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="288"/>
+        <location filename="../windows/tablewindow.cpp" line="281"/>
         <source>Delete index</source>
         <comment>table window</comment>
         <translation>刪除索引</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="294"/>
+        <location filename="../windows/tablewindow.cpp" line="287"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
         <translation>重新整理觸發器清單</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="247"/>
-        <location filename="../windows/tablewindow.cpp" line="296"/>
+        <location filename="../windows/tablewindow.cpp" line="289"/>
         <source>Create trigger</source>
         <comment>table window</comment>
         <translation>建立觸發器</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="297"/>
+        <location filename="../windows/tablewindow.cpp" line="290"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
         <translation>編輯觸發器</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="298"/>
+        <location filename="../windows/tablewindow.cpp" line="291"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
         <translation>刪除觸發器</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="336"/>
+        <location filename="../windows/tablewindow.cpp" line="329"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>您確定要刪除欄位“%1”嗎？</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="386"/>
+        <location filename="../windows/tablewindow.cpp" line="379"/>
         <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
         <comment>table window</comment>
@@ -6902,229 +6915,229 @@ Would you like to proceed?</source>
 是否繼續？</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="388"/>
+        <location filename="../windows/tablewindow.cpp" line="381"/>
         <source>Table modification</source>
         <comment>table window</comment>
         <translation>修改表</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="513"/>
+        <location filename="../windows/tablewindow.cpp" line="506"/>
         <source>Could not load data for table %1. Error details: %2</source>
         <translation>無法載入表 %1 的資料。錯誤詳情：%2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="657"/>
+        <location filename="../windows/tablewindow.cpp" line="650"/>
         <source>Could not process the %1 table correctly. Unable to open a table window.</source>
         <translation>無法正確處理表 %1。無法開啟表視窗。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="681"/>
+        <location filename="../windows/tablewindow.cpp" line="674"/>
         <source>Database</source>
         <translation>資料庫</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="713"/>
+        <location filename="../windows/tablewindow.cpp" line="706"/>
         <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
         <translation>無法還原視窗 %1，此視窗中沒有儲存資料庫或表的會話。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="719"/>
+        <location filename="../windows/tablewindow.cpp" line="712"/>
         <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
         <translation>無法還原視窗“%1”，此視窗中沒有儲存資料庫或表的會話。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="726"/>
+        <location filename="../windows/tablewindow.cpp" line="719"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation>無法還原視窗“%1”，無法解析資料庫 %2。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="735"/>
+        <location filename="../windows/tablewindow.cpp" line="728"/>
         <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
         <translation type="unfinished">Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="760"/>
-        <location filename="../windows/tablewindow.cpp" line="762"/>
+        <location filename="../windows/tablewindow.cpp" line="753"/>
+        <location filename="../windows/tablewindow.cpp" line="755"/>
         <source>New table %1</source>
         <translation>新表 %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="903"/>
+        <location filename="../windows/tablewindow.cpp" line="896"/>
         <source>Committed changes for table &apos;%1&apos; successfully.</source>
         <translation>成功提交表 &apos;%1&apos; 的修改。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="907"/>
+        <location filename="../windows/tablewindow.cpp" line="900"/>
         <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation>成功提交對錶 &apos;%1&apos; (原名 &apos;%2&apos;) 的更改。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="945"/>
+        <location filename="../windows/tablewindow.cpp" line="938"/>
         <source>Could not commit table structure. Error message: %1</source>
         <comment>table window</comment>
         <translation>無法提交表結構。錯誤資訊：%1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="969"/>
+        <location filename="../windows/tablewindow.cpp" line="962"/>
         <source>Reset autoincrement</source>
         <translation>重置自動遞增</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="969"/>
+        <location filename="../windows/tablewindow.cpp" line="962"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>您確定要重置表“%1”的自動遞增值嗎？</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="976"/>
+        <location filename="../windows/tablewindow.cpp" line="969"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>重置表“%1”的自動遞增值時出錯：%2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="978"/>
+        <location filename="../windows/tablewindow.cpp" line="971"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>成功重置表“%1”的自動遞增值。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1066"/>
+        <location filename="../windows/tablewindow.cpp" line="1059"/>
         <source>Empty name</source>
         <translation>空名稱</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1066"/>
+        <location filename="../windows/tablewindow.cpp" line="1059"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation>SQLite 允許為表使用空白名稱，但不推薦使用空白名稱。
 您確定要建立一個空白名稱的表？</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1075"/>
+        <location filename="../windows/tablewindow.cpp" line="1068"/>
         <source>Cannot create a table without at least one column.</source>
         <translation>無法建立沒有任何列的表。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1101"/>
+        <location filename="../windows/tablewindow.cpp" line="1094"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation>無法建立表 %1，沒有定義主鍵。取消選中 %2 或者定義一個主鍵。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1108"/>
+        <location filename="../windows/tablewindow.cpp" line="1101"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation>使用 %1 語句時無法為主鍵使用自動遞增。取消選中 %2，或者將一個主鍵設為自動遞增。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1127"/>
+        <location filename="../windows/tablewindow.cpp" line="1120"/>
         <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
         <translation type="unfinished">Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1311"/>
+        <location filename="../windows/tablewindow.cpp" line="1302"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>您確定要刪除表約束“%1”嗎？</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1312"/>
+        <location filename="../windows/tablewindow.cpp" line="1303"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>刪除約束</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1367"/>
+        <location filename="../windows/tablewindow.cpp" line="1358"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1380"/>
+        <location filename="../windows/tablewindow.cpp" line="1371"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1413"/>
+        <location filename="../windows/tablewindow.cpp" line="1404"/>
         <source>Uncommitted changes</source>
         <translation>未提交的更改</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1414"/>
+        <location filename="../windows/tablewindow.cpp" line="1405"/>
         <source>There are uncommitted structure modifications.</source>
         <translation type="unfinished">There are uncommitted structure modifications.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1416"/>
+        <location filename="../windows/tablewindow.cpp" line="1407"/>
         <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation type="unfinished">You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1420"/>
+        <location filename="../windows/tablewindow.cpp" line="1411"/>
         <source>Commit modifications and browse data</source>
         <translation type="unfinished">Commit modifications and browse data</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1419"/>
+        <location filename="../windows/tablewindow.cpp" line="1410"/>
         <source>Go back to structure tab</source>
         <translation>返回結構選項卡</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1627"/>
+        <location filename="../windows/tablewindow.cpp" line="1618"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1628"/>
+        <location filename="../windows/tablewindow.cpp" line="1619"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>唯一</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1629"/>
+        <location filename="../windows/tablewindow.cpp" line="1620"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>列</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1630"/>
+        <location filename="../windows/tablewindow.cpp" line="1621"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation>部分索引條件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1686"/>
+        <location filename="../windows/tablewindow.cpp" line="1677"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1687"/>
+        <location filename="../windows/tablewindow.cpp" line="1678"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>事件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1688"/>
+        <location filename="../windows/tablewindow.cpp" line="1679"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>條件</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1689"/>
+        <location filename="../windows/tablewindow.cpp" line="1680"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>詳情</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1803"/>
+        <location filename="../windows/tablewindow.cpp" line="1794"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>表視窗“%1”有未提交的結構更改與資料。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1805"/>
+        <location filename="../windows/tablewindow.cpp" line="1796"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation>表視窗“%1”有未提交的資料。</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1807"/>
+        <location filename="../windows/tablewindow.cpp" line="1798"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>表視窗“%1”有未提交的結構更改。</translation>
     </message>

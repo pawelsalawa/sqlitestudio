@@ -221,42 +221,42 @@
 <context>
     <name>ErdTableWindow</name>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="30"/>
+        <location filename="../panel/erdtablewindow.cpp" line="29"/>
         <source>Apply changes to diagram</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">Apply changes to diagram</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="31"/>
+        <location filename="../panel/erdtablewindow.cpp" line="30"/>
         <source>Abort changes</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">Abort changes</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="55"/>
+        <location filename="../panel/erdtablewindow.cpp" line="49"/>
         <source>ERD side panel for table &quot;%1&quot; has uncommitted modifications.</source>
         <translation type="unfinished">ERD side panel for table &quot;%1&quot; has uncommitted modifications.</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="112"/>
+        <location filename="../panel/erdtablewindow.cpp" line="106"/>
         <source>Invalid table changes</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">Invalid table changes</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="114"/>
+        <location filename="../panel/erdtablewindow.cpp" line="108"/>
         <source>&lt;b&gt;The table contains invalid changes&lt;/b&gt;</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">&lt;b&gt;The table contains invalid changes&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="115"/>
+        <location filename="../panel/erdtablewindow.cpp" line="109"/>
         <source>Some of the changes you made cannot be applied because they contain errors.&lt;br&gt;&lt;br&gt;&lt;b&gt;Errors:&lt;/b&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;&lt;br&gt;&lt;br&gt;You can &lt;b&gt;return to editing&lt;/b&gt; and fix the problems, or &lt;b&gt;discard your changes&lt;/b&gt; and restore the previous state of the table.</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">Some of the changes you made cannot be applied because they contain errors.&lt;br&gt;&lt;br&gt;&lt;b&gt;Errors:&lt;/b&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;&lt;br&gt;&lt;br&gt;You can &lt;b&gt;return to editing&lt;/b&gt; and fix the problems, or &lt;b&gt;discard your changes&lt;/b&gt; and restore the previous state of the table.</translation>
     </message>
     <message>
-        <location filename="../panel/erdtablewindow.cpp" line="124"/>
+        <location filename="../panel/erdtablewindow.cpp" line="118"/>
         <source>Fix errors</source>
         <comment>ERD editor</comment>
         <translation type="unfinished">Fix errors</translation>
