@@ -96,12 +96,12 @@ void DbTree::init()
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
 
-    new UserInputFilter(nameFilter, treeModel, SLOT(applyFilter(QString)), true);
-
     ui->treeView->setDbTree(this);
     ui->treeView->setModel(treeModel);
 
     initActions();
+
+    new UserInputFilter(nameFilter, treeModel, SLOT(applyFilter(QString)), true);
 
     if (DBLIST->getDbList().size() > 0)
         treeModel->loadDbList();
@@ -165,7 +165,6 @@ void DbTree::createActions()
     createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete the column"), this, SLOT(delColumn()), this);
     createAction(DEL_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), this, SLOT(deleteSelected()), this);
-    createAction(CLEAR_FILTER, tr("Clear filter"), nameFilter, SLOT(clear()), this);
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("&Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Re&fresh selected database schema"), this, SLOT(refreshSchema()), this);
     createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
@@ -179,6 +178,7 @@ void DbTree::createActions()
     createAction(DECR_FONT_SIZE, tr("Decrease font size", "database list"), this, SLOT(decrFontSize()), this);
 
     initSmallToolbarActions();
+    createAction(CLEAR_FILTER, tr("Clear filter"), nameFilter, SLOT(clear()), this);
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
