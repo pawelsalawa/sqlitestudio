@@ -195,7 +195,8 @@ jobs:
                     -DCMAKE_INSTALL_PREFIX=../SQLiteStudio \
                     -DWITH_PORTABLE=1 \
                     -DWITH_DYNAMIC_PYTHON=1 \
-                    -DWITH_ALL_PLUGINS=1
+                    -DWITH_ALL_PLUGINS=1 \
+                    -DCUSTOM_SQLITE3=$GITHUB_WORKSPACE/../sqlite
                 cmake --build . --verbose
                 cmake --install . --verbose
 

@@ -32,6 +32,8 @@ function(sqlitestudio_set_plugin_properties target)
         endif()
     endif()
 
+    target_link_libraries(${target} PRIVATE SQLite::Headers)
+
     install(
         TARGETS ${target}
         LIBRARY DESTINATION "${SQLITESTUDIO_INSTALL_PLUGINDIR}" # macOS/Linux (.dylib/.so)
