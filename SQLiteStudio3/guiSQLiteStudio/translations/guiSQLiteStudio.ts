@@ -2143,7 +2143,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="45"/>
-        <location filename="../dialogs/dbdialog.cpp" line="176"/>
+        <location filename="../dialogs/dbdialog.cpp" line="177"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2184,62 +2184,62 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="333"/>
+        <location filename="../dialogs/dbdialog.cpp" line="336"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="508"/>
+        <location filename="../dialogs/dbdialog.cpp" line="511"/>
         <source>Database type not selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="515"/>
+        <location filename="../dialogs/dbdialog.cpp" line="518"/>
         <source>Database path not specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="549"/>
+        <location filename="../dialogs/dbdialog.cpp" line="552"/>
         <source>Enter an unique database name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="559"/>
+        <location filename="../dialogs/dbdialog.cpp" line="562"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="566"/>
+        <location filename="../dialogs/dbdialog.cpp" line="569"/>
         <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="575"/>
+        <location filename="../dialogs/dbdialog.cpp" line="578"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="581"/>
+        <location filename="../dialogs/dbdialog.cpp" line="584"/>
         <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="591"/>
+        <location filename="../dialogs/dbdialog.cpp" line="594"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="613"/>
+        <location filename="../dialogs/dbdialog.cpp" line="616"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="763"/>
+        <location filename="../dialogs/dbdialog.cpp" line="766"/>
         <source>Choose a location for the new database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="764"/>
+        <location filename="../dialogs/dbdialog.cpp" line="767"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished"></translation>
     </message>
