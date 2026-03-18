@@ -2509,44 +2509,44 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Удалить выбранные элементы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="168"/>
+        <location filename="../dbtree/dbtree.cpp" line="181"/>
         <source>Clear filter</source>
         <translation>Сбросить фильтр</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="169"/>
+        <location filename="../dbtree/dbtree.cpp" line="168"/>
         <source>&amp;Refresh all database schemas</source>
         <translation>Обновить структуры всех баз данн&amp;ых</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="170"/>
+        <location filename="../dbtree/dbtree.cpp" line="169"/>
         <source>Re&amp;fresh selected database schema</source>
         <translation>Обновить структуру выбранной базы данны&amp;х</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="171"/>
+        <location filename="../dbtree/dbtree.cpp" line="170"/>
         <location filename="../dbtree/dbtree.cpp" line="1607"/>
         <source>Erase table data</source>
         <translation>Удалить данные из таблицы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="176"/>
+        <location filename="../dbtree/dbtree.cpp" line="175"/>
         <source>Open file&apos;s directory</source>
         <translation>Открыть папку с этим файлом</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="177"/>
+        <location filename="../dbtree/dbtree.cpp" line="176"/>
         <source>Execute SQL from file</source>
         <translation>Выполнить SQL-запросы из файла</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="178"/>
+        <location filename="../dbtree/dbtree.cpp" line="177"/>
         <source>Increase font size</source>
         <comment>database list</comment>
         <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="179"/>
+        <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Decrease font size</source>
         <comment>database list</comment>
         <translation>Уменьшить размер шрифта</translation>
