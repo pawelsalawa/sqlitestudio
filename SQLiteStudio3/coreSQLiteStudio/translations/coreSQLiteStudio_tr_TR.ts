@@ -157,12 +157,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="877"/>
+        <location filename="../services/impl/configimpl.cpp" line="879"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>SQL geçmişini silme işlemi başlatılamadı, bu sebeple silinemedi.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="884"/>
+        <location filename="../services/impl/configimpl.cpp" line="886"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>SQL geçmişini silme işlemi commitlenemedi, bu sebeple silinmedi.</translation>
     </message>
@@ -898,7 +898,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
         <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="757"/>
+        <location filename="../services/impl/configimpl.cpp" line="759"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
         <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>

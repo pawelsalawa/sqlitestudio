@@ -4,37 +4,37 @@
 <context>
     <name>DbSqliteMc</name>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="32"/>
+        <location filename="../dbsqlitemc.cpp" line="42"/>
         <source>Password (key)</source>
         <translation>Mot de passe (clé)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="33"/>
+        <location filename="../dbsqlitemc.cpp" line="43"/>
         <source>Leave empty to create or connect to decrypted database.</source>
         <translation>Laisser vide pour créer ou se connecter à la base de données déchiffrée.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="34"/>
+        <location filename="../dbsqlitemc.cpp" line="44"/>
         <source>Encryption password</source>
         <translation>Mot de passe de chiffrement</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="40"/>
+        <location filename="../dbsqlitemc.cpp" line="50"/>
         <source>Cipher</source>
         <translation>Chiffrement</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="41"/>
+        <location filename="../dbsqlitemc.cpp" line="51"/>
         <source>Cipher determines encryption algorithm used to encrypt the database.</source>
         <translation>Cipher détermine l&apos;algorithme de chiffrement utilisé pour chiffrer la base de données.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="49"/>
+        <location filename="../dbsqlitemc.cpp" line="59"/>
         <source>Cipher configuration (optional)</source>
         <translation>Configuration du chiffrement (optionnel)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="50"/>
+        <location filename="../dbsqlitemc.cpp" line="60"/>
         <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
