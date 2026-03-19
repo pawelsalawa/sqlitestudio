@@ -290,7 +290,7 @@
               <item row="1" column="0">
                <widget class="QCheckBox" name="expandTablesCheck">
                 <property name="text">
-                 <string>Expand tables node when connected to a database</string>
+                 <string>Expand tables when connected to a database</string>
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">DbList.ExpandTables</string>
@@ -300,7 +300,7 @@
               <item row="2" column="0">
                <widget class="QCheckBox" name="expandViewsCheck">
                 <property name="text">
-                 <string>Expand views node when connected to a database</string>
+                 <string>Expand views when connected to a database</string>
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">DbList.ExpandViews</string>
@@ -418,13 +418,13 @@
               <item>
                <widget class="QCheckBox" name="bypassDbDialogCheck">
                 <property name="toolTip">
-                 <string>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>Try to bypass dialog completly when dropping database file onto the list</string>
+                 <string>Skip the dialog when possible</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string notr="true">DbList.BypassDbDialogWhenDropped</string>
+                 <string notr="true">DbList.BypassDbDialogWhenPossible</string>
                 </property>
                </widget>
               </item>

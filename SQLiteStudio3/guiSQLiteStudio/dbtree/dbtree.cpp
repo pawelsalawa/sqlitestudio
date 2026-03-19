@@ -26,6 +26,9 @@
 #include "dialogs/fileexecerrorsdialog.h"
 #include "sqlfileexecutor.h"
 #include "common/mouseshortcut.h"
+#include "uiutils.h"
+#include "services/pluginmanager.h"
+#include "plugins/dbpluginsqlite3.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -118,6 +121,7 @@ void DbTree::init()
     connect(treeModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
     connect(treeModel, SIGNAL(rowsMoved(QModelIndex,int,int,QModelIndex,int)), this, SIGNAL(sessionValueChanged()));
     connect(treeModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SIGNAL(sessionValueChanged()));
+    connect(treeModel, SIGNAL(dbItemAdded(DbTreeItem*)), this, SLOT(handleDbItemAdded(DbTreeItem*)));
     connect(treeModel, &DbTreeModel::filteringInterrupted, this, &DbTree::resetFilterValueAfterInterrupting);
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SIGNAL(sessionValueChanged()));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SIGNAL(sessionValueChanged()));
@@ -135,7 +139,10 @@ void DbTree::createActions()
     createAction(CREATE_GROUP, ICONS.DIRECTORY_ADD, tr("Create a group"), this, SLOT(createGroup()), this);
     createAction(DELETE_GROUP, ICONS.DIRECTORY_DEL, tr("Delete the group"), this, SLOT(deleteGroup()), this);
     createAction(RENAME_GROUP, ICONS.DIRECTORY_EDIT, tr("Rename the group"), this, SLOT(renameGroup()), this);
-    createAction(ADD_DB, ICONS.DATABASE_ADD, tr("&Add a database"), this, SLOT(addDb()), this);
+    createAction(NEW_DB, ICONS.DATABASE_NEW, tr("&Create new database"), this, SLOT(newDb()), this);
+    createAction(OPEN_DB, ICONS.DATABASE_OPEN, tr("&Open existing database"), this, SLOT(openDb()), this);
+    createAction(OPEN_FILE, ICONS.DATABASE_OPEN, tr("&Open existing database or SQL file"), this, SLOT(openFile()), this);
+    createAction(ADD_DB, ICONS.DATABASE_ADD, tr("Add a database"), this, SLOT(addDb()), this);
     createAction(EDIT_DB, ICONS.DATABASE_EDIT, tr("&Edit the database"), this, SLOT(editDb()), this);
     createAction(DELETE_DB, ICONS.DATABASE_DEL, tr("&Remove the database"), this, SLOT(removeDb()), this);
     createAction(CONNECT_TO_DB, ICONS.DATABASE_CONNECT, tr("&Connect to the database"), this, SLOT(connectToDb()), this);
@@ -192,7 +199,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
         DbTreeItem* grandParentItem = parentItem ? parentItem->parentDbTreeItem() : nullptr;
 
         // Add database should always be available, as well as a copy of an item
-        enabled << ADD_DB << COPY;
+        enabled << ADD_DB << NEW_DB << OPEN_DB << OPEN_FILE << COPY;
 
         if (isMimeDataValidForItem(QApplication::clipboard()->mimeData(), dbTreeItem, true))
             enabled << PASTE;
@@ -201,7 +208,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
         // Group actions
         if (dbTreeItem->getType() == DbTreeItem::Type::DIR)
-            enabled << CREATE_GROUP << RENAME_GROUP << DELETE_GROUP << ADD_DB;
+            enabled << CREATE_GROUP << RENAME_GROUP << DELETE_GROUP;
 
         if (dbTreeItem->getDb())
         {
@@ -340,7 +347,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
     }
     else
     {
-        enabled << CREATE_GROUP << ADD_DB;
+        enabled << CREATE_GROUP << ADD_DB  << NEW_DB << OPEN_DB << OPEN_FILE;
         updateConnectDisconnectAction(false);
     }
 
@@ -364,6 +371,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     QList<ActionEntry> actions;
 
     ActionEntry dbEntry(ICONS.DATABASE, tr("Database"));
+    dbEntry += NEW_DB;
+    dbEntry += OPEN_DB;
     dbEntry += ADD_DB;
     dbEntry += EDIT_DB;
     dbEntry += DELETE_DB;
@@ -374,6 +383,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     dbEntryExt += _separator;
     dbEntryExt += REFRESH_SCHEMA;
     dbEntryExt += _separator;
+    dbEntryExt += NEW_DB;
+    dbEntryExt += OPEN_DB;
     dbEntryExt += ADD_DB;
     dbEntryExt += EDIT_DB;
     dbEntryExt += DELETE_DB;
@@ -412,6 +423,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                     actions += ActionEntry(CONNECT_TO_DB);
                     actions += ActionEntry(DISCONNECT_FROM_DB);
                     actions += ActionEntry(_separator);
+                    actions += ActionEntry(NEW_DB);
+                    actions += ActionEntry(OPEN_DB);
                     actions += ActionEntry(ADD_DB);
                     actions += ActionEntry(EDIT_DB);
                     actions += ActionEntry(DELETE_DB);
@@ -432,6 +445,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 }
                 else
                 {
+                    actions += ActionEntry(NEW_DB);
+                    actions += ActionEntry(OPEN_DB);
                     actions += ActionEntry(ADD_DB);
                     actions += ActionEntry(EDIT_DB);
                     actions += ActionEntry(DELETE_DB);
@@ -1182,6 +1197,61 @@ void DbTree::addDb()
     }
 }
 
+void DbTree::newDb()
+{
+    QString path = getDbPath(true);
+    if (path.isNull())
+        return;
+
+    DbPluginSqlite3* plugin = PLUGINS->getLoadedPlugin<DbPluginSqlite3>();
+    if (!getModel()->quickAddDroppedDb(path, plugin))
+    {
+        DbDialog dialog(DbDialog::ADD, this);
+        dialog.setPath(path);
+        dialog.setCreateMode(true);
+        dialog.exec();
+    }
+}
+
+void DbTree::openDb()
+{
+    QString path = getDbPath(false);
+    if (path.isNull())
+        return;
+
+    openDb(path);
+}
+
+void DbTree::openFile()
+{
+    QString path = getDbOrSqlPath(false);
+    if (path.isNull())
+        return;
+
+    if (path.toLower().endsWith(".sql"))
+    {
+        MAINWINDOW->openSqlEditorForFile(getSelectedDb(), path);
+        return;
+    }
+
+    openDb(path);
+}
+
+void DbTree::openDb(const QString& path)
+{
+    bool result = getModel()->quickAddDroppedDb(path);
+    if (!CFG_UI.DbList.BypassDbDialogWhenPossible.get() || !result)
+    {
+        DbDialog dialog(DbDialog::ADD, this);
+        dialog.setCreateMode(false);
+        dialog.setPath(path);
+        if (!result)
+            dialog.setDoAutoTest(true);
+
+        dialog.exec();
+    }
+}
+
 void DbTree::editDb()
 {
     Db* db = getSelectedDb();
@@ -1774,22 +1844,21 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
         return;
 
     // Deleting items
-    QSet<Db*> deletedDatabases;
     QSet<Db*> databasesToRefresh;
     QHash<Db*, QList<DbTreeItem*>> tableItemsByDb;
     QHash<Db*, bool> fkEnforcementWasEnabled;
     for (DbTreeItem* item : items)
     {
         Db* db = item->getDb();
-        if (item->getType() == DbTreeItem::Type::DB)
-            deletedDatabases << db;
-
-        databasesToRefresh << db;
-        if (!fkEnforcementWasEnabled.contains(db))
+        if (item->getType() != DbTreeItem::Type::DB)
         {
-            fkEnforcementWasEnabled[db] = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
-            if (fkEnforcementWasEnabled[db])
-                db->exec("PRAGMA foreign_keys = 0");
+            databasesToRefresh << db;
+            if (!fkEnforcementWasEnabled.contains(db))
+            {
+                fkEnforcementWasEnabled[db] = db->exec("PRAGMA foreign_keys")->getSingleCell().toBool();
+                if (fkEnforcementWasEnabled[db])
+                    db->exec("PRAGMA foreign_keys = 0");
+            }
         }
 
         if (item->getType() == DbTreeItem::Type::TABLE)
@@ -1829,12 +1898,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     }
 
     for (Db* dbToRefresh : databasesToRefresh)
-    {
-        if (deletedDatabases.contains(dbToRefresh))
-            continue;
-
         refreshSchema(dbToRefresh);
-    }
 
     emit sessionValueChanged();
 }
@@ -2019,6 +2083,16 @@ void DbTree::nodeExpanded(const QModelIndex& idx)
     }
 }
 
+void DbTree::handleDbItemAdded(DbTreeItem* item)
+{
+    item->getDb()->open();
+    QTimer::singleShot(0, [this, item]()
+    {
+        ui->treeView->setCurrentItem(item);
+        ui->treeView->scrollTo(item->index(), QAbstractItemView::PositionAtCenter);
+    });
+}
+
 void DbTree::dbConnected(Db* db)
 {
     updateActionsForCurrent();
@@ -2122,8 +2196,11 @@ void DbTree::setupDefShortcuts()
 {
     setShortcutContext({
                            CLEAR_FILTER, DEL_SELECTED, REFRESH_SCHEMA, REFRESH_SCHEMAS,
-                           ADD_DB, SELECT_ALL, COPY, PASTE
+                           SELECT_ALL, COPY, PASTE
                        }, Qt::WidgetWithChildrenShortcut);
+    setShortcutContext({
+                           NEW_DB, OPEN_FILE
+                       }, Qt::ApplicationShortcut);
 
     BIND_SHORTCUTS(DbTree, Action);
 }

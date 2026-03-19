@@ -21,6 +21,7 @@
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
 - ADDED: #5552 Support for new syntax variants of ALTER TABLE.
+- ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
@@ -28,6 +29,10 @@
 - CHANGE: #4762 Colors configuration for syntax highlighting now allows defining also bold/italic attributes.
 - CHANGE: #5541 Plugins Page in Configuration Dialog uses now a material-design-like toggle for loading/unloading plugins + each plugin has more vertical padding and is clickable as a whole row, not just a small box.
 - CHANGE: #5561 Database actions on main toolbar simplified, partially moved to Database List panel.
+- CHANGE: #5060 Application connects to the database that was just added to the list.
+- CHANGE: #5374 Ctrl+O (Cmd+O on macOS) now always asks for a file to open and if it's a database, it's added to the list. If it's SQL file, the SQL editor opens for it.
+- CHANGE: #5374 Ctrl+N (Cmd+N on macOS) now always asks for a file to create and adds the new database to the list.
+- CHANGE: #5477 WxSQLite plugin was renamed to its proper name, the SQLite3MC (SQLite 3 Multiple Ciphers).
 - CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two. Also views/triggers support got improved for cases with subselects.
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.

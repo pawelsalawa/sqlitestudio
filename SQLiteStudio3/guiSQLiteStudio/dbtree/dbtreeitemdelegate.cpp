@@ -77,23 +77,27 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 void DbTreeItemDelegate::paintDb(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem *item) const
 {
-    static const QString versionStringTemplate = QStringLiteral("(%1)");
-    QString versionString = versionStringTemplate.arg("?");
+    static const QString formatStringTemplate = QStringLiteral("(%1)");
+    QString formatString = formatStringTemplate.arg("?");
     Db* db = item->getDb();
     if (!db)
         return;
 
     if (db->isValid())
     {
-        QString t = db->getTypeLabel();
-        versionString = versionStringTemplate.arg(t);
+        QString reportedFormat = db->getTypeLabel();
+        int colonIdx = reportedFormat.indexOf(":");
+        if (colonIdx > -1)
+            reportedFormat = reportedFormat.mid(0, colonIdx);
+
+        formatString = formatStringTemplate.arg(reportedFormat);
     }
     else
     {
-        versionString = versionStringTemplate.arg(tr("error", "dbtree labels"));
+        formatString = formatStringTemplate.arg(tr("error", "dbtree labels"));
     }
 
-    paintLabel(painter, option, index, item, versionString);
+    paintLabel(painter, option, index, item, formatString);
 }
 
 void DbTreeItemDelegate::paintChildCount(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem *item) const

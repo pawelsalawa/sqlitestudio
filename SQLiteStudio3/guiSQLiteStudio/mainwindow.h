@@ -118,7 +118,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             DONATE,
             BUG_REPORT_HISTORY,
             CHECK_FOR_UPDATES,
-            QUIT
+            QUIT,
+            NEW_DB,
+            OPEN_FILE
         };
         Q_ENUM(Action)
 

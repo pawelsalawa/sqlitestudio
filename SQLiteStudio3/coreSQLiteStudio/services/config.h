@@ -12,8 +12,6 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 10;
-
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
         CFG_ENTRY(int,          SqlHistorySize,           10000)

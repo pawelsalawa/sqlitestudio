@@ -41,6 +41,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         QHash<QString,QVariant> collectOptions();
         bool isPermanent();
         void setDoAutoTest(bool value);
+        void setCreateMode(bool createDbMode);
 
     protected:
         void changeEvent(QEvent *e);
@@ -59,6 +60,8 @@ class GUI_API_EXPORT DbDialog : public QDialog
         bool testDatabase(QString& errorMsg);
         bool validate();
         void updateState();
+        void updateNameLink();
+        void setNameLabelText(const QString& value);
 
         Ui::DbDialog *ui = nullptr;
         Mode mode;
@@ -91,6 +94,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void dbTypeChanged(int index);
         void nameModified(const QString &value);
         void updateCreateMode();
+        void toggleNameEdit();
 
     public slots:
         void accept();

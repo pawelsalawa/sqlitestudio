@@ -33,19 +33,13 @@ const QStringList pageSizes = pageSizeIds | MAP_NO_CAP(id, {
 
 const QStringList pageSizesWithDimensions;
 
-QString getDbPath(bool newFileMode, const QString &startWith)
+QString getDbPath(bool newFileMode, const QString &startWith, const QStringList& filters, const QString& dialogTitle)
 {
     QString dir = startWith;
     if (dir.isNull())
         dir = CFG->get("dialogCache", "lastDbDir").toString();
 
-    QStringList filters({
-        QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
-        "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
-        QObject::tr("All files")+" (*)"
-    });
-
-    QFileDialog dialog(nullptr, QObject::tr("Select database file"), dir, QString());
+    QFileDialog dialog(nullptr, dialogTitle, dir, QString());
     dialog.setAcceptMode(newFileMode ? QFileDialog::AcceptSave : QFileDialog::AcceptOpen);
 
     /* As we don't actually overwrite a selected existing database file, switch off the
@@ -62,6 +56,26 @@ QString getDbPath(bool newFileMode, const QString &startWith)
         return QString();
 
     return dialog.selectedFiles().constFirst();
+}
+
+QString getDbPath(bool newFileMode, const QString &startWith)
+{
+    return getDbPath(newFileMode, startWith, {
+            QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
+            "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
+            QObject::tr("All files")+" (*)"
+        }, newFileMode ? QObject::tr("Select new database file") : QObject::tr("Select database file"));
+}
+
+QString getDbOrSqlPath(bool newFileMode, const QString &startWith)
+{
+    return getDbPath(newFileMode, startWith, {
+            QObject::tr("SQLite database or SQL file")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3, *.sql)",
+            QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
+            "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
+            QObject::tr("SQL files")+" (*.sql)",
+            QObject::tr("All files")+" (*)"
+        }, QObject::tr("Select a file to open"));
 }
 
 void setValidState(QWidget *widget, bool valid, const QString& message)
