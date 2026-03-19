@@ -262,5 +262,7 @@
         <file>img/config_data_renderers.svg</file>
         <file>img/link.svg</file>
         <file>img/unlink.svg</file>
+        <file>img/database_new.svg</file>
+        <file>img/database_open.svg</file>
     </qresource>
 </RCC>

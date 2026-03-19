@@ -21,6 +21,8 @@
 #include <QSettings>
 #include <QtWidgets/QFileDialog>
 
+const int SQLITESTUDIO_CONFIG_VERSION = 12;
+
 static_qstring(DB_FILE_NAME, "settings3");
 static_qstring(CONFIG_DIR_SETTING, "SQLiteStudioConfigDir");
 qint64 ConfigImpl::sqlHistoryId = -1;
@@ -1229,6 +1231,25 @@ void ConfigImpl::updateConfigDb()
             QVariantHash updates = CFG_CORE.General.PostRestoreConfigUpdates.get();
             updates["HideTheViewToolbar"] = true;
             CFG_CORE.General.PostRestoreConfigUpdates.set(updates);
+            [[fallthrough]];
+        }
+        case 10:
+        {
+            // 10->11
+            db->exec("UPDATE settings SET [key] = 'BypassDbDialogWhenPossible' WHERE [group] = 'DbList' AND [key] = 'BypassDbDialogWhenDropped'");
+            [[fallthrough]];
+        }
+        case 11:
+        {
+            // 11->12
+            for (const CfgDbPtr& cfgDb : dbList())
+            {
+                if (cfgDb->options["plugin"] == "DbSqliteWx")
+                {
+                    cfgDb->options["plugin"] = "DbSqliteMc";
+                    updateDb(cfgDb->name, cfgDb->name, cfgDb->path, cfgDb->options);
+                }
+            }
         }
         // Add cases here for next versions,
         // without a "break" instruction,

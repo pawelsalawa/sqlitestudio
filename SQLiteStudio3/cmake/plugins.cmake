@@ -19,6 +19,10 @@ function(sqlitestudio_set_plugin_properties target)
         "${DIR_OF_COMMON_CMAKE}/../guiSQLiteStudio"
     )
 
+    add_custom_target(${target}_miscFiles)
+    file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.json")
+    target_sources(${target}_miscFiles PRIVATE ${JSON_FILES})
+
     if(WIN32 OR APPLE)
         if(APPLE)
             target_link_directories(${target} PRIVATE "${CMAKE_INSTALL_PREFIX}/lib")

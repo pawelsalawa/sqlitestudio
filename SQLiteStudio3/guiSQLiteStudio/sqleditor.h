@@ -36,7 +36,6 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(UNDO,            QKeySequence::Undo,                QObject::tr("Undo"))
     CFG_KEY_ENTRY(REDO,            QKeySequence::Redo,                QObject::tr("Redo"))
     CFG_KEY_ENTRY(SAVE_SQL_FILE,   QKeySequence::Save,                QObject::tr("Save contents into a file"))
-    CFG_KEY_ENTRY(OPEN_SQL_FILE,   QKeySequence::Open,                QObject::tr("Load contents from a file"))
     CFG_KEY_ENTRY(FIND,            QKeySequence::Find,                QObject::tr("Find in text"))
     CFG_KEY_ENTRY(FIND_NEXT,       QKeySequence::FindNext,            QObject::tr("Find next"))
     CFG_KEY_ENTRY(FIND_PREV,       QKeySequence::FindPrevious,        QObject::tr("Find previous"))
@@ -94,6 +93,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
 
         static void createStaticActions();
         static void staticInit();
+        static bool confirmBigFileLoading(const QString& fileName);
 
         explicit SqlEditor(QWidget *parent = 0);
         ~SqlEditor();
@@ -129,7 +129,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
 
         QString getLoadedFile() const;
 
-        protected:
+    protected:
         void setupDefShortcuts();
         void createActions();
         void keyPressEvent(QKeyEvent* e);

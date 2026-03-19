@@ -35,6 +35,7 @@
 #include "style.h"
 #include "services/codeformatter.h"
 #include "windows/codesnippeteditor.h"
+#include "sqleditor.h"
 #include "uiutils.h"
 #include "datagrid/cellrendererplugin.h"
 #include "common/mouseshortcut.h"
@@ -339,7 +340,8 @@ void MainWindow::createActions()
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
 
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::ADD_DB));
+    ui->dbToolbar->addAction(dbTree->getAction(DbTree::NEW_DB));
+    ui->dbToolbar->addAction(dbTree->getAction(DbTree::OPEN_FILE));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
 
@@ -359,6 +361,8 @@ void MainWindow::initMenuBar()
     dbMenu->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
     dbMenu->addSeparator();
+    dbMenu->addAction(dbTree->getAction(DbTree::NEW_DB));
+    dbMenu->addAction(dbTree->getAction(DbTree::OPEN_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::ADD_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::EDIT_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::DELETE_DB));
@@ -653,7 +657,7 @@ EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
     if (!win->setCurrentDb(dbToSet))
     {
         qCritical() << "Created EditorWindow had not got requested database:" << dbToSet->getName();
-        win->close();
+        win->getMdiWindow()->close();
         return nullptr;
     }
 
@@ -663,11 +667,14 @@ EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
 
 EditorWindow* MainWindow::openSqlEditorForFile(Db* dbToSet, const QString& fileName)
 {
+    if (!SqlEditor::confirmBigFileLoading(fileName))
+        return nullptr;
+
     EditorWindow* win = openSqlEditor();
-    if (!win->setCurrentDb(dbToSet))
+    if (dbToSet && dbToSet->isOpen() && !win->setCurrentDb(dbToSet))
     {
         qCritical() << "Created EditorWindow had not got requested database:" << dbToSet->getName();
-        win->close();
+        win->getMdiWindow()->close();
         return nullptr;
     }
 

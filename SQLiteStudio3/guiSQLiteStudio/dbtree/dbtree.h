@@ -33,7 +33,8 @@ CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
     CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,           QObject::tr("Clear filter contents"))
     CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,               QObject::tr("Refresh schema"))
     CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT | Qt::Key_F5,   QObject::tr("Refresh all schemas"))
-    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL | Qt::Key_O,     QObject::tr("Add database"))
+    CFG_KEY_ENTRY(NEW_DB,          QKeySequence::New,        QObject::tr("Create new database"))
+    CFG_KEY_ENTRY(OPEN_FILE,       QKeySequence::Open,       QObject::tr("Open existing database or SQL file"))
     CFG_KEY_ENTRY(EDIT_DB,         Qt::Key_F2,               QObject::tr("Edit selected database"))
     CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL | Qt::Key_A,     QObject::tr("Select all items"))
     CFG_KEY_ENTRY(COPY,            Qt::CTRL | Qt::Key_C,     QObject::tr("Copy selected item(s)"))
@@ -59,6 +60,9 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             DELETE_GROUP,
             RENAME_GROUP,
             ADD_DB,
+            NEW_DB,
+            OPEN_DB,
+            OPEN_FILE,
             EDIT_DB,
             DELETE_DB,
             CONNECT_TO_DB,
@@ -196,6 +200,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void createGroup();
         void deleteGroup();
         void renameGroup();
+        void newDb();
+        void openDb();
+        void openFile();
+        void openDb(const QString& path);
         void addDb();
         void editDb();
         void removeDb();
@@ -256,6 +264,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void updateLinkButtonState();
         void connectDisconnectClicked();
         void nodeExpanded(const QModelIndex& idx);
+        void handleDbItemAdded(DbTreeItem* item);
 
     signals:
         void updateFileExecProgress(int value);

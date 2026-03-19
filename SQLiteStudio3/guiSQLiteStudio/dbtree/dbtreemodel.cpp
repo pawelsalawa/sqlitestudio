@@ -354,6 +354,7 @@ void DbTreeModel::dbAdded(Db* db)
     DbTreeItem* item = DbTreeItemFactory::createDb(db->getName(), this);
     item->setDb(db);
     root()->appendRow(item);
+    emit dbItemAdded(item);
 }
 
 void DbTreeModel::dbUpdated(const QString& oldName, Db* db)
@@ -483,7 +484,7 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
 
     if (db->isValid())
     {
-        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip"), QString("SQLite %1").arg(db->getVersion()));
+        rows << toolTipRowTmp.arg(tr("Format:", "dbtree tooltip"), db->getTypeLabel());
 
         if (fileSize > -1)
             rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip"), formatFileSize(fileSize));
@@ -1199,7 +1200,10 @@ void DbTreeModel::restoreSelectionState(const QHash<QString, QVariant>& selectio
     QStringList currentSig = selectionState["currentItem"].toStringList();
     DbTreeItem* currentItem = findDeepestExistingItemBySignature(currentSig, allItemMap);
     if (currentItem)
+    {
         treeView->setCurrentItem(currentItem);
+        treeView->scrollTo(currentItem->index(), QAbstractItemView::PositionAtCenter);
+    }
 
     // Selected items
     QList<QStringList> selectedSignatures = selectionState["selectedItems"].toList() | MAP(v, {return v.toStringList();});
@@ -1341,7 +1345,7 @@ bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
 
         autoTest = false;
         filePath = url.toLocalFile();
-        if (CFG_UI.DbList.BypassDbDialogWhenDropped.get())
+        if (CFG_UI.DbList.BypassDbDialogWhenPossible.get())
         {
             if (quickAddDroppedDb(filePath))
             {
@@ -1368,6 +1372,11 @@ bool DbTreeModel::quickAddDroppedDb(const QString& filePath)
     if (!plugin)
         return false;
 
+    return quickAddDroppedDb(filePath, plugin);
+}
+
+bool DbTreeModel::quickAddDroppedDb(const QString& filePath, DbPlugin* plugin)
+{
     QString name = DBLIST->generateUniqueDbName(plugin, filePath);
     QHash<QString,QVariant> opts;
     opts[DB_PLUGIN] = plugin->getName();

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>455</width>
-    <height>397</height>
+    <height>405</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -90,7 +90,33 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
+       <widget class="QLabel" name="nameLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string notr="true">read only name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLineEdit" name="nameEdit"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="nameChangeLink">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Change</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

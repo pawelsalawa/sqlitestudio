@@ -184,6 +184,12 @@ class API_EXPORT BiStrHash
          */
         bool isEmpty() const;
 
+        /**
+         * @brief Converts this BiStrHash to a regular QHash with left-side values as keys and right-side values as values.
+         * @return Hash with left-side values as keys and right-side values as values.
+         */
+        QHash<QString, QString> toHash() const;
+
     private:
         /**
          * @brief Fills inverted and lower internal hashes basing on the main hash class member.

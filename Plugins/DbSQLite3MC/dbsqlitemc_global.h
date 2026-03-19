@@ -1,0 +1,12 @@
+#ifndef DBSQLITEMC_GLOBAL_H
+#define DBSQLITEMC_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(DBSQLITEMC_LIBRARY)
+#  define DBSQLITEMCSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define DBSQLITEMCSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DBSQLITEMC_GLOBAL_H

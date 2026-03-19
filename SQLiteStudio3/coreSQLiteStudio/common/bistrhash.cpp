@@ -229,6 +229,11 @@ bool BiStrHash::isEmpty() const
     return hash.isEmpty();
 }
 
+QHash<QString, QString> BiStrHash::toHash() const
+{
+    return hash;
+}
+
 void BiStrHash::initInvertedAndLower()
 {
     QHashIterator<QString,QString> it(hash);

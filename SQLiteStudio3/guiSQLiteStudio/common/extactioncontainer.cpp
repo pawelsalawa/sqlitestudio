@@ -170,7 +170,7 @@ void ExtActionContainer::refreshShortcut(int action)
     QKeySequence seq(shortcuts[action]->get());
     QString txt = seq.toString(QKeySequence::NativeText);
     actionMap[action]->setShortcut(seq);
-    actionMap[action]->setToolTip(tooltipTpl.arg(actionMap[action]->text(), txt));
+    actionMap[action]->setToolTip(tooltipTpl.arg(actionMap[action]->iconText(), txt));
     actionMap[action]->installEventFilter(&keySeqFilter);
 }
 

@@ -1233,22 +1233,29 @@ void SqlEditor::loadFromFile()
         return;
     }
 
-    if (QFile(fName).size() > HUGE_QUERY_LENGTH)
-    {
-        QMessageBox::StandardButton resp = QMessageBox::question(this, tr("Open file"),
-                tr("This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?")
-                                                                 .arg(HUGE_QUERY_LENGTH / 1024 / 1024));
-        if (resp != QMessageBox::Yes)
-            return;
-    }
-
     if (!toPlainText().trimmed().isEmpty())
     {
         MAINWINDOW->openSqlEditorForFile(db, fName);
         return;
     }
 
+    if (!confirmBigFileLoading(fName))
+        return;
+
     loadFile(fName);
+}
+
+bool SqlEditor::confirmBigFileLoading(const QString& fileName)
+{
+    if (QFile(fileName).size() > HUGE_QUERY_LENGTH)
+    {
+        QMessageBox::StandardButton resp = QMessageBox::question(MAINWINDOW, tr("Open file"),
+                tr("This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?")
+                                                                 .arg(HUGE_QUERY_LENGTH / 1024 / 1024));
+        if (resp != QMessageBox::Yes)
+            return false;
+    }
+    return true;
 }
 
 bool SqlEditor::loadFile(const QString& fileName)

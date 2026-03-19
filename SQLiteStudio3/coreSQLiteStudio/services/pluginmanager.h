@@ -413,6 +413,30 @@ class API_EXPORT PluginManager : public QObject
         }
 
         /**
+         * @brief Provide plugin of given type.
+         * @return Plugin of given type, or null if no plugin of given type is loaded.
+         *
+         * This method version gets plugin interface type as template parameter,
+         * so it returns first loaded plugin that is castable to requested
+         * interface type. If there are more plugins of given type, only the first one is returned.
+         * If there are no plugins of given type, or if the plugin cannot be casted to requested type, null pointer is returned.
+         *
+         * Use this method to request plugin of specific, derived type. Usually this will be a built-in plugin,
+         * as you need to know its type.
+         */
+        template <class T>
+        T* getLoadedPlugin() const
+        {
+            for (Plugin* plugin : getLoadedPlugins())
+            {
+                T* casted = dynamic_cast<T*>(plugin);
+                if (casted)
+                    return casted;
+            }
+            return nullptr;
+        }
+
+        /**
          * @brief Provide list of plugin names of given type.
          * @tparam T Interface class of plugins, that we want to get names for.
          *
