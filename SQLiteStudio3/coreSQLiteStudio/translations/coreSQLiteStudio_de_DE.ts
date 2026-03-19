@@ -157,12 +157,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="877"/>
+        <location filename="../services/impl/configimpl.cpp" line="879"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="884"/>
+        <location filename="../services/impl/configimpl.cpp" line="886"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
     </message>
@@ -898,7 +898,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
         <translation>Tabelle für Spalte &apos;%1&apos; konnte nicht aufgelöst werden.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="757"/>
+        <location filename="../services/impl/configimpl.cpp" line="759"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
         <translation>Die Konfigurationsdatei konnte nicht initialisiert werden. Alle Konfigurationsänderungen und der Abfrageverlauf gehen nach dem Neustart der Anwendung verloren. Datei kann nicht an folgenden Orten erstellt werden: %1.</translation>
     </message>
