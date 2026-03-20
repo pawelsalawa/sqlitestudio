@@ -29,12 +29,12 @@
         <translation>La cifratura determina l&apos;algoritmo di crittografia utilizzato per crittografare il database.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="59"/>
+        <location filename="../dbsqlitemc.cpp" line="61"/>
         <source>Cipher configuration (optional)</source>
         <translation>Configurazione di Cifratura (opzionale)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="60"/>
+        <location filename="../dbsqlitemc.cpp" line="62"/>
         <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>

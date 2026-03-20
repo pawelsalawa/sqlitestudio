@@ -29,12 +29,12 @@
         <translation>A cifra determina o algoritmo de criptografia usado para criptografar o banco de dados.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="59"/>
+        <location filename="../dbsqlitemc.cpp" line="61"/>
         <source>Cipher configuration (optional)</source>
         <translation>Configuração de cifra (opcional)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="60"/>
+        <location filename="../dbsqlitemc.cpp" line="62"/>
         <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>

@@ -2160,7 +2160,7 @@ Browsing other pages will be possible after the row counting is done.</translati
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="45"/>
-        <location filename="../dialogs/dbdialog.cpp" line="181"/>
+        <location filename="../dialogs/dbdialog.cpp" line="193"/>
         <source>File</source>
         <translation type="unfinished">File</translation>
     </message>
@@ -2206,79 +2206,79 @@ Browsing other pages will be possible after the row counting is done.</translati
         <translation type="unfinished">Test connection</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="342"/>
+        <location filename="../dialogs/dbdialog.cpp" line="354"/>
         <source>Browse</source>
         <translation type="unfinished">Browse</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="517"/>
+        <location filename="../dialogs/dbdialog.cpp" line="527"/>
         <source>Database type not selected.</source>
         <translation type="unfinished">Database type not selected.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="524"/>
+        <location filename="../dialogs/dbdialog.cpp" line="534"/>
         <source>Database path not specified.</source>
         <translation type="unfinished">Database path not specified.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="558"/>
+        <location filename="../dialogs/dbdialog.cpp" line="567"/>
         <source>Enter an unique database name.</source>
         <translation type="unfinished">Enter an unique database name.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="568"/>
+        <location filename="../dialogs/dbdialog.cpp" line="577"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished">This name is already in use. Please enter unique name.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="575"/>
+        <location filename="../dialogs/dbdialog.cpp" line="584"/>
         <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
         <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="584"/>
+        <location filename="../dialogs/dbdialog.cpp" line="593"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished">Enter a database file path.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="590"/>
+        <location filename="../dialogs/dbdialog.cpp" line="599"/>
         <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
         <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="600"/>
+        <location filename="../dialogs/dbdialog.cpp" line="609"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished">This database is already on the list under name: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="622"/>
+        <location filename="../dialogs/dbdialog.cpp" line="631"/>
         <source>Select a database type.</source>
         <translation type="unfinished">Select a database type.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="647"/>
+        <location filename="../dialogs/dbdialog.cpp" line="656"/>
         <source>Automatic</source>
         <comment>database name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="648"/>
+        <location filename="../dialogs/dbdialog.cpp" line="657"/>
         <source>Change</source>
         <comment>database name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="657"/>
+        <location filename="../dialogs/dbdialog.cpp" line="666"/>
         <source>(empty)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="819"/>
+        <location filename="../dialogs/dbdialog.cpp" line="836"/>
         <source>Choose a location for the new database file</source>
         <translation type="unfinished">Choose a location for the new database file</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="820"/>
+        <location filename="../dialogs/dbdialog.cpp" line="837"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
@@ -4312,100 +4312,100 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Check for &amp;updates</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="358"/>
+        <location filename="../mainwindow.cpp" line="360"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="385"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Structure</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="701"/>
+        <location filename="../mainwindow.cpp" line="703"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;View</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation type="unfinished">Window list</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="430"/>
+        <location filename="../mainwindow.cpp" line="432"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation type="unfinished">&amp;Tools</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="446"/>
+        <location filename="../mainwindow.cpp" line="448"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Help</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="640"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation type="unfinished">Could not set style: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="863"/>
+        <location filename="../mainwindow.cpp" line="865"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation type="unfinished">Cannot export, because no export plugin is loaded.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="879"/>
+        <location filename="../mainwindow.cpp" line="881"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation type="unfinished">Cannot import, because no import plugin is loaded.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="924"/>
         <source>Rename window</source>
         <translation type="unfinished">Rename window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="924"/>
         <source>Enter new name for the window:</source>
         <translation type="unfinished">Enter new name for the window:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1026"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation type="unfinished">New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1030"/>
+        <location filename="../mainwindow.cpp" line="1032"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1116"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1121"/>
+        <location filename="../mainwindow.cpp" line="1123"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1248"/>
+        <location filename="../mainwindow.cpp" line="1250"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished">Database passed in command line parameters (%1) was already on the list under name: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1255"/>
+        <location filename="../mainwindow.cpp" line="1257"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation type="unfinished">Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1260"/>
+        <location filename="../mainwindow.cpp" line="1262"/>
         <source>Could not add database %1 to list.</source>
         <translation type="unfinished">Could not add database %1 to list.</translation>
     </message>
