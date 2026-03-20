@@ -41,6 +41,7 @@
 - CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
+- CHANGE: #5212 Table Window and View Window does not ask for closing confirmation when they were open for creation of new object and not yet modified.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.

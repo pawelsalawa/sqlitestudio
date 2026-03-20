@@ -1136,7 +1136,7 @@ bool TableWindow::isModified() const
                  originalCreateTable->withOutRowId != createTable->withOutRowId ||
                  originalCreateTable->strict != createTable->strict)
             ) ||
-            !existingTable;
+            (!existingTable && !ui->tableNameEdit->text().isEmpty());
 }
 
 TokenList TableWindow::indexColumnTokens(SqliteCreateIndexPtr index)
