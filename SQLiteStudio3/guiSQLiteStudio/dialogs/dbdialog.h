@@ -62,12 +62,13 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void updateState();
         void updateNameLink();
         void setNameLabelText(const QString& value);
+        DbPlugin* getCurrentPlugin() const;
 
         Ui::DbDialog *ui = nullptr;
         Mode mode;
         QStringList existingDatabaseNames;
         Db* db = nullptr;
-        QHash<QString,DbPlugin*> dbPlugins;
+        // QHash<QString,DbPlugin*> dbPlugins;
         QList<QWidget*> optionWidgets;
         QHash<QString,QWidget*> optionKeyToWidget;
         QHash<QString,DbPluginOption::Type> optionKeyToType;

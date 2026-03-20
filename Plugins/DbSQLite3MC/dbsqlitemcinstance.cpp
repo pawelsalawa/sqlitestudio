@@ -38,7 +38,11 @@ void DbSqliteMcInstance::initAfterOpen()
     QStringList pragmaList = quickSplitQueries(pragmas);
     for (const QString& pragma : pragmaList)
     {
-        res = exec(pragma, Flag::NO_LOCK);
+        QString pragmaSql = removeComments(pragma).trimmed();
+        if (pragmaSql.isEmpty())
+            continue;
+
+        res = exec(pragmaSql, Flag::NO_LOCK);
         if (res->isError())
             qWarning() << "Error while defining SQLite3MC pragma" << pragma << ":" << res->getErrorText();
     }
