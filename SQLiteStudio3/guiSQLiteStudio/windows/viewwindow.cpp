@@ -1014,7 +1014,8 @@ void ViewWindow::updateDdlTab()
 bool ViewWindow::isModified() const
 {
     // Quick checks first
-    bool modified = !existingView || (originalCreateView && originalCreateView->view != ui->nameEdit->text()) ||
+    bool modified = (!existingView && !ui->nameEdit->text().isEmpty()) ||
+            (originalCreateView && originalCreateView->view != ui->nameEdit->text()) ||
             ui->queryEdit->toPlainText() != originalQuery;
 
     if (modified)

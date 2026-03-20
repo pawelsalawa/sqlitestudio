@@ -2160,7 +2160,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="45"/>
-        <location filename="../dialogs/dbdialog.cpp" line="181"/>
+        <location filename="../dialogs/dbdialog.cpp" line="193"/>
         <source>File</source>
         <translation>檔案</translation>
     </message>
@@ -2206,79 +2206,79 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>測試連線</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="342"/>
+        <location filename="../dialogs/dbdialog.cpp" line="354"/>
         <source>Browse</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="517"/>
+        <location filename="../dialogs/dbdialog.cpp" line="527"/>
         <source>Database type not selected.</source>
         <translation type="unfinished">Database type not selected.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="524"/>
+        <location filename="../dialogs/dbdialog.cpp" line="534"/>
         <source>Database path not specified.</source>
         <translation type="unfinished">Database path not specified.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="558"/>
+        <location filename="../dialogs/dbdialog.cpp" line="567"/>
         <source>Enter an unique database name.</source>
         <translation>請輸入一個唯一的資料庫名稱。</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="568"/>
+        <location filename="../dialogs/dbdialog.cpp" line="577"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>此名稱已被使用，請輸入一個未被佔用的名稱。</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="575"/>
+        <location filename="../dialogs/dbdialog.cpp" line="584"/>
         <source>&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
         <translation>&lt;p&gt;名稱已手動編輯，自動命名已禁用。清空名稱欄中的內容將恢復自動命名。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="584"/>
+        <location filename="../dialogs/dbdialog.cpp" line="593"/>
         <source>Enter a database file path.</source>
         <translation>輸入一個數據庫檔案的路徑。</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="590"/>
+        <location filename="../dialogs/dbdialog.cpp" line="599"/>
         <source>You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</source>
         <translation type="unfinished">You&apos;re using a relative file path, which will be resolved to &quot;%1&quot; according to the application&apos;s working directory. It&apos;s always better to use absolute file path to avoid unexpected database location.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="600"/>
+        <location filename="../dialogs/dbdialog.cpp" line="609"/>
         <source>This database is already on the list under name: %1</source>
         <translation>該資料庫已在清單中，名為：%1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="622"/>
+        <location filename="../dialogs/dbdialog.cpp" line="631"/>
         <source>Select a database type.</source>
         <translation>請選擇一個數據庫型別。</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="647"/>
+        <location filename="../dialogs/dbdialog.cpp" line="656"/>
         <source>Automatic</source>
         <comment>database name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="648"/>
+        <location filename="../dialogs/dbdialog.cpp" line="657"/>
         <source>Change</source>
         <comment>database name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="657"/>
+        <location filename="../dialogs/dbdialog.cpp" line="666"/>
         <source>(empty)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="819"/>
+        <location filename="../dialogs/dbdialog.cpp" line="836"/>
         <source>Choose a location for the new database file</source>
         <translation type="unfinished">Choose a location for the new database file</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="820"/>
+        <location filename="../dialogs/dbdialog.cpp" line="837"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished">Browse for existing database file on local computer</translation>
     </message>
@@ -4311,100 +4311,100 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>檢查更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="358"/>
+        <location filename="../mainwindow.cpp" line="360"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation>資料庫(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="385"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation>結構(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="701"/>
+        <location filename="../mainwindow.cpp" line="703"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation>檢視(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>視窗清單</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="430"/>
+        <location filename="../mainwindow.cpp" line="432"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="446"/>
+        <location filename="../mainwindow.cpp" line="448"/>
         <source>&amp;Help</source>
         <translation>幫助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="640"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>未能設定風格：%1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="863"/>
+        <location filename="../mainwindow.cpp" line="865"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="879"/>
+        <location filename="../mainwindow.cpp" line="881"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>無法匯入，沒有載入匯入外掛。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="924"/>
         <source>Rename window</source>
         <translation>重新命名視窗</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="924"/>
         <source>Enter new name for the window:</source>
         <translation>請輸入視窗的新名稱：</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1024"/>
+        <location filename="../mainwindow.cpp" line="1026"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>有新更新 &lt;a href=&quot;%1&quot;&gt;點此檢視更新詳情&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1030"/>
+        <location filename="../mainwindow.cpp" line="1032"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1116"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1121"/>
+        <location filename="../mainwindow.cpp" line="1123"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1248"/>
+        <location filename="../mainwindow.cpp" line="1250"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>命令列引數傳遞的資料庫 (%1) 已在清單中，名為：%2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1255"/>
+        <location filename="../mainwindow.cpp" line="1257"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>命令列引數傳遞的資料庫 (%1) 已臨時新增到清單中，名為：%2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1260"/>
+        <location filename="../mainwindow.cpp" line="1262"/>
         <source>Could not add database %1 to list.</source>
         <translation>未能將資料 %1 新增到清單</translation>
     </message>
