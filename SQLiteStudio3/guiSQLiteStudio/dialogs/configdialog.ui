@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -2170,9 +2170,6 @@
               <property name="rightMargin">
                <number>0</number>
               </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
               <item alignment="Qt::AlignmentFlag::AlignRight">
                <widget class="QPushButton" name="codeColorsResetBtn">
                 <property name="text">
@@ -2216,6 +2213,9 @@
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
              </property>
              <property name="selectionMode">
               <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
@@ -2261,6 +2261,31 @@
                <string notr="true"/>
               </property>
              </column>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="shortuctsBottom" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <item alignment="Qt::AlignmentFlag::AlignRight">
+               <widget class="QPushButton" name="shortcutsResetBtn">
+                <property name="text">
+                 <string>Reset to defaults</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>

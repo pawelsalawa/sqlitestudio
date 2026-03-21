@@ -14,6 +14,8 @@ class QTableWidgetItem;
 class CellRendererPlugin;
 
 class ComboNoWheelFilter;
+
+class QKeySequenceEdit;
 namespace Ui {
     class ConfigDialog;
 }
@@ -124,6 +126,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void dataTypeEditorPluginUnloaded(MultiEditorWidgetPlugin* plugin);
         void rememberLastUsedPage();
         void restoreLastUsedPage();
+        void resetShortcut(CfgEntry* entry, QKeySequenceEdit* seqEdit);
 
         static QString lastUsedCategory;
 
@@ -191,6 +194,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void markRequiresSchemasRefresh();
         void notifyPluginsAboutModification(QWidget*, CfgEntry* key, const QVariant& value);
         void resetCodeSyntaxColors();
+        void resetShortcuts();
 
     public slots:
         void accept();

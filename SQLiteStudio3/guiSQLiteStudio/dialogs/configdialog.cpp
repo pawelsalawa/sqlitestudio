@@ -236,6 +236,7 @@ void ConfigDialog::init()
     connect(ui->buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(apply()));
     connect(ui->hideBuiltInPluginsCheck, SIGNAL(toggled(bool)), this, SLOT(updateBuiltInPluginsVisibility()));
     connect(ui->codeColorsResetBtn, SIGNAL(pressed()), this, SLOT(resetCodeSyntaxColors()));
+    connect(ui->shortcutsResetBtn, SIGNAL(pressed()), this, SLOT(resetShortcuts()));
 
     QList<CfgEntry*> entries;
     entries << CFG_UI.DbList.SortObjects
@@ -1162,6 +1163,28 @@ void ConfigDialog::resetCodeSyntaxColors()
     adjustSyntaxColorsForStyle(allColors);
 }
 
+void ConfigDialog::resetShortcuts()
+{
+    QList<CfgCategory*> categories = getShortcutsCfgCategories();
+    QList<CfgEntry*> entries;
+    for (CfgCategory*& cat : categories)
+        entries += cat->getEntries().values();
+
+    for (CfgEntry*& entry : entries)
+    {
+        QKeySequenceEdit* seqEdit = qobject_cast<QKeySequenceEdit*>(configMapper->getBindWidgetForConfig(entry));
+        resetShortcut(entry, seqEdit);
+    }
+
+    this->markModified();
+}
+
+void ConfigDialog::resetShortcut(CfgEntry* entry, QKeySequenceEdit* seqEdit)
+{
+    entry->reset();
+    seqEdit->setKeySequence(QKeySequence::fromString(entry->get().toString()));
+}
+
 void ConfigDialog::colorChanged()
 {
     refreshColorsInSyntaxHighlighters();
@@ -1860,8 +1883,6 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     // Font and metrics
     QTreeWidgetItem item({""});
     QFont font = item.font(0);
-//    QFontMetrics fm(font);
-//    QSize itemSize = QSize(-1, -1);
 
     // Creating...
     QBrush categoryBg = ui->shortcutsTable->palette().button();
@@ -1871,13 +1892,13 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     font.setItalic(false);
     font.setBold(true);
     category->setFont(0, font);
+    category->setTextAlignment(0, Qt::AlignHCenter| Qt::AlignVCenter);
     for (int i = 0; i < 4; i++)
     {
         category->setData(i, Qt::UserRole, true);
         category->setBackground(i, categoryBg);
         category->setForeground(i, categoryFg);
     }
-//    category->setSizeHint(0, itemSize);
     category->setFlags(category->flags() ^ Qt::ItemIsSelectable);
     ui->shortcutsTable->addTopLevelItem(category);
 
@@ -1921,8 +1942,7 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
         defaultButton->setToolTip(tr("Restore original hotkey for this action"));
         connect(defaultButton, &QToolButton::clicked, this, [this, sequenceEdit, cfgEntry]()
         {
-            cfgEntry->reset();
-            sequenceEdit->setKeySequence(QKeySequence::fromString(cfgEntry->get().toString()));
+            resetShortcut(cfgEntry, sequenceEdit);
             this->markModified();
         });
         itemIndex = ui->shortcutsTable->model()->index(itemRow, 3, categoryIndex);
