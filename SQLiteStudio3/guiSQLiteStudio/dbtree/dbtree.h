@@ -31,7 +31,7 @@ namespace Ui {
 CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
     CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,           QObject::tr("Delete selected item"))
     CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,           QObject::tr("Clear filter contents"))
-    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_Refresh,          QObject::tr("Refresh schema"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMA,  QKeySequence::Refresh,    QObject::tr("Refresh schema"))
     CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT | Qt::Key_F5,   QObject::tr("Refresh all schemas"))
     CFG_KEY_ENTRY(NEW_DB,          QKeySequence::New,        QObject::tr("Create new database"))
     CFG_KEY_ENTRY(OPEN_FILE,       QKeySequence::Open,       QObject::tr("Open existing database or SQL file"))
