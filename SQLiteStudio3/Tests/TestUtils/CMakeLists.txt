@@ -42,10 +42,3 @@ target_link_libraries(TestUtils PUBLIC
 target_link_libraries(TestUtils PUBLIC
     Qt::Test
 )
-
-if(BUILD_TESTING)
-    install(TARGETS TestUtils
-        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-        COMPONENT tests
-    )
-endif()

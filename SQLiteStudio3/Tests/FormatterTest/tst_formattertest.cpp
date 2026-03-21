@@ -3,6 +3,7 @@
 #include "parser/keywords.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
+#include "coreSQLiteStudio_global.h"
 #include "db/dbsqlite3.h"
 #include "mocks.h"
 #include <QString>
@@ -63,12 +64,25 @@ void FormatterTest::initTestCase()
 
     QStringList nameFilters = {"*SqlEnterpriseFormatter*.so", "*SqlEnterpriseFormatter*.dll", "*SqlEnterpriseFormatter*.dylib"};
 
-    QDir pluginDir("plugins");
-    QStringList files = pluginDir.entryList(nameFilters, QDir::Files);
+    QStringList pluginDirs = {"plugins"};
+    QString envDirs = QProcessEnvironment::systemEnvironment().value("SQLITESTUDIO_PLUGINS");
+    if (!envDirs.isNull())
+        pluginDirs += envDirs.split(PATH_LIST_SEPARATOR);
+
+    QStringList files;
+    for (const QString& path : pluginDirs)
+    {
+        QDir pluginDir(path);
+        QStringList names = pluginDir.entryList(nameFilters, QDir::Files);
+        for (const QString& name : names)
+            files << pluginDir.absoluteFilePath(name);
+
+        if (files.size() > 0)
+            break;
+    }
     QCOMPARE(files.size(), 1);
 
-    QString fileName = pluginDir.absoluteFilePath(files.first());
-    loader = new QPluginLoader(fileName);
+    loader = new QPluginLoader(files.first());
     loader->setLoadHints(QLibrary::ExportExternalSymbolsHint|QLibrary::ResolveAllSymbolsHint);
     QVERIFY(loader->load());
 
