@@ -2294,15 +2294,16 @@ void DbTree::execSqlFromFile()
 
 void DbTree::setupDefShortcuts()
 {
+    inheritShortcut(RENAME_DB, {RENAME_TABLE, RENAME_COLUMN, RENAME_INDEX, RENAME_TRIGGER, RENAME_VIEW});
+
     setShortcutContext({
                            CLEAR_FILTER, DEL_SELECTED, REFRESH_SCHEMA, REFRESH_SCHEMAS,
-                           SELECT_ALL, COPY, PASTE
+                           SELECT_ALL, COPY, PASTE, RENAME_DB,
+                           RENAME_TABLE, RENAME_COLUMN, RENAME_INDEX, RENAME_TRIGGER, RENAME_VIEW
                        }, Qt::WidgetWithChildrenShortcut);
     setShortcutContext({
                            NEW_DB, OPEN_FILE
                        }, Qt::ApplicationShortcut);
-
-    inheritShortcut(RENAME_DB, {RENAME_TABLE, RENAME_COLUMN, RENAME_INDEX, RENAME_TRIGGER, RENAME_VIEW});
 
     BIND_SHORTCUTS(DbTree, Action);
 }
