@@ -157,12 +157,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="877"/>
+      <location filename="../services/impl/configimpl.cpp" line="879"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Не вдалося почати транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="884"/>
+      <location filename="../services/impl/configimpl.cpp" line="886"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Не вдалося завершити транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
     </message>
@@ -175,30 +175,30 @@
       <translation>Не вдалося додати базу даних %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation>База даних %1 не може бути оновлена через помилку: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="365"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="394"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>Файл бази даних не існує.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
       <source>No supporting plugin loaded.</source>
       <translation>Модуль підтримки не завантажений.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
       <source>Database could not be initialized.</source>
       <translation>Неможливо ініціалізувати базу даних.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
       <source>No suitable database driver plugin found.</source>
       <translation>Не знайдено відповідного драйвера бази даних.</translation>
     </message>
@@ -206,59 +206,76 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
-      <location filename="../dbobjectorganizer.cpp" line="403"/>
+      <location filename="../dbobjectorganizer.cpp" line="96"/>
+      <location filename="../dbobjectorganizer.cpp" line="130"/>
+      <location filename="../dbobjectorganizer.cpp" line="149"/>
+      <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
+      <translation type="unfinished">An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="131"/>
+      <source>Failed to parse object definition.</source>
+      <translation type="unfinished">Failed to parse object definition.</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="166"/>
+      <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
+      <translation type="unfinished">An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
+      <location filename="../dbobjectorganizer.cpp" line="493"/>
       <source>Error while creating table in target database: %1</source>
       <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
       <source>Could not parse table.</source>
       <translation>Не вдалося проаналізувати структуру таблиці.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="417"/>
+      <location filename="../dbobjectorganizer.cpp" line="507"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation>Неможливо приєднати базу даних %1 до бази даних %2, тому дані таблиці %3 будуть скопійовані за допомогою SQLiteStudio. Цей метод може бути повільним для великих таблиць, так що наберіться терпіння.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="441"/>
+      <location filename="../dbobjectorganizer.cpp" line="531"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>Помилка при копіюванні даних з таблиці %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="460"/>
-      <location filename="../dbobjectorganizer.cpp" line="467"/>
-      <location filename="../dbobjectorganizer.cpp" line="494"/>
+      <location filename="../dbobjectorganizer.cpp" line="550"/>
+      <location filename="../dbobjectorganizer.cpp" line="557"/>
+      <location filename="../dbobjectorganizer.cpp" line="584"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>Помилка при копіюванні даних в таблицю %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="516"/>
+      <location filename="../dbobjectorganizer.cpp" line="606"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Помилка при видаленні розрізу даних (view) %1: %2
 Таблиці, індекси, тригери та перегляди, що скопійовані в базу %3, залишаться.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="613"/>
       <source>Error while creating view in target database: %1</source>
       <translation>Помилка створення таблиці в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="618"/>
       <source>Error while creating index in target database: %1</source>
       <translation>Помилка створення індексу в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="533"/>
+      <location filename="../dbobjectorganizer.cpp" line="623"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>Помилка створення тригера в цільовій базі даних: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="673"/>
-      <location filename="../dbobjectorganizer.cpp" line="680"/>
-      <location filename="../dbobjectorganizer.cpp" line="689"/>
+      <location filename="../dbobjectorganizer.cpp" line="763"/>
+      <location filename="../dbobjectorganizer.cpp" line="770"/>
+      <location filename="../dbobjectorganizer.cpp" line="779"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation>Не вдалося проаналізувати об&apos;єкт &apos;%1&apos; для того, щоб перемістити або скопіювати його.</translation>
     </message>
@@ -898,7 +915,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Неможливо визначити таблицю для стовпця &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="757"/>
+      <location filename="../services/impl/configimpl.cpp" line="759"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Неможливо ініціалізувати конфігураційний файл. Будь-які зміни конфігурації і історія запитів будуть втрачені після перезавантаження програми. Неможливо створити файл в наступних місцях: %1.</translation>
     </message>
