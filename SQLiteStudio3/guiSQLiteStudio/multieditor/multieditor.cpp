@@ -16,6 +16,7 @@
 #include "dialogs/configdialog.h"
 #include "themetuner.h"
 #include "datagrid/sqlquerymodelcolumn.h"
+#include "dialogs/searchtextdialog.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -31,6 +32,8 @@
 #include <QFileDialog>
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
+SearchTextLocator* MultiEditor::currentTextLocator = nullptr;
+SearchTextDialog* MultiEditor::searchDialog = nullptr;
 
 MultiEditor::MultiEditor(QWidget *parent, TabsMode tabsMode) :
     QWidget(parent)
@@ -127,6 +130,8 @@ void MultiEditor::init(TabsMode tabsMode)
     connect(nullCheck, &QCheckBox::checkStateChanged, this, &MultiEditor::nullStateChanged);
 #endif
     connect(this, SIGNAL(modified()), this, SLOT(setModified()));
+
+    new QShortcut(QKeySequence::Find, this, SLOT(find()), nullptr, Qt::WidgetWithChildrenShortcut);\
 }
 
 void MultiEditor::tabChanged(int idx)
@@ -208,6 +213,7 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
     tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
     editorWidget->installEventFilter(this);
 
+    connect(editorWidget, &MultiEditorWidget::requestFindDialog, this, &MultiEditor::find);
     connect(editorWidget, &MultiEditorWidget::aboutToBeDeleted, [this, editorWidget]()
     {
         int idx = tabs->indexOf(editorWidget);
@@ -720,4 +726,36 @@ void MultiEditor::saveFile()
         notifyError(tr("Could not write data into the file %1").arg(fileName));
 
     file.close();
+}
+
+void MultiEditor::find()
+{
+    if (!tabs->currentWidget())
+        return;
+
+    MultiEditorWidget* editor = dynamic_cast<MultiEditorWidget*>(tabs->currentWidget());
+    if (!editor)
+        return;
+
+    SearchTextLocator* locator = editor->getTextLocator();
+    if (!locator)
+        return;
+
+    if (searchDialog)
+        delete searchDialog;
+
+    currentTextLocator = locator;
+
+    SearchTextDialog* dlg = new SearchTextDialog(currentTextLocator, this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(dlg, &QObject::destroyed, [dlg, locator]()
+    {
+        if (searchDialog == dlg)
+            searchDialog = nullptr;
+
+        if (locator == currentTextLocator)
+            currentTextLocator = nullptr;
+    });
+    searchDialog = dlg;
+    dlg->show();
 }

@@ -22,6 +22,7 @@ MultiEditorText::MultiEditorText(QWidget *parent) :
     setFocusProxy(textEdit);
     textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     textEdit->setTabChangesFocus(true);
+    textEdit->setFont(CFG_UI.Fonts.SqlEditor.get());
 
     connect(textEdit, &QPlainTextEdit::modificationChanged, this, &MultiEditorText::modificationChanged);
     connect(textEdit, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showCustomMenu(QPoint)));
@@ -65,6 +66,14 @@ QList<QWidget*> MultiEditorText::getNoScrollWidgets()
     // We don't return text, we want it to be scrolled.
     QList<QWidget*> list;
     return list;
+}
+
+SearchTextLocator *MultiEditorText::getTextLocator()
+{
+    if (!textLocator)
+        textLocator = new SearchTextLocator(textEdit);
+
+    return textLocator;
 }
 
 void MultiEditorText::modificationChanged(bool changed)

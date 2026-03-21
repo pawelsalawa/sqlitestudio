@@ -6,6 +6,8 @@
 #include <QWidget>
 #include <QVariant>
 
+class SearchTextLocator;
+class SearchTextDialog;
 class Db;
 class SqlQueryModelColumn;
 class QCheckBox;
@@ -110,6 +112,9 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         static const int margins = 2;
         static const int spacing = 2;
 
+        static SearchTextLocator* currentTextLocator;
+        static SearchTextDialog* searchDialog;
+
         QLabel* cornerLabel = nullptr;
         QCheckBox* nullCheck = nullptr;
         QToolButton* saveToFileButton = nullptr;
@@ -149,6 +154,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void removeTab(int idx);
         void openFile();
         void saveFile();
+        void find();
 
     signals:
         void modified();

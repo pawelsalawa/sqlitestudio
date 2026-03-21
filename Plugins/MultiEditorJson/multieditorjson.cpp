@@ -16,7 +16,7 @@
 MultiEditorJson::MultiEditorJson()
 {
     QVBoxLayout* mainLayout = new QVBoxLayout();
-    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
     setLayout(mainLayout);
 
     // Create toolbar
@@ -34,6 +34,9 @@ MultiEditorJson::MultiEditorJson()
     
     validateAction = toolbar->addAction(ICONS.CONSTRAINT_CHECK, tr("Validate"), this, SLOT(onValidate()));
     validateAction->setToolTip(tr("Validate JSON syntax"));
+
+    QString findHotKey = QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText);
+    findAction = toolbar->addAction(ICONS.SEARCH, tr("Find or replace (%1)").arg(findHotKey), this, SLOT(find()));
     
     toolbar->addSeparator();
     
@@ -46,7 +49,7 @@ MultiEditorJson::MultiEditorJson()
 
     // Create text editor
     textEdit = new QPlainTextEdit();
-    
+
     // Set monospace font
     textEdit->setFont(CFG_UI.Fonts.SqlEditor.get());
     
@@ -108,6 +111,14 @@ void MultiEditorJson::focusThisWidget()
 QString MultiEditorJson::getPreferredFileFilter()
 {
     return tr("JSON files (*.json, *.txt)");
+}
+
+SearchTextLocator *MultiEditorJson::getTextLocator()
+{
+    if (!textLocator)
+        textLocator = new SearchTextLocator(textEdit);
+
+    return textLocator;
 }
 
 bool MultiEditorJson::isValidJson(const QString& json, QString* errorMsg)
@@ -211,6 +222,11 @@ void MultiEditorJson::onValidate()
 void MultiEditorJson::onTextChanged()
 {
     updateStatus();
+}
+
+void MultiEditorJson::find()
+{
+    emit requestFindDialog();
 }
 
 // Plugin implementation

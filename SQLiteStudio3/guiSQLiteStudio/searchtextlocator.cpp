@@ -3,10 +3,14 @@
 #include <QTextBlock>
 #include <QRegularExpression>
 #include <QDebug>
+#include <QPlainTextEdit>
 
-SearchTextLocator::SearchTextLocator(QTextDocument* document, QObject* parent) :
-    QObject(parent), document(document)
+SearchTextLocator::SearchTextLocator(QPlainTextEdit* textEdit) :
+    QObject(textEdit)
 {
+    this->textEdit = textEdit;
+    document = textEdit->document();
+    connect(textEdit, SIGNAL(cursorPositionChanged()), this, SLOT(cursorMoved()));
 }
 
 QString SearchTextLocator::getLookupString() const
@@ -77,6 +81,11 @@ void SearchTextLocator::setStartPosition(int value)
     lastMatchStart = -1;
     lastMatchEnd = -1;
     emit replaceAvailable(false);
+}
+
+void SearchTextLocator::setStartPosition()
+{
+    setStartPosition(textEdit->textCursor().position());
 }
 
 QTextDocument::FindFlags SearchTextLocator::getFlags()
@@ -164,6 +173,17 @@ void SearchTextLocator::replaceCurrent()
     startPosition += replaceString.length() - lookupString.length();
 }
 
+void SearchTextLocator::found(int start, int end)
+{
+    QTextCursor cursor = textEdit->textCursor();
+    cursor.setPosition(end);
+    cursor.setPosition(start, QTextCursor::KeepAnchor);
+    ignoreCursorMovements = true;
+    textEdit->setTextCursor(cursor);
+    ignoreCursorMovements = false;
+    textEdit->ensureCursorVisible();
+}
+
 bool SearchTextLocator::find(QTextDocument::FindFlags flags)
 {
     if (flags == 0)
@@ -243,10 +263,18 @@ void SearchTextLocator::replaceAll()
     cursor.setPosition(origContents.length(), QTextCursor::KeepAnchor);
     cursor.insertText(contents);
 
-    emit newCursorPositionAfterAllReplaced(newPos);
+    ignoreCursorMovements = true;
+    QTextCursor cur = textEdit->textCursor();
+    cur.setPosition(newPos);
+    textEdit->setTextCursor(cur);
+    ignoreCursorMovements = false;
 }
 
 void SearchTextLocator::cursorMoved()
 {
+    if (ignoreCursorMovements)
+        return;
+
+    setStartPosition(textEdit->textCursor().position());
     emit replaceAvailable(false);
 }

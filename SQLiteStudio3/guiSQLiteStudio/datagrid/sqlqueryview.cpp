@@ -111,7 +111,7 @@ void SqlQueryView::createActions()
     createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdate()), this);
     createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDelete()), this);
     createAction(SORT_DIALOG, ICONS.SORT_COLUMNS, tr("Define columns to sort by"), this, SLOT(openSortDialog()), this);
-    createAction(RESET_SORTING, ICONS.SORT_RESET, tr("Remove custom sorting"), this, SLOT(resetSorting()), this);
+    createAction(RESET_SORTING, ICONS.SORT_RESET, tr("Remove custom sorting (Middle click)"), this, SLOT(resetSorting()), this);
     createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row"), this, SIGNAL(requestForRowInsert()), this);
     createAction(INSERT_MULTIPLE_ROWS, ICONS.INSERT_ROWS, tr("Insert multiple rows"), this, SIGNAL(requestForMultipleRowInsert()), this);
     createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete selected row"), this, SIGNAL(requestForRowDelete()), this);
@@ -757,6 +757,11 @@ void SqlQueryView::changeFontSize(int factor)
     CFG_UI.Fonts.DataView.set(f);
 }
 
+void SqlQueryView::headerMiddleClicked(int colIdx)
+{
+    emit headerMiddleButtonClicked(colIdx);
+}
+
 void SqlQueryView::handlePluginLoaded(Plugin* plugin, PluginType* pluginType)
 {
     Q_UNUSED(pluginType)
@@ -1280,4 +1285,20 @@ QSize SqlQueryView::Header::sectionSizeFromContents(int section) const
     int wd = minHeaderWidth;
     wd = qMin((wd + wd * 20 / colCount), originalSize.width());
     return QSize(wd, originalSize.height());
+}
+
+void SqlQueryView::Header::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::MiddleButton)
+    {
+        int section = logicalIndexAt(e->pos());
+        if (section >= 0)
+        {
+            qobject_cast<SqlQueryView*>(parentWidget())->headerMiddleClicked(section);
+            e->accept();
+            return;
+        }
+    }
+
+    QHeaderView::mousePressEvent(e);
 }

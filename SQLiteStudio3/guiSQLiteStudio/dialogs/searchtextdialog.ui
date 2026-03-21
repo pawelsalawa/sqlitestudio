@@ -7,23 +7,18 @@
     <x>0</x>
     <y>0</y>
     <width>403</width>
-    <height>195</height>
+    <height>217</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Find or replace</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="findEdit"/>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="findLabel">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="replaceButton">
      <property name="text">
-      <string>Find:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <string>Replace &amp;&amp;
+find next</string>
      </property>
     </widget>
    </item>
@@ -54,23 +49,15 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="replaceButton">
+   <item row="4" column="2">
+    <widget class="QPushButton" name="replaceAllButton">
      <property name="text">
-      <string>Replace &amp;&amp;
-find next</string>
+      <string>Replace all</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="3">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Close</set>
-     </property>
-    </widget>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="replaceEdit"/>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="replaceLabel">
@@ -78,17 +65,7 @@ find next</string>
       <string>Replace with:</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="replaceEdit"/>
-   </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="replaceAllButton">
-     <property name="text">
-      <string>Replace all</string>
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -102,6 +79,54 @@ find next</string>
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="findEdit"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="findLabel">
+     <property name="text">
+      <string>Find:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="3">
+    <widget class="QWidget" name="bottomContainer" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="endOfDocLabel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Reached the end of document.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::StandardButton::Close</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -113,7 +138,6 @@ find next</string>
   <tabstop>findButton</tabstop>
   <tabstop>replaceButton</tabstop>
   <tabstop>replaceAllButton</tabstop>
-  <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>
  <connections>

@@ -47,6 +47,7 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
         QToolBar* getToolBar(int toolbar) const;
         void focusThisWidget();
         QList<QWidget*> getNoScrollWidgets();
+        SearchTextLocator* getTextLocator();
 
     protected:
         void createActions();
@@ -57,6 +58,7 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
 
         QPlainTextEdit* textEdit = nullptr;
         QMenu* contextMenu = nullptr;
+        SearchTextLocator* textLocator = nullptr;
 
     private slots:
         void modificationChanged(bool changed);

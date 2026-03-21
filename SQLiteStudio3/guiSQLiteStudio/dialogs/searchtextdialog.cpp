@@ -8,8 +8,10 @@ SearchTextDialog::SearchTextDialog(SearchTextLocator* textLocator, QWidget *pare
     ui(new Ui::SearchTextDialog), textLocator(textLocator)
 {
     ui->setupUi(this);
+    ui->endOfDocLabel->setVisible(false);
     DialogSizeHandler::applyFor(this);
     connect(textLocator, SIGNAL(replaceAvailable(bool)), this, SLOT(setReplaceAvailable(bool)));
+    connect(textLocator, SIGNAL(reachedEnd()), this, SLOT(reachedEnd()));
     connect(ui->findEdit, SIGNAL(textChanged(QString)), this, SLOT(markModifiedState()));
     connect(ui->caseSensitiveCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));
     connect(ui->backwardsCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));
@@ -36,6 +38,7 @@ void SearchTextDialog::changeEvent(QEvent *e)
 void SearchTextDialog::showEvent(QShowEvent* e)
 {
     Q_UNUSED(e);
+    textLocator->setStartPosition();
     ui->findEdit->setFocus();
     ui->findEdit->selectAll();
     configModifiedState = true;
@@ -61,12 +64,14 @@ void SearchTextDialog::setReplaceAvailable(bool available)
 
 void SearchTextDialog::on_findButton_clicked()
 {
+    ui->endOfDocLabel->setVisible(false);
     applyConfigToLocator();
     textLocator->find();
 }
 
 void SearchTextDialog::on_replaceButton_clicked()
 {
+    ui->endOfDocLabel->setVisible(false);
     applyConfigToLocator();
     textLocator->setReplaceString(ui->replaceEdit->text());
     textLocator->replaceAndFind();
@@ -74,6 +79,7 @@ void SearchTextDialog::on_replaceButton_clicked()
 
 void SearchTextDialog::on_replaceAllButton_clicked()
 {
+    ui->endOfDocLabel->setVisible(false);
     applyConfigToLocator();
     textLocator->setReplaceString(ui->replaceEdit->text());
     textLocator->replaceAll();
@@ -82,4 +88,9 @@ void SearchTextDialog::on_replaceAllButton_clicked()
 void SearchTextDialog::markModifiedState()
 {
     configModifiedState = true;
+}
+
+void SearchTextDialog::reachedEnd()
+{
+    ui->endOfDocLabel->setVisible(true);
 }

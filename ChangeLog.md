@@ -18,6 +18,8 @@
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
 - ADDED: #5449 User can now change size of icons on toolbars.
 - ADDED: #5493 Password input (for example in database dialog for encrypted files) has now icon to show/hide the password.
+- ADDED: #4677 Search function for Form View text fields (with Ctrl+f/Cmd+f hotkey).
+- ADDED: #4598 Ctrl+f/Cmd+f hotkey in Grid View now moves focus to filter input.
 - ADDED: #5468 Updates checking option for CLI app (--cu or --check-updates).
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.

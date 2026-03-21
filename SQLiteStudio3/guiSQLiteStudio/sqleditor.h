@@ -244,7 +244,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QWidget* lineNumberArea = nullptr;
         SearchTextDialog* searchDialog = nullptr;
         SearchTextLocator* textLocator = nullptr;
-        bool cursorMovingByLocator = false;
         bool syntaxValidated = false;
         bool showLineNumbers = true;
         int storedSelectionStart = 0;
@@ -321,7 +320,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void findNext();
         void findPrevious();
         void replace();
-        void found(int start, int end);
         void reachedEnd();
         void changeFont(const QVariant& font);
         void configModified();
@@ -331,7 +329,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void fontSizeChangeRequested(int delta);
         void incrFontSize();
         void decrFontSize();
-        void moveCursorTo(int pos);
 
     public slots:
         void colorsConfigChanged();

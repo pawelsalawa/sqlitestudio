@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QTextDocument>
 
+class QPlainTextEdit;
 class GUI_API_EXPORT SearchTextLocator : public QObject
 {
         Q_OBJECT
@@ -16,7 +17,7 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
             int end;
         };
 
-        SearchTextLocator(QTextDocument* document, QObject* parent = nullptr);
+        SearchTextLocator(QPlainTextEdit* textEdit);
 
         QString getLookupString() const;
         void setLookupString(const QString& value);
@@ -35,16 +36,20 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
 
         int getStartPosition() const;
         void setStartPosition(int value);
+        void setStartPosition();
 
         void reset();
 
     private:
+        void init(QTextDocument* document);
         QTextDocument::FindFlags getFlags();
         void notFound();
         QTextCursor findInWholeDoc(QTextDocument::FindFlags flags);
         void replaceCurrent();
+        void found(int start, int end);
 
         QTextDocument* document = nullptr;
+        QPlainTextEdit* textEdit = nullptr;
         int initialStartPosition;
         int lastMatchStart = -1;
         int lastMatchEnd = -1;
@@ -68,10 +73,8 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
         void cursorMoved();
 
     signals:
-        void found(int start, int end);
         void reachedEnd();
         void replaceAvailable(bool available);
-        void newCursorPositionAfterAllReplaced(int newPos);
 };
 
 #endif // SEARCHTEXTLOCATOR_H

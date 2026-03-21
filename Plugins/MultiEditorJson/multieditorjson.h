@@ -27,6 +27,7 @@ public:
     QList<QWidget*> getNoScrollWidgets() override;
     void focusThisWidget() override;
     QString getPreferredFileFilter();
+    SearchTextLocator* getTextLocator();
 
     static bool isValidJson(const QString& json, QString* errorMsg = nullptr);
 
@@ -41,14 +42,17 @@ private:
     QAction* prettifyAction = nullptr;
     QAction* condenseAction = nullptr;
     QAction* validateAction = nullptr;
+    QAction* findAction = nullptr;
     QLabel* statusLabel = nullptr;
     bool readOnly = false;
+    SearchTextLocator* textLocator = nullptr;
 
 private slots:
     void onPrettify();
     void onCondense();
     void onValidate();
     void onTextChanged();
+    void find();
 };
 
 class MULTIEDITORJSON_EXPORT MultiEditorJsonPlugin : public GenericPlugin, public MultiEditorWidgetPlugin

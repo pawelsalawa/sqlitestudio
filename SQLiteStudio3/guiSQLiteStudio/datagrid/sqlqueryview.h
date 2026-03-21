@@ -115,6 +115,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
                 explicit Header(SqlQueryView* parent);
 
                 QSize sectionSizeFromContents(int section) const;
+                void mousePressEvent(QMouseEvent *e);
         };
 
         void init();
@@ -131,6 +132,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void goToReferencedRow(const QString& table, const QString& column, const QVariant& value);
         void copy(bool withHeaders);
         void changeFontSize(int factor);
+        void headerMiddleClicked(int colIdx);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
         constexpr static const int minHeaderWidth = 15;
@@ -199,6 +201,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void requestForMultipleRowInsert();
         void requestForRowDelete();
         void scrolledBy(int dx, int dy);
+        void headerMiddleButtonClicked(int section);
 };
 
 GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);

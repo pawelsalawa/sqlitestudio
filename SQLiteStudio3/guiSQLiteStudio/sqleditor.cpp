@@ -98,10 +98,8 @@ void SqlEditor::init()
     objectsInNamedDbWatcher = new QFutureWatcher<AsyncObjectsRefreshResults>(this);
     connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
 
-    textLocator = new SearchTextLocator(document(), this);
-    connect(textLocator, SIGNAL(found(int,int)), this, SLOT(found(int,int)));
+    textLocator = new SearchTextLocator(this);
     connect(textLocator, SIGNAL(reachedEnd()), this, SLOT(reachedEnd()));
-    connect(textLocator, SIGNAL(newCursorPositionAfterAllReplaced(int)), this, SLOT(moveCursorTo(int)));
 
     lineNumberArea = new LineNumberArea(this);
     changeFont(CFG_UI.Fonts.SqlEditor.get());
@@ -870,7 +868,6 @@ void SqlEditor::indentNewLine()
         insertPlainText(QString(" ").repeated(previousFirstPrintable));
         return;
     }
-
 }
 
 void SqlEditor::showSearchDialog()
@@ -1155,11 +1152,6 @@ void SqlEditor::updateLineNumberArea(const QRect& rect, int dy)
 void SqlEditor::cursorMoved()
 {
     highlightCurrentCursorContext();
-    if (!cursorMovingByLocator)
-    {
-        textLocator->setStartPosition(textCursor().position());
-        textLocator->cursorMoved();
-    }
 }
 
 void SqlEditor::checkContentSize()
@@ -1438,7 +1430,6 @@ void SqlEditor::copyBlockUp()
 
 void SqlEditor::find()
 {
-    textLocator->setStartPosition(textCursor().position());
     showSearchDialog();
 }
 
@@ -1455,17 +1446,6 @@ void SqlEditor::findPrevious()
 void SqlEditor::replace()
 {
     showSearchDialog();
-}
-
-void SqlEditor::found(int start, int end)
-{
-    QTextCursor cursor = textCursor();
-    cursor.setPosition(end);
-    cursor.setPosition(start, QTextCursor::KeepAnchor);
-    cursorMovingByLocator = true;
-    setTextCursor(cursor);
-    cursorMovingByLocator = false;
-    ensureCursorVisible();
 }
 
 void SqlEditor::reachedEnd()
@@ -1593,13 +1573,6 @@ void SqlEditor::incrFontSize()
 void SqlEditor::decrFontSize()
 {
     changeFontSize(-1);
-}
-
-void SqlEditor::moveCursorTo(int pos)
-{
-    QTextCursor cur = textCursor();
-    cur.setPosition(pos);
-    setTextCursor(cur);
 }
 
 void SqlEditor::changeFontSize(int factor)

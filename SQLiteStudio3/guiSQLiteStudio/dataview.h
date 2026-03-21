@@ -20,6 +20,7 @@ class QLineEdit;
 
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    QKeySequence::Refresh,        QObject::tr("Refresh data"))
+     CFG_KEY_ENTRY(FIND_IN_DATA,    QKeySequence::Find,           QObject::tr("Find in data"))
      CFG_KEY_ENTRY(SHOW_GRID_VIEW,  Qt::CTRL | Qt::Key_Comma,     QObject::tr("Switch to grid view of the data"))
      CFG_KEY_ENTRY(SHOW_FORM_VIEW,  Qt::CTRL | Qt::Key_Period,    QObject::tr("Switch to form view of the data"))
 )
@@ -35,6 +36,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             SHOW_FORM_VIEW,
             TABS_ON_TOP,
             TABS_AT_BOTTOM,
+            FIND_IN_DATA,
             // Grid view
             REFRESH_DATA,
             FIRST_PAGE,
@@ -212,6 +214,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void nextRow();
         void lastRow();
         void columnsHeaderDoubleClicked(int columnIdx);
+        void columnsHeaderMiddleClicked(int columnIdx);
         void tabChanged(int newIndex);
         void updateFormNavigationState();
         void updateFormCommitRollbackActions();
@@ -228,6 +231,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void syncFilterScrollPosition();
         void resizeFilter(int section, int oldSize, int newSize);
         void togglePerColumnFiltering();
+        void findInData();
 };
 
 size_t qHash(DataView::ActionGroup action);

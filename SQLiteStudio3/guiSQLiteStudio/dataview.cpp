@@ -82,6 +82,7 @@ void DataView::initSlots()
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
     connect(model, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
     connect(gridView->horizontalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(columnsHeaderDoubleClicked(int)));
+    connect(gridView, SIGNAL(headerMiddleButtonClicked(int)), this, SLOT(columnsHeaderMiddleClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
     connect(gridView, SIGNAL(scrolledBy(int, int)), this, SLOT(syncFilterScrollPosition()));
@@ -207,6 +208,7 @@ void DataView::createActions()
     bool rowDeleting = model->features().testFlag(SqlQueryModel::DELETE_ROW);
 
     // Grid actions
+    createAction(FIND_IN_DATA, ICONS.SEARCH, tr("Find in data", "data view"), this, SLOT(findInData()), gridView);
     createAction(REFRESH_DATA, ICONS.RELOAD, tr("Refresh table data", "data view"), this, SLOT(refreshData()), gridToolBar, gridView);
     gridToolBar->addSeparator();
     if (rowInserting)
@@ -611,6 +613,9 @@ void DataView::togglePerColumnFiltering()
 {
     bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
 
+    if (enable && !filterEdit->text().isEmpty())
+        filterEdit->clear();
+
     filterEdit->setEnabled(!enable);
     if (actionMap[FILTER_SQL]->isChecked())
         actionMap[FILTER_STRING]->setChecked(true);
@@ -620,6 +625,23 @@ void DataView::togglePerColumnFiltering()
 
     recreateFilterInputs();
     applyFilter();
+}
+
+void DataView::findInData()
+{
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (actionMap[FILTER_PER_COLUMN]->isChecked())
+    {
+        int colIdx = gridView->currentIndex().column();
+        if (colIdx >= 0 && colIdx < filterInputs.size())
+            filterInputs[colIdx]->setFocus();
+    }
+    else
+    {
+        filterEdit->setFocus();
+    }
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
@@ -1084,6 +1106,12 @@ bool DataView::getNavigationState() const
 void DataView::columnsHeaderDoubleClicked(int columnIdx)
 {
     model->changeSorting(columnIdx);
+}
+
+void DataView::columnsHeaderMiddleClicked(int columnIdx)
+{
+    Q_UNUSED(columnIdx);
+    resetSorting();
 }
 
 void DataView::tabChanged(int newIndex)

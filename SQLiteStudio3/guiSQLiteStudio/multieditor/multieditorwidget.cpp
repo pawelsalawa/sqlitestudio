@@ -10,6 +10,11 @@ QString MultiEditorWidget::getPreferredFileFilter()
     return QString();
 }
 
+SearchTextLocator* MultiEditorWidget::getTextLocator()
+{
+    return nullptr;
+}
+
 void MultiEditorWidget::installEventFilter(QObject* filterObj)
 {
     QObject::installEventFilter(filterObj);
