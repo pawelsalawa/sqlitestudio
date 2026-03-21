@@ -87,6 +87,9 @@ void DataView::initSlots()
     connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
     connect(gridView, SIGNAL(scrolledBy(int, int)), this, SLOT(syncFilterScrollPosition()));
     connect(gridView->horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(resizeFilter(int, int, int)));
+    connect(gridView, SIGNAL(newFontMetricsApplied()), this, SLOT(resizeFilters()));
+    connect(&(DATAVIEW_KEYS.SHOW_GRID_VIEW), SIGNAL(changed(QVariant)), this, SLOT(updateTabHotKeys()));
+    connect(&(DATAVIEW_KEYS.SHOW_FORM_VIEW), SIGNAL(changed(QVariant)), this, SLOT(updateTabHotKeys()));
 }
 
 void DataView::initFormView()
@@ -148,6 +151,8 @@ void DataView::createContents()
     gridView->setCornerButtonEnabled(true);
     gridView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     gridWidget->layout()->addWidget(gridView);
+
+    updateTabHotKeys();
 }
 
 void DataView::createFilterPanel()
@@ -300,6 +305,10 @@ void DataView::resizeColumnsInitiallyToContents()
 {
     SqlQueryModel *model = gridView->getModel();
     int cols = model->columnCount();
+    QList<int> priorWidths;
+    for (int i = 0; i < cols ; i++)
+        priorWidths << gridView->columnWidth(i);
+
     gridView->setIgnoreColumnWidthChanges(true);
     gridView->resizeColumnsToContents();
     int wd;
@@ -316,13 +325,13 @@ void DataView::resizeColumnsInitiallyToContents()
         }
 
         int delegateWd = gridView->getColumnCustomDelegateWidth(i);
-        wd = qMax(wd, delegateWd);
-
         int headerMinSize = qMax(gridView->horizontalHeader()->sizeHintForColumn(i), 60);
-        if (wd > CFG_UI.General.MaxInitialColumnWith.get())
-            gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
-        else if (wd < headerMinSize)
-            gridView->setColumnWidth(i, headerMinSize);
+
+        wd = qMax(wd, delegateWd);
+        wd = qMax(wd, headerMinSize);
+        wd = qMax(wd, priorWidths[i]);
+        wd = qMin(wd, CFG_UI.General.MaxInitialColumnWith.get());
+        gridView->setColumnWidth(i, wd);
     }
     gridView->setIgnoreColumnWidthChanges(false);
 }
@@ -589,6 +598,23 @@ void DataView::syncFilterScrollPosition()
     perColumnFilterArea->horizontalScrollBar()->setValue(gridView->horizontalScrollBar()->value());
 }
 
+void DataView::resizeFilters()
+{
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (filterInputs.isEmpty())
+        return;
+
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    filterLeftSpacer->setFixedSize(gridView->verticalHeader()->width() + 1, 1);
+    for (int section = 0; section < filterInputs.size(); section++)
+    {
+        int newSize = gridView->columnWidth(section);
+        filterInputs[section]->setFixedWidth(newSize);
+    }
+}
+
 void DataView::resizeFilter(int section, int oldSize, int newSize)
 {
     Q_UNUSED(oldSize);
@@ -642,6 +668,12 @@ void DataView::findInData()
     {
         filterEdit->setFocus();
     }
+}
+
+void DataView::updateTabHotKeys()
+{
+    tabBar()->setTabToolTip(0, QKeySequence(DATAVIEW_KEYS.SHOW_GRID_VIEW.get()).toString(QKeySequence::NativeText));
+    tabBar()->setTabToolTip(1, QKeySequence(DATAVIEW_KEYS.SHOW_FORM_VIEW.get()).toString(QKeySequence::NativeText));
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)

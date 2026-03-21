@@ -204,6 +204,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void requestForRowDelete();
         void scrolledBy(int dx, int dy);
         void headerMiddleButtonClicked(int section);
+        void newFontMetricsApplied();
 };
 
 GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);

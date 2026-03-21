@@ -38,7 +38,7 @@ class Icon;
  * It's optional. It doesn't need to be declared, but if you want to refer
  * to keys as to configuration values, then you will need this.
  */
-#define CFG_KEYS_INSTANCE(Type) (*Cfg::getShortcuts##Type##Instance())
+#define CFG_KEYS_INSTANCE(Type) (Cfg::getShortcuts##Type##Instance()->ShortcutsCategory##Type)
 
 /**
  * @def Binds shortcuts configuration with actions enumerator.

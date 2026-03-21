@@ -1062,8 +1062,15 @@ void SqlQueryView::updateFont()
     QFont f = CFG_UI.Fonts.DataView.get();
     QFontMetrics fm(f);
     verticalHeader()->setDefaultSectionSize(fm.height() + 4);
+
+    int minWd = fm.horizontalAdvance("99999");
+    verticalHeader()->setDefaultAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    verticalHeader()->setMinimumWidth(minWd);
+
     if (getModel())
         getModel()->repaintAllItems();
+
+    emit newFontMetricsApplied();
 }
 
 void SqlQueryView::executionStarted()
