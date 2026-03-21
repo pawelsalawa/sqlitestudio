@@ -21,7 +21,7 @@
 #include <QSettings>
 #include <QtWidgets/QFileDialog>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 12;
+const int SQLITESTUDIO_CONFIG_VERSION = 13;
 
 static_qstring(DB_FILE_NAME, "settings3");
 static_qstring(CONFIG_DIR_SETTING, "SQLiteStudioConfigDir");
@@ -1250,6 +1250,12 @@ void ConfigImpl::updateConfigDb()
                     updateDb(cfgDb->name, cfgDb->name, cfgDb->path, cfgDb->options);
                 }
             }
+            [[fallthrough]];
+        }
+        case 12:
+        {
+            // 12->13
+            db->exec("DELETE FROM settings WHERE [group] like 'ShortcutsCategory%'");
         }
         // Add cases here for next versions,
         // without a "break" instruction,
