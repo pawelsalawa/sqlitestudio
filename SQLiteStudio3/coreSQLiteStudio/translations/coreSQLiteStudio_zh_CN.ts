@@ -175,30 +175,30 @@
         <translation>无法添加数据库 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>数据库 %1 没有被更新，由于错误：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="365"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="394"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>数据库文件不存在。</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
         <source>No supporting plugin loaded.</source>
         <translation>没有加载所需的插件。</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
         <source>Database could not be initialized.</source>
         <translation>无法初始化数据库。</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
         <source>No suitable database driver plugin found.</source>
         <translation>没有找到合适的数据库驱动插件。</translation>
     </message>
@@ -206,59 +206,76 @@
 <context>
     <name>DbObjectOrganizer</name>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="372"/>
-        <location filename="../dbobjectorganizer.cpp" line="403"/>
+        <location filename="../dbobjectorganizer.cpp" line="96"/>
+        <location filename="../dbobjectorganizer.cpp" line="130"/>
+        <location filename="../dbobjectorganizer.cpp" line="149"/>
+        <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbobjectorganizer.cpp" line="131"/>
+        <source>Failed to parse object definition.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbobjectorganizer.cpp" line="166"/>
+        <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbobjectorganizer.cpp" line="462"/>
+        <location filename="../dbobjectorganizer.cpp" line="493"/>
         <source>Error while creating table in target database: %1</source>
         <translation>在目标数据库中创建表时发生错误：%1</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="372"/>
+        <location filename="../dbobjectorganizer.cpp" line="462"/>
         <source>Could not parse table.</source>
         <translation>无法解析表。</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="417"/>
+        <location filename="../dbobjectorganizer.cpp" line="507"/>
         <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
         <translation>数据库 %1 无法附加到数据库 %2，因此将使用 SQLiteStudio 做中间人来复制表 %3 的数据。此方法用于大型表格可能会很慢，请耐心等待。</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="441"/>
+        <location filename="../dbobjectorganizer.cpp" line="531"/>
         <source>Error while copying data for table %1: %2</source>
         <translation>在从表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="460"/>
-        <location filename="../dbobjectorganizer.cpp" line="467"/>
-        <location filename="../dbobjectorganizer.cpp" line="494"/>
+        <location filename="../dbobjectorganizer.cpp" line="550"/>
+        <location filename="../dbobjectorganizer.cpp" line="557"/>
+        <location filename="../dbobjectorganizer.cpp" line="584"/>
         <source>Error while copying data to table %1: %2</source>
         <translation>在向表 %1 中复制数据时发生错误：%2</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="516"/>
+        <location filename="../dbobjectorganizer.cpp" line="606"/>
         <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>在丢弃源视图 %1:%2 时出错
 已拷贝至数据库 %3 的表格、索引、触发器和视图将被保留。</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="523"/>
+        <location filename="../dbobjectorganizer.cpp" line="613"/>
         <source>Error while creating view in target database: %1</source>
         <translation>在目标数据库中创建视图时发生错误：%1</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="528"/>
+        <location filename="../dbobjectorganizer.cpp" line="618"/>
         <source>Error while creating index in target database: %1</source>
         <translation>在目标数据库中创建索引时发生错误：%1</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="533"/>
+        <location filename="../dbobjectorganizer.cpp" line="623"/>
         <source>Error while creating trigger in target database: %1</source>
         <translation>在目标数据库中创建触发器时发生错误：%1</translation>
     </message>
     <message>
-        <location filename="../dbobjectorganizer.cpp" line="673"/>
-        <location filename="../dbobjectorganizer.cpp" line="680"/>
-        <location filename="../dbobjectorganizer.cpp" line="689"/>
+        <location filename="../dbobjectorganizer.cpp" line="763"/>
+        <location filename="../dbobjectorganizer.cpp" line="770"/>
+        <location filename="../dbobjectorganizer.cpp" line="779"/>
         <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
         <translation>无法解析对象 &apos;%1&apos; 用于移动或复制。</translation>
     </message>
