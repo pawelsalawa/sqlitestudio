@@ -244,6 +244,7 @@ void ConfigDialog::init()
             << CFG_UI.DbList.ShowDbTreeLabels
             << CFG_UI.DbList.ShowRegularTableLabels
             << CFG_UI.DbList.ShowSystemObjects
+            << CFG_CORE.General.PreferMasterOverSchema
             << CFG_UI.DbList.ShowVirtualTableLabels;
 
     for (CfgEntry*& cfg : entries)

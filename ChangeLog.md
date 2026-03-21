@@ -41,6 +41,7 @@
 - CHANGE: #5562 Several toolbars cleaned up, simplified.
 - CHANGE: #5212 Database list now expands columns, indexes and triggers whenever the table is expanded.
 - CHANGE: #5212 Middle-click on an open database closes it.
+- CHANGE: #5164 Added option to prefer sqlite_master table name over sqlite_schema on the Database List.
 - CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.

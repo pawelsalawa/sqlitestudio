@@ -23,6 +23,7 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(bool,         CheckUpdatesOnStartup,    true)
         CFG_ENTRY(QString,      Language,                 "en")
         CFG_ENTRY(QVariantHash, PostRestoreConfigUpdates, QVariantHash())
+        CFG_ENTRY(bool,         PreferMasterOverSchema,   false)
     )
     CFG_CATEGORY(Console,
         CFG_ENTRY(int,          HistorySize,             100)

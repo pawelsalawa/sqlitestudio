@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -277,16 +277,6 @@
               <string>Database list</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="dispSysTableCheck">
-                <property name="text">
-                 <string>Display system tables and indexes on the list</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">DbList.ShowSystemObjects</string>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="0">
                <widget class="QCheckBox" name="expandTablesCheck">
                 <property name="text">
@@ -297,17 +287,59 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QCheckBox" name="expandViewsCheck">
+              <item row="7" column="0">
+               <widget class="QCheckBox" name="prefMasterOverSchemaCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:'Courier New';&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:'Courier New';&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <property name="text">
-                 <string>Expand views when connected to a database</string>
+                 <string>Prefer sqlite_master over sqlite_schema table name</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string notr="true">DbList.ExpandViews</string>
+                 <string>General.PreferMasterOverSchema</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="sortColumns">
+                <property name="toolTip">
+                 <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
+                </property>
+                <property name="text">
+                 <string>Sort table columns alphabetically</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">DbList.SortColumns</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="expandColsIdxTrigCheck">
+                <property name="toolTip">
+                 <string>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</string>
+                </property>
+                <property name="text">
+                 <string>Expand columns, indexes and triggers together with the table</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>DbList.ExpandSubNodes</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="sortObjects">
+                <property name="toolTip">
+                 <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
+                </property>
+                <property name="text">
+                 <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">DbList.SortObjects</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
                <widget class="QGroupBox" name="addLabelsGroup">
                 <property name="toolTip">
                  <string>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</string>
@@ -354,42 +386,26 @@
                 </layout>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QCheckBox" name="sortObjects">
+              <item row="6" column="0">
+               <widget class="QCheckBox" name="dispSystemTablesCheck">
                 <property name="toolTip">
-                 <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:'Courier New';&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
+                 <string>Display system tables and indexes on the list</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string notr="true">DbList.SortObjects</string>
+                 <string>DbList.ShowSystemObjects</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QCheckBox" name="sortColumns">
-                <property name="toolTip">
-                 <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
-                </property>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="expandViewsCheck">
                 <property name="text">
-                 <string>Sort table columns alphabetically</string>
+                 <string>Expand views when connected to a database</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string notr="true">DbList.SortColumns</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="toolTip">
-                 <string>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</string>
-                </property>
-                <property name="text">
-                 <string>Expand columns, indexes and triggers together with the table</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>DbList.ExpandSubNodes</string>
+                 <string notr="true">DbList.ExpandViews</string>
                 </property>
                </widget>
               </item>
@@ -458,8 +474,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>456</width>
-                <height>754</height>
+                <width>432</width>
+                <height>731</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -2314,8 +2330,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>389</width>
-                <height>363</height>
+                <width>366</width>
+                <height>353</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2770,7 +2786,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -2861,8 +2877,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>235</width>
-                <height>493</height>
+                <width>224</width>
+                <height>481</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">

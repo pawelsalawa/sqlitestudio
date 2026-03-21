@@ -8,6 +8,7 @@
 #include "parser/ast/sqlitecreateview.h"
 #include "parser/ast/sqlitecreatevirtualtable.h"
 #include "parser/ast/sqlitetablerelatedddl.h"
+#include "services/config.h"
 #include <QDebug>
 
 const char* sqliteMasterDdl =
@@ -1091,7 +1092,20 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
                 {"type", "table"}
             };
 
-            rows << QVariant(sqliteMasterRow) << QVariant(sqliteTempMasterRow);
+            static QHash<QString, QVariant> sqliteSchemaRow {
+                {"name", "sqlite_schema"},
+                {"type", "table"}
+            };
+
+            static QHash<QString, QVariant> sqliteTempSchemaRow {
+                {"name", "sqlite_temp_schema"},
+                {"type", "table"}
+            };
+
+            if (CFG_CORE.General.PreferMasterOverSchema.get())
+                rows << QVariant(sqliteMasterRow) << QVariant(sqliteTempMasterRow);
+            else
+                rows << QVariant(sqliteSchemaRow) << QVariant(sqliteTempSchemaRow);
         }
 
         if (useCache)
