@@ -45,12 +45,13 @@
 - CHANGE: #5212 Middle-click on an open database closes it.
 - CHANGE: #5164 Added option to prefer sqlite_master table name over sqlite_schema on the Database List.
 - CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
-- CHANGE: #4688 Added metadata to Windows executables.
-- CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
 - CHANGE: #5212 Table Window and View Window does not ask for closing confirmation when they were open for creation of new object and not yet modified.
 - CHANGE: #5212 New Table and New View actions are now disabled if selected item in the Database List does not have open database, as it may be misleading to start designing new table/view and miss the fact that it's still not aimed towards the database.
+- CHANGE: #4849 The setting to show per-column filters in Grid View is now remembered.
 - CHANGE: #5269 Default hotkey for Configuration Dialog changed to Ctrl+, on all platforms.
 - CHANGE: #5212 Config Dialog now remembers the last used page and restores it when its open next time.
+- CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
+- CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #4986 Unique indexes are allowed for expressions, as they should be.

@@ -248,7 +248,6 @@ void DataView::createActions()
     connect(gridView, SIGNAL(requestForMultipleRowInsert()), this, SLOT(insertMultipleRows()));
     connect(gridView, SIGNAL(requestForRowDelete()), this, SLOT(deleteRow()));
 
-
     // Form view actions
     if (rowInserting)
         formToolBar->addAction(formView->getAction(FormView::INSERT_ROW));
@@ -612,6 +611,7 @@ void DataView::resizeFilter(int section, int oldSize, int newSize)
 void DataView::togglePerColumnFiltering()
 {
     bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
+    CFG_UI.General.ShowPerColumnFilters.set(enable);
 
     if (enable && !filterEdit->text().isEmpty())
         filterEdit->clear();
@@ -1034,6 +1034,7 @@ void DataView::recreateFilterInputs()
             edit->setText(lastColumnFilterValues[i]);
 
         connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(valueErased()), this, SLOT(applyFilter()));
         perColumnWidget->layout()->addWidget(edit);
         filterInputs << edit;
     }
@@ -1094,8 +1095,14 @@ void DataView::createFilteringActions()
 
     setActionIcon(actionMap[FILTER], actionMap[FILTER_STRING]->icon(), gridToolBar);
 
-    gridView->getHeaderContextMenu()->addSeparator();
-    gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
+    gridView->addHeaderAdditionalAction(actionMap[FILTER_PER_COLUMN]);
+
+    // Restore per-column setting
+    if (CFG_UI.General.ShowPerColumnFilters.get())
+    {
+        actionMap[FILTER_PER_COLUMN]->setChecked(true);
+        togglePerColumnFiltering();
+    }
 }
 
 bool DataView::getNavigationState() const

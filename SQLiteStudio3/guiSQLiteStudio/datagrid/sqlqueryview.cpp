@@ -305,6 +305,11 @@ void SqlQueryView::addAdditionalAction(QAction* action)
     additionalActions << action;
 }
 
+void SqlQueryView::addHeaderAdditionalAction(QAction *action)
+{
+    headerAdditionalActions << action;
+}
+
 QModelIndex SqlQueryView::getCurrentIndex() const
 {
     return currentIndex();
@@ -975,6 +980,13 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
     headerContextMenu->clear();
     headerContextMenu->addAction(actionMap[SORT_DIALOG]);
     headerContextMenu->addAction(actionMap[RESET_SORTING]);
+
+    if (headerAdditionalActions.size() > 0)
+    {
+        headerContextMenu->addSeparator();
+        for (QAction*& action : headerAdditionalActions)
+            headerContextMenu->addAction(action);
+    }
 
     int logicalIdx = horizontalHeader()->logicalIndexAt(pos);
     QList<CellRendererPlugin*> rendererPlugins = PLUGINS->getLoadedPlugins<CellRendererPlugin>();

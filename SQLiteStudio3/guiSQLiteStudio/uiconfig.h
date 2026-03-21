@@ -162,6 +162,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(Cfg::ColorPickerConfig,  ColorPickerConfig,           Cfg::ColorPickerConfig())
         CFG_ENTRY(int,                     ToolBarIconSize,             0)
         CFG_ENTRY(QString,                 LastUsedConfigPage,          QString())
+        CFG_ENTRY(bool,                    ShowPerColumnFilters,        false)
     )
 )
 
