@@ -128,8 +128,6 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void restoreLastUsedPage();
         void resetShortcut(CfgEntry* entry, QKeySequenceEdit* seqEdit);
 
-        static QString lastUsedCategory;
-
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;
         QHash<QString,QWidget*> nameToPage;

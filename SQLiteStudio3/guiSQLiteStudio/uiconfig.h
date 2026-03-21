@@ -161,6 +161,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    UseLfForMultilineEditors,    false)
         CFG_ENTRY(Cfg::ColorPickerConfig,  ColorPickerConfig,           Cfg::ColorPickerConfig())
         CFG_ENTRY(int,                     ToolBarIconSize,             0)
+        CFG_ENTRY(QString,                 LastUsedConfigPage,          QString())
     )
 )
 

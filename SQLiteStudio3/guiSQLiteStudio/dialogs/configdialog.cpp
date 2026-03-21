@@ -68,8 +68,6 @@ class ConfigDialogItemDelegate : public QItemDelegate
         }
 };
 
-QString ConfigDialog::lastUsedCategory;
-
 ConfigDialog::ConfigDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigDialog)
@@ -1265,11 +1263,12 @@ void ConfigDialog::dataTypeEditorPluginUnloaded(MultiEditorWidgetPlugin* plugin)
 
 void ConfigDialog::rememberLastUsedPage()
 {
-    lastUsedCategory = ui->categoriesTree->currentItem()->statusTip(0);
+    CFG_UI.General.LastUsedConfigPage.set(ui->categoriesTree->currentItem()->statusTip(0));
 }
 
 void ConfigDialog::restoreLastUsedPage()
 {
+    QString lastUsedCategory = CFG_UI.General.LastUsedConfigPage.get();
     if (!lastUsedCategory.isEmpty())
     {
         QTreeWidgetItemIterator it(ui->categoriesTree);
@@ -1278,11 +1277,14 @@ void ConfigDialog::restoreLastUsedPage()
             QTreeWidgetItem* item = *it;
             if (item->statusTip(0) == lastUsedCategory)
             {
+                // Found
                 ui->categoriesTree->setCurrentItem(item);
-                break;
+                return;
             }
             ++it;
         }
+        // Not found? Reset saved value.
+        CFG_UI.General.LastUsedConfigPage.reset();
     }
 }
 
