@@ -140,7 +140,7 @@ class SCRIPTINGPYTHONSHARED_EXPORT ScriptingPython : public GenericPlugin,
         QVersionNumber libraryVersion;
 
     private slots:
-        void configModified(CfgEntry* entry);
+        void configModified(const QVariant& newValue);
 #endif
 };
 

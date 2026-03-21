@@ -200,6 +200,9 @@ void TableWindow::init()
     connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommitted()));
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
 
+    connect(NOTIFY_MANAGER, SIGNAL(objectRenamed(Db*,QString,QString,QString)), this, SLOT(handlePossibleIdxOrTrgRename(Db*,QString,QString,QString)));
+    connect(NOTIFY_MANAGER, SIGNAL(columnRenamed(Db*,QString,QString,QString,QString)), this, SLOT(handlePossibleColumnRename(Db*,QString,QString,QString,QString)));
+
     THEME_TUNER->manageCompactLayout({
                                          ui->structureTab,
                                          ui->constraintsWidget,
@@ -517,12 +520,16 @@ void TableWindow::initDbAndTable()
         ui->structureView->setItemDelegateForColumn(colIdx, constraintColumnsDelegate);
 
     defineCurrentContextDb();
-    if (existingTable)
+
+    if (db)
     {
+        // Should always be true, but for sake of future possibility of re-allowing null db
         dataModel->setDb(db);
-        dataModel->setDatabaseAndTable(database, table);
         ui->dbCombo->setDisabled(true);
     }
+
+    if (existingTable)
+        dataModel->setDatabaseAndTable(database, table);
 
     ui->tableNameEdit->setText(table); // TODO no attached/temp db name support here
 
@@ -1136,7 +1143,7 @@ bool TableWindow::isModified() const
                  originalCreateTable->withOutRowId != createTable->withOutRowId ||
                  originalCreateTable->strict != createTable->strict)
             ) ||
-            !existingTable;
+            (!existingTable && !ui->tableNameEdit->text().isEmpty());
 }
 
 TokenList TableWindow::indexColumnTokens(SqliteCreateIndexPtr index)
@@ -1854,4 +1861,37 @@ void TableWindow::dbChanged()
     dataModel->setDb(db);
 
     connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+}
+
+void TableWindow::handlePossibleIdxOrTrgRename(Db* db, const QString& database, const QString& oldObject, const QString& newObject)
+{
+    Q_UNUSED(database);
+    if (db != this->db)
+        return;
+
+    for (int i = 0, total = ui->indexList->rowCount(); i < total; ++i)
+    {
+        if (ui->indexList->item(i, 0)->text().compare(oldObject, Qt::CaseInsensitive) == 0)
+        {
+            ui->indexList->item(i, 0)->setText(newObject);
+            return;
+        }
+    }
+
+    for (int i = 0, total = ui->triggerList->rowCount(); i < total; ++i)
+    {
+        if (ui->triggerList->item(i, 0)->text().compare(oldObject, Qt::CaseInsensitive) == 0)
+        {
+            ui->triggerList->item(i, 0)->setText(newObject);
+            return;
+        }
+    }
+}
+
+void TableWindow::handlePossibleColumnRename(Db* db, const QString& database, const QString& table, const QString& oldObject, const QString& newObject)
+{
+    if (db != this->db || table.compare(this->table, Qt::CaseInsensitive) != 0)
+        return;
+
+    refreshStructure();
 }

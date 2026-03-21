@@ -3,6 +3,8 @@
 #include "common/utils_sql.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
+#include "db/chainexecutor.h"
+#include "services/config.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -82,6 +84,94 @@ void DbObjectOrganizer::run()
             emitFinished(false);
             return;
     }
+}
+
+bool DbObjectOrganizer::renameTable(Db* db, const QString& oldName, const QString& newName)
+{
+    static_qstring(sqlTpl, "ALTER TABLE %1 RENAME TO %2;");
+    QString sql = sqlTpl.arg(wrapObjIfNeeded(oldName), wrapObjIfNeeded(newName));
+    SqlQueryPtr res = db->exec(sql);
+    if (res->isError())
+    {
+        notifyError(tr("An error occurred while trying to rename table '%1' to '%2': %3").arg(oldName, newName, res->getErrorText()));
+        return false;
+    }
+
+    CFG->addDdlHistory(sql, db->getName(), db->getPath());
+    NOTIFY_MANAGER->renamed(db, QString(), oldName, newName);
+    return true;
+}
+
+bool DbObjectOrganizer::renameIndex(Db* db, const QString& oldName, const QString& newName)
+{
+    return renameObject(db, SchemaResolver::INDEX, oldName, newName);
+}
+
+bool DbObjectOrganizer::renameTrigger(Db* db, const QString& oldName, const QString& newName)
+{
+    return renameObject(db, SchemaResolver::TRIGGER, oldName, newName);
+}
+
+bool DbObjectOrganizer::renameView(Db* db, const QString& oldName, const QString& newName)
+{
+    return renameObject(db, SchemaResolver::INDEX, oldName, newName);
+}
+
+bool DbObjectOrganizer::renameObject(Db* db, SchemaResolver::ObjectType objType, const QString& oldName, const QString& newName)
+{
+    static_qstring(dropTpl, "DROP %1 %2;");
+    QString dropSql = dropTpl.arg(SchemaResolver::objectTypeToString(objType), wrapObjIfNeeded(oldName));
+
+    SchemaResolver resolver(db);
+    SqliteQueryPtr object = resolver.getParsedObject(oldName, objType);
+    SqliteDdlWithDbContextPtr objectWithName = object.dynamicCast<SqliteDdlWithDbContext>();
+    if (!object)
+    {
+        notifyError(tr("An error occurred while trying to rename table '%1' to '%2': %3")
+                    .arg(oldName, newName, tr("Failed to parse object definition.")));
+        return false;
+    }
+
+    objectWithName->setObjectName(newName);
+    object->rebuildTokens();
+    QString newSql = object->detokenize();
+
+    ChainExecutor executor;
+    executor.setTransaction(true);
+    executor.setAsync(false);
+    executor.setDisableObjectDropsDetection(true);
+    executor.setQueries({dropSql, newSql});
+    executor.setDb(db);
+    executor.exec();
+
+    if (!executor.getSuccessfulExecution())
+    {
+        notifyError(tr("An error occurred while trying to rename table '%1' to '%2': %3")
+                    .arg(oldName, newName, executor.getErrorsMessages().join("\n")));
+        return false;
+    }
+
+    CFG->addDdlHistory(executor.getQueries().join("\n"), db->getName(), db->getPath());
+    NOTIFY_MANAGER->renamed(db, QString(), oldName, newName);
+    return true;
+}
+
+bool DbObjectOrganizer::renameColumn(Db* db, const QString& table, const QString& oldName, const QString& newName)
+{
+    static_qstring(sqlTpl, "ALTER TABLE %1 RENAME COLUMN %2 TO %3;");
+    QString sql = sqlTpl.arg(wrapObjIfNeeded(table), wrapObjIfNeeded(oldName), wrapObjIfNeeded(newName));
+    SqlQueryPtr res = db->exec(sql);
+    if (res->isError())
+    {
+        notifyError(tr("An error occurred while trying to rename column '%1' of table '%2' to '%3': %4")
+                    .arg(oldName, table, newName, res->getErrorText()));
+        return false;
+    }
+
+    CFG->addDdlHistory(sql, db->getName(), db->getPath());
+    NOTIFY_MANAGER->renamed(db, QString(), table, oldName, newName);
+    return true;
+
 }
 
 void DbObjectOrganizer::reset()

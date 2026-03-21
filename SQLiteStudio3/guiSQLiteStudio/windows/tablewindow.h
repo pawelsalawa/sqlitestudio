@@ -256,6 +256,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void updateTabsOrder();
         void updateFont();
         void dbChanged();
+        void handlePossibleIdxOrTrgRename(Db* db, const QString& database, const QString& oldObject, const QString& newObject);
+        void handlePossibleColumnRename(Db* db, const QString& database, const QString& table, const QString& oldObject, const QString& newObject);
 
     public slots:
         void refreshStructure();

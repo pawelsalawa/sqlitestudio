@@ -76,10 +76,20 @@ bool DbManagerImpl::addDb(const QString &name, const QString &path, const QHash<
 
 bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent)
 {
-    if (db->isOpen())
+    bool onlyName = (db->getName() != name) && (db->getPath() == path) && (db->getConnectionOptions() == options);;
+    bool wasOpen = db->isOpen();
+    if (wasOpen)
     {
-        if (!db->close())
-            return false;
+        if (onlyName)
+        {
+            if (!db->closeQuiet())
+                return false;
+        }
+        else
+        {
+            if (!db->close())
+                return false;
+        }
     }
 
     QString normalizedPath;
@@ -127,16 +137,27 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
 
     listLock.unlock();
 
-    // If we did reload the db, we need to emit proper signal, because it was suppressed in tryToLoadDb(), because of the listLock
-    if (wasReloaded)
-        emit dbLoaded(db);
-
     if (result && reloadedDb)
         emit dbUpdated(oldName, db);
     else if (reloadedDb) // database reloaded correctly, but update failed
         notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName, CFG->getLastErrorString()));
 
+    // If we did reload the db, we need to emit proper signal, because it was suppressed in tryToLoadDb(), because of the listLock
+    if (wasReloaded)
+    {
+        emit dbLoaded(db);
+
+        // We have a valid db and it was closed only for name - we reopen it.
+        if (wasOpen && onlyName)
+            db->openQuiet();
+    }
+
     return result;
+}
+
+bool DbManagerImpl::renameDb(Db* db, const QString& newName)
+{
+    return updateDb(db, newName, db->getPath(), db->getConnectionOptions(), CFG->isDbInConfig(db->getName()));
 }
 
 void DbManagerImpl::removeDbByName(const QString &name, Qt::CaseSensitivity cs)

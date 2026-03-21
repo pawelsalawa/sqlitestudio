@@ -28,6 +28,7 @@ class API_EXPORT NotifyManager : public QObject
         void objectDeleted(Db* db, const QString& database, const QString& object);
         void objectCreated(Db* db, const QString& database, const QString& object);
         void objectRenamed(Db* db, const QString& database, const QString& oldObject, const QString& newObject);
+        void columnRenamed(Db* db, const QString& database, const QString& table, const QString& oldObject, const QString& newObject);
 
     public slots:
         void error(const QString& msg);
@@ -38,6 +39,7 @@ class API_EXPORT NotifyManager : public QObject
         void deleted(Db* db, const QString& database, const QString& object);
         void created(Db* db, const QString& database, const QString& object);
         void renamed(Db* db, const QString& database, const QString& oldObject, const QString& newObject);
+        void renamed(Db* db, const QString& database, const QString& table, const QString& oldObject, const QString& newObject);
 
     private:
         void addToRecentList(QStringList& list, const QString& message);

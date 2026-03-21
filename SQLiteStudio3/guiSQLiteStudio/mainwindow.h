@@ -64,7 +64,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE,     Qt::Key_F12,                      QObject::tr("Open Debug Console"))
     CFG_KEY_ENTRY(OPEN_CSS_CONSOLE,       Qt::Key_F11,                      QObject::tr("Open CSS Console"))
     CFG_KEY_ENTRY(ABOUT,                  Qt::SHIFT | Qt::Key_F1,           QObject::tr("Open the About dialog"))
-    CFG_KEY_ENTRY(QUIT,                   Qt::CTRL | Qt::Key_Q,             QObject::tr("Quit the application"))
+    CFG_KEY_ENTRY(QUIT,                   QKeySequence::Quit,               QObject::tr("Quit the application"))
 )
 
 class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer

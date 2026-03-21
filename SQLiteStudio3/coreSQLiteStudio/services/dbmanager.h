@@ -79,6 +79,14 @@ class API_EXPORT DbManager : public QObject
         virtual bool updateDb(Db* db, const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent) = 0;
 
         /**
+         * @brief Renames registered database.
+         * @param db Registered database to be renamed.
+         * @param newName New symbolic name for the database.
+         * @return true if the database was successfully renamed, or false otherwise.
+         */
+        virtual bool renameDb(Db* db, const QString &newName) = 0;
+
+        /**
          * @brief Removes database from application.
          * @param name Symbolic name of the database.
          * @param cs Should the name be compare with case sensitivity?

@@ -108,6 +108,11 @@ void ExtActionContainer::setShortcutContext(const QList<qint32> actions, Qt::Sho
         actionMap[act]->setShortcutContext(context);
 }
 
+void ExtActionContainer::inheritShortcut(int fromAction, QSet<int> toActions)
+{
+    inheritShortcutFromTo[fromAction] = toActions;
+}
+
 void ExtActionContainer::attachActionInMenu(int parentAction, int childAction, QToolBar* toolbar)
 {
     attachActionInMenu(parentAction, actionMap[childAction], toolbar);
@@ -165,13 +170,24 @@ void ExtActionContainer::refreshShortcut(int action)
 {
     static_qstring(tooltipTpl, "%1 (%2)");
 
+    QSet<int> toActions = inheritShortcutFromTo[action];
+
     actionMap[action]->removeEventFilter(&keySeqFilter);
+    for (int toAction : toActions)
+        actionMap[toAction]->removeEventFilter(&keySeqFilter);
 
     QKeySequence seq(shortcuts[action]->get());
     QString txt = seq.toString(QKeySequence::NativeText);
     actionMap[action]->setShortcut(seq);
     actionMap[action]->setToolTip(tooltipTpl.arg(actionMap[action]->iconText(), txt));
     actionMap[action]->installEventFilter(&keySeqFilter);
+
+    for (int toAction : toActions)
+    {
+        actionMap[toAction]->setShortcut(seq);
+        actionMap[toAction]->setToolTip(tooltipTpl.arg(actionMap[toAction]->iconText(), txt));
+        actionMap[toAction]->installEventFilter(&keySeqFilter);
+    }
 }
 
 QAction* ExtActionContainer::getAction(int action)

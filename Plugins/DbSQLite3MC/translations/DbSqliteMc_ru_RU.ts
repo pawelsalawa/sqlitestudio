@@ -4,38 +4,38 @@
   <context>
     <name>DbSqliteMc</name>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="32"/>
-      <source>Password (key)</source>
-      <translation>Пароль (ключ)</translation>
+        <location filename="../dbsqlitemc.cpp" line="42"/>
+        <source>Password (key)</source>
+        <translation>Пароль (ключ)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="33"/>
-      <source>Leave empty to create or connect to decrypted database.</source>
-      <translation>Оставьте пустым для создания или подключения к расшифрованной базе данных.</translation>
+        <location filename="../dbsqlitemc.cpp" line="43"/>
+        <source>Leave empty to create or connect to decrypted database.</source>
+        <translation>Оставьте пустым для создания или подключения к расшифрованной базе данных.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="34"/>
-      <source>Encryption password</source>
-      <translation>Пароль для шифрования</translation>
+        <location filename="../dbsqlitemc.cpp" line="44"/>
+        <source>Encryption password</source>
+        <translation>Пароль для шифрования</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="40"/>
-      <source>Cipher</source>
-      <translation>Шифр</translation>
+        <location filename="../dbsqlitemc.cpp" line="50"/>
+        <source>Cipher</source>
+        <translation>Шифр</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="41"/>
-      <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation>Шифр определяет алгоритм шифрования, используемый для шифрования базы данных.</translation>
+        <location filename="../dbsqlitemc.cpp" line="51"/>
+        <source>Cipher determines encryption algorithm used to encrypt the database.</source>
+        <translation>Шифр определяет алгоритм шифрования, используемый для шифрования базы данных.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="49"/>
-      <source>Cipher configuration (optional)</source>
-      <translation>Настройки шифрования (необязательно)</translation>
+        <location filename="../dbsqlitemc.cpp" line="61"/>
+        <source>Cipher configuration (optional)</source>
+        <translation>Настройки шифрования (необязательно)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="50"/>
-      <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
+        <location filename="../dbsqlitemc.cpp" line="62"/>
+        <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
       <translation>Конструкции PRAGMA для изменения настроек SQLite3 Multiple Ciphers, таких как количество итераций KDF (функции формирования ключа), режим совместимости и т. д.

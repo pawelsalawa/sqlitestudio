@@ -56,6 +56,8 @@ QList<DbPluginOption> DbSqliteMc::getOptionsList() const
     DbPluginOption optPragmas;
     optPragmas.type = DbPluginOption::SQL;
     optPragmas.key = PRAGMAS_OPT;
+    optPragmas.defaultValue = "-- For SQLCipher it's good to uncomment and adjust:\n"
+                              "--PRAGMA legacy = 4;";
     optPragmas.label = tr("Cipher configuration (optional)");
     optPragmas.toolTip = tr("PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.\n"
                             "They will be executed upon each opening of the database.\n"

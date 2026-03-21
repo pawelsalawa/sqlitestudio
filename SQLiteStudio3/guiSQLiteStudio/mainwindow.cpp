@@ -342,8 +342,9 @@ void MainWindow::createActions()
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::NEW_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::OPEN_FILE));
-    ui->dbToolbar->addAction(dbTree->getAction(DbTree::EDIT_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
+
+    attachActionInMenu(dbTree->getAction(DbTree::OPEN_FILE), dbTree->getAction(DbTree::ADD_DB), ui->dbToolbar);
 
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_TABLE));
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_VIEW));

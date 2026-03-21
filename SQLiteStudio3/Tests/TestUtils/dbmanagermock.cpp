@@ -15,6 +15,11 @@ bool DbManagerMock::updateDb(Db*, const QString&, const QString&, const QHash<QS
     return true;
 }
 
+bool DbManagerMock::renameDb(Db*, const QString&)
+{
+    return true;
+}
+
 void DbManagerMock::removeDbByName(const QString&, Qt::CaseSensitivity)
 {
 }

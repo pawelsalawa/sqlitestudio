@@ -245,20 +245,17 @@ CfgMain* ScriptingPython::getMainUiConfig()
 void ScriptingPython::configDialogOpen()
 {
     cfg.ScriptingPython.DiscoveredLibraries.set(discoverLibraries());
-    connect(&cfg.ScriptingPython, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
+    connect(&cfg.ScriptingPython.LibraryPath, &CfgEntry::changed, this, &ScriptingPython::configModified);
 }
 
 void ScriptingPython::configDialogClosed()
 {
-    disconnect(&cfg.ScriptingPython, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
+    disconnect(&cfg.ScriptingPython.LibraryPath, &CfgEntry::changed, this, &ScriptingPython::configModified);
 }
 
-void ScriptingPython::configModified(CfgEntry* entry)
+void ScriptingPython::configModified(const QVariant& newValue)
 {
-    if (entry != &cfg.ScriptingPython.LibraryPath)
-        return;
-
-    QString value = entry->get().toString();
+    QString value = newValue.toString();
     qDebug() << "Python library config modified signal: " << value;
     setLibraryPath(value);
 }

@@ -11,7 +11,8 @@
 - ADDED: #3930 Added support for defining user-defined Aggregate Window Functions in the Functions Editor.
 - ADDED: #4269 Double-clicking on a cell that clearly contains a value to be edited in the Value Editor dialog will immediately open it in the editor dialog.
 - ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
-- ADDED: #5165 Database list can be now synced/linked with active MDI window using the toggle button on top of the database list.
+- ADDED: #5165 Database List can be now synced/linked with active MDI window using the toggle button on top of the database list.
+- ADDED: #5212 Objects on Database List (databases, tables, columns, indexes, triggers, views) can be now renamed quickly inline.
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
@@ -38,9 +39,12 @@
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: #5562 Several toolbars cleaned up, simplified.
 - CHANGE: #5212 Database list now expands columns, indexes and triggers whenever the table is expanded.
-- CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
 - CHANGE: #4688 Added metadata to Windows executables.
+- CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
+- CHANGE: #5212 Table Window and View Window does not ask for closing confirmation when they were open for creation of new object and not yet modified.
+- CHANGE: #5212 New Table and New View actions are now disabled if selected item in the Database List does not have open database, as it may be misleading to start designing new table/view and miss the fact that it's still not aimed towards the database.
+- CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #4986 Unique indexes are allowed for expressions, as they should be.

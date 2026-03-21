@@ -33,6 +33,7 @@ class API_EXPORT DbManagerImpl : public DbManager
         bool addDb(const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent = true);
         bool addDb(const QString &name, const QString &path, bool permanent = true);
         bool updateDb(Db* db, const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent);
+        bool renameDb(Db* db, const QString &newName);
         void removeDbByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         void removeDbByPath(const QString& path);
         void removeDb(Db* db);

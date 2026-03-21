@@ -9,6 +9,7 @@ class DbManagerMock : public DbManager
         bool addDb(const QString& name, const QString&, const QHash<QString, QVariant>&, bool);
         bool addDb(const QString&, const QString&, bool);
         bool updateDb(Db*, const QString&, const QString&, const QHash<QString, QVariant>&, bool);
+        bool renameDb(Db*, const QString&);
         void removeDbByName(const QString&, Qt::CaseSensitivity);
         void removeDbByPath(const QString&);
         void removeDb(Db*);

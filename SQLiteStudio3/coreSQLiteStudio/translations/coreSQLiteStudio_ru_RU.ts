@@ -157,14 +157,14 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="879"/>
-      <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>Невозможно начать транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
+        <location filename="../services/impl/configimpl.cpp" line="879"/>
+        <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
+        <translation>Невозможно начать транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="886"/>
-      <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation>Невозможно завершить транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
+        <location filename="../services/impl/configimpl.cpp" line="886"/>
+        <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
+        <translation>Невозможно завершить транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
   </context>
   <context>
@@ -175,109 +175,109 @@
       <translation>Не удалось добавить базу данных %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
-      <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
+        <source>Database %1 could not be updated, because of an error: %2</source>
+        <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
-      <source>Database file doesn&apos;t exist.</source>
-      <translation>Файл базы данных не существует.</translation>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
+        <source>Database file doesn&apos;t exist.</source>
+        <translation>Файл базы данных не существует.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
-      <source>No supporting plugin loaded.</source>
-      <translation>Модуль поддержки не загружен.</translation>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
+        <source>No supporting plugin loaded.</source>
+        <translation>Модуль поддержки не загружен.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
-      <source>Database could not be initialized.</source>
-      <translation>Невозможно инициализировать базу данных.</translation>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
+        <source>Database could not be initialized.</source>
+        <translation>Невозможно инициализировать базу данных.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
-      <source>No suitable database driver plugin found.</source>
-      <translation>Не найден подходящий драйвер базы данных.</translation>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
+        <source>No suitable database driver plugin found.</source>
+        <translation>Не найден подходящий драйвер базы данных.</translation>
     </message>
   </context>
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="96"/>
-      <location filename="../dbobjectorganizer.cpp" line="130"/>
-      <location filename="../dbobjectorganizer.cpp" line="149"/>
-      <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-      <translation type="unfinished">An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
+        <location filename="../dbobjectorganizer.cpp" line="96"/>
+        <location filename="../dbobjectorganizer.cpp" line="130"/>
+        <location filename="../dbobjectorganizer.cpp" line="149"/>
+        <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="131"/>
-      <source>Failed to parse object definition.</source>
-      <translation type="unfinished">Failed to parse object definition.</translation>
+        <location filename="../dbobjectorganizer.cpp" line="131"/>
+        <source>Failed to parse object definition.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="166"/>
-      <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-      <translation type="unfinished">An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
+        <location filename="../dbobjectorganizer.cpp" line="166"/>
+        <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <location filename="../dbobjectorganizer.cpp" line="493"/>
-      <source>Error while creating table in target database: %1</source>
-      <translation>Ошибка при создании таблицы в целевой базе данных: %1</translation>
+        <location filename="../dbobjectorganizer.cpp" line="462"/>
+        <location filename="../dbobjectorganizer.cpp" line="493"/>
+        <source>Error while creating table in target database: %1</source>
+        <translation>Ошибка при создании таблицы в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="462"/>
-      <source>Could not parse table.</source>
-      <translation>Невозможно проанализировать структуру таблицы.</translation>
+        <location filename="../dbobjectorganizer.cpp" line="462"/>
+        <source>Could not parse table.</source>
+        <translation>Невозможно проанализировать структуру таблицы.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="507"/>
-      <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-      <translation>Невозможно присоединить базу данных %1 к базе данных %2, поэтому данные таблицы %3 будут скопированы при посредничестве SQLiteStudio. Этот метод может быть медленным для больших таблиц, так что наберитесь терпения.</translation>
+        <location filename="../dbobjectorganizer.cpp" line="507"/>
+        <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
+        <translation>Невозможно присоединить базу данных %1 к базе данных %2, поэтому данные таблицы %3 будут скопированы при посредничестве SQLiteStudio. Этот метод может быть медленным для больших таблиц, так что наберитесь терпения.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="531"/>
-      <source>Error while copying data for table %1: %2</source>
-      <translation>Ошибка при копировании данных из таблицы %1: %2</translation>
+        <location filename="../dbobjectorganizer.cpp" line="531"/>
+        <source>Error while copying data for table %1: %2</source>
+        <translation>Ошибка при копировании данных из таблицы %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="550"/>
-      <location filename="../dbobjectorganizer.cpp" line="557"/>
-      <location filename="../dbobjectorganizer.cpp" line="584"/>
-      <source>Error while copying data to table %1: %2</source>
-      <translation>Ошибка при копировании данных в таблицу %1: %2</translation>
+        <location filename="../dbobjectorganizer.cpp" line="550"/>
+        <location filename="../dbobjectorganizer.cpp" line="557"/>
+        <location filename="../dbobjectorganizer.cpp" line="584"/>
+        <source>Error while copying data to table %1: %2</source>
+        <translation>Ошибка при копировании данных в таблицу %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="606"/>
-      <source>Error while dropping source view %1: %2
+        <location filename="../dbobjectorganizer.cpp" line="606"/>
+        <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Ошибка при удалении исходного представления %1: %2
 Таблицы, индексы, триггеры и представления, скопированные в базу данных %3, сохранятся.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="613"/>
-      <source>Error while creating view in target database: %1</source>
-      <translation>Ошибка при создании представления в целевой базе данных: %1</translation>
+        <location filename="../dbobjectorganizer.cpp" line="613"/>
+        <source>Error while creating view in target database: %1</source>
+        <translation>Ошибка при создании представления в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="618"/>
-      <source>Error while creating index in target database: %1</source>
-      <translation>Ошибка при создании индекса в целевой базе данных: %1</translation>
+        <location filename="../dbobjectorganizer.cpp" line="618"/>
+        <source>Error while creating index in target database: %1</source>
+        <translation>Ошибка при создании индекса в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="623"/>
-      <source>Error while creating trigger in target database: %1</source>
-      <translation>Ошибка при создании триггера в целевой базе данных: %1</translation>
+        <location filename="../dbobjectorganizer.cpp" line="623"/>
+        <source>Error while creating trigger in target database: %1</source>
+        <translation>Ошибка при создании триггера в целевой базе данных: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="763"/>
-      <location filename="../dbobjectorganizer.cpp" line="770"/>
-      <location filename="../dbobjectorganizer.cpp" line="779"/>
-      <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-      <translation>Невозможно проанализировать объект &apos;%1&apos; для его перемещения либо копирования.</translation>
+        <location filename="../dbobjectorganizer.cpp" line="763"/>
+        <location filename="../dbobjectorganizer.cpp" line="770"/>
+        <location filename="../dbobjectorganizer.cpp" line="779"/>
+        <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
+        <translation>Невозможно проанализировать объект &apos;%1&apos; для его перемещения либо копирования.</translation>
     </message>
   </context>
   <context>
@@ -915,9 +915,9 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Невозможно определить таблицу для столбца &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="759"/>
-      <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation>Не удалось инициализировать конфигурационный файл. Любые изменения конфигурации и история запросов будут потеряны после перезагрузки приложения. Невозможно создать файл в следующих местах: %1.</translation>
+        <location filename="../services/impl/configimpl.cpp" line="759"/>
+        <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
+        <translation>Не удалось инициализировать конфигурационный файл. Любые изменения конфигурации и история запросов будут потеряны после перезагрузки приложения. Невозможно создать файл в следующих местах: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="346"/>

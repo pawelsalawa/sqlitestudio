@@ -337,10 +337,28 @@ void DbTreeItem::setSchemaReady(bool ready)
 void DbTreeItem::init()
 {
     Type type = getType();
-    if (type == Type::DIR)
-        setEditable(true);
-    else
-        setEditable(false);
+    switch (type)
+    {
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::DB:
+        case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::INDEX:
+        case DbTreeItem::Type::TRIGGER:
+        case DbTreeItem::Type::VIEW:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
+        case DbTreeItem::Type::COLUMN:
+            setEditable(true);
+            break;
+        case DbTreeItem::Type::TABLES:
+        case DbTreeItem::Type::INDEXES:
+        case DbTreeItem::Type::TRIGGERS:
+        case DbTreeItem::Type::VIEWS:
+        case DbTreeItem::Type::COLUMNS:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
+        case DbTreeItem::Type::ITEM_PROTOTYPE:
+            setEditable(false);
+            break;
+    }
 
     setData(false, DataRole::HIDDEN);
 

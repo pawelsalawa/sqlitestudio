@@ -101,14 +101,27 @@ void DbDialog::showEvent(QShowEvent *e)
     if (db)
     {
         disableTypeAutodetection = true;
-        int idx = ui->typeCombo->findText(db->getTypeLabel());
-        ui->typeCombo->setCurrentIndex(idx);
+        QString pluginName = db->getConnectionOptions().value("plugin", QVariant()).toString();
+        if (!pluginName.isEmpty())
+        {
+            for (int i = 0, total = ui->typeCombo->count(); i < total; i++)
+            {
+                DbPlugin* plugin = static_cast<DbPlugin*>(ui->typeCombo->itemData(i).value<void*>());
+                if (plugin->getName() == pluginName)
+                {
+                    ui->typeCombo->setCurrentIndex(i);
+                    break;
+                }
+            }
+        }
 
         setPath(db->getPath());
         ui->nameEdit->setText(db->getName());
+        ui->nameLabel->setText(db->getName());
         disableTypeAutodetection = false;
     }
-    else if (ui->typeCombo->count() > 0)
+
+    if (ui->typeCombo->currentIndex() == -1 || !db && ui->typeCombo->count() > 0)
     {
         int idx = ui->typeCombo->findText("SQLite 3", Qt::MatchFixedString); // we should have SQLite 3 plugin
         if (idx > -1)
@@ -138,13 +151,13 @@ void DbDialog::init()
     setNameLabelText("");
     updateNameLink();
 
-    for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
-        dbPlugins[dbPlugin->getLabel()] = dbPlugin;
-
-    QStringList typeLabels;
-    typeLabels += dbPlugins.keys();
-    typeLabels.sort(Qt::CaseInsensitive);
-    ui->typeCombo->addItems(typeLabels);
+    QList<DbPlugin*> plugins = PLUGINS->getLoadedPlugins<DbPlugin>();
+    sSort(plugins, [](DbPlugin* p1, DbPlugin* p2)
+    {
+        return p1->getName().toLower() < p2->getName().toLower();
+    });
+    for (DbPlugin* dbPlugin : plugins)
+        ui->typeCombo->addItem(dbPlugin->getLabel(), QVariant::fromValue<void*>(static_cast<void*>(dbPlugin)));
 
     ui->testConnIcon->setVisible(false);
     initialBrowseTooltip = ui->browseOpenButton->toolTip();
@@ -194,9 +207,9 @@ void DbDialog::updateOptions()
     lastWidgetInTabOrder = ui->permamentCheckBox;
 
     // Retrieve new list
-    if (ui->typeCombo->currentIndex() > -1)
+    DbPlugin* plugin = getCurrentPlugin();
+    if (plugin)
     {
-        DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
         QList<DbPluginOption> optList = plugin->getOptionsList();
         if (optList.size() > 0)
         {
@@ -500,19 +513,17 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     for (const QString& key : optionKeyToWidget.keys())
         options[key] = getValueFrom(optionKeyToType[key], optionKeyToWidget[key]);
 
-    DbPlugin* plugin = nullptr;
-    if (dbPlugins.count() > 0)
-    {
-        plugin = dbPlugins[ui->typeCombo->currentText()];
+    DbPlugin* plugin = getCurrentPlugin();
+    if (plugin)
         options[DB_PLUGIN] = plugin->getName();
-    }
 
     return options;
 }
 
 bool DbDialog::testDatabase(QString& errorMsg)
 {
-    if (ui->typeCombo->currentIndex() < 0)
+    DbPlugin* plugin = getCurrentPlugin();
+    if (!plugin)
     {
         errorMsg = tr("Database type not selected.");
         return false;
@@ -530,7 +541,6 @@ bool DbDialog::testDatabase(QString& errorMsg)
         url.setScheme("file");
 
     QHash<QString, QVariant> options = collectOptions();
-    DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
     Db* testDb = plugin->getInstance("", path, options, &errorMsg);
 
     bool res = false;
@@ -667,6 +677,14 @@ void DbDialog::setNameLabelText(const QString& value)
     ui->nameLabel->setFont(fnt);
 }
 
+DbPlugin* DbDialog::getCurrentPlugin() const
+{
+    if (ui->typeCombo->currentIndex() == -1)
+        return nullptr;
+
+    return static_cast<DbPlugin*>(ui->typeCombo->currentData().value<void*>());
+}
+
 void DbDialog::setDoAutoTest(bool value)
 {
     doAutoTest = value;
@@ -703,7 +721,7 @@ void DbDialog::valueForNameGenerationChanged()
     }
 
     QString generatedName;
-    DbPlugin* plugin = dbPlugins.count() > 0 ? dbPlugins[ui->typeCombo->currentText()] : nullptr;
+    DbPlugin* plugin = getCurrentPlugin();
     if (plugin)
         generatedName = DBLIST->generateUniqueDbName(plugin, getPath());
     else

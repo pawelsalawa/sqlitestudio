@@ -8,7 +8,7 @@
 #include <QPainter>
 #include <QDebug>
 
-DbTreeItemDelegate::DbTreeItemDelegate(QObject *parent) :
+DbTreeItemDelegate::DbTreeItemDelegate(QWidget* parent) :
     QStyledItemDelegate(parent)
 {
 }
@@ -166,4 +166,21 @@ void DbTreeItemDelegate::paintLabel(QPainter *painter, const QStyleOptionViewIte
     // Paint
     painter->drawText(QPoint(x, y), label);
     painter->restore();
+}
+
+void DbTreeItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
+{
+    QVariant oldValue = model->data(index, Qt::EditRole);
+    QStyledItemDelegate::setModelData(editor, model, index);
+    QVariant newValue = model->data(index, Qt::EditRole);
+    emit const_cast<DbTreeItemDelegate*>(this)->userEditCommitted(index, oldValue, newValue);
+}
+
+QWidget* DbTreeItemDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    QWidget* editor = QStyledItemDelegate::createEditor(parent, option, index);
+    if (editor)
+        editor->setFont(CFG_UI.Fonts.DbTreeLabel.get());
+
+    return editor;
 }

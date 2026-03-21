@@ -4,38 +4,38 @@
   <context>
     <name>DbSqliteMc</name>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="32"/>
-      <source>Password (key)</source>
-      <translation>ססמה (מפתח)</translation>
+        <location filename="../dbsqlitemc.cpp" line="42"/>
+        <source>Password (key)</source>
+        <translation>ססמה (מפתח)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="33"/>
-      <source>Leave empty to create or connect to decrypted database.</source>
-      <translation>להשאיר ריק ליצירת או התחברות למסד נתונים לא מוצפן.</translation>
+        <location filename="../dbsqlitemc.cpp" line="43"/>
+        <source>Leave empty to create or connect to decrypted database.</source>
+        <translation>להשאיר ריק ליצירת או התחברות למסד נתונים לא מוצפן.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="34"/>
-      <source>Encryption password</source>
-      <translation>ססמה מוצפנת</translation>
+        <location filename="../dbsqlitemc.cpp" line="44"/>
+        <source>Encryption password</source>
+        <translation>ססמה מוצפנת</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="40"/>
-      <source>Cipher</source>
-      <translation>צוֹפֶן</translation>
+        <location filename="../dbsqlitemc.cpp" line="50"/>
+        <source>Cipher</source>
+        <translation>צוֹפֶן</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="41"/>
-      <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-      <translation>צופן קובעת אלגוריתם ההצפנה שישמש להצפנת מסד הנתונים.</translation>
+        <location filename="../dbsqlitemc.cpp" line="51"/>
+        <source>Cipher determines encryption algorithm used to encrypt the database.</source>
+        <translation>צופן קובעת אלגוריתם ההצפנה שישמש להצפנת מסד הנתונים.</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="49"/>
-      <source>Cipher configuration (optional)</source>
-      <translation>תצורת צופן (חלופי)</translation>
+        <location filename="../dbsqlitemc.cpp" line="61"/>
+        <source>Cipher configuration (optional)</source>
+        <translation>תצורת צופן (חלופי)</translation>
     </message>
     <message>
-      <location filename="../dbsqlitemc.cpp" line="50"/>
-      <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
+        <location filename="../dbsqlitemc.cpp" line="62"/>
+        <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
       <translation>הצהרות PRAGMA להתאמה אישית של תצורת ריבוי צופן SQLite3, כגון חִזְרוּר KDF, מצב מורשת ועוד.

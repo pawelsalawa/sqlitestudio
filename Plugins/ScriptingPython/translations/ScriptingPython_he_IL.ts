@@ -4,29 +4,29 @@
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../scriptingpython.cpp" line="735"/>
-      <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
-      <translation>שימוש לא תקין בפונקציה %1. הציפיה הייתה לקבלת משתנה %2, אך נתקבל %3.</translation>
+        <location filename="../scriptingpython.cpp" line="732"/>
+        <source>Invalid use of %1 function. Expected %2 arguments, but got %3.</source>
+        <translation>שימוש לא תקין בפונקציה %1. הציפיה הייתה לקבלת משתנה %2, אך נתקבל %3.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="744"/>
-      <source>Unknown error from function %1.</source>
-      <translation>שגיאה לא ידועה מפונקציה %1.</translation>
+        <location filename="../scriptingpython.cpp" line="741"/>
+        <source>Unknown error from function %1.</source>
+        <translation>שגיאה לא ידועה מפונקציה %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="785"/>
-      <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
-      <translation>לא ניתן היה לחשב מחרוזות המייצגת את אובייקט פייתון שהועבר כמשתנה לפונקציה %1.</translation>
+        <location filename="../scriptingpython.cpp" line="782"/>
+        <source>Could not calculate string representation of the Python object passed as argument to the function %1.</source>
+        <translation>לא ניתן היה לחשב מחרוזות המייצגת את אובייקט פייתון שהועבר כמשתנה לפונקציה %1.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="807"/>
-      <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
-      <translation>לא ניתן למצוא הקשר הפעלת פונקציה %1. זהו תקל במתקע פייתון. נא לדווח על כך.</translation>
+        <location filename="../scriptingpython.cpp" line="804"/>
+        <source>Could not find execution context for function %1. This is a bug of Python plugin. Please report it.</source>
+        <translation>לא ניתן למצוא הקשר הפעלת פונקציה %1. זהו תקל במתקע פייתון. נא לדווח על כך.</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="832"/>
-      <source>Error from Python function %1: %2</source>
-      <translation>שגיאת פונקציית פייתון %1: %2</translation>
+        <location filename="../scriptingpython.cpp" line="829"/>
+        <source>Error from Python function %1: %2</source>
+        <translation>שגיאת פונקציית פייתון %1: %2</translation>
     </message>
   </context>
   <context>
@@ -42,9 +42,9 @@
       <translation type="unfinished">Choose a Python library file</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.cpp" line="373"/>
-      <source>The plugin is not configured properly.</source>
-      <translation type="unfinished">The plugin is not configured properly.</translation>
+        <location filename="../scriptingpython.cpp" line="370"/>
+        <source>The plugin is not configured properly.</source>
+        <translation type="unfinished">The plugin is not configured properly.</translation>
     </message>
   </context>
 </TS>
