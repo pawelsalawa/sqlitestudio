@@ -147,7 +147,7 @@ jobs:
                 set -x
                 export LD_LIBRARY_PATH=./lib:${{ env.QT_ROOT_DIR }}/lib:/usr/local/lib
                 export SQLITESTUDIO_PLUGINS="${{ github.workspace }}/output/build-plugins/SqlEnterpriseFormatter"
-                ctest
+                ctest --verbose
 
             - name: Install Midnight Commander
               if: >
