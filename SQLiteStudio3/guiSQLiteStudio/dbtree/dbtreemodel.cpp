@@ -28,6 +28,7 @@ const QString DbTreeModel::toolTipTableTmp = R"(<table>%1</table>)";
 const QString DbTreeModel::toolTipHdrRowTmp = R"(<tr><th><img src="%1" width="16" height="16"/></th><th colspan=2>%2</th></tr>)";
 const QString DbTreeModel::toolTipRowTmp = R"(<tr><td></td><td>%1</td><td align="right">%2</td></tr>)";
 const QString DbTreeModel::toolTipIconRowTmp = R"(<tr><td><img src="%1" width="16" height="16"/></td><td>%2</td><td align="right">%3</td></tr>)";
+const QString DbTreeModel::toolTipFooterRowTmp = R"(<tr><td></td><td colspan=2><p align="center"><i>%1</i></p></td></tr>)";
 
 DbTreeModel::DbTreeModel()
 {
@@ -497,6 +498,11 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
         InvalidDb* idb = dynamic_cast<InvalidDb*>(db);
         rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip"), idb->getError());
     }
+
+    if (!db->isValid() || db->isOpen())
+        rows << toolTipFooterRowTmp.arg(tr("Double-click to edit this database", "dbtree tooltip"));
+    else
+        rows << toolTipFooterRowTmp.arg(tr("Double-click to connect to this database", "dbtree tooltip"));
 
     return toolTipTableTmp.arg(rows.join(""));
 }
@@ -1200,10 +1206,7 @@ void DbTreeModel::restoreSelectionState(const QHash<QString, QVariant>& selectio
     QStringList currentSig = selectionState["currentItem"].toStringList();
     DbTreeItem* currentItem = findDeepestExistingItemBySignature(currentSig, allItemMap);
     if (currentItem)
-    {
         treeView->setCurrentItem(currentItem);
-        treeView->scrollTo(currentItem->index(), QAbstractItemView::PositionAtCenter);
-    }
 
     // Selected items
     QList<QStringList> selectedSignatures = selectionState["selectedItems"].toList() | MAP(v, {return v.toStringList();});

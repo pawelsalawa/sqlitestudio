@@ -114,6 +114,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         static const QString toolTipHdrRowTmp;
         static const QString toolTipRowTmp;
         static const QString toolTipIconRowTmp;
+        static const QString toolTipFooterRowTmp;
 
         DbTreeView* treeView = nullptr;
         bool requireSchemaReloading = false;

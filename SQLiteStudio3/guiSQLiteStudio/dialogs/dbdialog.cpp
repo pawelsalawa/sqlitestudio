@@ -117,6 +117,7 @@ void DbDialog::showEvent(QShowEvent *e)
 
         setPath(db->getPath());
         ui->nameEdit->setText(db->getName());
+        ui->nameLabel->setText(db->getName());
         disableTypeAutodetection = false;
     }
 

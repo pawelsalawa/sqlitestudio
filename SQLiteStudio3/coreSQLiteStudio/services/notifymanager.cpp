@@ -46,6 +46,11 @@ void NotifyManager::renamed(Db* db, const QString& database, const QString& oldO
     emit objectRenamed(db, database, oldObject, newObject);
 }
 
+void NotifyManager::renamed(Db* db, const QString& database, const QString& table, const QString& oldObject, const QString& newObject)
+{
+    emit columnRenamed(db, database, table, oldObject, newObject);
+}
+
 void NotifyManager::addToRecentList(QStringList& list, const QString &message)
 {
     list << message;

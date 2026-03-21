@@ -62,6 +62,13 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool isExecuting();
         void run();
 
+        static bool renameTable(Db* db, const QString& oldName, const QString& newName);
+        static bool renameIndex(Db* db, const QString& oldName, const QString& newName);
+        static bool renameTrigger(Db* db, const QString& oldName, const QString& newName);
+        static bool renameView(Db* db, const QString& oldName, const QString& newName);
+        static bool renameColumn(Db* db, const QString& table, const QString& oldName, const QString& newName);
+        static bool renameColumn(Db* db, const QString& database, const QString& table, const QString& oldName, const QString& newName);
+
     private:
         enum class Mode
         {
@@ -107,6 +114,8 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void emitFinished(bool success);
         bool execConfirmFunctionInMainThread(const QStringList& tables);
         QString processSimpleObjectAttachNameAndRename(const QString& objName, const QString& ddl);
+
+        static bool renameObject(Db* db, SchemaResolver::ObjectType objType, const QString& oldName, const QString& newName);
 
         ReferencedTablesConfimFunction confirmFunction;
         NameConflictResolveFunction nameConflictResolveFunction;

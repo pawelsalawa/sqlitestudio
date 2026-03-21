@@ -31,14 +31,15 @@ namespace Ui {
 CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
     CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,           QObject::tr("Delete selected item"))
     CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,           QObject::tr("Clear filter contents"))
-    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,               QObject::tr("Refresh schema"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_Refresh,          QObject::tr("Refresh schema"))
     CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT | Qt::Key_F5,   QObject::tr("Refresh all schemas"))
     CFG_KEY_ENTRY(NEW_DB,          QKeySequence::New,        QObject::tr("Create new database"))
     CFG_KEY_ENTRY(OPEN_FILE,       QKeySequence::Open,       QObject::tr("Open existing database or SQL file"))
-    CFG_KEY_ENTRY(EDIT_DB,         Qt::Key_F2,               QObject::tr("Edit selected database"))
-    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL | Qt::Key_A,     QObject::tr("Select all items"))
-    CFG_KEY_ENTRY(COPY,            Qt::CTRL | Qt::Key_C,     QObject::tr("Copy selected item(s)"))
-    CFG_KEY_ENTRY(PASTE,           Qt::CTRL | Qt::Key_V,     QObject::tr("Paste from clipboard"))
+    CFG_KEY_ENTRY(EDIT_DB,         Qt::ALT | Qt::Key_Return, QObject::tr("Edit selected database"))
+    CFG_KEY_ENTRY(RENAME_DB,       Qt::Key_F2,               QObject::tr("Rename selected database"))
+    CFG_KEY_ENTRY(SELECT_ALL,      QKeySequence::SelectAll,  QObject::tr("Select all items"))
+    CFG_KEY_ENTRY(COPY,            QKeySequence::Copy,       QObject::tr("Copy selected item(s)"))
+    CFG_KEY_ENTRY(PASTE,           QKeySequence::Paste,      QObject::tr("Paste from clipboard"))
     CFG_KEY_ENTRY(INCR_FONT_SIZE,  Qt::CTRL | Qt::Key_Plus,  QObject::tr("Increase font size", "database list"))
     CFG_KEY_ENTRY(DECR_FONT_SIZE,  Qt::CTRL | Qt::Key_Minus, QObject::tr("Decrease font size", "database list"))
 )
@@ -64,6 +65,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             OPEN_DB,
             OPEN_FILE,
             EDIT_DB,
+            RENAME_DB,
             DELETE_DB,
             CONNECT_TO_DB,
             DISCONNECT_FROM_DB,
@@ -74,21 +76,26 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             INTEGRITY_CHECK,
             ADD_TABLE,
             EDIT_TABLE,
+            RENAME_TABLE,
             DEL_TABLE,
             EXPORT_TABLE,
             IMPORT_TABLE,
             POPULATE_TABLE,
             ADD_INDEX,
             EDIT_INDEX,
+            RENAME_INDEX,
             DEL_INDEX,
             ADD_TRIGGER,
             EDIT_TRIGGER,
+            RENAME_TRIGGER,
             DEL_TRIGGER,
             ADD_VIEW,
             EDIT_VIEW,
+            RENAME_VIEW,
             DEL_VIEW,
             ADD_COLUMN,
             EDIT_COLUMN,
+            RENAME_COLUMN,
             DEL_COLUMN,
             CLEAR_FILTER,
             REFRESH_SCHEMAS,
@@ -192,6 +199,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void updateActionsForCurrent();
         void updateMdiAreaLink();
         void updateMdiAreaLink(MdiWindow* subWin);
+        void editDb(Db* db);
 
     private slots:
         void copy();
@@ -206,6 +214,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void openDb(const QString& path);
         void addDb();
         void editDb();
+        void renameItemInline();
         void removeDb();
         void connectToDb();
         void disconnectFromDb();
@@ -265,6 +274,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void connectDisconnectClicked();
         void nodeExpanded(const QModelIndex& idx);
         void handleDbItemAdded(DbTreeItem* item);
+        void handleItemEdited(const QModelIndex& idx, const QVariant& oldValue, const QVariant& newValue);
 
     signals:
         void updateFileExecProgress(int value);

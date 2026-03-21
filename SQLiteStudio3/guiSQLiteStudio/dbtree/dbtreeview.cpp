@@ -167,8 +167,10 @@ void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 void DbTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
     DbTreeItem* itemUnderCursor = itemAt(event->pos());
-    if (itemUnderCursor && !handleDoubleClick(itemUnderCursor))
+    if (itemUnderCursor && handleDoubleClick(itemUnderCursor))
+    {
         return;
+    }
 
     QTreeView::mouseDoubleClickEvent(event);
 }
@@ -180,10 +182,7 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::DIR:
             break;
         case DbTreeItem::Type::DB:
-        {
-            if (item->getDb()->isValid())
-                return handleDbDoubleClick(item);
-        }
+            return handleDbDoubleClick(item);
         case DbTreeItem::Type::TABLES:
             break;
         case DbTreeItem::Type::VIRTUAL_TABLE:
@@ -212,47 +211,49 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
             break;
     }
 
-    return true;
+    return false;
 }
 
 bool DbTreeView::handleDbDoubleClick(DbTreeItem *item)
 {
-    if (!item->getDb()->isOpen())
+    Db* db = item->getDb();
+    if (!db->isValid() || db->isOpen())
     {
-        dbTree->getAction(DbTree::CONNECT_TO_DB)->trigger();
-        return false;
+        dbTree->editDb(db);
+        return true;
     }
+    dbTree->getAction(DbTree::CONNECT_TO_DB)->trigger();
     return true;
 }
 
 bool DbTreeView::handleTableDoubleClick(DbTreeItem *item)
 {
     dbTree->openTable(item);
-    return false;
+    return true;
 }
 
 bool DbTreeView::handleIndexDoubleClick(DbTreeItem *item)
 {
     dbTree->editIndex(item);
-    return false;
+    return true;
 }
 
 bool DbTreeView::handleTriggerDoubleClick(DbTreeItem *item)
 {
     dbTree->editTrigger(item);
-    return false;
+    return true;
 }
 
 bool DbTreeView::handleViewDoubleClick(DbTreeItem *item)
 {
     dbTree->openView(item);
-    return false;
+    return true;
 }
 
 bool DbTreeView::handleColumnDoubleClick(DbTreeItem *item)
 {
     dbTree->editColumn(item);
-    return false;
+    return true;
 }
 
 void DbTreeView::expandToMakeVisible(DbTreeItem* item)
@@ -263,6 +264,11 @@ void DbTreeView::expandToMakeVisible(DbTreeItem* item)
         expand(parentItem->index());
         parentItem = parentItem->parentDbTreeItem();
     }
+}
+
+DbTreeItemDelegate* DbTreeView::getItemDelegate() const
+{
+    return itemDelegate;
 }
 
 QPoint DbTreeView::getLastDropPosition() const

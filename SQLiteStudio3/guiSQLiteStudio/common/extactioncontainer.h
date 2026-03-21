@@ -144,6 +144,13 @@ class GUI_API_EXPORT ExtActionContainer
         void setShortcutContext(const QList<qint32> actions, Qt::ShortcutContext context);
 
         /**
+         * @brief Shortcut on one action will be shown in tooltips/menus of other actions.
+         * @param fromAction Action which shortcut label will be shown in tooltips/menus of other actions.
+         * @param toActions Actions which tooltips/menus will show shortcut label of fromAction.
+         */
+        void inheritShortcut(int fromAction, QSet<int> toActions);
+
+        /**
          * @brief attachActionInMenu
          * @param parentAction Action that will have a submenu. Must already exist.
          * @param childAction Action to add to the submenu. Must already exist.
@@ -210,6 +217,7 @@ class GUI_API_EXPORT ExtActionContainer
         QHash<QAction*,ToolbarAndProto> extraActionToToolbarAndProto;
         QHash<ToolbarAndProto,QAction*> toolbarAndProtoToAction;
         KeySequenceFilter keySeqFilter;
+        QHash<int, QSet<int>> inheritShortcutFromTo;
 };
 
 template <class T>

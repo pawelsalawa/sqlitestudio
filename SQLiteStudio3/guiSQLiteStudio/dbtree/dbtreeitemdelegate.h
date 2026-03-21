@@ -4,6 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QStyledItemDelegate>
 
+class DbTreeView;
 class DbTreeItem;
 
 class GUI_API_EXPORT DbTreeItemDelegate : public QStyledItemDelegate
@@ -11,10 +12,12 @@ class GUI_API_EXPORT DbTreeItemDelegate : public QStyledItemDelegate
     Q_OBJECT
 
     public:
-        explicit DbTreeItemDelegate(QObject *parent = 0);
+        explicit DbTreeItemDelegate(QWidget* parent = 0);
 
         QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
         void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+        void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+        QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
     private:
         void paintDb(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item) const;
@@ -23,6 +26,9 @@ class GUI_API_EXPORT DbTreeItemDelegate : public QStyledItemDelegate
         void paintVirtualTableLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const;
         void paintSystemIndexLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item) const;
         void paintLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item, const QString& label) const;
+
+    signals:
+        void userEditCommitted(const QModelIndex &index, const QVariant &oldValue, const QVariant &newValue);
 };
 
 #endif // DBTREEITEMDELEGATE_H

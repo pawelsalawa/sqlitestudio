@@ -264,5 +264,11 @@
         <file>img/unlink.svg</file>
         <file>img/database_new.svg</file>
         <file>img/database_open.svg</file>
+        <file>img/database_rename.svg</file>
+        <file>img/rename_column.svg</file>
+        <file>img/rename_index.svg</file>
+        <file>img/rename_table.svg</file>
+        <file>img/rename_trigger.svg</file>
+        <file>img/rename_view.svg</file>
     </qresource>
 </RCC>
