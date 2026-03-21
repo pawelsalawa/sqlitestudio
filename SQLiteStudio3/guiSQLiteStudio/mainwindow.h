@@ -60,7 +60,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(NEXT_TASK,              NEXT_TASK_KEY_SEQ,                QObject::tr("Next window"))
     CFG_KEY_ENTRY(HIDE_STATUS_FIELD,      Qt::Key_Escape,                   QObject::tr("Hide status area"))
     CFG_KEY_ENTRY(USER_MANUAL,            Qt::Key_F1,                       QObject::tr("Open user manual"))
-    CFG_KEY_ENTRY(OPEN_CONFIG,            Qt::Key_F10,                      QObject::tr("Open configuration dialog"))
+    CFG_KEY_ENTRY(OPEN_CONFIG,            Qt::CTRL | Qt::Key_Comma,         QObject::tr("Open configuration dialog"))
     CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE,     Qt::Key_F12,                      QObject::tr("Open Debug Console"))
     CFG_KEY_ENTRY(OPEN_CSS_CONSOLE,       Qt::Key_F11,                      QObject::tr("Open CSS Console"))
     CFG_KEY_ENTRY(ABOUT,                  Qt::SHIFT | Qt::Key_F1,           QObject::tr("Open the About dialog"))

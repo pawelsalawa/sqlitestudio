@@ -47,6 +47,7 @@
 - CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
 - CHANGE: #5212 Table Window and View Window does not ask for closing confirmation when they were open for creation of new object and not yet modified.
 - CHANGE: #5212 New Table and New View actions are now disabled if selected item in the Database List does not have open database, as it may be misleading to start designing new table/view and miss the fact that it's still not aimed towards the database.
+- CHANGE: #5269 Default hotkey for Configuration Dialog changed to Ctrl+, on all platforms.
 - CHANGE: Config Dialog now remembers (until application restart) last used page and restores it when its open next time.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
