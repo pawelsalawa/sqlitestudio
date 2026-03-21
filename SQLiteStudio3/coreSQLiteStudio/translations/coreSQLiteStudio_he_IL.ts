@@ -157,12 +157,12 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="877"/>
+      <location filename="../services/impl/configimpl.cpp" line="879"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>לא ניתן לאתחל תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="884"/>
+      <location filename="../services/impl/configimpl.cpp" line="886"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>לא ניתן היה לקבע תנועת מסד נתונים למחיקת היסטוריית SQL, לכן היא לא נמחקה.</translation>
     </message>
@@ -175,30 +175,30 @@
       <translation>לא ניתן להוסיף מסד נתונים%1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="137"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="365"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="394"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation>קובץ &apos;מסד־ נתונים לא קיים.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="367"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="612"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
       <source>No supporting plugin loaded.</source>
       <translation>לא נטענו מתקעים תומכים.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="530"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
       <source>Database could not be initialized.</source>
       <translation>לא ניתן היה לאתחל את מסד הנתונים.‏.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="540"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
       <source>No suitable database driver plugin found.</source>
       <translation type="unfinished">No suitable database driver plugin found.</translation>
     </message>
@@ -206,59 +206,76 @@
   <context>
     <name>DbObjectOrganizer</name>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
-      <location filename="../dbobjectorganizer.cpp" line="403"/>
+      <location filename="../dbobjectorganizer.cpp" line="96"/>
+      <location filename="../dbobjectorganizer.cpp" line="130"/>
+      <location filename="../dbobjectorganizer.cpp" line="149"/>
+      <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
+      <translation type="unfinished">An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="131"/>
+      <source>Failed to parse object definition.</source>
+      <translation type="unfinished">Failed to parse object definition.</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="166"/>
+      <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
+      <translation type="unfinished">An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
+    </message>
+    <message>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
+      <location filename="../dbobjectorganizer.cpp" line="493"/>
       <source>Error while creating table in target database: %1</source>
       <translation>שגיאה בעת יצירת טבלה במסד־נתונים יעד: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="372"/>
+      <location filename="../dbobjectorganizer.cpp" line="462"/>
       <source>Could not parse table.</source>
       <translation>לא ניתן לפרוס טבלה.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="417"/>
+      <location filename="../dbobjectorganizer.cpp" line="507"/>
       <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
       <translation type="unfinished">Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="441"/>
+      <location filename="../dbobjectorganizer.cpp" line="531"/>
       <source>Error while copying data for table %1: %2</source>
       <translation>שגיאה בעת העתקת נתונים מטבלה %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="460"/>
-      <location filename="../dbobjectorganizer.cpp" line="467"/>
-      <location filename="../dbobjectorganizer.cpp" line="494"/>
+      <location filename="../dbobjectorganizer.cpp" line="550"/>
+      <location filename="../dbobjectorganizer.cpp" line="557"/>
+      <location filename="../dbobjectorganizer.cpp" line="584"/>
       <source>Error while copying data to table %1: %2</source>
       <translation>שגיאה בעת העתקת נתונים לטבלה %1: %2</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="516"/>
+      <location filename="../dbobjectorganizer.cpp" line="606"/>
       <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>שגיאה בעת השלכת מצג מקור %1: %2
 טבלאות, מיפתחים, מזנקים ומצגים שהועתקו למסד־נתונים %3 יוותרו במקומם.</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="523"/>
+      <location filename="../dbobjectorganizer.cpp" line="613"/>
       <source>Error while creating view in target database: %1</source>
       <translation>שגיאה בעת יצירת מצג במסד־נתונים יעד: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="528"/>
+      <location filename="../dbobjectorganizer.cpp" line="618"/>
       <source>Error while creating index in target database: %1</source>
       <translation>שגיאה בעת יצירת מפתח במסד־נתונים יעד: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="533"/>
+      <location filename="../dbobjectorganizer.cpp" line="623"/>
       <source>Error while creating trigger in target database: %1</source>
       <translation>שגיאה בעת יצירת מזנק במסד־נתונים יעד: %1</translation>
     </message>
     <message>
-      <location filename="../dbobjectorganizer.cpp" line="673"/>
-      <location filename="../dbobjectorganizer.cpp" line="680"/>
-      <location filename="../dbobjectorganizer.cpp" line="689"/>
+      <location filename="../dbobjectorganizer.cpp" line="763"/>
+      <location filename="../dbobjectorganizer.cpp" line="770"/>
+      <location filename="../dbobjectorganizer.cpp" line="779"/>
       <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
       <translation type="unfinished">Could not parse object &apos;%1&apos; in order to move or copy it.</translation>
     </message>
@@ -898,7 +915,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation type="unfinished">Could not resolve table for column &apos;%1&apos;.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="757"/>
+      <location filename="../services/impl/configimpl.cpp" line="759"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
