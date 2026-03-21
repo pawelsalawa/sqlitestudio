@@ -33,6 +33,7 @@
 - CHANGE: #4862 SQL Editor is now tied to a file whenever loads or saves to that file and that tie is restored upon next application session. It also renames editor window to that file name.
 - CHANGE: #4762 Colors configuration for syntax highlighting now allows defining also bold/italic attributes.
 - CHANGE: #5541 Plugins Page in Configuration Dialog uses now a material-design-like toggle for loading/unloading plugins + each plugin has more vertical padding and is clickable as a whole row, not just a small box.
+- CHANGE: #5212 Configuration Dialog filter marks matched widgets with red outline.
 - CHANGE: #5561 Database actions on main toolbar simplified, partially moved to Database List panel.
 - CHANGE: #5060 Application connects to the database that was just added to the list.
 - CHANGE: #5374 Ctrl+O (Cmd+O on macOS) now always asks for a file to open and if it's a database, it's added to the list. If it's SQL file, the SQL editor opens for it.

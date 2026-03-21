@@ -156,8 +156,13 @@ QString ConfigDialog::getFilterString(QTreeWidget *widget)
     QList<QTreeWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
     for (QTreeWidgetItem* item : items)
+    {
+        if (!item)
+            continue;
+
         for (int i = 0; i < widget->columnCount(); i++)
             strList << item->text(i) + " " + item->toolTip(0);
+    }
 
     return strList.join(" ");
 }
@@ -167,7 +172,10 @@ QString ConfigDialog::getFilterString(QListWidget *widget)
     QList<QListWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
     for (QListWidgetItem* item : items)
-        strList << item->text() + " " + item->toolTip();
+    {
+        if (item)
+            strList << item->text() + " " + item->toolTip();
+    }
 
     return strList.join(" ");
 }
@@ -177,7 +185,10 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
     QList<QTableWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
     for (QTableWidgetItem* item : items)
-         strList << item->text() + " " + item->toolTip();
+    {
+        if (item)
+            strList << item->text() + " " + item->toolTip();
+    }
 
     return strList.join(" ");
 }
@@ -204,6 +215,13 @@ void ConfigDialog::init()
     ui->setupUi(this);
     setWindowIcon(ICONS.CONFIGURE);
     DialogSizeHandler::applyFor(this);
+
+    setStyleSheet(
+                "*[matched=\"true\"] {"
+                "   border: 2px solid red;"
+                "   border-radius: 5px;"
+                "}"
+                );
 
     ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
 
@@ -364,6 +382,20 @@ void ConfigDialog::applyFilter(const QString &filter)
 {
     QColor normalColor = ui->categoriesTree->palette().color(QPalette::Active, QPalette::WindowText);
     QColor disabledColor = ui->categoriesTree->palette().color(QPalette::Disabled, QPalette::WindowText);
+    QList<QWidget*> widgets = ui->stackedWidget->findChildren<QWidget*>();
+    for (QWidget* widget : widgets)
+        widget->setProperty("matched", false);
+
+    auto applyMatchStyle = qScopeGuard([widgets]
+    {
+        for (QWidget* widget : widgets)
+        {
+            widget->style()->unpolish(widget);
+            widget->style()->polish(widget);
+            widget->update();
+        }
+    });
+
     if (filter.isEmpty())
     {
         for (QTreeWidgetItem*& item : getAllCategoryItems())
@@ -372,12 +404,14 @@ void ConfigDialog::applyFilter(const QString &filter)
         return;
     }
 
-    QList<QWidget*> widgets = ui->stackedWidget->findChildren<QWidget*>();
     QList<QWidget*> matchedWidgets;
     for (QWidget* widget : widgets)
     {
         if (getFilterString(widget).contains(filter, Qt::CaseInsensitive))
+        {
             matchedWidgets << widget;
+            widget->setProperty("matched", true);
+        }
     }
 
     QHash<QWidget*, QTreeWidgetItem*> pageToCategoryItem = buildPageToCategoryItemMap();
@@ -414,17 +448,10 @@ void ConfigDialog::applyFilter(const QString &filter)
 
 QHash<QWidget*, QTreeWidgetItem*> ConfigDialog::buildPageToCategoryItemMap() const
 {
-    QHash<QString,QTreeWidgetItem*> pageNameToCategoryItem;
-    for (QTreeWidgetItem*& item : getAllCategoryItems())
-        pageNameToCategoryItem[item->statusTip(0)] = item;
-
-    QWidget* page = nullptr;
     QHash<QWidget*,QTreeWidgetItem*> pageToCategoryItem;
-    for (int i = 0; i < ui->stackedWidget->count(); i++)
-    {
-        page = ui->stackedWidget->widget(i);
-        pageToCategoryItem[page] = pageNameToCategoryItem[page->objectName()];
-    }
+    for (QTreeWidgetItem*& item : getAllCategoryItems())
+        pageToCategoryItem[nameToPage[item->statusTip(0)]] = item;
+
     return pageToCategoryItem;
 }
 
