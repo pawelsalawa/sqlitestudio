@@ -520,12 +520,16 @@ void TableWindow::initDbAndTable()
         ui->structureView->setItemDelegateForColumn(colIdx, constraintColumnsDelegate);
 
     defineCurrentContextDb();
-    if (existingTable)
+
+    if (db)
     {
+        // Should always be true, but for sake of future possibility of re-allowing null db
         dataModel->setDb(db);
-        dataModel->setDatabaseAndTable(database, table);
         ui->dbCombo->setDisabled(true);
     }
+
+    if (existingTable)
+        dataModel->setDatabaseAndTable(database, table);
 
     ui->tableNameEdit->setText(table); // TODO no attached/temp db name support here
 
@@ -603,8 +607,7 @@ void TableWindow::initDbAndTable()
     ui->triggerList->sortByColumn(0, Qt::AscendingOrder);
 
     // (Re)connect to DB signals
-    if (db)
-        connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 
     // Selection model is recreated when setModel() is called on the view
     connect(ui->structureView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
@@ -1852,14 +1855,12 @@ void TableWindow::updateFont()
 
 void TableWindow::dbChanged()
 {
-    if (db)
-        disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+    disconnect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 
     db = ui->dbCombo->currentDb();
     dataModel->setDb(db);
 
-    if (db)
-        connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 }
 
 void TableWindow::handlePossibleIdxOrTrgRename(Db* db, const QString& database, const QString& oldObject, const QString& newObject)

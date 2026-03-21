@@ -230,7 +230,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             if (dbTreeItem->getDb()->isOpen())
             {
                 enabled << DISCONNECT_FROM_DB << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA
-                        << VACUUM_DB << INTEGRITY_CHECK;
+                        << VACUUM_DB << INTEGRITY_CHECK << ADD_TABLE << ADD_VIEW;
                 isDbOpen = true;
             }
             else
@@ -365,13 +365,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
     }
 
     if (treeModel->rowCount() > 0)
-    {
         enabled << SELECT_ALL; // if there's at least 1 item, enable this
-
-        // Table/view always enabled, as long as there is at least 1 db on the list. #4017
-        if (treeModel->findFirstItemOfType(DbTreeItem::Type::DB))
-            enabled << ADD_TABLE << ADD_VIEW;
-    }
 
     enabled << REFRESH_SCHEMAS << LINK_WITH_MDI;
 
