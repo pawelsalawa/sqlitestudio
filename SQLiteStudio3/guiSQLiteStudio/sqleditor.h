@@ -43,6 +43,7 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(DELETE_LINE,     Qt::CTRL | Qt::Key_D,              QObject::tr("Delete current line"))
     CFG_KEY_ENTRY(COMPLETE,        COMPLETE_REQ_KEY | Qt::Key_Space,  QObject::tr("Request code assistant"))
     CFG_KEY_ENTRY(FORMAT_SQL,      Qt::CTRL | Qt::Key_T,              QObject::tr("Format contents"))
+    CFG_KEY_ENTRY(OPEN_OBJECT,     Qt::Key_F2,                        QObject::tr("Open the object at current position"))
     CFG_KEY_ENTRY(MOVE_BLOCK_DOWN, Qt::ALT | Qt::Key_Down,            QObject::tr("Move selected block of text one line down"))
     CFG_KEY_ENTRY(MOVE_BLOCK_UP,   Qt::ALT | Qt::Key_Up,              QObject::tr("Move selected block of text one line up"))
     CFG_KEY_ENTRY(COPY_BLOCK_DOWN, Qt::ALT | Qt::CTRL | Qt::Key_Down, QObject::tr("Copy selected block of text and paste it a line below"))
@@ -76,6 +77,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             MOVE_BLOCK_UP,
             COPY_BLOCK_DOWN,
             COPY_BLOCK_UP,
+            OPEN_OBJECT,
             FIND,
             FIND_NEXT,
             FIND_PREV,
@@ -329,6 +331,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void fontSizeChangeRequested(int delta);
         void incrFontSize();
         void decrFontSize();
+        void openObjectAtCurrentPosition();
 
     public slots:
         void colorsConfigChanged();

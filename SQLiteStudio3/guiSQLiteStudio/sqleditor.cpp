@@ -167,6 +167,7 @@ void SqlEditor::createActions()
     createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all", "sql editor"), this, SLOT(selectAll()), this);
     createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "sql editor"), this, SLOT(undo()), this);
     createAction(REDO, ICONS.ACT_REDO, tr("Redo", "sql editor"), this, SLOT(redo()), this);
+    createAction(OPEN_OBJECT, "", this, SLOT(openObjectAtCurrentPosition()), this);
     createAction(COMPLETE, ICONS.COMPLETE, tr("Complete", "sql editor"), this, SLOT(complete()), this);
     createAction(FORMAT_SQL, ICONS.FORMAT_SQL, tr("Format SQL", "sql editor"), this, SLOT(formatSql()), this);
     createAction(SAVE_SQL_FILE, ICONS.SAVE_SQL_FILE, tr("Save SQL to file", "sql editor"), this, SLOT(saveToFile()), this);
@@ -1573,6 +1574,20 @@ void SqlEditor::incrFontSize()
 void SqlEditor::decrFontSize()
 {
     changeFontSize(-1);
+}
+
+void SqlEditor::openObjectAtCurrentPosition()
+{
+    int position = textCursor().position();
+    DbObject* obj = const_cast<DbObject*>(getValidObjectForPosition(position, true));
+    if (!obj)
+        obj = const_cast<DbObject*>(getValidObjectForPosition(position, false));
+
+    if (obj)
+    {
+        QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
+        openObject(obj->dbName, stripObjName(objName));
+    }
 }
 
 void SqlEditor::changeFontSize(int factor)
