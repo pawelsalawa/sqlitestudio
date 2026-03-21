@@ -37,9 +37,12 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
         void dragEnterEvent(QDragEnterEvent* e);
         void dragMoveEvent(QDragMoveEvent *event);
         void mouseDoubleClickEvent(QMouseEvent* event);
+        void mousePressEvent(QMouseEvent* event);
         void dropEvent(QDropEvent*e);
 
     private:
+        bool handleMiddleClick(DbTreeItem* item);
+        bool handleDbMiddleClick(DbTreeItem* item);
         bool handleDoubleClick(DbTreeItem* item);
         bool handleDbDoubleClick(DbTreeItem* item);
         bool handleTableDoubleClick(DbTreeItem* item);

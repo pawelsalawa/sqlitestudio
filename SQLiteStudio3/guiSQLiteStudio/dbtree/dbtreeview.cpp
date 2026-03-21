@@ -166,13 +166,27 @@ void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 
 void DbTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    DbTreeItem* itemUnderCursor = itemAt(event->pos());
-    if (itemUnderCursor && handleDoubleClick(itemUnderCursor))
+    if (event->button() == Qt::LeftButton)
     {
-        return;
+        DbTreeItem* itemUnderCursor = itemAt(event->pos());
+        if (itemUnderCursor && handleDoubleClick(itemUnderCursor))
+            return;
     }
+    if (event->button() == Qt::MiddleButton)
+        return;
 
     QTreeView::mouseDoubleClickEvent(event);
+}
+
+void DbTreeView::mousePressEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::MiddleButton)
+    {
+        DbTreeItem* itemUnderCursor = itemAt(event->pos());
+        if (itemUnderCursor && handleMiddleClick(itemUnderCursor))
+            return;
+    }
+    QTreeView::mousePressEvent(event);
 }
 
 bool DbTreeView::handleDoubleClick(DbTreeItem *item)
@@ -295,4 +309,41 @@ void DbTreeView::dropEvent(QDropEvent* e)
         dbTree->getModel()->dropMimeData(e->mimeData(), Qt::CopyAction, -1, -1, dbTree->getModel()->root()->index());
         e->accept();
     }
+}
+
+bool DbTreeView::handleMiddleClick(DbTreeItem* item)
+{
+    switch (item->getType())
+    {
+        case DbTreeItem::Type::DB:
+            return handleDbMiddleClick(item);
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::TABLES:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
+        case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::INDEXES:
+        case DbTreeItem::Type::INDEX:
+        case DbTreeItem::Type::TRIGGERS:
+        case DbTreeItem::Type::TRIGGER:
+        case DbTreeItem::Type::VIEWS:
+        case DbTreeItem::Type::VIEW:
+        case DbTreeItem::Type::COLUMNS:
+        case DbTreeItem::Type::COLUMN:
+        case DbTreeItem::Type::ITEM_PROTOTYPE:
+        case DbTreeItem::Type::SIGNATURE_OF_THIS:
+            break;
+    }
+
+    return false;
+}
+
+bool DbTreeView::handleDbMiddleClick(DbTreeItem* item)
+{
+    Db* db = item->getDb();
+    if (!db->isValid() || db->isOpen())
+    {
+        db->close();
+        return true;
+    }
+    return false;
 }
