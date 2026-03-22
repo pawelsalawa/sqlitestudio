@@ -132,7 +132,7 @@
     <message>
         <location filename="../commands/clicommandclose.cpp" line="40"/>
         <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
-        <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
+        <translation>Chiude la connessione al database. Se il database era già chiuso, non accade nulla. Se si fornisce &lt;name&gt;, deve essere il nome del database da chiudere (come visualizzato dal comando %1). Se &lt;name&gt; non è fornito, viene chiuso il database di lavoro corrente (vedere la guida di %2 per i dettagli).</translation>
     </message>
     <message>
         <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -850,7 +850,7 @@ Atteso uno di: %2</translation>
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>Checks for updates online and prints the result to standard output.</source>
-        <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
+        <translation>Controlla gli aggiornamenti online e stampa il risultato nello standard output.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="66"/>
@@ -880,17 +880,17 @@ Atteso uno di: %2</translation>
     <message>
         <location filename="../main.cpp" line="173"/>
         <source>New updates are available: %1. Url: %2</source>
-        <translation type="unfinished">New updates are available: %1. Url: %2</translation>
+        <translation>Nuovi aggiornamenti disponibili: %1. Url: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="177"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+        <translation>Si sta eseguendo la versione più recente. Non sono disponibili aggiornamenti.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="181"/>
         <source>Error checking for updates: %1</source>
-        <translation type="unfinished">Error checking for updates: %1</translation>
+        <translation>Errore durante il controllo degli aggiornamenti: %1</translation>
     </message>
 </context>
 </TS>

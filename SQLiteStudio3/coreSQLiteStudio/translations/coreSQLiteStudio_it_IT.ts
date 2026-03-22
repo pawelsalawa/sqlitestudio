@@ -39,7 +39,7 @@
         <location filename="../db/chainexecutor.cpp" line="73"/>
         <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+        <translation>Impossibile passare al comportamento legacy ALTER RENAME nel database. Dettagli: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -130,18 +130,18 @@
     <message>
         <location filename="../completionhelper.cpp" line="267"/>
         <source>String</source>
-        <translation type="unfinished">String</translation>
+        <translation>Stringa</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="270"/>
         <location filename="../completionhelper.cpp" line="273"/>
         <source>Number</source>
-        <translation type="unfinished">Number</translation>
+        <translation>Numero</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="285"/>
         <source>BLOB literal</source>
-        <translation type="unfinished">BLOB literal</translation>
+        <translation>Letterale BLOB</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="445"/>
@@ -210,17 +210,17 @@
         <location filename="../dbobjectorganizer.cpp" line="130"/>
         <location filename="../dbobjectorganizer.cpp" line="149"/>
         <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante il tentativo di rinominare la tabella &apos;%1&apos; in &apos;%2&apos;: %3</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="131"/>
         <source>Failed to parse object definition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile analizzare la definizione dell&apos;oggetto.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="166"/>
         <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante il tentativo di rinominare la colonna &apos;%1&apos; della tabella &apos;%2&apos; in &apos;%3&apos;: %4</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="462"/>
@@ -389,7 +389,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
-        <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+        <translation>Impossibile creare il contesto di scripting; il plugin probabilmente non è configurato correttamente</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
@@ -882,7 +882,7 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
     <message>
         <location filename="../plugins/populatescript.cpp" line="69"/>
         <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-        <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+        <translation>Impossibile ottenere il contesto di valutazione; il plugin di scripting %1 probabilmente non è configurato correttamente</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="83"/>
@@ -1038,7 +1038,7 @@ La vista rimarrà così com&apos;è.</translation>
         <location filename="../db/queryexecutor.cpp" line="421"/>
         <location filename="../db/queryexecutor.cpp" line="691"/>
         <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+        <translation>Si è verificato un errore durante l&apos;esecuzione della query count(*); la paginazione dei dati verrà pertanto disabilitata. Dettagli dell&apos;errore dal database: %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="610"/>
@@ -1051,7 +1051,7 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
         <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
         <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-        <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+        <translation>La colonna %1 nella tabella %2 fa riferimento alla colonna %3 nella tabella %4, ma queste colonne hanno tipi di dati diversi: %5 vs. %6. Ciò potrebbe causare problemi relativi alla corrispondenza dei valori della chiave esterna.</translation>
     </message>
 </context>
 <context>
@@ -1143,12 +1143,12 @@ La vista rimarrà così com&apos;è.</translation>
     <message>
         <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-        <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+        <translation>Il file di database &apos;%1&apos; è stato modificato da una versione più recente di SQLite (formato %2), mentre l&apos;applicazione corrente supporta fino al formato %3. Alcune funzionalità potrebbero non funzionare correttamente.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
-        <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+        <translation>Collazione predefinita registrata su richiesta, con nome: %1</translation>
     </message>
 </context>
 <context>
