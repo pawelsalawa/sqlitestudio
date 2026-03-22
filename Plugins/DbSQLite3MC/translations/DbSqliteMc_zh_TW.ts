@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh-TW" sourcelanguage="en">
-  <context>
+<context>
     <name>DbSqliteMc</name>
     <message>
         <location filename="../dbsqlitemc.cpp" line="42"/>
@@ -38,9 +38,9 @@
         <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation>用於自訂 SQLite3 Multiple Ciphers 設定檔的 PRAGMA 語句，如 KDF 迭代、傳統模式等。
+        <translation>用於自訂 SQLite3 Multiple Ciphers 設定檔的 PRAGMA 語句，如 KDF 迭代、傳統模式等。
 將在每次開啟資料庫時執行。
 細節請參考 SQLite3 Multiple Ciphers 文件。</translation>
     </message>
-  </context>
+</context>
 </TS>

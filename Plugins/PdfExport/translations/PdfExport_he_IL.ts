@@ -1,256 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="he" sourcelanguage="en">
-  <context>
+<context>
     <name>PdfExport</name>
     <message>
-      <location filename="../pdfexport.cpp" line="32"/>
-      <source>SQLiteStudio v%1</source>
-      <translation>SQLiteStudio v%1</translation>
+        <location filename="../pdfexport.cpp" line="32"/>
+        <source>SQLiteStudio v%1</source>
+        <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="65"/>
-      <source>SQL query results</source>
-      <translation>תוצאות שאילתת SQL</translation>
+        <location filename="../pdfexport.cpp" line="65"/>
+        <source>SQL query results</source>
+        <translation>תוצאות שאילתת SQL</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="94"/>
-      <location filename="../pdfexport.cpp" line="148"/>
-      <source>Exported table: %1</source>
-      <translation>טבלה מיוצת: %1</translation>
+        <location filename="../pdfexport.cpp" line="94"/>
+        <location filename="../pdfexport.cpp" line="148"/>
+        <source>Exported table: %1</source>
+        <translation>טבלה מיוצת: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="97"/>
-      <location filename="../pdfexport.cpp" line="163"/>
-      <source>Table: %1</source>
-      <translation>טבלה: %1</translation>
+        <location filename="../pdfexport.cpp" line="97"/>
+        <location filename="../pdfexport.cpp" line="163"/>
+        <source>Table: %1</source>
+        <translation>טבלה: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Column</source>
-      <translation>עמודה</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Column</source>
+        <translation>עמודה</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <source>Data type</source>
-      <translation>סוג מידע</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <source>Data type</source>
+        <translation>סוג מידע</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <source>Constraints</source>
-      <translation>אילוצים</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <source>Constraints</source>
+        <translation>אילוצים</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="130"/>
-      <source>Global table constraints</source>
-      <translation>אילוצי טבלה כלליים</translation>
+        <location filename="../pdfexport.cpp" line="130"/>
+        <source>Global table constraints</source>
+        <translation>אילוצי טבלה כלליים</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="219"/>
-      <source>Exported database: %1</source>
-      <translation>מסד נתונים מיוצא: %1</translation>
+        <location filename="../pdfexport.cpp" line="219"/>
+        <source>Exported database: %1</source>
+        <translation>מסד נתונים מיוצא: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="227"/>
-      <source>Index: %1</source>
-      <translation>מִפְתֵּחַ: %1</translation>
+        <location filename="../pdfexport.cpp" line="227"/>
+        <source>Index: %1</source>
+        <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="229"/>
-      <source>Property</source>
-      <comment>index header</comment>
-      <translation>מאפיין</translation>
+        <location filename="../pdfexport.cpp" line="229"/>
+        <source>Property</source>
+        <comment>index header</comment>
+        <translation>מאפיין</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="229"/>
-      <source>Value</source>
-      <comment>index header</comment>
-      <translation>ערך</translation>
+        <location filename="../pdfexport.cpp" line="229"/>
+        <source>Value</source>
+        <comment>index header</comment>
+        <translation>ערך</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="232"/>
-      <source>Indexed table</source>
-      <translation>טבלה ממופתחת</translation>
+        <location filename="../pdfexport.cpp" line="232"/>
+        <source>Indexed table</source>
+        <translation>טבלה ממופתחת</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>Unique index</source>
-      <translation>מפתח יחודאי</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>Unique index</source>
+        <translation>מפתח יחודאי</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>Yes</source>
-      <translation>כן</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>Yes</source>
+        <translation>כן</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>No</source>
-      <translation>לא</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>No</source>
+        <translation>לא</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Collation</source>
-      <translation>ארגון</translation>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Collation</source>
+        <translation>ארגון</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Sort order</source>
-      <translation>סדר מיון</translation>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Sort order</source>
+        <translation>סדר מיון</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="251"/>
-      <source>Partial index condition</source>
-      <translation>תנאי מפתח חלקי</translation>
+        <location filename="../pdfexport.cpp" line="251"/>
+        <source>Partial index condition</source>
+        <translation>תנאי מפתח חלקי</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="265"/>
-      <source>Trigger: %1</source>
-      <translation>מַזְנֵק: %1</translation>
+        <location filename="../pdfexport.cpp" line="265"/>
+        <source>Trigger: %1</source>
+        <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="267"/>
-      <source>Property</source>
-      <comment>trigger header</comment>
-      <translation>מאפיין</translation>
+        <location filename="../pdfexport.cpp" line="267"/>
+        <source>Property</source>
+        <comment>trigger header</comment>
+        <translation>מאפיין</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="267"/>
-      <source>Value</source>
-      <comment>trigger header</comment>
-      <translation>ערך</translation>
+        <location filename="../pdfexport.cpp" line="267"/>
+        <source>Value</source>
+        <comment>trigger header</comment>
+        <translation>ערך</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="269"/>
-      <source>Activation time</source>
-      <translation>זמן שפעול</translation>
+        <location filename="../pdfexport.cpp" line="269"/>
+        <source>Activation time</source>
+        <translation>זמן שפעול</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="272"/>
-      <source>For action</source>
-      <translation>על פעולה</translation>
+        <location filename="../pdfexport.cpp" line="272"/>
+        <source>For action</source>
+        <translation>על פעולה</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="276"/>
-      <source>On view</source>
-      <translation>על מצג</translation>
+        <location filename="../pdfexport.cpp" line="276"/>
+        <source>On view</source>
+        <translation>על מצג</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="278"/>
-      <source>On table</source>
-      <translation>על טבלה</translation>
+        <location filename="../pdfexport.cpp" line="278"/>
+        <source>On table</source>
+        <translation>על טבלה</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="283"/>
-      <source>Activation condition</source>
-      <translation>תנאי שפעול</translation>
+        <location filename="../pdfexport.cpp" line="283"/>
+        <source>Activation condition</source>
+        <translation>תנאי שפעול</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="289"/>
-      <source>Code executed</source>
-      <translation>הקוד בוצע</translation>
+        <location filename="../pdfexport.cpp" line="289"/>
+        <source>Code executed</source>
+        <translation>הקוד בוצע</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="301"/>
-      <source>View: %1</source>
-      <translation>מצג: %1</translation>
+        <location filename="../pdfexport.cpp" line="301"/>
+        <source>View: %1</source>
+        <translation>מצג: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="302"/>
-      <source>Query:</source>
-      <translation>שאילתה:</translation>
+        <location filename="../pdfexport.cpp" line="302"/>
+        <source>Query:</source>
+        <translation>שאילתה:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="658"/>
-      <source>Document generated with SQLiteStudio v%1</source>
-      <translation>מסמך חולל על ידי SQLiteStudio v%1</translation>
+        <location filename="../pdfexport.cpp" line="658"/>
+        <source>Document generated with SQLiteStudio v%1</source>
+        <translation>מסמך חולל על ידי SQLiteStudio v%1</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>PdfExportConfig</name>
     <message>
-      <location filename="../pdfexport.ui" line="20"/>
-      <source>Size and layout</source>
-      <translation>גודל ופריסה</translation>
+        <location filename="../pdfexport.ui" line="20"/>
+        <source>Size and layout</source>
+        <translation>גודל ופריסה</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="36"/>
-      <source>Page size:</source>
-      <translation>גודל עמוד:</translation>
+        <location filename="../pdfexport.ui" line="36"/>
+        <source>Page size:</source>
+        <translation>גודל עמוד:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="63"/>
-      <source>Right margin:</source>
-      <translation>שוליים ימניים:</translation>
+        <location filename="../pdfexport.ui" line="63"/>
+        <source>Right margin:</source>
+        <translation>שוליים ימניים:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="70"/>
-      <source>Left margin:</source>
-      <translation>שוליים שמאליים:</translation>
+        <location filename="../pdfexport.ui" line="70"/>
+        <source>Left margin:</source>
+        <translation>שוליים שמאליים:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="77"/>
-      <source>Cell padding:</source>
-      <translation>ריפוד תא:</translation>
+        <location filename="../pdfexport.ui" line="77"/>
+        <source>Cell padding:</source>
+        <translation>ריפוד תא:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="84"/>
-      <source>Limit characters in single cell:</source>
-      <translation>הגבלת תווים בתא בודד:</translation>
+        <location filename="../pdfexport.ui" line="84"/>
+        <source>Limit characters in single cell:</source>
+        <translation>הגבלת תווים בתא בודד:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="91"/>
-      <location filename="../pdfexport.ui" line="108"/>
-      <location filename="../pdfexport.ui" line="115"/>
-      <location filename="../pdfexport.ui" line="132"/>
-      <location filename="../pdfexport.ui" line="156"/>
-      <source>mm</source>
-      <translation>מ&quot;מ</translation>
+        <location filename="../pdfexport.ui" line="91"/>
+        <location filename="../pdfexport.ui" line="108"/>
+        <location filename="../pdfexport.ui" line="115"/>
+        <location filename="../pdfexport.ui" line="132"/>
+        <location filename="../pdfexport.ui" line="156"/>
+        <source>mm</source>
+        <translation>מ&quot;מ</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="139"/>
-      <source>Bottom margin:</source>
-      <translation>שוליים תחתונים:</translation>
+        <location filename="../pdfexport.ui" line="139"/>
+        <source>Bottom margin:</source>
+        <translation>שוליים תחתונים:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="163"/>
-      <source>Top margin:</source>
-      <translation>שוליים עליונים:</translation>
+        <location filename="../pdfexport.ui" line="163"/>
+        <source>Top margin:</source>
+        <translation>שוליים עליונים:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="183"/>
-      <source>Font</source>
-      <translation>גופן</translation>
+        <location filename="../pdfexport.ui" line="183"/>
+        <source>Font</source>
+        <translation>גופן</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="206"/>
-      <source>Colors</source>
-      <translation>צבעים</translation>
+        <location filename="../pdfexport.ui" line="206"/>
+        <source>Colors</source>
+        <translation>צבעים</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="212"/>
-      <source>Headers background:</source>
-      <translation>רקע כותרות:</translation>
+        <location filename="../pdfexport.ui" line="212"/>
+        <source>Headers background:</source>
+        <translation>רקע כותרות:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="235"/>
-      <source>NULL value color:</source>
-      <translation>צבע ערך NULL:</translation>
+        <location filename="../pdfexport.ui" line="235"/>
+        <source>NULL value color:</source>
+        <translation>צבע ערך NULL:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="261"/>
-      <source>Other settings</source>
-      <translation>הגדרות אחרות</translation>
+        <location filename="../pdfexport.ui" line="261"/>
+        <source>Other settings</source>
+        <translation>הגדרות אחרות</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="267"/>
-      <source>Print row numbers for data</source>
-      <translation>הדפסת מספרי שורות לנתונים</translation>
+        <location filename="../pdfexport.ui" line="267"/>
+        <source>Print row numbers for data</source>
+        <translation>הדפסת מספרי שורות לנתונים</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="277"/>
-      <source>Print page numbers</source>
-      <translation>הדפסת מספרי עמוד</translation>
+        <location filename="../pdfexport.ui" line="277"/>
+        <source>Print page numbers</source>
+        <translation>הדפסת מספרי עמוד</translation>
     </message>
-  </context>
+</context>
 </TS>

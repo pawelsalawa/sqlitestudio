@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="pt-BR" sourcelanguage="en">
-  <context>
+<context>
     <name>DbSqliteMc</name>
     <message>
         <location filename="../dbsqlitemc.cpp" line="42"/>
@@ -38,9 +38,9 @@
         <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-      <translation>Declarações PRAGMA para personalizar a configuração de múltiplas Cifras SQLite3, como iterações KDF, modo legado, etc.
+        <translation>Declarações PRAGMA para personalizar a configuração de múltiplas Cifras SQLite3, como iterações KDF, modo legado, etc.
 Eles serão executados após cada abertura do banco de dados.
 Consulte a documentação de SQLite3 Múltiplas Cifras para obter detalhes.</translation>
     </message>
-  </context>
+</context>
 </TS>
