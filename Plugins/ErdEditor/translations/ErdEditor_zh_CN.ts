@@ -119,28 +119,28 @@
         <location filename="../panel/erdconnectionpanel.cpp" line="57"/>
         <source>Apply changes to diagram</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Apply changes to diagram</translation>
+        <translation>将更改应用到图表</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="58"/>
         <source>Abort changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Abort changes</translation>
+        <translation>放弃更改</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="240"/>
         <source>Modify relationship between &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished">Modify relationship between &quot;%1&quot; and &quot;%2&quot;.</translation>
+        <translation>修改 &quot;%1&quot; 和 &quot;%2&quot; 之间的关系。</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="242"/>
         <source>Modify relationship between &quot;%1&quot; and &quot;%2&quot; - change target to &quot;%3&quot;.</source>
-        <translation type="unfinished">Modify relationship between &quot;%1&quot; and &quot;%2&quot; - change target to &quot;%3&quot;.</translation>
+        <translation>修改 &quot;%1&quot; 和 &quot;%2&quot; 之间的关系 - 将目标更改为 &quot;%3&quot;。</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="252"/>
         <source>Failed to execute DDL required for relation modification. Details: %1</source>
-        <translation type="unfinished">Failed to execute DDL required for relation modification. Details: %1</translation>
+        <translation>执行关系修改所需的 DDL 失败。详情：%1</translation>
     </message>
 </context>
 <context>
@@ -148,12 +148,12 @@
     <message>
         <location filename="../erdeditorplugin.cpp" line="20"/>
         <source>Open ERD editor</source>
-        <translation type="unfinished">Open ERD editor</translation>
+        <translation>打开 ERD 编辑器</translation>
     </message>
     <message>
         <location filename="../erdeditorplugin.cpp" line="74"/>
         <source>ERD editor cannot open because the database contains %1 tables, exceeding the configured limit of %2 tables. You can increase this limit in the settings, but higher values may slow down or freeze the application.</source>
-        <translation type="unfinished">ERD editor cannot open because the database contains %1 tables, exceeding the configured limit of %2 tables. You can increase this limit in the settings, but higher values may slow down or freeze the application.</translation>
+        <translation>无法打开 ERD 编辑器，因为数据库包含 %1 个表，超过了配置的 %2 个表的限制。您可以在设置中增加此限制，但较高的值可能会导致应用程序速度变慢或冻结。</translation>
     </message>
 </context>
 <context>
@@ -162,60 +162,60 @@
         <location filename="../scene/erdscene.cpp" line="530"/>
         <source>Delete multiple diagram elements.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Delete multiple diagram elements.</translation>
+        <translation>删除多个图表元素。</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="547"/>
         <source>Failed to execute the undo DDL. Details: %1</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Failed to execute the undo DDL. Details: %1</translation>
+        <translation>执行撤销 DDL 失败。详情：%1</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="569"/>
         <source>Failed to execute the redo DDL. Details: %1</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Failed to execute the redo DDL. Details: %1</translation>
+        <translation>执行重做 DDL 失败。详情：%1</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="596"/>
         <source>Failed to execute DDL required for table deletion. Details: %1</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Failed to execute DDL required for table deletion. Details: %1</translation>
+        <translation>执行表删除所需的 DDL 失败。详情：%1</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="607"/>
         <source>Delete foreign key between &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished">Delete foreign key between &quot;%1&quot; and &quot;%2&quot;.</translation>
+        <translation>删除 &quot;%1&quot; 和 &quot;%2&quot; 之间的外键。</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="616"/>
         <source>Failed to execute DDL required for foreign key deletion. Details: %1</source>
-        <translation type="unfinished">Failed to execute DDL required for foreign key deletion. Details: %1</translation>
+        <translation>执行外键删除所需的 DDL 失败。详情：%1</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="824"/>
         <source>Arrange entities</source>
-        <translation type="unfinished">Arrange entities</translation>
+        <translation>排列实体</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="825"/>
         <source>Are you sure you want to automatically arrange the entities on the diagram? This action will overwrite the current layout, and any manual adjustments will be lost.</source>
-        <translation type="unfinished">Are you sure you want to automatically arrange the entities on the diagram? This action will overwrite the current layout, and any manual adjustments will be lost.</translation>
+        <translation>您确定要在图表上自动排列实体吗？此操作将覆盖当前布局，所有手动调整将丢失。</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="845"/>
         <source>Change color of table &quot;%1&quot; to %2.</source>
-        <translation type="unfinished">Change color of table &quot;%1&quot; to %2.</translation>
+        <translation>将表 &quot;%1&quot; 的颜色更改为 %2。</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="851"/>
         <source>Change color of multiple tables.</source>
-        <translation type="unfinished">Change color of multiple tables.</translation>
+        <translation>更改多个表的颜色。</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="696"/>
         <source>Apply diagram layout</source>
-        <translation type="unfinished">Apply diagram layout</translation>
+        <translation>应用图表布局</translation>
     </message>
 </context>
 <context>
@@ -224,42 +224,42 @@
         <location filename="../panel/erdtablewindow.cpp" line="29"/>
         <source>Apply changes to diagram</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Apply changes to diagram</translation>
+        <translation>将更改应用到图表</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="30"/>
         <source>Abort changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Abort changes</translation>
+        <translation>放弃更改</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="49"/>
         <source>ERD side panel for table &quot;%1&quot; has uncommitted modifications.</source>
-        <translation type="unfinished">ERD side panel for table &quot;%1&quot; has uncommitted modifications.</translation>
+        <translation>表 &quot;%1&quot; 的 ERD 侧面板有未提交的修改。</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="106"/>
         <source>Invalid table changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Invalid table changes</translation>
+        <translation>无效的表更改</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="108"/>
         <source>&lt;b&gt;The table contains invalid changes&lt;/b&gt;</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">&lt;b&gt;The table contains invalid changes&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;表包含无效更改&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="109"/>
         <source>Some of the changes you made cannot be applied because they contain errors.&lt;br&gt;&lt;br&gt;&lt;b&gt;Errors:&lt;/b&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;&lt;br&gt;&lt;br&gt;You can &lt;b&gt;return to editing&lt;/b&gt; and fix the problems, or &lt;b&gt;discard your changes&lt;/b&gt; and restore the previous state of the table.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Some of the changes you made cannot be applied because they contain errors.&lt;br&gt;&lt;br&gt;&lt;b&gt;Errors:&lt;/b&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;&lt;br&gt;&lt;br&gt;You can &lt;b&gt;return to editing&lt;/b&gt; and fix the problems, or &lt;b&gt;discard your changes&lt;/b&gt; and restore the previous state of the table.</translation>
+        <translation>您所做的部分更改无法应用，因为它们包含错误。&lt;br&gt;&lt;br&gt;&lt;b&gt;错误：&lt;/b&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;&lt;br&gt;&lt;br&gt;您可以&lt;b&gt;返回编辑&lt;/b&gt;并修复问题，或者&lt;b&gt;放弃更改&lt;/b&gt;并恢复表的先前状态。</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="118"/>
         <source>Fix errors</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Fix errors</translation>
+        <translation>修复错误</translation>
     </message>
 </context>
 <context>
@@ -268,17 +268,17 @@
         <location filename="../scene/erdview.cpp" line="323"/>
         <source>Cannot edit compound foreign keys this way. Such connections have to be edited through the side panel.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Cannot edit compound foreign keys this way. Such connections have to be edited through the side panel.</translation>
+        <translation>无法通过这种方式编辑复合外键。此类连接必须通过侧面板进行编辑。</translation>
     </message>
     <message>
         <location filename="../scene/erdview.cpp" line="633"/>
         <source>Move table &quot;%1&quot;</source>
-        <translation type="unfinished">Move table &quot;%1&quot;</translation>
+        <translation>移动表 &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../scene/erdview.cpp" line="639"/>
         <source>Move tables: %1</source>
-        <translation type="unfinished">Move tables: %1</translation>
+        <translation>移动表：%1</translation>
     </message>
 </context>
 <context>
@@ -286,127 +286,127 @@
     <message>
         <location filename="../erdwindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../erdwindow.ui" line="86"/>
         <source>Select an item to edit its properties</source>
-        <translation type="unfinished">Select an item to edit its properties</translation>
+        <translation>选择一个项目来编辑其属性</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="164"/>
         <source>Cancels ongoing action</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Cancels ongoing action</translation>
+        <translation>取消正在进行的操作</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="165"/>
         <source>Create a table</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Create a table</translation>
+        <translation>创建表</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="167"/>
         <location filename="../erdwindow.cpp" line="644"/>
         <source>Reload schema</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Reload schema</translation>
+        <translation>重新加载架构</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="168"/>
         <source>Commit all pending changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Commit all pending changes</translation>
+        <translation>提交所有待处理的更改</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="169"/>
         <source>Revert diagram to initial state</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Revert diagram to initial state</translation>
+        <translation>将图表恢复到初始状态</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="171"/>
         <source>Undo</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Undo</translation>
+        <translation>撤销</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="172"/>
         <source>Redo</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Redo</translation>
+        <translation>重做</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="188"/>
         <source>Create a table</source>
-        <translation type="unfinished">Create a table</translation>
+        <translation>创建表</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="201"/>
         <source>Select all</source>
-        <translation type="unfinished">Select all</translation>
+        <translation>全选</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="310"/>
         <source>Filter items</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Filter items</translation>
+        <translation>筛选项目</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="311"/>
         <source>Items that don’t match the filter will be dimmed.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Items that don’t match the filter will be dimmed.</translation>
+        <translation>不匹配筛选条件的项目将变暗。</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="447"/>
         <source>table name</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">table name</translation>
+        <translation>表名</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="449"/>
         <source>column name</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">column name</translation>
+        <translation>列名</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="569"/>
         <source>All changes have been successfully applied to the database.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">All changes have been successfully applied to the database.</translation>
+        <translation>所有更改已成功应用到数据库。</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="575"/>
         <source>The changes were successfully committed. No modifications to the database schema were required.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">The changes were successfully committed. No modifications to the database schema were required.</translation>
+        <translation>更改已成功提交。无需修改数据库架构。</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="583"/>
         <source>Failed to apply changes to the database. Details: %1</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Failed to apply changes to the database. Details: %1</translation>
+        <translation>将更改应用到数据库失败。详情：%1</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="645"/>
         <source>This action will discard all your pending changes and reload the diagram from the current database schema. The undo/redo history will be cleared. Do you want to proceed?</source>
-        <translation type="unfinished">This action will discard all your pending changes and reload the diagram from the current database schema. The undo/redo history will be cleared. Do you want to proceed?</translation>
+        <translation>此操作将放弃所有待处理的更改，并从当前数据库架构重新加载图表。撤销/重做历史记录将被清除。您要继续吗？</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="826"/>
         <source>ERD window &quot;%1&quot; has uncommitted changes.</source>
-        <translation type="unfinished">ERD window &quot;%1&quot; has uncommitted changes.</translation>
+        <translation>ERD 窗口 &quot;%1&quot; 有未提交的更改。</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="1138"/>
         <source>ERD editor (%1)</source>
-        <translation type="unfinished">ERD editor (%1)</translation>
+        <translation>ERD 编辑器 (%1)</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="1140"/>
         <source>ERD editor</source>
-        <translation type="unfinished">ERD editor</translation>
+        <translation>ERD 编辑器</translation>
     </message>
     <message>
         <location filename="../erdwindow.ui" line="114"/>
