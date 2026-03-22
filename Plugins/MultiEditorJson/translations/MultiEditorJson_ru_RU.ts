@@ -36,7 +36,7 @@
     <message>
       <location filename="../multieditorjson.cpp" line="39"/>
       <source>Find or replace (%1)</source>
-      <translation type="unfinished">Find or replace (%1)</translation>
+      <translation>Найти или заменить (%1)</translation>
     </message>
     <message>
       <location filename="../multieditorjson.cpp" line="169"/>
