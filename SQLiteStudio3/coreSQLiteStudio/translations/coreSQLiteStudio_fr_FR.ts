@@ -39,7 +39,7 @@
         <location filename="../db/chainexecutor.cpp" line="73"/>
         <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+        <translation>Impossible de basculer vers l'ancien comportement ALTER RENAME dans la base de données. Détails : %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -130,18 +130,18 @@
     <message>
         <location filename="../completionhelper.cpp" line="267"/>
         <source>String</source>
-        <translation type="unfinished">String</translation>
+        <translation>Chaîne de caractères</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="270"/>
         <location filename="../completionhelper.cpp" line="273"/>
         <source>Number</source>
-        <translation type="unfinished">Number</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="285"/>
         <source>BLOB literal</source>
-        <translation type="unfinished">BLOB literal</translation>
+        <translation>Littéral BLOB</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="445"/>
@@ -209,18 +209,15 @@
         <location filename="../dbobjectorganizer.cpp" line="96"/>
         <location filename="../dbobjectorganizer.cpp" line="130"/>
         <location filename="../dbobjectorganizer.cpp" line="149"/>
-        <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur s'est produite lors de la tentative de renommage de la table &apos;%1&apos; en &apos;%2&apos; : %3</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="131"/>
-        <source>Failed to parse object definition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de l'analyse de la définition de l'objet.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="166"/>
-        <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur s'est produite lors de la tentative de renommage de la colonne &apos;%1&apos; de la table &apos;%2&apos; en &apos;%3&apos; : %4</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="462"/>
@@ -1038,7 +1035,7 @@ La vue restera telle quelle.</translation>
         <location filename="../db/queryexecutor.cpp" line="421"/>
         <location filename="../db/queryexecutor.cpp" line="691"/>
         <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+        <translation>Une erreur s'est produite lors de l'exécution de la requête count(*), la pagination des données sera donc désactivée. Détails de l'erreur de la base de données : %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="610"/>
@@ -1051,7 +1048,7 @@ La vue restera telle quelle.</translation>
     <message>
         <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
         <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-        <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+        <translation>La colonne %1 de la table %2 référence la colonne %3 de la table %4, mais ces colonnes ont des types de données différents : %5 vs. %6. Cela peut provoquer des problèmes liés à la correspondance des valeurs de clé étrangère.</translation>
     </message>
 </context>
 <context>
@@ -1143,12 +1140,12 @@ La vue restera telle quelle.</translation>
     <message>
         <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-        <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+        <translation>Le fichier de base de données &apos;%1&apos; a été modifié par une version plus récente de SQLite (format %2), alors que l'application actuelle prend en charge jusqu'au format %3. Certaines fonctionnalités peuvent ne pas fonctionner correctement.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
-        <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+        <translation>Collation par défaut enregistrée à la demande, sous le nom : %1</translation>
     </message>
 </context>
 <context>
