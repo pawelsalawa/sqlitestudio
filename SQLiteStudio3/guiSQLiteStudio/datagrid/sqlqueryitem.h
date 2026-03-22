@@ -25,7 +25,6 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
                 NEW_ROW = 1006,
                 DELETED = 1007,
                 OLD_VALUE = 1008,
-                JUST_INSERTED_WITHOUT_ROWID = 1009,
                 COMMITTING_ERROR_MESSAGE = 1010,
                 EDIT_SKIP_INITIAL_SELECT = 1011 // to prevent content selection initially when editing with double-click
             };
@@ -52,9 +51,6 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         bool isNewRow() const;
         void setNewRow(bool isNew);
-
-        bool isJustInsertedWithOutRowId() const;
-        void setJustInsertedWithOutRowId(bool justInsertedWithOutRowId);
 
         bool isDeletedRow() const;
         void setDeletedRow(bool isDeleted);

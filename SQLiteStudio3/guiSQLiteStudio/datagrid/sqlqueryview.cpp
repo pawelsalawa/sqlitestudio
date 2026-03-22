@@ -943,7 +943,8 @@ void SqlQueryView::keyPressEvent(QKeyEvent *e)
     if (shouldOpenEditor && state() != QAbstractItemView::EditingState && !simpleBrowserMode)
     {
         QTableView::edit(currentIndex());
-        QApplication::sendEvent(focusWidget(), e);
+        if (state() == QAbstractItemView::EditingState)
+            QApplication::sendEvent(focusWidget(), e);
     }
 }
 

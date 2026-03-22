@@ -118,7 +118,8 @@ void SqlQuery::setArgs(const QHash<QString, QVariant>& args)
 
 void RowIdConditionBuilder::setRowId(const RowId& rowId)
 {
-    static const QString argTempalate = QStringLiteral(":rowIdArg%1");
+    static_qstring(argTpl, ":rowIdArg%1");
+    static_qstring(assignTpl, "%1 = %2");
 
     QString arg;
     QHashIterator<QString,QVariant> it(rowId);
@@ -126,9 +127,9 @@ void RowIdConditionBuilder::setRowId(const RowId& rowId)
     while (it.hasNext())
     {
         it.next();
-        arg = argTempalate.arg(i++);
+        arg = argTpl.arg(i++);
         queryArgs[arg] = it.value();
-        conditions << wrapObjIfNeeded(it.key()) + " = " + arg;
+        conditions << assignTpl.arg(wrapObjIfNeeded(it.key()), arg);
     }
 }
 

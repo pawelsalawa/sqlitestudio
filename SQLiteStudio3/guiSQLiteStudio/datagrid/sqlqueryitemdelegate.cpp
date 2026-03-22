@@ -76,7 +76,7 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         return nullptr;
     }
 
-    if (item->getRowId().isEmpty())
+    if (item->getRowId().isEmpty() && !item->isNewRow())
     {
         notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("ROWID is not available for this cell.")));
         return nullptr;

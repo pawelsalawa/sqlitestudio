@@ -99,16 +99,6 @@ void SqlQueryItem::setNewRow(bool isNew)
     QStandardItem::setData(QVariant(isNew), DataRole::NEW_ROW);
 }
 
-bool SqlQueryItem::isJustInsertedWithOutRowId() const
-{
-    return QStandardItem::data(DataRole::JUST_INSERTED_WITHOUT_ROWID).toBool();
-}
-
-void SqlQueryItem::setJustInsertedWithOutRowId(bool justInsertedWithOutRowId)
-{
-    QStandardItem::setData(QVariant(justInsertedWithOutRowId), DataRole::JUST_INSERTED_WITHOUT_ROWID);
-}
-
 bool SqlQueryItem::isDeletedRow() const
 {
     return QStandardItem::data(DataRole::DELETED).toBool();

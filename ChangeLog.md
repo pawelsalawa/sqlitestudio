@@ -54,6 +54,7 @@
 - CHANGE: #5269 Default hotkey for Configuration Dialog changed to Ctrl+, on all platforms.
 - CHANGE: #5212 Config Dialog now remembers the last used page and restores it when its open next time.
 - CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
+- CHANGE: #4475 Using RETURNING clause for INSERTing data to optimize the operation.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.

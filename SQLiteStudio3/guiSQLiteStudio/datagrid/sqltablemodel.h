@@ -40,18 +40,9 @@ class GUI_API_EXPORT SqlTableModel : public SqlDataSourceQueryModel
                 void addColumn(const QString& col);
         };
 
-        void updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
-                                                     QStringList& sqlValues, QList<QVariant>& args);
-        void updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns,
+        void prepareColumnsAndBindParams(const QList<SqlQueryItem*>& itemsInRow,
                                     QStringList& colNameList, QStringList& sqlValues, QList<QVariant>& args);
-        QString getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList, QStringList& sqlValues,
-                             QList<QVariant>& args);
-        void updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId);
-        bool processNullValueAfterInsert(SqlQueryItem* item, QVariant& value, const SqlQueryModelColumnPtr& modelColumn,
-                                         QHash<SqlQueryModelColumnPtr,SqlQueryItem*>& columnsToReadFromDb, RowId rowId,
-                                         Parser& parser);
-        void processDefaultValueAfterInsert(QHash<SqlQueryModelColumnPtr,SqlQueryItem*>& columnsToReadFromDb, QHash<SqlQueryItem*,QVariant>& values,
-                                            RowId rowId);
+        QString getInsertSql(QStringList& colNameList, QStringList& sqlValues);
 
         QString table;
         bool isWithOutRowIdTable = false;
