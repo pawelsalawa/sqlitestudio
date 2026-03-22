@@ -848,7 +848,7 @@ Oczekiwano jednej z: %2</translation>
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>Checks for updates online and prints the result to standard output.</source>
-        <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
+        <translation>Sprawdza dostępność aktualizacji online i wyświetla wynik na standardowym wyjściu.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="66"/>
@@ -878,17 +878,17 @@ Oczekiwano jednej z: %2</translation>
     <message>
         <location filename="../main.cpp" line="173"/>
         <source>New updates are available: %1. Url: %2</source>
-        <translation type="unfinished">New updates are available: %1. Url: %2</translation>
+        <translation>Dostępne są nowe aktualizacje: %1. Adres URL: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="177"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+        <translation>Używasz najnowszej wersji. Brak dostępnych aktualizacji.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="181"/>
         <source>Error checking for updates: %1</source>
-        <translation type="unfinished">Error checking for updates: %1</translation>
+        <translation>Błąd podczas sprawdzania aktualizacji: %1</translation>
     </message>
 </context>
 </TS>

@@ -39,7 +39,7 @@
         <location filename="../db/chainexecutor.cpp" line="73"/>
         <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+        <translation>Nie można przełączyć się na starsze zachowanie ALTER RENAME w bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -130,18 +130,18 @@
     <message>
         <location filename="../completionhelper.cpp" line="267"/>
         <source>String</source>
-        <translation type="unfinished">String</translation>
+        <translation>Łańcuch znaków</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="270"/>
         <location filename="../completionhelper.cpp" line="273"/>
         <source>Number</source>
-        <translation type="unfinished">Number</translation>
+        <translation>Liczba</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="285"/>
         <source>BLOB literal</source>
-        <translation type="unfinished">BLOB literal</translation>
+        <translation>Literał BLOB</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="445"/>
@@ -210,17 +210,17 @@
         <location filename="../dbobjectorganizer.cpp" line="130"/>
         <location filename="../dbobjectorganizer.cpp" line="149"/>
         <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas próby zmiany nazwy tabeli '%1' na '%2': %3</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="131"/>
         <source>Failed to parse object definition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć definicji obiektu.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="166"/>
         <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas próby zmiany nazwy kolumny '%1' w tabeli '%2' na '%3': %4</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="462"/>
@@ -1038,7 +1038,7 @@ Widok pozostanie nienaruszony.</translation>
         <location filename="../db/queryexecutor.cpp" line="421"/>
         <location filename="../db/queryexecutor.cpp" line="691"/>
         <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+        <translation>Wystąpił błąd podczas wykonywania zapytania count(*), w związku z czym stronicowanie danych zostanie wyłączone. Szczegóły błędu z bazy danych: %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="610"/>
@@ -1051,7 +1051,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
         <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
         <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-        <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+        <translation>Kolumna %1 w tabeli %2 odwołuje się do kolumny %3 w tabeli %4, ale te kolumny mają różne typy danych: %5 a %6. Może to powodować problemy związane z dopasowywaniem wartości klucza obcego.</translation>
     </message>
 </context>
 <context>
@@ -1143,7 +1143,7 @@ Widok pozostanie nienaruszony.</translation>
     <message>
         <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-        <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+        <translation>Plik bazy danych '%1' został zmodyfikowany przez nowszą wersję SQLite (format %2), podczas gdy bieżąca aplikacja obsługuje maksymalnie format %3. Niektóre funkcje mogą nie działać poprawnie.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb3.h" line="994"/>

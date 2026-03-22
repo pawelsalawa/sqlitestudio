@@ -11,12 +11,12 @@
     <message>
         <location filename="../main.cpp" line="57"/>
         <source>Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</source>
-        <translation type="unfinished">Starts the application in safe mode without restoring the previous session. Use this to bypass issues caused by a corrupted session.</translation>
+        <translation>Uruchamia aplikację w trybie awaryjnym bez przywracania poprzedniej sesji. Użyj tej opcji, aby ominąć problemy spowodowane uszkodzoną sesją.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="58"/>
         <source>Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</source>
-        <translation type="unfinished">Do not load any plugins. Can be used alongside safe mode to further isolate potential issues.</translation>
+        <translation>Nie ładuj żadnych wtyczek. Może być używane razem z trybem awaryjnym, aby lepiej izolować potencjalne problemy.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../main.cpp" line="56"/>
         <source>settings file</source>
-        <translation type="unfinished">settings file</translation>
+        <translation>plik ustawień</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="79"/>
