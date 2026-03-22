@@ -62,6 +62,7 @@
 - BUGFIX: #5498 Empty/null cells resulting from LEFT JOINs are not editable anymore.
 - BUGFIX: #3995 Fixed blank MDI window buttons when using 150% interface scaling under Windows.
 - BUGFIX: #3146 Fixed accent characters support under MacOS.
+- BUGFIX: #5212 Grid columns do not shrink when unwanted while refreshing data, or entering new values to cells.
 - BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 - BUGFIX: #5089 User-defined functions now follow database renaming in case the function was explicitly registered for the database.
 
