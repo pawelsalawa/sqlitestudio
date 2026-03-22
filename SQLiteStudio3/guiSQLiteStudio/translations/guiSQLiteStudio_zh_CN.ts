@@ -107,7 +107,7 @@
     <message>
         <location filename="../configwidgets/cellrenderertable.cpp" line="33"/>
         <source>Default</source>
-        <translation type="unfinished">Default</translation>
+        <translation>默认</translation>
     </message>
 </context>
 <context>
@@ -1423,107 +1423,107 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="219"/>
         <source>Data renderers</source>
-        <translation type="unfinished">Data renderers</translation>
+        <translation>数据渲染器</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="283"/>
         <source>Expand tables when connected to a database</source>
-        <translation type="unfinished">Expand tables when connected to a database</translation>
+        <translation>连接数据库时展开表</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="405"/>
         <source>Expand views when connected to a database</source>
-        <translation type="unfinished">Expand views when connected to a database</translation>
+        <translation>连接数据库时展开视图</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="319"/>
         <source>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</source>
-        <translation type="unfinished">Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</translation>
+        <translation>展开表或视图时，同时展开列、索引和触发器节点以显示其内容。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="293"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;默认情况下，使用 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; 表名访问数据库架构。&lt;br/&gt;较旧的 SQLite 版本使用 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; 名称，该名称仍作为别名受支持。&lt;br/&gt;您可以在此处切换以使用旧名称。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="296"/>
         <source>Prefer sqlite_master over sqlite_schema table name</source>
-        <translation type="unfinished"></translation>
+        <translation>优先使用 sqlite_master 而不是 sqlite_schema 表名</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="299"/>
         <source>General.PreferMasterOverSchema</source>
-        <translation type="unfinished"></translation>
+        <translation>General.PreferMasterOverSchema</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="322"/>
         <source>Expand columns, indexes and triggers together with the table</source>
-        <translation type="unfinished">Expand columns, indexes and triggers together with the table</translation>
+        <translation>与表一起展开列、索引和触发器</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="325"/>
         <source>DbList.ExpandSubNodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ExpandSubNodes</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="335"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>按字母顺序排列对象（表、索引、触发器和视图）</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="345"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;附加标签是显示在数据库列表名称旁边的标签（除非另有配置，否则为蓝色）。启用此选项将为数据库、无效数据库和聚合节点（列组、索引组、触发器组）显示标签。更多标签请参见下面的选项。&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="392"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;默认情况下，系统表和索引在列表中隐藏。&lt;br/&gt;启用此选项以显示内部 SQLite 对象，例如 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; 和自动生成的索引。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="398"/>
         <source>DbList.ShowSystemObjects</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ShowSystemObjects</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="437"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后，将直接添加数据库文件，而不显示标准数据库对话框。如果使用默认选项打开数据库失败（例如加密数据库或需要不同的驱动程序），将显示该对话框以便调整选项。禁用后，始终显示该对话框。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="440"/>
         <source>Skip the dialog when possible</source>
-        <translation type="unfinished">Skip the dialog when possible</translation>
+        <translation>尽可能跳过对话框</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="540"/>
         <source>Number of memorized table populating configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>记忆的表填充配置数量</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="579"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在表单视图编辑器中编辑文本时，将 Unicode 行分隔符（U+2028、U+2029）转换为标准 LF（&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;）字符。&lt;/p&gt;&lt;p&gt;禁用以保留原始字符。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="912"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;定义哪些数据编辑器可用于&lt;span style=&quot; font-weight:700;&quot;&gt;表单视图&lt;/span&gt;和&lt;span style=&quot; font-weight:700;&quot;&gt;弹出编辑器对话框&lt;/span&gt;中的特定列类型。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="928"/>
         <source>Preview of editors for this data type (drag to reorder):</source>
-        <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
+        <translation>此数据类型的编辑器预览（拖动以重新排序）：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="952"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以定义哪些单元格渲染器用于表列上声明的特定数据类型（不区分大小写）。如果没有为给定类型定义渲染器，则使用默认渲染器。&lt;/p&gt;&lt;p&gt;可选插件可能提供额外的渲染器并设置其自己的数据类型默认映射，您仍然可以在此处覆盖这些映射。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="971"/>
         <source>General.DataRenderers</source>
-        <translation type="unfinished">General.DataRenderers</translation>
+        <translation>General.DataRenderers</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="978"/>
@@ -1533,7 +1533,7 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="983"/>
         <source>Renderer</source>
-        <translation type="unfinished">Renderer</translation>
+        <translation>渲染器</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1145"/>
@@ -1576,7 +1576,7 @@
         <location filename="../dialogs/configdialog.ui" line="1938"/>
         <location filename="../dialogs/configdialog.ui" line="2130"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1396"/>
@@ -1589,7 +1589,7 @@
         <location filename="../dialogs/configdialog.ui" line="1963"/>
         <location filename="../dialogs/configdialog.ui" line="2155"/>
         <source>I</source>
-        <translation type="unfinished">I</translation>
+        <translation>I</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1571"/>
@@ -2028,7 +2028,7 @@
         <location filename="../dataview.cpp" line="216"/>
         <source>Find in data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>在数据中查找</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="217"/>
@@ -2214,7 +2214,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Change</source>
-        <translation type="unfinished">Change</translation>
+        <translation>更改</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="127"/>
@@ -2291,18 +2291,18 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dialogs/dbdialog.cpp" line="657"/>
         <source>Automatic</source>
         <comment>database name</comment>
-        <translation type="unfinished"></translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="658"/>
         <source>Change</source>
         <comment>database name</comment>
-        <translation type="unfinished">Change</translation>
+        <translation>更改</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="667"/>
         <source>(empty)</source>
-        <translation type="unfinished">(empty)</translation>
+        <translation>（空）</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="837"/>
@@ -2590,52 +2590,52 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="146"/>
         <source>&amp;Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>新建数据库(&amp;C)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>&amp;Open existing database</source>
-        <translation type="unfinished"></translation>
+        <translation>打开现有数据库(&amp;O)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="148"/>
         <source>&amp;Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>打开现有数据库或 SQL 文件(&amp;O)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="149"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>添加数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="151"/>
         <source>Rename the database</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="161"/>
         <source>Rename the table</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Rename the index</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名索引</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="174"/>
         <source>Rename the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名触发器</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Rename the view</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名视图</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="182"/>
         <source>Rename the column</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名列</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="186"/>
@@ -2816,12 +2816,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2341"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;已连接。&lt;/p&gt;&lt;p&gt;点击此处断开连接，或在数据库上单击中键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2349"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;已断开连接。&lt;/p&gt;&lt;p&gt;点击此处连接，或双击数据库。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -2874,7 +2874,7 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="488"/>
         <source>Format:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>格式：</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="491"/>
@@ -2898,13 +2898,13 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="503"/>
         <source>Double-click to edit this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>双击以编辑此数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="505"/>
         <source>Double-click to connect to this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>双击以连接到此数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="515"/>
@@ -3638,12 +3638,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以在此处定义函数参数。指定的名称在实现代码中作为变量可用，并包含传递给函数的值。参数也可以通过语言的标准参数容器访问（例如，Tcl 中的 &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; 或 JavaScript 中的 &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt;）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;表示函数接受可变数量的参数。在此模式下，参数只能通过语言特定的机制访问（例如，Tcl 中的 &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; 或 JavaScript 中的 &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt;）。&lt;br/&gt;如果禁用，则在下面定义参数，其名称在实现代码中作为变量可用，同时仍可通过语言的标准参数容器访问。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="189"/>
@@ -3673,12 +3673,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择用于实现函数的语言。所选语言决定了函数代码的解释方式以及实现块中可用的语法、变量和运行时环境。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="267"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择正在实现的函数类型。所选类型决定了 SQLite 如何调用函数以及必须提供哪些实现块：标量函数使用单个代码块，聚合函数使用基于步骤的处理，窗口聚合函数使用额外的窗口帧处理（包括逆步骤）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="274"/>
@@ -3693,7 +3693,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="291"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;表示函数对相同的输入参数始终返回相同的结果。在某些架构表达式（例如 CHECK 约束、部分索引、表达式索引、生成列）中使用时需要此属性，并且可能允许 SQLite 应用额外的优化。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="294"/>
@@ -3703,52 +3703,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="315"/>
         <source>Function code</source>
-        <translation type="unfinished">Function code</translation>
+        <translation>函数代码</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;函数被调用时执行的代码。它接收函数参数并必须计算并返回结果。参数值以与声明的函数参数同名的变量形式可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="332"/>
         <source>Initialization</source>
-        <translation type="unfinished">Initialization</translation>
+        <translation>初始化</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="338"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在第一个聚合步骤之前执行一次的代码。用它来初始化存储聚合状态的变量。参数值以与声明的函数参数同名的变量形式可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="349"/>
         <source>Step</source>
-        <translation type="unfinished">Step</translation>
+        <translation>步骤</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="355"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;对每个输入行执行的代码。它应使用当前参数更新聚合状态。参数值以与声明的函数参数同名的变量形式可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="366"/>
         <source>Inverse</source>
-        <translation type="unfinished">Inverse</translation>
+        <translation>逆步骤</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="372"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;当行离开窗口帧时执行的代码。参数值对应于从窗口中移除的行，应用于从聚合状态中减去其贡献。参数值以与声明的函数参数同名的变量形式可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="383"/>
         <source>Aggregated value</source>
-        <translation type="unfinished">Aggregated value</translation>
+        <translation>聚合值</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;根据当前聚合状态计算并返回聚合结果的代码。在窗口函数中，它可能被多次执行以返回当前窗口值。在常规聚合函数中，它作为最终函数被调用一次。参数值以与声明的函数参数同名的变量形式可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3818,7 +3818,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="120"/>
         <source>Window</source>
-        <translation type="unfinished">Window</translation>
+        <translation>窗口函数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="501"/>
@@ -4297,7 +4297,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="135"/>
         <source>Data renderers</source>
-        <translation type="unfinished">Data renderers</translation>
+        <translation>数据渲染器</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="313"/>
@@ -4646,7 +4646,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditorfk.cpp" line="25"/>
         <source>Selected value preview</source>
-        <translation type="unfinished">Selected value preview</translation>
+        <translation>所选值预览</translation>
     </message>
 </context>
 <context>
@@ -4918,7 +4918,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../constraints/tableprimarykeypanel.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../constraints/tableprimarykeypanel.ui" line="20"/>
@@ -5131,7 +5131,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="23"/>
         <source>Find in data</source>
-        <translation type="unfinished"></translation>
+        <translation>在数据中查找</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="24"/>
@@ -5175,12 +5175,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="36"/>
         <source>Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>新建数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="37"/>
         <source>Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>打开现有数据库或 SQL 文件</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="38"/>
@@ -5190,7 +5190,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="39"/>
         <source>Rename selected database</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名所选数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="40"/>
@@ -5418,12 +5418,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="35"/>
         <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
+        <translation>选择编辑器全部内容</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
         <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <translation>将内容保存到文件</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
@@ -5463,7 +5463,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="46"/>
         <source>Open the object at current position</source>
-        <translation type="unfinished"></translation>
+        <translation>打开当前位置的对象</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="47"/>
@@ -5522,22 +5522,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="67"/>
         <source>Select new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>选择新数据库文件</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="73"/>
         <source>SQLite database or SQL file</source>
-        <translation type="unfinished">SQLite database or SQL file</translation>
+        <translation>SQLite 数据库或 SQL 文件</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="76"/>
         <source>SQL files</source>
-        <translation type="unfinished">SQL files</translation>
+        <translation>SQL 文件</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="78"/>
         <source>Select a file to open</source>
-        <translation type="unfinished">Select a file to open</translation>
+        <translation>选择要打开的文件</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="52"/>
@@ -5829,7 +5829,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="113"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Reached the end of document.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;已到达文档末尾。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="20"/>
@@ -6150,7 +6150,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
         <source>ROWID is not available for this cell.</source>
-        <translation type="unfinished">ROWID is not available for this cell.</translation>
+        <translation>此单元格没有可用的 ROWID。</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="230"/>
@@ -6345,7 +6345,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
         <source>Remove custom sorting (Middle click)</source>
-        <translation type="unfinished"></translation>
+        <translation>移除自定义排序（中键点击）</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
@@ -6448,12 +6448,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="996"/>
         <source>Column renderer</source>
-        <translation type="unfinished">Column renderer</translation>
+        <translation>列渲染器</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="1003"/>
         <source>Default</source>
-        <translation type="unfinished">Default</translation>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="1154"/>
