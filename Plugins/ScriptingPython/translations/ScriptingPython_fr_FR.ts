@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="fr" sourcelanguage="en">
-  <context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../scriptingpython.cpp" line="732"/>
@@ -28,23 +28,23 @@
         <source>Error from Python function %1: %2</source>
         <translation>Erreur de la fonction Python %1 : %2</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>ScriptingPython</name>
     <message>
-      <location filename="../scriptingpython.ui" line="20"/>
-      <source>Python library path</source>
-      <translation>Chemin de librairie Python</translation>
+        <location filename="../scriptingpython.ui" line="20"/>
+        <source>Python library path</source>
+        <translation>Chemin de librairie Python</translation>
     </message>
     <message>
-      <location filename="../scriptingpython.ui" line="29"/>
-      <source>Choose a Python library file</source>
-      <translation>Choisissez un fichier de librairie Python</translation>
+        <location filename="../scriptingpython.ui" line="29"/>
+        <source>Choose a Python library file</source>
+        <translation>Choisissez un fichier de librairie Python</translation>
     </message>
     <message>
         <location filename="../scriptingpython.cpp" line="370"/>
         <source>The plugin is not configured properly.</source>
         <translation>Le plugin n&apos;est pas configurer correctement</translation>
     </message>
-  </context>
+</context>
 </TS>

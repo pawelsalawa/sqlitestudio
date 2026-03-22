@@ -34,27 +34,32 @@
         <translation>Validate JSON syntax</translation>
     </message>
     <message>
-        <location filename="../multieditorjson.cpp" line="158"/>
+        <location filename="../multieditorjson.cpp" line="39"/>
+        <source>Find or replace (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../multieditorjson.cpp" line="169"/>
         <source>✓ Valid JSON</source>
         <translation>✓ Valid JSON</translation>
     </message>
     <message>
-        <location filename="../multieditorjson.cpp" line="163"/>
+        <location filename="../multieditorjson.cpp" line="174"/>
         <source>✗ Invalid: %1</source>
         <translation>✗ Invalid: %1</translation>
     </message>
     <message>
-        <location filename="../multieditorjson.cpp" line="203"/>
+        <location filename="../multieditorjson.cpp" line="214"/>
         <source>JSON is valid!</source>
         <translation>JSON is valid!</translation>
     </message>
     <message>
-        <location filename="../multieditorjson.cpp" line="207"/>
+        <location filename="../multieditorjson.cpp" line="218"/>
         <source>JSON validation failed: %1</source>
         <translation>JSON validation failed: %1</translation>
     </message>
     <message>
-        <location filename="../multieditorjson.cpp" line="110"/>
+        <location filename="../multieditorjson.cpp" line="113"/>
         <source>JSON files (*.json, *.txt)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -62,7 +67,7 @@
 <context>
     <name>MultiEditorJsonPlugin</name>
     <message>
-        <location filename="../multieditorjson.cpp" line="299"/>
+        <location filename="../multieditorjson.cpp" line="315"/>
         <source>JSON</source>
         <translation>JSON</translation>
     </message>

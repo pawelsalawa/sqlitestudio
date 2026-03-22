@@ -1,256 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="tr" sourcelanguage="en">
-  <context>
+<context>
     <name>PdfExport</name>
     <message>
-      <location filename="../pdfexport.cpp" line="32"/>
-      <source>SQLiteStudio v%1</source>
-      <translation>SQLiteStudio v%1</translation>
+        <location filename="../pdfexport.cpp" line="32"/>
+        <source>SQLiteStudio v%1</source>
+        <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="65"/>
-      <source>SQL query results</source>
-      <translation>SQL sorgu sonuçları</translation>
+        <location filename="../pdfexport.cpp" line="65"/>
+        <source>SQL query results</source>
+        <translation>SQL sorgu sonuçları</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="94"/>
-      <location filename="../pdfexport.cpp" line="148"/>
-      <source>Exported table: %1</source>
-      <translation>Çıkartılan tablo: %1</translation>
+        <location filename="../pdfexport.cpp" line="94"/>
+        <location filename="../pdfexport.cpp" line="148"/>
+        <source>Exported table: %1</source>
+        <translation>Çıkartılan tablo: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="97"/>
-      <location filename="../pdfexport.cpp" line="163"/>
-      <source>Table: %1</source>
-      <translation>Tablo: %1</translation>
+        <location filename="../pdfexport.cpp" line="97"/>
+        <location filename="../pdfexport.cpp" line="163"/>
+        <source>Table: %1</source>
+        <translation>Tablo: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Column</source>
-      <translation>Kolon</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Column</source>
+        <translation>Kolon</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <source>Data type</source>
-      <translation>Veri tipi</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <source>Data type</source>
+        <translation>Veri tipi</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="99"/>
-      <source>Constraints</source>
-      <translation>Constraints</translation>
+        <location filename="../pdfexport.cpp" line="99"/>
+        <source>Constraints</source>
+        <translation>Constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="130"/>
-      <source>Global table constraints</source>
-      <translation>Global tablo constraints</translation>
+        <location filename="../pdfexport.cpp" line="130"/>
+        <source>Global table constraints</source>
+        <translation>Global tablo constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="219"/>
-      <source>Exported database: %1</source>
-      <translation>Çıkartılan veritabanı: %1</translation>
+        <location filename="../pdfexport.cpp" line="219"/>
+        <source>Exported database: %1</source>
+        <translation>Çıkartılan veritabanı: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="227"/>
-      <source>Index: %1</source>
-      <translation>Indeks: %1</translation>
+        <location filename="../pdfexport.cpp" line="227"/>
+        <source>Index: %1</source>
+        <translation>Indeks: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="229"/>
-      <source>Property</source>
-      <comment>index header</comment>
-      <translation>Özellik</translation>
+        <location filename="../pdfexport.cpp" line="229"/>
+        <source>Property</source>
+        <comment>index header</comment>
+        <translation>Özellik</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="229"/>
-      <source>Value</source>
-      <comment>index header</comment>
-      <translation>Değer</translation>
+        <location filename="../pdfexport.cpp" line="229"/>
+        <source>Value</source>
+        <comment>index header</comment>
+        <translation>Değer</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="232"/>
-      <source>Indexed table</source>
-      <translation>İndekslenen tablo</translation>
+        <location filename="../pdfexport.cpp" line="232"/>
+        <source>Indexed table</source>
+        <translation>İndekslenen tablo</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>Unique index</source>
-      <translation>Unique index</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>Unique index</source>
+        <translation>Unique index</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>Yes</source>
-      <translation>Evet</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>Yes</source>
+        <translation>Evet</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="233"/>
-      <source>No</source>
-      <translation>Hayır</translation>
+        <location filename="../pdfexport.cpp" line="233"/>
+        <source>No</source>
+        <translation>Hayır</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Collation</source>
-      <translation>Collation</translation>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Collation</source>
+        <translation>Collation</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="235"/>
-      <source>Sort order</source>
-      <translation>Sıralama düzeni</translation>
+        <location filename="../pdfexport.cpp" line="235"/>
+        <source>Sort order</source>
+        <translation>Sıralama düzeni</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="251"/>
-      <source>Partial index condition</source>
-      <translation>Partial indeks koşulu</translation>
+        <location filename="../pdfexport.cpp" line="251"/>
+        <source>Partial index condition</source>
+        <translation>Partial indeks koşulu</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="265"/>
-      <source>Trigger: %1</source>
-      <translation>Trigger: %1</translation>
+        <location filename="../pdfexport.cpp" line="265"/>
+        <source>Trigger: %1</source>
+        <translation>Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="267"/>
-      <source>Property</source>
-      <comment>trigger header</comment>
-      <translation>Özellik</translation>
+        <location filename="../pdfexport.cpp" line="267"/>
+        <source>Property</source>
+        <comment>trigger header</comment>
+        <translation>Özellik</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="267"/>
-      <source>Value</source>
-      <comment>trigger header</comment>
-      <translation>Değer</translation>
+        <location filename="../pdfexport.cpp" line="267"/>
+        <source>Value</source>
+        <comment>trigger header</comment>
+        <translation>Değer</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="269"/>
-      <source>Activation time</source>
-      <translation>Aktivasyon zamanı</translation>
+        <location filename="../pdfexport.cpp" line="269"/>
+        <source>Activation time</source>
+        <translation>Aktivasyon zamanı</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="272"/>
-      <source>For action</source>
-      <translation>İşlemi için</translation>
+        <location filename="../pdfexport.cpp" line="272"/>
+        <source>For action</source>
+        <translation>İşlemi için</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="276"/>
-      <source>On view</source>
-      <translation>View</translation>
+        <location filename="../pdfexport.cpp" line="276"/>
+        <source>On view</source>
+        <translation>View</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="278"/>
-      <source>On table</source>
-      <translation>Tablo</translation>
+        <location filename="../pdfexport.cpp" line="278"/>
+        <source>On table</source>
+        <translation>Tablo</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="283"/>
-      <source>Activation condition</source>
-      <translation>Aktivasyon koşulu</translation>
+        <location filename="../pdfexport.cpp" line="283"/>
+        <source>Activation condition</source>
+        <translation>Aktivasyon koşulu</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="289"/>
-      <source>Code executed</source>
-      <translation>Çalıştırılan kod</translation>
+        <location filename="../pdfexport.cpp" line="289"/>
+        <source>Code executed</source>
+        <translation>Çalıştırılan kod</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="301"/>
-      <source>View: %1</source>
-      <translation>View: %1</translation>
+        <location filename="../pdfexport.cpp" line="301"/>
+        <source>View: %1</source>
+        <translation>View: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="302"/>
-      <source>Query:</source>
-      <translation>Sorgu:</translation>
+        <location filename="../pdfexport.cpp" line="302"/>
+        <source>Query:</source>
+        <translation>Sorgu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="658"/>
-      <source>Document generated with SQLiteStudio v%1</source>
-      <translation>SQLiteStudio ile üretilen döküman üzerinde v%1</translation>
+        <location filename="../pdfexport.cpp" line="658"/>
+        <source>Document generated with SQLiteStudio v%1</source>
+        <translation>SQLiteStudio ile üretilen döküman üzerinde v%1</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>PdfExportConfig</name>
     <message>
-      <location filename="../pdfexport.ui" line="20"/>
-      <source>Size and layout</source>
-      <translation>Ölçü ve düzen</translation>
+        <location filename="../pdfexport.ui" line="20"/>
+        <source>Size and layout</source>
+        <translation>Ölçü ve düzen</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="36"/>
-      <source>Page size:</source>
-      <translation>Sayfa boyutu:</translation>
+        <location filename="../pdfexport.ui" line="36"/>
+        <source>Page size:</source>
+        <translation>Sayfa boyutu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="63"/>
-      <source>Right margin:</source>
-      <translation>Sağ kenar boşluğu:</translation>
+        <location filename="../pdfexport.ui" line="63"/>
+        <source>Right margin:</source>
+        <translation>Sağ kenar boşluğu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="70"/>
-      <source>Left margin:</source>
-      <translation>Sol kenar boşluğu:</translation>
+        <location filename="../pdfexport.ui" line="70"/>
+        <source>Left margin:</source>
+        <translation>Sol kenar boşluğu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="77"/>
-      <source>Cell padding:</source>
-      <translation>Hücre boşluğu:</translation>
+        <location filename="../pdfexport.ui" line="77"/>
+        <source>Cell padding:</source>
+        <translation>Hücre boşluğu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="84"/>
-      <source>Limit characters in single cell:</source>
-      <translation>Bir hücredeki karakter limiti:</translation>
+        <location filename="../pdfexport.ui" line="84"/>
+        <source>Limit characters in single cell:</source>
+        <translation>Bir hücredeki karakter limiti:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="91"/>
-      <location filename="../pdfexport.ui" line="108"/>
-      <location filename="../pdfexport.ui" line="115"/>
-      <location filename="../pdfexport.ui" line="132"/>
-      <location filename="../pdfexport.ui" line="156"/>
-      <source>mm</source>
-      <translation>mm</translation>
+        <location filename="../pdfexport.ui" line="91"/>
+        <location filename="../pdfexport.ui" line="108"/>
+        <location filename="../pdfexport.ui" line="115"/>
+        <location filename="../pdfexport.ui" line="132"/>
+        <location filename="../pdfexport.ui" line="156"/>
+        <source>mm</source>
+        <translation>mm</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="139"/>
-      <source>Bottom margin:</source>
-      <translation>Alt kenar boşluğu:</translation>
+        <location filename="../pdfexport.ui" line="139"/>
+        <source>Bottom margin:</source>
+        <translation>Alt kenar boşluğu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="163"/>
-      <source>Top margin:</source>
-      <translation>Üst kenar boşluğu:</translation>
+        <location filename="../pdfexport.ui" line="163"/>
+        <source>Top margin:</source>
+        <translation>Üst kenar boşluğu:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="183"/>
-      <source>Font</source>
-      <translation>Yazı tipi</translation>
+        <location filename="../pdfexport.ui" line="183"/>
+        <source>Font</source>
+        <translation>Yazı tipi</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="206"/>
-      <source>Colors</source>
-      <translation>Renkler</translation>
+        <location filename="../pdfexport.ui" line="206"/>
+        <source>Colors</source>
+        <translation>Renkler</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="212"/>
-      <source>Headers background:</source>
-      <translation>Başlık arkaplanı:</translation>
+        <location filename="../pdfexport.ui" line="212"/>
+        <source>Headers background:</source>
+        <translation>Başlık arkaplanı:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="235"/>
-      <source>NULL value color:</source>
-      <translation>NULL değer rengi:</translation>
+        <location filename="../pdfexport.ui" line="235"/>
+        <source>NULL value color:</source>
+        <translation>NULL değer rengi:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="261"/>
-      <source>Other settings</source>
-      <translation>Diğer ayarlar</translation>
+        <location filename="../pdfexport.ui" line="261"/>
+        <source>Other settings</source>
+        <translation>Diğer ayarlar</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="267"/>
-      <source>Print row numbers for data</source>
-      <translation>Veriler için satır numarasını yazdır</translation>
+        <location filename="../pdfexport.ui" line="267"/>
+        <source>Print row numbers for data</source>
+        <translation>Veriler için satır numarasını yazdır</translation>
     </message>
     <message>
-      <location filename="../pdfexport.ui" line="277"/>
-      <source>Print page numbers</source>
-      <translation>Sayfa numaralarını yazdır</translation>
+        <location filename="../pdfexport.ui" line="277"/>
+        <source>Print page numbers</source>
+        <translation>Sayfa numaralarını yazdır</translation>
     </message>
-  </context>
+</context>
 </TS>
