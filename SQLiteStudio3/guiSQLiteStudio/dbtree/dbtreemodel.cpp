@@ -632,7 +632,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
     return items;
 }
 
-QList<QStandardItem*> DbTreeModel::refreshSchemaTableColumns(const QStringList& columns)
+QList<QStandardItem*> DbTreeModel::refreshSchemaTableOrViewColumns(const QStringList& columns)
 {
     bool doSort = CFG_UI.DbList.SortColumns.get();
 
@@ -714,7 +714,7 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
     DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
     DbTreeItem* triggersItem = tableItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
-    QList<QStandardItem*> tableColumns = refreshSchemaTableColumns(resolver.getColumnsUsingPragma(table));
+    QList<QStandardItem*> tableColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsUsingPragma(table));
     QList<QStandardItem*> indexItems = refreshSchemaIndexes(resolver.getIndexesForTable(table), sort);
     QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForTable(table), sort);
 
@@ -747,12 +747,21 @@ void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
 
     bool sort = CFG_UI.DbList.SortObjects.get();
 
+    DbTreeItem* columnsItem = viewItem->findFirstItem(DbTreeItem::Type::COLUMNS);
     DbTreeItem* triggersItem = viewItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
+
+    QList<QStandardItem*> viewColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsUsingPragma(view));
+    for (QStandardItem* columnItem : viewColumns)
+    {
+        columnItem->setEditable(false);
+        columnsItem->appendRow(columnItem);
+    }
 
     QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForView(view), sort);
     for (QStandardItem* triggerItem : triggerItems)
         triggersItem->appendRow(triggerItem);
 
+    populateChildItemsWithDb(columnsItem, db);
     populateChildItemsWithDb(triggersItem, db);
 
     viewItem->setSchemaReady(true);
@@ -789,7 +798,10 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
     {
         viewsItem->appendRow(viewItem);
 
+        columnsItem = DbTreeItemFactory::createColumns(this);
         triggersItem = DbTreeItemFactory::createTriggers(this);
+
+        viewItem->appendRow(columnsItem);
         viewItem->appendRow(triggersItem);
 
         dynamic_cast<DbTreeItem*>(viewItem)->setSchemaReady(false);

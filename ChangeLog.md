@@ -25,6 +25,7 @@
 - ADDED: #5150 Added the Disable Blinkinig Cursor (for SQL Editor) option in the configuration dialog.
 - ADDED: #4232 Application will warn in status field if the open database was recently edited by a higher version of SQLite and that it may potentially cause some issues.
 - ADDED: #5552 Support for new syntax variants of ALTER TABLE.
+- ADDED: #5566 Added Columns node to Views in Database List.
 - ADDED: #5570 In Configuration dialog the Reset To Defaults button was added for hotkeys page.
 - ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).

@@ -562,7 +562,7 @@ QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateTable* createTable
     QStringList columns = getColumnsUsingPragma(name);
 
     static_qstring(dropSql, "DROP TABLE %1");
-    db->exec(dropSql.arg(wrapObjIfNeeded(name)));
+    db->exec(dropSql.arg(wrapObjIfNeeded(name)), Db::Flag::SKIP_DROP_DETECTION);
 
     return columns;
 }
@@ -588,7 +588,7 @@ QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateView* createView)
     QStringList columns = getColumnsUsingPragma(name);
 
     static_qstring(dropSql, "DROP VIEW %1");
-    db->exec(dropSql.arg(wrapObjIfNeeded(name)));
+    db->exec(dropSql.arg(wrapObjIfNeeded(name)), Db::Flag::SKIP_DROP_DETECTION);
 
     return columns;
 }
@@ -1068,9 +1068,9 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
     }
     else
     {
-        //SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list").arg(getPrefixDb(database)), dbFlags); // not using for now to support SQLite versions < 3.37.0
-        static_qstring(queryTpl, "SELECT name, (CASE WHEN type = 'view' THEN 'view' WHEN sql LIKE 'CREATE VIRTUAL%' THEN 'virtual' ELSE 'table' END) AS type FROM %1.sqlite_master WHERE type IN ('table', 'view')");
-        SqlQueryPtr results = db->exec(queryTpl.arg(getPrefixDb(database)), dbFlags);
+        SqlQueryPtr results = db->exec(QString("PRAGMA %1.table_list").arg(getPrefixDb(database)), dbFlags); // not using for now to support SQLite versions < 3.37.0
+        //static_qstring(queryTpl, "SELECT name, (CASE WHEN type = 'view' THEN 'view' WHEN sql LIKE 'CREATE VIRTUAL%' THEN 'virtual' ELSE 'table' END) AS type FROM %1.sqlite_master WHERE type IN ('table', 'view')");
+        //SqlQueryPtr results = db->exec(queryTpl.arg(getPrefixDb(database)), dbFlags);
         if (results->isError())
         {
             qCritical() << "Error while getting all table list items in SchemaResolver:" << results->getErrorCode();

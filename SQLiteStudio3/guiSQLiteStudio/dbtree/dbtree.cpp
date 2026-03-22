@@ -207,6 +207,10 @@ void DbTree::updateActionStates(const QStandardItem *item)
         bool isDbOpen = false;
         DbTreeItem* parentItem = dbTreeItem->parentDbTreeItem();
         DbTreeItem* grandParentItem = parentItem ? parentItem->parentDbTreeItem() : nullptr;
+        bool isInTableNode = parentItem && parentItem->getType() == DbTreeItem::Type::TABLE ||
+                grandParentItem && grandParentItem->getType() == DbTreeItem::Type::TABLE;
+        bool isInViewNode = parentItem && parentItem->getType() == DbTreeItem::Type::VIEW ||
+                grandParentItem && grandParentItem->getType() == DbTreeItem::Type::VIEW;
 
         // Add database should always be available, as well as a copy of an item
         enabled << ADD_DB << NEW_DB << OPEN_DB << OPEN_FILE << COPY;
@@ -314,12 +318,18 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER << RENAME_VIEW;
                     break;
                 case DbTreeItem::Type::COLUMNS:
-                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN
-                            << ADD_INDEX << ADD_TRIGGER;
+                    if (isInTableNode)
+                        enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN
+                                << ADD_INDEX << ADD_TRIGGER;
+                    else if (isInViewNode)
+                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::COLUMN:
-                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << DEL_COLUMN
-                            << EDIT_COLUMN << ADD_INDEX << ADD_TRIGGER << RENAME_COLUMN;
+                    if (isInTableNode)
+                        enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << DEL_COLUMN
+                                << EDIT_COLUMN << ADD_INDEX << ADD_TRIGGER << RENAME_COLUMN;
+                    else if (isInViewNode)
+                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER;
                     break;
             }
         }
@@ -411,6 +421,11 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     {
         DbTreeItem* parentItem = currItem->parentDbTreeItem();
         DbTreeItem* grandParentItem = parentItem ? parentItem->parentDbTreeItem() : nullptr;
+        bool isInTableNode = parentItem && parentItem->getType() == DbTreeItem::Type::TABLE ||
+                grandParentItem && grandParentItem->getType() == DbTreeItem::Type::TABLE;
+        bool isInViewNode = parentItem && parentItem->getType() == DbTreeItem::Type::VIEW ||
+                grandParentItem && grandParentItem->getType() == DbTreeItem::Type::VIEW;
+
         DbTreeItem::Type itemType = currItem->getType();
         switch (itemType)
         {
@@ -521,19 +536,20 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             {
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
-                if (parentItem && parentItem->getType() == DbTreeItem::Type::TABLE)
+                if (isInTableNode)
                 {
                     actions += ActionEntry(ADD_TABLE);
                     actions += ActionEntry(EDIT_TABLE);
                     actions += ActionEntry(DEL_TABLE);
+                    actions += ActionEntry(_separator);
                 }
-                else
+                else if (isInViewNode)
                 {
                     actions += ActionEntry(ADD_VIEW);
                     actions += ActionEntry(EDIT_VIEW);
                     actions += ActionEntry(DEL_VIEW);
+                    actions += ActionEntry(_separator);
                 }
-                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             }
@@ -544,19 +560,20 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(RENAME_TRIGGER);
                 actions += ActionEntry(DEL_TRIGGER);
                 actions += ActionEntry(_separator);
-                if (grandParentItem && grandParentItem->getType() == DbTreeItem::Type::TABLE)
+                if (isInTableNode)
                 {
                     actions += ActionEntry(ADD_TABLE);
                     actions += ActionEntry(EDIT_TABLE);
                     actions += ActionEntry(DEL_TABLE);
+                    actions += ActionEntry(_separator);
                 }
-                else
+                else if (isInViewNode)
                 {
                     actions += ActionEntry(ADD_VIEW);
                     actions += ActionEntry(EDIT_VIEW);
                     actions += ActionEntry(DEL_VIEW);
+                    actions += ActionEntry(_separator);
                 }
-                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             }
@@ -580,36 +597,64 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             case DbTreeItem::Type::COLUMNS:
                 actions += ActionEntry(ADD_COLUMN);
                 actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_TABLE);
-                actions += ActionEntry(EDIT_TABLE);
-                actions += ActionEntry(DEL_TABLE);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_INDEX);
+                if (isInTableNode)
+                {
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                    actions += ActionEntry(_separator);
+                }
+                else if (isInViewNode)
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                    actions += ActionEntry(_separator);
+                }
+                if (isInTableNode)
+                    actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
-                actions += ActionEntry(IMPORT_TABLE);
-                actions += ActionEntry(EXPORT_TABLE);
-                actions += ActionEntry(POPULATE_TABLE);
-                actions += ActionEntry(_separator);
+                if (isInTableNode)
+                {
+                    actions += ActionEntry(IMPORT_TABLE);
+                    actions += ActionEntry(EXPORT_TABLE);
+                    actions += ActionEntry(POPULATE_TABLE);
+                    actions += ActionEntry(_separator);
+                }
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::COLUMN:
-                actions += ActionEntry(ADD_COLUMN);
-                actions += ActionEntry(EDIT_COLUMN);
-                actions += ActionEntry(RENAME_COLUMN);
-                actions += ActionEntry(DEL_COLUMN);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_TABLE);
-                actions += ActionEntry(EDIT_TABLE);
-                actions += ActionEntry(DEL_TABLE);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_INDEX);
+                if (isInTableNode)
+                {
+                    actions += ActionEntry(ADD_COLUMN);
+                    actions += ActionEntry(EDIT_COLUMN);
+                    actions += ActionEntry(RENAME_COLUMN);
+                    actions += ActionEntry(DEL_COLUMN);
+                    actions += ActionEntry(_separator);
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                    actions += ActionEntry(_separator);
+                }
+                else if (isInViewNode)
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                    actions += ActionEntry(_separator);
+                }
+                if (isInTableNode)
+                    actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
-                actions += ActionEntry(IMPORT_TABLE);
-                actions += ActionEntry(EXPORT_TABLE);
-                actions += ActionEntry(POPULATE_TABLE);
-                actions += ActionEntry(_separator);
+                if (isInTableNode)
+                {
+                    actions += ActionEntry(IMPORT_TABLE);
+                    actions += ActionEntry(EXPORT_TABLE);
+                    actions += ActionEntry(POPULATE_TABLE);
+                    actions += ActionEntry(_separator);
+                }
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::ITEM_PROTOTYPE:

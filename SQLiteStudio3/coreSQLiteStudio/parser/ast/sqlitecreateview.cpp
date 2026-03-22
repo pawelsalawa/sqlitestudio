@@ -153,14 +153,14 @@ TokenList SqliteCreateView::equivalentSelectTokens() const
     bool useCTE = false;
     if (!hasStar && columns.size() != core->resultColumns.size())
     {
-        qWarning() << "View with a column list clause and non-matching count of columns in SELECT. "
-                   << "Expect an error if result column count does not match column list length.";
+        qDebug() << "View with a column list clause and non-matching count of columns in SELECT. "
+                 << "Expect an error if result column count does not match column list length.";
         useCTE = true;
     }
     if (hasStar)
     {
-        qWarning() << "View with a column list clause and SELECT *. "
-                   << "Expect an error if result column count does not match column list length.";
+        qDebug() << "View with a column list clause and SELECT *. "
+                 << "Expect an error if result column count does not match column list length.";
         useCTE = true;
     }
     if (useCTE)
