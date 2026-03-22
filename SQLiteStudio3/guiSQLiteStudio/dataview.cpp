@@ -588,9 +588,12 @@ void DataView::adjustColumnWidth(SqlQueryItem* item)
     if (!CFG_UI.General.EnlargeColumnForValue.get())
         return;
 
+    int wd = gridView->columnWidth(col);
     gridView->resizeColumnToContents(col);
-    if (gridView->columnWidth(col) > CFG_UI.General.MaxInitialColumnWith.get())
-        gridView->setColumnWidth(col, CFG_UI.General.MaxInitialColumnWith.get());
+
+    wd = qMax(wd, gridView->columnWidth(col));
+    wd = qMin(wd, CFG_UI.General.MaxInitialColumnWith.get());
+    gridView->setColumnWidth(col, wd);
 }
 
 void DataView::syncFilterScrollPosition()
