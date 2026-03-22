@@ -1428,82 +1428,82 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="283"/>
         <source>Expand tables when connected to a database</source>
-        <translation type="unfinished">Expand tables when connected to a database</translation>
+        <translation>Разворачивать таблицы при подключении к базе данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="405"/>
         <source>Expand views when connected to a database</source>
-        <translation type="unfinished">Expand views when connected to a database</translation>
+        <translation>Разворачивать представления при подключении к базе данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="319"/>
         <source>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</source>
-        <translation type="unfinished">Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</translation>
+        <translation>Развёртывание таблицы или представления также разворачивает узлы Столбцы, Индексы и Триггеры для отображения их содержимого.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="293"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По умолчанию схема базы данных доступна через имя таблицы &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt;.&lt;br/&gt;В старых версиях SQLite использовалось имя &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt;, которое по-прежнему поддерживается как псевдоним.&lt;br/&gt;Здесь можно переключиться на использование устаревшего имени.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="296"/>
         <source>Prefer sqlite_master over sqlite_schema table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпочитать sqlite_master вместо имени таблицы sqlite_schema</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="299"/>
         <source>General.PreferMasterOverSchema</source>
-        <translation type="unfinished"></translation>
+        <translation>General.PreferMasterOverSchema</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="322"/>
         <source>Expand columns, indexes and triggers together with the table</source>
-        <translation type="unfinished">Expand columns, indexes and triggers together with the table</translation>
+        <translation>Разворачивать столбцы, индексы и триггеры вместе с таблицей</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="325"/>
         <source>DbList.ExpandSubNodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ExpandSubNodes</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="335"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать объекты (таблицы, индексы, триггеры и представления) по алфавиту</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="345"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Дополнительные метки — это метки, отображаемые рядом с именами в списке баз данных (синие, если не настроено иначе). Включение данного параметра добавит метки для баз данных, недействительных баз данных и агрегированных узлов (группа столбцов, группа индексов, группа триггеров). Дополнительные параметры меток см. ниже.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="392"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;По умолчанию системные таблицы и индексы скрыты из списка.&lt;br/&gt;Включите этот параметр для отображения внутренних объектов SQLite, таких как &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; и автоматически созданные индексы.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="398"/>
         <source>DbList.ShowSystemObjects</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ShowSystemObjects</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="437"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;При включении файлы баз данных будут добавляться без отображения стандартного диалога базы данных. Если открытие базы данных с параметрами по умолчанию завершится ошибкой (например, зашифрованная база данных или требуется другой драйвер), диалог будет показан для настройки параметров. При отключении диалог будет отображаться всегда.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="440"/>
         <source>Skip the dialog when possible</source>
-        <translation type="unfinished">Skip the dialog when possible</translation>
+        <translation>Пропускать диалог, когда возможно</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="540"/>
         <source>Number of memorized table populating configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество запомненных конфигураций заполнения таблицы</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="579"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Преобразует разделители строк Unicode (U+2028, U+2029) в стандартный символ LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) при редактировании текста в редакторе режима формы.&lt;/p&gt;&lt;p&gt;Отключите для сохранения исходных символов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="912"/>
@@ -1576,7 +1576,7 @@
         <location filename="../dialogs/configdialog.ui" line="1938"/>
         <location filename="../dialogs/configdialog.ui" line="2130"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
+        <translation>Ж</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1396"/>
@@ -1589,7 +1589,7 @@
         <location filename="../dialogs/configdialog.ui" line="1963"/>
         <location filename="../dialogs/configdialog.ui" line="2155"/>
         <source>I</source>
-        <translation type="unfinished">I</translation>
+        <translation>К</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1571"/>
@@ -2028,7 +2028,7 @@
         <location filename="../dataview.cpp" line="216"/>
         <source>Find in data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Поиск в данных</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="217"/>
@@ -2214,7 +2214,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Change</source>
-        <translation type="unfinished">Change</translation>
+        <translation>Изменить</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="127"/>
@@ -2291,18 +2291,18 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dialogs/dbdialog.cpp" line="657"/>
         <source>Automatic</source>
         <comment>database name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="658"/>
         <source>Change</source>
         <comment>database name</comment>
-        <translation type="unfinished">Change</translation>
+        <translation>Изменить</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="667"/>
         <source>(empty)</source>
-        <translation type="unfinished">(empty)</translation>
+        <translation>(пусто)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="837"/>
@@ -2590,52 +2590,52 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="146"/>
         <source>&amp;Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Создать новую базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>&amp;Open existing database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Открыть существующую базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="148"/>
         <source>&amp;Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Открыть существующую базу данных или SQL-файл</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="149"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="151"/>
         <source>Rename the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="161"/>
         <source>Rename the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать таблицу</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Rename the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать индекс</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="174"/>
         <source>Rename the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать триггер</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Rename the view</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать представление</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="182"/>
         <source>Rename the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать столбец</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="186"/>
@@ -2814,12 +2814,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2341"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;Подключено.&lt;/p&gt;&lt;p&gt;Нажмите здесь для отключения или средней кнопкой мыши на базе данных.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2349"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;Отключено.&lt;/p&gt;&lt;p&gt;Нажмите здесь для подключения или дважды щёлкните на базе данных.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -2872,7 +2872,7 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="488"/>
         <source>Format:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Формат:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="491"/>
@@ -2896,13 +2896,13 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="503"/>
         <source>Double-click to edit this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Двойной щелчок для редактирования этой базы данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="505"/>
         <source>Double-click to connect to this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Двойной щелчок для подключения к этой базе данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="515"/>
@@ -3636,12 +3636,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define the function parameters here. The specified names are available as variables in the implementation code and contain the values passed to the function. Arguments are also accessible through the language’s standard argument container (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Здесь можно определить параметры функции. Указанные имена доступны как переменные в коде реализации и содержат значения, переданные в функцию. Аргументы также доступны через стандартный контейнер аргументов языка (например, &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; в Tcl или &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; в JavaScript).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function accepts a variable number of arguments. In this mode arguments are available only through the language-specific mechanism (e.g. &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; in Tcl or &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; in JavaScript).&lt;br/&gt;If disabled, arguments are defined below and their names are also available as variables in the implementation code, while still remaining accessible through the language’s standard argument container.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Указывает, что функция принимает переменное количество аргументов. В этом режиме аргументы доступны только через языко-специфичный механизм (например, &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;$argv&lt;/span&gt; в Tcl или &lt;span style=&quot; font-family:&apos;monospace&apos;; font-weight:700;&quot;&gt;arguments&lt;/span&gt; в JavaScript).&lt;br/&gt;Если отключено, аргументы определяются ниже, и их имена также доступны как переменные в коде реализации, оставаясь при этом доступными через стандартный контейнер аргументов языка.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="189"/>
@@ -3671,12 +3671,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the language used to implement the function. The chosen language determines how the function code is interpreted and which syntax, variables, and runtime environment are available in the implementation blocks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выбирает язык, используемый для реализации функции. Выбранный язык определяет способ интерпретации кода функции, а также синтаксис, переменные и среду выполнения, доступные в блоках реализации.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="267"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selects the type of function being implemented. The selected type determines how SQLite invokes the function and which implementation blocks must be provided: a single code block for scalar functions, step-based processing for aggregate functions, or additional window-frame handling (including inverse step) for window aggregate functions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выбирает тип реализуемой функции. Выбранный тип определяет, как SQLite вызывает функцию и какие блоки реализации необходимо предоставить: один блок кода для скалярных функций, пошаговая обработка для агрегирующих функций или дополнительная обработка оконного фрейма (включая обратный шаг) для оконных агрегирующих функций.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="274"/>
@@ -3691,7 +3691,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="291"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Indicates that the function always returns the same result for the same input arguments. Required for use in some schema expressions (e.g. CHECK constraints, partial indexes, expression indexes, generated columns) and may allow SQLite to apply additional optimizations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Указывает, что функция всегда возвращает одинаковый результат для одинаковых входных аргументов. Требуется для использования в некоторых выражениях схемы (например, ограничения CHECK, частичные индексы, индексы выражений, вычисляемые столбцы) и может позволить SQLite применять дополнительные оптимизации.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="294"/>
@@ -3701,52 +3701,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="315"/>
         <source>Function code</source>
-        <translation type="unfinished">Function code</translation>
+        <translation>Код функции</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the function is called. It receives the function arguments and must compute and return the result. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Код, выполняемый при вызове функции. Он получает аргументы функции и должен вычислить и вернуть результат. Значения параметров доступны как переменные с именами, совпадающими с объявленными параметрами функции.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="332"/>
         <source>Initialization</source>
-        <translation type="unfinished">Initialization</translation>
+        <translation>Инициализация</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="338"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed once before the first aggregation step. Use it to initialize variables that store the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Код, выполняемый однократно перед первым шагом агрегирования. Используется для инициализации переменных, хранящих состояние агрегирования. Значения параметров доступны как переменные с именами, совпадающими с объявленными параметрами функции.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="349"/>
         <source>Step</source>
-        <translation type="unfinished">Step</translation>
+        <translation>Шаг</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="355"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed for each input row. It should update the aggregation state using the current arguments. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Код, выполняемый для каждой входной строки. Должен обновлять состояние агрегирования с использованием текущих аргументов. Значения параметров доступны как переменные с именами, совпадающими с объявленными параметрами функции.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="366"/>
         <source>Inverse</source>
-        <translation type="unfinished">Inverse</translation>
+        <translation>Обратный шаг</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="372"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when a row leaves the window frame. The parameter values correspond to the row being removed from the window and should be used to subtract its contribution from the aggregation state. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Код, выполняемый когда строка покидает оконный фрейм. Значения параметров соответствуют строке, удаляемой из окна, и должны использоваться для вычитания её вклада из состояния агрегирования. Значения параметров доступны как переменные с именами, совпадающими с объявленными параметрами функции.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="383"/>
         <source>Aggregated value</source>
-        <translation type="unfinished">Aggregated value</translation>
+        <translation>Агрегированное значение</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="389"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code that computes and returns the aggregated result based on the current aggregation state. In window functions it may be executed multiple times to return the current window value. In regular aggregate functions it is called once as the final function. Parameter values are available as variables named the same as the declared function parameters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Код, который вычисляет и возвращает агрегированный результат на основе текущего состояния агрегирования. В оконных функциях может выполняться несколько раз для возврата текущего значения окна. В обычных агрегирующих функциях вызывается один раз в качестве финальной функции. Значения параметров доступны как переменные с именами, совпадающими с объявленными параметрами функции.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3816,7 +3816,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="120"/>
         <source>Window</source>
-        <translation type="unfinished">Window</translation>
+        <translation>Оконная</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="501"/>
@@ -4917,7 +4917,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../constraints/tableprimarykeypanel.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../constraints/tableprimarykeypanel.ui" line="20"/>
@@ -5130,7 +5130,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="23"/>
         <source>Find in data</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск в данных</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="24"/>
@@ -5174,12 +5174,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="36"/>
         <source>Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать новую базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="37"/>
         <source>Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть существующую базу данных или SQL-файл</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="38"/>
@@ -5189,7 +5189,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="39"/>
         <source>Rename selected database</source>
-        <translation type="unfinished"></translation>
+        <translation>Переименовать выбранную базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="40"/>
@@ -5417,12 +5417,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="35"/>
         <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Выделить всё содержимое редактора</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
         <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить содержимое в файл</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
@@ -5462,7 +5462,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="46"/>
         <source>Open the object at current position</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть объект в текущей позиции</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="47"/>
@@ -5521,22 +5521,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="67"/>
         <source>Select new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать новый файл базы данных</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="73"/>
         <source>SQLite database or SQL file</source>
-        <translation type="unfinished">SQLite database or SQL file</translation>
+        <translation>База данных SQLite или SQL-файл</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="76"/>
         <source>SQL files</source>
-        <translation type="unfinished">SQL files</translation>
+        <translation>SQL-файлы</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="78"/>
         <source>Select a file to open</source>
-        <translation type="unfinished">Select a file to open</translation>
+        <translation>Выберите файл для открытия</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="52"/>
@@ -5828,7 +5828,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="113"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Reached the end of document.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Достигнут конец документа.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="20"/>
@@ -6149,7 +6149,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
         <source>ROWID is not available for this cell.</source>
-        <translation type="unfinished">ROWID is not available for this cell.</translation>
+        <translation>ROWID недоступен для этой ячейки.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="230"/>
@@ -6344,7 +6344,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
         <source>Remove custom sorting (Middle click)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить указанную сортировку (средняя кнопка мыши)</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
