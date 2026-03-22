@@ -210,17 +210,17 @@
         <location filename="../dbobjectorganizer.cpp" line="130"/>
         <location filename="../dbobjectorganizer.cpp" line="149"/>
         <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="131"/>
         <source>Failed to parse object definition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to parse object definition.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="166"/>
         <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="462"/>

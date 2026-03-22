@@ -39,7 +39,7 @@
         <location filename="../db/chainexecutor.cpp" line="73"/>
         <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+        <translation>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -130,18 +130,18 @@
     <message>
         <location filename="../completionhelper.cpp" line="267"/>
         <source>String</source>
-        <translation type="unfinished">String</translation>
+        <translation>String</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="270"/>
         <location filename="../completionhelper.cpp" line="273"/>
         <source>Number</source>
-        <translation type="unfinished">Number</translation>
+        <translation>Number</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="285"/>
         <source>BLOB literal</source>
-        <translation type="unfinished">BLOB literal</translation>
+        <translation>BLOB literal</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="445"/>
@@ -210,17 +210,220 @@
         <location filename="../dbobjectorganizer.cpp" line="130"/>
         <location filename="../dbobjectorganizer.cpp" line="149"/>
         <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Cannot execute query on closed database.</source>
+        <translation>Неможливо виконати запит в закритій базі даних.</translation>
+    </message>
+    <message>
+        <location filename="../db/abstractdb.cpp" line="749"/>
+        <source>Error attaching database %1: %2</source>
+        <translation>Помилка підключення бази даних %1: %2</translation>
+    </message>
+</context>
+<context>
+    <name>ChainExecutor</name>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="38"/>
+        <source>The database for executing queries was not defined.</source>
+        <comment>chain executor</comment>
+        <translation>Не вказана база даних для виконання запитів.</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="45"/>
+        <source>The database for executing queries was not open.</source>
+        <comment>chain executor</comment>
+        <translation>Не відкрита база даних для виконання запитів.</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="58"/>
+        <source>Could not disable foreign keys in the database. Details: %1</source>
+        <comment>chain executor</comment>
+        <translation>Не вдалося відключити зовнішні ключі в базі даних. Подробиці: %1</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="73"/>
+        <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
+        <comment>chain executor</comment>
+        <translation>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="82"/>
+        <source>Could not start a database transaction. Details: %1</source>
+        <comment>chain executor</comment>
+        <translation>Неможливо розпочати транзакцію. Подробиці: %1</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="112"/>
+        <source>Interrupted</source>
+        <comment>chain executor</comment>
+        <translation>Перервано</translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="180"/>
+        <source>Could not commit a database transaction. Details: %1</source>
+        <comment>chain executor</comment>
+        <translation>Неможливо завершити транзакцію. Подробиці: %1</translation>
+    </message>
+</context>
+<context>
+    <name>CompletionHelper</name>
+    <message>
+        <location filename="../completionhelper.cpp" line="163"/>
+        <source>New row reference</source>
+        <translation>Нове посилання на рядок</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="170"/>
+        <source>Old row reference</source>
+        <translation>Старе посилання на рядок</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="175"/>
+        <source>New table name</source>
+        <translation>Назва нової таблиці</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="178"/>
+        <source>New index name</source>
+        <translation>Назва нового індексу</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="181"/>
+        <source>New view name</source>
+        <translation>Нова назва розрізу даних (view)</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="184"/>
+        <source>New trigger name</source>
+        <translation>Назва нової тригера</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="187"/>
+        <source>Table or column alias</source>
+        <translation>Псевдонім таблиці або стовпця</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="190"/>
+        <source>transaction name</source>
+        <translation>назва транзакції</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="193"/>
+        <source>New column name</source>
+        <translation>Нове ім&apos;я стовпця</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="196"/>
+        <source>Column data type</source>
+        <translation>Тип даних стовпця</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="199"/>
+        <source>Constraint name</source>
+        <translation>Назва обмеження</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="215"/>
+        <source>Error message</source>
+        <translation>Повідомлення про помилку</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="264"/>
+        <source>Any word</source>
+        <translation>Будь-яке слово</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="267"/>
+        <source>String</source>
+        <translation>String</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="270"/>
+        <location filename="../completionhelper.cpp" line="273"/>
+        <source>Number</source>
+        <translation>Number</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="285"/>
+        <source>BLOB literal</source>
+        <translation>BLOB literal</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="445"/>
+        <source>Default database</source>
+        <translation>База даних за замовчуванням</translation>
+    </message>
+    <message>
+        <location filename="../completionhelper.cpp" line="446"/>
+        <source>Temporary objects database</source>
+        <translation>База даних тимчасових об&apos;єктів</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigImpl</name>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="879"/>
+        <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
+        <translation>Не вдалося почати транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="886"/>
+        <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
+        <translation>Не вдалося завершити транзакцію бази даних для видалення SQL історії, тому вона не видалена.</translation>
+    </message>
+</context>
+<context>
+    <name>DbManagerImpl</name>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
+        <source>Could not add database %1: %2</source>
+        <translation>Не вдалося додати базу даних %1: %2</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
+        <source>Database %1 could not be updated, because of an error: %2</source>
+        <translation>База даних %1 не може бути оновлена через помилку: %2</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
+        <source>Database file doesn&apos;t exist.</source>
+        <translation>Файл бази даних не існує.</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
+        <source>No supporting plugin loaded.</source>
+        <translation>Модуль підтримки не завантажений.</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
+        <source>Database could not be initialized.</source>
+        <translation>Неможливо ініціалізувати базу даних.</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
+        <source>No suitable database driver plugin found.</source>
+        <translation>Не знайдено відповідного драйвера бази даних.</translation>
+    </message>
+</context>
+<context>
+    <name>DbObjectOrganizer</name>
+    <message>
+        <location filename="../dbobjectorganizer.cpp" line="96"/>
+        <location filename="../dbobjectorganizer.cpp" line="130"/>
+        <location filename="../dbobjectorganizer.cpp" line="149"/>
+        <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="131"/>
         <source>Failed to parse object definition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to parse object definition.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="166"/>
         <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="462"/>
@@ -389,7 +592,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
-        <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+        <translation>Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
@@ -882,7 +1085,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populatescript.cpp" line="69"/>
         <source>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</source>
-        <translation type="unfinished">Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
+        <translation>Could not get evaluation context, probably the %1 scripting plugin is not configured properly</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="83"/>
@@ -1038,7 +1241,7 @@ The view will remain as it is.</source>
         <location filename="../db/queryexecutor.cpp" line="421"/>
         <location filename="../db/queryexecutor.cpp" line="691"/>
         <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+        <translation>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="610"/>
@@ -1051,7 +1254,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../db/queryexecutorsteps/queryexecutorsmarthints.cpp" line="77"/>
         <source>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</source>
-        <translation type="unfinished">Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
+        <translation>Column %1 in table %2 is referencing column %3 in table %4, but these columns have different data types: %5 vs. %6. This may cause issues related to foreign key value matching.</translation>
     </message>
 </context>
 <context>
@@ -1072,12 +1275,12 @@ The view will remain as it is.</source>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="56"/>
         <source>Could not execute SQL, because application has failed to start transaction: %1</source>
-        <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
+        <translation>Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="87"/>
         <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
-        <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
+        <translation>Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="103"/>
@@ -1087,22 +1290,22 @@ The view will remain as it is.</source>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="148"/>
         <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
-        <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
+        <translation>Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="153"/>
         <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
-        <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
+        <translation>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="159"/>
         <source>Finished executing %1 queries in %2 seconds.</source>
-        <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
+        <translation>Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
         <location filename="../sqlfileexecutor.cpp" line="166"/>
         <source>Could not execute SQL due to error.</source>
-        <translation type="unfinished">Could not execute SQL due to error.</translation>
+        <translation>Could not execute SQL due to error.</translation>
     </message>
 </context>
 <context>
@@ -1143,12 +1346,12 @@ The view will remain as it is.</source>
     <message>
         <location filename="../db/abstractdb3.h" line="693"/>
         <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-        <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+        <translation>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb3.h" line="994"/>
         <source>Registered default collation on demand, under name: %1</source>
-        <translation type="unfinished">Registered default collation on demand, under name: %1</translation>
+        <translation>Registered default collation on demand, under name: %1</translation>
     </message>
 </context>
 <context>

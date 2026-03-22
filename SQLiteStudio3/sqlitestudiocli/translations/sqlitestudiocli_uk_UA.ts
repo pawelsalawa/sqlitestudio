@@ -132,7 +132,7 @@
     <message>
         <location filename="../commands/clicommandclose.cpp" line="40"/>
         <source>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</source>
-        <translation type="unfinished">Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
+        <translation>Closes the database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be the name of the database to close (as printed by the %1 command). If &lt;name&gt; is not provided, then the current working database is closed (see help for %2 for details).</translation>
     </message>
     <message>
         <location filename="../commands/clicommandclose.cpp" line="50"/>
@@ -433,7 +433,7 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widths, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-        <translation type="unfinished">When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
+        <translation>When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
 - CLASSIC - columns are separated by a comma, not aligned,
 - FIXED   - columns have equal and fixed width, they always fit into terminal window width, but the data in columns can be cut off,
 - COLUMNS - like FIXED, but smarter (do not use with huge result sets, see details below),
@@ -741,7 +741,7 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-        <translation type="unfinished">Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
+        <translation>Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
 
 What is current working database?
 When you type a SQL query to be executed, it is executed on the default database, which is also known as the current working database. Most of database-related commands can also work using default database, if no database was provided in their arguments. The current database is always identified by command line prompt. The default database is always defined (unless there is no database on the list at all).
@@ -820,37 +820,37 @@ Expected one of: %2</source>
     <message>
         <location filename="../main.cpp" line="35"/>
         <source>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</source>
-        <translation type="unfinished">Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
+        <translation>Executes provided SQL file (including all rich features of SQLiteStudio&apos;s query executor) on the specified database file and quits. The database parameter becomes mandatory if this option is used.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="38"/>
         <source>SQL file</source>
-        <translation type="unfinished">SQL file</translation>
+        <translation>SQL file</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="39"/>
         <source>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</source>
-        <translation type="unfinished">Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
+        <translation>Character encoding to use when reading SQL file (-e option). Use -cl to list available codecs. Defaults to %1.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="42"/>
         <source>codec</source>
-        <translation type="unfinished">codec</translation>
+        <translation>codec</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="43"/>
         <source>Lists available codecs to be used with -c option and quits.</source>
-        <translation type="unfinished">Lists available codecs to be used with -c option and quits.</translation>
+        <translation>Lists available codecs to be used with -c option and quits.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="45"/>
         <source>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</source>
-        <translation type="unfinished">When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
+        <translation>When used together with -e option, the execution will not stop on an error, but rather continue until the end, ignoring errors.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>Checks for updates online and prints the result to standard output.</source>
-        <translation type="unfinished">Checks for updates online and prints the result to standard output.</translation>
+        <translation>Checks for updates online and prints the result to standard output.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="66"/>
@@ -865,32 +865,32 @@ Expected one of: %2</source>
     <message>
         <location filename="../main.cpp" line="87"/>
         <source>Invalid codec: %1. Use -cl option to list available codecs.</source>
-        <translation type="unfinished">Invalid codec: %1. Use -cl option to list available codecs.</translation>
+        <translation>Invalid codec: %1. Use -cl option to list available codecs.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="122"/>
         <source>Database file argument is mandatory when executing SQL file.</source>
-        <translation type="unfinished">Database file argument is mandatory when executing SQL file.</translation>
+        <translation>Database file argument is mandatory when executing SQL file.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="128"/>
         <source>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</source>
-        <translation type="unfinished">Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
+        <translation>Could not open specified database for executing SQL file. You may try using -d option to find out more details.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="173"/>
         <source>New updates are available: %1. Url: %2</source>
-        <translation type="unfinished">New updates are available: %1. Url: %2</translation>
+        <translation>New updates are available: %1. Url: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="177"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished">You&apos;re running the most recent version. No updates are available.</translation>
+        <translation>You&apos;re running the most recent version. No updates are available.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="181"/>
         <source>Error checking for updates: %1</source>
-        <translation type="unfinished">Error checking for updates: %1</translation>
+        <translation>Error checking for updates: %1</translation>
     </message>
 </context>
 </TS>

@@ -1443,17 +1443,17 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="293"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="296"/>
         <source>Prefer sqlite_master over sqlite_schema table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefer sqlite_master over sqlite_schema table name</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="299"/>
         <source>General.PreferMasterOverSchema</source>
-        <translation type="unfinished"></translation>
+        <translation>General.PreferMasterOverSchema</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="322"/>
@@ -1463,27 +1463,27 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="325"/>
         <source>DbList.ExpandSubNodes</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ExpandSubNodes</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="335"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Sort objects (tables, indexes, triggers and views) alphabetically</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="345"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="392"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="398"/>
         <source>DbList.ShowSystemObjects</source>
-        <translation type="unfinished"></translation>
+        <translation>DbList.ShowSystemObjects</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="437"/>
@@ -1498,12 +1498,12 @@
     <message>
         <location filename="../dialogs/configdialog.ui" line="540"/>
         <source>Number of memorized table populating configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Number of memorized table populating configurations</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="579"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="912"/>
@@ -2028,7 +2028,7 @@
         <location filename="../dataview.cpp" line="216"/>
         <source>Find in data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Find in data</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="217"/>
@@ -2291,7 +2291,7 @@ Browsing other pages will be possible after the row counting is done.</translati
         <location filename="../dialogs/dbdialog.cpp" line="657"/>
         <source>Automatic</source>
         <comment>database name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Automatic</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="658"/>
@@ -2590,52 +2590,52 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
         <location filename="../dbtree/dbtree.cpp" line="146"/>
         <source>&amp;Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Create new database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="147"/>
         <source>&amp;Open existing database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Open existing database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="148"/>
         <source>&amp;Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Open existing database or SQL file</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="149"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Add a database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="151"/>
         <source>Rename the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="161"/>
         <source>Rename the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the table</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Rename the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the index</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="174"/>
         <source>Rename the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the trigger</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Rename the view</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the view</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="182"/>
         <source>Rename the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename the column</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="186"/>
@@ -2816,12 +2816,12 @@ All objects from this group will be moved to parent group.</translation>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2341"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="2349"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -2874,7 +2874,7 @@ All objects from this group will be moved to parent group.</translation>
         <location filename="../dbtree/dbtreemodel.cpp" line="488"/>
         <source>Format:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Format:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="491"/>
@@ -2898,13 +2898,13 @@ All objects from this group will be moved to parent group.</translation>
         <location filename="../dbtree/dbtreemodel.cpp" line="503"/>
         <source>Double-click to edit this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Double-click to edit this database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="505"/>
         <source>Double-click to connect to this database</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Double-click to connect to this database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="515"/>
@@ -5132,7 +5132,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="23"/>
         <source>Find in data</source>
-        <translation type="unfinished"></translation>
+        <translation>Find in data</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="24"/>
@@ -5176,12 +5176,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="36"/>
         <source>Create new database</source>
-        <translation type="unfinished"></translation>
+        <translation>Create new database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="37"/>
         <source>Open existing database or SQL file</source>
-        <translation type="unfinished"></translation>
+        <translation>Open existing database or SQL file</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="38"/>
@@ -5191,7 +5191,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="39"/>
         <source>Rename selected database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rename selected database</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="40"/>
@@ -5419,12 +5419,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="35"/>
         <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Select whole editor contents</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
         <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Save contents into a file</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
@@ -5464,7 +5464,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="46"/>
         <source>Open the object at current position</source>
-        <translation type="unfinished"></translation>
+        <translation>Open the object at current position</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="47"/>
@@ -5523,7 +5523,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="67"/>
         <source>Select new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Select new database file</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="73"/>
@@ -5830,7 +5830,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="113"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Reached the end of document.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Reached the end of document.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="20"/>
@@ -6347,7 +6347,7 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
         <source>Remove custom sorting (Middle click)</source>
-        <translation type="unfinished"></translation>
+        <translation>Remove custom sorting (Middle click)</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
