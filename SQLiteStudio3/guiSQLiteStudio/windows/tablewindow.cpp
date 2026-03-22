@@ -33,6 +33,7 @@
 #include "dialogs/populatedialog.h"
 #include "common/dbcombobox.h"
 #include "tablemodifier.h"
+#include "datagrid/sqlqueryview.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
@@ -702,6 +703,7 @@ QVariant TableWindow::saveSession()
     QHash<QString,QVariant> sessionValue;
     sessionValue["table"] = table;
     sessionValue["db"] = db->getName();
+    sessionValue["customDelegates"] = ui->dataView->getGridView()->getCustomDelegatesForSession();
     return sessionValue;
 }
 
@@ -734,6 +736,12 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     {
         notifyWarn(tr("Could not restore window '%1', because the table %2 doesn't exist in the database %3.").arg(value["title"].toString(), table, db->getName()));
         return false;
+    }
+
+    if (value.contains("customDelegates"))
+    {
+        QVariant gridViewDelegates = value["customDelegates"];
+        ui->dataView->getGridView()->restoreCustomDelegatesFromSession(gridViewDelegates);
     }
 
     initDbAndTable();

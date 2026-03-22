@@ -20,6 +20,7 @@
 #include "services/codeformatter.h"
 #include "themetuner.h"
 #include "datagrid/sqlviewmodel.h"
+#include "datagrid/sqlqueryview.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
@@ -96,6 +97,7 @@ QVariant ViewWindow::saveSession()
     QHash<QString,QVariant> sessionValue;
     sessionValue["view"] = view;
     sessionValue["db"] = db->getName();
+    sessionValue["customDelegates"] = ui->dataView->getGridView()->getCustomDelegatesForSession();
     return sessionValue;
 }
 
@@ -134,6 +136,12 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
     {
         notifyWarn(tr("Could not restore window '%1', because the view %2 doesn't exist in the database %3.").arg(value["title"].toString(), view, db->getName()));
         return false;
+    }
+
+    if (value.contains("customDelegates"))
+    {
+        QVariant gridViewDelegates = value["customDelegates"];
+        ui->dataView->getGridView()->restoreCustomDelegatesFromSession(gridViewDelegates);
     }
 
     initView();
