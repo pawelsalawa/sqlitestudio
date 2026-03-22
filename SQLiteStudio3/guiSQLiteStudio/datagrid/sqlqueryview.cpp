@@ -29,6 +29,7 @@
 #include <QCryptographicHash>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <QScopedValueRollback>
 #include <services/pluginmanager.h>
 #include <multieditor/multieditorwidgetplugin.h>
 
@@ -1293,6 +1294,7 @@ size_t qHash(SqlQueryView::Action action)
 SqlQueryView::Header::Header(SqlQueryView* parent) :
     QHeaderView(Qt::Horizontal, parent)
 {
+    connect(this, &QHeaderView::sectionResized, this, &SqlQueryView::Header::handleSectionResize);
 }
 
 QSize SqlQueryView::Header::sectionSizeFromContents(int section) const
@@ -1320,5 +1322,47 @@ void SqlQueryView::Header::mousePressEvent(QMouseEvent *e)
         }
     }
 
+    if (e->button() == Qt::LeftButton)
+    {
+        lastSectionSizes.clear();
+        int sectionCount = count();
+        for (int i = 0; i < sectionCount; i++)
+            lastSectionSizes[i] = sectionSize(i);
+    }
+
     QHeaderView::mousePressEvent(e);
+}
+
+void SqlQueryView::Header::mouseDoubleClickEvent(QMouseEvent* e)
+{
+    dblClickResizing = true;
+    QHeaderView::mouseDoubleClickEvent(e);
+    dblClickResizing = false;
+}
+
+void SqlQueryView::Header::handleSectionResize(int logicalIndex, int oldSize, int newSize)
+{
+    Q_UNUSED(oldSize);
+    Q_UNUSED(newSize);
+
+    if (ignoreResizing)
+        return;
+
+    QScopedValueRollback scopedIgnore(ignoreResizing, true);
+
+    SqlQueryView* view = qobject_cast<SqlQueryView*>(parentWidget());
+    QList<int> cols = view->selectionModel()->selectedColumns() | MAP(idx, {return idx.column();});
+    if (cols.size() <= 1 || !cols.contains(logicalIndex))
+        return;
+
+    if (dblClickResizing)
+    {
+        for (int col : cols)
+        {
+            if (col == logicalIndex)
+                continue;
+
+            view->resizeColumnToContents(col);
+        }
+    }
 }

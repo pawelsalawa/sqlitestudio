@@ -36,7 +36,7 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(DELETE_ROW,        Qt::Key_Delete,                          QObject::tr("Delete selected data row"))
     CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                          QObject::tr("Insert new data row"))
     CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::Key_F4,                              QObject::tr("Open contents of selected cell in a separate editor"))
-    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT | Qt::ALT | Qt::Key_H,           QObject::tr("Toggle the height adjustment of rows"))
+    CFG_KEY_ENTRY(ADJUST_ROWS_SIZE,  Qt::ALT | Qt::Key_Z,                     QObject::tr("Toggle the height adjustment of rows"))
     CFG_KEY_ENTRY(INCR_FONT_SIZE,    Qt::CTRL | Qt::Key_Plus,                 QObject::tr("Increase font size", "data view"))
     CFG_KEY_ENTRY(DECR_FONT_SIZE,    Qt::CTRL | Qt::Key_Minus,                QObject::tr("Decrease font size", "data view"))
 )
@@ -117,6 +117,14 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
                 QSize sectionSizeFromContents(int section) const;
                 void mousePressEvent(QMouseEvent *e);
+                void mouseDoubleClickEvent(QMouseEvent *e) override;
+
+            private:
+                void handleSectionResize(int logicalIndex, int oldSize, int newSize);
+
+                bool dblClickResizing = false;
+                bool ignoreResizing = false;
+                QHash<int, int> lastSectionSizes;
         };
 
         void init();
