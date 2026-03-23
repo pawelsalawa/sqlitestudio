@@ -175,7 +175,7 @@
         <translation>无法添加数据库 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="149"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>数据库 %1 没有被更新，由于错误：%2</translation>
     </message>
