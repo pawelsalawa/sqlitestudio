@@ -175,7 +175,7 @@
         <translation>Impossible d’ajouter une base de données %1 : %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="149"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>La base de données %1 ne peut être mise à jour à cause de l’erreur : %2</translation>
     </message>

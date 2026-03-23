@@ -175,7 +175,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="143"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="149"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation type="unfinished"></translation>
     </message>
