@@ -3,6 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include <QString>
+#include <QMetaType>
 
 class Db;
 
@@ -31,20 +32,20 @@ class API_EXPORT Table
 
 class API_EXPORT DbAndTable : public Table
 {
-public:
-    DbAndTable() = default;
-    DbAndTable(Db* db, const QString& database, const QString& table);
-    DbAndTable(const DbAndTable& other) = default;
+    public:
+        DbAndTable() = default;
+        DbAndTable(Db* db, const QString& database, const QString& table);
+        DbAndTable(const DbAndTable& other) = default;
 
-    bool operator ==(const DbAndTable& other) const = default;
-    DbAndTable& operator=(const DbAndTable&) = default;
-    DbAndTable& operator=(DbAndTable&&) = default;
+        bool operator ==(const DbAndTable& other) const = default;
+        DbAndTable& operator=(const DbAndTable&) = default;
+        DbAndTable& operator=(DbAndTable&&) = default;
 
-    Db *getDb() const;
-    void setDb(Db *value);
+        Db *getDb() const;
+        void setDb(Db *value);
 
-protected:
-    Db* db = nullptr;
+    protected:
+        Db* db = nullptr;
 };
 
 class API_EXPORT AliasedTable : public Table
@@ -65,6 +66,18 @@ class API_EXPORT AliasedTable : public Table
     protected:
         QString tableAlias;
 };
+
+API_EXPORT QDataStream &operator<<(QDataStream &out, const Table& myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, Table& myObj);
+Q_DECLARE_METATYPE(Table)
+
+API_EXPORT QDataStream &operator<<(QDataStream &out, const DbAndTable& myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, DbAndTable& myObj);
+Q_DECLARE_METATYPE(DbAndTable)
+
+API_EXPORT QDataStream &operator<<(QDataStream &out, const AliasedTable& myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, AliasedTable& myObj);
+Q_DECLARE_METATYPE(AliasedTable)
 
 API_EXPORT size_t qHash(Table table);
 API_EXPORT size_t qHash(AliasedTable table);

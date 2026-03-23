@@ -541,6 +541,37 @@ void DataView::setActionIcon(QAction *action, const QIcon &icon, QToolBar *toolb
     Q_UNUSED(toolbar);
 }
 
+QVariant DataView::getSessionValue() const
+{
+    QHash<QString, QVariant> sessionValue;
+    sessionValue["customDelegates"] = gridView->getCustomDelegatesForSession();
+    sessionValue["desiredColumnWidths"] = QVariant::fromValue(getModel()->getDesiredColumnWidths());
+    sessionValue["adjustRowSize"] = gridView->getAction(SqlQueryView::ADJUST_ROWS_SIZE)->isChecked();
+    return sessionValue;
+}
+
+void DataView::restoreFromSession(const QVariant& sessionValue)
+{
+    QHash<QString, QVariant> value = sessionValue.toHash();
+    if (value.size() == 0)
+        return;
+
+    if (value.contains("customDelegates"))
+    {
+        QVariant gridViewDelegates = value["customDelegates"];
+        gridView->restoreCustomDelegatesFromSession(gridViewDelegates);
+    }
+
+    if (value.contains("desiredColumnWidths"))
+    {
+        auto widths = value["desiredColumnWidths"].value<SqlQueryModel::DesiredColumnWidths>();
+        model->setDesiredColumnWidths(widths);
+    }
+
+    if (value["adjustRowSize"].toBool())
+        gridView->getAction(SqlQueryView::ADJUST_ROWS_SIZE)->setChecked(true);
+}
+
 void DataView::filterModeSelected()
 {
     QAction* modeAction = dynamic_cast<QAction*>(sender());

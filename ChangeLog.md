@@ -27,6 +27,7 @@
 - ADDED: #5552 Support for new syntax variants of ALTER TABLE.
 - ADDED: #5383 Double-click on column separator in data view now supports resizing all selected columns at once.
 - ADDED: #5566 Added Columns node to Views in Database List.
+- ADDED: #5284 Column widths and Row Height Adjusting in Grid View is now stored in the session and restored upon next application strt.
 - ADDED: #5570 In Configuration dialog the Reset To Defaults button was added for hotkeys page.
 - ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).

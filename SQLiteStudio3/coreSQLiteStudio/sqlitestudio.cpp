@@ -329,6 +329,11 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     CompletionHelper::init();
 
     qRegisterMetaType<ScriptingPlugin::Context*>();
+    qRegisterMetaType<Table>();
+    qRegisterMetaType<DbAndTable>();
+    qRegisterMetaType<AliasedTable>();
+    qRegisterMetaType<Column>();
+    qRegisterMetaType<AliasedColumn>();
 
     NotifyManager::getInstance();
 

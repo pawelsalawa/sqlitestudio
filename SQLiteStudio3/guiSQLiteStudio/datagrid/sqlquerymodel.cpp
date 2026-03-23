@@ -22,6 +22,7 @@
 #include <QtMath>
 #include <QMessageBox>
 #include <QThread>
+#include <QMetaType>
 
 QSet<SqlQueryModel*> SqlQueryModel::existingModels;
 
@@ -52,6 +53,7 @@ SqlQueryModel::~SqlQueryModel()
 
 void SqlQueryModel::staticInit()
 {
+    qRegisterMetaType<SqlQueryModel::DesiredColumnWidths>();
 }
 
 QString SqlQueryModel::getQuery() const
@@ -1920,7 +1922,7 @@ void SqlQueryModel::setDesiredColumnWidth(int colIdx, int width)
     columnWidths[column] = width;
 }
 
-int SqlQueryModel::getDesiredColumnWidth(int colIdx)
+int SqlQueryModel::getDesiredColumnWidth(int colIdx) const
 {
     SqlQueryModelColumnPtr columnModel = columns[colIdx];
     if (!columnModel)
@@ -1931,6 +1933,16 @@ int SqlQueryModel::getDesiredColumnWidth(int colIdx)
         return -1;
 
     return columnWidths[column];
+}
+
+SqlQueryModel::DesiredColumnWidths SqlQueryModel::getDesiredColumnWidths() const
+{
+    return columnWidths;
+}
+
+void SqlQueryModel::setDesiredColumnWidths(const DesiredColumnWidths& widths)
+{
+    columnWidths = widths;
 }
 
 bool SqlQueryModel::isStructureOutOfDate() const

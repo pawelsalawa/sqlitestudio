@@ -3,6 +3,7 @@
 
 #include "common/extactioncontainer.h"
 #include "guiSQLiteStudio_global.h"
+#include "common/column.h"
 #include <QTabWidget>
 #include <QMutex>
 
@@ -95,6 +96,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_GRID);
 
         bool getNavigationState() const;
+        QVariant getSessionValue() const;
+        void restoreFromSession(const QVariant& sessionValue);
 
     protected:
         void createActions();

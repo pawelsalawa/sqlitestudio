@@ -48,6 +48,48 @@ void AliasedColumn::setAlias(const QString& value)
     alias = value;
 }
 
+QDataStream &operator<<(QDataStream &out, const Column& myObj)
+{
+    out << myObj.getDatabase() << myObj.getTable() << myObj.getColumn() << myObj.getDeclaredType();
+    return out;
+}
+
+QDataStream &operator>>(QDataStream &in, Column& myObj)
+{
+    QString database;
+    QString table;
+    QString column;
+    QString declaredType;
+    in >> database >> table >> column >> declaredType;
+    myObj.setDatabase(database);
+    myObj.setTable(table);
+    myObj.setColumn(column);
+    myObj.setDeclaredType(declaredType);
+    return in;
+}
+
+QDataStream &operator<<(QDataStream &out, const AliasedColumn& myObj)
+{
+    out << myObj.getDatabase() << myObj.getTable() << myObj.getColumn() << myObj.getDeclaredType() << myObj.getAlias();
+    return out;
+}
+
+QDataStream &operator>>(QDataStream &in, AliasedColumn& myObj)
+{
+    QString database;
+    QString table;
+    QString column;
+    QString declaredType;
+    QString alias;
+    in >> database >> table >> column >> declaredType >> alias;
+    myObj.setDatabase(database);
+    myObj.setTable(table);
+    myObj.setColumn(column);
+    myObj.setDeclaredType(declaredType);
+    myObj.setAlias(alias);
+    return in;
+}
+
 size_t qHash(AliasedColumn column)
 {
     return qHash(column.getDatabase() + "." + column.getTable() + "." + column.getColumn() + "/" + column.getDeclaredType()

@@ -97,7 +97,7 @@ QVariant ViewWindow::saveSession()
     QHash<QString,QVariant> sessionValue;
     sessionValue["view"] = view;
     sessionValue["db"] = db->getName();
-    sessionValue["customDelegates"] = ui->dataView->getGridView()->getCustomDelegatesForSession();
+    sessionValue["dataView"] = ui->dataView->getSessionValue();
     return sessionValue;
 }
 
@@ -138,10 +138,10 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
         return false;
     }
 
-    if (value.contains("customDelegates"))
+    if (value.contains("dataView"))
     {
-        QVariant gridViewDelegates = value["customDelegates"];
-        ui->dataView->getGridView()->restoreCustomDelegatesFromSession(gridViewDelegates);
+        QVariant dataViewSession = value["dataView"];
+        ui->dataView->restoreFromSession(dataViewSession);
     }
 
     initView();

@@ -298,7 +298,7 @@ QVariant EditorWindow::saveSession()
     QHash<QString,QVariant> sessionValue;
     sessionValue["query"] = ui->sqlEdit->toPlainText();
     sessionValue["curPos"] = ui->sqlEdit->textCursor().position();
-    sessionValue["customDelegates"] = ui->dataView->getGridView()->getCustomDelegatesForSession();
+    sessionValue["dataView"] = ui->dataView->getSessionValue();
 
     Db* db = getCurrentDb();
     if (db)
@@ -342,10 +342,10 @@ bool EditorWindow::restoreSession(const QVariant& sessionValue)
             dbCombo->setCurrentIndex(0);
     }
 
-    if (value.contains("customDelegates"))
+    if (value.contains("dataView"))
     {
-        QVariant gridViewDelegates = value["customDelegates"];
-        ui->dataView->getGridView()->restoreCustomDelegatesFromSession(gridViewDelegates);
+        QVariant dataViewSession = value["dataView"];
+        ui->dataView->restoreFromSession(dataViewSession);
     }
 
     return true;

@@ -32,6 +32,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         Q_DECLARE_FLAGS(Features, Feature)
 
         typedef std::function<void()> CommitSuccessfulHandler;
+        typedef QHash<AliasedColumn, int> DesiredColumnWidths;
 
         friend class SqlQueryItemDelegate;
 
@@ -198,7 +199,10 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void insertCustomRow(const QList<QVariant>& values, int insertionIndex);
 
         void setDesiredColumnWidth(int colIdx, int width);
-        int getDesiredColumnWidth(int colIdx);
+        int getDesiredColumnWidth(int colIdx) const;
+
+        DesiredColumnWidths getDesiredColumnWidths() const;
+        void setDesiredColumnWidths(const DesiredColumnWidths& widths);
 
         void setCellDataLengthLimit(int value);
         int getCellDataLengthLimit();
@@ -633,5 +637,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SqlQueryModel::Features)
+Q_DECLARE_METATYPE(SqlQueryModel::DesiredColumnWidths)
 
 #endif // SQLQUERYMODEL_H

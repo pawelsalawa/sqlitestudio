@@ -4,6 +4,7 @@
 #include "table.h"
 #include "coreSQLiteStudio_global.h"
 #include <QString>
+#include <QMetaType>
 
 struct API_EXPORT Column : public Table
 {
@@ -27,6 +28,10 @@ struct API_EXPORT Column : public Table
         QString declaredType;
 };
 
+API_EXPORT QDataStream &operator<<(QDataStream &out, const Column& myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, Column& myObj);
+Q_DECLARE_METATYPE(Column)
+
 struct API_EXPORT AliasedColumn : public Column
 {
     public:
@@ -44,6 +49,10 @@ struct API_EXPORT AliasedColumn : public Column
     private:
         QString alias;
 };
+
+API_EXPORT QDataStream &operator<<(QDataStream &out, const AliasedColumn& myObj);
+API_EXPORT QDataStream &operator>>(QDataStream &in, AliasedColumn& myObj);
+Q_DECLARE_METATYPE(AliasedColumn)
 
 API_EXPORT size_t qHash(Column column);
 API_EXPORT size_t qHash(AliasedColumn column);
