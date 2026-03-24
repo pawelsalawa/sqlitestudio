@@ -202,6 +202,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void updateMdiAreaLink();
         void updateMdiAreaLink(MdiWindow* subWin);
         void editDb(Db* db);
+        void openDb(const QString& path);
 
     private slots:
         void copy();
@@ -213,7 +214,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void newDb();
         void openDb();
         void openFile();
-        void openDb(const QString& path);
         void addDb();
         void editDb();
         void renameItemInline();

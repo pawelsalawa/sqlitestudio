@@ -136,6 +136,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         static void setSafeMode(bool enabled);
         static bool isSafeMode();
         static bool isSessionRestoringFinished();
+        static bool isInternalDrop(const QMimeData *data);
 
         MdiArea* getMdiArea() const;
         DbTree* getDbTree() const;
@@ -169,7 +170,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
     protected:
         void closeEvent(QCloseEvent *event);
-        void dropEvent(QDropEvent* e);
 
     private:
         class ToolBarStyleEnforcer : public QObject
@@ -207,6 +207,10 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updateToolbarStyleActionState();
         void initToolbarSizeActionList();
         void handlePostRestoreConfigUpdates();
+        void initDropOverlay();
+        void handleExternalDragEnter(const QStringList& filePaths);
+        void handleExternalDragLeave();
+        void handleDroppedFile(const QString& filePath);
 
         static bool confirmQuit(const QList<Committable*>& instances);
 
@@ -233,7 +237,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #ifdef HAS_UPDATEMANAGER
         QPointer<NewVersionDialog> newVersionDialog;
 #endif
-        WidgetCover* widgetCover = nullptr;
+        WidgetCover* dropOverlay = nullptr;
+        QLabel* dropDetails = nullptr;
+
         QTimer* saveSessionTimer = nullptr;
 
         QList<Action> toolbarSizeActionList;

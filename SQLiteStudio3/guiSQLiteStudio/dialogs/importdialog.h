@@ -28,6 +28,7 @@ class GUI_API_EXPORT ImportDialog : public QWizard
 
         void setDbAndTable(Db* db, const QString& table);
         void setDb(Db* db);
+        void setFilePath(const QString& path);
 
     protected:
         void showEvent(QShowEvent* e);

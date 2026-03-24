@@ -233,7 +233,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
         // Db item, regardless if open or not
         if (dbTreeItem->getType() == DbTreeItem::Type::DB)
-            enabled << RENAME_DB;
+            enabled << RENAME_DB << CREATE_GROUP;
 
         if (dbTreeItem->getDb())
         {
@@ -1934,7 +1934,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     for (DbTreeItem* item : items)
     {
         Db* db = item->getDb();
-        if (item->getType() != DbTreeItem::Type::DB)
+        if (item->getType() != DbTreeItem::Type::DB && db)
         {
             databasesToRefresh << db;
             if (!fkEnforcementWasEnabled.contains(db))

@@ -302,6 +302,11 @@ void TableConstraintsModel::moveConstraintColumnTo(int constrIdx, int newIdx)
     emit constraintOrderChanged();
 }
 
+bool TableConstraintsModel::hasTableConstraintItem(const QMimeData* data)
+{
+    return data && data->hasFormat(mimeType);
+}
+
 TableConstraintsModel::Columns TableConstraintsModel::getColumn(int idx) const
 {
     return static_cast<Columns>(idx);

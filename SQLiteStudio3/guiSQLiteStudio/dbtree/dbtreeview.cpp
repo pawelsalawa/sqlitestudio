@@ -319,11 +319,6 @@ void DbTreeView::dropEvent(QDropEvent* e)
     lastDropPosition = e->position().toPoint();
 
     QTreeView::dropEvent(e);
-    if (!e->isAccepted() && e->mimeData()->hasUrls() && !dbTree->getModel()->hasDbTreeItem(e->mimeData()))
-    {
-        dbTree->getModel()->dropMimeData(e->mimeData(), Qt::CopyAction, -1, -1, dbTree->getModel()->root()->index());
-        e->accept();
-    }
 }
 
 void DbTreeView::startDrag(Qt::DropActions supportedActions)
@@ -363,7 +358,9 @@ void DbTreeView::startDrag(Qt::DropActions supportedActions)
         drag->setDragCursor(QPixmap(), Qt::LinkAction);
     });
 
-    drag->exec(Qt::MoveAction | Qt::CopyAction | Qt::LinkAction, Qt::MoveAction);
+    Qt::DropAction res = drag->exec(Qt::MoveAction | Qt::CopyAction | Qt::LinkAction, Qt::MoveAction);
+    if (res == Qt::MoveAction)
+        model()->deleteIndexesAfterMove(items);
 }
 
 QPixmap DbTreeView::createDragPixmap(const QModelIndexList& indexes)

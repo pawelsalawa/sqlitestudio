@@ -233,6 +233,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
+        bool hasSqlGenerativeDbTreeItemType(const QList<DbTreeItem*>& items) const;
         void handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action);
         void handleDbTreeSelectDrop(const QList<DbTreeItem*>& items);
         void handleDbTreeInsertDrop(const QList<DbTreeItem*>& items);

@@ -61,6 +61,11 @@ void ImportDialog::setDb(Db* db)
     ui->dbNameCombo->setCurrentText(db->getName());
 }
 
+void ImportDialog::setFilePath(const QString& path)
+{
+    ui->inputFileEdit->setText(path);
+}
+
 bool ImportDialog::isPluginConfigValid() const
 {
     return pluginConfigOk.size() == 0;

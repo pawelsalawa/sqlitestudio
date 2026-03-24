@@ -106,6 +106,15 @@ void DbTreeModel::deleteGroup(QStandardItem *groupItem)
     parentItem->removeRow(groupItem->row());
 }
 
+void DbTreeModel::deleteIndexesAfterMove(const QList<DbTreeItem*>& items)
+{
+    for (DbTreeItem* item: items)
+    {
+        QStandardItem* par = item->parentItem();
+        par->removeRow(item->row());
+    }
+}
+
 DbTreeItem* DbTreeModel::createGroup(const QString& name, QStandardItem* parent)
 {
     if (!parent)
@@ -1133,6 +1142,7 @@ bool DbTreeModel::canDropMimeData(const QMimeData* data, Qt::DropAction action, 
                              return !DbTree::isAcceptedDropItem(item) ||
                                     (dstItem && dstItem->getDb() && item->getDb() == dstItem->getDb());
                          });
+
         return deniedItems.isEmpty();
     }
 
@@ -1513,7 +1523,7 @@ void DbTreeModel::setIgnoreDbLoadedSignal(bool value)
 
 bool DbTreeModel::hasDbTreeItem(const QMimeData *data)
 {
-    return data->formats().contains(MIMETYPE);
+    return data && data->formats().contains(MIMETYPE);
 }
 
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)

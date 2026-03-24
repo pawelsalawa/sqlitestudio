@@ -321,27 +321,27 @@ void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
         cur.insertText("--");
 }
 
+bool SqlEditor::hasSqlGenerativeDbTreeItemType(const QList<DbTreeItem*>& items) const
+{
+    for (DbTreeItem* item : items)
+    {
+        switch (item->getType())
+        {
+            case DbTreeItem::Type::TABLE:
+            case DbTreeItem::Type::COLUMN:
+            case DbTreeItem::Type::COLUMNS:
+            case DbTreeItem::Type::VIEW:
+                return true;
+            default:
+                break;
+        }
+    }
+    return false;
+}
+
 QString SqlEditor::getLoadedFile() const
 {
     return loadedFile;
-}
-
-QPixmap SqlEditor::getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const
-{
-    Q_UNUSED(items);
-    return ICONS.DATA_SELECT;
-}
-
-QPixmap SqlEditor::getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const
-{
-    Q_UNUSED(items);
-    return ICONS.DATA_UPDATE;
-}
-
-QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
-{
-    Q_UNUSED(items);
-    return ICONS.DATA_INSERT;
 }
 
 bool SqlEditor::getAlwaysEnforceErrorsChecking() const
@@ -1898,6 +1898,30 @@ void SqlEditor::showEvent(QShowEvent* event)
     setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
 }
 
+QPixmap SqlEditor::getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const
+{
+    if (!hasSqlGenerativeDbTreeItemType(items))
+        return QPixmap();
+
+    return ICONS.DATA_SELECT;
+}
+
+QPixmap SqlEditor::getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const
+{
+    if (!hasSqlGenerativeDbTreeItemType(items))
+        return QPixmap();
+
+    return ICONS.DATA_UPDATE;
+}
+
+QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
+{
+    if (!hasSqlGenerativeDbTreeItemType(items))
+        return QPixmap();
+
+    return ICONS.DATA_INSERT;
+}
+
 void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action)
 {
     QList<DbTreeItem*> onlyParentSelectedItems = items | FILTER(item, {return !items.contains(item->parentDbTreeItem());});
@@ -2051,18 +2075,32 @@ void SqlEditor::dropEvent(QDropEvent* e)
 {
     const QMimeData* data = e->mimeData();
     DbTreeModel* treeModel = MAINWINDOW->getDbTree()->getModel();
-    if (treeModel->hasDbTreeItem(data))
+    if (DbTreeModel::hasDbTreeItem(data))
     {
+        QList<DbTreeItem*> srcItems = treeModel->getDragItems(data);
+        if (!hasSqlGenerativeDbTreeItemType(srcItems))
+        {
+            QPlainTextEdit::dropEvent(e);
+            setFocus(Qt::MouseFocusReason);
+            return;
+        }
+
         // This is a workaround to Qt bug https://www.qtcentre.org/threads/16935-Cursor-stops-being-redrawn-when-QTextEdit-dropEvent()-overrided
         // (still not fixed...), which causes cursor to stop blinking after customizing the dropEvent().
         setReadOnly(true);
         QPlainTextEdit::dropEvent(e);
         setReadOnly(false);
 
-        QList<DbTreeItem*> srcItems = treeModel->getDragItems(data);
         handleDbTreeDrop(srcItems, e->dropAction());
         e->ignore();
+        return;
     }
-    else
-        QPlainTextEdit::dropEvent(e);
+
+    // Same workaround as above
+    setReadOnly(true);
+    QPlainTextEdit::dropEvent(e);
+    setReadOnly(false);
+
+    // Ignore - we proparage drops from external apps to main window, where it's handled globally
+    e->ignore();
 }

@@ -53,6 +53,11 @@
 #include <QtGui>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
+
+#include <windows/tableconstraintsmodel.h>
+#include <windows/tablestructuremodel.h>
+
+#include <common/widgetcover.h>
 #else
 #include <qsystemdetection.h>
 #endif
@@ -172,6 +177,8 @@ void MainWindow::init()
 
     connect(STYLE, SIGNAL(paletteChanged()), this, SLOT(refreshSyntaxColors()));
 
+    initDropOverlay();
+
     SQLITESTUDIO->installCrashHandler([this]()
     {
         saveSession();
@@ -289,12 +296,6 @@ void MainWindow::closeEvent(QCloseEvent* event)
     saveSession(true);
     SQLITESTUDIO->cleanUp();
     QMainWindow::closeEvent(event);
-}
-
-void MainWindow::dropEvent(QDropEvent* e)
-{
-    // qDebug() << "MainWindow drop" << e;
-    QWidget::dropEvent(e);
 }
 
 void MainWindow::createActions()
@@ -1207,6 +1208,72 @@ void MainWindow::handlePostRestoreConfigUpdates()
     }
 }
 
+void MainWindow::initDropOverlay()
+{
+    dropOverlay = new WidgetCover(this);
+    QGridLayout* dropLayout = dropOverlay->getContainerLayout();
+    dropLayout->setContentsMargins(0, 0, 0, 0);
+    QLabel* dropLabel = new QLabel(tr("Drop files to open them"), dropOverlay);
+    dropLabel->setStyleSheet("QLabel { font-size: 24px; color: white; font-weight: bold; }");
+    dropLabel->setAlignment(Qt::AlignCenter);
+    dropLayout->addWidget(dropLabel, 0, 0);
+
+    // dropDetails = new QLabel("<table><tr><td>c1 sdga sd gd</td><td>c2</td></tr><tr><td>v1</td><td>v22222</td></tr></table>", dropOverlay);
+    // dropDetails->setStyleSheet("QLabel { font-size: 18px; color: white; }");
+    // dropDetails->setAlignment(Qt::AlignCenter);
+    // dropLayout->addWidget(dropDetails, 1, 0);
+}
+
+void MainWindow::handleExternalDragEnter(const QStringList& filePaths)
+{
+    // qDebug() << "enter" << filePaths;
+    if (!dropOverlay->isVisible())
+        dropOverlay->show();
+}
+
+void MainWindow::handleExternalDragLeave()
+{
+    // qDebug() << "leave";
+    if (dropOverlay->isVisible())
+        dropOverlay->hide();
+}
+
+void MainWindow::handleDroppedFile(const QString& filePath)
+{
+    QMimeDatabase mimeDb;
+    QMimeType mimeType = mimeDb.mimeTypeForFile(filePath);
+    QString mimeName = mimeType.name();
+
+    if (mimeName == "application/vnd.sqlite3" || mimeName == "application/x-zerosize" ||
+            mimeName == "application/octet-stream")
+    {
+        DBTREE->openDb(filePath);
+        return;
+    }
+
+    if (mimeName == "application/sql" || mimeName == "text/plain")
+    {
+        openSqlEditorForFile(nullptr, filePath);
+        return;
+    }
+
+    if (mimeName == "text/csv" || mimeName == "text/tab-separated-values")
+    {
+        ImportDialog dialog(this);
+        dialog.setFilePath(filePath);
+        dialog.exec();
+        return;
+    }
+
+    if (mimeName == "application/x-sqlite2")
+    {
+        notifyError(tr("The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1."));
+        return;
+    }
+
+    notifyWarn(tr("The dropped file type is unsupported: %1 (%2)").arg(filePath, mimeName));
+}
+
 bool MainWindow::confirmQuit(const QList<Committable*>& instances)
 {
     QuitConfirmDialog dialog(MAINWINDOW);
@@ -1315,19 +1382,83 @@ bool MainWindow::isSessionRestoringFinished()
     return sessionRestoringFinished;
 }
 
+bool MainWindow::isInternalDrop(const QMimeData* data)
+{
+    for (const QString& format : data->formats())
+    {
+        if (format.startsWith("application/x-sqlitestudio-"))
+            return true;
+    }
+    return false;
+}
+
 bool MainWindow::eventFilter(QObject* obj, QEvent* e)
 {
     Q_UNUSED(obj);
-    if (e->type() == QEvent::FileOpen)
-    {
-        QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
-        if (!url.isLocalFile())
-            return false;
+    static QHash<QString, int> objCnt;
+    static int totalCnt = 0;
 
-        DbDialog dialog(DbDialog::ADD, this);
-        dialog.setPath(url.toLocalFile());
-        dialog.exec();
-        return true;
+    switch (e->type())
+    {
+        case QEvent::FileOpen:
+        {
+            QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
+            if (!url.isLocalFile())
+                return false;
+
+            DbDialog dialog(DbDialog::ADD, this);
+            dialog.setPath(url.toLocalFile());
+            dialog.exec();
+            return true;
+        }
+        case QEvent::DragEnter:
+        {
+            auto* dragEv = static_cast<QDragEnterEvent*>(e);
+            if (dragEv->mimeData()->hasUrls() && !isInternalDrop(dragEv->mimeData()))
+            {
+                dragEv->acceptProposedAction();
+                if (totalCnt == 0)
+                    handleExternalDragEnter(dragEv->mimeData()->urls() | MAP(url, {return url.toLocalFile();}));
+
+                objCnt[obj->objectName()]++;
+                totalCnt++;
+                return true;
+            }
+            break;
+        }
+        case QEvent::Drop:
+        {
+            objCnt.clear();
+            totalCnt = 0;
+            handleExternalDragLeave();
+            auto* dropEv = static_cast<QDropEvent*>(e);
+            if (dropEv->mimeData()->hasUrls() && !isInternalDrop(dropEv->mimeData()))
+            {
+                for (const QUrl& url : dropEv->mimeData()->urls())
+                    handleDroppedFile(url.toLocalFile());
+
+                dropEv->acceptProposedAction();
+                return true;
+            }
+            break;
+        }
+        case QEvent::DragLeave:
+        {
+            if (objCnt.contains(obj->objectName()) && objCnt[obj->objectName()] > 0)
+            {
+                objCnt[obj->objectName()]--;
+                totalCnt--;
+            }
+
+            if (totalCnt <= 0)
+            {
+                objCnt.clear();
+                totalCnt = 0;
+                handleExternalDragLeave();
+            }
+        }
+        default:
+            break;
     }
     return false;
 }

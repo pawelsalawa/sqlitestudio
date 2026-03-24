@@ -34,6 +34,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void move(QStandardItem* itemToMove, int newRow);
         DbTreeItem *createGroup(const QString& name, QStandardItem *parent = nullptr);
         void deleteGroup(QStandardItem* groupItem);
+        void deleteIndexesAfterMove(const QList<DbTreeItem*>& indexes);
         QStandardItem *root() const;
         QStringList getGroupFor(QStandardItem* item);
         void storeGroups();
@@ -51,7 +52,6 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void interruptableFinished(Interruptable* obj);
         bool getIgnoreDbLoadedSignal() const;
         void setIgnoreDbLoadedSignal(bool value);
-        bool hasDbTreeItem(const QMimeData* data);
         QList<DbTreeItem*> getDragItems(const QMimeData* data) const;
         QList<DbTreeItem*> getItemsForIndexes(const QModelIndexList& indexes) const;
         DbTreeItem* getItemForIndex(const QModelIndex& index) const;
@@ -61,6 +61,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool quickAddDroppedDb(const QString& filePath, DbPlugin* plugin);
         void loadTableOrViewSchema(DbTreeItem* tableOrViewItem);
 
+        static bool hasDbTreeItem(const QMimeData* data);
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
         static QList<DbTreeItem*> findItems(QStandardItem* parentItem, DbTreeItem::Type type);
