@@ -2069,13 +2069,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1096"/>
+        <location filename="../dataview.cpp" line="1127"/>
         <source>Filter by text (if contains)</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1097"/>
+        <location filename="../dataview.cpp" line="1128"/>
         <source>Filter strictly by text (if equals)</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
@@ -2111,46 +2111,46 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="751"/>
+        <location filename="../dataview.cpp" line="782"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="762"/>
+        <location filename="../dataview.cpp" line="793"/>
         <source>Row: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1064"/>
+        <location filename="../dataview.cpp" line="1095"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1067"/>
+        <location filename="../dataview.cpp" line="1098"/>
         <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1098"/>
+        <location filename="../dataview.cpp" line="1129"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1099"/>
+        <location filename="../dataview.cpp" line="1130"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1118"/>
+        <location filename="../dataview.cpp" line="1149"/>
         <source>Show filter inputs per column</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1122"/>
+        <location filename="../dataview.cpp" line="1153"/>
         <source>Apply filter</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
@@ -5076,37 +5076,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="728"/>
+        <location filename="../dataview.cpp" line="759"/>
         <source>Total pages available: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="738"/>
+        <location filename="../dataview.cpp" line="769"/>
         <source>Total rows loaded: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="21"/>
+        <location filename="../dataview.h" line="22"/>
         <source>Data view (both grid and form)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="22"/>
+        <location filename="../dataview.h" line="23"/>
         <source>Refresh data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="23"/>
+        <location filename="../dataview.h" line="24"/>
         <source>Find in data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="24"/>
+        <location filename="../dataview.h" line="25"/>
         <source>Switch to grid view of the data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="25"/>
+        <location filename="../dataview.h" line="26"/>
         <source>Switch to form view of the data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6125,100 +6125,100 @@ find next</source>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="86"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="686"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="88"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="688"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="103"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="105"/>
         <source>Cannot execute query on undefined or invalid database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="110"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="112"/>
         <source>Cannot execute empty query.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="118"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="120"/>
         <source>Uncommitted data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="119"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="121"/>
         <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="561"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="563"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="569"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="571"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="614"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="616"/>
         <source>An error occurred while committing the transaction: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="647"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="649"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="859"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="861"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="885"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="887"/>
         <source>An error occurred while committing the data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1019"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1021"/>
         <source>Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1428"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1444"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1493"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1430"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1446"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1495"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1490"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1492"/>
         <source>Error while loading query results: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1657"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1659"/>
         <source>There are less columns in the new query, sort order has been reset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1976"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1988"/>
         <source>Insert multiple rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1976"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1988"/>
         <source>Number of rows to insert:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2031"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2043"/>
         <source>Delete rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="2032"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="2044"/>
         <source>You&apos;re about to delete newly inserted rows that are not committed yet. Row numbers: %1
 Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation type="unfinished"></translation>

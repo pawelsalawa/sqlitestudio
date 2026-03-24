@@ -920,43 +920,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
         <translation>無法初始化設定檔. 在應用程式重啟時，任何設定檔的異動及查詢歷史將遺失. 無法建立檔案在以下位置: %1</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="346"/>
+        <location filename="../sqlitestudio.cpp" line="351"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>通用目的說明</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="347"/>
+        <location filename="../sqlitestudio.cpp" line="352"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>資料庫支援</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="348"/>
+        <location filename="../sqlitestudio.cpp" line="353"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>Code formatter</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="349"/>
+        <location filename="../sqlitestudio.cpp" line="354"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Scripting languages</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="351"/>
+        <location filename="../sqlitestudio.cpp" line="356"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>匯出中</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="352"/>
+        <location filename="../sqlitestudio.cpp" line="357"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>匯入中...</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="353"/>
+        <location filename="../sqlitestudio.cpp" line="358"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>Table 產生中</translation>

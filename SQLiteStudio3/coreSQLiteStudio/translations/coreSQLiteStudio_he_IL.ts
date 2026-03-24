@@ -920,43 +920,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="346"/>
+        <location filename="../sqlitestudio.cpp" line="351"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>מטרה כללית</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="347"/>
+        <location filename="../sqlitestudio.cpp" line="352"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>תמיכת מסד נתונים</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="348"/>
+        <location filename="../sqlitestudio.cpp" line="353"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>מתבנת קוד</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="349"/>
+        <location filename="../sqlitestudio.cpp" line="354"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>שפת תסריט</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="351"/>
+        <location filename="../sqlitestudio.cpp" line="356"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>מייצא</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="352"/>
+        <location filename="../sqlitestudio.cpp" line="357"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>מייבא</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="353"/>
+        <location filename="../sqlitestudio.cpp" line="358"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>אכלוס טבלה</translation>

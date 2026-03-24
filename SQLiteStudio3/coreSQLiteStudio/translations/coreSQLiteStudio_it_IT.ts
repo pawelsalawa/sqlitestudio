@@ -920,43 +920,43 @@ Le tabelle, gli indici, i trigger e le viste copiate nel database %3 rimarranno.
         <translation>Impossibile inizializzare il file di configurazione. Qualsiasi modifica di configurazione e cronologia delle interrogazioni verrà persa dopo il riavvio dell&apos;applicazione. Impossibile creare un file nelle seguenti posizioni: %1.</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="346"/>
+        <location filename="../sqlitestudio.cpp" line="351"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>Scopo generale</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="347"/>
+        <location filename="../sqlitestudio.cpp" line="352"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>Supporto database</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="348"/>
+        <location filename="../sqlitestudio.cpp" line="353"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>Formattatore codice</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="349"/>
+        <location filename="../sqlitestudio.cpp" line="354"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Linguaggi di scripting</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="351"/>
+        <location filename="../sqlitestudio.cpp" line="356"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>Sto esportando ...</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="352"/>
+        <location filename="../sqlitestudio.cpp" line="357"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>Sto importando ...</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="353"/>
+        <location filename="../sqlitestudio.cpp" line="358"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>Popolamento tabella</translation>
