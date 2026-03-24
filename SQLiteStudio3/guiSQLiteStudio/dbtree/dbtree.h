@@ -142,6 +142,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QSet<Db*> getSelectedDatabases();
 
         static bool isItemDraggable(const DbTreeItem* item);
+        static bool isAcceptedDropItem(const DbTreeItem* item);
 
     protected:
         void createActions();
@@ -190,6 +191,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
+        static QSet<DbTreeItem::Type> treeAcceptedTypes;
         static const constexpr int ITEM_TEXT_LIMIT = 300;
 
     public slots:

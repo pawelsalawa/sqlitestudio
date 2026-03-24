@@ -76,6 +76,15 @@ QList<QStandardItem *> DbTreeItem::childs() const
     return results;
 }
 
+QList<DbTreeItem*> DbTreeItem::dbTreeChilds() const
+{
+    QList<DbTreeItem*> results;
+    for (int i = 0; i < rowCount(); i++)
+         results += dynamic_cast<DbTreeItem*>(child(i));
+
+    return results;
+}
+
 QStringList DbTreeItem::childNames() const
 {
     QStringList results;
@@ -227,7 +236,7 @@ void DbTreeItem::pathSignatureParts(QStringList& parts) const
 
 QString DbTreeItem::signature() const
 {
-    return data(static_cast<int>(Type::SIGNATURE_OF_THIS)).toString();
+    return data(static_cast<int>(DataRole::SIGNATURE_OF_THIS)).toString();
 }
 
 void DbTreeItem::getPathToParentItem(QList<DbTreeItem*>& path, DbTreeItem::Type type)
@@ -264,7 +273,7 @@ const DbTreeItem* DbTreeItem::getParentItem(DbTreeItem::Type type) const
 
 void DbTreeItem::updateSignatureValue()
 {
-    setData(QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64()), static_cast<int>(Type::SIGNATURE_OF_THIS));
+    setData(QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64()), static_cast<int>(DataRole::SIGNATURE_OF_THIS));
 }
 
 Db* DbTreeItem::getDb() const
@@ -354,7 +363,6 @@ void DbTreeItem::init()
         case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::VIEWS:
         case DbTreeItem::Type::COLUMNS:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
             setEditable(false);
             break;

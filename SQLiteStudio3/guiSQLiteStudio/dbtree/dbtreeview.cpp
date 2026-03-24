@@ -4,11 +4,16 @@
 #include "mainwindow.h"
 #include "services/dbmanager.h"
 #include "uiconfig.h"
+#include "windows/tablewindow.h"
+#include "windows/viewwindow.h"
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QList>
 #include <QMimeData>
 #include <QDebug>
+#include <QDrag>
+#include <QPainter>
+#include <sqleditor.h>
 
 DbTreeView::DbTreeView(QWidget *parent) :
     QTreeView(parent)
@@ -132,6 +137,17 @@ void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
     QTreeView::dragMoveEvent(event);
 
+    if (event->dropAction() != Qt::MoveAction && event->mimeData()->formats().contains(DbTreeModel::MIMETYPE))
+    {
+        // Don't allow copying of items within the tree - only moving.
+        // Eventual object copying is done later during the actual handling.
+        //
+        // Drag copying/linking is reserved for other types of actions, like dropping to SQL editor
+        // with special treatment.
+        event->ignore();
+        return;
+    }
+
     DbTreeItem* dstItem = itemAt(event->position().toPoint());
 
     // Depending on where we drop we need a type of item we drop ON,
@@ -221,7 +237,6 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::COLUMN:
             return handleColumnDoubleClick(item);
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
@@ -311,26 +326,108 @@ void DbTreeView::dropEvent(QDropEvent* e)
     }
 }
 
+void DbTreeView::startDrag(Qt::DropActions supportedActions)
+{
+    Q_UNUSED(supportedActions);
+
+    const QModelIndexList indexes = selectedIndexes();
+    if (indexes.isEmpty())
+        return;
+
+    QMimeData *data = model()->mimeData(indexes);
+    if (!data)
+        return;
+
+    QDrag* drag = new QDrag(this);
+    drag->setMimeData(data);
+
+    QPixmap pixmap = createDragPixmap(indexes);
+    drag->setPixmap(pixmap);
+    drag->setHotSpot(QPoint(-10, -10));
+
+    QList<DbTreeItem*> items = model()->getItemsForIndexes(indexes);
+    connect(drag, &QDrag::targetChanged, this, [drag, items](QObject *target)
+    {
+        QWidget* w = qobject_cast<QWidget*>(target);
+        if (w && qobject_cast<SqlEditor*>(w->parentWidget()))
+        {
+            SqlEditor* editor = qobject_cast<SqlEditor*>(w->parentWidget());
+            drag->setDragCursor(editor->getDbItemDragMoveIcon(items), Qt::MoveAction);
+            drag->setDragCursor(editor->getDbItemDragCopyIcon(items), Qt::CopyAction);
+            drag->setDragCursor(editor->getDbItemDragLinkIcon(items), Qt::LinkAction);
+            return;
+        }
+
+        drag->setDragCursor(QPixmap(), Qt::MoveAction);
+        drag->setDragCursor(QPixmap(), Qt::CopyAction);
+        drag->setDragCursor(QPixmap(), Qt::LinkAction);
+    });
+
+    drag->exec(Qt::MoveAction | Qt::CopyAction | Qt::LinkAction, Qt::MoveAction);
+}
+
+QPixmap DbTreeView::createDragPixmap(const QModelIndexList& indexes)
+{
+    if (indexes.isEmpty())
+        return QPixmap();
+
+    QVector<QRect> rects;
+    rects.reserve(indexes.size());
+
+    int totalHeight = 0;
+    int maxWidth = 0;
+    for (const QModelIndex &idx : indexes)
+    {
+        QRect r = visualRect(idx);
+        if (!r.isValid())
+            continue;
+
+        rects.push_back(r);
+        totalHeight += r.height();
+        maxWidth = std::max(maxWidth, r.width());
+    }
+
+    if (rects.isEmpty())
+        return QPixmap();
+
+    QPixmap pixmap(maxWidth, totalHeight);
+    pixmap.fill(Qt::transparent);
+
+    QPainter painter(&pixmap);
+    int yOffset = 0;
+    for (const QRect &r : rects)
+    {
+        QPixmap part = viewport()->grab(r);
+        painter.drawPixmap(0, yOffset, part);
+        yOffset += r.height();
+    }
+
+    return pixmap;
+}
+
 bool DbTreeView::handleMiddleClick(DbTreeItem* item)
 {
     switch (item->getType())
     {
         case DbTreeItem::Type::DB:
             return handleDbMiddleClick(item);
-        case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::TABLES:
-        case DbTreeItem::Type::VIRTUAL_TABLE:
+            return handleTablesMiddleClick(item);
         case DbTreeItem::Type::TABLE:
+            return handleTableMiddleClick(item);
+        case DbTreeItem::Type::VIEWS:
+            return handleViewsMiddleClick(item);
+        case DbTreeItem::Type::VIEW:
+            return handleViewMiddleClick(item);
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::INDEXES:
         case DbTreeItem::Type::INDEX:
         case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::TRIGGER:
-        case DbTreeItem::Type::VIEWS:
-        case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
@@ -346,4 +443,36 @@ bool DbTreeView::handleDbMiddleClick(DbTreeItem* item)
         return true;
     }
     return false;
+}
+
+bool DbTreeView::handleTablesMiddleClick(DbTreeItem* item)
+{
+    return handleWindowClosingMiddleClick<TableWindow>(item, [](TableWindow* win, DbTreeItem* item)
+    {
+        return win->getDb() == item->getDb();
+    });
+}
+
+bool DbTreeView::handleTableMiddleClick(DbTreeItem* item)
+{
+    return handleWindowClosingMiddleClick<TableWindow>(item, [](TableWindow* win, DbTreeItem* item)
+    {
+        return win->getDb() == item->getDb() && win->getTable() == item->getTable();
+    });
+}
+
+bool DbTreeView::handleViewsMiddleClick(DbTreeItem* item)
+{
+    return handleWindowClosingMiddleClick<ViewWindow>(item, [](ViewWindow* win, DbTreeItem* item)
+    {
+        return win->getDb() == item->getDb();
+    });
+}
+
+bool DbTreeView::handleViewMiddleClick(DbTreeItem* item)
+{
+    return handleWindowClosingMiddleClick<ViewWindow>(item, [](ViewWindow* win, DbTreeItem* item)
+    {
+        return win->getDb() == item->getDb() && win->getView() == item->getView();
+    });
 }

@@ -945,7 +945,7 @@ DbTreeItem* DbTreeModel::findFirstItemOfType(DbTreeItem::Type type)
     return findFirstItem(root(), type);
 }
 
-DbTreeItem *DbTreeModel::findItemBySignature(const QStringList &signature)
+DbTreeItem *DbTreeModel::findItemBySignature(const QStringList &signature) const
 {
     QStringList pair;
     DbTreeItem* currItem = nullptr;
@@ -1104,6 +1104,41 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     return data;
 }
 
+DbTreeItem* DbTreeModel::getDbTreeItemOf(int row, int column, const QModelIndex& parent) const
+{
+    if (parent.isValid())
+    {
+        QModelIndex idx = index(row, column, parent);
+        if (idx.isValid())
+            return dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
+        else // drop on top of the parent
+            return dynamic_cast<DbTreeItem*>(itemFromIndex(parent));
+    }
+
+    return dynamic_cast<DbTreeItem*>(item(row, column));
+}
+
+bool DbTreeModel::canDropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent) const
+{
+    Q_UNUSED(action);
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
+    if (data->formats().contains(MIMETYPE))
+    {
+        QList<DbTreeItem*> srcItems = getDragItems(data);
+        DbTreeItem* dstItem = getDbTreeItemOf(row, column, parent);
+        QList<DbTreeItem*> deniedItems = srcItems | FILTER(item,
+                         {
+                             return !DbTree::isAcceptedDropItem(item) ||
+                                    (dstItem && dstItem->getDb() && item->getDb() == dstItem->getDb());
+                         });
+        return deniedItems.isEmpty();
+    }
+
+    return data->hasUrls();
+}
+
 bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
     Q_UNUSED(action);
@@ -1119,20 +1154,7 @@ bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int
 bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction, bool* invokeStdAction)
 {
     // The result means: do we want the old item to be removed from the tree?
-    DbTreeItem* dstItem = nullptr;
-    if (parent.isValid())
-    {
-        QModelIndex idx = index(row, column, parent);
-        if (idx.isValid())
-            dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
-        else // drop on top of the parent
-            dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(parent));
-    }
-    else
-    {
-        dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
-    }
-
+    DbTreeItem* dstItem = getDbTreeItemOf(row, column, parent);
     if (data->formats().contains(MIMETYPE))
         return dropDbTreeItem(getDragItems(data), dstItem, defaultAction, invokeStdAction);
     else if (data->hasUrls())
@@ -1156,7 +1178,7 @@ void DbTreeModel::interruptableFinished(Interruptable* obj)
         treeView->getDbTree()->hideRefreshWidgetCover();
 }
 
-QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
+QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data) const
 {
     QList<DbTreeItem*> items;
     QByteArray byteData = data->data(MIMETYPE);
@@ -1247,10 +1269,7 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
                 return false;
 
             if (srcItem->getDb() == dstItem->getDb() && invokeStdDropAction)
-            {
-                *invokeStdDropAction = true;
                 return true;
-            }
 
             return dropDbObjectItem(srcItems, dstItem, defaultAction);
         }
@@ -1272,15 +1291,12 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 
     return false;
 }
 
-#include <QCursor>
-#include <QTimer>
 bool DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction)
 {
     if (defaultAction == Qt::CopyAction)
@@ -1396,6 +1412,16 @@ bool DbTreeModel::quickAddDroppedDb(const QString& filePath, DbPlugin* plugin)
     QHash<QString,QVariant> opts;
     opts[DB_PLUGIN] = plugin->getName();
     return DBLIST->addDb(name, filePath, opts, !CFG_UI.DbList.NewDbNotPermanentByDefault.get());
+}
+
+void DbTreeModel::loadTableOrViewSchema(DbTreeItem* tableOrViewItem)
+{
+    if (tableOrViewItem->getType() == DbTreeItem::Type::TABLE || tableOrViewItem->getType() == DbTreeItem::Type::VIRTUAL_TABLE)
+        loadTableSchema(tableOrViewItem);
+    else if (tableOrViewItem->getType() == DbTreeItem::Type::VIEW)
+        loadViewSchema(tableOrViewItem);
+    else
+        qWarning() << "Called DbTreeModel::loadTableOrViewSchema with item that is not a table or view:" << tableOrViewItem->text();
 }
 
 void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers)

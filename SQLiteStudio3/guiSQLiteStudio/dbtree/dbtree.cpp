@@ -53,6 +53,7 @@
 CFG_KEYS_DEFINE(DbTree)
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
 QSet<DbTreeItem::Type> DbTree::draggableTypes;
+QSet<DbTreeItem::Type> DbTree::treeAcceptedTypes;
 
 DbTree::DbTree(QWidget *parent) :
     QDockWidget(parent),
@@ -185,10 +186,16 @@ void DbTree::createActions()
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("&Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Re&fresh selected database schema"), this, SLOT(refreshSchema()), this);
     createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
-    createAction(GENERATE_SELECT, "SELECT", this, SLOT(generateSelectForTable()), this);
-    createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsertForTable()), this);
-    createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdateForTable()), this);
-    createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDeleteForTable()), this);
+    createAction(GENERATE_SELECT, ICONS.DATA_SELECT,
+                 QString("%1 (%2)").arg("SELECT", tr("Drag", "dbtree table action shortcut")),
+                 this, SLOT(generateSelectForTable()), this);
+    createAction(GENERATE_INSERT, ICONS.DATA_INSERT,
+                 QString("%1 (%2%3)").arg("INSERT", QKeySequence(Qt::CTRL).toString(QKeySequence::NativeText), tr("Drag", "dbtree table action shortcut")),
+                 this, SLOT(generateInsertForTable()), this);
+    createAction(GENERATE_UPDATE, ICONS.DATA_UPDATE,
+                 QString("%1 (%2%3)").arg("UPDATE", QKeySequence(Qt::ALT).toString(QKeySequence::NativeText), tr("Drag", "dbtree table action shortcut")),
+                 this, SLOT(generateUpdateForTable()), this);
+    createAction(GENERATE_DELETE, ICONS.DATA_DELETE, "DELETE", this, SLOT(generateDeleteForTable()), this);
     createAction(OPEN_DB_DIRECTORY, ICONS.DIRECTORY_OPEN_WITH_DB, tr("Open file's directory"), this, SLOT(openDbDirectory()), this);
     createAction(EXEC_SQL_FROM_FILE, ICONS.EXEC_SQL_FROM_FILE, tr("Execute SQL from file"), this, SLOT(execSqlFromFile()), this);
     createAction(INCR_FONT_SIZE, tr("Increase font size", "database list"), this, SLOT(incrFontSize()), this);
@@ -250,7 +257,6 @@ void DbTree::updateActionStates(const QStandardItem *item)
             switch (dbTreeItem->getType())
             {
                 case DbTreeItem::Type::ITEM_PROTOTYPE:
-                case DbTreeItem::Type::SIGNATURE_OF_THIS:
                     break;
                 case DbTreeItem::Type::DIR:
                     // It's handled outside of "item with db", above
@@ -356,7 +362,6 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::TRIGGERS:
                 case DbTreeItem::Type::VIEWS:
                 case DbTreeItem::Type::ITEM_PROTOTYPE:
-                case DbTreeItem::Type::SIGNATURE_OF_THIS:
                     break;
             }
 
@@ -658,7 +663,6 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::ITEM_PROTOTYPE:
-            case DbTreeItem::Type::SIGNATURE_OF_THIS:
                 break;
         }
 
@@ -717,7 +721,10 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
 
 void DbTree::initDndTypes()
 {
-    draggableTypes << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW << DbTreeItem::Type::DIR << DbTreeItem::Type::DB;
+    draggableTypes << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW << DbTreeItem::Type::DIR << DbTreeItem::Type::DB
+                   << DbTreeItem::Type::COLUMNS << DbTreeItem::Type::COLUMN;
+
+    treeAcceptedTypes << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW << DbTreeItem::Type::DIR << DbTreeItem::Type::DB;
 
     allowedTypesInside[DbTreeItem::Type::DIR] << DbTreeItem::Type::DB << DbTreeItem::Type::DIR;
     allowedTypesInside[DbTreeItem::Type::DB] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
@@ -767,6 +774,11 @@ bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem*
 bool DbTree::isItemDraggable(const DbTreeItem* item)
 {
     return item && draggableTypes.contains(item->getType());
+}
+
+bool DbTree::isAcceptedDropItem(const DbTreeItem* item)
+{
+    return item && treeAcceptedTypes.contains(item->getType());
 }
 
 bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting)
@@ -968,7 +980,6 @@ void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
             case DbTreeItem::Type::VIEWS:
             case DbTreeItem::Type::COLUMNS:
             case DbTreeItem::Type::ITEM_PROTOTYPE:
-            case DbTreeItem::Type::SIGNATURE_OF_THIS:
                 it.remove();
                 break;
             case DbTreeItem::Type::DIR:
@@ -1033,7 +1044,6 @@ void DbTree::deleteItem(DbTreeItem* item)
         case DbTreeItem::Type::COLUMNS:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             return;
     }
 
@@ -2228,7 +2238,6 @@ void DbTree::handleItemEdited(const QModelIndex& idx, const QVariant& oldValue, 
         case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::VIEWS:
         case DbTreeItem::Type::COLUMNS:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
         case DbTreeItem::Type::DIR:
             break;

@@ -326,6 +326,24 @@ QString SqlEditor::getLoadedFile() const
     return loadedFile;
 }
 
+QPixmap SqlEditor::getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const
+{
+    Q_UNUSED(items);
+    return ICONS.DATA_SELECT;
+}
+
+QPixmap SqlEditor::getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const
+{
+    Q_UNUSED(items);
+    return ICONS.DATA_UPDATE;
+}
+
+QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
+{
+    Q_UNUSED(items);
+    return ICONS.DATA_INSERT;
+}
+
 bool SqlEditor::getAlwaysEnforceErrorsChecking() const
 {
     return alwaysEnforceErrorsChecking;
@@ -1880,9 +1898,171 @@ void SqlEditor::showEvent(QShowEvent* event)
     setLineWrapMode(wrapWords ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
 }
 
+void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action)
+{
+    QList<DbTreeItem*> onlyParentSelectedItems = items | FILTER(item, {return !items.contains(item->parentDbTreeItem());});
+    switch (action)
+    {
+        case Qt::CopyAction:
+            handleDbTreeUpdateDrop(onlyParentSelectedItems);
+            break;
+        case Qt::LinkAction:
+            handleDbTreeInsertDrop(onlyParentSelectedItems);
+            break;
+        default:
+            handleDbTreeSelectDrop(onlyParentSelectedItems);
+            break;
+    }
+}
+
+void SqlEditor::handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items)
+{
+    QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
+
+    static_qstring(updateTpl, "UPDATE %1\n   SET %2\n WHERE false; -- for safety\n");
+    QStringList existingBindParams;
+    QStringList parts;
+    for (const QPair<QString, QStringList>& sourceAndCols : sourceAndColumns)
+    {
+        QString setPart = (sourceAndCols.second |
+                           MAP(col, {
+                                   return wrapObjIfNeeded(col) + " = "
+                                        + generateUniqueName(columnToBindParamName(col), existingBindParams, Qt::CaseInsensitive);
+                               })).join(",\n       ");
+        parts << updateTpl.arg(sourceAndCols.first, setPart);
+    }
+    setFocus(Qt::MouseFocusReason);
+    insertPlainText(parts.join("\n"));
+}
+
+void SqlEditor::handleDbTreeInsertDrop(const QList<DbTreeItem*>& items)
+{
+    QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
+
+    static_qstring(insertTpl, "INSERT INTO %1 (%2)\n     VALUES (%3);\n");
+    QStringList existingBindParams;
+    QStringList parts;
+    for (const QPair<QString, QStringList>& sourceAndCols : sourceAndColumns)
+    {
+        QString columnsPart = (sourceAndCols.second | MAP(col, {return wrapObjIfNeeded(col);})).join(", ");
+        QString bindParams = (sourceAndCols.second
+                              | MAP(col, {
+                                        return generateUniqueName(columnToBindParamName(col), existingBindParams, Qt::CaseInsensitive);
+                                    })).join(", ");
+        parts << insertTpl.arg(sourceAndCols.first, columnsPart, bindParams);
+    }
+    setFocus(Qt::MouseFocusReason);
+    insertPlainText(parts.join("\n"));
+}
+
+void SqlEditor::handleDbTreeSelectDrop(const QList<DbTreeItem*>& items)
+{
+    QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
+
+    static_qstring(selectTpl, "SELECT %1\n  FROM %2;\n");
+    QStringList parts;
+    for (const QPair<QString, QStringList>& sourceAndCols : sourceAndColumns)
+    {
+        QString columnsPart = (sourceAndCols.second | MAP(col, {return wrapObjIfNeeded(col);})).join(", ");
+        parts << selectTpl.arg(columnsPart, sourceAndCols.first);
+    }
+    setFocus(Qt::MouseFocusReason);
+    insertPlainText(parts.join("\n"));
+}
+
+QList<QPair<QString, QStringList>> SqlEditor::getSourceAndColumnsForDrop(const QList<DbTreeItem*>& items)
+{
+    QHash<QString, QStringList> sourceAndColumns;
+    QStringList appearanceOrder;
+
+    for (auto&& item : items)
+    {
+        DbTreeItem* itemToLoadSchema = nullptr;
+        DbTreeItem* sourceItem = nullptr;
+        QList<DbTreeItem*> columnItemList;
+        switch (item->getType())
+        {
+            case DbTreeItem::Type::TABLE:
+                itemToLoadSchema = item;
+                sourceItem = item;
+                break;
+            case DbTreeItem::Type::VIEW:
+                itemToLoadSchema = item;
+                sourceItem = item;
+                break;
+            case DbTreeItem::Type::COLUMNS:
+                columnItemList += item->dbTreeChilds();
+                sourceItem = item->parentDbTreeItem();
+                break;
+            case DbTreeItem::Type::COLUMN:
+                columnItemList << item;
+                sourceItem = item->parentDbTreeItem()->parentDbTreeItem();
+                break;
+            case DbTreeItem::Type::DB:
+            case DbTreeItem::Type::VIRTUAL_TABLE:
+            case DbTreeItem::Type::INDEX:
+            case DbTreeItem::Type::TRIGGER:
+            case DbTreeItem::Type::DIR:
+            case DbTreeItem::Type::TABLES:
+            case DbTreeItem::Type::INDEXES:
+            case DbTreeItem::Type::TRIGGERS:
+            case DbTreeItem::Type::VIEWS:
+            case DbTreeItem::Type::ITEM_PROTOTYPE:
+                break;
+        }
+
+        if (!sourceItem)
+            continue;
+
+        if (itemToLoadSchema)
+        {
+            DBTREE->getModel()->loadTableOrViewSchema(itemToLoadSchema);
+            DbTreeItem* columnsItem = itemToLoadSchema->findFirstItem(DbTreeItem::Type::COLUMNS);
+            if (!columnsItem)
+            {
+                qWarning() << "Failed to find COLUMNS item after loading table/view schema in SqlEditor::handleDbTreeSelectDrop. This should not happen.";
+                continue;
+            }
+            columnItemList = columnsItem->dbTreeChilds();
+        }
+
+        for (DbTreeItem* columnItem : columnItemList)
+        {
+            Db* columnDb = columnItem->getDb();
+            QString source = wrapObjIfNeeded(sourceItem->text());
+            static_qstring(pairSrcTpl, "%1.%2");
+            if (columnDb != db)
+                source = pairSrcTpl.arg(wrapObjIfNeeded(columnDb->getName()), source);
+
+            sourceAndColumns[source] << columnItem->text();
+            if (!appearanceOrder.contains(source))
+                appearanceOrder << source;
+        }
+    }
+
+    QList<QPair<QString, QStringList>> result;
+    for (const QString& source : appearanceOrder)
+        result << QPair{source, sourceAndColumns[source]};
+
+    return result;
+}
+
 void SqlEditor::dropEvent(QDropEvent* e)
 {
-    QPlainTextEdit::dropEvent(e);
-    if (MAINWINDOW->getDbTree()->getModel()->hasDbTreeItem(e->mimeData()))
+    const QMimeData* data = e->mimeData();
+    DbTreeModel* treeModel = MAINWINDOW->getDbTree()->getModel();
+    if (treeModel->hasDbTreeItem(data))
+    {
+        // This is a workaround to Qt bug https://www.qtcentre.org/threads/16935-Cursor-stops-being-redrawn-when-QTextEdit-dropEvent()-overrided
+        // (still not fixed...), which causes cursor to stop blinking after customizing the dropEvent().
+        setReadOnly(true);
+        QPlainTextEdit::dropEvent(e);
+        setReadOnly(false);
+
+        QList<DbTreeItem*> srcItems = treeModel->getDragItems(data);
+        handleDbTreeDrop(srcItems, e->dropAction());
         e->ignore();
+    }
+    else
+        QPlainTextEdit::dropEvent(e);
 }

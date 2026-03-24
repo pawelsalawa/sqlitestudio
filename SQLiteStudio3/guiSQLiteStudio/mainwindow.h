@@ -169,6 +169,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
     protected:
         void closeEvent(QCloseEvent *event);
+        void dropEvent(QDropEvent* e);
 
     private:
         class ToolBarStyleEnforcer : public QObject

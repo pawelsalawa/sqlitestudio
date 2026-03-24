@@ -291,6 +291,12 @@ void MainWindow::closeEvent(QCloseEvent* event)
     QMainWindow::closeEvent(event);
 }
 
+void MainWindow::dropEvent(QDropEvent* e)
+{
+    // qDebug() << "MainWindow drop" << e;
+    QWidget::dropEvent(e);
+}
+
 void MainWindow::createActions()
 {
     createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL &editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);

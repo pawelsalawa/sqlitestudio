@@ -27,6 +27,8 @@ class QTimer;
 #  define COMPLETE_REQ_KEY Qt::CTRL
 #endif
 
+
+class DbTreeItem;
 CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(CUT,             QKeySequence::Cut,                 QObject::tr("Cut selected text"))
     CFG_KEY_ENTRY(COPY,            QKeySequence::Copy,                QObject::tr("Copy selected text"))
@@ -120,6 +122,10 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool getHighlightingSyntax() const;
         void setOpenSaveActionsEnabled(bool value);
         void addContextMenuExtraAction(QAction* act);
+        QString getLoadedFile() const;
+        QPixmap getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const;
+        QPixmap getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const;
+        QPixmap getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const;
 
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
@@ -128,8 +134,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void setAlwaysEnforceErrorsChecking(bool newAlwaysEnforceErrorsChecking);
 
         static constexpr int HUGE_QUERY_LENGTH = 10 * 1024 * 1024; // 10MB of SQL
-
-        QString getLoadedFile() const;
 
     protected:
         void setupDefShortcuts();
@@ -229,6 +233,11 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
+        void handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action);
+        void handleDbTreeSelectDrop(const QList<DbTreeItem*>& items);
+        void handleDbTreeInsertDrop(const QList<DbTreeItem*>& items);
+        void handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items);
+        QList<QPair<QString, QStringList>> getSourceAndColumnsForDrop(const QList<DbTreeItem*>& items);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;

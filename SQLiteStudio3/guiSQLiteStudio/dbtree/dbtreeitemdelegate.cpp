@@ -70,7 +70,6 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
-        case DbTreeItem::Type::SIGNATURE_OF_THIS:
             break;
     }
 }
