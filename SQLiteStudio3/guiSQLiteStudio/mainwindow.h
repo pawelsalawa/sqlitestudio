@@ -10,11 +10,11 @@
 #include <QHash>
 #include <QQueue>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
-#include <QMimeDatabase>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QMimeDatabase>
 
 class QUiLoader;
 class DbTree;
