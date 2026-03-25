@@ -1987,7 +1987,7 @@ void SqlEditor::handleDbTreeSelectDrop(const QList<DbTreeItem*>& items)
     QStringList parts;
     for (const QPair<QString, QStringList>& sourceAndCols : sourceAndColumns)
     {
-        QString columnsPart = (sourceAndCols.second | MAP(col, {return wrapObjIfNeeded(col);})).join(", ");
+        QString columnsPart = (sourceAndCols.second | MAP(col, {return wrapObjIfNeeded(col);})).join(",\n       ");
         parts << selectTpl.arg(columnsPart, sourceAndCols.first);
     }
     setFocus(Qt::MouseFocusReason);

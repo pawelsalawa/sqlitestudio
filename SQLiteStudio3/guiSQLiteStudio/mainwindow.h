@@ -10,6 +10,7 @@
 #include <QHash>
 #include <QQueue>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QMimeDatabase>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
@@ -132,11 +133,34 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             TOOLBAR_VIEW
         };
 
+        enum class DropFileType
+        {
+            SQLITE3,
+            SQLITE3_POSSIBLE,
+            SQLITE3_EMPTY,
+            SQL,
+            TEXT,
+            CSV,
+            SQLITE2,
+            OTHER
+        };
+
+        struct DropFileContext
+        {
+            QString mimeValue;
+            DropFileType type;
+            QString fileName;
+            QString fullPath;
+        };
+
         static MainWindow* getInstance();
         static void setSafeMode(bool enabled);
         static bool isSafeMode();
         static bool isSessionRestoringFinished();
         static bool isInternalDrop(const QMimeData *data);
+        static DropFileType mimeToFileType(const QString& mimeValue);
+        static DropFileType fileToFileType(const QString& filePath);
+        static DropFileContext fileToDropContext(const QString& filePath);
 
         MdiArea* getMdiArea() const;
         DbTree* getDbTree() const;
@@ -211,6 +235,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void handleExternalDragEnter(const QStringList& filePaths);
         void handleExternalDragLeave();
         void handleDroppedFile(const QString& filePath);
+        QString dropDescriptionByFileType(const DropFileContext& ctx);
 
         static bool confirmQuit(const QList<Committable*>& instances);
 
@@ -239,6 +264,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #endif
         WidgetCover* dropOverlay = nullptr;
         QLabel* dropDetails = nullptr;
+        static QMimeDatabase mimeDb;
 
         QTimer* saveSessionTimer = nullptr;
 
