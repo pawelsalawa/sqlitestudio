@@ -21,7 +21,7 @@ void FormatPragma::formatInternal()
     else if (pragma->parenthesis)
         withParExprLeft();
 
-    if (pragma->value.userType() == QVariant::Bool)
+    if (pragma->value.userType() == QMetaType::Bool)
         withId(pragma->getBoolLiteralValue(), false);
     else
         withLiteral(pragma->value);

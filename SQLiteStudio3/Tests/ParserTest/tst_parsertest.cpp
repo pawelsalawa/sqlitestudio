@@ -180,7 +180,7 @@ void ParserTest::testGetFullObjects()
     QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
     QVERIFY(fullObjects.size() == 2);
 
-    for (const SqliteStatement::FullObject& fullObj : fullObjects)
+    for (SqliteStatement::FullObject& fullObj : fullObjects)
     {
         switch (fullObj.type)
         {
@@ -208,7 +208,7 @@ void ParserTest::testGetFullObjects2()
     QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
     QVERIFY(fullObjects.size() == 5);
 
-    for (const SqliteStatement::FullObject& fullObj : fullObjects)
+    for (SqliteStatement::FullObject& fullObj : fullObjects)
     {
         switch (fullObj.type)
         {
@@ -825,24 +825,24 @@ void ParserTest::testTrueFalseLiterals1()
     QVERIFY(resCols.size() == 2);
 
     SqliteExpr* firstRight = resCols.first()->expr->expr2;
-    QVERIFY(firstRight->literalValue.userType() == QVariant::Bool);
+    QVERIFY(firstRight->literalValue.userType() == QMetaType::Bool);
     QVERIFY(firstRight->literalValue.toBool());
     QVERIFY(firstRight->tokens.first()->value == "true");
 
     SqliteExpr* secondRight = resCols[1]->expr->expr2;
-    QVERIFY(secondRight->literalValue.userType() == QVariant::Bool);
+    QVERIFY(secondRight->literalValue.userType() == QMetaType::Bool);
     QVERIFY(!secondRight->literalValue.toBool());
     QVERIFY(secondRight->tokens.first()->value == "false");
 
     select->rebuildTokens();
 
     SqliteExpr* firstRightAfter = resCols.first()->expr->expr2;
-    QVERIFY(firstRightAfter->literalValue.userType() == QVariant::Bool);
+    QVERIFY(firstRightAfter->literalValue.userType() == QMetaType::Bool);
     QVERIFY(firstRightAfter->literalValue.toBool());
     QVERIFY(firstRightAfter->tokens.first()->value == "true");
 
     SqliteExpr* secondRightAfter = resCols[1]->expr->expr2;
-    QVERIFY(secondRightAfter->literalValue.userType() == QVariant::Bool);
+    QVERIFY(secondRightAfter->literalValue.userType() == QMetaType::Bool);
     QVERIFY(!secondRightAfter->literalValue.toBool());
     QVERIFY(secondRightAfter->tokens.first()->value == "false");
 }

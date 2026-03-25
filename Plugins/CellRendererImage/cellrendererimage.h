@@ -13,7 +13,7 @@ class CellRendererImage : public SqlQueryItemDelegate
 
         void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
         QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-        QString	displayText(const QVariant & value, const QLocale & locale) const;
+        QString	displayText(const QVariant & value, const QLocale & locale) const override;
 
     private:
          CfgTypedEntry<int>* widthCfg = nullptr;

@@ -92,7 +92,7 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow, QList
     if (isWithOutRowIdTable)
     {
         int i = 0;
-        for (const SqlQueryModelColumnPtr& modelColumn : columns)
+        for (SqlQueryModelColumnPtr& modelColumn : columns)
         {
             if (modelColumn->isPk())
                 rowId[modelColumn->column] = rowValues[i];
@@ -213,7 +213,7 @@ void SqlTableModel::prepareColumnsAndBindParams(const QList<SqlQueryItem*>& item
 {
     SqlQueryItem* item = nullptr;
     int i = 0;
-    for (SqlQueryModelColumnPtr modelColumn : columns)
+    for (SqlQueryModelColumnPtr& modelColumn : columns)
     {
         item = itemsInRow[i++];
         if (!modelColumn->canEdit())

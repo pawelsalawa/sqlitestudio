@@ -32,7 +32,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void modelUpdated();
         int rowIndexAt(const QPointF& point);
         QRectF rowRect(int rowIndex);
-        bool isClickable();
+        bool isClickable() override;
         void updateConnectionsGeometry();
         void addConnection(ErdConnection* conn);
         void removeConnection(ErdConnection* conn);
@@ -47,7 +47,7 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         void setExistingTable(bool newExistingTable);
         bool edit(const QPointF& point);
         void editName();
-        bool eventFilter(QObject *obj, QEvent *event);
+        bool eventFilter(QObject *obj, QEvent *event) override;
         void stopInlineEditing();
         void setCustomColor(const QColor& bg);
         void setCustomColor(const QColor& bg, const QColor& fg);
@@ -56,9 +56,9 @@ class ErdEntity : public QObject, public QGraphicsRectItem, public ErdItem
         bool applyFilter(const QString& value);
 
     protected:
-        void keyPressEvent(QKeyEvent* event);
-        void keyReleaseEvent(QKeyEvent* event);
-        QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+        void keyPressEvent(QKeyEvent* event) override;
+        void keyReleaseEvent(QKeyEvent* event) override;
+        QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
 
     private:
         struct Row

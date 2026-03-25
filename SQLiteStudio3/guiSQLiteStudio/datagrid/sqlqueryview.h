@@ -115,8 +115,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             public:
                 explicit Header(SqlQueryView* parent);
 
-                QSize sectionSizeFromContents(int section) const;
-                void mousePressEvent(QMouseEvent *e);
+                QSize sectionSizeFromContents(int section) const override;
+                void mousePressEvent(QMouseEvent *e) override;
                 void mouseDoubleClickEvent(QMouseEvent *e) override;
 
             private:
