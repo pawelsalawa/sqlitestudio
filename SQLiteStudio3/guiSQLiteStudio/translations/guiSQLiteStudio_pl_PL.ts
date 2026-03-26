@@ -4154,330 +4154,370 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <translation>Pasek narzędzi widoku</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="137"/>
+      <location filename="../mainwindow.cpp" line="136"/>
       <source>Configuration widgets</source>
       <translation>Kontrolki konfiguracji</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="138"/>
+      <location filename="../mainwindow.cpp" line="137"/>
       <source>Syntax highlighting engines</source>
       <translation>Silniki podświetlania składni</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="139"/>
+      <location filename="../mainwindow.cpp" line="138"/>
       <source>Data editors</source>
       <translation>Edytory danych</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="152"/>
+      <location filename="../mainwindow.cpp" line="151"/>
       <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
       <translation>Uruchomiono tryb debugowania. Wciśnij %1 lub wybierz menu &apos;Pomoc / Otwórz konsolę debugowania&apos; aby otworzyć konsolę debugowania.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="154"/>
+      <location filename="../mainwindow.cpp" line="153"/>
       <source>Running in debug mode. Debug messages are printed to the standard output.</source>
       <translation>Uruchomiono tryb debugowania. Wiadomości debugujące są wyświetlane na standardowym wyjściu.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="258"/>
+      <location filename="../mainwindow.cpp" line="257"/>
       <source>You need to restart application to make the language change take effect.</source>
       <translation>Należy zrestartować aplikację, aby nastąpiła zmiana języka.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="303"/>
+      <location filename="../mainwindow.cpp" line="302"/>
       <source>Open SQL &amp;editor</source>
       <translation>Otwórz &amp;edytor SQL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="343"/>
+      <location filename="../mainwindow.cpp" line="342"/>
       <source>Open DDL &amp;history</source>
       <translation>Otwórz &amp;historię DDL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="304"/>
+      <location filename="../mainwindow.cpp" line="303"/>
       <source>Open SQL &amp;functions editor</source>
       <translation>Otwórz edytor &amp;funkcji SQL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="305"/>
+      <location filename="../mainwindow.cpp" line="304"/>
       <source>Open code &amp;snippets editor</source>
       <translation>Otwórz edytor kodu f&amp;ragmentów</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="306"/>
+      <location filename="../mainwindow.cpp" line="305"/>
       <source>Open &amp;collations editor</source>
       <translation>Otwórz edytor sekwencji &amp;porządkowania</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="307"/>
+      <location filename="../mainwindow.cpp" line="306"/>
       <source>Open ex&amp;tension manager</source>
       <translation>O&amp;twórzy menadżera rozszerzeń</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="344"/>
+      <location filename="../mainwindow.cpp" line="343"/>
       <source>&amp;Import</source>
       <translation>&amp;Importuj</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="345"/>
+      <location filename="../mainwindow.cpp" line="344"/>
       <source>E&amp;xport</source>
       <translation>E&amp;ksportuj</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="309"/>
+      <location filename="../mainwindow.cpp" line="308"/>
       <source>Open confi&amp;guration dialog</source>
       <translation>Otwórz okno konfi&amp;guracji</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="311"/>
+      <location filename="../mainwindow.cpp" line="310"/>
       <source>&amp;Tile windows</source>
       <translation>Ustaw okna w pły&amp;tki</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="312"/>
+      <location filename="../mainwindow.cpp" line="311"/>
       <source>Tile windows &amp;horizontally</source>
       <translation>Ustaw okno po&amp;ziomo</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="313"/>
+      <location filename="../mainwindow.cpp" line="312"/>
       <source>Tile windows &amp;vertically</source>
       <translation>Ustaw okna pio&amp;nowo</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="314"/>
+      <location filename="../mainwindow.cpp" line="313"/>
       <source>&amp;Cascade windows</source>
       <translation>Ustaw okna &amp;kaskadowo</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="315"/>
+      <location filename="../mainwindow.cpp" line="314"/>
       <source>Next window</source>
       <translation>Następne okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="316"/>
+      <location filename="../mainwindow.cpp" line="315"/>
       <source>Previous window</source>
       <translation>Poprzednie okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="317"/>
+      <location filename="../mainwindow.cpp" line="316"/>
       <source>Hide status field</source>
       <translation>Ukryj pole statusu</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="321"/>
+      <location filename="../mainwindow.cpp" line="320"/>
       <source>Close &amp;all windows</source>
       <translation>Z&amp;amknij wszystkie okna</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="324"/>
+      <location filename="../mainwindow.cpp" line="323"/>
       <source>Re&amp;store recently closed window</source>
       <translation>Przywróć o&amp;statnio zamknięte okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="319"/>
+      <location filename="../mainwindow.cpp" line="318"/>
       <source>Close current &amp;window</source>
       <translation>Zamknij &amp;bieżące okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="140"/>
+      <location filename="../mainwindow.cpp" line="139"/>
       <source>Data renderers</source>
       <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="320"/>
+      <location filename="../mainwindow.cpp" line="319"/>
       <source>Close &amp;other windows</source>
       <translation>Zamknij &amp;inne okna</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="322"/>
+      <location filename="../mainwindow.cpp" line="321"/>
       <source>Close windows on the &amp;left</source>
       <translation>Zamknij okna po &amp;lewej</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="323"/>
+      <location filename="../mainwindow.cpp" line="322"/>
       <source>Close windows on the &amp;right</source>
       <translation>Zamknij okna po &amp;prawej</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="325"/>
+      <location filename="../mainwindow.cpp" line="324"/>
       <source>Re&amp;name selected window</source>
       <translation>Zmień &amp;nazwę wybranego okna</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="327"/>
+      <location filename="../mainwindow.cpp" line="326"/>
       <source>Open Debug Console</source>
       <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="328"/>
+      <location filename="../mainwindow.cpp" line="327"/>
       <source>Open CSS Console</source>
       <translation>Otwórz konsolę CSS</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="329"/>
+      <location filename="../mainwindow.cpp" line="328"/>
       <source>Report a &amp;bug</source>
       <translation>Zgłoś &amp;błąd</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="330"/>
+      <location filename="../mainwindow.cpp" line="329"/>
       <source>D&amp;onate</source>
       <translation>Wesprzyj d&amp;otacją</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="331"/>
+      <location filename="../mainwindow.cpp" line="330"/>
       <source>Propose a new &amp;feature</source>
       <translation>Zgłoś &amp;pomysł</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="332"/>
+      <location filename="../mainwindow.cpp" line="331"/>
       <source>&amp;About</source>
       <translation>O progra&amp;mie</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="333"/>
+      <location filename="../mainwindow.cpp" line="332"/>
       <source>&amp;Licenses</source>
       <translation>&amp;Licencje</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="334"/>
+      <location filename="../mainwindow.cpp" line="333"/>
       <source>Open home &amp;page</source>
       <translation>Otwórz stronę &amp;domową</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="335"/>
+      <location filename="../mainwindow.cpp" line="334"/>
       <source>User &amp;Manual</source>
       <translation>&amp;Podręcznik Użytkownika</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="336"/>
+      <location filename="../mainwindow.cpp" line="335"/>
       <source>SQLite &amp;documentation</source>
       <translation>&amp;Dokumentacja SQLite</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="337"/>
+      <location filename="../mainwindow.cpp" line="336"/>
       <source>Bugs and feature &amp;requests</source>
       <translation>Błęd&amp;y i pomysły</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="338"/>
+      <location filename="../mainwindow.cpp" line="337"/>
       <source>Quit</source>
       <translation>Wyjdź</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="340"/>
+      <location filename="../mainwindow.cpp" line="339"/>
       <source>Check for &amp;updates</source>
       <translation>Sprawdź akt&amp;ualizacje</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="366"/>
+      <location filename="../mainwindow.cpp" line="365"/>
       <source>&amp;Database</source>
       <comment>menubar</comment>
       <translation>Bazy &amp;danych</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="391"/>
+      <location filename="../mainwindow.cpp" line="390"/>
       <source>&amp;Structure</source>
       <comment>menubar</comment>
       <translation>&amp;Struktura</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="709"/>
+      <location filename="../mainwindow.cpp" line="708"/>
       <source>&amp;View</source>
       <comment>menubar</comment>
       <translation>&amp;Widoki</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="415"/>
+      <location filename="../mainwindow.cpp" line="414"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
       <translation>Lista okien</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="438"/>
+      <location filename="../mainwindow.cpp" line="437"/>
       <source>&amp;Tools</source>
       <comment>menubar</comment>
       <translation>&amp;Narzędzia</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="454"/>
+      <location filename="../mainwindow.cpp" line="453"/>
       <source>&amp;Help</source>
       <translation>&amp;Pomoc</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="646"/>
+      <location filename="../mainwindow.cpp" line="645"/>
       <source>Could not set style: %1</source>
       <comment>main window</comment>
       <translation>Nie udało się ustawić stylu: %1</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="871"/>
+      <location filename="../mainwindow.cpp" line="870"/>
       <source>Cannot export, because no export plugin is loaded.</source>
       <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="887"/>
+      <location filename="../mainwindow.cpp" line="886"/>
       <source>Cannot import, because no import plugin is loaded.</source>
       <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="930"/>
+      <location filename="../mainwindow.cpp" line="929"/>
       <source>Rename window</source>
       <translation>Zmień nazwę okna</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="930"/>
+      <location filename="../mainwindow.cpp" line="929"/>
       <source>Enter new name for the window:</source>
       <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1032"/>
+      <location filename="../mainwindow.cpp" line="1031"/>
       <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
       <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1038"/>
+      <location filename="../mainwindow.cpp" line="1037"/>
       <source>You&apos;re running the most recent version. No updates are available.</source>
       <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1122"/>
+      <location filename="../mainwindow.cpp" line="1121"/>
       <source>Toolbar &amp;icons</source>
       <comment>menubar</comment>
       <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1129"/>
+      <location filename="../mainwindow.cpp" line="1128"/>
       <source>Size: %1%</source>
       <comment>toolbar icons</comment>
       <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1216"/>
+      <location filename="../mainwindow.cpp" line="1215"/>
       <source>Drop files to open them</source>
       <translation type="unfinished">Drop files to open them</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1270"/>
+      <location filename="../mainwindow.cpp" line="1279"/>
       <source>The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1.</source>
       <translation type="unfinished">The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1.</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1274"/>
+      <location filename="../mainwindow.cpp" line="1282"/>
       <source>The dropped file type is unsupported: %1 (%2)</source>
       <translation type="unfinished">The dropped file type is unsupported: %1 (%2)</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1322"/>
+      <location filename="../mainwindow.cpp" line="1292"/>
+      <source>SQLite 3 database - add to database list and open</source>
+      <translation type="unfinished">SQLite 3 database - add to database list and open</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1294"/>
+      <source>It may be an encrypted SQLite 3 database. You can try to open it.</source>
+      <translation type="unfinished">It may be an encrypted SQLite 3 database. You can try to open it.</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1296"/>
+      <source>Empty file, but also empty SQLite 3 database - open as database</source>
+      <translation type="unfinished">Empty file, but also empty SQLite 3 database - open as database</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1298"/>
+      <source>SQL file - open in SQL Editor</source>
+      <translation type="unfinished">SQL file - open in SQL Editor</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1300"/>
+      <source>Text file - open in SQL Editor</source>
+      <translation type="unfinished">Text file - open in SQL Editor</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1302"/>
+      <source>CSV file - import using Import Dialog</source>
+      <translation type="unfinished">CSV file - import using Import Dialog</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1304"/>
+      <source>SQLite 2 database - not supported anymore</source>
+      <translation type="unfinished">SQLite 2 database - not supported anymore</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1306"/>
+      <source>Unsupported file type</source>
+      <translation type="unfinished">Unsupported file type</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="1356"/>
       <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
       <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1329"/>
+      <location filename="../mainwindow.cpp" line="1363"/>
       <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
       <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="1334"/>
+      <location filename="../mainwindow.cpp" line="1368"/>
       <source>Could not add database %1 to list.</source>
       <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -5287,82 +5327,87 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <translation>Usuń bieżący wiersz</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="52"/>
+      <location filename="../mainwindow.h" line="53"/>
       <source>Main window</source>
       <translation>Okno główne</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="53"/>
+      <location filename="../mainwindow.h" line="54"/>
       <source>Open SQL editor</source>
       <translation>Otwórz edytor SQL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="54"/>
+      <location filename="../mainwindow.h" line="56"/>
       <source>Open DDL history window</source>
       <translation>Otwórz okno historii DDL</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="55"/>
+      <location filename="../mainwindow.h" line="58"/>
       <source>Open snippets editor window</source>
       <translation>Otwórz okno edytora fragmentów</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="56"/>
+      <location filename="../mainwindow.h" line="57"/>
       <source>Open function editor window</source>
       <translation>Otwórz okno edytora funkcji</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="57"/>
+      <location filename="../mainwindow.h" line="55"/>
+      <source>Restore recently closed window</source>
+      <translation type="unfinished">Restore recently closed window</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.h" line="59"/>
       <source>Open collation editor window</source>
       <translation>Otwórz okno edytora sekwencji porządkowania</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="58"/>
+      <location filename="../mainwindow.h" line="60"/>
       <source>Open extension manager window</source>
       <translation>Otwórz okno menedżera rozszerzeń</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="59"/>
+      <location filename="../mainwindow.h" line="61"/>
       <source>Previous window</source>
       <translation>Poprzednie okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="60"/>
+      <location filename="../mainwindow.h" line="62"/>
       <source>Next window</source>
       <translation>Następne okno</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="61"/>
+      <location filename="../mainwindow.h" line="63"/>
       <source>Hide status area</source>
       <translation>Ukryj pole statusu</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="62"/>
+      <location filename="../mainwindow.h" line="64"/>
       <source>Open user manual</source>
       <translation>Otwórz podręcznik użytkownika</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="63"/>
+      <location filename="../mainwindow.h" line="65"/>
       <source>Open configuration dialog</source>
       <translation>Otwórz okno konfiguracji</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="64"/>
+      <location filename="../mainwindow.h" line="66"/>
       <source>Open Debug Console</source>
       <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="65"/>
+      <location filename="../mainwindow.h" line="67"/>
       <source>Open CSS Console</source>
       <translation>Otwórz konsolę CSS</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="66"/>
+      <location filename="../mainwindow.h" line="68"/>
       <source>Open the About dialog</source>
       <translation>Otwórz okno O Programie</translation>
     </message>
     <message>
-      <location filename="../mainwindow.h" line="67"/>
+      <location filename="../mainwindow.h" line="69"/>
       <source>Quit the application</source>
       <translation>Wyjdź z aplikacji</translation>
     </message>
