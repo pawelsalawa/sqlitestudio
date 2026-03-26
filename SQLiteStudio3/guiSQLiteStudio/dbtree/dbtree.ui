@@ -45,7 +45,7 @@
        <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
       </property>
       <property name="defaultDropAction">
-       <enum>Qt::DropAction::CopyAction</enum>
+       <enum>Qt::DropAction::MoveAction</enum>
       </property>
      </widget>
     </item>

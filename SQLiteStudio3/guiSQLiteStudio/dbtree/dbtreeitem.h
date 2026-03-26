@@ -28,7 +28,6 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
             COLUMN = 1011,
             VIRTUAL_TABLE = 1012,
             // Technical properties below
-            SIGNATURE_OF_THIS = 9998,
             ITEM_PROTOTYPE = 9999
         };
 
@@ -43,6 +42,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         DbTreeItem* findFirstItem(Type type);
         QStandardItem* clone() const;
         QList<QStandardItem*> childs() const;
+        QList<DbTreeItem*> dbTreeChilds() const;
         QStringList childNames() const;
         QString getTable() const;
         QString getColumn() const;
@@ -93,7 +93,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
                 DB = 1002,
                 ICON_PTR = 1003,
                 HIDDEN = 1004,
-                SCHEMA_READY = 1005
+                SCHEMA_READY = 1005,
+                SIGNATURE_OF_THIS = 9998
             };
         };
 

@@ -27,6 +27,8 @@ class GUI_API_EXPORT TaskBar : public QToolBar
         QAction* getNextTask(QAction* from = nullptr) const;
         QAction* getPrevTask(QAction* from = nullptr) const;
 
+        static bool hasTaskBarItem(const QMimeData* data);
+
     protected:
         void mousePressEvent(QMouseEvent* event);
         void mouseMoveEvent(QMouseEvent* event);

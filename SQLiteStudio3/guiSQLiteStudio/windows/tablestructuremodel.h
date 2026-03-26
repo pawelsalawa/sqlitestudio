@@ -37,6 +37,8 @@ class GUI_API_EXPORT TableStructureModel : public QAbstractTableModel
         void moveColumnTo(int colIdx, int newIdx);
         QModelIndex findColumn(const QString& columnName, Qt::CaseSensitivity cs = Qt::CaseSensitive) const;
 
+        static bool hasTableStructureItem(const QMimeData* data);
+
     private:
         enum class Columns
         {

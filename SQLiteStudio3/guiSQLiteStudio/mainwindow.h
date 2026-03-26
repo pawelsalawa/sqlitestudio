@@ -14,6 +14,7 @@
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QMimeDatabase>
 
 class QUiLoader;
 class DbTree;
@@ -50,12 +51,13 @@ class CodeSnippetEditor;
 
 class MouseShortcut;
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
-    CFG_KEY_ENTRY(OPEN_SQL_EDITOR,        Qt::ALT | Qt::Key_E,              QObject::tr("Open SQL editor"))
+    CFG_KEY_ENTRY(OPEN_SQL_EDITOR,        Qt::CTRL | Qt::Key_T,             QObject::tr("Open SQL editor"))
+    CFG_KEY_ENTRY(RESTORE_WINDOW,         Qt::CTRL | Qt::SHIFT | Qt::Key_T, QObject::tr("Restore recently closed window"))
     CFG_KEY_ENTRY(OPEN_DDL_HISTORY,       Qt::CTRL | Qt::Key_H,             QObject::tr("Open DDL history window"))
-    CFG_KEY_ENTRY(OPEN_SNIPPETS_EDITOR,   Qt::CTRL | Qt::SHIFT | Qt::Key_P, QObject::tr("Open snippets editor window"))
-    CFG_KEY_ENTRY(OPEN_FUNCTION_EDITOR,   Qt::CTRL | Qt::SHIFT | Qt::Key_F, QObject::tr("Open function editor window"))
-    CFG_KEY_ENTRY(OPEN_COLLATION_EDITOR,  Qt::CTRL | Qt::SHIFT | Qt::Key_L, QObject::tr("Open collation editor window"))
-    CFG_KEY_ENTRY(OPEN_EXTENSION_MANAGER, Qt::CTRL | Qt::SHIFT | Qt::Key_E, QObject::tr("Open extension manager window"))
+    CFG_KEY_ENTRY(OPEN_FUNCTION_EDITOR,   Qt::ALT | Qt::Key_1,              QObject::tr("Open function editor window"))
+    CFG_KEY_ENTRY(OPEN_SNIPPETS_EDITOR,   Qt::ALT | Qt::Key_2,              QObject::tr("Open snippets editor window"))
+    CFG_KEY_ENTRY(OPEN_COLLATION_EDITOR,  Qt::ALT | Qt::Key_3,              QObject::tr("Open collation editor window"))
+    CFG_KEY_ENTRY(OPEN_EXTENSION_MANAGER, Qt::ALT | Qt::Key_4,              QObject::tr("Open extension manager window"))
     CFG_KEY_ENTRY(PREV_TASK,              PREV_TASK_KEY_SEQ,                QObject::tr("Previous window"))
     CFG_KEY_ENTRY(NEXT_TASK,              NEXT_TASK_KEY_SEQ,                QObject::tr("Next window"))
     CFG_KEY_ENTRY(HIDE_STATUS_FIELD,      Qt::Key_Escape,                   QObject::tr("Hide status area"))
@@ -132,10 +134,34 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             TOOLBAR_VIEW
         };
 
+        enum class DropFileType
+        {
+            SQLITE3,
+            SQLITE3_POSSIBLE,
+            SQLITE3_EMPTY,
+            SQL,
+            TEXT,
+            CSV,
+            SQLITE2,
+            OTHER
+        };
+
+        struct DropFileContext
+        {
+            QString mimeValue;
+            DropFileType type;
+            QString fileName;
+            QString fullPath;
+        };
+
         static MainWindow* getInstance();
         static void setSafeMode(bool enabled);
         static bool isSafeMode();
         static bool isSessionRestoringFinished();
+        static bool isInternalDrop(const QMimeData *data);
+        static DropFileType mimeToFileType(const QString& mimeValue);
+        static DropFileType fileToFileType(const QString& filePath);
+        static DropFileContext fileToDropContext(const QString& filePath);
 
         MdiArea* getMdiArea() const;
         DbTree* getDbTree() const;
@@ -206,6 +232,11 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updateToolbarStyleActionState();
         void initToolbarSizeActionList();
         void handlePostRestoreConfigUpdates();
+        void initDropOverlay();
+        void handleExternalDragEnter(const QStringList& filePaths);
+        void handleExternalDragLeave();
+        void handleDroppedFile(const QString& filePath);
+        QString dropDescriptionByFileType(const DropFileContext& ctx);
 
         static bool confirmQuit(const QList<Committable*>& instances);
 
@@ -232,7 +263,10 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 #ifdef HAS_UPDATEMANAGER
         QPointer<NewVersionDialog> newVersionDialog;
 #endif
-        WidgetCover* widgetCover = nullptr;
+        WidgetCover* dropOverlay = nullptr;
+        QLabel* dropDetails = nullptr;
+        static QMimeDatabase mimeDb;
+
         QTimer* saveSessionTimer = nullptr;
 
         QList<Action> toolbarSizeActionList;

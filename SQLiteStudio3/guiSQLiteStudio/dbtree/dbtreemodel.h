@@ -28,12 +28,13 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         DbTreeItem* findItem(DbTreeItem::Type type, const QString &name);
         DbTreeItem* findItem(DbTreeItem::Type type, Db* db);
         DbTreeItem* findFirstItemOfType(DbTreeItem::Type type);
-        DbTreeItem* findItemBySignature(const QStringList &signature);
+        DbTreeItem* findItemBySignature(const QStringList &signature) const;
         QList<DbTreeItem*> findItems(DbTreeItem::Type type);
         void move(QStandardItem* itemToMove, QStandardItem* newParentItem, int newRow = -1);
         void move(QStandardItem* itemToMove, int newRow);
         DbTreeItem *createGroup(const QString& name, QStandardItem *parent = nullptr);
         void deleteGroup(QStandardItem* groupItem);
+        void deleteIndexesAfterMove(const QList<DbTreeItem*>& indexes);
         QStandardItem *root() const;
         QStringList getGroupFor(QStandardItem* item);
         void storeGroups();
@@ -43,6 +44,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         QVariant data(const QModelIndex &index, int role) const;
         QStringList mimeTypes() const;
         QMimeData* mimeData(const QModelIndexList &indexes) const;
+        bool canDropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent) const;
         bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
         bool pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction = Qt::IgnoreAction,
                        bool *invokeStdAction = nullptr);
@@ -50,15 +52,16 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void interruptableFinished(Interruptable* obj);
         bool getIgnoreDbLoadedSignal() const;
         void setIgnoreDbLoadedSignal(bool value);
-        bool hasDbTreeItem(const QMimeData* data);
-        QList<DbTreeItem*> getDragItems(const QMimeData* data);
+        QList<DbTreeItem*> getDragItems(const QMimeData* data) const;
         QList<DbTreeItem*> getItemsForIndexes(const QModelIndexList& indexes) const;
         DbTreeItem* getItemForIndex(const QModelIndex& index) const;
         QHash<QString, QVariant> collectSelectionState();
         void restoreSelectionState(const QHash<QString, QVariant>& selectionState);
         bool quickAddDroppedDb(const QString& filePath);
         bool quickAddDroppedDb(const QString& filePath, DbPlugin* plugin);
+        void loadTableOrViewSchema(DbTreeItem* tableOrViewItem);
 
+        static bool hasDbTreeItem(const QMimeData* data);
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
         static QList<DbTreeItem*> findItems(QStandardItem* parentItem, DbTreeItem::Type type);
@@ -97,6 +100,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         QString getDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
+        DbTreeItem* getDbTreeItemOf(int row, int column, const QModelIndex& parent) const;
         bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool* invokeStdDropAction);
         bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
         QCheckBox* createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label);

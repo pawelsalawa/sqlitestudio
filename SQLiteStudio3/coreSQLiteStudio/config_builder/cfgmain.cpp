@@ -90,31 +90,31 @@ QHash<QString, CfgCategory *> &CfgMain::getCategories()
 void CfgMain::translateTitle()
 {
     title = QObject::tr(title.toUtf8().constData());
-    for (CfgCategory* ctg : childs)
+    for (CfgCategory*& ctg : childs)
         ctg->translateTitle();
 }
 
 void CfgMain::reset()
 {
-    for (CfgCategory* ctg : childs)
+    for (CfgCategory*& ctg : childs)
         ctg->reset();
 }
 
 void CfgMain::savepoint(bool transaction)
 {
-    for (CfgCategory* ctg : childs)
+    for (CfgCategory*& ctg : childs)
         ctg->savepoint(transaction);
 }
 
 void CfgMain::restore()
 {
-    for (CfgCategory* ctg : childs)
+    for (CfgCategory*& ctg : childs)
         ctg->restore();
 }
 
 void CfgMain::release()
 {
-    for (CfgCategory* ctg : childs)
+    for (CfgCategory*& ctg : childs)
         ctg->release();
 }
 

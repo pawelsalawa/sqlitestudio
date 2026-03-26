@@ -35,6 +35,8 @@ class GUI_API_EXPORT TableConstraintsModel : public QAbstractTableModel
         void moveConstraintDown(int constrIdx);
         void moveConstraintColumnTo(int constrIdx, int newIdx);
 
+        static bool hasTableConstraintItem(const QMimeData* data);
+
     private:
         enum class Columns
         {

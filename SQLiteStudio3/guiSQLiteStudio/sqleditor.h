@@ -27,6 +27,8 @@ class QTimer;
 #  define COMPLETE_REQ_KEY Qt::CTRL
 #endif
 
+
+class DbTreeItem;
 CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(CUT,             QKeySequence::Cut,                 QObject::tr("Cut selected text"))
     CFG_KEY_ENTRY(COPY,            QKeySequence::Copy,                QObject::tr("Copy selected text"))
@@ -42,7 +44,7 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(REPLACE,         QKeySequence::Replace,             QObject::tr("Replace in text"))
     CFG_KEY_ENTRY(DELETE_LINE,     Qt::CTRL | Qt::Key_D,              QObject::tr("Delete current line"))
     CFG_KEY_ENTRY(COMPLETE,        COMPLETE_REQ_KEY | Qt::Key_Space,  QObject::tr("Request code assistant"))
-    CFG_KEY_ENTRY(FORMAT_SQL,      Qt::CTRL | Qt::Key_T,              QObject::tr("Format contents"))
+    CFG_KEY_ENTRY(FORMAT_SQL,      Qt::CTRL | Qt::SHIFT | Qt::Key_F,  QObject::tr("Format contents"))
     CFG_KEY_ENTRY(OPEN_OBJECT,     Qt::Key_F2,                        QObject::tr("Open the object at current position"))
     CFG_KEY_ENTRY(MOVE_BLOCK_DOWN, Qt::ALT | Qt::Key_Down,            QObject::tr("Move selected block of text one line down"))
     CFG_KEY_ENTRY(MOVE_BLOCK_UP,   Qt::ALT | Qt::Key_Up,              QObject::tr("Move selected block of text one line up"))
@@ -120,6 +122,10 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool getHighlightingSyntax() const;
         void setOpenSaveActionsEnabled(bool value);
         void addContextMenuExtraAction(QAction* act);
+        QString getLoadedFile() const;
+        QPixmap getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const;
+        QPixmap getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const;
+        QPixmap getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const;
 
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
@@ -128,8 +134,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void setAlwaysEnforceErrorsChecking(bool newAlwaysEnforceErrorsChecking);
 
         static constexpr int HUGE_QUERY_LENGTH = 10 * 1024 * 1024; // 10MB of SQL
-
-        QString getLoadedFile() const;
 
     protected:
         void setupDefShortcuts();
@@ -229,6 +233,12 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
+        bool hasSqlGenerativeDbTreeItemType(const QList<DbTreeItem*>& items) const;
+        void handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action);
+        void handleDbTreeSelectDrop(const QList<DbTreeItem*>& items);
+        void handleDbTreeInsertDrop(const QList<DbTreeItem*>& items);
+        void handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items);
+        QList<QPair<QString, QStringList>> getSourceAndColumnsForDrop(const QList<DbTreeItem*>& items);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;

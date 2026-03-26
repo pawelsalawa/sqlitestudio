@@ -942,3 +942,17 @@ QVariant idToBool(const QString &id)
     else
         return QVariant();
 }
+
+QString columnToBindParamName(const QString& colName)
+{
+    QString result;
+    for (const QChar& c : colName)
+    {
+        if (c.isLetterOrNumber() || c == '_')
+            result += c;
+        else
+            result += '_';
+    }
+
+    return ":" + result;
+}

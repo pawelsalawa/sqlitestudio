@@ -142,6 +142,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QSet<Db*> getSelectedDatabases();
 
         static bool isItemDraggable(const DbTreeItem* item);
+        static bool isAcceptedDropItem(const DbTreeItem* item);
 
     protected:
         void createActions();
@@ -190,6 +191,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
+        static QSet<DbTreeItem::Type> treeAcceptedTypes;
         static const constexpr int ITEM_TEXT_LIMIT = 300;
 
     public slots:
@@ -200,6 +202,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void updateMdiAreaLink();
         void updateMdiAreaLink(MdiWindow* subWin);
         void editDb(Db* db);
+        void openDb(const QString& path);
 
     private slots:
         void copy();
@@ -211,7 +214,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void newDb();
         void openDb();
         void openFile();
-        void openDb(const QString& path);
         void addDb();
         void editDb();
         void renameItemInline();

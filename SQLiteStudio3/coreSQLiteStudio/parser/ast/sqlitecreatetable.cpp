@@ -109,7 +109,7 @@ QStringList SqliteCreateTable::getPrimaryKeyColumns() const
     SqliteCreateTable::Constraint* tableConstr = dynamic_cast<SqliteCreateTable::Constraint*>(primaryKey);
     if (tableConstr)
     {
-        for (SqliteIndexedColumn* idxCol : tableConstr->indexedColumns)
+        for (SqliteIndexedColumn*& idxCol : tableConstr->indexedColumns)
             colNames << idxCol->name;
     }
     return colNames;
@@ -221,7 +221,7 @@ QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeig
 
 void SqliteCreateTable::removeColumnConstraint(Column::Constraint* constr)
 {
-    for (Column* col : columns)
+    for (Column*& col : columns)
     {
         if (col->constraints.contains(constr))
         {
@@ -443,7 +443,7 @@ void SqliteCreateTable::Column::Constraint::initDefTerm(const QVariant &value, b
         literalValue = value;
         literalNull = true;
     }
-    else if (value.userType() == QVariant::String)
+    else if (value.userType() == QMetaType::QString)
     {
         QVariant boolValue = idToBool(value.toString());
         literalValue = boolValue.isValid() ? boolValue : value;
@@ -966,7 +966,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents(bool 
                 builder.withParLeft().withStatement(expr).withParRight();
             else if (literalNull)
                 builder.withKeyword("NULL");
-            else if (literalValue.userType() == QVariant::Bool)
+            else if (literalValue.userType() == QMetaType::Bool)
                 builder.withOther(literalValue.toBool() ? "true" : "false", false);
             else
                 builder.withLiteralValue(literalValue);

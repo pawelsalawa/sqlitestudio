@@ -26,8 +26,8 @@ public:
     void setReadOnly(bool value) override;
     QList<QWidget*> getNoScrollWidgets() override;
     void focusThisWidget() override;
-    QString getPreferredFileFilter();
-    SearchTextLocator* getTextLocator();
+    QString getPreferredFileFilter() override;
+    SearchTextLocator* getTextLocator() override;
 
     static bool isValidJson(const QString& json, QString* errorMsg = nullptr);
 

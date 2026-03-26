@@ -13,6 +13,7 @@
 - ADDED: #4271 Value Editor dialog (and Form View editor) allow now loading/saving value from/into a file by dedicated buttons.
 - ADDED: #5165 Database List can be now synced/linked with active MDI window using the toggle button on top of the database list.
 - ADDED: #5212 Objects on Database List (databases, tables, columns, indexes, triggers, views) can be now renamed quickly inline.
+- ADDED: #5212 Dragging table/view/columns from Database List to SQL Editor will now generate SELECT/UPDATE/INSERT depending on the keyboard modifier during the drop.
 - ADDED: #4662 ScriptingPython plugin now allow selecting Python installed in your system and it's compatible with all recent (and not so recent) Python versions. Big thanks to @tuffnatty for this!
 - ADDED: #4117 Syntax highlighting now supports bold/italic settings.
 - ADDED: #3365 Added Tcl syntax highlighter plugin.
@@ -28,6 +29,7 @@
 - ADDED: #5383 Double-click on column separator in data view now supports resizing all selected columns at once.
 - ADDED: #5566 Added Columns node to Views in Database List.
 - ADDED: #5284 Column widths and Row Height Adjusting in Grid View is now stored in the session and restored upon next application strt.
+- ADDED: #5578 Much better suppport for dropping various files (databases, SQL files, ...) onto the application Window.
 - ADDED: #5570 In Configuration dialog the Reset To Defaults button was added for hotkeys page.
 - ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
@@ -47,7 +49,7 @@
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: #5562 Several toolbars cleaned up, simplified.
 - CHANGE: #5212 Database list now expands columns, indexes and triggers whenever the table is expanded.
-- CHANGE: #5212 Middle-click on an open database closes it.
+- CHANGE: #5212 Middle-click on an open database closes it. Middle-click on tables/views (in Database List) closes respective Table and View windows.
 - CHANGE: #5164 Added option to prefer sqlite_master table name over sqlite_schema on the Database List.
 - CHANGE: #5497 Boundled SQLite extensions now use path relative to the running application.
 - CHANGE: #5212 Table Window and View Window does not ask for closing confirmation when they were open for creation of new object and not yet modified.

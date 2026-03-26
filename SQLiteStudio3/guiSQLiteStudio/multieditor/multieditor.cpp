@@ -460,7 +460,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType, 
 
     QList<EditorWithPriority> sortedEditors;
     EditorWithPriority editorWithPrio;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         if (!plugin->validFor(dataType))
             continue;
@@ -577,7 +577,7 @@ void MultiEditor::sortAddTabMenu()
         return a1->data().toString().compare(a2->data().toString(), Qt::CaseInsensitive) < 0;
     });
 
-    for (QAction* action : editorActions)
+    for (QAction*& action : editorActions)
         addTabMenu->removeAction(action);
 
     addTabMenu->insertActions(nullptr, editorActions);

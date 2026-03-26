@@ -304,6 +304,11 @@ QModelIndex TableStructureModel::findColumn(const QString& columnName, Qt::CaseS
     return QModelIndex();
 }
 
+bool TableStructureModel::hasTableStructureItem(const QMimeData* data)
+{
+    return data && data->hasFormat(mimeType);
+}
+
 int TableStructureModel::getHeaderColumnIdx(Columns headerColumn) const
 {
     return static_cast<int>(headerColumn);

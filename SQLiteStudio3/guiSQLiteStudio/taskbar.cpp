@@ -224,7 +224,7 @@ bool TaskBar::handleMouseMoveEvent(QMouseEvent* event)
 
 void TaskBar::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (!event->mimeData()->hasFormat(mimeDataId))
+    if (!hasTaskBarItem(event->mimeData()))
         return;
 
     dragTaskTo(dragStartTask, event->position().toPoint());
@@ -233,7 +233,7 @@ void TaskBar::dragEnterEvent(QDragEnterEvent *event)
 
 void TaskBar::dragMoveEvent(QDragMoveEvent* event)
 {
-    if (!event->mimeData()->hasFormat(mimeDataId))
+    if (!hasTaskBarItem(event->mimeData()))
         return;
 
     dragTaskTo(dragStartTask, event->position().toPoint());
@@ -411,4 +411,9 @@ QAction* TaskBar::getPrevTask(QAction* from) const
         return tasks[idx];
 
     return nullptr;
+}
+
+bool TaskBar::hasTaskBarItem(const QMimeData* data)
+{
+    return data && data->hasFormat(mimeDataId);
 }
