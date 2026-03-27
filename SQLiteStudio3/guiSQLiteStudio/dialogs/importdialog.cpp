@@ -411,7 +411,7 @@ void ImportDialog::accept()
     storeStdConfig(stdConfig);
     configMapper->saveFromWidget(pluginOptionsWidget);
 
-    Db* db = DBLIST->getByName(ui->dbNameCombo->currentText());;
+    Db* db = DBLIST->getByName(ui->dbNameCombo->currentText());
     if (!db)
     {
         qCritical() << "Called ImportDialog::accept(), but no database is selected.";

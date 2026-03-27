@@ -207,7 +207,7 @@ bool DbObjectDialogs::dropObject(Type type, const QString& database, const QStri
     }
 
 
-    QStringList finalSql = buildDropSql(typeForSql, database, wrapObjIfNeeded(name));
+    QStringList finalSql = buildDropSql(typeForSql, database, name);
     ChainExecutor* executor = executeSql(db, finalSql);
     if (!executor->getSuccessfulExecution())
     {
