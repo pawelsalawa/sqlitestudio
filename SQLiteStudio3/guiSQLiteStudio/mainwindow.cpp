@@ -178,10 +178,15 @@ void MainWindow::init()
 
     initDropOverlay();
 
-    SQLITESTUDIO->installCrashHandler([this]()
-    {
-        saveSession();
-    });
+    // It looks like for some time now it is not beneficial to register this crash handler,
+    // because if it happens during restoring previous session and some MDI window crashes,
+    // this handler would overwrite session with incomplete/damaged session state.
+    // At the same time, session saving is triggered frequently during the application
+    // runtime, so it doesn't seem like saving is necessary during the crash.
+    // SQLITESTUDIO->installCrashHandler([this]()
+    // {
+    //     saveSession();
+    // });
 }
 
 void MainWindow::observeSessionChanges()
