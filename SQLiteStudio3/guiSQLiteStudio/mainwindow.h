@@ -53,6 +53,8 @@ class MouseShortcut;
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(OPEN_SQL_EDITOR,        Qt::CTRL | Qt::Key_T,             QObject::tr("Open SQL editor"))
     CFG_KEY_ENTRY(RESTORE_WINDOW,         Qt::CTRL | Qt::SHIFT | Qt::Key_T, QObject::tr("Restore recently closed window"))
+    CFG_KEY_ENTRY(EXPORT,                 Qt::CTRL | Qt::SHIFT | Qt::Key_E, QObject::tr("Open Export Dialog"))
+    CFG_KEY_ENTRY(IMPORT,                 Qt::CTRL | Qt::SHIFT | Qt::Key_I, QObject::tr("Open Import Dialog"))
     CFG_KEY_ENTRY(OPEN_DDL_HISTORY,       Qt::CTRL | Qt::Key_H,             QObject::tr("Open DDL history window"))
     CFG_KEY_ENTRY(OPEN_FUNCTION_EDITOR,   Qt::ALT | Qt::Key_1,              QObject::tr("Open function editor window"))
     CFG_KEY_ENTRY(OPEN_SNIPPETS_EDITOR,   Qt::ALT | Qt::Key_2,              QObject::tr("Open snippets editor window"))

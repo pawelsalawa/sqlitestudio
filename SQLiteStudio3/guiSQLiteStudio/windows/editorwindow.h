@@ -29,6 +29,7 @@ CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(EXEC_ONE_QUERY,            Qt::CTRL | Qt::Key_F5,      QObject::tr("Execute single query under cursor"))
      CFG_KEY_ENTRY(EXEC_ALL_QUERIES,          Qt::SHIFT | Qt::Key_F5,     QObject::tr("Execute all queries in editor"))
      CFG_KEY_ENTRY(EXPLAIN_QUERY,             Qt::Key_F6,                 QObject::tr("Execute EXPLAIN query"))
+     CFG_KEY_ENTRY(EXPORT_RESULTS,            Qt::CTRL | Qt::Key_E,       QObject::tr("Export query results"))
      CFG_KEY_ENTRY(PREV_DB,                   Qt::CTRL | Qt::Key_Up,      QObject::tr("Switch current working database to previous on the list"))
      CFG_KEY_ENTRY(NEXT_DB,                   Qt::CTRL | Qt::Key_Down,    QObject::tr("Switch current working database to next on the list"))
      CFG_KEY_ENTRY(SHOW_NEXT_TAB,             Qt::ALT | Qt::Key_Right,    QObject::tr("Go to next editor tab"))
