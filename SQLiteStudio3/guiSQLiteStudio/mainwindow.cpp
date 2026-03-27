@@ -310,6 +310,8 @@ void MainWindow::createActions()
     createAction(OPEN_COLLATION_EDITOR, ICONS.COLLATIONS_EDITOR, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION_EDITOR, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     ui->mainToolBar->addSeparator();
+    createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
+    createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open confi&guration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
 
     createAction(MDI_TILE, ICONS.WIN_TILE, tr("&Tile windows"), ui->mdiArea, SLOT(tileSubWindows()), ui->viewToolbar);
@@ -345,8 +347,6 @@ void MainWindow::createActions()
 #endif
 
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), this);
-    createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), this);
-    createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), this);
 
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
