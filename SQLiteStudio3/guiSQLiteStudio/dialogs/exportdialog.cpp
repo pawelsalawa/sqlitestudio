@@ -546,6 +546,15 @@ void ExportDialog::pluginSelected()
 
     currentPlugin->setExportMode(exportMode);
 
+    QString filePath = ui->exportFileEdit->text();
+    QString pluginFileExt = currentPlugin->defaultFileExtension();
+    if (!filePath.isEmpty() && !filePath.endsWith(pluginFileExt, Qt::CaseInsensitive))
+    {
+        QString ext = QFileInfo(filePath).suffix();
+        filePath = filePath.left(filePath.length() - ext.length()) + pluginFileExt;
+        ui->exportFileEdit->setText(filePath);
+    }
+
     updateExportOutputOptions();
     updateOptions();
 }
