@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/htmlexport">
         <file>htmlexport.css</file>
+        <file>htmlexport.js</file>
     </qresource>
     <qresource prefix="/forms">
         <file>htmlexport.ui</file>

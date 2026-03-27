@@ -57,3 +57,11 @@ table tr td.rownum
     background-color: #DDDDDD;
     text-align: right;
 }
+
+th.sorted-asc::after {
+    content: " ▲";
+}
+
+th.sorted-desc::after {
+    content: " ▼";
+}

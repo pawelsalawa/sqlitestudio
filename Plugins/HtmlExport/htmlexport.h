@@ -62,7 +62,7 @@ class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
         void writeln(const QString& str);
         QString escape(const QString& str);
 
-        static QString compressCss(QString css);
+        static QString compressCssOrJs(QString css);
 
         CFG_LOCAL_PERSISTABLE(HtmlExportConfig, cfg)
         bool indent = false;
