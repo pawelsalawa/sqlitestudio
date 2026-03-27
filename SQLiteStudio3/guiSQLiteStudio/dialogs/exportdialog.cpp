@@ -253,6 +253,7 @@ void ExportDialog::initDbObjectsPage()
     selectableDbListModel = new SelectableDbObjModel(this);
     selectableDbListModel->setSourceModel(DBTREE->getModel());
     ui->dbObjectsTree->setModel(selectableDbListModel);
+    ui->dbObjectsTree->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     ui->databaseObjectsPage->setValidator([=, this]() -> bool
     {
