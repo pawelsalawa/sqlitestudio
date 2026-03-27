@@ -64,7 +64,7 @@ CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
 bool MainWindow::safeModeEnabled = false;
 bool MainWindow::sessionRestoringFinished = false;
-int MainWindow::defaultToolbarIconSize = 24;
+int MainWindow::defaultToolbarIconSize = 32;
 QMimeDatabase MainWindow::mimeDb;
 
 MainWindow::MainWindow() :
@@ -119,10 +119,11 @@ void MainWindow::init()
     insertToolBar(ui->structureToolbar, ui->dbToolbar);
     ui->viewToolbar->setVisible(false);
 
-    ui->viewToolbar->setIconSize(QSize(24, 24));
-    ui->mainToolBar->setIconSize(QSize(24, 24));
-    ui->structureToolbar->setIconSize(QSize(24, 24));
-    ui->dbToolbar->setIconSize(QSize(24, 24));
+    QSize tbIconSize(defaultToolbarIconSize, defaultToolbarIconSize);
+    ui->viewToolbar->setIconSize(tbIconSize);
+    ui->mainToolBar->setIconSize(tbIconSize);
+    ui->structureToolbar->setIconSize(tbIconSize);
+    ui->dbToolbar->setIconSize(tbIconSize);
 
     installToolbarSizeWheelHandler(ui->mainToolBar);
     installToolbarSizeWheelHandler(ui->viewToolbar);

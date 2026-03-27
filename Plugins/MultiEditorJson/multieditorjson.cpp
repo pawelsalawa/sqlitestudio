@@ -21,7 +21,7 @@ MultiEditorJson::MultiEditorJson()
 
     // Create toolbar
     toolbar = new QToolBar();
-    toolbar->setIconSize(QSize(16, 16));
+    toolbar->setIconSize(QSize(MainWindow::defaultToolbarIconSize/2, MainWindow::defaultToolbarIconSize/2));
     toolbar->setProperty(MainWindow::CONSTANT_ICON_SIZE, true);
 
     prettifyAction = toolbar->addAction(ICONS.FORMAT_SQL, tr("Prettify"), this, SLOT(onPrettify()));

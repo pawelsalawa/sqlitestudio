@@ -194,6 +194,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
         static_char* ALLOW_MULTIPLE_SESSIONS_SETTING = "AllowMultipleSessions";
         static_char* CONSTANT_ICON_SIZE = "ConstantIconSize";
+        static int defaultToolbarIconSize;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -274,7 +275,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QList<Action> toolbarSizeActionList;
         QHash<Action, int> toolbarSizes;
         QHash<int, Action> toolbarSizesReversed;
-        static int defaultToolbarIconSize;
         MouseShortcut* toolbarSizeWheelHandler = nullptr;
 
     public slots:
