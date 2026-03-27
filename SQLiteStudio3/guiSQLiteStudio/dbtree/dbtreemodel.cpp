@@ -38,6 +38,7 @@ DbTreeModel::DbTreeModel()
     connect(CFG, SIGNAL(massSaveBegins()), this, SLOT(massSaveBegins()));
     connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(massSaveCommitted()));
     connect(CFG_UI.DbList.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
+    connect(CFG_UI.DbList.ShowRegularTableLabels, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 
     dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict, confirmConversion, confirmConversionErrors);
     dbOrganizer->setAutoDelete(false);
@@ -606,6 +607,16 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
     QList<QStandardItem*> viewItems = refreshSchemaViews(views, sort);
     refreshSchemaBuild(item, tableItems, viewItems);
     populateChildItemsWithDb(item, db);
+
+    if (CFG_UI.DbList.ShowRegularTableLabels.get())
+    {
+        for (QStandardItem*& item : tableItems)
+            loadTableSchema(dynamic_cast<DbTreeItem*>(item));
+
+        for (QStandardItem*& item : viewItems)
+            loadViewSchema(dynamic_cast<DbTreeItem*>(item));
+    }
+
     restoreExpandedState(expandedState, item);
     restoreSelectionState(selectionState);
 }

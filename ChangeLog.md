@@ -72,6 +72,7 @@
 - BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 - BUGFIX: #5089 User-defined functions now follow database renaming in case the function was explicitly registered for the database.
 - BUGFIX: #5584 Fixed user-defined collations.
+- BUGFIX: #5583 Fixed table labels on Database List to enforce the lazy-loaded table schemas to be loaded at once when this option is enabled.
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).
