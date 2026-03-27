@@ -58,6 +58,10 @@ table tr td.rownum
     text-align: right;
 }
 
+th {
+    cursor: pointer;
+}
+
 th.sorted-asc::after {
     content: " ▲";
 }
