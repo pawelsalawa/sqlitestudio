@@ -669,7 +669,7 @@ QStringDecoder* defaultTextDecoder()
 
 QString defaultCodecName()
 {
-    return QStringConverter::nameForEncoding(QStringConverter::System);
+    return QStringConverter::nameForEncoding(QStringConverter::Utf8);
 }
 
 QStringList splitByLines(const QString& str)
