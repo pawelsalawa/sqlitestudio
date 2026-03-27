@@ -60,6 +60,11 @@ table tr td.rownum
 
 th {
     cursor: pointer;
+    text-decoration: underline;
+}
+
+tr.data:nth-child(even) {
+    background-color: Beige;
 }
 
 th.sorted-asc::after {

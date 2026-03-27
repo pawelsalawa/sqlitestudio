@@ -195,7 +195,7 @@ bool HtmlExport::exportDataRow(SqlResultsRowPtr data)
 {
     currentDataRow++;
 
-    writeln("<tr>");
+    writeln("<tr class=\"data\">");
     incrIndent();
     if (printRownum)
     {
