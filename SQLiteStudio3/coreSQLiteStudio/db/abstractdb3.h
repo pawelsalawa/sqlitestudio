@@ -893,10 +893,8 @@ void AbstractDb3<T>::evaluateWindowInverse(typename T::context* context, int arg
 template <class T>
 int AbstractDb3<T>::evaluateCollation(void* userData, int length1, const void* value1, int length2, const void* value2)
 {
-    Q_UNUSED(length1);
-    Q_UNUSED(length2);
     CollationUserData* collUserData = reinterpret_cast<CollationUserData*>(userData);
-    return COLLATIONS->evaluate(collUserData->name, QString::fromUtf8((const char*)value1), QString::fromUtf8((const char*)value2));
+    return COLLATIONS->evaluate(collUserData->name, QString::fromUtf8((const char*)value1, length1), QString::fromUtf8((const char*)value2, length2));
 }
 
 template <class T>

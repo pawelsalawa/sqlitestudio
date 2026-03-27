@@ -71,6 +71,7 @@
 - BUGFIX: #5212 Grid columns do not shrink when unwanted while refreshing data, or entering new values to cells.
 - BUGFIX: Improved Code Assistant suggestions when SQL editor contains more than one query.
 - BUGFIX: #5089 User-defined functions now follow database renaming in case the function was explicitly registered for the database.
+- BUGFIX: #5584 Fixed user-defined collations.
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).

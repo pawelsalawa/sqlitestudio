@@ -47,7 +47,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="QWidget" name="leftWidget" native="true">
          <property name="sizePolicy">
@@ -122,7 +122,7 @@
              <item>
               <widget class="QSplitter" name="splitter_2">
                <property name="orientation">
-                <enum>Qt::Vertical</enum>
+                <enum>Qt::Orientation::Vertical</enum>
                </property>
                <widget class="QGroupBox" name="databasesGroup">
                 <property name="sizePolicy">
@@ -171,8 +171,11 @@
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
                   <widget class="QPlainTextEdit" name="codeEdit">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the collation is applied. It receives two arguments, &lt;span style=&quot; font-family:'monospace';&quot;&gt;first&lt;/span&gt; and &lt;span style=&quot; font-family:'monospace';&quot;&gt;second&lt;/span&gt; (named according to the scripting language conventions), representing the values to compare. The code should compare these values and return an integer indicating the result: negative if &lt;span style=&quot; font-family:'monospace';&quot;&gt;first &amp;lt; second&lt;/span&gt;, zero if equal, and positive if &lt;span style=&quot; font-family:'monospace';&quot;&gt;first &amp;gt; second&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
                    <property name="lineWrapMode">
-                    <enum>QPlainTextEdit::NoWrap</enum>
+                    <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                    </property>
                   </widget>
                  </item>
