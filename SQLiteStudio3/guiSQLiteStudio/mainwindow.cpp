@@ -407,7 +407,9 @@ void MainWindow::initMenuBar()
     structMenu->addAction(dbTree->getAction(DbTree::DEL_VIEW));
 
     // View menu
+    // NOLINTBEGIN(clang-analyzer-optin.cplusplus.VirtualCall)
     viewMenu = createPopupMenu();
+    // NOLINTEND(clang-analyzer-optin.cplusplus.VirtualCall)
     menuBar()->addMenu(viewMenu);
 
     mdiMenu = new QMenu(viewMenu);

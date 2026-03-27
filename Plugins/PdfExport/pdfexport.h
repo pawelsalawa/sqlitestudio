@@ -62,10 +62,16 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         bool afterExportTable();
         bool afterExportQueryResults();
         bool exportTableRow(SqlResultsRowPtr data);
+        bool beforeExportSingleTable(const QString& database, const QString& table);
+        bool afterExportSingleTable();
+        bool beforeExportSingleView(const QString& database, const QString& name);
+        bool afterExportSingleView();
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
-        bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view);
+        bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
+                        SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool exportViewRow(SqlResultsRowPtr data);
         void cleanupAfterExport();
         bool isBinaryData() const;
         bool init();
@@ -125,11 +131,12 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 
             QList<ObjectCell> cells;
             int height = 0;
+            bool expandHeight = false;
             Type type = Type::SINGLE;
             bool recalculateColumnWidths = false;
         };
 
-        void prepareTableDataExport(const QString& table, const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
+        void prepareTableDataExport(const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData, const QString& headerLabel);
         QList<int> getColumnDataLengths(int columnCount, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool beginDoc(const QString& title);
         void endDoc();

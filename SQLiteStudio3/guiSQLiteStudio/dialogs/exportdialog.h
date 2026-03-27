@@ -25,6 +25,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         ~ExportDialog();
 
         void setTableMode(Db* db, const QString& table);
+        void setViewMode(Db* db, const QString& view);
         void setQueryMode(Db* db, const QString& query);
         void setDatabaseMode(Db* db);
         void setPreselectedDb(Db* db);
@@ -35,12 +36,14 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void init();
         void initModePage();
         void initTablePage();
+        void initViewPage();
         void initQueryPage();
         void initDbObjectsPage();
         void initFormatPage();
         void initPageOrder();
         int pageId(QWizardPage* wizardPage) const;
         void tablePageDisplayed();
+        void viewPageDisplayed();
         void queryPageDisplayed();
         void dbObjectsPageDisplayed();
         void formatPageDisplayed();
@@ -52,6 +55,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void doExport();
         void exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
         void exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
+        void exportView(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
         void exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
         ExportManager::StandardExportConfig getExportConfig() const;
         Db* getDbForExport(const QString& name);
@@ -65,11 +69,14 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         Db* db = nullptr;
         QString query;
         QString table;
+        QString view;
         DbListModel* dbListModel = nullptr;
         DbObjListModel* tablesModel = nullptr;
+        DbObjListModel* viewsModel = nullptr;
         SelectableDbObjModel* selectableDbListModel = nullptr;
         QWidget* pluginOptionsWidget = nullptr;
         bool tablePageVisited = false;
+        bool viewPageVisited = false;
         bool queryPageVisited = false;
         bool dbObjectsPageVisited = false;
         bool formatPageVisited = false;
@@ -84,6 +91,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void updateExportMode();
         void pageChanged(int pageId);
         void updateDbTables();
+        void updateDbViews();
         void browseForExportFile();
         void pluginSelected();
         void updateExportOutputOptions();
@@ -105,6 +113,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
     signals:
         void formatPageCompleteChanged();
         void tablePageCompleteChanged();
+        void viewPageCompleteChanged();
         void queryPageCompleteChanged();
 };
 

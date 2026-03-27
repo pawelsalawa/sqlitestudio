@@ -274,5 +274,6 @@
         <file>img/data_insert.svg</file>
         <file>img/data_select.svg</file>
         <file>img/data_update.svg</file>
+        <file>img/view_export.svg</file>
     </qresource>
 </RCC>

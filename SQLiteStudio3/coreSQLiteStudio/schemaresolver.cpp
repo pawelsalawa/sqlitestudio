@@ -309,6 +309,29 @@ QList<SelectResolver::Column> SchemaResolver::getViewColumnObjects(const QString
     return resolvedColumns.first();
 }
 
+QList<QPair<QString, QString>> SchemaResolver::getColumnsAndDataTypesUsingPragma(const QString& tableOrView, bool onlyReal)
+{
+    return getColumnsAndDataTypesUsingPragma("main", tableOrView);
+}
+
+QList<QPair<QString, QString>> SchemaResolver::getColumnsAndDataTypesUsingPragma(const QString& database, const QString& tableOrView, bool onlyReal)
+{
+    static_qstring(query, "PRAGMA %1.%3(%2)");
+    SqlQueryPtr results = db->exec(query.arg(wrapObjIfNeeded(database), wrapObjIfNeeded(tableOrView), onlyReal ? "table_info" : "table_xinfo"));
+    if (results->isError())
+    {
+        qWarning() << "Could not get column list using PRAGMA for table or view:" << tableOrView << ", error was:" << results->getErrorText();
+        return {};
+    }
+
+    QList<QPair<QString, QString>> cols;
+    for (const SqlResultsRowPtr& row : results->getAll())
+        cols << QPair{row->value("name").toString(), row->value("type").toString()};
+
+    return cols;
+
+}
+
 SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &database, const QString &table)
 {
     // The "table" name here used to be stripped with stripObjName(), but actually [abc] is a proper table name,

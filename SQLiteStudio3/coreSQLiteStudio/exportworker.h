@@ -21,6 +21,7 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
         void prepareExportQueryResults(Db* db, const QString& query);
         void prepareExportDatabase(Db* db, const QStringList& objectListToExport);
         void prepareExportTable(Db* db, const QString& database, const QString& table);
+        void prepareExportView(Db* db, const QString& database, const QString& view);
 
     private:
         void prepareParser();
@@ -29,11 +30,14 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
         bool exportDatabase();
         bool exportDatabaseObjects(const QList<ExportManager::ExportObjectPtr>& dbObjects, ExportManager::ExportObject::Type type);
         bool exportTable();
+        bool exportView();
         bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
                                  const QHash<ExportManager::ExportProviderFlag, QVariant>& providerData);
+        bool exportViewInternal(const QString& database, const QString& view, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
+                                 const QHash<ExportManager::ExportProviderFlag, QVariant>& providerData);
         QList<ExportManager::ExportObjectPtr> collectDbObjects(QString* errorMessage);
-        void queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag, QVariant>& providerData,
-                                    QString* errorMessage) const;
+        void queryTableOrViewDataToExport(Db* db, const QString& tableOrView, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag, QVariant>& providerData,
+                                          QString* errorMessage, bool isTable) const;
         bool isInterrupted();
         void logExportFail(const QString& stageName);
 
@@ -45,6 +49,7 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
         QString query;
         QString database;
         QString table;
+        QString view;
         QStringList objectListToExport;
         QueryExecutor* executor = nullptr;
         bool interrupted = false;

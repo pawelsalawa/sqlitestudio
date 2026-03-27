@@ -30,6 +30,7 @@ class API_EXPORT GenericExportPlugin : public GenericPlugin, public ExportPlugin
         bool beforeExportTriggers();
         bool afterExportTriggers();
         bool beforeExportViews();
+        bool afterExportView();
         bool afterExportViews();
         bool afterExportDatabase();
         bool afterExport();
@@ -49,6 +50,8 @@ class API_EXPORT GenericExportPlugin : public GenericPlugin, public ExportPlugin
         void write(const QString& str);
         void writeln(const QString& str);
         bool isTableExport() const;
+        bool isDatabaseExport() const;
+        bool isViewExport() const;
 
         Db* db = nullptr;
         QIODevice* output = nullptr;

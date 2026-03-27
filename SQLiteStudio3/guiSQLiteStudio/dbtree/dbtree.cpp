@@ -163,6 +163,7 @@ void DbTree::createActions()
     createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Delete the ta&ble"), this, SLOT(delTable()), this);
     createAction(EXPORT_TABLE, ICONS.TABLE_EXPORT, tr("Export the table"), this, SLOT(exportTable()), this);
     createAction(IMPORT_TABLE, ICONS.TABLE_IMPORT, tr("Import into the table"), this, SLOT(importTable()), this);
+    createAction(EXPORT_VIEW, ICONS.VIEW_EXPORT, tr("Export the view"), this, SLOT(exportView()), this);
     createAction(POPULATE_TABLE, ICONS.TABLE_POPULATE, tr("Populate table"), this, SLOT(populateTable()), this);
     createAction(CREATE_SIMILAR_TABLE, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table"), this, SLOT(createSimilarTable()), this);
     createAction(RESET_AUTOINCREMENT, ICONS.RESET_AUTOINCREMENT, tr("Reset autoincrement sequence"), this, SLOT(resetAutoincrement()), this);
@@ -188,7 +189,7 @@ void DbTree::createActions()
     createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
     createAction(GENERATE_SELECT, ICONS.DATA_SELECT,
                  QString("%1 (%2)").arg("SELECT", tr("Drag", "dbtree table action shortcut")),
-                 this, SLOT(generateSelectForTable()), this);
+                 this, SLOT(generateSelectForTableOrView()), this);
     createAction(GENERATE_INSERT, ICONS.DATA_INSERT,
                  QString("%1 (%2%3)").arg("INSERT", QKeySequence(Qt::CTRL).toString(QKeySequence::NativeText), tr("Drag", "dbtree table action shortcut")),
                  this, SLOT(generateInsertForTable()), this);
@@ -311,7 +312,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     }
                     else
                     {
-                        enabled << EDIT_VIEW << DEL_VIEW
+                        enabled << EDIT_VIEW << DEL_VIEW << EXPORT_VIEW
                                 << ADD_TRIGGER;
                     }
 
@@ -321,21 +322,22 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::VIEWS:
                     break;
                 case DbTreeItem::Type::VIEW:
-                    enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER << RENAME_VIEW;
+                    enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER << RENAME_VIEW << EXPORT_VIEW
+                            << GENERATE_SELECT;
                     break;
                 case DbTreeItem::Type::COLUMNS:
                     if (isInTableNode)
                         enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN
                                 << ADD_INDEX << ADD_TRIGGER;
                     else if (isInViewNode)
-                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER;
+                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER << EXPORT_VIEW;
                     break;
                 case DbTreeItem::Type::COLUMN:
                     if (isInTableNode)
                         enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << DEL_COLUMN
                                 << EDIT_COLUMN << ADD_INDEX << ADD_TRIGGER << RENAME_COLUMN;
                     else if (isInViewNode)
-                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER;
+                        enabled << EDIT_VIEW << DEL_VIEW << ADD_TRIGGER << EXPORT_VIEW;
                     break;
             }
         }
@@ -421,6 +423,9 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     genQueryEntry += GENERATE_INSERT;
     genQueryEntry += GENERATE_UPDATE;
     genQueryEntry += GENERATE_DELETE;
+
+    ActionEntry genViewQueryEntry(ICONS.GENERATE_QUERY, tr("Generate query for view"));
+    genViewQueryEntry += GENERATE_SELECT;
 
     if (currItem)
     {
@@ -596,6 +601,9 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(EDIT_TRIGGER);
                 actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += genViewQueryEntry;
+                actions += ActionEntry(EXPORT_VIEW);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -1086,9 +1094,15 @@ QStringList DbTree::itemsToNames(const QList<DbTreeItem*>& items)
 QString DbTree::getSelectedTableName() const
 {
     DbTreeItem* item = ui->treeView->currentItem();
+    return item->getTable();
+}
+
+QString DbTree::getSelectedTableOrViewName() const
+{
+    DbTreeItem* item = ui->treeView->currentItem();
     QString table = item->getTable();
     if (table.isNull())
-        return QString();
+        return item->getView();
 
     return table;
 }
@@ -1096,31 +1110,19 @@ QString DbTree::getSelectedTableName() const
 QString DbTree::getSelectedIndexName() const
 {
     DbTreeItem* item = ui->treeView->currentItem();
-    QString idx = item->getIndex();
-    if (idx.isNull())
-        return QString();
-
-    return idx;
+    return item->getIndex();
 }
 
 QString DbTree::getSelectedTriggerName() const
 {
     DbTreeItem* item = ui->treeView->currentItem();
-    QString trig = item->getTrigger();
-    if (trig.isNull())
-        return QString();
-
-    return trig;
+    return item->getTrigger();
 }
 
 QString DbTree::getSelectedViewName() const
 {
     DbTreeItem* item = ui->treeView->currentItem();
-    QString view= item->getView();
-    if (view.isNull())
-        return QString();
-
-    return view;
+    return item->getView();
 }
 
 QList<DbTreeItem *> DbTree::getSelectedItems(DbTreeItem::Type itemType)
@@ -1639,6 +1641,31 @@ void DbTree::populateTable()
 
     PopulateDialog dialog(this);
     dialog.setDbAndTable(db, table);
+    dialog.exec();
+}
+
+void DbTree::exportView()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString view = item->getView();
+    if (view.isNull())
+    {
+        qWarning() << "Tried to export view, while view wasn't selected in DbTree.";
+        return;
+    }
+
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.setViewMode(db, view);
     dialog.exec();
 }
 
@@ -2273,13 +2300,16 @@ void DbTree::refreshFont()
     ui->treeView->doItemsLayout();
 }
 
-void DbTree::generateSelectForTable()
+void DbTree::generateSelectForTableOrView()
 {
     Db* db = getSelectedDb();
-    QString table = getSelectedTableName();
-
     QueryGenerator generator;
-    QString sql = generator.generateSelectFromTable(db, table);
+
+    QString table = getSelectedTableName();
+    QString sql = table.isNull() ?
+                generator.generateSelectFromView(db, getSelectedViewName()) :
+                generator.generateSelectFromTable(db, table);
+
     MAINWINDOW->openSqlEditor(db, sql);
 }
 

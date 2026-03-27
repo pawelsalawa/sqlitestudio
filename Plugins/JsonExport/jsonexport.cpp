@@ -50,7 +50,7 @@ bool JsonExport::beforeExportQueryResults(const QString& query, QList<QueryExecu
     beginArray("columns");
     QList<DataType> columnTypes = QueryExecutor::resolveColumnTypes(db, columns, true);
     int i = 0;
-    for (QueryExecutor::ResultColumnPtr col : columns)
+    for (QueryExecutor::ResultColumnPtr& col : columns)
     {
         DataType& type = columnTypes[i];
 
@@ -82,6 +82,12 @@ bool JsonExport::afterExportQueryResults()
 {
     endArray();
     endObject();
+    return true;
+}
+
+bool JsonExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    beginArray();
     return true;
 }
 
@@ -180,6 +186,12 @@ bool JsonExport::afterExportTable()
     return true;
 }
 
+bool JsonExport::afterExportSingleTable()
+{
+    endArray();
+    return true;
+}
+
 bool JsonExport::beforeExportDatabase(const QString& database)
 {
     beginObject();
@@ -239,7 +251,13 @@ bool JsonExport::exportTrigger(const QString& database, const QString& name, con
     return true;
 }
 
-bool JsonExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
+bool JsonExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    beginArray();
+    return true;
+}
+
+bool JsonExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     beginObject();
     writeValue("type", "view");
@@ -247,7 +265,25 @@ bool JsonExport::exportView(const QString& database, const QString& name, const 
     writeValue("name", name);
     writeValue("ddl", ddl);
     writeValue("select", createView->select->detokenize());
+    beginArray("rows");
+    return true;
+}
+
+bool JsonExport::exportViewRow(SqlResultsRowPtr data)
+{
+    return exportQueryResultsRow(data);
+}
+
+bool JsonExport::afterExportView()
+{
+    endArray();
     endObject();
+    return true;
+}
+
+bool JsonExport::afterExportSingleView()
+{
+    endArray();
     return true;
 }
 

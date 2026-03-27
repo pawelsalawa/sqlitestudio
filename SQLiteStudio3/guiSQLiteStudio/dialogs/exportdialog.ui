@@ -51,6 +51,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QRadioButton" name="subjectViewRadio">
+         <property name="text">
+          <string>A single view</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QRadioButton" name="subjectQueryRadio">
          <property name="text">
           <string>Query results</string>
@@ -161,14 +168,14 @@
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line">
+        <widget class="Line" name="tableLine">
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="tableNoteLabel">
          <property name="font">
           <font>
            <italic>true</italic>
@@ -187,29 +194,129 @@
     </item>
    </layout>
   </widget>
+  <widget class="VerifiableWizardPage" name="viewPage">
+   <property name="title">
+    <string>View to export</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_9">
+    <item>
+     <widget class="QFrame" name="exportViewFrame">
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="2">
+        <widget class="QComboBox" name="exportViewNameCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="exportViewDbNameCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="exportViewDbNameLabel">
+         <property name="text">
+          <string>Database</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="exportViewNameLabel">
+         <property name="text">
+          <string>View</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="exportViewSeparatorLabel">
+         <property name="text">
+          <string notr="true">.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="viewOptionsGroup">
+      <property name="title">
+       <string>Options</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QCheckBox" name="exportViewDataCheck">
+         <property name="toolTip">
+          <string>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</string>
+         </property>
+         <property name="text">
+          <string>Export view data</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="exportViewTriggersCheck">
+         <property name="text">
+          <string>Export view triggers</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="viewLine">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="viewNoteLabel">
+         <property name="font">
+          <font>
+           <italic>true</italic>
+          </font>
+         </property>
+         <property name="text">
+          <string>Note, that exporting view triggers may be unsupported by some output formats.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="VerifiableWizardPage" name="databaseObjectsPage">
    <property name="title">
     <string>Select database objects to export</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="2" column="0">
-     <widget class="QPushButton" name="objectsSelectAllButton">
+    <item row="5" column="0">
+     <widget class="QCheckBox" name="exportDbTriggerCheck">
       <property name="text">
-       <string>Select all</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QTreeView" name="dbObjectsTree">
-      <attribute name="headerVisible">
-       <bool>false</bool>
-      </attribute>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="dbObjectsDatabaseLabel">
-      <property name="text">
-       <string>Database:</string>
+       <string>Export indexes (tables only)</string>
       </property>
      </widget>
     </item>
@@ -220,18 +327,8 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="dbObjectsDatabaseCombo"/>
-    </item>
-    <item row="4" column="0">
-     <widget class="QCheckBox" name="exportDbTriggerCheck">
-      <property name="text">
-       <string>Export table indexes</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0">
-     <widget class="QCheckBox" name="exportDbDataCheck">
+     <widget class="QCheckBox" name="exportDbTableDataCheck">
       <property name="text">
        <string>Export data from tables</string>
       </property>
@@ -240,10 +337,41 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="2" column="0">
+     <widget class="QPushButton" name="objectsSelectAllButton">
+      <property name="text">
+       <string>Select all</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
      <widget class="QCheckBox" name="exportDbIndexCheck">
       <property name="text">
-       <string>Export table and view triggers</string>
+       <string>Export triggers (tables and views)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="dbObjectsDatabaseCombo"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="dbObjectsDatabaseLabel">
+      <property name="text">
+       <string>Database:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QTreeView" name="dbObjectsTree">
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QCheckBox" name="exportDbViewDataCheck">
+      <property name="text">
+       <string>Export data from views</string>
       </property>
      </widget>
     </item>
@@ -306,8 +434,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>578</width>
-         <height>381</height>
+         <width>237</width>
+         <height>259</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -439,15 +567,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SqlEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header>sqleditor.h</header>
-  </customwidget>
-  <customwidget>
    <class>VerifiableWizardPage</class>
    <extends>QWizardPage</extends>
    <header>common/verifiablewizardpage.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

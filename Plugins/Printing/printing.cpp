@@ -26,7 +26,7 @@ bool Printing::init()
     loadTranslation("Printing");
 
     printingConfig = new ExportManager::StandardExportConfig();
-    printingConfig->exportData = true;
+    printingConfig->exportTableData = true;
     printingConfig->exportIndexes = false;
     printingConfig->exportTriggers = false;
     printingConfig->codec = defaultCodecName();

@@ -93,6 +93,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             EDIT_VIEW,
             RENAME_VIEW,
             DEL_VIEW,
+            EXPORT_VIEW,
             ADD_COLUMN,
             EDIT_COLUMN,
             RENAME_COLUMN,
@@ -169,6 +170,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QHash<Db*, QList<DbTreeItem*>> groupByDb(const QList<DbTreeItem*> items);
         QStringList itemsToNames(const QList<DbTreeItem*>& items);
         QString getSelectedTableName() const;
+        QString getSelectedTableOrViewName() const;
         QString getSelectedIndexName() const;
         QString getSelectedTriggerName() const;
         QString getSelectedViewName() const;
@@ -237,6 +239,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void exportTable();
         void importTable();
         void populateTable();
+        void exportView();
         void addColumn();
         void editColumn();
         void delColumn();
@@ -257,7 +260,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void dbDisconnected(Db* db);
         void updateDbIcon(Db* db);
         void refreshFont();
-        void generateSelectForTable();
+        void generateSelectForTableOrView();
         void generateInsertForTable();
         void generateUpdateForTable();
         void generateDeleteForTable();

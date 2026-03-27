@@ -25,7 +25,8 @@ bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
 
 ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
 {
-    return ExportManager::FILE|ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
+    return ExportManager::FILE|ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|
+            ExportManager::VIEW|ExportManager::QUERY_RESULTS;
 }
 
 ExportManager::ExportProviderFlags GenericExportPlugin::getProviderFlags() const
@@ -99,6 +100,16 @@ bool GenericExportPlugin::isTableExport() const
     return exportMode == ExportManager::TABLE;
 }
 
+bool GenericExportPlugin::isDatabaseExport() const
+{
+    return exportMode == ExportManager::DATABASE;
+}
+
+bool GenericExportPlugin::isViewExport() const
+{
+    return exportMode == ExportManager::VIEW;
+}
+
 bool GenericExportPlugin::beforeExportTables()
 {
     return true;
@@ -130,6 +141,11 @@ bool GenericExportPlugin::afterExportTriggers()
 }
 
 bool GenericExportPlugin::beforeExportViews()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportView()
 {
     return true;
 }

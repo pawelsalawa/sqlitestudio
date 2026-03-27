@@ -33,9 +33,10 @@ static const QString EXPORT_DIALOG_CFG_GROUP = "ExportDialog";
 static const QString EXPORT_DIALOG_CFG_CODEC = "codec";
 static const QString EXPORT_DIALOG_CFG_FILE = "outputFileName";
 static const QString EXPORT_DIALOG_CFG_CLIP = "intoClipboard";
-static const QString EXPORT_DIALOG_CFG_DATA = "exportData";
-static const QString EXPORT_DIALOG_CFG_IDX = "exportTableIndexes";
-static const QString EXPORT_DIALOG_CFG_TRIG = "exportTableTriggers";
+static const QString EXPORT_DIALOG_CFG_TDATA = "exportTableData";
+static const QString EXPORT_DIALOG_CFG_VDATA = "exportViewData";
+static const QString EXPORT_DIALOG_CFG_IDX = "exportIndexes";
+static const QString EXPORT_DIALOG_CFG_TRIG = "exportTriggers";
 static const QString EXPORT_DIALOG_CFG_FORMAT = "format";
 
 ExportDialog::ExportDialog(QWidget *parent) :
@@ -73,6 +74,7 @@ void ExportDialog::init()
 
     initModePage();
     initTablePage();
+    initViewPage();
     initFormatPage();
     initQueryPage();
     initDbObjectsPage();
@@ -105,6 +107,27 @@ void ExportDialog::setTableMode(Db* db, const QString& table)
     ui->exportTableNameCombo->addItem(table);
     ui->exportTableNameCombo->setCurrentText(table);
     ui->exportTableNameCombo->setEnabled(false);
+}
+
+void ExportDialog::setViewMode(Db* db, const QString& view)
+{
+    if (!db->isOpen())
+    {
+        qWarning() << "Cannot export from closed database.";
+        return;
+    }
+
+    setStartId(pageId(ui->viewPage));
+    exportMode = ExportManager::VIEW;
+    this->db = db;
+    this->view = view;
+
+    ui->exportViewDbNameCombo->addItem(db->getName());
+    ui->exportViewDbNameCombo->setCurrentText(db->getName());
+    ui->exportViewDbNameCombo->setEnabled(false);
+    ui->exportViewNameCombo->addItem(view);
+    ui->exportViewNameCombo->setCurrentText(view);
+    ui->exportViewNameCombo->setEnabled(false);
 }
 
 void ExportDialog::setQueryMode(Db* db, const QString& query)
@@ -178,6 +201,30 @@ void ExportDialog::initTablePage()
     tablesModel->setSortMode(DbObjListModel::SortMode::AlphabeticalCaseInsensitive);
 
     connect(this, SIGNAL(tablePageCompleteChanged()), ui->tablePage, SIGNAL(completeChanged()));
+}
+
+void ExportDialog::initViewPage()
+{
+    ui->viewPage->setValidator([=, this]() -> bool
+    {
+        bool dbOk = ui->exportViewDbNameCombo->currentIndex() > -1;
+        bool viewOk = ui->exportViewNameCombo->currentIndex() > -1;
+
+        setValidState(ui->exportViewDbNameCombo, dbOk, tr("Select database to export."));
+        setValidState(ui->exportViewNameCombo, viewOk, tr("Select view to export."));
+
+        return dbOk && viewOk;
+    });
+
+    dbListModel = new DbListModel(this);
+    dbListModel->setCombo(ui->exportViewDbNameCombo);
+    dbListModel->setSortMode(DbListModel::SortMode::AlphabeticalCaseInsensitive);
+
+    viewsModel = new DbObjListModel(this);
+    viewsModel->setType(DbObjListModel::ObjectType::VIEW);
+    viewsModel->setSortMode(DbObjListModel::SortMode::AlphabeticalCaseInsensitive);
+
+    connect(this, SIGNAL(viewPageCompleteChanged()), ui->viewPage, SIGNAL(completeChanged()));
 }
 
 void ExportDialog::initQueryPage()
@@ -301,6 +348,7 @@ void ExportDialog::initPageOrder()
     setStartId(pageId(ui->exportSubjectPage));
     pageOrder[ExportManager::DATABASE] = {ui->databaseObjectsPage, ui->formatAndOptionsPage};
     pageOrder[ExportManager::TABLE] = {ui->tablePage, ui->formatAndOptionsPage};
+    pageOrder[ExportManager::VIEW] = {ui->viewPage, ui->formatAndOptionsPage};
     pageOrder[ExportManager::QUERY_RESULTS] = {ui->queryPage, ui->formatAndOptionsPage};
     updateExportMode();
 }
@@ -333,6 +381,27 @@ void ExportDialog::tablePageDisplayed()
         updateDbTables();
         emit tablePageCompleteChanged();
         tablePageVisited = true;
+    }
+}
+
+void ExportDialog::viewPageDisplayed()
+{
+    if (!viewPageVisited)
+    {
+        if (view.isNull()) // view mode selected by user, not forced by setViewMode().
+        {
+            ui->exportViewDbNameCombo->setModel(dbListModel);
+            if (db)
+                ui->exportViewDbNameCombo->setCurrentText(db->getName());
+
+            connect(ui->exportViewDbNameCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateDbViews()));
+
+            ui->exportViewNameCombo->setModel(viewsModel);
+            connect(ui->exportViewNameCombo, SIGNAL(currentTextChanged(QString)), ui->viewPage, SIGNAL(completeChanged()));
+        }
+        updateDbViews();
+        emit viewPageCompleteChanged();
+        viewPageVisited = true;
     }
 }
 
@@ -397,6 +466,8 @@ void ExportDialog::updateExportMode()
         exportMode = ExportManager::DATABASE;
     else if (ui->subjectTableRadio->isChecked())
         exportMode = ExportManager::TABLE;
+    else if (ui->subjectViewRadio->isChecked())
+        exportMode = ExportManager::VIEW;
     else if (ui->subjectQueryRadio->isChecked())
         exportMode = ExportManager::QUERY_RESULTS;
     else
@@ -408,6 +479,8 @@ void ExportDialog::pageChanged(int pageId)
     QWizardPage* wizardPage = page(pageId);
     if (wizardPage == ui->tablePage)
         tablePageDisplayed();
+    else if (wizardPage == ui->viewPage)
+        viewPageDisplayed();
     else if (wizardPage == ui->queryPage)
         queryPageDisplayed();
     else if (wizardPage == ui->databaseObjectsPage)
@@ -427,6 +500,17 @@ void ExportDialog::updateDbTables()
     db = DBLIST->getByName(dbName);
 
     tablesModel->setDb(db);
+}
+
+void ExportDialog::updateDbViews()
+{
+    if (!view.isNull())
+        return; // we don't want views to be automatically updated if this is strictly set view
+
+    QString dbName = ui->exportViewDbNameCombo->currentText();
+    db = DBLIST->getByName(dbName);
+
+    viewsModel->setDb(db);
 }
 
 void ExportDialog::browseForExportFile()
@@ -636,7 +720,8 @@ void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &std
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CODEC, stdConfig.codec);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FILE, stdConfig.outputFileName);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CLIP, stdConfig.intoClipboard);
-    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, stdConfig.exportData);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TDATA, stdConfig.exportTableData);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_VDATA, stdConfig.exportViewData);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, stdConfig.exportIndexes);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, stdConfig.exportTriggers);
     CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FORMAT, currentPlugin->getFormatName());
@@ -645,20 +730,27 @@ void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &std
 
 void ExportDialog::readStdConfigForFirstPage()
 {
-    bool exportData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, true).toBool();
+    bool exportTableData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TDATA, true).toBool();
+    bool exportViewData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_VDATA, true).toBool();
     bool exportIndexes = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool();
     bool exportTriggers = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool();
     if (exportMode == ExportManager::DATABASE)
     {
-        ui->exportDbDataCheck->setChecked(exportData);
+        ui->exportDbTableDataCheck->setChecked(exportTableData);
+        ui->exportDbViewDataCheck->setChecked(exportViewData);
         ui->exportDbIndexCheck->setChecked(exportIndexes);
         ui->exportDbTriggerCheck->setChecked(exportTriggers);
     }
     else if (exportMode == ExportManager::TABLE)
     {
-        ui->exportTableDataCheck->setChecked(exportData);
+        ui->exportTableDataCheck->setChecked(exportTableData);
         ui->exportTableIndexesCheck->setChecked(exportIndexes);
         ui->exportTableTriggersCheck->setChecked(exportTriggers);
+    }
+    else if (exportMode == ExportManager::VIEW)
+    {
+        ui->exportViewDataCheck->setChecked(exportViewData);
+        ui->exportViewTriggersCheck->setChecked(exportTriggers);
     }
 }
 
@@ -703,6 +795,9 @@ void ExportDialog::doExport()
         case ExportManager::TABLE:
             exportTable(stdConfig, format);
             break;
+        case ExportManager::VIEW:
+            exportView(stdConfig, format);
+            break;
         case ExportManager::QUERY_RESULTS:
             exportQuery(stdConfig, format);
             break;
@@ -737,6 +832,17 @@ void ExportDialog::exportTable(const ExportManager::StandardExportConfig& stdCon
     EXPORT_MANAGER->exportTable(db, QString(), ui->exportTableNameCombo->currentText());
 }
 
+void ExportDialog::exportView(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
+{
+    Db* db = getDbForExport(ui->exportViewDbNameCombo->currentText());
+    if (!db || !db->isValid())
+        return;
+
+    EXPORT_MANAGER->configure(format, stdConfig);
+    // TODO when dbnames are fully supported, pass the dbname below
+    EXPORT_MANAGER->exportView(db, QString(), ui->exportViewNameCombo->currentText());
+}
+
 void ExportDialog::exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
 {
     Db* db = getDbForExport(ui->queryDatabaseCombo->currentText());
@@ -763,19 +869,26 @@ ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
 
     if (exportMode == ExportManager::DATABASE)
     {
-        stdConfig.exportData = ui->exportDbDataCheck->isChecked();
+        stdConfig.exportTableData = ui->exportDbTableDataCheck->isChecked();
+        stdConfig.exportViewData = ui->exportDbViewDataCheck->isChecked();
         stdConfig.exportIndexes = ui->exportDbIndexCheck->isChecked();
         stdConfig.exportTriggers = ui->exportDbTriggerCheck->isChecked();
     }
     else if (exportMode == ExportManager::TABLE)
     {
-        stdConfig.exportData = ui->exportTableDataCheck->isChecked();
+        stdConfig.exportTableData = ui->exportTableDataCheck->isChecked();
         stdConfig.exportIndexes = ui->exportTableIndexesCheck->isChecked();
         stdConfig.exportTriggers = ui->exportTableTriggersCheck->isChecked();
     }
+    else if (exportMode == ExportManager::VIEW)
+    {
+        stdConfig.exportViewData = ui->exportViewDataCheck->isChecked();
+        stdConfig.exportTriggers = ui->exportViewTriggersCheck->isChecked();
+    }
     else
     {
-        stdConfig.exportData = false;
+        stdConfig.exportTableData = false;
+        stdConfig.exportViewData = false;
     }
 
     if (ui->encodingCombo->isVisible() && ui->encodingCombo->currentIndex() > -1)

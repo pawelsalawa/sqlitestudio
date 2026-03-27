@@ -31,16 +31,23 @@ class JSONEXPORTSHARED_EXPORT JsonExport : public GenericExportPlugin
                                       const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
+        bool beforeExportSingleTable(const QString& database, const QString& table);
         bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
                          const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
                                 const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportTableRow(SqlResultsRowPtr data);
         bool afterExportTable();
+        bool afterExportSingleTable();
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
-        bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
+        bool beforeExportSingleView(const QString& database, const QString& name);
+        bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
+                        SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool exportViewRow(SqlResultsRowPtr data);
+        bool afterExportView();
+        bool afterExportSingleView();
         bool afterExportDatabase();
         bool beforeExport();
         bool init();

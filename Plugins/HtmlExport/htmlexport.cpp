@@ -102,6 +102,28 @@ bool HtmlExport::afterExportQueryResults()
     return true;
 }
 
+bool HtmlExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    Q_UNUSED(database);
+    return beginDoc(tr("Exported table: %1").arg(table));
+}
+
+bool HtmlExport::afterExportSingleTable()
+{
+    return true;
+}
+
+bool HtmlExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    Q_UNUSED(database);
+    return beginDoc(tr("Exported view: %1").arg(name));
+}
+
+bool HtmlExport::afterExportSingleView()
+{
+    return true;
+}
+
 bool HtmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(database);
@@ -109,21 +131,16 @@ bool HtmlExport::exportTable(const QString& database, const QString& table, cons
     Q_UNUSED(columnNames);
     Q_UNUSED(providedData);
 
-    if (isTableExport())
-    {
-        if (!beginDoc(tr("Exported table: %1").arg(table)))
-            return false;
-    }
-
     int colCount = createTable->columns.size();
     int colSpan = printRownum ? colCount + 1 : colCount;
 
     writeln("<table>");
     incrIndent();
 
+    QString tableLabel = tr("Table: %1").arg(table);
     writeln("<tr class=\"title\">");
     incrIndent();
-    writeln(QString("<td colspan=\"%1\" align=\"center\">%2</td>").arg(colSpan).arg(tr("Table: %1").arg(table)));
+    writeln(QString("<td colspan=\"%1\" align=\"center\">%2</td>").arg(colSpan).arg(tableLabel));
     decrIndent();
     writeln("</tr>");
 
@@ -237,21 +254,16 @@ bool HtmlExport::exportVirtualTable(const QString& database, const QString& tabl
     Q_UNUSED(createTable);
     Q_UNUSED(providedData);
 
-    if (isTableExport())
-    {
-        if (!beginDoc(tr("Exported table: %1").arg(table)))
-            return false;
-    }
-
     int colCount = columnNames.size();
     int colSpan = printRownum ? colCount + 1 : colCount;
 
     writeln("<table>");
     incrIndent();
 
+    QString tableLabel = tr("Table: %1").arg(table);
     writeln("<tr class=\"title\">");
     incrIndent();
-    writeln(QString("<td colspan=\"%1\" align=\"center\">%2 <font color=\"#777777\">(%3)</font></td>").arg(colSpan).arg(tr("Table: %1").arg(table), tr("virtual")));
+    writeln(QString("<td colspan=\"%1\" align=\"center\">%2 <font color=\"#777777\">(%3)</font></td>").arg(colSpan).arg(tableLabel, tr("virtual")));
     decrIndent();
     writeln("</tr>");
 
@@ -441,30 +453,56 @@ bool HtmlExport::exportTrigger(const QString& database, const QString& name, con
     return true;
 }
 
-bool HtmlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view)
+bool HtmlExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView,
+                            const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(database);
     Q_UNUSED(ddl);
+    Q_UNUSED(createView);
+    Q_UNUSED(providedData);
+
+    int colCount = columnNames.size();
+    int colSpan = printRownum ? colCount + 1 : colCount;
 
     writeln("<table>");
     incrIndent();
 
+    QString viewLabel = tr("View: %1").arg(name);
     writeln("<tr class=\"title\">");
     incrIndent();
-    writeln(QString("<td align=\"center\">%1</td>").arg(tr("View: %1").arg("<b>" + name + "</b>")));
+    writeln(QString("<td colspan=\"%1\" align=\"center\"><b>%2</b></td>").arg(colSpan).arg(viewLabel));
     decrIndent();
     writeln("</tr>");
 
     writeln("<tr>");
     incrIndent();
-    writeln("<td>");
+    writeln(QString("<td colspan=\"%1\">").arg(colSpan));
     incrIndent();
-    writeln(QString("<pre>%1</pre>").arg(escape(view->select->detokenize())));
+    writeln(QString("<pre>%1</pre>").arg(escape(createView->select->detokenize())));
     decrIndent();
     writeln("</td>");
     decrIndent();
     writeln("</tr>");
 
+    decrIndent();
+
+    columnTypes.clear();
+    SchemaResolver resolver(db);
+    QList<QPair<QString, QString>> selectColumnTypes = resolver.getColumnsAndDataTypesUsingPragma(name);
+    for (QPair<QString, QString>& colAndType : selectColumnTypes)
+        columnTypes << DataType(colAndType.second);
+
+    currentDataRow = 0;
+    return true;
+}
+
+bool HtmlExport::exportViewRow(SqlResultsRowPtr data)
+{
+    return exportDataRow(data);
+}
+
+bool HtmlExport::afterExportView()
+{
     decrIndent();
     writeln("</table>");
     writeln("<br/><br/>");

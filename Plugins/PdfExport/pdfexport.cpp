@@ -91,10 +91,8 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     Q_UNUSED(database);
     Q_UNUSED(ddl);
 
-    if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
-        return false;
-
-    exportObjectHeader(tr("Table: %1").arg(table));
+    QString headerLabel = tr("Table: %1").arg(table);
+    exportObjectHeader(headerLabel);
 
     QStringList tableDdlColumns = {tr("Column"), tr("Data type"), tr("Constraints")};
     exportObjectColumnsHeader(tableDdlColumns);
@@ -134,7 +132,7 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
 
     flushObjectPages();
 
-    prepareTableDataExport(table, columnsAndTypes, providedData);
+    prepareTableDataExport(columnsAndTypes, providedData, headerLabel);
     return true;
 }
 
@@ -145,22 +143,20 @@ bool PdfExport::exportVirtualTable(const QString& database, const QString& table
     Q_UNUSED(ddl);
     Q_UNUSED(createTable);
 
-    if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
-        return false;
-
-    prepareTableDataExport(table, columnNames, providedData);
+    QString headerLabel = tr("Table: %1").arg(table);
+    prepareTableDataExport(columnNames, providedData, headerLabel);
     return true;
 }
 
-void PdfExport::prepareTableDataExport(const QString& table, const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
+void PdfExport::prepareTableDataExport(const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData, const QString& headerLabel)
 {
     resetDataTable();
     totalRows = providedData[ExportManager::ROW_COUNT].toInt();
 
     // Prepare for exporting data row
     clearDataHeaders();
-    if (!isTableExport()) // for database export we need to mark what is this object name
-        exportDataHeader(tr("Table: %1").arg(table));
+    if (isDatabaseExport())
+        exportDataHeader(headerLabel);
 
     exportDataColumnsHeader(columnNames);
 
@@ -193,6 +189,28 @@ QList<int> PdfExport::getColumnDataLengths(int columnCount, const QHash<ExportMa
 bool PdfExport::exportTableRow(SqlResultsRowPtr data)
 {
     exportDataRow(data->valueList());
+    return true;
+}
+
+bool PdfExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    Q_UNUSED(database);
+    return beginDoc(tr("Exported table: %1").arg(table));
+}
+
+bool PdfExport::afterExportSingleTable()
+{
+    return true;
+}
+
+bool PdfExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    Q_UNUSED(database);
+    return beginDoc(tr("Exported view: %1").arg(name));
+}
+
+bool PdfExport::afterExportSingleView()
+{
     return true;
 }
 
@@ -293,16 +311,27 @@ bool PdfExport::exportTrigger(const QString& database, const QString& name, cons
     return true;
 }
 
-bool PdfExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view)
+bool PdfExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(database);
     Q_UNUSED(ddl);
+    Q_UNUSED(name);
 
-    exportObjectHeader(tr("View: %1").arg(name));
+    QString headerLabel = tr("View: %1").arg(name);
+
     exportObjectColumnsHeader({tr("Query:")});
-    exportObjectRow(view->select->detokenize());
+    exportObjectRow(createView->select->detokenize());
+    bufferedObjectRows.last().expandHeight = true;
 
     flushObjectPages();
+
+    prepareTableDataExport(columnNames, providedData, headerLabel);
+    return true;
+}
+
+bool PdfExport::exportViewRow(SqlResultsRowPtr data)
+{
+    exportDataRow(data->valueList());
     return true;
 }
 
@@ -886,7 +915,10 @@ void PdfExport::calculateObjectRowHeights()
             maxHeight = qMax(maxHeight, height);
         }
 
-        row.height = qMin(maxRowHeight, maxHeight);
+        if (!row.expandHeight)
+            row.height = qMin(maxRowHeight, maxHeight);
+        else
+            row.height = maxHeight;
     }
 }
 

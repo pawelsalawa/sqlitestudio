@@ -292,21 +292,19 @@ QStringList QueryGenerator::toValueSets(const QStringList& columns, const StrHas
                                         const QString& format)
 {
     QStringList rows;
-    QVariantList rowValues;
-    QStringList valueList;
-
-    for (int total = values.values().first().size(), i = 0; i < total; i++)
+    for (int total = values.values().constFirst().size(), i = 0; i < total; i++)
     {
-        rowValues.clear();
+        QVariantList rowValues;
         for (const QString& col : columns)
             rowValues << values[col][i];
 
-        valueList = valueListToSqlList(rowValues);
+        QStringList valueList = valueListToSqlList(rowValues);
         QString row;
-        for (QString value : valueList)
+        for (QString& value : valueList)
         {
             if (row.size() > 0)
                 row.append(", ");
+
             row.append(format.isEmpty() ? value : format.arg(value));
         }
         rows << row;

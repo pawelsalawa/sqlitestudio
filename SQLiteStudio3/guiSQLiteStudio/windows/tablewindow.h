@@ -133,6 +133,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         TableWindow(QWidget *parent, Db* db, const QString& database, const QString& table, bool existingTable);
 
         void changeEvent(QEvent *e);
+        void showEvent(QShowEvent *e);
         QVariant saveSession();
         bool restoreSession(const QVariant& sessionValue);
         Icon* getIconNameForMdiWindow();
@@ -142,7 +143,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool restoreSessionNextTime();
         QToolBar* getToolBar(int toolbar) const;
 
-        virtual void init();
+        void init();
         void newTable();
         void parseDdl();
         virtual bool resolveCreateTableStatement();
@@ -178,7 +179,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         virtual void defineCurrentContextDb();
 
         int newTableWindowNum = 1;
-
+        bool shownAtLEastOnce = false;
         Db* db = nullptr;
         QString database;
         QString table;

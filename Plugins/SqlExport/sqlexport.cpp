@@ -38,6 +38,36 @@ QString SqlExport::getExportConfigFormName() const
     return "sqlExportCommonConfig";
 }
 
+bool SqlExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    Q_UNUSED(database);
+    Q_UNUSED(table);
+    writeHeader();
+    writeFkDisable();
+    writeBegin();
+    return true;
+}
+
+bool SqlExport::afterExportSingleTable()
+{
+    return true;
+}
+
+bool SqlExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    Q_UNUSED(database);
+    Q_UNUSED(name);
+    writeHeader();
+    writeFkDisable();
+    writeBegin();
+    return true;
+}
+
+bool SqlExport::afterExportSingleView()
+{
+    return true;
+}
+
 bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(providedData);
@@ -77,11 +107,7 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 
 bool SqlExport::exportQueryResultsRow(SqlResultsRowPtr row)
 {
-    QStringList argList = rowToArgList(row);
-    QString argStr = argList.join(", ");
-    QString sql = "INSERT INTO " + theTable + " (" + this->columns + ") VALUES (" + argStr + ");";
-    writeln(sql);
-    return true;
+    return exportDataRow(row);
 }
 
 bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
@@ -128,13 +154,6 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 
     columns = colList.join(", ");
 
-    if (isTableExport())
-    {
-        writeHeader();
-        writeFkDisable();
-        writeBegin();
-    }
-
     QString fullName = getNameForObject(database, table, false);
     writeln("");
     writeln(tr("-- Table: %1").arg(fullName));
@@ -157,14 +176,7 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 
 bool SqlExport::exportTableRow(SqlResultsRowPtr data)
 {
-    QStringList argList = rowToArgList(data, true);
-    QString argStr = argList.join(", ");
-    QString sql = "INSERT INTO " + theTable + " (" + columns + ") VALUES (" + argStr + ");";
-    if (!cfg.SqlExport.FormatDdlsOnly.get())
-        sql = formatQuery(sql);
-
-    writeln(sql);
-    return true;
+    return exportDataRow(data);
 }
 
 bool SqlExport::afterExport()
@@ -233,9 +245,12 @@ bool SqlExport::exportTrigger(const QString& database, const QString& name, cons
     return true;
 }
 
-bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
+bool SqlExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView,
+                           const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(createView);
+    Q_UNUSED(columnNames);
+    Q_UNUSED(providedData);
     static_qstring(dropDdl, "DROP VIEW IF EXISTS %1;");
     static_qstring(ifNotExists, " IF NOT EXISTS");
 
@@ -257,11 +272,16 @@ bool SqlExport::exportView(const QString& database, const QString& name, const Q
     return true;
 }
 
+bool SqlExport::exportViewRow(SqlResultsRowPtr data)
+{
+    return exportDataRow(data);
+}
+
 void SqlExport::writeHeader()
 {
     QDateTime ctime = QDateTime::currentDateTime();
     writeln("--");
-    writeln(tr("-- File generated with SQLiteStudio v%1 on %2").arg(SQLITESTUDIO->getVersionString()).arg(ctime.toString()));
+    writeln(tr("-- File generated with SQLiteStudio v%1 on %2").arg(SQLITESTUDIO->getVersionString(), ctime.toString()));
     writeln("--");
     if (standardOptionsToEnable().testFlag(ExportManager::CODEC))
     {
@@ -328,6 +348,18 @@ QStringList SqlExport::rowToArgList(SqlResultsRowPtr row, bool honorGeneratedCol
     }
 
     return valueListToSqlList(row->valueList());
+}
+
+bool SqlExport::exportDataRow(SqlResultsRowPtr data)
+{
+    QStringList argList = rowToArgList(data, true);
+    QString argStr = argList.join(", ");
+    QString sql = "INSERT INTO " + theTable + " (" + columns + ") VALUES (" + argStr + ");";
+    if (!cfg.SqlExport.FormatDdlsOnly.get())
+        sql = formatQuery(sql);
+
+    writeln(sql);
+    return true;
 }
 
 void SqlExport::validateOptions()

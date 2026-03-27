@@ -30,6 +30,10 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         CfgMain* getConfig();
         void validateOptions();
         QString defaultFileExtension() const;
+        bool beforeExportSingleTable(const QString& database, const QString& table);
+        bool afterExportSingleTable();
+        bool beforeExportSingleView(const QString& database, const QString& name);
+        bool afterExportSingleView();
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
                                       const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
@@ -41,12 +45,15 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
-        bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
+        bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
+                        SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool exportViewRow(SqlResultsRowPtr data);
         bool init();
         void deinit();
 
     private:
-        bool exportTable(const QStringList& columnNames);
+        bool exportTableOrView(const QStringList& columnNames);
+        bool exportDataRow(SqlResultsRowPtr data);
         void defineCsvFormat();
 
         CFG_LOCAL_PERSISTABLE(CsvExportConfig, cfg)

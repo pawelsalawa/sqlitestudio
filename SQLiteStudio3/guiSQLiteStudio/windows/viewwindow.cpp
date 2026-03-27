@@ -21,6 +21,7 @@
 #include "themetuner.h"
 #include "datagrid/sqlviewmodel.h"
 #include "datagrid/sqlqueryview.h"
+#include "dialogs/exportdialog.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
@@ -365,6 +366,11 @@ void ViewWindow::createQueryTabActions()
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "view window"), this, SLOT(moveColumnUp()), ui->queryToolbar);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "view window"), this, SLOT(moveColumnDown()), ui->queryToolbar);
     createAction(EXECUTE_QUERY, QString(), this, SLOT(executeQuery()), this);
+    createAction(EXPORT, ICONS.VIEW_EXPORT, tr("Export view", "view window"), this, SLOT(exportView()), ui->queryToolbar);
+
+    QAction* before = ui->dataView->getAction(DataView::FILTER_VALUE);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[EXPORT]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertSeparator(before);
 }
 
 void ViewWindow::createTriggersTabActions()
@@ -909,6 +915,19 @@ void ViewWindow::generateOutputColumns()
     }
 }
 
+void ViewWindow::exportView()
+{
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.setViewMode(db, view);
+    dialog.exec();
+}
+
 void ViewWindow::updateTabsOrder()
 {
     tabsMoving = true;
@@ -958,7 +977,7 @@ void ViewWindow::refreshTriggers()
     QTableWidgetItem* item = nullptr;
     QString event;
     int row = 0;
-    for (SqliteCreateTriggerPtr trig : triggers)
+    for (SqliteCreateTriggerPtr& trig : triggers)
     {
         item = new QTableWidgetItem(trig->trigger);
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);

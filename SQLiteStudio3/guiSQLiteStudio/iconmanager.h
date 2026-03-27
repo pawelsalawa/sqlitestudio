@@ -279,6 +279,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(VIEW_ADD,                          "view_add")
             DEF_ICON(VIEW_DEL,                          "view_delete")
             DEF_ICON(VIEW_EDIT,                         "view_edit")
+            DEF_ICON(VIEW_EXPORT,                       "view_export")
             DEF_ICON(VIEW_RENAME,                       "rename_view")
             DEF_ICON(VIEWS,                             "views")
             DEF_ICON(VIRTUAL_TABLE,                     "virtual_table")

@@ -194,6 +194,8 @@ class API_EXPORT SchemaResolver
         QStringList getColumnsUsingPragma(const QString& database, const QString& tableOrView, bool onlyReal = false);
         QStringList getColumnsUsingPragma(SqliteCreateTable* createTable);
         QStringList getColumnsUsingPragma(SqliteCreateView* createView);
+        QList<QPair<QString, QString>> getColumnsAndDataTypesUsingPragma(const QString& tableOrView, bool onlyReal = false);
+        QList<QPair<QString, QString>> getColumnsAndDataTypesUsingPragma(const QString& database, const QString& tableOrView, bool onlyReal = false);
 
         /**
          * @brief Parses given object's DDL.
@@ -294,7 +296,7 @@ StrHash<QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QStr
      QString name;
      SqliteQueryPtr parsedObject;
      QSharedPointer<T> castedObject;
-     for (SqlResultsRowPtr row : results->getAll())
+     for (SqlResultsRowPtr& row : results->getAll())
      {
          name = row->value("name").toString();
          parsedObject = getParsedDdl(row->value("sql").toString());

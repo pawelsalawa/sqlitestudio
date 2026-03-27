@@ -31,6 +31,10 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         CfgMain* getConfig();
         QString defaultFileExtension() const;
         QString getExportConfigFormName() const;
+        bool beforeExportSingleTable(const QString& database, const QString& table);
+        bool afterExportSingleTable();
+        bool beforeExportSingleView(const QString& database, const QString& name);
+        bool afterExportSingleView();
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
                                       const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
@@ -43,7 +47,9 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
-        bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
+        bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
+                        SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool exportViewRow(SqlResultsRowPtr data);
         void validateOptions();
         bool init();
         void deinit();
@@ -58,6 +64,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         QString formatQuery(const QString& sql);
         QString getNameForObject(const QString& database, const QString& name, bool wrapped);
         QStringList rowToArgList(SqlResultsRowPtr row, bool honorGeneratedColumns = false);
+        bool exportDataRow(SqlResultsRowPtr data);
 
         QString theTable;
         QString columns;

@@ -64,7 +64,7 @@ bool XmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     incrIndent();
     int i = 0;
     DataType type;
-    for (QueryExecutor::ResultColumnPtr col : columns)
+    for (const QueryExecutor::ResultColumnPtr& col : columns)
     {
         type = columnTypes[i];
 
@@ -120,17 +120,31 @@ bool XmlExport::afterExportQueryResults()
     return true;
 }
 
+bool XmlExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    Q_UNUSED(database);
+    Q_UNUSED(table);
+
+    setupConfig();
+    write(docBegin.arg(codecName));
+    writeln(QString("<database%1>").arg(nsStr));
+    incrIndent();
+    return true;
+}
+
+bool XmlExport::afterExportSingleTable()
+{
+    decrIndent();
+    writeln("</database>");
+    return true;
+}
+
 bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(columnNames);
     Q_UNUSED(providedData);
-    if (isTableExport())
-    {
-        setupConfig();
-        write(docBegin.arg(codecName));
-    }
 
-    writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
+    writeln("<table>");
     incrIndent();
 
     writeTagWithValue("database", database);
@@ -199,13 +213,7 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
 {
     Q_UNUSED(providedData);
 
-    if (isTableExport())
-    {
-        setupConfig();
-        write(docBegin.arg(codecName));
-    }
-
-    writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
+    writeln("<table>");
     incrIndent();
 
     writeTagWithValue("database", database);
@@ -327,7 +335,7 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
     return true;
 }
 
-bool XmlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
+bool XmlExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(createView);
     writeln("<view>");
@@ -337,9 +345,31 @@ bool XmlExport::exportView(const QString& database, const QString& name, const Q
     writeTagWithValue("name", name);
     writeTagWithValue("ddl", ddl);
     writeTagWithValue("select", createView->select->detokenize());
+    writeln("<rows>");
+    return true;
+}
 
+bool XmlExport::exportViewRow(SqlResultsRowPtr data)
+{
+    return exportQueryResultsRow(data);
+}
+
+bool XmlExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    return beforeExportSingleTable(database, name);
+}
+
+bool XmlExport::afterExportSingleView()
+{
+    return afterExportSingleTable();
+}
+
+bool XmlExport::afterExportView()
+{
     decrIndent();
-    writeln("</view>");
+    writeln("</rows>");
+    decrIndent();
+    writeln("</table>");
     return true;
 }
 

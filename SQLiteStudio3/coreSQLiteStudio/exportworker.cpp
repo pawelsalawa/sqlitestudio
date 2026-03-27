@@ -43,6 +43,11 @@ void ExportWorker::run()
             res = exportTable();
             break;
         }
+        case ExportManager::VIEW:
+        {
+            res = exportView();
+            break;
+        }
         case ExportManager::UNDEFINED:
             qCritical() << "Started ExportWorker with UNDEFINED mode.";
             res = false;
@@ -79,6 +84,15 @@ void ExportWorker::prepareExportTable(Db* db, const QString& database, const QSt
     this->database = database;
     this->table = table;
     exportMode = ExportManager::TABLE;
+    prepareParser();
+}
+
+void ExportWorker::prepareExportView(Db* db, const QString& database, const QString& view)
+{
+    this->db = db;
+    this->database = database;
+    this->view = view;
+    exportMode = ExportManager::VIEW;
     prepareParser();
 }
 
@@ -366,7 +380,8 @@ bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObject
                 res = plugin->exportTrigger(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateTrigger>());
                 break;
             case ExportManager::ExportObject::VIEW:
-                res = plugin->exportView(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateView>());
+                res = exportViewInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data, obj->providerData);
+                // res = plugin->exportView(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateView>());
                 break;
             default:
                 qDebug() << "Unhandled ExportObject type:" << obj->type;
@@ -393,7 +408,7 @@ bool ExportWorker::exportTable()
     SqlQueryPtr results;
     QString errorMessage;
     QHash<ExportManager::ExportProviderFlag,QVariant> providerData;
-    queryTableDataToExport(db, table, results, providerData, &errorMessage);
+    queryTableOrViewDataToExport(db, table, results, providerData, &errorMessage, true);
     if (!errorMessage.isNull())
     {
         logExportFail("fetching table data");
@@ -419,9 +434,27 @@ bool ExportWorker::exportTable()
         return false;
     }
 
+    if (!plugin->beforeExportSingleTable(database, table))
+    {
+        logExportFail("beforeExportSingleTable()");
+        return false;
+    }
+
+    if (!plugin->beforeExportTables())
+    {
+        logExportFail("beforeExportTables()");
+        return false;
+    }
+
     if (!exportTableInternal(database, table, ddl, createTable, results, providerData))
     {
         logExportFail("exportTableInternal()");
+        return false;
+    }
+
+    if (!plugin->afterExportTables())
+    {
+        logExportFail("afterExportTables()");
         return false;
     }
 
@@ -473,6 +506,106 @@ bool ExportWorker::exportTable()
             logExportFail("afterExportTriggers()");
             return false;
         }
+    }
+
+    if (!plugin->afterExportSingleTable())
+    {
+        logExportFail("afterExportSingleTable()");
+        return false;
+    }
+    if (!plugin->afterExport())
+    {
+        logExportFail("afterExport()");
+        return false;
+    }
+
+    return true;
+}
+
+bool ExportWorker::exportView()
+{
+    SqlQueryPtr results;
+    QString errorMessage;
+    QHash<ExportManager::ExportProviderFlag,QVariant> providerData;
+    queryTableOrViewDataToExport(db, view, results, providerData, &errorMessage, false);
+    if (!errorMessage.isNull())
+    {
+        logExportFail("fetching view data");
+        notifyError(errorMessage);
+        return false;
+    }
+
+    SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(true);
+    QString ddl = resolver.getObjectDdl(database, view, SchemaResolver::VIEW);
+
+    if (!parser->parse(ddl) || parser->getQueries().size() < 1)
+    {
+        qCritical() << "Could not parse" << view << ", the DDL was:" << ddl << ", error is:" << parser->getErrorString();
+        notifyWarn(tr("Could not parse %1 in order to export it. It will be excluded from the export output.").arg(view));
+        return false;
+    }
+
+    SqliteQueryPtr createView = parser->getQueries().first();
+    if (!plugin->initBeforeExport(db, output, *config))
+    {
+        logExportFail("initBeforeExport()");
+        return false;
+    }
+
+    if (!plugin->beforeExportSingleView(database, view))
+    {
+        logExportFail("beforeExportSingleView()");
+        return false;
+    }
+
+    if (!plugin->beforeExportViews())
+    {
+        logExportFail("beforeExportViews()");
+        return false;
+    }
+
+    if (!exportViewInternal(database, view, ddl, createView, results, providerData))
+    {
+        logExportFail("exportViewInternal()");
+        return false;
+    }
+
+    if (!plugin->afterExportViews())
+    {
+        logExportFail("afterExportViews()");
+        return false;
+    }
+
+    if (config->exportTriggers)
+    {
+        if (!plugin->beforeExportTriggers())
+        {
+            logExportFail("beforeExportTriggers()");
+            return false;
+        }
+
+        QList<SqliteCreateTriggerPtr> parsedTriggersForView = resolver.getParsedTriggersForView(database, view);
+        for (const SqliteCreateTriggerPtr& trig : parsedTriggersForView)
+        {
+            if (!plugin->exportTrigger(database, trig->trigger, trig->detokenize(), trig))
+            {
+                logExportFail("exportTrigger()");
+                return false;
+            }
+        }
+
+        if (!plugin->afterExportTriggers())
+        {
+            logExportFail("afterExportTriggers()");
+            return false;
+        }
+    }
+
+    if (!plugin->afterExportSingleView())
+    {
+        logExportFail("afterExportSingleView()");
+        return false;
     }
 
     if (!plugin->afterExport())
@@ -549,6 +682,61 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
     return true;
 }
 
+bool ExportWorker::exportViewInternal(const QString& database, const QString& view, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results, const QHash<ExportManager::ExportProviderFlag, QVariant>& providerData)
+{
+    SqliteCreateViewPtr createView = parsedDdl.dynamicCast<SqliteCreateView>();
+
+    QStringList colNames;
+    if (results)
+        colNames = results->getColumnNames();
+
+    if (!results)
+    {
+        SchemaResolver resolver(db);
+        colNames = resolver.getColumnsUsingPragma(database, view);
+    }
+
+    if (!plugin->exportView(database, view, colNames, ddl, createView, providerData))
+    {
+        logExportFail("exportView()");
+        return false;
+    }
+
+    if (isInterrupted())
+    {
+        logExportFail("internal view export interruption");
+        return false;
+    }
+
+    SqlResultsRowPtr row;
+    if (results)
+    {
+        while (results->hasNext())
+        {
+            row = results->next();
+            if (!plugin->exportViewRow(row))
+            {
+                logExportFail("exportViewRow()");
+                return false;
+            }
+
+            if (isInterrupted())
+            {
+                logExportFail("internal view export interruption (2)");
+                return false;
+            }
+        }
+    }
+
+    if (!plugin->afterExportView())
+    {
+        logExportFail("afterExportView()");
+        return false;
+    }
+
+    return true;
+}
+
 QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* errorMessage)
 {
     SchemaResolver resolver(db);
@@ -583,7 +771,7 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         if (details.type == SchemaResolver::TABLE)
         {
             exportObj->type = ExportManager::ExportObject::TABLE;
-            queryTableDataToExport(db, objName, exportObj->data, exportObj->providerData, errorMessage);
+            queryTableOrViewDataToExport(db, objName, exportObj->data, exportObj->providerData, errorMessage, true);
             if (!errorMessage->isNull())
                 return objectsToExport;
         }
@@ -592,7 +780,12 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         else if (details.type == SchemaResolver::TRIGGER)
             exportObj->type = ExportManager::ExportObject::TRIGGER;
         else if (details.type == SchemaResolver::VIEW)
+        {
             exportObj->type = ExportManager::ExportObject::VIEW;
+            queryTableOrViewDataToExport(db, objName, exportObj->data, exportObj->providerData, errorMessage, false);
+            if (!errorMessage->isNull())
+                return objectsToExport;
+        }
         else
             continue; // warning about this case is already in SchemaResolver
 
@@ -612,28 +805,28 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
     return objectsToExport;
 }
 
-void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag,QVariant>& providerData,
-                                          QString* errorMessage) const
+void ExportWorker::queryTableOrViewDataToExport(Db* db, const QString& tableOrView, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag,QVariant>& providerData,
+                                          QString* errorMessage, bool isTable) const
 {
     static const QString sql = QStringLiteral("SELECT * FROM %1");
     static const QString countSql = QStringLiteral("SELECT count(*) FROM %1");
     static const QString colLengthSql = QStringLiteral("SELECT %1 FROM %2");
     static const QString colLengthTpl = QStringLiteral("max(length(%1))");
 
-    if (config->exportData)
+    if (isTable && config->exportTableData || !isTable && config->exportViewData)
     {
-        QString wrappedTable = wrapObjIfNeeded(table);
-        dataPtr = db->exec(sql.arg(wrappedTable));
+        QString wrappedName = wrapObjIfNeeded(tableOrView);
+        dataPtr = db->exec(sql.arg(wrappedName));
         if (dataPtr->isError() && !errorMessage->isNull())
-            *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table, dataPtr->getErrorText());
+            *errorMessage = tr("Error while reading data to export from table or view %1: %2").arg(tableOrView, dataPtr->getErrorText());
 
         if (plugin->getProviderFlags().testFlag(ExportManager::ROW_COUNT))
         {
-            SqlQueryPtr countQuery = db->exec(countSql.arg(wrappedTable));
+            SqlQueryPtr countQuery = db->exec(countSql.arg(wrappedName));
             if (countQuery->isError())
             {
                 if (!errorMessage->isNull())
-                    *errorMessage = tr("Error while counting data to export from table %1: %2").arg(table, countQuery->getErrorText());
+                    *errorMessage = tr("Error while counting data to export from table or view %1: %2").arg(tableOrView, countQuery->getErrorText());
             }
             else
                 providerData[ExportManager::ROW_COUNT] = countQuery->getSingleCell().toInt();
@@ -645,11 +838,11 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
             for (const QString& col : dataPtr->getColumnNames())
                 wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col));
 
-            SqlQueryPtr colLengthQuery = db->exec(colLengthSql.arg(wrappedCols.join(", "), wrappedTable));
+            SqlQueryPtr colLengthQuery = db->exec(colLengthSql.arg(wrappedCols.join(", "), wrappedName));
             if (colLengthQuery->isError())
             {
                 if (!errorMessage->isNull())
-                    *errorMessage = tr("Error while counting data column width to export from table %1: %2").arg(table, colLengthQuery->getErrorText());
+                    *errorMessage = tr("Error while counting data column width to export from table or view %1: %2").arg(tableOrView, colLengthQuery->getErrorText());
             }
             else
             {

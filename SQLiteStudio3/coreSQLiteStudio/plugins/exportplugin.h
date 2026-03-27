@@ -202,9 +202,23 @@ class ExportPlugin : virtual public Plugin
          * @brief Prepares for exporting tables from database.
          * @return true for success, or false in case of a fatal error.
          *
-         * This is called only for database export. For single table export only exportTable() is called.
+         * This method is called exactly once in either case of database export or single table export.
          */
         virtual bool beforeExportTables() = 0;
+
+        /**
+         * @brief Does initial entry when exporting just one table.
+         * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
+         * @param table Name of the table to export.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called when user requests to export a single table from its context menu,
+         * as oppose to exporting one selected table from the whole set of tables available in the database export mode.
+         *
+         * This method indicates that there was no prior calls to beforeExportDatabase(), so the plugin can prepare for exporting just one table,
+         * without any of the database-level entries.
+         */
+        virtual bool beforeExportSingleTable(const QString& database, const QString& table) = 0;
 
         /**
          * @brief Does initial entry for exported table.
@@ -256,6 +270,12 @@ class ExportPlugin : virtual public Plugin
          * After table exporting also an afterExport() is called, so you can use that for any postprocessing.
          */
         virtual bool afterExportTables() = 0;
+
+        /**
+         * @brief Does final entries after exporting just one table.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportSingleTable() = 0;
 
         /**
          * @brief Does initial entry for the entire database export.
@@ -321,26 +341,60 @@ class ExportPlugin : virtual public Plugin
         /**
          * @brief Prepares for exporting views from database.
          * @return true for success, or false in case of a fatal error.
+         *
+         * This is called just once, before any view gets exported. After that exportView(), exportViewRow() and afterExportView() are called for each view,
+         * and afterExportViews() is called after all views get exported. It's also called if a single view is exported.
          */
         virtual bool beforeExportViews() = 0;
 
         /**
-         * @brief Does entire export entry for an view.
+         * @brief Does initial entry when exporting just one view.
          * @param database "Attach" name of the database that the view belongs to. Can be "main", "temp", or any attach name.
-         * @param table Name of the trigger to view.
-         * @param ddl The DDL of the view.
-         * @param createView View DDL parsed into an object.
+         * @param name Name of the view to export.
          * @return true for success, or false in case of a fatal error.
          *
-         * This is the only method called for view export.
+         * It's called when user requests to export a single view from its context menu,
+         * as oppose to exporting one selected view from the whole set of views available in the database export mode.
          */
-        virtual bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view) = 0;
+        virtual bool beforeExportSingleView(const QString& database, const QString& name) = 0;
+
+        /**
+         * @brief Does entire export entry for a view.
+         * @param database "Attach" name of the database that the view belongs to. Can be "main", "temp", or any attach name.
+         * @param name Name of the view to export.
+         * @param columnNames Name of columns in the view, in order they will appear in the rows passed to exportViewRow().
+         * @param ddl The DDL of the view.
+         * @param createView View DDL parsed into an object.
+         * @param providedData All data entries requested by the plugin in the return value of getProviderFlags().
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
+                                SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) = 0;
+
+        /**
+         * @brief Does export entry for a single row of data from view.
+         * @param data Single data row.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool exportViewRow(SqlResultsRowPtr data) = 0;
+
+        /**
+         * @brief Does final entry for exported view, after its data was exported.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportView() = 0;
 
         /**
          * @brief Does final entries after all views have been exported.
          * @return true for success, or false in case of a fatal error.
          */
         virtual bool afterExportViews() = 0;
+
+        /**
+         * @brief Does final entries after exporting just one view.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportSingleView() = 0;
 
         /**
          * @brief Does final entry for the entire database export.

@@ -34,26 +34,29 @@ QStringList ExportManager::getAvailableFormats(ExportMode exportMode) const
 
 void ExportManager::configure(const QString& format, const StandardExportConfig& config)
 {
-    configure(format, new StandardExportConfig(config));
+    StandardExportConfig* cfgCopy = new StandardExportConfig(config);
+    if (!configure(format, cfgCopy))
+        delete cfgCopy;
 }
 
-void ExportManager::configure(const QString& format, StandardExportConfig* config)
+bool ExportManager::configure(const QString& format, StandardExportConfig* config)
 {
     if (exportInProgress)
     {
         qWarning() << "Tried to configure export while another export is in progress.";
-        return;
+        return false;
     }
 
     plugin = getPluginForFormat(format);
     if (!plugin)
     {
         invalidFormat(format);
-        return;
+        return false;
     }
 
     safe_delete(this->config);
     this->config = config;
+    return true;
 }
 
 bool ExportManager::isExportInProgress() const
@@ -111,6 +114,32 @@ void ExportManager::exportTable(Db* db, const QString& database, const QString& 
     QThreadPool::globalInstance()->start(worker);
 }
 
+void ExportManager::exportView(Db* db, const QString& database, const QString& view)
+{
+    static const QString sql = QStringLiteral("SELECT * FROM %1");
+
+    if (!checkInitialConditions())
+        return;
+
+    if (!plugin->getSupportedModes().testFlag(VIEW))
+    {
+        notifyError(tr("Export plugin %1 doesn't support exporing views.").arg(plugin->getFormatName()));
+        emit exportFailed();
+        emit exportFinished();
+        return;
+    }
+
+    exportInProgress = true;
+    mode = VIEW;
+
+    ExportWorker* worker = prepareExport();
+    if (!worker)
+        return;
+
+    worker->prepareExportView(db, database, view);
+    QThreadPool::globalInstance()->start(worker);
+}
+
 void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport)
 {
     if (!checkInitialConditions())
@@ -151,7 +180,7 @@ ExportPlugin* ExportManager::getPluginForFormat(const QString& formatName) const
 
 void ExportManager::invalidFormat(const QString& format)
 {
-    notifyError(tr("Export format '%1' is not supported. Supported formats are: %2.").arg(format).arg(getAvailableFormats().join(", ")));
+    notifyError(tr("Export format '%1' is not supported. Supported formats are: %2.").arg(format, getAvailableFormats().join(", ")));
 }
 
 bool ExportManager::checkInitialConditions()

@@ -18,7 +18,7 @@ ExportManager::StandardConfigFlags CsvExport::standardOptionsToEnable() const
 
 ExportManager::ExportModes CsvExport::getSupportedModes() const
 {
-    return ExportManager::FILE|ExportManager::TABLE|ExportManager::QUERY_RESULTS|ExportManager::CLIPBOARD;
+    return ExportManager::FILE|ExportManager::TABLE|ExportManager::VIEW|ExportManager::QUERY_RESULTS|ExportManager::CLIPBOARD;
 }
 
 QString CsvExport::getExportConfigFormName() const
@@ -52,6 +52,30 @@ QString CsvExport::defaultFileExtension() const
     return QStringLiteral("csv");
 }
 
+bool CsvExport::beforeExportSingleTable(const QString& database, const QString& table)
+{
+    Q_UNUSED(database);
+    Q_UNUSED(table);
+    return true;
+}
+
+bool CsvExport::afterExportSingleTable()
+{
+    return true;
+}
+
+bool CsvExport::beforeExportSingleView(const QString& database, const QString& name)
+{
+    Q_UNUSED(database);
+    Q_UNUSED(name);
+    return true;
+}
+
+bool CsvExport::afterExportSingleView()
+{
+    return true;
+}
+
 bool CsvExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     Q_UNUSED(query);
@@ -61,7 +85,7 @@ bool CsvExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     if (cfg.CsvExport.ColumnsInFirstRow.get())
     {
         QStringList cols;
-        for (QueryExecutor::ResultColumnPtr resCol : columns)
+        for (QueryExecutor::ResultColumnPtr& resCol : columns)
             cols << resCol->displayName;
 
         writeln(CsvSerializer::serialize(cols, format));
@@ -82,7 +106,10 @@ bool CsvExport::exportTable(const QString& database, const QString& table, const
     Q_UNUSED(ddl);
     Q_UNUSED(providedData);
     Q_UNUSED(createTable);
-    return exportTable(columnNames);
+    if (!isTableExport())
+        return false;
+
+    return exportTableOrView(columnNames);
 }
 
 bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
@@ -92,14 +119,14 @@ bool CsvExport::exportVirtualTable(const QString& database, const QString& table
     Q_UNUSED(ddl);
     Q_UNUSED(providedData);
     Q_UNUSED(createTable);
-    return exportTable(columnNames);
-}
-
-bool CsvExport::exportTable(const QStringList& columnNames)
-{
     if (!isTableExport())
         return false;
 
+    return exportTableOrView(columnNames);
+}
+
+bool CsvExport::exportTableOrView(const QStringList& columnNames)
+{
     defineCsvFormat();
     if (cfg.CsvExport.ColumnsInFirstRow.get())
         writeln(CsvSerializer::serialize(columnNames, format));
@@ -107,7 +134,7 @@ bool CsvExport::exportTable(const QStringList& columnNames)
     return true;
 }
 
-bool CsvExport::exportTableRow(SqlResultsRowPtr data)
+bool CsvExport::exportDataRow(SqlResultsRowPtr data)
 {
     QStringList valList;
     QString nl = cfg.CsvExport.NullValueString.get();
@@ -116,6 +143,11 @@ bool CsvExport::exportTableRow(SqlResultsRowPtr data)
 
     writeln(CsvSerializer::serialize(valList, format));
     return true;
+}
+
+bool CsvExport::exportTableRow(SqlResultsRowPtr data)
+{
+    return exportDataRow(data);
 }
 
 bool CsvExport::beforeExportDatabase(const QString& database)
@@ -142,19 +174,23 @@ bool CsvExport::exportTrigger(const QString& database, const QString& name, cons
     Q_UNUSED(name);
     Q_UNUSED(ddl);
     Q_UNUSED(createTrigger);
-    if (isTableExport())
+    if (isTableExport() || isViewExport())
         return true;
 
     return false;
 }
 
-bool CsvExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
+bool CsvExport::exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl, SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
-    Q_UNUSED(database);
-    Q_UNUSED(name);
-    Q_UNUSED(ddl);
-    Q_UNUSED(createView);
-    return false;
+    if (!isViewExport())
+        return false;
+
+    return exportTableOrView(columnNames);
+}
+
+bool CsvExport::exportViewRow(SqlResultsRowPtr data)
+{
+    return exportDataRow(data);
 }
 
 void CsvExport::defineCsvFormat()

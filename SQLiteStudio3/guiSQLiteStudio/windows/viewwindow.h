@@ -49,6 +49,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
             MOVE_COLUMN_UP,
             MOVE_COLUMN_DOWN,
             GENERATE_OUTPUT_COLUMNS,
+            EXPORT,
             // Triggers tab
             REFRESH_TRIGGERS,
             ADD_TRIGGER,
@@ -173,6 +174,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void moveColumnDown();
         void updateColumnButtons();
         void generateOutputColumns();
+        void exportView();
         void updateTabsOrder();
         void triggerViewDoubleClicked(const QModelIndex& idx);
         void updateFont();

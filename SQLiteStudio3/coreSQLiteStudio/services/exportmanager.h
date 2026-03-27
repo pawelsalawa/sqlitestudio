@@ -29,7 +29,8 @@ class API_EXPORT ExportManager : public PluginServiceBase
             DATABASE      = 0x02,
             TABLE         = 0x04,
             QUERY_RESULTS = 0x08,
-            FILE          = 0x10
+            FILE          = 0x10,
+            VIEW          = 0x20
         };
 
         Q_DECLARE_FLAGS(ExportModes, ExportMode)
@@ -128,7 +129,14 @@ class API_EXPORT ExportManager : public PluginServiceBase
              *
              * Default is true.
              */
-            bool exportData = true;
+            bool exportTableData = true;
+
+            /**
+             * @brief When exporting view or database, this indicates if view data should also be exported.
+             *
+             * Default for database mode is false, but exporting directly from View window sets this to true.
+             */
+            bool exportViewData = false;
 
             /**
              * @brief Indicates if table indexes should also be exported.
@@ -169,6 +177,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
          * @brief Configures export service for export.
          * @param format Format to be used in upcoming export.
          * @param config Standard configuration options to be used in upcoming export.
+         * @return True if export service was successfully configured (the config object was accepted and is now owned by the EportManager), false otherwise.
          *
          * ExportManager takes ownership of the config object.
          *
@@ -178,7 +187,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
          * If any export is already in progress, this method reports error in logs and does nothing.
          * If plugin for specified format cannot be found, then this method reports warning in logs and does nothing.
          */
-        void configure(const QString& format, StandardExportConfig* config);
+        bool configure(const QString& format, StandardExportConfig* config);
 
         /**
          * @brief Configures export service for export.
@@ -191,6 +200,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
         bool isExportInProgress() const;
         void exportQueryResults(Db* db, const QString& query);
         void exportTable(Db* db, const QString& database, const QString& table);
+        void exportView(Db* db, const QString& database, const QString& view);
         void exportDatabase(Db* db, const QStringList& objectListToExport);
 
         static bool isAnyPluginAvailable();
