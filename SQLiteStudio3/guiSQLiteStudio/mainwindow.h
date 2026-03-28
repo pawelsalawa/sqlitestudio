@@ -41,11 +41,15 @@ class SqliteExtensionEditor;
 class CodeSnippetEditor;
 
 #ifdef Q_OS_MACX
-#define PREV_TASK_KEY_SEQ Qt::CTRL | Qt::ALT | Qt::Key_Left
-#define NEXT_TASK_KEY_SEQ Qt::CTRL | Qt::ALT | Qt::Key_Right
+#define PREV_TASK_KEY_SEQ         Qt::CTRL | Qt::ALT | Qt::Key_Left
+#define NEXT_TASK_KEY_SEQ         Qt::CTRL | Qt::ALT | Qt::Key_Right
+#define MOVE_TASK_EARLIER_KEY_SEQ Qt::CTRL | Qt::SHIFT | Qt::ALT | Qt::Key_Left
+#define MOVE_TASK_LATER_KEY_SEQ   Qt::CTRL | Qt::SHIFT | Qt::ALT | Qt::Key_Right
 #else
-#define PREV_TASK_KEY_SEQ Qt::CTRL | Qt::Key_PageUp
-#define NEXT_TASK_KEY_SEQ Qt::CTRL | Qt::Key_PageDown
+#define PREV_TASK_KEY_SEQ         Qt::CTRL | Qt::Key_PageUp
+#define NEXT_TASK_KEY_SEQ         Qt::CTRL | Qt::Key_PageDown
+#define MOVE_TASK_EARLIER_KEY_SEQ Qt::CTRL | Qt::SHIFT | Qt::Key_PageUp
+#define MOVE_TASK_LATER_KEY_SEQ   Qt::CTRL | Qt::SHIFT | Qt::Key_PageDown
 #endif
 
 
@@ -62,6 +66,8 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
     CFG_KEY_ENTRY(OPEN_EXTENSION_MANAGER, Qt::ALT | Qt::Key_4,              QObject::tr("Open extension manager window"))
     CFG_KEY_ENTRY(PREV_TASK,              PREV_TASK_KEY_SEQ,                QObject::tr("Previous window"))
     CFG_KEY_ENTRY(NEXT_TASK,              NEXT_TASK_KEY_SEQ,                QObject::tr("Next window"))
+    CFG_KEY_ENTRY(MOVE_TASK_EARLIER,      MOVE_TASK_EARLIER_KEY_SEQ,        QObject::tr("Move window earlier"))
+    CFG_KEY_ENTRY(MOVE_TASK_LATER,        MOVE_TASK_LATER_KEY_SEQ,          QObject::tr("Move window later"))
     CFG_KEY_ENTRY(HIDE_STATUS_FIELD,      Qt::Key_Escape,                   QObject::tr("Hide status area"))
     CFG_KEY_ENTRY(USER_MANUAL,            Qt::Key_F1,                       QObject::tr("Open user manual"))
     CFG_KEY_ENTRY(OPEN_CONFIG,            Qt::CTRL | Qt::Key_Comma,         QObject::tr("Open configuration dialog"))
@@ -94,6 +100,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             OPEN_SQL_EDITOR,
             NEXT_TASK,
             PREV_TASK,
+            MOVE_TASK_LATER,
+            MOVE_TASK_EARLIER,
             HIDE_STATUS_FIELD,
             OPEN_CONFIG,
             OPEN_DDL_HISTORY,

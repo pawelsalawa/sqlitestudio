@@ -68,6 +68,8 @@ class GUI_API_EXPORT TaskBar : public QToolBar
     public slots:
         void nextTask();
         void prevTask();
+        void moveTaskLater();
+        void moveTaskEarlier();
         void setActiveTask(QAction* task);
         void initContextMenu(ExtActionContainer *mainWin);
 

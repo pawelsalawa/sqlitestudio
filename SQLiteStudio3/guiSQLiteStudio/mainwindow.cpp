@@ -319,8 +319,10 @@ void MainWindow::createActions()
     createAction(MDI_TILE_HORIZONTAL, ICONS.WIN_TILE_HORIZONTAL, tr("Tile windows &horizontally"), ui->mdiArea, SLOT(tileHorizontally()), ui->viewToolbar);
     createAction(MDI_TILE_VERTICAL, ICONS.WIN_TILE_VERTICAL, tr("Tile windows &vertically"), ui->mdiArea, SLOT(tileVertically()), ui->viewToolbar);
     createAction(MDI_CASCADE, ICONS.WIN_CASCADE, tr("&Cascade windows"), ui->mdiArea, SLOT(cascadeSubWindows()), ui->viewToolbar);
-    createAction(NEXT_TASK, tr("Next window"), ui->taskBar, SLOT(nextTask()), this);
     createAction(PREV_TASK, tr("Previous window"), ui->taskBar, SLOT(prevTask()), this);
+    createAction(NEXT_TASK, tr("Next window"), ui->taskBar, SLOT(nextTask()), this);
+    createAction(MOVE_TASK_EARLIER, tr("Move window earlier"), ui->taskBar, SLOT(moveTaskEarlier()), this);
+    createAction(MOVE_TASK_LATER, tr("Move window later"), ui->taskBar, SLOT(moveTaskLater()), this);
     createAction(HIDE_STATUS_FIELD, tr("Hide status field"), this, SLOT(hideStatusField()), this);
 
     createAction(CLOSE_WINDOW, ICONS.WIN_CLOSE, tr("Close current &window"), this, SLOT(closeSelectedWindow()), this);

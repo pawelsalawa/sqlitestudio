@@ -123,6 +123,29 @@ void TaskBar::prevTask()
     tasks[idx]->trigger();
 }
 
+void TaskBar::moveTaskLater()
+{
+    int idx = getActiveTaskIdx();
+    if (idx < 0)
+        return;
+
+    QAction* task = tasks[idx];
+    idx++;
+    idx++; // moving right actually needs idx+2 because of the way that dragTaskTo() works.
+    dragTaskTo(task, idx);
+}
+
+void TaskBar::moveTaskEarlier()
+{
+    int idx = getActiveTaskIdx();
+    if (idx < 0)
+        return;
+
+    QAction* task = tasks[idx];
+    idx--;
+    dragTaskTo(task, idx);
+}
+
 void TaskBar::setActiveTask(QAction* task)
 {
     if (!task)
@@ -141,6 +164,11 @@ void TaskBar::initContextMenu(ExtActionContainer* mainWin)
     taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_OTHER_WINDOWS));
     taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS_LEFT));
     taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS_RIGHT));
+    taskMenu->addSeparator();
+    taskMenu->addAction(mainWin->getAction(MainWindow::PREV_TASK));
+    taskMenu->addAction(mainWin->getAction(MainWindow::NEXT_TASK));
+    taskMenu->addAction(mainWin->getAction(MainWindow::MOVE_TASK_EARLIER));
+    taskMenu->addAction(mainWin->getAction(MainWindow::MOVE_TASK_LATER));
     taskMenu->addSeparator();
     taskMenu->addAction(mainWin->getAction(MainWindow::RESTORE_WINDOW));
     taskMenu->addAction(mainWin->getAction(MainWindow::RENAME_WINDOW));
