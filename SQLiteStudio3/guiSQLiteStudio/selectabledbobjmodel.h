@@ -25,6 +25,7 @@ class GUI_API_EXPORT SelectableDbObjModel : public QSortFilterProxyModel
         void setCheckedObjects(const QStringList& value);
 
         void setRootChecked(bool checked);
+        void selectItems(const QList<DbTreeItem*>& items);
         DbTreeItem* getItemForIndex(const QModelIndex& index) const;
 
     protected:

@@ -277,7 +277,7 @@ bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
         return false;
 
     DBTREE->setSelectedItem(item);
-    DBTREE->setupActionsForMenu(item, validObjContextMenu);
+    DBTREE->setupActionsForMenu(item, {item}, validObjContextMenu);
     if (validObjContextMenu->actions().size() == 0)
         return false;
 

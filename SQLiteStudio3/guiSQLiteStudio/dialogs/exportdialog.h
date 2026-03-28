@@ -27,8 +27,8 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void setTableMode(Db* db, const QString& table);
         void setViewMode(Db* db, const QString& view);
         void setQueryMode(Db* db, const QString& query);
-        void setDatabaseMode(Db* db);
-        void setPreselectedDb(Db* db);
+        void setDatabaseMode(Db* db, bool syncSelectedItems);
+        void setPreselectedDb(Db* db, bool syncSelectedItems);
         int nextId() const;
         bool isPluginConfigValid() const;
 
@@ -84,6 +84,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         ConfigMapper* configMapper = nullptr;
         QHash<CfgEntry*,bool> pluginConfigOk;
         ExportPlugin* currentPlugin = nullptr;
+        bool syncDbItemsInitially = false;
 
     private slots:
         void handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg);

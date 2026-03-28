@@ -881,8 +881,9 @@ void MainWindow::exportAnything()
 
     ExportDialog dialog(this);
     Db* db = DBTREE->getSelectedOpenDb();
+
     if (db)
-        dialog.setPreselectedDb(db);
+        dialog.setPreselectedDb(db, true);
 
     dialog.exec();
 }

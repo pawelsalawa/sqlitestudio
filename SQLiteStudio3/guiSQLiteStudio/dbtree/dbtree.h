@@ -121,6 +121,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         {
         };
 
+        typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;
+
         explicit DbTree(QWidget *parent = 0);
         ~DbTree();
 
@@ -128,7 +130,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         void init();
         void updateActionStates(const QStandardItem* item);
-        void setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu);
+        void setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>& selectedItems, QMenu* contextMenu);
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
@@ -141,6 +143,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         Db* getSelectedDb();
         Db* getSelectedOpenDb();
         QSet<Db*> getSelectedDatabases();
+        QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
+        QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
 
         static bool isItemDraggable(const DbTreeItem* item);
         static bool isAcceptedDropItem(const DbTreeItem* item);
@@ -150,8 +154,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void setupDefShortcuts();
 
     private:
-        typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;
-
         void initSmallToolbarActions();
         void setActionEnabled(int action, bool enabled);
         TableWindow* openTable(DbTreeItem* item);
@@ -174,8 +176,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QString getSelectedIndexName() const;
         QString getSelectedTriggerName() const;
         QString getSelectedViewName() const;
-        QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
-        QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
         void changeFontSize(int factor);
         void updateIconSize();
         void updateConnectDisconnectAction(bool isDbOpen);

@@ -76,7 +76,7 @@ void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, 
     int oldRow = itemToMove->index().row();
     currParent->takeRow(oldRow);
 
-    if (newRow > currParent->rowCount() || newRow < 0)
+    if (newRow > newParentItem->rowCount() || newRow < 0)
         newParentItem->appendRow(itemToMove);
     else
         newParentItem->insertRow(newRow, itemToMove);
@@ -101,8 +101,9 @@ void DbTreeModel::deleteGroup(QStandardItem *groupItem)
     if (!parentItem)
         parentItem = root();
 
+    int newRow = groupItem->index().row();
     for (QStandardItem* child : dynamic_cast<DbTreeItem*>(groupItem)->childs())
-        move(child, parentItem);
+        move(child, parentItem, newRow);
 
     parentItem->removeRow(groupItem->row());
 }

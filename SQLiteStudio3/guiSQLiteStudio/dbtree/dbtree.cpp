@@ -153,8 +153,8 @@ void DbTree::createActions()
     createAction(DELETE_DB, ICONS.DATABASE_DEL, tr("&Remove the database"), this, SLOT(removeDb()), this);
     createAction(CONNECT_TO_DB, ICONS.DATABASE_CONNECT, tr("&Connect to the database"), this, SLOT(connectToDb()), this);
     createAction(DISCONNECT_FROM_DB, ICONS.DATABASE_DISCONNECT, tr("&Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
-    createAction(IMPORT_INTO_DB, ICONS.IMPORT, tr("Import"), this, SLOT(import()), this);
-    createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("&Export the database"), this, SLOT(exportDb()), this);
+    createAction(IMPORT_INTO_DB, ICONS.IMPORT, tr("&Import"), this, SLOT(import()), this);
+    createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("&Export"), this, SLOT(exportDb()), this);
     createAction(VACUUM_DB, ICONS.VACUUM_DB, tr("Vac&uum"), this, SLOT(vacuumDb()), this);
     createAction(INTEGRITY_CHECK, ICONS.INTEGRITY_CHECK, tr("&Integrity check"), this, SLOT(integrityCheck()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a &table"), this, SLOT(addTable()), this);
@@ -210,6 +210,8 @@ void DbTree::updateActionStates(const QStandardItem *item)
 {
     QList<int> enabled;
     const DbTreeItem* dbTreeItem = dynamic_cast<const DbTreeItem*>(item);
+    QList<DbTreeItem*> selItems = getModel()->getItemsForIndexes(ui->treeView->getSelectedIndexes());
+    QSet<DbTreeItem::Type> selectedTypes = toSet(selItems | MAP(item, {return item->getType();}));
     if (item != nullptr)
     {
         bool isDbOpen = false;
@@ -232,6 +234,12 @@ void DbTree::updateActionStates(const QStandardItem *item)
         if (dbTreeItem->getType() == DbTreeItem::Type::DIR)
             enabled << CREATE_GROUP << RENAME_GROUP << DELETE_GROUP;
 
+        if (selectedTypes.contains(DbTreeItem::Type::DIR))
+            enabled << CREATE_GROUP << DELETE_GROUP;
+
+        if (selectedTypes.contains(DbTreeItem::Type::DB))
+            enabled << CREATE_GROUP;
+
         // Db item, regardless if open or not
         if (dbTreeItem->getType() == DbTreeItem::Type::DB)
             enabled << RENAME_DB << CREATE_GROUP;
@@ -251,6 +259,17 @@ void DbTree::updateActionStates(const QStandardItem *item)
             QUrl url = QUrl::fromLocalFile(dbTreeItem->getDb()->getPath());
             if (url.isValid())
                 enabled << OPEN_DB_DIRECTORY;
+        }
+
+        for (DbTreeItem* selItem : selItems)
+        {
+            if (!selItem->getDb())
+                continue;
+
+            if (selItem->getDb()->isOpen())
+                enabled << DISCONNECT_FROM_DB;
+            else
+                enabled << CONNECT_TO_DB;
         }
 
         if (isDbOpen)
@@ -344,9 +363,9 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
         // Do we have any deletable object selected? If yes, enable "Del" action.
         bool enableDel = false;
-        for (DbTreeItem* selItem : getModel()->getItemsForIndexes(getView()->getSelectedIndexes()))
+        for (DbTreeItem::Type selType : selectedTypes)
         {
-            switch (selItem->getType())
+            switch (selType)
             {
                 case DbTreeItem::Type::COLUMN:
                 case DbTreeItem::Type::DB:
@@ -390,7 +409,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
         setActionEnabled(action, enabled.contains(action));
 }
 
-void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
+void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>& selectedItems, QMenu* contextMenu)
 {
     QList<ActionEntry> actions;
 
@@ -427,6 +446,44 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     ActionEntry genViewQueryEntry(ICONS.GENERATE_QUERY, tr("Generate query for view"));
     genViewQueryEntry += GENERATE_SELECT;
 
+    QList<DbTreeItem*> exportableItems = selectedItems | FILTER(item,
+                     {
+                         switch (item->getType())
+                         {
+                             case DbTreeItem::Type::DB:
+                             case DbTreeItem::Type::TABLE:
+                             case DbTreeItem::Type::VIEW:
+                                return true;
+                             default:
+                                return false;
+                         }
+                     });
+    /*
+    if (selectedItems.size() > 1)
+    {
+        QSet<DbTreeItem::Type> selectedTypes = toSet(selectedItems | MAP(item, {return item->getType();}));
+        if (selectedTypes.contains(DbTreeItem::Type::DB) || selectedTypes.contains(DbTreeItem::Type::DIR))
+            actions += groupEntry;
+
+        actions += ActionEntry(_separator);
+        if (selectedTypes.contains(DbTreeItem::Type::DB) && selectedTypes.size() == 1)
+        {
+            actions += ActionEntry(CONNECT_TO_DB);
+            actions += ActionEntry(DISCONNECT_FROM_DB);
+            actions += ActionEntry(REFRESH_SCHEMA);
+        }
+        else
+        {
+            actions += dbEntryExt;
+        }
+        actions += ActionEntry(_separator);
+        actions += ActionEntry(EXPORT_DB);
+        if (selectedTypes.contains(DbTreeItem::Type::TABLE))
+            actions += ActionEntry(ERASE_TABLE_DATA);
+
+        actions += ActionEntry(_separator);
+    }
+    else */
     if (currItem)
     {
         DbTreeItem* parentItem = currItem->parentDbTreeItem();
@@ -505,7 +562,11 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(_separator);
                 actions += genQueryEntry;
                 actions += ActionEntry(IMPORT_TABLE);
-                actions += ActionEntry(EXPORT_TABLE);
+                if (exportableItems.size() > 1)
+                    actions += ActionEntry(EXPORT_DB);
+                else
+                    actions += ActionEntry(EXPORT_TABLE);
+
                 actions += ActionEntry(POPULATE_TABLE);
                 actions += ActionEntry(CREATE_SIMILAR_TABLE);
                 actions += ActionEntry(RESET_AUTOINCREMENT);
@@ -631,7 +692,11 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 if (isInTableNode)
                 {
                     actions += ActionEntry(IMPORT_TABLE);
-                    actions += ActionEntry(EXPORT_TABLE);
+                    if (exportableItems.size() > 1)
+                        actions += ActionEntry(EXPORT_DB);
+                    else
+                        actions += ActionEntry(EXPORT_TABLE);
+
                     actions += ActionEntry(POPULATE_TABLE);
                     actions += ActionEntry(_separator);
                 }
@@ -664,7 +729,11 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 if (isInTableNode)
                 {
                     actions += ActionEntry(IMPORT_TABLE);
-                    actions += ActionEntry(EXPORT_TABLE);
+                    if (exportableItems.size() > 1)
+                        actions += ActionEntry(EXPORT_DB);
+                    else
+                        actions += ActionEntry(EXPORT_TABLE);
+
                     actions += ActionEntry(POPULATE_TABLE);
                     actions += ActionEntry(_separator);
                 }
@@ -1183,43 +1252,55 @@ void DbTree::createGroup()
 {
     QStringList existingItems;
     QStandardItem* currItem = ui->treeView->getItemForAction(true);
-    DbTreeItem* itemToMove = nullptr;
-    if (currItem)
+    DbTreeItem* currItemToMove = nullptr;
+    DbTreeItem* dbTreeParentItem = dynamic_cast<DbTreeItem*>(currItem);
+    if (dbTreeParentItem)
     {
         // Look for any directory in the path to the root, starting with the current item
         do
         {
-            if (dynamic_cast<DbTreeItem*>(currItem)->getType() == DbTreeItem::Type::DIR)
+            if (dbTreeParentItem->getType() == DbTreeItem::Type::DIR)
             {
-                existingItems = dynamic_cast<DbTreeItem*>(currItem)->childNames();
+                existingItems = dbTreeParentItem->childNames();
                 break;
             }
-            else
-            {
-                itemToMove = dynamic_cast<DbTreeItem*>(currItem);
-            }
+
+            if (dbTreeParentItem->getType() == DbTreeItem::Type::DB)
+                currItemToMove = dbTreeParentItem;
         }
-        while ((currItem = currItem->parent()) != nullptr);
+        while ((dbTreeParentItem = dbTreeParentItem->parentDbTreeItem()) != nullptr);
     }
 
     // No luck? Use root.
-    if (!currItem)
-        currItem = treeModel->root();
+    QStandardItem* parentItem = dbTreeParentItem ? dbTreeParentItem : treeModel->root();
 
     QString name = "";
     while (existingItems.contains(name = QInputDialog::getText(this, tr("Create group"), tr("Group name"))) ||
            (name.isEmpty() && !name.isNull()))
     {
         QMessageBox::information(this, tr("Create group"), tr("Entry with name %1 already exists in group %2.")
-                                 .arg(name, currItem->text()), QMessageBox::Ok);
+                                 .arg(name, parentItem->text()), QMessageBox::Ok);
     }
 
     if (name.isNull())
         return;
 
-    DbTreeItem* newDir = treeModel->createGroup(name, currItem);
-    if (itemToMove)
-        treeModel->move(itemToMove, newDir);
+    QList<DbTreeItem*> itemsToMove = getModel()->getItemsForIndexes(ui->treeView->getSelectedIndexes())
+            | FILTER(item, {return item != currItemToMove;})
+            | FILTER(item, {return item->getType() == DbTreeItem::Type::DB || item->getType() == DbTreeItem::Type::DIR;});
+
+    int newDirRow = currItemToMove ?
+                currItemToMove->index().row() :
+                (itemsToMove.isEmpty() ? -1 : itemsToMove.first()->index().row());
+
+    DbTreeItem* newDir = treeModel->createGroup(name, parentItem);
+    treeModel->move(newDir, parentItem, newDirRow);
+
+    if (currItemToMove)// currItem in some cases may be not selected
+        treeModel->move(currItemToMove, newDir);
+
+    for (DbTreeItem* item : itemsToMove)
+        treeModel->move(item, newDir);
 }
 
 void DbTree::deleteGroup()
@@ -1228,13 +1309,21 @@ void DbTree::deleteGroup()
     if (!item)
         return;
 
+    QList<DbTreeItem*> dirItems = getSelectedItems(DbTreeItem::Type::DIR);
+    if (!dirItems.contains(item))
+        dirItems.prepend(item);
+
+    QStringList itemNames = dirItems | MAP(i, {return i->text();});
+
     QMessageBox::StandardButton resp = QMessageBox::question(this, tr("Delete group"),
-            tr("Are you sure you want to delete group %1?\nAll objects from this group will be moved to parent group.").arg(item->text().left(ITEM_TEXT_LIMIT)));
+            tr("Are you sure you want to delete groups: %1?\nAll objects from these groups will be moved to respective parent groups.")
+                                                             .arg(itemNames.join(", ").left(ITEM_TEXT_LIMIT)));
 
     if (resp != QMessageBox::Yes)
         return;
 
-    treeModel->deleteGroup(item);
+    for (DbTreeItem* dirItem : dirItems)
+        treeModel->deleteGroup(dirItem);
 }
 
 void DbTree::renameGroup()
@@ -1381,29 +1470,39 @@ void DbTree::removeDb()
 
 void DbTree::connectToDb()
 {
-    Db* db = getSelectedDb();
-    if (!db)
-        return;
+    QSet<Db*> dbs = toSet(getSelectedItems(DbTreeItem::Type::DB) | MAP(item, {return item->getDb();}));
+    dbs << getSelectedDb();
 
-    if (db->isOpen())
-        return;
+    for (Db* db : dbs | FILTER(db, {return db && !db->isOpen();}))
+    {
+        if (!db)
+            continue;
 
-    db->open();
+        if (db->isOpen())
+            continue;
+
+        db->open();
+    }
 }
 
 void DbTree::disconnectFromDb()
 {
-    Db* db = getSelectedDb();
-    if (!db)
-        return;
+    QSet<Db*> dbs = toSet(getSelectedItems(DbTreeItem::Type::DB) | MAP(item, {return item->getDb();}));
+    dbs << getSelectedDb();
 
-    if (!db->isOpen())
-        return;
+    for (Db* db : dbs | FILTER(db, {return db && db->isOpen();}))
+    {
+        if (!db)
+            continue;
+
+        if (!db->isOpen())
+            continue;
+
+        db->close();
+    }
 
     DbTreeItem* dbItem = ui->treeView->currentDbItem();
     ui->treeView->setCurrentIndex(dbItem->index());
-
-    db->close();
 }
 
 
@@ -1436,7 +1535,7 @@ void DbTree::exportDb()
     }
 
     ExportDialog dialog(this);
-    dialog.setDatabaseMode(db);
+    dialog.setDatabaseMode(db, true);
     dialog.exec();
 }
 

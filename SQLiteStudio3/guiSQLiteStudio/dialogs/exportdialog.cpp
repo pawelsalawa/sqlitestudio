@@ -151,7 +151,7 @@ void ExportDialog::setQueryMode(Db* db, const QString& query)
     ui->queryEdit->checkSyntaxNow();
 }
 
-void ExportDialog::setDatabaseMode(Db* db)
+void ExportDialog::setDatabaseMode(Db* db, bool syncSelectedItems)
 {
     if (!db->isOpen())
     {
@@ -162,20 +162,23 @@ void ExportDialog::setDatabaseMode(Db* db)
     setStartId(pageId(ui->databaseObjectsPage));
     exportMode = ExportManager::DATABASE;
     this->db = db;
+    this->syncDbItemsInitially = syncSelectedItems;
 }
 
-void ExportDialog::setPreselectedDb(Db *db)
+void ExportDialog::setPreselectedDb(Db *db, bool syncSelectedItems)
 {
     if (!db->isOpen())
         return;
 
     this->db = db;
+    this->syncDbItemsInitially = syncSelectedItems;
 }
 
 void ExportDialog::initModePage()
 {
     connect(ui->subjectDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateExportMode()));
     connect(ui->subjectTableRadio, SIGNAL(clicked()), this, SLOT(updateExportMode()));
+    connect(ui->subjectViewRadio, SIGNAL(clicked()), this, SLOT(updateExportMode()));
     connect(ui->subjectQueryRadio, SIGNAL(clicked()), this, SLOT(updateExportMode()));
 }
 
@@ -434,6 +437,30 @@ void ExportDialog::dbObjectsPageDisplayed()
 
         if (db)
             ui->dbObjectsDatabaseCombo->setCurrentText(db->getName());
+
+        if (syncDbItemsInitially)
+        {
+            QList<DbTreeItem*> selItems = DBTREE->getSelectedItems([this](auto&& item)
+            {
+                if (item->getDb() != db)
+                    return false;
+
+                switch (item->getType())
+                {
+                    case DbTreeItem::Type::TABLE:
+                    case DbTreeItem::Type::VIEW:
+                        return true;
+                    default:
+                        return false;
+                }
+            });
+
+            if (!selItems.isEmpty())
+            {
+                selectableDbListModel->setRootChecked(false);
+                selectableDbListModel->selectItems(selItems);
+            }
+        }
 
         dbObjectsPageVisited = true;
     }

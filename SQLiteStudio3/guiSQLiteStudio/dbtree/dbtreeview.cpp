@@ -104,7 +104,8 @@ void DbTreeView::showMenu(const QPoint &pos)
         selectionModel()->clear();
 
     DbTreeItem* item = getItemForAction();
-    dbTree->setupActionsForMenu(item, contextMenu);
+    QList<DbTreeItem*> selItems = model()->getItemsForIndexes(getSelectedIndexes());
+    dbTree->setupActionsForMenu(item, selItems, contextMenu);
     if (contextMenu->actions().size() == 0)
         return;
 

@@ -93,6 +93,15 @@ void SelectableDbObjModel::setRootChecked(bool checked)
     setData(idx, checked ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
 }
 
+void SelectableDbObjModel::selectItems(const QList<DbTreeItem*>& items)
+{
+    for (DbTreeItem* item : items)
+    {
+        QModelIndex idx = mapFromSource(item->index());
+        setData(idx, Qt::Checked, Qt::CheckStateRole);
+    }
+}
+
 DbTreeItem* SelectableDbObjModel::getItemForIndex(const QModelIndex& index) const
 {
     return getItemForProxyIndex(index);
@@ -102,7 +111,8 @@ bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcPa
 {
     QModelIndex idx = sourceModel()->index(srcRow, 0, srcParent);
     DbTreeItem* item = dynamic_cast<DbTreeItem*>(dynamic_cast<DbTreeModel*>(sourceModel())->itemFromIndex(idx));
-    DbTreeItem* dbItem = item->getPathToParentItem(DbTreeItem::Type::DB).last();
+    QList<DbTreeItem*> itemPath = item->getPathToParentItem(DbTreeItem::Type::DB);
+    DbTreeItem* dbItem = itemPath.last();
 
     // These 3 conditions could be written as one OR-ed, but this is easier to debug which one fails this way.
     if (!dbItem)
