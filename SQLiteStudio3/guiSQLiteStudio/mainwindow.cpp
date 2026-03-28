@@ -436,11 +436,18 @@ void MainWindow::initMenuBar()
     viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS_LEFT]);
     viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS_RIGHT]);
     viewMenu->addSeparator();
+    viewMenu->addAction(actionMap[PREV_TASK]);
+    viewMenu->addAction(actionMap[NEXT_TASK]);
+    viewMenu->addAction(actionMap[MOVE_TASK_EARLIER]);
+    viewMenu->addAction(actionMap[MOVE_TASK_LATER]);
+    viewMenu->addSeparator();
     viewMenu->addAction(actionMap[RESTORE_WINDOW]);
     viewMenu->addAction(actionMap[RENAME_WINDOW]);
 
     viewMenu->addSeparator();
     viewMenu->addMenu(mdiMenu);
+
+    CONFLICTING_MENU_HOTKEY_WORKAROUND(viewMenu, QKeySequence::Close, actionMap[CLOSE_WINDOW]);
 
     // Tools menu
     toolsMenu = new QMenu(this);

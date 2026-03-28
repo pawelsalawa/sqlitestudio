@@ -76,8 +76,6 @@ class GUI_API_EXPORT TaskBar : public QToolBar
     private slots:
         void taskBarMenuRequested(const QPoint& p);
         void mousePressed();
-        void taskBarMenuAboutToShow();
-        void taskBarMenuAboutToHide();
 };
 
 #endif // TASKBAR_H

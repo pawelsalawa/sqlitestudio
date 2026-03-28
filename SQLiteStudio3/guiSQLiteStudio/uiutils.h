@@ -27,6 +27,23 @@ GUI_API_EXPORT QBrush styleEditorLineColor();
 GUI_API_EXPORT void fixToolbarTooltips(QToolBar* toolbar);
 GUI_API_EXPORT QColor findContrastingColor(const QColor& input);
 
+// This is a hack. For example we want to display "Ctrl+W" shortcut to the user in this menu, but assigning that shortcut
+// permanently to the action makes it ambigous to Qt, because it's already a standard shortcut,
+// thus making Qt confused and this shortcut working only every second time.
+// Here we assign the shortcut only for the time of displaying the menu. Rest of the time it's not assigned.
+#define CONFLICTING_MENU_HOTKEY_WORKAROUND(Menu, KeySeq, Action) \
+    connect(Menu, &QMenu::aboutToShow, this, [this]() \
+    { \
+        QList<QKeySequence> bindings = QKeySequence::keyBindings(KeySeq); \
+        if (bindings.size() > 0) \
+            Action->setShortcut(bindings.first()); \
+    }); \
+    connect(Menu, &QMenu::aboutToHide, this, [this]() \
+    { \
+        Action->setShortcut(QKeySequence()); \
+    });
+
+
 #define UI_PROP_COLUMN "column_name"
 
 #endif // UIUTILS_H

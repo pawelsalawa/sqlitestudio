@@ -1,5 +1,6 @@
 #include "taskbar.h"
 #include "mainwindow.h"
+#include "uiutils.h"
 #include <QMouseEvent>
 #include <QMimeData>
 #include <QDataStream>
@@ -75,22 +76,6 @@ void TaskBar::mousePressed()
     dragStartTask = actionAt(dragStartPosition);
     if (dragStartTask)
         dragStartTask->trigger();
-}
-
-void TaskBar::taskBarMenuAboutToShow()
-{
-    // This is a hack. We want to display "Ctrl+W" shortcut to the user in this menu, but assigning that shortcut
-    // permanently to the action makes it ambigous to Qt, because it's already a standard shortcut,
-    // thus making Qt confused and this shortcut working only every second time.
-    // Here we assign the shortcut only for the time of displaying the menu. Rest of the time it's not assigned.
-    QList<QKeySequence> bindings = QKeySequence::keyBindings(QKeySequence::Close);
-    if (bindings.size() > 0)
-        MAINWINDOW->getAction(MainWindow::Action::CLOSE_WINDOW)->setShortcut(bindings.first());
-}
-
-void TaskBar::taskBarMenuAboutToHide()
-{
-    MAINWINDOW->getAction(MainWindow::Action::CLOSE_WINDOW)->setShortcut(QKeySequence());
 }
 
 int TaskBar::getActiveTaskIdx()
@@ -173,8 +158,7 @@ void TaskBar::initContextMenu(ExtActionContainer* mainWin)
     taskMenu->addAction(mainWin->getAction(MainWindow::RESTORE_WINDOW));
     taskMenu->addAction(mainWin->getAction(MainWindow::RENAME_WINDOW));
 
-    connect(taskMenu, SIGNAL(aboutToShow()), this, SLOT(taskBarMenuAboutToShow()));
-    connect(taskMenu, SIGNAL(aboutToHide()), this, SLOT(taskBarMenuAboutToHide()));
+    CONFLICTING_MENU_HOTKEY_WORKAROUND(taskMenu, QKeySequence::Close, MAINWINDOW->getAction(MainWindow::Action::CLOSE_WINDOW));
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(taskBarMenuRequested(QPoint)));
 }
 
