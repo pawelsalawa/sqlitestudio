@@ -310,42 +310,47 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>ExportManager</name>
     <message>
-        <location filename="../services/exportmanager.cpp" line="71"/>
+        <location filename="../services/exportmanager.cpp" line="74"/>
         <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
         <translation>Модуль экспорта %1 не поддерживает экспорт результатов запроса.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="97"/>
+        <location filename="../services/exportmanager.cpp" line="100"/>
         <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
         <translation>Модуль экспорта %1 не поддерживает экспорт таблиц.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="121"/>
+        <location filename="../services/exportmanager.cpp" line="126"/>
+        <source>Export plugin %1 doesn&apos;t support exporing views.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/exportmanager.cpp" line="150"/>
         <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
         <translation>Модуль экспорта %1 не поддерживает экспорт баз данных.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="154"/>
+        <location filename="../services/exportmanager.cpp" line="183"/>
         <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
         <translation>Формат экспорта %1 не поддерживается. Поддерживаемые форматы: %2.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="218"/>
+        <location filename="../services/exportmanager.cpp" line="247"/>
         <source>Export to the clipboard was successful.</source>
         <translation>Экспорт в буфер обмена успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="222"/>
+        <location filename="../services/exportmanager.cpp" line="251"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
         <translation>Экспорт в файл %1 успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="224"/>
+        <location filename="../services/exportmanager.cpp" line="253"/>
         <source>Export was successful.</source>
         <translation>Экспорт успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../services/exportmanager.cpp" line="266"/>
+        <location filename="../services/exportmanager.cpp" line="295"/>
         <source>Could not export to file %1. File cannot be open for writting.</source>
         <translation>Невозможно выполнить экспорт в файл %1. Не удалось открыть файл для записи.</translation>
     </message>
@@ -353,35 +358,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>ExportWorker</name>
     <message>
-        <location filename="../exportworker.cpp" line="122"/>
+        <location filename="../exportworker.cpp" line="136"/>
         <source>Error while exporting query results: %1</source>
         <translation>Ошибка при экспорте результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="208"/>
+        <location filename="../exportworker.cpp" line="222"/>
         <source>Error while counting data column width to export from query results: %1</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="352"/>
-        <location filename="../exportworker.cpp" line="411"/>
+        <location filename="../exportworker.cpp" line="366"/>
+        <location filename="../exportworker.cpp" line="426"/>
+        <location filename="../exportworker.cpp" line="545"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Невозможно проанализировать структуру %1. Данный объект будет исключён при выполнении экспорта.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="628"/>
+        <location filename="../exportworker.cpp" line="821"/>
+        <source>Error while reading data to export from table or view %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportworker.cpp" line="829"/>
+        <source>Error while counting data to export from table or view %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportworker.cpp" line="845"/>
+        <source>Error while counting data column width to export from table or view %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Error while reading data to export from table %1: %2</source>
-        <translation>Ошибка при считывании данных для экспорта из таблицы %1: %2</translation>
+        <translation type="vanished">Ошибка при считывании данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="636"/>
         <source>Error while counting data to export from table %1: %2</source>
-        <translation>Ошибка при подсчёте количества данных для экспорта из таблицы %1: %2</translation>
+        <translation type="vanished">Ошибка при подсчёте количества данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="652"/>
         <source>Error while counting data column width to export from table %1: %2</source>
-        <translation>Ошибка при подсчёте ширины столбца данных для экспорта из таблицы %1: %2</translation>
+        <translation type="vanished">Ошибка при подсчёте ширины столбца данных для экспорта из таблицы %1: %2</translation>
     </message>
 </context>
 <context>
@@ -813,7 +831,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно открыть базу данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="1363"/>
+        <location filename="../db/abstractdb3.h" line="1361"/>
         <source>Result set expired or no row available.</source>
         <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
     </message>
@@ -1146,7 +1164,7 @@ The view will remain as it is.</source>
         <translation>Файл базы данных &apos;%1&apos; был изменен более новой версией SQLite (формат %2), тогда как текущее приложение поддерживает формат до %3. Некоторые функции могут работать некорректно.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="994"/>
+        <location filename="../db/abstractdb3.h" line="992"/>
         <source>Registered default collation on demand, under name: %1</source>
         <translation>Зарегистрировано сравнение по требованию, использующееся по умолчанию, под именем: %1</translation>
     </message>

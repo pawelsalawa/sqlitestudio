@@ -10,114 +10,118 @@
     </message>
     <message>
         <location filename="../htmlexport.cpp" line="77"/>
-        <location filename="../htmlexport.cpp" line="154"/>
+        <location filename="../htmlexport.cpp" line="171"/>
         <source>no type</source>
         <translation>ללא סוג</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="114"/>
-        <location filename="../htmlexport.cpp" line="242"/>
+        <location filename="../htmlexport.cpp" line="108"/>
         <source>Exported table: %1</source>
         <translation>טבלה מיוצת: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="126"/>
-        <location filename="../htmlexport.cpp" line="254"/>
+        <location filename="../htmlexport.cpp" line="119"/>
+        <source>Exported view: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../htmlexport.cpp" line="140"/>
+        <location filename="../htmlexport.cpp" line="263"/>
         <source>Table: %1</source>
         <translation>טבלה: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="254"/>
+        <location filename="../htmlexport.cpp" line="266"/>
         <source>virtual</source>
         <translation>מְדֻמֶּה</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="307"/>
+        <location filename="../htmlexport.cpp" line="318"/>
         <source>Exported database: %1</source>
         <translation>מסד נתונים מיוצא: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="323"/>
+        <location filename="../htmlexport.cpp" line="334"/>
         <source>Index: %1</source>
         <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="329"/>
+        <location filename="../htmlexport.cpp" line="340"/>
         <source>For table:</source>
         <translation>עבור טבלה:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="336"/>
+        <location filename="../htmlexport.cpp" line="347"/>
         <source>Unique:</source>
         <translation>ייחודי:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="337"/>
+        <location filename="../htmlexport.cpp" line="348"/>
         <source>Yes</source>
         <translation>כן</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="337"/>
+        <location filename="../htmlexport.cpp" line="348"/>
         <source>No</source>
         <translation>לא</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="343"/>
+        <location filename="../htmlexport.cpp" line="354"/>
         <source>Column</source>
         <translation>עמודה</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="344"/>
+        <location filename="../htmlexport.cpp" line="355"/>
         <source>Collating</source>
         <translation>ארגון</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="345"/>
+        <location filename="../htmlexport.cpp" line="356"/>
         <source>Sort order</source>
         <translation>סדר מיון</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="379"/>
+        <location filename="../htmlexport.cpp" line="390"/>
         <source>Trigger: %1</source>
         <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="385"/>
+        <location filename="../htmlexport.cpp" line="396"/>
         <source>Activated:</source>
         <translation>מופעל:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="393"/>
+        <location filename="../htmlexport.cpp" line="404"/>
         <source>Action:</source>
         <translation>פעולה:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="400"/>
+        <location filename="../htmlexport.cpp" line="411"/>
         <source>On view:</source>
         <translation>אין מצג:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="402"/>
+        <location filename="../htmlexport.cpp" line="413"/>
         <source>On table:</source>
         <translation>אין טבלה:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="413"/>
+        <location filename="../htmlexport.cpp" line="424"/>
         <source>Activate condition:</source>
         <translation>שפעול תנאי:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="420"/>
+        <location filename="../htmlexport.cpp" line="431"/>
         <source>Code executed:</source>
         <translation>קוד בוצע:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="454"/>
+        <location filename="../htmlexport.cpp" line="469"/>
         <source>View: %1</source>
         <translation>מצג: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="479"/>
+        <location filename="../htmlexport.cpp" line="546"/>
         <source>Document generated by SQLiteStudio v%1 on %2</source>
         <translation>מסמך חולל על ידי SQLiteStudio v%1 ב %2</translation>
     </message>

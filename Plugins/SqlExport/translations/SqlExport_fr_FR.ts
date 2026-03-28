@@ -4,42 +4,42 @@
 <context>
     <name>SqlExport</name>
     <message>
-        <location filename="../sqlexport.cpp" line="57"/>
+        <location filename="../sqlexport.cpp" line="87"/>
         <source>-- Results of query:</source>
         <translation>-- Résultats de la requête :</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="140"/>
+        <location filename="../sqlexport.cpp" line="159"/>
         <source>-- Table: %1</source>
         <translation>-- Tableau : %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="194"/>
+        <location filename="../sqlexport.cpp" line="206"/>
         <source>-- Index: %1</source>
         <translation>-- Index : %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="219"/>
+        <location filename="../sqlexport.cpp" line="231"/>
         <source>-- Trigger: %1</source>
         <translation>-- Déclencheur : %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="244"/>
+        <location filename="../sqlexport.cpp" line="259"/>
         <source>-- View: %1</source>
         <translation>-- Vue : %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="264"/>
+        <location filename="../sqlexport.cpp" line="284"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
         <translation>-- Fichier généré par SQLiteStudio v%1 sur %2</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="268"/>
+        <location filename="../sqlexport.cpp" line="288"/>
         <source>-- Text encoding used: %1</source>
         <translation>-- Encodage texte utilisé : %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="338"/>
+        <location filename="../sqlexport.cpp" line="370"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation>Le nom de la table pour l&apos;instruction INSERT est obligatoire.</translation>
     </message>
