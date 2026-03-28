@@ -10,114 +10,118 @@
     </message>
     <message>
         <location filename="../htmlexport.cpp" line="77"/>
-        <location filename="../htmlexport.cpp" line="154"/>
+        <location filename="../htmlexport.cpp" line="171"/>
         <source>no type</source>
         <translation>無型別</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="114"/>
-        <location filename="../htmlexport.cpp" line="242"/>
+        <location filename="../htmlexport.cpp" line="108"/>
         <source>Exported table: %1</source>
         <translation>匯出的表：%1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="126"/>
-        <location filename="../htmlexport.cpp" line="254"/>
+        <location filename="../htmlexport.cpp" line="119"/>
+        <source>Exported view: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../htmlexport.cpp" line="140"/>
+        <location filename="../htmlexport.cpp" line="263"/>
         <source>Table: %1</source>
         <translation>表：%1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="254"/>
+        <location filename="../htmlexport.cpp" line="266"/>
         <source>virtual</source>
         <translation>虛擬</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="307"/>
+        <location filename="../htmlexport.cpp" line="318"/>
         <source>Exported database: %1</source>
         <translation>匯出的資料庫：%1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="323"/>
+        <location filename="../htmlexport.cpp" line="334"/>
         <source>Index: %1</source>
         <translation>索引: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="329"/>
+        <location filename="../htmlexport.cpp" line="340"/>
         <source>For table:</source>
         <translation>表：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="336"/>
+        <location filename="../htmlexport.cpp" line="347"/>
         <source>Unique:</source>
         <translation>唯一：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="337"/>
+        <location filename="../htmlexport.cpp" line="348"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="337"/>
+        <location filename="../htmlexport.cpp" line="348"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="343"/>
+        <location filename="../htmlexport.cpp" line="354"/>
         <source>Column</source>
         <translation>列</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="344"/>
+        <location filename="../htmlexport.cpp" line="355"/>
         <source>Collating</source>
         <translation>字元序</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="345"/>
+        <location filename="../htmlexport.cpp" line="356"/>
         <source>Sort order</source>
         <translation>排序方式</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="379"/>
+        <location filename="../htmlexport.cpp" line="390"/>
         <source>Trigger: %1</source>
         <translation>觸發器：%1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="385"/>
+        <location filename="../htmlexport.cpp" line="396"/>
         <source>Activated:</source>
         <translation>啟用時間：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="393"/>
+        <location filename="../htmlexport.cpp" line="404"/>
         <source>Action:</source>
         <translation>操作：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="400"/>
+        <location filename="../htmlexport.cpp" line="411"/>
         <source>On view:</source>
         <translation>於檢視：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="402"/>
+        <location filename="../htmlexport.cpp" line="413"/>
         <source>On table:</source>
         <translation>於表：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="413"/>
+        <location filename="../htmlexport.cpp" line="424"/>
         <source>Activate condition:</source>
         <translation>啟用條件：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="420"/>
+        <location filename="../htmlexport.cpp" line="431"/>
         <source>Code executed:</source>
         <translation>執行程式碼：</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="454"/>
+        <location filename="../htmlexport.cpp" line="469"/>
         <source>View: %1</source>
         <translation>檢視：%1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="479"/>
+        <location filename="../htmlexport.cpp" line="546"/>
         <source>Document generated by SQLiteStudio v%1 on %2</source>
         <translation>由 SQLiteStudio v%1 在 %2 生成的文件</translation>
     </message>

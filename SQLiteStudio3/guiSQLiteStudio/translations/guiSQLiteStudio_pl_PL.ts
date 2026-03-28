@@ -233,27 +233,32 @@
         <translation>Kod implementacji:</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.ui" line="201"/>
+        <location filename="../windows/collationseditor.ui" line="175"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the collation is applied. It receives two arguments, &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first&lt;/span&gt; and &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;second&lt;/span&gt; (named according to the scripting language conventions), representing the values to compare. The code should compare these values and return an integer indicating the result: negative if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;lt; second&lt;/span&gt;, zero if equal, and positive if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;gt; second&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/collationseditor.ui" line="204"/>
         <source>Collation name:</source>
         <translation>Nazwa sekwencji porządkowania:</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.ui" line="211"/>
+        <location filename="../windows/collationseditor.ui" line="214"/>
         <source>Collation type:</source>
         <translation>Typ sekwencji porządkowania:</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.ui" line="220"/>
+        <location filename="../windows/collationseditor.ui" line="223"/>
         <source>Function-based</source>
         <translation>Oparta na funkcji</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.ui" line="227"/>
+        <location filename="../windows/collationseditor.ui" line="230"/>
         <source>Extension-based</source>
         <translation>Oparta na rozszerzeniu</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.ui" line="236"/>
+        <location filename="../windows/collationseditor.ui" line="239"/>
         <source>Implementation language:</source>
         <translation>Język implementacji:</translation>
     </message>
@@ -1017,9 +1022,8 @@
         <translation>Wyświetlaj dodatkowe etykiety na liście</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="363"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-        <translation>Dla zwykłych tabel etykiety będą pokazywać liczbę kolumn, inseksów, oraz wyzwalaczy dla tych tabel.</translation>
+        <translation type="vanished">Dla zwykłych tabel etykiety będą pokazywać liczbę kolumn, inseksów, oraz wyzwalaczy dla tych tabel.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
@@ -1468,6 +1472,11 @@
         <location filename="../dialogs/configdialog.ui" line="325"/>
         <source>DbList.ExpandSubNodes</source>
         <translation type="unfinished">DbList.ExpandSubNodes</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="363"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows number of columns, indexes and triggers next to each table name.&lt;/p&gt;&lt;p&gt;Requires loading full schema for all tables. For databases with hundreds or thousands of tables, this can significantly impact performance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="392"/>
@@ -2378,7 +2387,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation>Bazy danych</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2369"/>
+        <location filename="../dbtree/dbtree.cpp" line="2399"/>
         <source>Filter by name</source>
         <translation>Filtruj po nazwie</translation>
     </message>
@@ -2478,92 +2487,92 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation>Importuj do tabeli</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="166"/>
+        <location filename="../dbtree/dbtree.cpp" line="167"/>
         <source>Populate table</source>
         <translation>Zaludnij tabelę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="167"/>
+        <location filename="../dbtree/dbtree.cpp" line="168"/>
         <source>Create similar table</source>
         <translation>Utwórz podobną tabelę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="168"/>
+        <location filename="../dbtree/dbtree.cpp" line="169"/>
         <source>Reset autoincrement sequence</source>
         <translation>Wyzeruj sekwencję autoinkrementacji</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="169"/>
+        <location filename="../dbtree/dbtree.cpp" line="170"/>
         <source>Create an &amp;index</source>
         <translation>Utwórz &amp;indeks</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="170"/>
+        <location filename="../dbtree/dbtree.cpp" line="171"/>
         <source>Edit the i&amp;ndex</source>
         <translation>Edytuj i&amp;ndeks</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="172"/>
+        <location filename="../dbtree/dbtree.cpp" line="173"/>
         <source>Delete the in&amp;dex</source>
         <translation>Usuń in&amp;deks</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="173"/>
+        <location filename="../dbtree/dbtree.cpp" line="174"/>
         <source>Create a trig&amp;ger</source>
         <translation>Utwórz wyz&amp;walacz</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="174"/>
+        <location filename="../dbtree/dbtree.cpp" line="175"/>
         <source>Edit the trigg&amp;er</source>
         <translation>Edytuj wyzw&amp;alacz</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="176"/>
+        <location filename="../dbtree/dbtree.cpp" line="177"/>
         <source>Delete the trigge&amp;r</source>
         <translation>Usuń wyzwa&amp;lacz</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="177"/>
+        <location filename="../dbtree/dbtree.cpp" line="178"/>
         <source>Create a &amp;view</source>
         <translation>Utwórz &amp;widok</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="178"/>
+        <location filename="../dbtree/dbtree.cpp" line="179"/>
         <source>Edit the v&amp;iew</source>
         <translation>Edytuj w&amp;idok</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="180"/>
+        <location filename="../dbtree/dbtree.cpp" line="181"/>
         <source>Delete the vi&amp;ew</source>
         <translation>Usuń wi&amp;dok</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="181"/>
+        <location filename="../dbtree/dbtree.cpp" line="182"/>
         <source>Add a column</source>
         <translation>Dodaj kolumnę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="182"/>
+        <location filename="../dbtree/dbtree.cpp" line="183"/>
         <source>Edit the column</source>
         <translation>Edytuj kolumnę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="184"/>
+        <location filename="../dbtree/dbtree.cpp" line="185"/>
         <source>Delete the column</source>
         <translation>Usuń kolumnę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="185"/>
+        <location filename="../dbtree/dbtree.cpp" line="186"/>
         <source>Delete selected items</source>
         <translation>Usuń wybrane elementy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="205"/>
+        <location filename="../dbtree/dbtree.cpp" line="206"/>
         <source>Clear filter</source>
         <translation>Wyczyść filtr</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="186"/>
+        <location filename="../dbtree/dbtree.cpp" line="187"/>
         <source>&amp;Refresh all database schemas</source>
         <translation>&amp;Odśwież schematy wszystkich baz danych</translation>
     </message>
@@ -2598,216 +2607,227 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation type="unfinished">Rename the table</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="171"/>
+        <location filename="../dbtree/dbtree.cpp" line="166"/>
+        <source>Export the view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="172"/>
         <source>Rename the index</source>
         <translation type="unfinished">Rename the index</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="175"/>
+        <location filename="../dbtree/dbtree.cpp" line="176"/>
         <source>Rename the trigger</source>
         <translation type="unfinished">Rename the trigger</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="179"/>
+        <location filename="../dbtree/dbtree.cpp" line="180"/>
         <source>Rename the view</source>
         <translation type="unfinished">Rename the view</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="183"/>
+        <location filename="../dbtree/dbtree.cpp" line="184"/>
         <source>Rename the column</source>
         <translation type="unfinished">Rename the column</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="187"/>
+        <location filename="../dbtree/dbtree.cpp" line="188"/>
         <source>Re&amp;fresh selected database schema</source>
         <translation>Odśwież schemat wy&amp;branej bazy danych</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="188"/>
-        <location filename="../dbtree/dbtree.cpp" line="1761"/>
+        <location filename="../dbtree/dbtree.cpp" line="189"/>
+        <location filename="../dbtree/dbtree.cpp" line="1788"/>
         <source>Erase table data</source>
         <translation>Wymaż dane tabeli</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="190"/>
-        <location filename="../dbtree/dbtree.cpp" line="193"/>
-        <location filename="../dbtree/dbtree.cpp" line="196"/>
+        <location filename="../dbtree/dbtree.cpp" line="191"/>
+        <location filename="../dbtree/dbtree.cpp" line="194"/>
+        <location filename="../dbtree/dbtree.cpp" line="197"/>
         <source>Drag</source>
         <comment>dbtree table action shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="199"/>
+        <location filename="../dbtree/dbtree.cpp" line="200"/>
         <source>Open file&apos;s directory</source>
         <translation>Otwórz katalog pliku</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="200"/>
+        <location filename="../dbtree/dbtree.cpp" line="201"/>
         <source>Execute SQL from file</source>
         <translation>Wykonaj SQL z pliku</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="201"/>
+        <location filename="../dbtree/dbtree.cpp" line="202"/>
         <source>Increase font size</source>
         <comment>database list</comment>
         <translation>Zwiększ rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="202"/>
+        <location filename="../dbtree/dbtree.cpp" line="203"/>
         <source>Decrease font size</source>
         <comment>database list</comment>
         <translation>Zmniejsz rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="395"/>
-        <location filename="../dbtree/dbtree.cpp" line="402"/>
+        <location filename="../dbtree/dbtree.cpp" line="397"/>
+        <location filename="../dbtree/dbtree.cpp" line="404"/>
         <source>Database</source>
         <translation>Baza danych</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="414"/>
+        <location filename="../dbtree/dbtree.cpp" line="416"/>
         <source>Grouping</source>
         <translation>Grupowanie</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="419"/>
+        <location filename="../dbtree/dbtree.cpp" line="421"/>
         <source>Generate query for table</source>
         <translation>Generuj zapytanie dla tabeli</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1208"/>
-        <location filename="../dbtree/dbtree.cpp" line="1211"/>
+        <location filename="../dbtree/dbtree.cpp" line="427"/>
+        <source>Generate query for view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="1210"/>
+        <location filename="../dbtree/dbtree.cpp" line="1213"/>
         <source>Create group</source>
         <translation>Utwórz grupę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1208"/>
+        <location filename="../dbtree/dbtree.cpp" line="1210"/>
         <source>Group name</source>
         <translation>Nazwa grupy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1211"/>
+        <location filename="../dbtree/dbtree.cpp" line="1213"/>
         <source>Entry with name %1 already exists in group %2.</source>
         <translation>Pozycja o nazwie %1 istnieje już w grupie %2.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1229"/>
+        <location filename="../dbtree/dbtree.cpp" line="1231"/>
         <source>Delete group</source>
         <translation>Usuń grupę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1230"/>
+        <location filename="../dbtree/dbtree.cpp" line="1232"/>
         <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
         <translation>Czy na pewno chcesz usunąć grupę %1?
 Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1362"/>
+        <location filename="../dbtree/dbtree.cpp" line="1364"/>
         <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
         <translation>Czy napewno chcesz wycofać bazę &apos;%1&apos; z listy?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1370"/>
+        <location filename="../dbtree/dbtree.cpp" line="1372"/>
         <source>Are you sure you want to remove following databases from the list:
 %1</source>
         <translation>Czy na pewno chcesz wycofać następujące bazy z listy:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1372"/>
+        <location filename="../dbtree/dbtree.cpp" line="1374"/>
         <source>Remove database</source>
         <translation>Wycofaj bazę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1412"/>
-        <location filename="../dbtree/dbtree.cpp" line="1617"/>
+        <location filename="../dbtree/dbtree.cpp" line="1414"/>
+        <location filename="../dbtree/dbtree.cpp" line="1619"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1432"/>
-        <location filename="../dbtree/dbtree.cpp" line="1592"/>
+        <location filename="../dbtree/dbtree.cpp" line="1434"/>
+        <location filename="../dbtree/dbtree.cpp" line="1594"/>
+        <location filename="../dbtree/dbtree.cpp" line="1663"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1682"/>
+        <location filename="../dbtree/dbtree.cpp" line="1709"/>
         <source>Vacuum (%1)</source>
         <translation>Odkurz (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1696"/>
+        <location filename="../dbtree/dbtree.cpp" line="1723"/>
         <source>Integrity check (%1)</source>
         <translation>Sprawdzanie spójności (%1)</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1732"/>
+        <location filename="../dbtree/dbtree.cpp" line="1759"/>
         <source>Reset autoincrement</source>
         <translation>Wyzeruj autoinkrementację</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1732"/>
+        <location filename="../dbtree/dbtree.cpp" line="1759"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Czy na pewno chcesz wyzerować wartość autoinkrementacji dla tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1739"/>
+        <location filename="../dbtree/dbtree.cpp" line="1766"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Wystąpił błąd podczas próby wyzerowania wartości autoinkrementacji dla tabeli &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1741"/>
+        <location filename="../dbtree/dbtree.cpp" line="1768"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>Wartość automatycznej inkrementacji dla tabeli &apos;%1&apos; została zresetowana.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1761"/>
+        <location filename="../dbtree/dbtree.cpp" line="1788"/>
         <source>Are you sure you want to delete all data from table(s): %1?</source>
         <translation>Czy na pewno chcesz usunąć wszystkie dane z tabel(i): %1?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1773"/>
+        <location filename="../dbtree/dbtree.cpp" line="1800"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
         <translation>Wystąpił błąd podczas próby usunięcia danych z tabeli &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1777"/>
+        <location filename="../dbtree/dbtree.cpp" line="1804"/>
         <source>All data has been deleted for table &apos;%1&apos;.</source>
         <translation>Wszystkie dane z tabeli &apos;%1&apos; zostały usunięte.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1916"/>
+        <location filename="../dbtree/dbtree.cpp" line="1943"/>
         <source>Following objects will be deleted: %1.</source>
         <translation>Następujące obiekty zostaną usunięte: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1919"/>
+        <location filename="../dbtree/dbtree.cpp" line="1946"/>
         <source>Following databases will be removed from list: %1.</source>
         <translation>Następujące bazy danych zostaną usunięte z listy: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1922"/>
+        <location filename="../dbtree/dbtree.cpp" line="1949"/>
         <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
         <translation>Pozostałe obiekty z usuniętej grupy będą przeniesione w miejsce, gdzie dotychczas była ta grupa.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1924"/>
+        <location filename="../dbtree/dbtree.cpp" line="1951"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
         <translation>%1&lt;br&gt;&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="1926"/>
+        <location filename="../dbtree/dbtree.cpp" line="1953"/>
         <source>Delete objects</source>
         <translation>Usuń obiekty</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2395"/>
+        <location filename="../dbtree/dbtree.cpp" line="2425"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="2403"/>
+        <location filename="../dbtree/dbtree.cpp" line="2433"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -2842,148 +2862,148 @@ Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</trans
 <context>
     <name>DbTreeModel</name>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="492"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Baza danych: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="493"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="494"/>
         <source>URI:</source>
         <comment>dbtree tooltip</comment>
         <translation>URI:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="497"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="498"/>
         <source>Format:</source>
         <comment>dbtree tooltip</comment>
         <translation type="unfinished">Format:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="500"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="501"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
         <translation>Rozmiar pliku:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="503"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="504"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Kodowanie:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="508"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="509"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
         <translation>Błąd:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="512"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="513"/>
         <source>Double-click to edit this database</source>
         <comment>dbtree tooltip</comment>
         <translation type="unfinished">Double-click to edit this database</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="514"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="515"/>
         <source>Double-click to connect to this database</source>
         <comment>dbtree tooltip</comment>
         <translation type="unfinished">Double-click to connect to this database</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="524"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="525"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Tablela: : %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="547"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="548"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Kolumny (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="550"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="551"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Indeksy (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="553"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="554"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Wyzwalacze (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1331"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1342"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1332"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1343"/>
         <source>Move</source>
         <translation>Przenieś</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1334"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1345"/>
         <source>Include data</source>
         <translation>Również dane</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1335"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1346"/>
         <source>Include indexes</source>
         <translation>Również indeksy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1336"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1347"/>
         <source>Include triggers</source>
         <translation>Również wyzwalacze</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1338"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1349"/>
         <source>Abort</source>
         <translation>Przerwij</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1397"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1408"/>
         <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
         <translation>Nie udało się automatycznie dodać upuszczonego pliku bazy &apos;%1&apos;. Niezbędna ręczna ingerencja.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1476"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1487"/>
         <source>Referenced tables</source>
         <translation>Tabele powiązane</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1477"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1488"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>Czy chcesz zawrzeć również powiązane tabele:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1486"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1497"/>
         <source>Name conflict</source>
         <translation>Konflikt nazwy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1487"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1498"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>Następująy obiekt istnieje już w docelowej bazie danych.
 Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przerwać operację.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1500"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1511"/>
         <source>SQL statements conversion</source>
         <translation>Konwersja zapytań SQL</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1508"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1519"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>Następujące błędy wystąpiły podczas konwersji zapytań SQL do docelowej wersji SQLite:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1509"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1520"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>Czy chcesz zignorować te błędy i kontynuować?</translation>
     </message>
@@ -3304,195 +3324,247 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="56"/>
+        <source>A single view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="63"/>
         <source>Query results</source>
         <translation>Wyniki zapytania</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="68"/>
+        <location filename="../dialogs/exportdialog.ui" line="75"/>
         <source>Table to export</source>
         <translation>Tabela do wyeksportowania</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="103"/>
+        <location filename="../dialogs/exportdialog.ui" line="110"/>
+        <location filename="../dialogs/exportdialog.ui" line="234"/>
         <source>Database</source>
         <translation>Baza danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="110"/>
+        <location filename="../dialogs/exportdialog.ui" line="117"/>
         <source>Table</source>
         <translation>Tabela</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="127"/>
+        <location filename="../dialogs/exportdialog.ui" line="134"/>
+        <location filename="../dialogs/exportdialog.ui" line="258"/>
         <source>Options</source>
         <translation>Opcje</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="133"/>
+        <location filename="../dialogs/exportdialog.ui" line="140"/>
+        <location filename="../dialogs/exportdialog.ui" line="264"/>
         <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
         <translation>Gdy ta opcja jest odznaczona, to tylko DDL tabeli (zapytanie CREATE TABLE) jest eksportowane.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="136"/>
+        <location filename="../dialogs/exportdialog.ui" line="143"/>
         <source>Export table data</source>
         <translation>Eksportuj dane tabeli</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="146"/>
-        <location filename="../dialogs/exportdialog.ui" line="229"/>
+        <location filename="../dialogs/exportdialog.ui" line="153"/>
         <source>Export table indexes</source>
         <translation>Eksportuj indeksy tabeli</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="156"/>
+        <location filename="../dialogs/exportdialog.ui" line="163"/>
         <source>Export table triggers</source>
         <translation>Eksportuj wyzwalacze tabeli</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="178"/>
+        <location filename="../dialogs/exportdialog.ui" line="185"/>
         <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
         <translation>Zwróć uwagę, że eksportowanie indeksów i wyzwalaczy tabeli może nie być obsługiwane przez niektóre formaty wyjściowe.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="192"/>
+        <location filename="../dialogs/exportdialog.ui" line="199"/>
+        <source>View to export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="241"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="267"/>
+        <source>Export view data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="277"/>
+        <source>Export view triggers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="299"/>
+        <source>Note, that exporting view triggers may be unsupported by some output formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="313"/>
         <source>Select database objects to export</source>
         <translation>Wybierz obiekty bazy danych do eksportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="236"/>
+        <location filename="../dialogs/exportdialog.ui" line="319"/>
+        <source>Export indexes (tables only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="333"/>
         <source>Export data from tables</source>
         <translation>Eksportuj dane z tabel</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="198"/>
+        <location filename="../dialogs/exportdialog.ui" line="343"/>
         <source>Select all</source>
         <translation>Zaznacz wszystko</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="219"/>
+        <location filename="../dialogs/exportdialog.ui" line="374"/>
+        <source>Export data from views</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="326"/>
         <source>Deselect all</source>
         <translation>Odznacz wszystko</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="212"/>
-        <location filename="../dialogs/exportdialog.ui" line="266"/>
+        <location filename="../dialogs/exportdialog.ui" line="350"/>
+        <source>Export triggers (tables and views)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.ui" line="360"/>
+        <location filename="../dialogs/exportdialog.ui" line="394"/>
         <source>Database:</source>
         <translation>Baza danych:</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="246"/>
         <source>Export table and view triggers</source>
-        <translation type="unfinished">Export table and view triggers</translation>
+        <translation type="obsolete">Export table and view triggers</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="254"/>
+        <location filename="../dialogs/exportdialog.ui" line="382"/>
         <source>Query to export results for</source>
         <translation>Zapytanie dla wyników do eksportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="273"/>
+        <location filename="../dialogs/exportdialog.ui" line="401"/>
         <source>Query to be executed for results:</source>
         <translation>Zapytanie, które należy wykonać dla wyników:</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="281"/>
+        <location filename="../dialogs/exportdialog.ui" line="409"/>
         <source>Export format and options</source>
         <translation>Format eksportu i opcje</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="335"/>
+        <location filename="../dialogs/exportdialog.ui" line="463"/>
         <source>Export format</source>
         <translation>Format eksportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="347"/>
+        <location filename="../dialogs/exportdialog.ui" line="475"/>
         <source>Output</source>
         <translation>Wyjście</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="353"/>
+        <location filename="../dialogs/exportdialog.ui" line="481"/>
         <source>Exported file path</source>
         <translation>Ścieżka do wyeksportowanego pliku</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="360"/>
+        <location filename="../dialogs/exportdialog.ui" line="488"/>
         <source>Clipboard</source>
         <translation>Schowek</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="374"/>
+        <location filename="../dialogs/exportdialog.ui" line="502"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="399"/>
+        <location filename="../dialogs/exportdialog.ui" line="527"/>
         <source>Exported text encoding:</source>
         <translation>Kodowanie wyeksportowanego tekstu:</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.ui" line="415"/>
+        <location filename="../dialogs/exportdialog.ui" line="543"/>
         <source>Export format options</source>
         <translation>Opcje formatu eksportowania</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="66"/>
+        <location filename="../dialogs/exportdialog.cpp" line="67"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="166"/>
-        <location filename="../dialogs/exportdialog.cpp" line="191"/>
-        <location filename="../dialogs/exportdialog.cpp" line="215"/>
+        <location filename="../dialogs/exportdialog.cpp" line="189"/>
+        <location filename="../dialogs/exportdialog.cpp" line="213"/>
+        <location filename="../dialogs/exportdialog.cpp" line="238"/>
+        <location filename="../dialogs/exportdialog.cpp" line="263"/>
         <source>Select database to export.</source>
         <translation>Wybierz bazę do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="167"/>
+        <location filename="../dialogs/exportdialog.cpp" line="190"/>
         <source>Select table to export.</source>
         <translation>Wybierz tabelę do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="192"/>
+        <location filename="../dialogs/exportdialog.cpp" line="214"/>
+        <source>Select view to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/exportdialog.cpp" line="239"/>
         <source>Enter valid query to export.</source>
         <translation>Wprowadź poprawne zapytanie do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="216"/>
+        <location filename="../dialogs/exportdialog.cpp" line="264"/>
         <source>Select at least one object to export.</source>
         <translation>Wybierz przynajmniej jeden obiekt do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="239"/>
+        <location filename="../dialogs/exportdialog.cpp" line="287"/>
         <source>You must provide a file name to export to.</source>
         <translation>Musisz podać nazwę pliku do którego należy wyeksportować.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="246"/>
+        <location filename="../dialogs/exportdialog.cpp" line="294"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Ścieżka którą podałeś jest istniejącym katalogiem. Nie można go nadpisać.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="252"/>
+        <location filename="../dialogs/exportdialog.cpp" line="300"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Katalog &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="258"/>
+        <location filename="../dialogs/exportdialog.cpp" line="306"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Plik &apos;%1&apos; istnieje i zostanie nadpisany.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="438"/>
+        <location filename="../dialogs/exportdialog.cpp" line="523"/>
         <source>All files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="441"/>
+        <location filename="../dialogs/exportdialog.cpp" line="526"/>
         <source>Pick file to export to</source>
         <translation>Wybierz plik do eksportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="803"/>
+        <location filename="../dialogs/exportdialog.cpp" line="926"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Wystąpił wewnętrzny błąd podczas eksportu. To jest błąd programu. Proszę to zgłosić.</translation>
     </message>
@@ -4154,370 +4226,370 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Pasek narzędzi widoku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="136"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>Configuration widgets</source>
         <translation>Kontrolki konfiguracji</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="137"/>
+        <location filename="../mainwindow.cpp" line="138"/>
         <source>Syntax highlighting engines</source>
         <translation>Silniki podświetlania składni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="138"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Data editors</source>
         <translation>Edytory danych</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
         <translation>Uruchomiono tryb debugowania. Wciśnij %1 lub wybierz menu &apos;Pomoc / Otwórz konsolę debugowania&apos; aby otworzyć konsolę debugowania.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="153"/>
+        <location filename="../mainwindow.cpp" line="154"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
         <translation>Uruchomiono tryb debugowania. Wiadomości debugujące są wyświetlane na standardowym wyjściu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="263"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>Należy zrestartować aplikację, aby nastąpiła zmiana języka.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Open SQL &amp;editor</source>
         <translation>Otwórz &amp;edytor SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="342"/>
+        <location filename="../mainwindow.cpp" line="350"/>
         <source>Open DDL &amp;history</source>
         <translation>Otwórz &amp;historię DDL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="309"/>
         <source>Open SQL &amp;functions editor</source>
         <translation>Otwórz edytor &amp;funkcji SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>Open code &amp;snippets editor</source>
         <translation>Otwórz edytor kodu f&amp;ragmentów</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Open &amp;collations editor</source>
         <translation>Otwórz edytor sekwencji &amp;porządkowania</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="312"/>
         <source>Open ex&amp;tension manager</source>
         <translation>O&amp;twórzy menadżera rozszerzeń</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>&amp;Import</source>
         <translation>&amp;Importuj</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="315"/>
         <source>E&amp;xport</source>
         <translation>E&amp;ksportuj</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="316"/>
         <source>Open confi&amp;guration dialog</source>
         <translation>Otwórz okno konfi&amp;guracji</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="318"/>
         <source>&amp;Tile windows</source>
         <translation>Ustaw okna w pły&amp;tki</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>Tile windows &amp;horizontally</source>
         <translation>Ustaw okno po&amp;ziomo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>Tile windows &amp;vertically</source>
         <translation>Ustaw okna pio&amp;nowo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source>&amp;Cascade windows</source>
         <translation>Ustaw okna &amp;kaskadowo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>Next window</source>
         <translation>Następne okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="315"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Previous window</source>
         <translation>Poprzednie okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source>Hide status field</source>
         <translation>Ukryj pole statusu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>Close &amp;all windows</source>
         <translation>Z&amp;amknij wszystkie okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="331"/>
         <source>Re&amp;store recently closed window</source>
         <translation>Przywróć o&amp;statnio zamknięte okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>Close current &amp;window</source>
         <translation>Zamknij &amp;bieżące okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="140"/>
         <source>Data renderers</source>
         <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>Close &amp;other windows</source>
         <translation>Zamknij &amp;inne okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="321"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Close windows on the &amp;left</source>
         <translation>Zamknij okna po &amp;lewej</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="330"/>
         <source>Close windows on the &amp;right</source>
         <translation>Zamknij okna po &amp;prawej</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="332"/>
         <source>Re&amp;name selected window</source>
         <translation>Zmień &amp;nazwę wybranego okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="334"/>
         <source>Open Debug Console</source>
         <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>Open CSS Console</source>
         <translation>Otwórz konsolę CSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>Report a &amp;bug</source>
         <translation>Zgłoś &amp;błąd</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="337"/>
         <source>D&amp;onate</source>
         <translation>Wesprzyj d&amp;otacją</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="330"/>
+        <location filename="../mainwindow.cpp" line="338"/>
         <source>Propose a new &amp;feature</source>
         <translation>Zgłoś &amp;pomysł</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="331"/>
+        <location filename="../mainwindow.cpp" line="339"/>
         <source>&amp;About</source>
         <translation>O progra&amp;mie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="332"/>
+        <location filename="../mainwindow.cpp" line="340"/>
         <source>&amp;Licenses</source>
         <translation>&amp;Licencje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="333"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>Open home &amp;page</source>
         <translation>Otwórz stronę &amp;domową</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="342"/>
         <source>User &amp;Manual</source>
         <translation>&amp;Podręcznik Użytkownika</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="335"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>SQLite &amp;documentation</source>
         <translation>&amp;Dokumentacja SQLite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.cpp" line="344"/>
         <source>Bugs and feature &amp;requests</source>
         <translation>Błęd&amp;y i pomysły</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>Quit</source>
         <translation>Wyjdź</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="347"/>
         <source>Check for &amp;updates</source>
         <translation>Sprawdź akt&amp;ualizacje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="365"/>
+        <location filename="../mainwindow.cpp" line="371"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation>Bazy &amp;danych</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="396"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation>&amp;Struktura</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="716"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation>&amp;Widoki</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="414"/>
+        <location filename="../mainwindow.cpp" line="422"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>Lista okien</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="437"/>
+        <location filename="../mainwindow.cpp" line="445"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation>&amp;Narzędzia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="453"/>
+        <location filename="../mainwindow.cpp" line="461"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="645"/>
+        <location filename="../mainwindow.cpp" line="653"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>Nie udało się ustawić stylu: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="870"/>
+        <location filename="../mainwindow.cpp" line="878"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="886"/>
+        <location filename="../mainwindow.cpp" line="894"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="929"/>
+        <location filename="../mainwindow.cpp" line="937"/>
         <source>Rename window</source>
         <translation>Zmień nazwę okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="929"/>
+        <location filename="../mainwindow.cpp" line="937"/>
         <source>Enter new name for the window:</source>
         <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1031"/>
+        <location filename="../mainwindow.cpp" line="1039"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1037"/>
+        <location filename="../mainwindow.cpp" line="1045"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1121"/>
+        <location filename="../mainwindow.cpp" line="1129"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1128"/>
+        <location filename="../mainwindow.cpp" line="1136"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1215"/>
+        <location filename="../mainwindow.cpp" line="1223"/>
         <source>Drop files to open them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1279"/>
+        <location filename="../mainwindow.cpp" line="1287"/>
         <source>The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1282"/>
+        <location filename="../mainwindow.cpp" line="1290"/>
         <source>The dropped file type is unsupported: %1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1292"/>
+        <location filename="../mainwindow.cpp" line="1300"/>
         <source>SQLite 3 database - add to database list and open</source>
         <translation type="unfinished">SQLite 3 database - add to database list and open</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1294"/>
+        <location filename="../mainwindow.cpp" line="1302"/>
         <source>It may be an encrypted SQLite 3 database. You can try to open it.</source>
         <translation type="unfinished">It may be an encrypted SQLite 3 database. You can try to open it.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1296"/>
+        <location filename="../mainwindow.cpp" line="1304"/>
         <source>Empty file, but also empty SQLite 3 database - open as database</source>
         <translation type="unfinished">Empty file, but also empty SQLite 3 database - open as database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1298"/>
+        <location filename="../mainwindow.cpp" line="1306"/>
         <source>SQL file - open in SQL Editor</source>
         <translation type="unfinished">SQL file - open in SQL Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1300"/>
+        <location filename="../mainwindow.cpp" line="1308"/>
         <source>Text file - open in SQL Editor</source>
         <translation type="unfinished">Text file - open in SQL Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1302"/>
+        <location filename="../mainwindow.cpp" line="1310"/>
         <source>CSV file - import using Import Dialog</source>
         <translation type="unfinished">CSV file - import using Import Dialog</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1304"/>
+        <location filename="../mainwindow.cpp" line="1312"/>
         <source>SQLite 2 database - not supported anymore</source>
         <translation type="unfinished">SQLite 2 database - not supported anymore</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1314"/>
         <source>Unsupported file type</source>
         <translation type="unfinished">Unsupported file type</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1356"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1363"/>
+        <location filename="../mainwindow.cpp" line="1371"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1368"/>
+        <location filename="../mainwindow.cpp" line="1376"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -5337,17 +5409,17 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Otwórz edytor SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="56"/>
+        <location filename="../mainwindow.h" line="58"/>
         <source>Open DDL history window</source>
         <translation>Otwórz okno historii DDL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="58"/>
+        <location filename="../mainwindow.h" line="60"/>
         <source>Open snippets editor window</source>
         <translation>Otwórz okno edytora fragmentów</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="57"/>
+        <location filename="../mainwindow.h" line="59"/>
         <source>Open function editor window</source>
         <translation>Otwórz okno edytora funkcji</translation>
     </message>
@@ -5357,57 +5429,67 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="59"/>
+        <location filename="../mainwindow.h" line="56"/>
+        <source>Open Export Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.h" line="57"/>
+        <source>Open Import Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.h" line="61"/>
         <source>Open collation editor window</source>
         <translation>Otwórz okno edytora sekwencji porządkowania</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="60"/>
+        <location filename="../mainwindow.h" line="62"/>
         <source>Open extension manager window</source>
         <translation>Otwórz okno menedżera rozszerzeń</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="61"/>
+        <location filename="../mainwindow.h" line="63"/>
         <source>Previous window</source>
         <translation>Poprzednie okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="62"/>
+        <location filename="../mainwindow.h" line="64"/>
         <source>Next window</source>
         <translation>Następne okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="63"/>
+        <location filename="../mainwindow.h" line="65"/>
         <source>Hide status area</source>
         <translation>Ukryj pole statusu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="64"/>
+        <location filename="../mainwindow.h" line="66"/>
         <source>Open user manual</source>
         <translation>Otwórz podręcznik użytkownika</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="65"/>
+        <location filename="../mainwindow.h" line="67"/>
         <source>Open configuration dialog</source>
         <translation>Otwórz okno konfiguracji</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="66"/>
+        <location filename="../mainwindow.h" line="68"/>
         <source>Open Debug Console</source>
         <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="67"/>
+        <location filename="../mainwindow.h" line="69"/>
         <source>Open CSS Console</source>
         <translation>Otwórz konsolę CSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="68"/>
+        <location filename="../mainwindow.h" line="70"/>
         <source>Open the About dialog</source>
         <translation>Otwórz okno O Programie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.h" line="69"/>
+        <location filename="../mainwindow.h" line="71"/>
         <source>Quit the application</source>
         <translation>Wyjdź z aplikacji</translation>
     </message>
@@ -5612,36 +5694,41 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="32"/>
+        <source>Export query results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.h" line="33"/>
         <source>Switch current working database to previous on the list</source>
         <translation>Zmień roboczą bazę danych na poprzednią z listy</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="33"/>
+        <location filename="../windows/editorwindow.h" line="34"/>
         <source>Switch current working database to next on the list</source>
         <translation>Zmień roboczą bazę danych na następną z listy</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="34"/>
+        <location filename="../windows/editorwindow.h" line="35"/>
         <source>Go to next editor tab</source>
         <translation>Przejdź do następnej karty edytora</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="35"/>
+        <location filename="../windows/editorwindow.h" line="36"/>
         <source>Go to previous editor tab</source>
         <translation>Przejdź do poprzedniej karty edytora</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="36"/>
+        <location filename="../windows/editorwindow.h" line="37"/>
         <source>Move keyboard input focus to the results view below</source>
         <translation>Przenieś aktywność klawiatury do widoku wyników poniżej</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="37"/>
+        <location filename="../windows/editorwindow.h" line="38"/>
         <source>Move keyboard input focus to the SQL editor above</source>
         <translation>Przenieś aktywność klawiatury do edytora SQL powyżej</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="38"/>
+        <location filename="../windows/editorwindow.h" line="39"/>
         <source>Delete selected SQL history entries</source>
         <translation>Usuń wybrane wpisy z historii SQL</translation>
     </message>
@@ -5732,31 +5819,31 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="49"/>
-        <location filename="../windows/viewwindow.h" line="28"/>
+        <location filename="../windows/viewwindow.h" line="29"/>
         <source>Add new trigger</source>
         <translation>Dodaj nowy wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="50"/>
-        <location filename="../windows/viewwindow.h" line="29"/>
+        <location filename="../windows/viewwindow.h" line="30"/>
         <source>Edit selected trigger</source>
         <translation>Edytuj wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="51"/>
-        <location filename="../windows/viewwindow.h" line="30"/>
+        <location filename="../windows/viewwindow.h" line="31"/>
         <source>Delete selected trigger</source>
         <translation>Usuń wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="52"/>
-        <location filename="../windows/viewwindow.h" line="31"/>
+        <location filename="../windows/viewwindow.h" line="32"/>
         <source>Go to next tab</source>
         <translation>Przejdź do następnej karty</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="53"/>
-        <location filename="../windows/viewwindow.h" line="32"/>
+        <location filename="../windows/viewwindow.h" line="33"/>
         <source>Go to previous tab</source>
         <translation>Przejdź do poprzedniej karty</translation>
     </message>
@@ -5784,6 +5871,11 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <location filename="../windows/viewwindow.h" line="27"/>
         <source>Execute the view&apos;s query</source>
         <translation>Wykonaj zapytanie widoku</translation>
+    </message>
+    <message>
+        <location filename="../windows/viewwindow.h" line="28"/>
+        <source>Export view data</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../windows/codesnippeteditor.h" line="17"/>
@@ -6921,7 +7013,7 @@ NULL</source>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1767"/>
+        <location filename="../windows/tablewindow.cpp" line="1773"/>
         <source>Data</source>
         <translation>Dane</translation>
     </message>
@@ -6946,194 +7038,199 @@ NULL</source>
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="224"/>
+        <location filename="../windows/tablewindow.cpp" line="241"/>
         <source>Export table</source>
         <comment>table window</comment>
         <translation>Eksportuj tabelę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="225"/>
         <source>Import data to table</source>
         <comment>table window</comment>
-        <translation>Importuj do tabeli</translation>
+        <translation type="vanished">Importuj do tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="226"/>
+        <location filename="../windows/tablewindow.cpp" line="262"/>
         <source>Populate table</source>
         <comment>table window</comment>
         <translation>Zaludnij tabelę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="240"/>
+        <location filename="../windows/tablewindow.cpp" line="231"/>
         <source>Refresh structure</source>
         <comment>table window</comment>
         <translation>Odśwież strukturę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="242"/>
+        <location filename="../windows/tablewindow.cpp" line="233"/>
         <source>Commit structure changes</source>
         <comment>table window</comment>
         <translation>Zatwierdź zmiany w strukturze</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="243"/>
+        <location filename="../windows/tablewindow.cpp" line="234"/>
         <source>Rollback structure changes</source>
         <comment>table window</comment>
         <translation>Wycofaj zmiany w strukturze</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="244"/>
+        <location filename="../windows/tablewindow.cpp" line="235"/>
         <source>Add column</source>
         <comment>table window</comment>
         <translation>Dodaj kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="245"/>
+        <location filename="../windows/tablewindow.cpp" line="236"/>
         <source>Edit column</source>
         <comment>table window</comment>
         <translation>Edytuj kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="246"/>
-        <location filename="../windows/tablewindow.cpp" line="334"/>
+        <location filename="../windows/tablewindow.cpp" line="237"/>
+        <location filename="../windows/tablewindow.cpp" line="330"/>
         <source>Delete column</source>
         <comment>table window</comment>
         <translation>Usuń kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="247"/>
+        <location filename="../windows/tablewindow.cpp" line="238"/>
         <source>Move column up</source>
         <comment>table window</comment>
         <translation>Przesuń kolumnę w górę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="248"/>
+        <location filename="../windows/tablewindow.cpp" line="239"/>
         <source>Move column down</source>
         <comment>table window</comment>
         <translation>Przesuń kolumnę w dół</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="250"/>
+        <location filename="../windows/tablewindow.cpp" line="243"/>
         <source>Create similar table</source>
         <comment>table window</comment>
         <translation>Utwórz podobną tabelę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="251"/>
+        <location filename="../windows/tablewindow.cpp" line="244"/>
         <source>Reset autoincrement value</source>
         <comment>table window</comment>
         <translation>Wyzeruj wartość autoinkrementacji</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="254"/>
+        <location filename="../windows/tablewindow.cpp" line="247"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
         <translation>Dodaj ograniczenie tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="255"/>
+        <location filename="../windows/tablewindow.cpp" line="248"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
         <translation>Edytuj ograniczenie tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="256"/>
+        <location filename="../windows/tablewindow.cpp" line="249"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
         <translation>Usuń ograniczenie tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="257"/>
+        <location filename="../windows/tablewindow.cpp" line="250"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
         <translation>Przesuń ograniczenie tabeli w górę</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="258"/>
+        <location filename="../windows/tablewindow.cpp" line="251"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
         <translation>Przesuń ograniczenie tabeli w dół</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="260"/>
+        <location filename="../windows/tablewindow.cpp" line="253"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
         <translation>Dodaj klucz główny tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="261"/>
+        <location filename="../windows/tablewindow.cpp" line="254"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
         <translation>Dodaj klucz obcy tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="262"/>
+        <location filename="../windows/tablewindow.cpp" line="255"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
         <translation>Dodaj ograniczenie unikalnych wartości tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="263"/>
+        <location filename="../windows/tablewindow.cpp" line="256"/>
         <source>Add table check constraint</source>
         <comment>table window</comment>
         <translation>Dodaj ograniczenie warunkiem tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="281"/>
+        <location filename="../windows/tablewindow.cpp" line="261"/>
+        <source>Import data to the table</source>
+        <comment>table window</comment>
+        <translation type="unfinished">Importuj dane do tabeli</translation>
+    </message>
+    <message>
+        <location filename="../windows/tablewindow.cpp" line="277"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
         <translation>Odśwież listę indeksów</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="283"/>
+        <location filename="../windows/tablewindow.cpp" line="279"/>
         <source>Create index</source>
         <comment>table window</comment>
         <translation>Utwórz indeks</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="284"/>
+        <location filename="../windows/tablewindow.cpp" line="280"/>
         <source>Edit index</source>
         <comment>table window</comment>
         <translation>Edytuj indeks</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="285"/>
+        <location filename="../windows/tablewindow.cpp" line="281"/>
         <source>Delete index</source>
         <comment>table window</comment>
         <translation>Usuń indeks</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="291"/>
+        <location filename="../windows/tablewindow.cpp" line="287"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
         <translation>Odśwież listę wyzwalaczy</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="293"/>
+        <location filename="../windows/tablewindow.cpp" line="289"/>
         <source>Create trigger</source>
         <comment>table window</comment>
         <translation>Utwórz wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="294"/>
+        <location filename="../windows/tablewindow.cpp" line="290"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
         <translation>Edytuj wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="295"/>
+        <location filename="../windows/tablewindow.cpp" line="291"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
         <translation>Usuń wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="333"/>
+        <location filename="../windows/tablewindow.cpp" line="329"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Czy na pewno chcesz usunąć kolumnę &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="383"/>
+        <location filename="../windows/tablewindow.cpp" line="379"/>
         <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
         <comment>table window</comment>
@@ -7141,229 +7238,229 @@ Would you like to proceed?</source>
 Czy chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="385"/>
+        <location filename="../windows/tablewindow.cpp" line="381"/>
         <source>Table modification</source>
         <comment>table window</comment>
         <translation>Modyfikacja tabeli</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="510"/>
+        <location filename="../windows/tablewindow.cpp" line="506"/>
         <source>Could not load data for table %1. Error details: %2</source>
         <translation>Nie udało się załadować danych dla tabeli %1. Szczegóły błędu: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="658"/>
+        <location filename="../windows/tablewindow.cpp" line="654"/>
         <source>Could not process the %1 table correctly. Unable to open a table window.</source>
         <translation>Nie udało się przetworzyć poprawnie tabeli %1. Nie można otworzyć okna tabeli.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="682"/>
+        <location filename="../windows/tablewindow.cpp" line="678"/>
         <source>Database</source>
         <translation>Baza danych</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="715"/>
+        <location filename="../windows/tablewindow.cpp" line="721"/>
         <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
         <translation>Nie można przywrócić okna %1, ponieważ nie ma bazy danych lub tabeli zachowanej w sesji dla tego okna.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="721"/>
+        <location filename="../windows/tablewindow.cpp" line="727"/>
         <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
         <translation>Nie można przywrócić okna %1, ponieważ nie ma bazy danych lub tabeli zachowanej w sesji dla tego okna.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="728"/>
+        <location filename="../windows/tablewindow.cpp" line="734"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation>Nie udało się przywrócić okna &apos;%1&apos;, ponieważ nie udało się ustalić bazy danych %2.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="737"/>
+        <location filename="../windows/tablewindow.cpp" line="743"/>
         <source>Could not restore window &apos;%1&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
         <translation>Nie można przywrócić okna &apos;%1&apos;, ponieważ tabela %2 nie istnieje w bazie danych %3.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="768"/>
-        <location filename="../windows/tablewindow.cpp" line="770"/>
+        <location filename="../windows/tablewindow.cpp" line="774"/>
+        <location filename="../windows/tablewindow.cpp" line="776"/>
         <source>New table %1</source>
         <translation>Nowa tabela %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="911"/>
+        <location filename="../windows/tablewindow.cpp" line="917"/>
         <source>Committed changes for table &apos;%1&apos; successfully.</source>
         <translation>Pomyślnie zatwierdzono zmiany dla tabeli &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="915"/>
+        <location filename="../windows/tablewindow.cpp" line="921"/>
         <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation>Pomyślnie zatwierdzono zmiany dla tabeli &apos;%1&apos; (nazwanej wcześniej &apos;%2&apos;).</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="953"/>
+        <location filename="../windows/tablewindow.cpp" line="959"/>
         <source>Could not commit table structure. Error message: %1</source>
         <comment>table window</comment>
         <translation>Nie udało się zatwierdzić struktury tabeli. Treść błędu: %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="977"/>
+        <location filename="../windows/tablewindow.cpp" line="983"/>
         <source>Reset autoincrement</source>
         <translation>Wyzeruj autoinkrementację</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="977"/>
+        <location filename="../windows/tablewindow.cpp" line="983"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Czy na pewno chcesz wyzerować wartość autoinkrementacji dla tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="984"/>
+        <location filename="../windows/tablewindow.cpp" line="990"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Wystąpił błąd podczas próby wyzerowania wartości autoinkrementacji dla tabeli &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="986"/>
+        <location filename="../windows/tablewindow.cpp" line="992"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
         <translation>Wartość automatycznej inkrementacji dla tabeli &apos;%1&apos; została zresetowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1074"/>
+        <location filename="../windows/tablewindow.cpp" line="1080"/>
         <source>Empty name</source>
         <translation>Pusta nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1074"/>
+        <location filename="../windows/tablewindow.cpp" line="1080"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation>Pusta nazwa dla tabeli jest dozwolona w SQLite, ale nie jest zalecana.
 Czy na pewno chcesz utworzyć tabelę o pustej nazwie?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1083"/>
+        <location filename="../windows/tablewindow.cpp" line="1089"/>
         <source>Cannot create a table without at least one column.</source>
         <translation>Nie można utworzyć tabeli bez przynajmniej jednej kolumny.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1109"/>
+        <location filename="../windows/tablewindow.cpp" line="1115"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation>Nie można utworzyć tabeli %1, jeśli nie ma zdefiniowanego klucza głównego. Albo udznacz %2, albo zdefiniuj klucz główny.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1116"/>
+        <location filename="../windows/tablewindow.cpp" line="1122"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation>Nie można użyć autoinkrementacji dla klucza głównego, kiedy klauzula %1 jest użyta. Albo odnacz %2, albo autonkrementację w kluczu głównym.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1135"/>
+        <location filename="../windows/tablewindow.cpp" line="1141"/>
         <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
         <translation>Następujące kolumny mają nieścisły typ danych: %1. Wyłącz tryb ścisły tabeli lub napraw typy danych kolumn. Prawidłowe ścisłe typy danych to: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1317"/>
+        <location filename="../windows/tablewindow.cpp" line="1323"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Czy na pewno chcesz usunąć ograniczenie tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1318"/>
+        <location filename="../windows/tablewindow.cpp" line="1324"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>Usuń ograniczenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1373"/>
+        <location filename="../windows/tablewindow.cpp" line="1379"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1386"/>
+        <location filename="../windows/tablewindow.cpp" line="1392"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1419"/>
+        <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>Uncommitted changes</source>
         <translation>Niezatwierdzone zmiany</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1420"/>
+        <location filename="../windows/tablewindow.cpp" line="1426"/>
         <source>There are uncommitted structure modifications.</source>
         <translation>Istnieją niezatwierdzone zmiany struktury.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1422"/>
+        <location filename="../windows/tablewindow.cpp" line="1428"/>
         <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Nie możesz przeglądać ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
 Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki struktury?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1426"/>
+        <location filename="../windows/tablewindow.cpp" line="1432"/>
         <source>Commit modifications and browse data</source>
         <translation>Zatwierdź modyfikacje i przeglądaj dane</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1425"/>
+        <location filename="../windows/tablewindow.cpp" line="1431"/>
         <source>Go back to structure tab</source>
         <translation>Wróć do karty struktury</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1633"/>
+        <location filename="../windows/tablewindow.cpp" line="1639"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1634"/>
+        <location filename="../windows/tablewindow.cpp" line="1640"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>Wartości unikalne</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1635"/>
+        <location filename="../windows/tablewindow.cpp" line="1641"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>Kolumny</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1636"/>
+        <location filename="../windows/tablewindow.cpp" line="1642"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation>Warunek indeksu częściowego:</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1692"/>
+        <location filename="../windows/tablewindow.cpp" line="1698"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1693"/>
+        <location filename="../windows/tablewindow.cpp" line="1699"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Zdarzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1694"/>
+        <location filename="../windows/tablewindow.cpp" line="1700"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Warunek</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1695"/>
+        <location filename="../windows/tablewindow.cpp" line="1701"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Szczegóły</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1809"/>
+        <location filename="../windows/tablewindow.cpp" line="1815"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury i danych.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1811"/>
+        <location filename="../windows/tablewindow.cpp" line="1817"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1813"/>
+        <location filename="../windows/tablewindow.cpp" line="1819"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury.</translation>
     </message>
@@ -7536,7 +7633,7 @@ Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki strukt
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="170"/>
-        <location filename="../windows/viewwindow.cpp" line="920"/>
+        <location filename="../windows/viewwindow.cpp" line="939"/>
         <source>Data</source>
         <translation>Dane</translation>
     </message>
@@ -7551,262 +7648,273 @@ Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki strukt
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="109"/>
-        <location filename="../windows/viewwindow.cpp" line="115"/>
+        <location filename="../windows/viewwindow.cpp" line="110"/>
+        <location filename="../windows/viewwindow.cpp" line="116"/>
         <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
         <translation>Nie można przywrócić okna %1, ponieważ nie ma bazy danych lub tabeli zachowanej w sesji dla tego okna.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="122"/>
+        <location filename="../windows/viewwindow.cpp" line="123"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
         <translation>Nie udało się przywrócić okna &apos;%1&apos;, ponieważ nie udało się ustalić bazy danych %2.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="128"/>
+        <location filename="../windows/viewwindow.cpp" line="129"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
         <translation>Nie można przywrócić okna &apos;%1&apos;, ponieważ nie można było otworzyć bazy danych %2.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="137"/>
+        <location filename="../windows/viewwindow.cpp" line="138"/>
         <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
         <translation>Nie można przywrócić okna &apos;%1&apos;, ponieważ widok %2 już nie jestnieje w bazie danych %3.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="168"/>
-        <location filename="../windows/viewwindow.cpp" line="170"/>
+        <location filename="../windows/viewwindow.cpp" line="169"/>
+        <location filename="../windows/viewwindow.cpp" line="171"/>
         <source>New view %1</source>
         <translation>Nowy widok %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="293"/>
+        <location filename="../windows/viewwindow.cpp" line="294"/>
         <source>Database</source>
         <translation>Baza danych</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="348"/>
+        <location filename="../windows/viewwindow.cpp" line="349"/>
         <source>Refresh the view</source>
         <comment>view window</comment>
         <translation>Odśwież widok</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="350"/>
+        <location filename="../windows/viewwindow.cpp" line="351"/>
         <source>Commit the view changes</source>
         <comment>view window</comment>
         <translation>Zatwierdź zmiany w widoku</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="351"/>
+        <location filename="../windows/viewwindow.cpp" line="352"/>
         <source>Rollback the view changes</source>
         <comment>view window</comment>
         <translation>Wycofaj zmiany w widoku</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="355"/>
+        <location filename="../windows/viewwindow.cpp" line="356"/>
         <source>Explicit column names</source>
         <translation>Jawne nazwy kolumn</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="361"/>
+        <location filename="../windows/viewwindow.cpp" line="362"/>
         <source>Generate output column names automatically basing on result columns of the view.</source>
         <translation>Generuj automatycznie nazwy kolumn wyjściowych bazując na kolumnach wynikowych widoku.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="362"/>
+        <location filename="../windows/viewwindow.cpp" line="363"/>
         <source>Add column</source>
         <comment>view window</comment>
         <translation>Dodaj kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="363"/>
+        <location filename="../windows/viewwindow.cpp" line="364"/>
         <source>Edit column</source>
         <comment>view window</comment>
         <translation>Edytuj kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="364"/>
+        <location filename="../windows/viewwindow.cpp" line="365"/>
         <source>Delete column</source>
         <comment>view window</comment>
         <translation>Usuń kolumnę</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="365"/>
+        <location filename="../windows/viewwindow.cpp" line="366"/>
         <source>Move column up</source>
         <comment>view window</comment>
         <translation>Przesuń kolumnę w górę</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="366"/>
+        <location filename="../windows/viewwindow.cpp" line="367"/>
         <source>Move column down</source>
         <comment>view window</comment>
         <translation>Przesuń kolumnę w dół</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="372"/>
+        <location filename="../windows/viewwindow.cpp" line="369"/>
+        <source>Export view</source>
+        <comment>view window</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/viewwindow.cpp" line="378"/>
         <source>Refresh trigger list</source>
         <comment>view window</comment>
         <translation>Odśwież listę wyzwalaczy</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="374"/>
+        <location filename="../windows/viewwindow.cpp" line="380"/>
         <source>Create new trigger</source>
         <comment>view window</comment>
         <translation>Utwórz nowy wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="375"/>
+        <location filename="../windows/viewwindow.cpp" line="381"/>
         <source>Edit selected trigger</source>
         <comment>view window</comment>
         <translation>Edytuj wybrany wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="376"/>
+        <location filename="../windows/viewwindow.cpp" line="382"/>
         <source>Delete selected trigger</source>
         <comment>view window</comment>
         <translation>Usuń wybrany wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="397"/>
+        <location filename="../windows/viewwindow.cpp" line="403"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone modyfikacje struktury i danych.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="399"/>
+        <location filename="../windows/viewwindow.cpp" line="405"/>
         <source>View window &quot;%1&quot; has uncommitted data.</source>
         <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="401"/>
+        <location filename="../windows/viewwindow.cpp" line="407"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone modyfikacje struktury.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="632"/>
+        <location filename="../windows/viewwindow.cpp" line="638"/>
         <source>Could not load data for view %1. Error details: %2</source>
         <translation>Nie udało się załadować danych dla widoku %1. Szczegóły błędu: %2</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="644"/>
+        <location filename="../windows/viewwindow.cpp" line="650"/>
         <source>Uncommitted changes</source>
         <translation>Niezatwierdzone zmiany</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="645"/>
+        <location filename="../windows/viewwindow.cpp" line="651"/>
         <source>There are uncommitted structure modifications.</source>
         <translation>Istnieją niezatwierdzone zmiany struktury.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="647"/>
+        <location filename="../windows/viewwindow.cpp" line="653"/>
         <source>You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Nie możesz przeglądać ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
 Czy chcesz zatwierdzić strukturę, czy też chcesz wrócić do zakładki struktury?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="651"/>
+        <location filename="../windows/viewwindow.cpp" line="657"/>
         <source>Commit modifications and browse data</source>
         <translation>Zatwierdź modyfikacje i przeglądaj dane</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="650"/>
+        <location filename="../windows/viewwindow.cpp" line="656"/>
         <source>Go back to structure tab</source>
         <translation>Wróć do karty struktury</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="703"/>
+        <location filename="../windows/viewwindow.cpp" line="709"/>
         <source>View &apos;%1&apos; was committed successfully.</source>
         <translation>Widok &apos;%1&apos; został pomyślnie zatwierdzony.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="705"/>
+        <location filename="../windows/viewwindow.cpp" line="711"/>
         <source>Committed changes for view &apos;%1&apos; successfully.</source>
         <translation>Pomyślnie zatwierdzono zmiany dla widoku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="707"/>
+        <location filename="../windows/viewwindow.cpp" line="713"/>
         <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
         <translation>Pomyślnie zatwierdzono zmiany dla tabeli &apos;%1&apos; (nazwanej wcześniej &apos;%2&apos;).</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="730"/>
+        <location filename="../windows/viewwindow.cpp" line="736"/>
         <source>Could not commit view changes. Error message: %1</source>
         <comment>view window</comment>
         <translation>Nie udało się zatwierdzić widoku. Treść błędu: %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="874"/>
+        <location filename="../windows/viewwindow.cpp" line="880"/>
         <source>Override columns</source>
         <translation>Nadpisz kolumny</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="874"/>
+        <location filename="../windows/viewwindow.cpp" line="880"/>
         <source>Currently defined columns will be overriden. Do you want to continue?</source>
         <translation>Aktualnie zdefiniowane kolumny zostaną nadpisane. Czy chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="897"/>
+        <location filename="../windows/viewwindow.cpp" line="903"/>
         <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
         <translation>Nie udało się ustalić kolumn zwracanych z widoku. Zapytanie jest prawdopodobnie niekompletne lub zawiera błędy.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="952"/>
+        <location filename="../windows/viewwindow.cpp" line="922"/>
+        <source>Cannot export, because no export plugin is loaded.</source>
+        <translation type="unfinished">Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
+    </message>
+    <message>
+        <location filename="../windows/viewwindow.cpp" line="971"/>
         <source>Name</source>
         <comment>view window triggers</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="953"/>
+        <location filename="../windows/viewwindow.cpp" line="972"/>
         <source>Instead of</source>
         <comment>view window triggers</comment>
         <translation>Zamiast</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="954"/>
+        <location filename="../windows/viewwindow.cpp" line="973"/>
         <source>Condition</source>
         <comment>view window triggers</comment>
         <translation>Warunek</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="955"/>
+        <location filename="../windows/viewwindow.cpp" line="974"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Szczegóły</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="999"/>
+        <location filename="../windows/viewwindow.cpp" line="1018"/>
         <source>Could not process the %1 view correctly. Unable to open a view window.</source>
         <translation>Nie udało się przetworzyć poprawnie widoku %1. Nie można otworzyć okna widoku.</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1046"/>
+        <location filename="../windows/viewwindow.cpp" line="1065"/>
         <source>Empty name</source>
         <translation>Pusta nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1046"/>
+        <location filename="../windows/viewwindow.cpp" line="1065"/>
         <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
         <translation>Pusta nazwa dla widoku jest dozwolona w SQLite, ale nie jest zalecana.
 Czy na pewno chcesz utworzyć widok o pustej nazwie?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1058"/>
+        <location filename="../windows/viewwindow.cpp" line="1077"/>
         <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
         <translation>Zapytanie SELECT nie mogło być poprawnie przeanalizowane. Proszę poprawić zapytanie i spróbować ponownie.
 Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1066"/>
+        <location filename="../windows/viewwindow.cpp" line="1085"/>
         <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
         <translation>Widok nie mógł być zmodyfikowany w związku z wewnętrznym błędem SQLiteStudio. Proszę to zgłosić!</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1092"/>
+        <location filename="../windows/viewwindow.cpp" line="1111"/>
         <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
         <translation>Kod widok nie mógł być poprawnie przeanalizowany. To jest błąd SQLiteStudio Proszę to zgłosić!</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1104"/>
+        <location filename="../windows/viewwindow.cpp" line="1123"/>
         <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
         <comment>view window</comment>
@@ -7814,7 +7922,7 @@ Would you like to proceed?</source>
 Czy chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.cpp" line="1106"/>
+        <location filename="../windows/viewwindow.cpp" line="1125"/>
         <source>View modification</source>
         <comment>view window</comment>
         <translation>Modyfikacja widoku</translation>

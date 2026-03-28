@@ -14,154 +14,158 @@
         <translation>תוצאות שאילתת SQL</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="94"/>
-        <location filename="../pdfexport.cpp" line="148"/>
+        <location filename="../pdfexport.cpp" line="198"/>
         <source>Exported table: %1</source>
         <translation>טבלה מיוצת: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="97"/>
-        <location filename="../pdfexport.cpp" line="163"/>
+        <location filename="../pdfexport.cpp" line="94"/>
+        <location filename="../pdfexport.cpp" line="146"/>
         <source>Table: %1</source>
         <translation>טבלה: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="99"/>
-        <location filename="../pdfexport.cpp" line="235"/>
+        <location filename="../pdfexport.cpp" line="97"/>
+        <location filename="../pdfexport.cpp" line="253"/>
         <source>Column</source>
         <translation>עמודה</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="99"/>
+        <location filename="../pdfexport.cpp" line="97"/>
         <source>Data type</source>
         <translation>סוג מידע</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="99"/>
+        <location filename="../pdfexport.cpp" line="97"/>
         <source>Constraints</source>
         <translation>אילוצים</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="130"/>
+        <location filename="../pdfexport.cpp" line="128"/>
         <source>Global table constraints</source>
         <translation>אילוצי טבלה כלליים</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="219"/>
+        <location filename="../pdfexport.cpp" line="209"/>
+        <source>Exported view: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../pdfexport.cpp" line="237"/>
         <source>Exported database: %1</source>
         <translation>מסד נתונים מיוצא: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="227"/>
+        <location filename="../pdfexport.cpp" line="245"/>
         <source>Index: %1</source>
         <translation>מִפְתֵּחַ: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="229"/>
+        <location filename="../pdfexport.cpp" line="247"/>
         <source>Property</source>
         <comment>index header</comment>
         <translation>מאפיין</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="229"/>
+        <location filename="../pdfexport.cpp" line="247"/>
         <source>Value</source>
         <comment>index header</comment>
         <translation>ערך</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="232"/>
+        <location filename="../pdfexport.cpp" line="250"/>
         <source>Indexed table</source>
         <translation>טבלה ממופתחת</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="233"/>
+        <location filename="../pdfexport.cpp" line="251"/>
         <source>Unique index</source>
         <translation>מפתח יחודאי</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="233"/>
+        <location filename="../pdfexport.cpp" line="251"/>
         <source>Yes</source>
         <translation>כן</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="233"/>
+        <location filename="../pdfexport.cpp" line="251"/>
         <source>No</source>
         <translation>לא</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="235"/>
+        <location filename="../pdfexport.cpp" line="253"/>
         <source>Collation</source>
         <translation>ארגון</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="235"/>
+        <location filename="../pdfexport.cpp" line="253"/>
         <source>Sort order</source>
         <translation>סדר מיון</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="251"/>
+        <location filename="../pdfexport.cpp" line="269"/>
         <source>Partial index condition</source>
         <translation>תנאי מפתח חלקי</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="265"/>
+        <location filename="../pdfexport.cpp" line="283"/>
         <source>Trigger: %1</source>
         <translation>מַזְנֵק: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="267"/>
+        <location filename="../pdfexport.cpp" line="285"/>
         <source>Property</source>
         <comment>trigger header</comment>
         <translation>מאפיין</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="267"/>
+        <location filename="../pdfexport.cpp" line="285"/>
         <source>Value</source>
         <comment>trigger header</comment>
         <translation>ערך</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="269"/>
+        <location filename="../pdfexport.cpp" line="287"/>
         <source>Activation time</source>
         <translation>זמן שפעול</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="272"/>
+        <location filename="../pdfexport.cpp" line="290"/>
         <source>For action</source>
         <translation>על פעולה</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="276"/>
+        <location filename="../pdfexport.cpp" line="294"/>
         <source>On view</source>
         <translation>על מצג</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="278"/>
+        <location filename="../pdfexport.cpp" line="296"/>
         <source>On table</source>
         <translation>על טבלה</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="283"/>
+        <location filename="../pdfexport.cpp" line="301"/>
         <source>Activation condition</source>
         <translation>תנאי שפעול</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="289"/>
+        <location filename="../pdfexport.cpp" line="307"/>
         <source>Code executed</source>
         <translation>הקוד בוצע</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="301"/>
+        <location filename="../pdfexport.cpp" line="320"/>
         <source>View: %1</source>
         <translation>מצג: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="302"/>
+        <location filename="../pdfexport.cpp" line="322"/>
         <source>Query:</source>
         <translation>שאילתה:</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="658"/>
+        <location filename="../pdfexport.cpp" line="687"/>
         <source>Document generated with SQLiteStudio v%1</source>
         <translation>מסמך חולל על ידי SQLiteStudio v%1</translation>
     </message>

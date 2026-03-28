@@ -4,42 +4,42 @@
 <context>
     <name>SqlExport</name>
     <message>
-        <location filename="../sqlexport.cpp" line="57"/>
+        <location filename="../sqlexport.cpp" line="87"/>
         <source>-- Results of query:</source>
         <translation type="unfinished">-- Results of query:</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="140"/>
+        <location filename="../sqlexport.cpp" line="159"/>
         <source>-- Table: %1</source>
         <translation type="unfinished">-- Table: %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="194"/>
+        <location filename="../sqlexport.cpp" line="206"/>
         <source>-- Index: %1</source>
         <translation type="unfinished">-- Index: %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="219"/>
+        <location filename="../sqlexport.cpp" line="231"/>
         <source>-- Trigger: %1</source>
         <translation type="unfinished">-- Trigger: %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="244"/>
+        <location filename="../sqlexport.cpp" line="259"/>
         <source>-- View: %1</source>
         <translation type="unfinished">-- View: %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="264"/>
+        <location filename="../sqlexport.cpp" line="284"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
         <translation type="unfinished">-- File generated with SQLiteStudio v%1 on %2</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="268"/>
+        <location filename="../sqlexport.cpp" line="288"/>
         <source>-- Text encoding used: %1</source>
         <translation type="unfinished">-- Text encoding used: %1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="338"/>
+        <location filename="../sqlexport.cpp" line="370"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation type="unfinished">Table name for INSERT statements is mandatory.</translation>
     </message>

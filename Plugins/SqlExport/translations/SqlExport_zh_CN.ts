@@ -4,42 +4,42 @@
 <context>
     <name>SqlExport</name>
     <message>
-        <location filename="../sqlexport.cpp" line="57"/>
+        <location filename="../sqlexport.cpp" line="87"/>
         <source>-- Results of query:</source>
         <translation>-- 查询的执行结果：</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="140"/>
+        <location filename="../sqlexport.cpp" line="159"/>
         <source>-- Table: %1</source>
         <translation>-- 表：%1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="194"/>
+        <location filename="../sqlexport.cpp" line="206"/>
         <source>-- Index: %1</source>
         <translation>-- 索引：%1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="219"/>
+        <location filename="../sqlexport.cpp" line="231"/>
         <source>-- Trigger: %1</source>
         <translation>-- 触发器：%1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="244"/>
+        <location filename="../sqlexport.cpp" line="259"/>
         <source>-- View: %1</source>
         <translation>-- 视图：%1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="264"/>
+        <location filename="../sqlexport.cpp" line="284"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
         <translation>-- SQLiteStudio v%1 生成的文件，%2</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="268"/>
+        <location filename="../sqlexport.cpp" line="288"/>
         <source>-- Text encoding used: %1</source>
         <translation>-- 所用的文本编码：%1</translation>
     </message>
     <message>
-        <location filename="../sqlexport.cpp" line="338"/>
+        <location filename="../sqlexport.cpp" line="370"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation>INSERT 语句的表名称是强制性的。</translation>
     </message>
