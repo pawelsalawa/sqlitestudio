@@ -39,7 +39,7 @@
       <location filename="../db/chainexecutor.cpp" line="73"/>
       <source>Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not switch to legacy ALTER RENAME behavior in the database. Details: %1</translation>
+      <translation>Konnte nicht zum alten ALTER RENAME Verhalten in der Datenbank wechseln. Details: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="82"/>
@@ -159,12 +159,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="879"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Datenbanktransaktion zum Löschen des SQL-Verlaufs konnte nicht gestartet werden, sodass er nicht gelöscht wurde.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="886"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>Datenbanktransaktion zum Löschen des SQL-Verlaufs konnte nicht ausgeführt werden, sodass er nicht gelöscht wurde.</translation>
     </message>
   </context>
   <context>
@@ -210,17 +210,17 @@
       <location filename="../dbobjectorganizer.cpp" line="130"/>
       <location filename="../dbobjectorganizer.cpp" line="149"/>
       <source>An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</source>
-      <translation type="unfinished">An error occurred while trying to rename table &apos;%1&apos; to &apos;%2&apos;: %3</translation>
+      <translation>Ein Fehler ist beim Umbenennen der Tabelle &apos;%1&apos; zu &apos;%2&apos; aufgetreten: %3</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="131"/>
       <source>Failed to parse object definition.</source>
-      <translation type="unfinished">Failed to parse object definition.</translation>
+      <translation>Parsen der Objekt-Definition fehlgeschlagen.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="166"/>
       <source>An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</source>
-      <translation type="unfinished">An error occurred while trying to rename column &apos;%1&apos; of table &apos;%2&apos; to &apos;%3&apos;: %4</translation>
+      <translation>Ein Fehler ist beim Umbenennen der Spalte &apos;%1&apos; der Tabelle &apos;%2&apos; zu &apos;%3&apos; aufgetreten: %4</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="462"/>
@@ -322,7 +322,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../services/exportmanager.cpp" line="126"/>
       <source>Export plugin %1 doesn&apos;t support exporing views.</source>
-      <translation type="unfinished">Export plugin %1 doesn&apos;t support exporing views.</translation>
+      <translation>Export-Plugin %1 unterstützt kein Export von Ansichten.</translation>
     </message>
     <message>
       <location filename="../services/exportmanager.cpp" line="150"/>
@@ -377,17 +377,17 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../exportworker.cpp" line="821"/>
       <source>Error while reading data to export from table or view %1: %2</source>
-      <translation type="unfinished">Error while reading data to export from table or view %1: %2</translation>
+      <translation>Fehler beim Lesen von Daten zum Exportieren der Tabelle oder Ansicht %1: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="829"/>
       <source>Error while counting data to export from table or view %1: %2</source>
-      <translation type="unfinished">Error while counting data to export from table or view %1: %2</translation>
+      <translation>Fehler beim Zählen von Daten zum Exportieren der Tabelle oder Ansicht %1:%2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="845"/>
       <source>Error while counting data column width to export from table or view %1: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from table or view %1: %2</translation>
+      <translation>Fehler beim Zählen der Datenspaltenbreiten zum Exportieren der Tabelle oder Ansicht %1: %2</translation>
     </message>
   </context>
   <context>
@@ -395,7 +395,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
-      <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
+      <translation>Konnte Skriptkontext nicht erstellen, wahrscheinlich ist das Plugin nicht richtig konfiguriert</translation>
     </message>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
@@ -452,7 +452,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
       <location filename="../services/importmanager.cpp" line="98"/>
       <source>Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</source>
-      <translation type="unfinished">Imported data to the table &apos;%1&apos; successfully. Number of imported rows: %2</translation>
+      <translation>Daten erfolgreich in Tabelle &apos;%1&apos; importiert. Anzahl importierter Zeilen: %2</translation>
     </message>
   </context>
   <context>
@@ -1148,7 +1148,7 @@ The view will remain as it is.</source>
     <message>
       <location filename="../db/abstractdb3.h" line="693"/>
       <source>The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</source>
-      <translation type="unfinished">The database file &apos;%1&apos; has been modified by a newer version of SQLite (format %2), while the current application supports up to format %3. Some features may not work correctly.</translation>
+      <translation>Die Datenbankdatei &apos;%1&apos; wurde von einer neueren SQLite-Version modifiziert (Format %2), während die aktuelle Anwendung nur Formate bis %3 unterstützt. Einige Funktionen sind möglicherweise fehlerhaft.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb3.h" line="992"/>
