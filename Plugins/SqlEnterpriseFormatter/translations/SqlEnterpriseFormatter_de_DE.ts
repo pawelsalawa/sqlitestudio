@@ -41,22 +41,22 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation>Vor geöffneten Klammern in Spaltendefinitionen</translation>
+      <translation>Vor öffnenden Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
       <source>After opening parenthesis in column definitions</source>
-      <translation type="unfinished">After opening parenthesis in column definitions</translation>
+      <translation>Nach öffnenden Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="180"/>
       <source>Before closing parenthesis in column definitions</source>
-      <translation type="unfinished">Before closing parenthesis in column definitions</translation>
+      <translation>Vor schließenden Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="190"/>
       <source>After closing parenthesis in column definitions</source>
-      <translation type="unfinished">After closing parenthesis in column definitions</translation>
+      <translation>Nach schließenden Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="200"/>
