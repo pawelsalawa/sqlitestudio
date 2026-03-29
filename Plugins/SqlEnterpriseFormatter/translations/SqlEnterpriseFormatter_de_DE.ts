@@ -26,7 +26,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="68"/>
       <source>Indent contents of parenthesis block</source>
-      <translation type="unfinished">Indent contents of parenthesis block</translation>
+      <translation>Inhalt des Klammerblockes einrücken</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="91"/>
@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation type="unfinished">Before opening parenthesis in column definitions</translation>
+      <translation>Vor geöffneten Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
