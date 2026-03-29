@@ -231,8 +231,8 @@ void DataView::createActions()
     gridToolBar->addAction(gridView->getAction(SqlQueryView::COMMIT));
     gridToolBar->addAction(gridView->getAction(SqlQueryView::ROLLBACK));
     gridToolBar->addSeparator();
-    createAction(FIRST_PAGE, ICONS.PAGE_FIRST, tr("First page", "data view"), this, SLOT(firstPage()), gridToolBar);
-    createAction(PREV_PAGE, ICONS.PAGE_PREV, tr("Previous page", "data view"), this, SLOT(prevPage()), gridToolBar);
+    createAction(FIRST_PAGE, ICONS.PAGE_FIRST, tr("First page", "data view"), this, SLOT(firstPage()), gridToolBar, gridView);
+    createAction(PREV_PAGE, ICONS.PAGE_PREV, tr("Previous page", "data view"), this, SLOT(prevPage()), gridToolBar, gridView);
     actionMap[PAGE_EDIT] = gridToolBar->addWidget(pageEdit);
     createAction(NEXT_PAGE, ICONS.PAGE_NEXT, tr("Next page", "data view"), this, SLOT(nextPage()), gridToolBar);
     createAction(LAST_PAGE, ICONS.PAGE_LAST, tr("Last page", "data view"), this, SLOT(lastPage()), gridToolBar);
