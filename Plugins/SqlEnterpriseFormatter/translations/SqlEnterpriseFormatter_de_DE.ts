@@ -41,7 +41,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
       <source>Before opening parenthesis in column definitions</source>
-      <translation>Vor öffnenden Klammern in Spaltendefinitionen</translation>
+      <translation>Vor geöffneten Klammern in Spaltendefinitionen</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="170"/>
