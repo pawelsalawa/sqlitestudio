@@ -11,7 +11,7 @@
     <message>
       <location filename="../changes/erdchangeregistrydialog.ui" line="65"/>
       <source>Pending changes</source>
-      <translation type="unfinished">Pending changes</translation>
+      <translation>Ausstehende Änderungen</translation>
     </message>
     <message>
       <location filename="../changes/erdchangeregistrydialog.ui" line="105"/>
