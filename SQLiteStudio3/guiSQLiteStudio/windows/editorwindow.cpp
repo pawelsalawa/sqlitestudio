@@ -559,7 +559,7 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
     bool isNamed = false;
     bool nameAlreadyInList = false;
     int i = 0;
-    for (const TokenPtr& token : bindTokens)
+    for (TokenPtr& token : bindTokens)
     {
         isNamed = (token->value != "?");
         nameAlreadyInList = isNamed && namedBindParams.contains(token->value);

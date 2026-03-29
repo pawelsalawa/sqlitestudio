@@ -214,7 +214,11 @@ void DsvFormatsTestTest::testCsvPerformance()
         input += "abc,d,g,\"jkl\nh\",mno\r\n";
 
     QTemporaryFile theFile;
-    theFile.open();
+    if (!theFile.open())
+    {
+        qCritical() << "Failed to open" << theFile.fileName();
+        return;
+    }
     theFile.write(input.toLatin1());
     theFile.seek(0);
     QTextStream stream(&theFile);

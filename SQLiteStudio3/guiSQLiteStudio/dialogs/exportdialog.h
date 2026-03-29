@@ -15,6 +15,7 @@ class DbObjListModel;
 class SelectableDbObjModel;
 class WidgetCover;
 class ConfigMapper;
+class QComboBox;
 
 class GUI_API_EXPORT ExportDialog : public QWizard
 {
@@ -61,6 +62,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         Db* getDbForExport(const QString& name);
         void notifyInternalError();
         QModelIndex setupNewDbObjTreeRoot(const QModelIndex& root);
+        QComboBox* getDbComboForCurrentPage() const;
 
         QHash<ExportManager::ExportMode,QList<QWizardPage*>> pageOrder;
 
@@ -106,6 +108,8 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void storeInClipboard(const QString& str);
         void success();
         void updateValidation();
+        void prevDb();
+        void nextDb();
 
     public slots:
         void accept();

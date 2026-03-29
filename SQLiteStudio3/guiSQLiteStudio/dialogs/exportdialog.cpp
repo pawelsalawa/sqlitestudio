@@ -17,6 +17,8 @@
 #include "themetuner.h"
 #include "uiconfig.h"
 #include "common/dialogsizehandler.h"
+#include "windows/editorwindow.h"
+#include "common/extactioncontainer.h"
 #include <QClipboard>
 #include <QDebug>
 #include <QDir>
@@ -86,6 +88,9 @@ void ExportDialog::init()
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QString)), this, SLOT(storeInClipboard(QString)));
     connect(EXPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*,QString)));
     connect(EXPORT_MANAGER, SIGNAL(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)), this, SLOT(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)));
+
+    new QShortcut(GET_SHORTCUTS_CATEGORY(EditorWindow).PREV_DB.get(), this, SLOT(prevDb()), nullptr, Qt::WidgetWithChildrenShortcut);
+    new QShortcut(GET_SHORTCUTS_CATEGORY(EditorWindow).NEXT_DB.get(), this, SLOT(nextDb()), nullptr, Qt::WidgetWithChildrenShortcut);
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -815,6 +820,32 @@ void ExportDialog::updateValidation()
     emit formatPageCompleteChanged();
 }
 
+void ExportDialog::prevDb()
+{
+    QComboBox* cb = getDbComboForCurrentPage();
+    if (!cb)
+        return;
+
+    int idx = cb->currentIndex() - 1;
+    if (idx < 0)
+        return;
+
+    cb->setCurrentIndex(idx);
+}
+
+void ExportDialog::nextDb()
+{
+    QComboBox* cb = getDbComboForCurrentPage();
+    if (!cb)
+        return;
+
+    int idx = cb->currentIndex() + 1;
+    if (idx >= cb->count())
+        return;
+
+    cb->setCurrentIndex(idx);
+}
+
 void ExportDialog::doExport()
 {
     widgetCover->show();
@@ -966,6 +997,21 @@ QModelIndex ExportDialog::setupNewDbObjTreeRoot(const QModelIndex& root)
         newRoot = selectableDbListModel->index(0, 0, newRoot);
     }
     return newRoot;
+}
+
+QComboBox* ExportDialog::getDbComboForCurrentPage() const
+{
+    QWizardPage* page = currentPage();
+    if (page == ui->databaseObjectsPage)
+        return ui->dbObjectsDatabaseCombo;
+    else if (page == ui->tablePage)
+        return ui->exportTableDbNameCombo;
+    else if (page == ui->viewPage)
+        return ui->exportViewDbNameCombo;
+    else if (page == ui->queryPage)
+        return ui->queryDatabaseCombo;
+    else
+        return nullptr;
 }
 
 void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg)

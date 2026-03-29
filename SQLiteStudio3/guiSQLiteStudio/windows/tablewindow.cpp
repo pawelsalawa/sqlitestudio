@@ -1098,10 +1098,9 @@ bool TableWindow::validate(bool skipWarning)
         if (createTable->getConstraints(SqliteCreateTable::Constraint::PRIMARY_KEY).size() > 0)
             hasPk = true;
 
-        SqliteCreateTable::Column::Constraint* colConstraint = nullptr;
-        for (SqliteCreateTable::Column* column : createTable->columns)
+        for (SqliteCreateTable::Column*& column : createTable->columns)
         {
-            colConstraint = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY);
+            SqliteCreateTable::Column::Constraint* colConstraint = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY);
             if (colConstraint)
             {
                 hasPk = true;
@@ -1128,7 +1127,7 @@ bool TableWindow::validate(bool skipWarning)
     if (ui->strictTableCheck->isChecked())
     {
         QStringList nonStrictColumns;
-        for (SqliteCreateTable::Column* column : createTable->columns)
+        for (SqliteCreateTable::Column*& column : createTable->columns)
         {
             if (DataType::isStrict(column->type ? column->type->name : QString()))
                 continue;
@@ -1483,7 +1482,7 @@ void TableWindow::strictChanged()
     createTable->strict = ui->strictTableCheck->isChecked();
     if (createTable->strict)
     {
-        for (SqliteCreateTable::Column* column : createTable->columns)
+        for (SqliteCreateTable::Column*& column : createTable->columns)
         {
             if (column->type)
             {

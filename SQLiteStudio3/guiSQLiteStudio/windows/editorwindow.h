@@ -152,7 +152,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         bool settingSqlContents = false;
 
     private slots:
-        void execQuery(bool explain = false, QueryExecMode querySelectionMode = DEFAULT);
+        void execQuery(bool explain = false, EditorWindow::QueryExecMode querySelectionMode = DEFAULT);
         void execOneQuery();
         void execAllQueries();
         void explainQuery();

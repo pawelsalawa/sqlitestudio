@@ -150,7 +150,7 @@ TokenList SqlitePragma::rebuildTokensFromContents(bool replaceStatementTokens) c
     else if (parenthesis)
         builder.withParLeft();
 
-    if (value.userType() == QVariant::Bool)
+    if (value.userType() == QMetaType::Bool)
         builder.withOther(getBoolLiteralValue(), false);
     else
         builder.withLiteralValue(value);

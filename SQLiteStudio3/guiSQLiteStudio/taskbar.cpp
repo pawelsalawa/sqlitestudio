@@ -181,12 +181,11 @@ QToolButton* TaskBar::getToolButton(QAction* action)
 
 QAction* TaskBar::getNextClosestAction(const QPoint& position)
 {
-    QToolButton* btn = nullptr;
     if (orientation() == Qt::Horizontal)
     {
-        for (QAction* action : tasks)
+        for (QAction*& action : tasks)
         {
-            btn = getToolButton(action);
+            QToolButton* btn = getToolButton(action);
             if (btn && btn->x() >= position.x())
                 return action;
         }
@@ -195,7 +194,7 @@ QAction* TaskBar::getNextClosestAction(const QPoint& position)
     {
         for (QAction* action : tasks)
         {
-            btn = getToolButton(action);
+            QToolButton* btn = getToolButton(action);
             if (btn && btn->y() >= position.y())
                 return action;
         }

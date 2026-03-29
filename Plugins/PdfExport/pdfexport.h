@@ -44,38 +44,38 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         SQLITESTUDIO_PLUGIN("pdfexport.json")
 
     public:
-        QString getFormatName() const;
-        ExportManager::StandardConfigFlags standardOptionsToEnable() const;
-        ExportManager::ExportProviderFlags getProviderFlags() const;
-        void validateOptions();
-        CfgMain* getConfig();
-        QString getExportConfigFormName() const;
-        QString defaultFileExtension() const;
+        QString getFormatName() const override;
+        ExportManager::StandardConfigFlags standardOptionsToEnable() const override;
+        ExportManager::ExportProviderFlags getProviderFlags() const override;
+        void validateOptions() override;
+        CfgMain* getConfig() override;
+        QString getExportConfigFormName() const override;
+        QString defaultFileExtension() const override;
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
-                                      const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
-        bool exportQueryResultsRow(SqlResultsRowPtr row);
+                                      const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool exportQueryResultsRow(SqlResultsRowPtr row) override;
         bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
-                         const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
+                         const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
         bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
-                                const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
-        bool afterExport();
-        bool afterExportTable();
-        bool afterExportQueryResults();
-        bool exportTableRow(SqlResultsRowPtr data);
-        bool beforeExportSingleTable(const QString& database, const QString& table);
-        bool afterExportSingleTable();
-        bool beforeExportSingleView(const QString& database, const QString& name);
-        bool afterExportSingleView();
-        bool beforeExportDatabase(const QString& database);
-        bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
-        bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
+                                const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
+        bool afterExport() override;
+        bool afterExportTable() override;
+        bool afterExportQueryResults() override;
+        bool exportTableRow(SqlResultsRowPtr data) override;
+        bool beforeExportSingleTable(const QString& database, const QString& table) override;
+        bool afterExportSingleTable() override;
+        bool beforeExportSingleView(const QString& database, const QString& name) override;
+        bool afterExportSingleView() override;
+        bool beforeExportDatabase(const QString& database) override;
+        bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex) override;
+        bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger) override;
         bool exportView(const QString& database, const QString& name, const QStringList& columnNames, const QString& ddl,
                         SqliteCreateViewPtr createView, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) override;
-        bool exportViewRow(SqlResultsRowPtr data);
-        void cleanupAfterExport();
-        bool isBinaryData() const;
-        bool init();
-        void deinit();
+        bool exportViewRow(SqlResultsRowPtr data) override;
+        void cleanupAfterExport() override;
+        bool isBinaryData() const override;
+        bool init() override;
+        void deinit() override;
 
     protected:
         virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle, bool& takeOwnership);
