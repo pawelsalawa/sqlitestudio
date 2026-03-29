@@ -21,7 +21,7 @@
     <message>
       <location filename="../dbsqlitemc.cpp" line="50"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>Cipher</translation>
     </message>
     <message>
       <location filename="../dbsqlitemc.cpp" line="51"/>
