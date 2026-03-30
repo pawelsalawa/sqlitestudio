@@ -61,18 +61,18 @@ jobs:
         matrix: ${{ steps.set.outputs.matrix }}
         steps:
         - id: set
-            run: |
-                if [ -n "${{ inputs.matrix_json }}" ]; then
-                    matrix="${{ inputs.matrix_json }}"
-                else
-                    matrix="${{ env.DEFAULT_MATRIX }}"
-                fi
+          run: |
+            if [ -n "${{ inputs.matrix_json }}" ]; then
+                matrix="${{ inputs.matrix_json }}"
+            else
+                matrix="${{ env.DEFAULT_MATRIX }}"
+            fi
 
-                {
-                    echo "matrix<<EOF"
-                    echo "$matrix"
-                    echo "EOF"
-                } >> $GITHUB_OUTPUT
+            {
+                echo "matrix<<EOF"
+                echo "$matrix"
+                echo "EOF"
+            } >> $GITHUB_OUTPUT
 
     build:
         needs: generate
@@ -81,7 +81,7 @@ jobs:
 
         strategy:
             matrix:
-                include: ${{ fromJson(inputs.matrix_json || env.DEFAULT_MATRIX) }}
+                include: ${{ fromJson(needs.generate.outputs.matrix) }}
 
         steps:
             - uses: actions/setup-python@v4
