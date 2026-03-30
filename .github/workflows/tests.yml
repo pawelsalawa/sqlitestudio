@@ -55,7 +55,28 @@ on:
             default: ${{ env.DEFAULT_MATRIX }}
 
 jobs:
+    generate:
+        runs-on: ubuntu-latest
+        outputs:
+        matrix: ${{ steps.set.outputs.matrix }}
+        steps:
+        - id: set
+            run: |
+                if [ -n "${{ inputs.matrix_json }}" ]; then
+                    matrix="${{ inputs.matrix_json }}"
+                else
+                    matrix="${{ env.DEFAULT_MATRIX }}"
+                fi
+
+                {
+                    echo "matrix<<EOF"
+                    echo "$matrix"
+                    echo "EOF"
+                } >> $GITHUB_OUTPUT
+
     build:
+        needs: generate
+
         runs-on: ubuntu-22.04
 
         strategy:
