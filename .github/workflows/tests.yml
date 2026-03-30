@@ -36,19 +36,19 @@ on:
             default: |
                 [
                     {
-                        "QT_VERSION": "6.2.4"
+                        "QT_VERSION": "6.2.4",
                         "PYTHON_VERSION": "3.9"
                     },
                     {
-                        "QT_VERSION": "6.5.3"
+                        "QT_VERSION": "6.5.3",
                         "PYTHON_VERSION": "3.9"
                     },
                     {
-                        "QT_VERSION": "6.8.3"
+                        "QT_VERSION": "6.8.3",
                         "PYTHON_VERSION": "3.12"
                     },
                     {
-                        "QT_VERSION": "6.10.2"
+                        "QT_VERSION": "6.10.2",
                         "PYTHON_VERSION": "3.12"
                     }
                 ]
@@ -59,7 +59,7 @@ jobs:
 
         strategy:
             matrix:
-                ${{ fromJson(inputs.matrix_json) }}
+                include: ${{ fromJson(inputs.matrix_json) }}
 
         steps:
             - uses: actions/setup-python@v4
