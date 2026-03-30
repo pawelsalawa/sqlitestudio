@@ -2,6 +2,25 @@ env:
     TCL_VERSION: '8.6'
     SQLITE_VERSION: '3510200'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    DEFAULT_MATRIX: |
+                [
+                    {
+                        "QT_VERSION": "6.2.4",
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    {
+                        "QT_VERSION": "6.5.3",
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    {
+                        "QT_VERSION": "6.8.3",
+                        "PYTHON_VERSION": "3.12"
+                    },
+                    {
+                        "QT_VERSION": "6.10.2",
+                        "PYTHON_VERSION": "3.12"
+                    }
+                ]
 
 name: Unit tests
 
@@ -33,25 +52,7 @@ on:
           matrix_json:
             description: "Matrix JSON"
             required: false
-            default: |
-                [
-                    {
-                        "QT_VERSION": "6.2.4",
-                        "PYTHON_VERSION": "3.9"
-                    },
-                    {
-                        "QT_VERSION": "6.5.3",
-                        "PYTHON_VERSION": "3.9"
-                    },
-                    {
-                        "QT_VERSION": "6.8.3",
-                        "PYTHON_VERSION": "3.12"
-                    },
-                    {
-                        "QT_VERSION": "6.10.2",
-                        "PYTHON_VERSION": "3.12"
-                    }
-                ]
+            default: ${{ env.DEFAULT_MATRIX }}
 
 jobs:
     build:
@@ -59,7 +60,7 @@ jobs:
 
         strategy:
             matrix:
-                include: ${{ fromJson(inputs.matrix_json) }}
+                include: ${{ fromJson(inputs.matrix_json || env.DEFAULT_MATRIX) }}
 
         steps:
             - uses: actions/setup-python@v4
