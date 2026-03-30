@@ -13,6 +13,10 @@ name: Linux release build
 on:
     workflow_dispatch:
         inputs:
+          target:
+            description: "Build target (all | x64 | arm64)"
+            required: false
+            default: "all"
           use_ccache:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
@@ -34,32 +38,54 @@ on:
         - cron: '30 3 * * 1' # run at 3:30 AM UTC every Monday
 
 jobs:
+    generate:
+        runs-on: ubuntu-latest
+        outputs:
+            matrix: ${{ steps.set.outputs.matrix }}
+        steps:
+            - id: set
+              run: |
+                MATRIX_X64='{
+                    "OS": "ubuntu-22.04",
+                    "TARGET_ARCH": "x86_64",
+                    "QT_VERSION": "6.8.3",
+                    "QT_ARCH": "linux_gcc_64",
+                    "QT_HOST": "linux",
+                    "INSTALLBUILDER_URL": "https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run",
+                    "LIBSSL_DIR_URL": "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/",
+                    "LIBSSL_DEB": "libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb",
+                    "PYTHON_ARCH": "x64",
+                    "SQLITE_ARCH": "x64",
+                    "OUTPUT_FILE_ARCH": "x64"
+                }'
+                MATRIX_ARM64='{
+                    "OS": "ubuntu-22.04-arm",
+                    "TARGET_ARCH": "aarch64",
+                    "QT_VERSION": "6.7.3",
+                    "QT_ARCH": "linux_gcc_arm64",
+                    "QT_HOST": "linux_arm64",
+                    "INSTALLBUILDER_URL": "https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run",
+                    "LIBSSL_DIR_URL": "http://ports.ubuntu.com/pool/main/o/openssl/",
+                    "LIBSSL_DEB": "libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb",
+                    "PYTHON_ARCH": "arm64",
+                    "SQLITE_ARCH": "arm",
+                    "OUTPUT_FILE_ARCH": "arm64"
+                }'
+
+                if [ "${{ inputs.target }}" = "x64" ]; then
+                    matrix="[$MATRIX_X64]"
+                elif [ "${{ inputs.target }}" = "arm64" ]; then
+                    matrix="[$MATRIX_ARM64]"
+                else
+                    matrix="[$MATRIX_X64,$MATRIX_ARM64]"
+                fi
+                echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
     build:
+        needs: generate
         strategy:
             matrix:
-                include:
-                    - OS: ubuntu-22.04
-                      TARGET_ARCH: 'x86_64'
-                      QT_VERSION: '6.8.3'
-                      QT_ARCH: 'linux_gcc_64'
-                      QT_HOST: 'linux'
-                      INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run
-                      LIBSSL_DIR_URL: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/
-                      LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
-                      PYTHON_ARCH: 'x64'
-                      SQLITE_ARCH: 'x64'
-                      OUTPUT_FILE_ARCH: 'x64'
-                    - OS: ubuntu-22.04-arm
-                      TARGET_ARCH: 'aarch64'
-                      QT_VERSION: '6.7.3' # ARM arch has to stick to Qt 6.7, because 6.8 binaries use newer ABI on ARM platform
-                      QT_ARCH: 'linux_gcc_arm64'
-                      QT_HOST: 'linux_arm64'
-                      INSTALLBUILDER_URL: https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run
-                      LIBSSL_DIR_URL: http://ports.ubuntu.com/pool/main/o/openssl/
-                      LIBSSL_DEB: libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb
-                      PYTHON_ARCH: 'arm64'
-                      SQLITE_ARCH: 'arm'
-                      OUTPUT_FILE_ARCH: 'arm64'
+                include: ${{ fromJson(needs.generate.outputs.matrix) }}
 
         runs-on: ${{ matrix.OS }}
 
