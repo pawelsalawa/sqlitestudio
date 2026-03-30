@@ -107,7 +107,10 @@ jobs:
 
             - name: Qt installation dir
               id: qt-installation-dir
-              run: echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
+              run: |
+                set -x
+                ls -l ${{ github.workspace }}/..
+                echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
