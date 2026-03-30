@@ -108,14 +108,15 @@ jobs:
             - name: Qt installation dir
               id: qt-installation-dir
               run: |
-                set -x
-                ls -l ${{ github.workspace }}/..
+                #set -x
+                #ls -l ${{ github.workspace }}/..
                 echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
               with:
-                cache: true
+                cache: false
+                #cache: true # on 30.03.2026 this fails, because it claims that cache was missed, yet the Qt directory exists prior to install (but doesn't exists in previous step)
                 version: ${{ matrix.QT_VERSION }}
                 host: ${{ matrix.QT_HOST }}
                 arch: '${{ matrix.QT_ARCH }}'
