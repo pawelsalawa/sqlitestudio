@@ -3485,70 +3485,70 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="67"/>
+        <location filename="../dialogs/exportdialog.cpp" line="69"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="192"/>
-        <location filename="../dialogs/exportdialog.cpp" line="216"/>
-        <location filename="../dialogs/exportdialog.cpp" line="241"/>
-        <location filename="../dialogs/exportdialog.cpp" line="266"/>
+        <location filename="../dialogs/exportdialog.cpp" line="197"/>
+        <location filename="../dialogs/exportdialog.cpp" line="221"/>
+        <location filename="../dialogs/exportdialog.cpp" line="246"/>
+        <location filename="../dialogs/exportdialog.cpp" line="271"/>
         <source>Select database to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="193"/>
+        <location filename="../dialogs/exportdialog.cpp" line="198"/>
         <source>Select table to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="217"/>
+        <location filename="../dialogs/exportdialog.cpp" line="222"/>
         <source>Select view to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="242"/>
+        <location filename="../dialogs/exportdialog.cpp" line="247"/>
         <source>Enter valid query to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="267"/>
+        <location filename="../dialogs/exportdialog.cpp" line="272"/>
         <source>Select at least one object to export.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="290"/>
+        <location filename="../dialogs/exportdialog.cpp" line="295"/>
         <source>You must provide a file name to export to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="297"/>
+        <location filename="../dialogs/exportdialog.cpp" line="302"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="303"/>
+        <location filename="../dialogs/exportdialog.cpp" line="308"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="309"/>
+        <location filename="../dialogs/exportdialog.cpp" line="314"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="550"/>
+        <location filename="../dialogs/exportdialog.cpp" line="555"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="553"/>
+        <location filename="../dialogs/exportdialog.cpp" line="558"/>
         <source>Pick file to export to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="953"/>
+        <location filename="../dialogs/exportdialog.cpp" line="984"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5223,27 +5223,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="22"/>
+        <location filename="../dataview.h" line="30"/>
         <source>Data view (both grid and form)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="23"/>
+        <location filename="../dataview.h" line="31"/>
         <source>Refresh data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="24"/>
+        <location filename="../dataview.h" line="32"/>
         <source>Find in data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="25"/>
+        <location filename="../dataview.h" line="33"/>
         <source>Switch to grid view of the data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="26"/>
+        <location filename="../dataview.h" line="34"/>
         <source>Switch to form view of the data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5362,21 +5362,25 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../dataview.h" line="35"/>
         <location filename="../formview.h" line="18"/>
         <source>Go to first row on current page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../dataview.h" line="37"/>
         <location filename="../formview.h" line="19"/>
         <source>Go to next row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../dataview.h" line="36"/>
         <location filename="../formview.h" line="20"/>
         <source>Go to previous row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../dataview.h" line="38"/>
         <location filename="../formview.h" line="21"/>
         <source>Go to last row on current page</source>
         <translation type="unfinished"></translation>
@@ -7011,7 +7015,7 @@ NULL</source>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="213"/>
-        <location filename="../windows/tablewindow.cpp" line="1773"/>
+        <location filename="../windows/tablewindow.cpp" line="1772"/>
         <source>Data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7329,128 +7333,128 @@ Are you sure you want to create a table with blank name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1115"/>
+        <location filename="../windows/tablewindow.cpp" line="1114"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1122"/>
+        <location filename="../windows/tablewindow.cpp" line="1121"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1141"/>
+        <location filename="../windows/tablewindow.cpp" line="1140"/>
         <source>Following columns have non-strict data type: %1. Either disable strict mode of the table, or fix column data types. Valid strict data types are: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1323"/>
+        <location filename="../windows/tablewindow.cpp" line="1322"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1324"/>
+        <location filename="../windows/tablewindow.cpp" line="1323"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1379"/>
+        <location filename="../windows/tablewindow.cpp" line="1378"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1392"/>
+        <location filename="../windows/tablewindow.cpp" line="1391"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1425"/>
+        <location filename="../windows/tablewindow.cpp" line="1424"/>
         <source>Uncommitted changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1426"/>
+        <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>There are uncommitted structure modifications.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1428"/>
+        <location filename="../windows/tablewindow.cpp" line="1427"/>
         <source>You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1432"/>
+        <location filename="../windows/tablewindow.cpp" line="1431"/>
         <source>Commit modifications and browse data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1431"/>
+        <location filename="../windows/tablewindow.cpp" line="1430"/>
         <source>Go back to structure tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1639"/>
+        <location filename="../windows/tablewindow.cpp" line="1638"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1640"/>
+        <location filename="../windows/tablewindow.cpp" line="1639"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1641"/>
+        <location filename="../windows/tablewindow.cpp" line="1640"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1642"/>
+        <location filename="../windows/tablewindow.cpp" line="1641"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1698"/>
+        <location filename="../windows/tablewindow.cpp" line="1697"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1699"/>
+        <location filename="../windows/tablewindow.cpp" line="1698"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1700"/>
+        <location filename="../windows/tablewindow.cpp" line="1699"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1701"/>
+        <location filename="../windows/tablewindow.cpp" line="1700"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1815"/>
+        <location filename="../windows/tablewindow.cpp" line="1814"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1817"/>
+        <location filename="../windows/tablewindow.cpp" line="1816"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1819"/>
+        <location filename="../windows/tablewindow.cpp" line="1818"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
         <translation type="unfinished"></translation>
     </message>
