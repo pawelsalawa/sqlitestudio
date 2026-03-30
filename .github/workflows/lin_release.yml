@@ -120,8 +120,8 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
               with:
-                cache: false
                 #cache: true # on 30.03.2026 this fails, because it claims that cache was missed, yet the Qt directory exists prior to install (but doesn't exists in previous step)
+                cache: false
                 version: ${{ matrix.QT_VERSION }}
                 host: ${{ matrix.QT_HOST }}
                 arch: '${{ matrix.QT_ARCH }}'
