@@ -30,6 +30,28 @@ on:
             description: "Open SSH tunnel if job fails"
             type: boolean
             default: false
+          matrix_json:
+            description: "Matrix JSON"
+            required: false
+            default: |
+                [
+                    {
+                        "QT_VERSION": "6.2.4"
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    {
+                        "QT_VERSION": "6.5.3"
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    {
+                        "QT_VERSION": "6.8.3"
+                        "PYTHON_VERSION": "3.12"
+                    },
+                    {
+                        "QT_VERSION": "6.10.2"
+                        "PYTHON_VERSION": "3.12"
+                    }
+                ]
 
 jobs:
     build:
@@ -37,15 +59,7 @@ jobs:
 
         strategy:
             matrix:
-                include:
-                    - QT_VERSION: '6.2.4'
-                      PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.5.3'
-                      PYTHON_VERSION: '3.9'
-                    - QT_VERSION: '6.8.3'
-                      PYTHON_VERSION: '3.12'
-                    - QT_VERSION: '6.10.2'
-                      PYTHON_VERSION: '3.12'
+                ${{ fromJson(inputs.matrix_json) }}
 
         steps:
             - uses: actions/setup-python@v4
