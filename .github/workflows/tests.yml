@@ -72,7 +72,7 @@ jobs:
                 matrix="$(echo $ALL | jq -r --arg v ${{ inputs.target }} '.[$v]')
 
                 if [ "matrix" = "null" ]; then
-                    matrix="$(echo $ALL | jq '[.[]]')
+                    matrix="$(echo $ALL | jq '[.[]]')"
                 fi
 
                 {
