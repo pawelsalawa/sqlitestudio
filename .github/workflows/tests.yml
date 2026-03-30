@@ -46,40 +46,40 @@ jobs:
     generate:
         runs-on: ubuntu-latest
         outputs:
-        matrix: ${{ steps.set.outputs.matrix }}
+            matrix: ${{ steps.set.outputs.matrix }}
         steps:
-        - id: set
-          run: |
-            ALL='{
-                "6.2": {
-                    "QT_VERSION": "6.2.4",
-                    "PYTHON_VERSION": "3.9"
-                },
-                "6.5": {
-                    "QT_VERSION": "6.5.3",
-                    "PYTHON_VERSION": "3.9"
-                },
-                "6.8": {
-                    "QT_VERSION": "6.8.3",
-                    "PYTHON_VERSION": "3.12"
-                },
-                "6.10": {
-                    "QT_VERSION": "6.10.2",
-                    "PYTHON_VERSION": "3.12"
-                }
-            }'
+            - id: set
+              run: |
+                ALL='{
+                    "6.2": {
+                        "QT_VERSION": "6.2.4",
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    "6.5": {
+                        "QT_VERSION": "6.5.3",
+                        "PYTHON_VERSION": "3.9"
+                    },
+                    "6.8": {
+                        "QT_VERSION": "6.8.3",
+                        "PYTHON_VERSION": "3.12"
+                    },
+                    "6.10": {
+                        "QT_VERSION": "6.10.2",
+                        "PYTHON_VERSION": "3.12"
+                    }
+                }'
 
-            matrix="$(echo $ALL | jq -r --arg v ${{ inputs.target }} '.[$v]')
+                matrix="$(echo $ALL | jq -r --arg v ${{ inputs.target }} '.[$v]')
 
-            if [ "matrix" = "null" ]; then
-                matrix="$(echo $ALL | jq '[.[]]')
-            fi
+                if [ "matrix" = "null" ]; then
+                    matrix="$(echo $ALL | jq '[.[]]')
+                fi
 
-            {
-                echo "matrix<<EOF"
-                echo "$matrix"
-                echo "EOF"
-            } >> $GITHUB_OUTPUT
+                {
+                    echo "matrix<<EOF"
+                    echo "$matrix"
+                    echo "EOF"
+                } >> $GITHUB_OUTPUT
 
     build:
         needs: generate
