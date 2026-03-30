@@ -79,7 +79,12 @@ jobs:
                 else
                     matrix="[$MATRIX_X64,$MATRIX_ARM64]"
                 fi
-                echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+                {
+                    echo "matrix<<EOF"
+                    echo "$matrix"
+                    echo "EOF"
+                } >> $GITHUB_OUTPUT
 
     build:
         needs: generate
