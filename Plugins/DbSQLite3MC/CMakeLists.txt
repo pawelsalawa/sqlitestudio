@@ -38,6 +38,7 @@ else()
     if(WIN32)
         target_compile_definitions(DbSqliteMc PRIVATE
             SQLITE_OS_WIN=1
+            DISABLE_AVX512
         )
     else()
         target_compile_definitions(DbSqliteMc PRIVATE
