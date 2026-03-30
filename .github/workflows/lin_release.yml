@@ -14,7 +14,12 @@ on:
     workflow_dispatch:
         inputs:
           target:
-            description: "Build target (all | x64 | arm64)"
+            description: "Build target"
+            type: choice
+            options:
+                - "all"
+                - "x64"
+                - "arm64"
             required: false
             default: "all"
           use_ccache:
