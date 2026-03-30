@@ -115,6 +115,11 @@ void MultiEditor::init(TabsMode tabsMode)
             break;
     }
 
+    resetValueButton = createButton(ICONS.ACT_UNDO, tr("Reset value"), SLOT(resetValue()));
+    hbox->addWidget(resetValueButton);
+    resetValueButton->setVisible(false);
+    resetValueButton->setEnabled(false);
+
     hbox->addStretch(); // squeeze to the left
 
     QGraphicsColorizeEffect* effect = new QGraphicsColorizeEffect();

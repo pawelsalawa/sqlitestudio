@@ -134,6 +134,7 @@ MultiEditor* FormView::addColumn(int colIdx, SqlQueryModelColumn* column)
     MultiEditor* multiEditor = new MultiEditor();
     multiEditor->setReadOnly(readOnly);
     multiEditor->setCornerLabel(groupLabel);
+    multiEditor->enableValueReset(column);
     dataMapper->addMapping(multiEditor, colIdx, "value");
     widgets << multiEditor;
     editors << multiEditor;

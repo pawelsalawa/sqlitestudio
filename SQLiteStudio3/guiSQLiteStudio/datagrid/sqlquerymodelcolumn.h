@@ -37,18 +37,22 @@ class GUI_API_EXPORT SqlQueryModelColumn
 
         struct Constraint
         {
-            enum class Type
+            enum class Type : unsigned int
             {
-                PRIMARY_KEY,
-                NOT_NULL,
-                UNIQUE,
-                CHECK,
-                DEFAULT,
-                COLLATE,
-                GENERATED,
-                FOREIGN_KEY,
-                null
+                PRIMARY_KEY  = 0x0001,
+                NOT_NULL     = 0x0002,
+                UNIQUE       = 0x0004,
+                CHECK        = 0x0008,
+                DEFAULT      = 0x0010,
+                COLLATE      = 0x0020,
+                GENERATED    = 0x0040,
+                FOREIGN_KEY  = 0x0080,
+                // Meta types below (not directly corresponding to SQLite constraints, but useful for edition and display purposes)
+                _AUTOINCR    = 0x1000,
+                _ROWID_PK    = 0x2000,
+                null         = 0x0000
             };
+            Q_DECLARE_FLAGS(Types, Type)
 
             enum class Scope
             {
@@ -66,6 +70,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
             virtual QString getTypeString() const = 0;
             virtual QString getDetails() const = 0;
             virtual Icon* getIcon() const = 0;
+
 
             Type type;
             Scope scope;
@@ -170,6 +175,11 @@ class GUI_API_EXPORT SqlQueryModelColumn
         bool isDefault() const;
         bool isCollate() const;
         bool isGenerated() const;
+        Constraint::Types getConstraintsTypes() const;
+        QList<Constraint*> getConstraints() const;
+        void addConstraint(Constraint* constraint);
+        void clearConstraints();
+        bool hasDefaultValueForInsert() const;
         QString getAliasedName() const;
         QList<ConstraintFk*> getFkConstraints() const;
         ConstraintDefault* getDefaultConstraint() const;
@@ -184,12 +194,14 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QString tableAlias;
         DataType dataType;
         QSet<EditionForbiddenReason> editionForbiddenReason;
-        QList<Constraint*> constraints;
         QString queryExecutorAlias;
 
     private:
         template <class T>
-        QList<T> getConstraints() const;
+        QList<T> getTypedConstraints() const;
+
+        QList<Constraint*> constraints;
+        Constraint::Types constraintsTypes = Constraint::Type::null;
 };
 
 typedef QSharedPointer<SqlQueryModelColumn> SqlQueryModelColumnPtr;
@@ -200,5 +212,7 @@ QDataStream &operator<<(QDataStream &out, const SqlQueryModelColumn* col);
 QDataStream &operator>>(QDataStream &in, SqlQueryModelColumn*& col);
 
 Q_DECLARE_METATYPE(SqlQueryModelColumn*)
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(SqlQueryModelColumn::Constraint::Types)
 
 #endif // SQLQUERYMODELCOLUMN_H

@@ -43,7 +43,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
                 SqlQueryView* comboView = nullptr;
         };
 
-        QWidget* getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const;
+        QWidget* getEditor(SqlQueryItem* item, int type, bool shouldSkipInitialSelection, QWidget* parent) const;
         QWidget* getFkEditor(SqlQueryItem* item, bool shouldSkipInitialSelection, QWidget* parent, const SqlQueryModel *model) const;
         void setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const;
         void setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const;
@@ -52,7 +52,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         qlonglong getRowCountForFkEditor(Db* db, const QString& query, bool *isError) const;
         int getFkViewHeaderWidth(SqlQueryView* fkView, bool includeScrollBar) const;
 
-        QSet<QWidget*> editorsWithAsyncExecution;
+        QAction* resetValueAction = nullptr;
 
         static bool warnedAboutHugeContents;
         static const int HUGE_CONTENTS_WARNING_LIMIT = 32767; // pow(2, 16) / 2 - 1

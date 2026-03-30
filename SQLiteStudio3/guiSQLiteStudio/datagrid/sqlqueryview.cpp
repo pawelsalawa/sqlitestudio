@@ -99,8 +99,9 @@ void SqlQueryView::createActions()
     createAction(COPY_AS, ICONS.ACT_COPY, tr("Copy as..."), this, SLOT(copyAs()), this);
     createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
     createAction(PASTE_AS, ICONS.ACT_PASTE, tr("Paste as..."), this, SLOT(pasteAs()), this);
-    createAction(SET_NULL, ICONS.SET_NULL, tr("Set NULL values"), this, SLOT(setNull()), this);
-    createAction(ERASE, ICONS.ERASE, tr("Erase values"), this, SLOT(erase()), this);
+    createAction(SET_NULL, ICONS.SET_NULL, tr("Set NULL value"), this, SLOT(setNull()), this);
+    createAction(ERASE, ICONS.ERASE, tr("Erase value"), this, SLOT(erase()), this);
+    createAction(RESET_VALUE, ICONS.ACT_UNDO, tr("Reset value"), this, SLOT(resetValue()), this);
     createAction(OPEN_VALUE_EDITOR, ICONS.OPEN_VALUE_EDITOR, "", this, SLOT(openValueEditor()), this); // actual label is set dynamically in setupActionsForMenu()
     createAction(COMMIT, ICONS.COMMIT, tr("Commit"), this, SLOT(commit()), this);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
@@ -180,6 +181,14 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         {
             contextMenu->addAction(actionMap[ERASE]);
             contextMenu->addAction(actionMap[SET_NULL]);
+
+            int possibleResetCount = 0;
+            for (SqlQueryItem* item : selectedItems)
+                if (item->isNewRow() && !item->isUntouched() && item->getColumn()->hasDefaultValueForInsert())
+                    possibleResetCount++;
+
+            if (possibleResetCount > 0)
+                contextMenu->addAction(actionMap[RESET_VALUE]);
         }
         contextMenu->addAction(actionMap[OPEN_VALUE_EDITOR]);
         contextMenu->addSeparator();
@@ -1200,7 +1209,8 @@ void SqlQueryView::setNull()
     if (simpleBrowserMode)
         return;
 
-    for (SqlQueryItem* selItem : getSelectedItems()) {
+    for (SqlQueryItem* selItem : getSelectedItems())
+    {
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             continue;
 
@@ -1213,11 +1223,30 @@ void SqlQueryView::erase()
     if (simpleBrowserMode)
         return;
 
-    for (SqlQueryItem* selItem : getSelectedItems()) {
+    for (SqlQueryItem* selItem : getSelectedItems())
+    {
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             continue;
 
         selItem->setValue("", false);
+    }
+}
+
+void SqlQueryView::resetValue()
+{
+    if (simpleBrowserMode)
+        return;
+
+    for (SqlQueryItem* selItem : getSelectedItems())
+    {
+        if (selItem->getColumn()->editionForbiddenReason.size() > 0)
+            continue;
+
+        if (!selItem->isNewRow() || !selItem->getColumn()->hasDefaultValueForInsert())
+            continue;
+
+        selItem->setValue(QVariant(QString()), false);
+        selItem->setUntouched(true);
     }
 }
 

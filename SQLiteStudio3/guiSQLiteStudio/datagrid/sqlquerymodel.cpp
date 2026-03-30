@@ -1323,7 +1323,7 @@ void SqlQueryModel::readColumnDetails()
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(constrPtr);
             if (modelConstraint)
-                modelColumn->constraints << modelConstraint;
+                modelColumn->addConstraint(modelConstraint);
 
             modelColumn->postProcessConstraints();
         }
@@ -1333,7 +1333,7 @@ void SqlQueryModel::readColumnDetails()
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(modelColumn->column, constrPtr);
             if (modelConstraint)
-                modelColumn->constraints << modelConstraint;
+                modelColumn->addConstraint(modelConstraint);
         }
 
         // Adding to list for ordered access
@@ -1753,15 +1753,15 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
 {
     QList<QStandardItem*> items;
     int colCnt = columnCount();
-    SqlQueryItem* item = nullptr;
-    SqlQueryModelColumn* columnModel = nullptr;
+
     for (int i = 0; i < colCnt; i++)
     {
-        columnModel = columns[i].data();
+        SqlQueryModelColumn* columnModel = columns[i].data();
 
-        item = new SqlQueryItem();
+        SqlQueryItem* item = new SqlQueryItem();
         item->setNewRow(true);
         item->setUncommitted(true);
+        item->setUntouched(true);
         item->setColumn(columnModel);
 
         items << item;

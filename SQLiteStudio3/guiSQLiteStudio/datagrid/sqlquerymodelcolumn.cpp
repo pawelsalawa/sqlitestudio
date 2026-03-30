@@ -131,58 +131,52 @@ QString SqlQueryModelColumn::getEditionForbiddenReason()
 
 bool SqlQueryModelColumn::isPk() const
 {
-    return getConstraints<ConstraintPk*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::PRIMARY_KEY);
 }
 
 bool SqlQueryModelColumn::isRowIdPk() const
 {
-    if (dataType.getType() != DataType::INTEGER)
-        return false;
-
-    for (ConstraintPk* pk : getConstraints<ConstraintPk*>())
-        if (pk->scope == Constraint::Scope::COLUMN)
-            return true;
-
-    return false;
+    return constraintsTypes.testFlag(Constraint::Type::_ROWID_PK);
 }
 
 bool SqlQueryModelColumn::isAutoIncr() const
 {
-    for (ConstraintPk* pk : getConstraints<ConstraintPk*>())
-        if (pk->autoIncrement)
-            return true;
-
-    return false;
+    return constraintsTypes.testFlag(Constraint::Type::_AUTOINCR);
 }
 
 bool SqlQueryModelColumn::isNotNull() const
 {
-    return getConstraints<ConstraintNotNull*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::NOT_NULL);
 }
 
 bool SqlQueryModelColumn::isUnique() const
 {
-    return getConstraints<ConstraintUnique*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::UNIQUE);
 }
 
 bool SqlQueryModelColumn::isFk() const
 {
-    return getConstraints<ConstraintFk*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::FOREIGN_KEY);
 }
 
 bool SqlQueryModelColumn::isDefault() const
 {
-    return getConstraints<ConstraintDefault*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::DEFAULT);
 }
 
 bool SqlQueryModelColumn::isCollate() const
 {
-    return getConstraints<ConstraintCollate*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::COLLATE);
 }
 
 bool SqlQueryModelColumn::isGenerated() const
 {
-    return getConstraints<ConstraintGenerated*>().size() > 0;
+    return constraintsTypes.testFlag(Constraint::Type::GENERATED);
+}
+
+SqlQueryModelColumn::Constraint::Types SqlQueryModelColumn::getConstraintsTypes() const
+{
+    return constraintsTypes;
 }
 
 QString SqlQueryModelColumn::getAliasedName() const
@@ -192,12 +186,12 @@ QString SqlQueryModelColumn::getAliasedName() const
 
 QList<SqlQueryModelColumn::ConstraintFk*> SqlQueryModelColumn::getFkConstraints() const
 {
-    return getConstraints<ConstraintFk*>();
+    return getTypedConstraints<ConstraintFk*>();
 }
 
 SqlQueryModelColumn::ConstraintDefault* SqlQueryModelColumn::getDefaultConstraint() const
 {
-    QList<ConstraintDefault*> list = getConstraints<ConstraintDefault*>();
+    QList<ConstraintDefault*> list = getTypedConstraints<ConstraintDefault*>();
     if (list.size() == 0)
         return nullptr;
 
@@ -225,6 +219,38 @@ QString SqlQueryModelColumn::bestEffortIdentifier() const
         return alias;
 
     return displayName;
+}
+
+void SqlQueryModelColumn::addConstraint(Constraint* constraint)
+{
+    constraints << constraint;
+    constraintsTypes |= constraint->type;
+
+    ConstraintPk* pk = dynamic_cast<ConstraintPk*>(constraint);
+    if (pk)
+    {
+        if (pk->autoIncrement)
+            constraintsTypes |= Constraint::Type::_AUTOINCR;
+
+        if (dataType.getType() == DataType::INTEGER && pk->scope == Constraint::Scope::COLUMN)
+            constraintsTypes |= Constraint::Type::_ROWID_PK;
+    }
+}
+
+void SqlQueryModelColumn::clearConstraints()
+{
+    constraintsTypes = Constraint::Type::null;
+    constraints.clear();
+}
+
+bool SqlQueryModelColumn::hasDefaultValueForInsert() const
+{
+    return isDefault() || isPk() && isAutoIncr() || isGenerated();
+}
+
+QList<SqlQueryModelColumn::Constraint*> SqlQueryModelColumn::getConstraints() const
+{
+    return constraints;
 }
 
 size_t qHash(SqlQueryModelColumn::EditionForbiddenReason reason)
@@ -406,7 +432,7 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(SqliteC
 }
 
 template <class T>
-QList<T> SqlQueryModelColumn::getConstraints() const
+QList<T> SqlQueryModelColumn::getTypedConstraints() const
 {
     QList<T> results;
     for (Constraint* constr : constraints)

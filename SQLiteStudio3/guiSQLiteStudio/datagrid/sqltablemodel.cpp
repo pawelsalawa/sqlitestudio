@@ -197,13 +197,13 @@ QString SqlTableModel::getDataSource()
 
 QString SqlTableModel::getInsertSql(QStringList& colNameList, QStringList& sqlValues)
 {
-    static_qstring(insertTpl, "INSERT INTO %1 (%2) %3 RETURNING *");
+    static_qstring(insertTpl, "INSERT INTO %1 %2 %3 RETURNING *");
     static_qstring(valuesTpl, "VALUES (%1)");
 
     QString wrappedTableName = wrapObjIfNeeded(table);
     QString colNames = colNameList.join(", ");
-    if (colNameList.size() == 0)
-        return insertTpl.arg(wrappedTableName, colNames, "DEFAULT VALUES");
+    if (colNameList.isEmpty())
+        return insertTpl.arg(wrappedTableName, "", "DEFAULT VALUES");
     else
         return insertTpl.arg(wrappedTableName, colNames, valuesTpl.arg(sqlValues.join(", ")));
 }
@@ -219,17 +219,8 @@ void SqlTableModel::prepareColumnsAndBindParams(const QList<SqlQueryItem*>& item
         if (!modelColumn->canEdit())
             continue;
 
-        if (isNull(item->getValue()))
-        {
-            if (CFG_UI.General.UseDefaultValueForNull.get() && modelColumn->isDefault())
-                continue;
-
-            if (modelColumn->isNotNull()) // value is null, but it's NOT NULL, try using DEFAULT, or fail.
-                continue;
-
-            if (modelColumn->isPk() && modelColumn->isAutoIncr())
-                continue;
-        }
+        if (item->isUntouched() && modelColumn->hasDefaultValueForInsert())
+            continue;
 
         colNameList << wrapObjIfNeeded(modelColumn->column);
         bindParams << ":arg" + QString::number(i);

@@ -17,16 +17,32 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         {
             enum Enum
             {
-                ROWID = 1001,
-                VALUE = 1002,
-                COLUMN = 1003,
-                UNCOMMITTED = 1004,
-                COMMITTING_ERROR = 1005,
-                NEW_ROW = 1006,
-                DELETED = 1007,
-                OLD_VALUE = 1008,
-                COMMITTING_ERROR_MESSAGE = 1010,
-                EDIT_SKIP_INITIAL_SELECT = 1011 // to prevent content selection initially when editing with double-click
+                ROWID = 1001,               /**< RowId of the cell, used for identifying the row in database, so we can update it with new value if needed.
+                                                 This is loaded from DB and not modified by user, because ROWID doesn't change when value is updated. */
+                VALUE = 1002,               /**< Cell value, used for both display and editing.
+                                                 This is the main value of the cell, which is loaded
+                                                 from DB and modified by user. */
+                COLUMN = 1003,              /**< Pointer to SqlQueryModelColumn, used for easy access to column info
+                                                 like name, type, etc. when needed. */
+                UNCOMMITTED = 1004,         /**< True if the value was modified by user and is not yet committed
+                                                 to database, false otherwise. */
+                COMMITTING_ERROR = 1005,    /**< True if there was an error during commit of the value, false otherwise.
+                                                 This is used to mark cells with errors after commit attempt,
+                                                 so user can easily spot them and fix. */
+                NEW_ROW = 1006,             /**< Row being inserted */
+                DELETED = 1007,             /**< Row marked for deletion */
+                OLD_VALUE = 1008,           /**< Cell value before modification, used for rollback */
+                UNTOUCHED = 1009,           /**< New row's cell marked to be filled with default value,
+                                                 ie. when user leaves it without modifying it at all.
+                                                 Not the same as NULL, cause null can be set explicitly by user,
+                                                 while untouched means that user didn't change the value at all,
+                                                 so it should be loaded from DB as default value for the column.
+                                                 This info is useful if the column has DEFAULT, PK+AUTOINCR
+                                                 or GENERATED constraint. */
+                COMMITTING_ERROR_MESSAGE = 1010, /**< In case of error during commit, this role can be used
+                                                      to store error message from database, so it can be shown
+                                                      in tooltip for the cell. */
+                EDIT_SKIP_INITIAL_SELECT = 1011  /**< To prevent content selection initially when editing with double-click */
             };
         };
 
@@ -52,6 +68,9 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         bool isNewRow() const;
         void setNewRow(bool isNew);
 
+        bool isUntouched() const;
+        void setUntouched(bool isUntouched);
+
         bool isDeletedRow() const;
         void setDeletedRow(bool isDeleted);
 
@@ -74,6 +93,7 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         bool shoulSkipInitialFocusSelection() const;
 
     private:
+        QString getNullDisplayString() const;
         QVariant adjustVariantType(const QVariant& value);
         QString getToolTip() const;
         void rememberOldValue();

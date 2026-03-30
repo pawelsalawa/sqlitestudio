@@ -55,6 +55,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             PASTE_AS,
             SET_NULL,
             ERASE,
+            RESET_VALUE,
             ROLLBACK,
             COMMIT,
             INSERT_ROW,
@@ -198,6 +199,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void pasteAs();
         void setNull();
         void erase();
+        void resetValue();
         void commit();
         void rollback();
         void selectiveCommit();

@@ -100,9 +100,10 @@ void ExtLineEdit::setExpandingMinWidth(int value)
 
 void ExtLineEdit::handleTextChanged()
 {
-    QString txt = text();
     if (!expanding)
         return;
+
+    QString txt = text();
 
     // Text width
     int newWidth = fontMetrics().horizontalAdvance(txt);

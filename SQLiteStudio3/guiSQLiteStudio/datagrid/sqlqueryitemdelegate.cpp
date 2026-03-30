@@ -9,6 +9,7 @@
 #include "schemaresolver.h"
 #include "sqlqueryitemlineedit.h"
 #include "datagrid/cellrendererplugin.h"
+#include "iconmanager.h"
 #include <QHeaderView>
 #include <QPainter>
 #include <QEvent>
@@ -86,7 +87,7 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
     if (!item->getColumn()->getFkConstraints().isEmpty())
         return getFkEditor(item, skipInitSelection, parent, model);
 
-    return getEditor(item->getValue().userType(), skipInitSelection, parent);
+    return getEditor(item, item->getValue().userType(), skipInitSelection, parent);
 }
 
 void SqlQueryItemDelegate::destroyEditor(QWidget* editor, const QModelIndex& index) const
@@ -240,12 +241,32 @@ SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index)
     return queryModel->itemFromIndex(index);
 }
 
-QWidget* SqlQueryItemDelegate::getEditor(int type, bool shouldSkipInitialSelection, QWidget* parent) const
+QWidget* SqlQueryItemDelegate::getEditor(SqlQueryItem* item, int type, bool shouldSkipInitialSelection, QWidget* parent) const
 {
     Q_UNUSED(type);
     SqlQueryItemLineEdit *editor = new SqlQueryItemLineEdit(shouldSkipInitialSelection, parent);
     editor->setMaxLength(std::numeric_limits<int>::max());
     editor->setFrame(editor->style()->styleHint(QStyle::SH_ItemView_DrawDelegateFrame, 0, editor));
+
+    SqlQueryModelColumn* col = item->getColumn();
+    if (col->hasDefaultValueForInsert() && item->isNewRow() && !item->isUntouched())
+    {
+        QAction* resetAct = editor->addAction(ICONS.ACT_UNDO, QLineEdit::TrailingPosition);
+        if (col->isDefault())
+            resetAct->setToolTip(tr("Reset to DEFAULT value"));
+        else if (col->isAutoIncr())
+            resetAct->setToolTip(tr("Reset to PRIMARY KEY AUTOINCREMENT value"));
+        else
+            resetAct->setToolTip(tr("Reset value"));
+
+        connect(resetAct, &QAction::triggered, this, [this, editor, item]()
+        {
+            item->setValue(QVariant(QString()), false);
+            item->setUntouched(true);
+            emit const_cast<SqlQueryItemDelegate*>(this)->closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
+        });
+    }
+
     return editor;
 }
 
@@ -260,7 +281,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, bool shouldSkipIn
         notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")
                        .arg(FkComboBox::MAX_ROWS_FOR_FK).arg(item->getColumn()->column));
 
-        return getEditor(item->getValue().userType(), item->shoulSkipInitialFocusSelection(), parent);
+        return getEditor(item, item->getValue().userType(), shouldSkipInitialSelection, parent);
     }
 
     if (rowCount == 0 && countingError && model->isStructureOutOfDate())

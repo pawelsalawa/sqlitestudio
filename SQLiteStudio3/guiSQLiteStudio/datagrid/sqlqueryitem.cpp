@@ -99,6 +99,16 @@ void SqlQueryItem::setNewRow(bool isNew)
     QStandardItem::setData(QVariant(isNew), DataRole::NEW_ROW);
 }
 
+bool SqlQueryItem::isUntouched() const
+{
+    return QStandardItem::data(DataRole::UNTOUCHED).toBool();
+}
+
+void SqlQueryItem::setUntouched(bool isUntouched)
+{
+    QStandardItem::setData(QVariant(isUntouched), DataRole::UNTOUCHED);
+}
+
 bool SqlQueryItem::isDeletedRow() const
 {
     return QStandardItem::data(DataRole::DELETED).toBool();
@@ -155,7 +165,10 @@ void SqlQueryItem::setValue(const QVariant &value, bool loadedFromDb)
     setUncommitted(modified);
 
     if (modified && getModel())
+    {
+        setUntouched(false);
         getModel()->itemValueEdited(this);
+    }
 
     valueSettingLock.unlock();
 }
@@ -242,9 +255,13 @@ QString SqlQueryItem::getToolTip() const
 
         RowId rowId = getRowId();
         QString rowIdStr;
-        if (rowId.size() == 1)
+        if (rowId.size() == 0)
         {
-            rowIdStr = rowId.values().first().toString();
+            rowIdStr = "-";
+        }
+        else if (rowId.size() == 1)
+        {
+            rowIdStr = rowId.values().constFirst().toString();
         }
         else
         {
@@ -265,11 +282,11 @@ QString SqlQueryItem::getToolTip() const
         rows << rowTmp.arg("ROWID:", rowIdStr);
     }
 
-    if (col->constraints.size() > 0)
+    if (!col->getConstraints().isEmpty())
     {
         rows << emptyRow;
         rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath(), tr("Constraints:", "data view tooltip"), "");
-        for (SqlQueryModelColumn::Constraint* constr : col->constraints)
+        for (auto&& constr : col->getConstraints())
             rows << constrRowTmp.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
     }
 
@@ -284,6 +301,27 @@ void SqlQueryItem::rememberOldValue()
 void SqlQueryItem::clearOldValue()
 {
     setOldValue(QVariant());
+}
+
+QString SqlQueryItem::getNullDisplayString() const
+{
+    if (isUntouched())
+    {
+        SqlQueryModelColumn* col = getColumn();
+        if (!col)
+            return "DEFAULT";
+
+        if (col->isDefault())
+            return "DEFAULT";
+
+        if (col->isGenerated())
+            return "GENERATED";
+
+        if (col->isPk() && col->isAutoIncr())
+            return "#";
+    }
+
+    return "NULL";
 }
 
 SqlQueryModelColumn* SqlQueryItem::getColumn() const
@@ -339,7 +377,7 @@ QVariant SqlQueryItem::data(int role) const
 
             QVariant value = getValue();
             if (isNull(value))
-                return "NULL";
+                return getNullDisplayString();
 
             if (value.metaType() == QMetaType::fromType<QString>())
             {

@@ -119,6 +119,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         QCheckBox* nullCheck = nullptr;
         QToolButton* saveToFileButton = nullptr;
         QToolButton* loadFromFileButton = nullptr;
+        QToolButton* resetValueButton = nullptr;
         QTabWidget* tabs = nullptr;
         QList<MultiEditorWidget*> editors;
         QLabel* stateLabel = nullptr;
