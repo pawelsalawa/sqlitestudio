@@ -3,7 +3,7 @@
 ** Purpose:     Header file for SQLite3 Multiple Ciphers support
 ** Author:      Ulrich Telle
 ** Created:     2020-03-01
-** Copyright:   (c) 2019-2024 Ulrich Telle
+** Copyright:   (c) 2019-2026 Ulrich Telle
 ** License:     MIT
 */
 
@@ -31,9 +31,9 @@
 
 #define SQLITE3MC_VERSION_MAJOR      2
 #define SQLITE3MC_VERSION_MINOR      3
-#define SQLITE3MC_VERSION_RELEASE    1
+#define SQLITE3MC_VERSION_RELEASE    2
 #define SQLITE3MC_VERSION_SUBRELEASE 0
-#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 2.3.1"
+#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 2.3.2"
 
 #endif /* SQLITE3MC_VERSION_H_ */
 /*** End of #include "mc_sqlite3mc_version.h" ***/
@@ -14102,6 +14102,7 @@ SQLITE_API void mc_sqlite3_activate_see(const char* zPassPhrase);
 SQLITE_API int mc_sqlite3mc_cipher_count();
 SQLITE_API int mc_sqlite3mc_cipher_index(const char* cipherName);
 SQLITE_API const char* mc_sqlite3mc_cipher_name(int cipherIndex);
+SQLITE_API int mc_sqlite3mc_cipher_name_copy(int cipherIndex, char* cipherName, int maxCipherNameSize);
 SQLITE_API int mc_sqlite3mc_config(mc_sqlite3* db, const char* paramName, int newValue);
 SQLITE_API int mc_sqlite3mc_config_cipher(mc_sqlite3* db, const char* cipherName, const char* paramName, int newValue);
 SQLITE_API unsigned char* mc_sqlite3mc_codec_data(mc_sqlite3* db, const char* zDbName, const char* paramName);

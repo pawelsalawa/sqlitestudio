@@ -4,7 +4,7 @@
 # https://github.com/utelle/wxsqlite3/releases
 # Link from download page will redicrect to the codeload.....
 
-set MC_VER 2.3.1
+set MC_VER 2.3.2
 set SQLITE_VER 3.51.3
 set THE_URL "https://github.com/utelle/SQLite3MultipleCiphers/releases/download/v${MC_VER}/sqlite3mc-${MC_VER}-sqlite-${SQLITE_VER}-amalgamation.zip"
 
