@@ -39,7 +39,8 @@ else()
         target_compile_definitions(DbSqliteMc PRIVATE
             SQLITE_OS_WIN=1
             DISABLE_AVX512
-            DISABLE_AVX2
+            __AVX512F__=0
+            __VAES__=0
         )
     else()
         target_compile_definitions(DbSqliteMc PRIVATE
