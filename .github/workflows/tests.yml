@@ -69,7 +69,7 @@ jobs:
                     }
                 }'
 
-                matrix="$(echo $ALL | jq -r --arg v ${{ inputs.target }} '.[$v]')
+                matrix="$(echo $ALL | jq -r --arg v ${{ inputs.target }} '.[$v]')"
 
                 if [ "matrix" = "null" ]; then
                     matrix="$(echo $ALL | jq '[.[]]')"
