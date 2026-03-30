@@ -15,7 +15,7 @@ on:
             description: 'Sign artifacts with SignPath'
             required: true
             type: boolean
-            default: true
+            default: false
           use_ccache:
             description: 'Use ccache (for workflow debugging only!)'
             required: false
