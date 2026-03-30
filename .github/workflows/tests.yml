@@ -75,6 +75,9 @@ jobs:
                     matrix="$(echo $ALL | jq '[.[]]')"
                 fi
 
+                echo "Matrix:"
+                echo "$matrix"
+
                 {
                     echo "matrix<<EOF"
                     echo "$matrix"
