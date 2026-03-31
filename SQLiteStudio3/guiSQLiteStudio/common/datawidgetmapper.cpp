@@ -17,13 +17,24 @@ void DataWidgetMapper::setModel(QAbstractItemModel* value)
     model = value;
 }
 
-void DataWidgetMapper::addMapping(QWidget* widget, int modelColumn, const QString& propertyName)
+void DataWidgetMapper::addMapping(QWidget* widget, int modelColumn, const QString& propertyName, const QList<PropertyAndRole>& extraProperties)
 {
     MappingEntry* entry = new MappingEntry;
     entry->columnIndex = modelColumn;
     entry->widget = widget;
-    entry->propertyName = propertyName;
+    entry->properties = {PropertyAndRole{propertyName, Qt::EditRole}};
+    entry->properties += extraProperties;
     mappings[widget] = entry;
+}
+
+void DataWidgetMapper::addMapping(QWidget* widget, const QString& propertyName, int role)
+{
+    if (!mappings.contains(widget))
+    {
+        qCritical() << "Widget" << widget << "is not mapped to any column. Cannot add extra property mapping.";
+        return;
+    }
+    mappings[widget]->properties << PropertyAndRole{propertyName, role};
 }
 
 void DataWidgetMapper::clearMapping()
@@ -49,13 +60,14 @@ int DataWidgetMapper::mappedSection(QWidget* widget) const
 
 void DataWidgetMapper::loadFromModel()
 {
-    QModelIndex idx;
-    QVariant data;
     for (MappingEntry* entry : mappings.values())
     {
-        idx = model->index(currentIndex, entry->columnIndex);
-        data = model->data(idx, Qt::EditRole);
-        entry->widget->setProperty(entry->propertyName.toLatin1().constData(), data);
+        QModelIndex idx = model->index(currentIndex, entry->columnIndex);
+        for (const PropertyAndRole& prop : entry->properties)
+        {
+            QVariant data = model->data(idx, prop.second);
+            entry->widget->setProperty(prop.first.toLatin1().constData(), data);
+        }
     }
 }
 
@@ -113,17 +125,17 @@ void DataWidgetMapper::toPrevious()
 
 void DataWidgetMapper::submit()
 {
-    QModelIndex idx;
-    QVariant value;
     for (MappingEntry* entry : mappings.values())
     {
         if (submitFilter && !submitFilter(entry->widget))
             continue;
 
-        idx = model->index(currentIndex, entry->columnIndex);
-        value = entry->widget->property(entry->propertyName.toLatin1().constData());
-        //qDebug() << "copying from form view for idx" << idx << "value:" << value;
-        model->setData(idx, value, Qt::EditRole);
+        for (const PropertyAndRole& prop : entry->properties)
+        {
+            QModelIndex idx = model->index(currentIndex, entry->columnIndex);
+            QVariant value = entry->widget->property(prop.first.toLatin1().constData());
+            model->setData(idx, value, prop.second);
+        }
     }
 }
 

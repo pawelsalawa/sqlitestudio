@@ -1061,7 +1061,7 @@ void DataView::initFormViewForNewRow()
     int row = gridView->getCurrentIndex().row();
     for (SqlQueryItem* item : getModel()->getRow(row))
     {
-        if (item->getColumn()->isAutoIncr())
+        if (item->getColumn()->hasDefaultValueForInsert())
             continue;
 
         item->setValue("");

@@ -1296,17 +1296,21 @@ void SqlQueryView::openValueEditor(SqlQueryItem* item)
     SqlQueryModelColumn* column = item->getColumn();
 
     MultiEditorDialog editor(this);
+    editor.configureResetButton(column);
     if (!column->getFkConstraints().isEmpty())
         editor.enableFk(getModel()->getDb(), column);
 
     editor.setWindowTitle(tr("Edit value"));
     editor.setValue(item->getValue(), column->dataType);
     editor.setReadOnly(!column->canEdit());
+    editor.setNewRow(item->isNewRow());
+    editor.setUntouched(item->isUntouched());
 
     if (editor.exec() == QDialog::Rejected)
         return;
 
     item->setValue(editor.getValue());
+    item->setUntouched(editor.isUntouched());
 }
 
 void SqlQueryView::openValueEditor()

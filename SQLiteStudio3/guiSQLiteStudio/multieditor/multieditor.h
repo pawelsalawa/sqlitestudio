@@ -23,6 +23,8 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         Q_OBJECT
 
         Q_PROPERTY(QVariant value READ getValue WRITE setValue)
+        Q_PROPERTY(bool untouched READ isUntouched WRITE setUntouched)
+        Q_PROPERTY(bool newRow READ isNewRow WRITE setNewRow)
 
     public:
         enum BuiltInEditor
@@ -63,10 +65,15 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void setValueAndType(const QVariant& value, const DataType& dataType, bool selectTabByValuePriority = false);
         QVariant getValue() const;
         bool isModified() const;
+        void setUntouched(bool value);
+        bool isUntouched() const;
+        void setNewRow(bool value);
+        bool isNewRow() const;
         bool eventFilter(QObject* obj, QEvent* event);
         bool getReadOnly() const;
         void setReadOnly(bool value);
         void setDeletedRow(bool value);
+        void configureResetButton(SqlQueryModelColumn* column);
         void setDataType(const DataType& dataType);
         void enableFk(Db* db, SqlQueryModelColumn* column);
         void focusThisEditor();
@@ -100,6 +107,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void updateValue(const QVariant& newValue);
         void setValueToWidget(MultiEditorWidget* editorWidget, const QVariant& newValue);
         void updateLabel();
+        void updateNullCheckLabel();
         QVariant getValueOmmitNull() const;
         void initAddTabMenu();
         void addPluginToMenu(MultiEditorWidgetPlugin* plugin);
@@ -125,7 +133,11 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         QLabel* stateLabel = nullptr;
         bool readOnly = false;
         bool deleted = false;
+        bool untouched = false;
+        bool newRow = false;
+        bool hasDefaultValueForInsert = false;
         bool invalidatingDisabled = false;
+        QString defaultValueForInsertLabel;
         QGraphicsEffect* nullEffect = nullptr;
         bool valueModified = false;
         QVariant valueBeforeNull;
@@ -156,6 +168,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void openFile();
         void saveFile();
         void find();
+        void resetValue();
 
     signals:
         void modified();

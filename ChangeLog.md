@@ -50,6 +50,7 @@
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
 - CHANGE: #5562 Several toolbars cleaned up, simplified.
+- CHANGE: #5591 Enhanced support for DEFAULT/AUTOINCR/GENERATED columns, so that it's the default value is distinct from NULL and user can always reset new cell value to its default value.
 - CHANGE: #5212 Database list now expands columns, indexes and triggers whenever the table is expanded.
 - CHANGE: #5212 Middle-click on an open database closes it. Middle-click on tables/views (in Database List) closes respective Table and View windows.
 - CHANGE: #5164 Added option to prefer sqlite_master table name over sqlite_schema on the Database List.

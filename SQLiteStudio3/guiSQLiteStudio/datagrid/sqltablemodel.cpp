@@ -199,13 +199,14 @@ QString SqlTableModel::getInsertSql(QStringList& colNameList, QStringList& sqlVa
 {
     static_qstring(insertTpl, "INSERT INTO %1 %2 %3 RETURNING *");
     static_qstring(valuesTpl, "VALUES (%1)");
+    static_qstring(columnsTpl, "(%1)");
 
     QString wrappedTableName = wrapObjIfNeeded(table);
     QString colNames = colNameList.join(", ");
     if (colNameList.isEmpty())
         return insertTpl.arg(wrappedTableName, "", "DEFAULT VALUES");
     else
-        return insertTpl.arg(wrappedTableName, colNames, valuesTpl.arg(sqlValues.join(", ")));
+        return insertTpl.arg(wrappedTableName, columnsTpl.arg(colNames), valuesTpl.arg(sqlValues.join(", ")));
 }
 
 void SqlTableModel::prepareColumnsAndBindParams(const QList<SqlQueryItem*>& itemsInRow, QStringList& colNameList,

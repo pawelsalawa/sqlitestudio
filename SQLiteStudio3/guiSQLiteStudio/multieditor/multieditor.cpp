@@ -116,9 +116,9 @@ void MultiEditor::init(TabsMode tabsMode)
     }
 
     resetValueButton = createButton(ICONS.ACT_UNDO, tr("Reset value"), SLOT(resetValue()));
-    hbox->addWidget(resetValueButton);
     resetValueButton->setVisible(false);
     resetValueButton->setEnabled(false);
+    hbox->addWidget(resetValueButton);
 
     hbox->addStretch(); // squeeze to the left
 
@@ -178,6 +178,7 @@ void MultiEditor::nullStateChanged(Qt::CheckState state)
         valueBeforeNull.clear();
 
     tabs->setEnabled(!checked);
+    updateNullCheckLabel();
     emit modified();
 }
 
@@ -208,6 +209,7 @@ void MultiEditor::invalidateValue()
 void MultiEditor::setModified()
 {
     valueModified = true;
+    setUntouched(false);
 }
 
 void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
@@ -276,6 +278,30 @@ bool MultiEditor::isModified() const
     return valueModified;
 }
 
+void MultiEditor::setUntouched(bool value)
+{
+    untouched = value;
+    resetValueButton->setEnabled(!value);
+    updateNullCheckLabel();
+}
+
+bool MultiEditor::isUntouched() const
+{
+    return untouched;
+}
+
+void MultiEditor::setNewRow(bool value)
+{
+    newRow = value;
+    resetValueButton->setVisible(newRow && hasDefaultValueForInsert);
+    updateNullCheckLabel();
+}
+
+bool MultiEditor::isNewRow() const
+{
+    return newRow;
+}
+
 bool MultiEditor::eventFilter(QObject* obj, QEvent* event)
 {
     if (event->type() == QEvent::Wheel)
@@ -310,6 +336,19 @@ void MultiEditor::setDeletedRow(bool value)
 {
     deleted = value;
     updateLabel();
+}
+
+void MultiEditor::configureResetButton(SqlQueryModelColumn* column)
+{
+    hasDefaultValueForInsert = column->hasDefaultValueForInsert();
+    if (column->isAutoIncr())
+        defaultValueForInsertLabel = "AUTOINCR";
+    else if (column->isDefault())
+        defaultValueForInsertLabel = "DEFAULT";
+    else if (column->isGenerated())
+        defaultValueForInsertLabel = "GENERATED";
+    else
+        defaultValueForInsertLabel = "";
 }
 
 void MultiEditor::setDataType(const DataType& dataType)
@@ -543,6 +582,14 @@ void MultiEditor::updateLabel()
         stateLabel->setText("");
 }
 
+void MultiEditor::updateNullCheckLabel()
+{
+    if (newRow && untouched && hasDefaultValueForInsert)
+        nullCheck->setText(defaultValueForInsertLabel);
+    else
+        nullCheck->setText(tr("Null value", "multieditor"));
+}
+
 QVariant MultiEditor::getValueOmmitNull() const
 {
     if (!tabs->currentWidget())
@@ -763,4 +810,14 @@ void MultiEditor::find()
     });
     searchDialog = dlg;
     dlg->show();
+}
+
+void MultiEditor::resetValue()
+{
+    if (!newRow || !hasDefaultValueForInsert)
+        return;
+
+    updateValue(QVariant());
+    nullCheck->setChecked(true);
+    setUntouched(true);
 }

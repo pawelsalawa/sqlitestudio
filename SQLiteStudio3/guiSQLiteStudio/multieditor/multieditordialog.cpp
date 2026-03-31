@@ -42,9 +42,29 @@ void MultiEditorDialog::setValue(const QVariant& value)
     multiEditor->setValue(value);
 }
 
-QVariant MultiEditorDialog::getValue()
+QVariant MultiEditorDialog::getValue() const
 {
     return multiEditor->getValue();
+}
+
+void MultiEditorDialog::setNewRow(bool value)
+{
+    multiEditor->setNewRow(value);
+}
+
+bool MultiEditorDialog::isNewRow() const
+{
+    return multiEditor->isNewRow();
+}
+
+void MultiEditorDialog::setUntouched(bool value)
+{
+    multiEditor->setUntouched(value);
+}
+
+bool MultiEditorDialog::isUntouched() const
+{
+    return multiEditor->isUntouched();
 }
 
 void MultiEditorDialog::setDataType(const DataType& dataType)
@@ -60,4 +80,9 @@ void MultiEditorDialog::setReadOnly(bool readOnly)
 void MultiEditorDialog::enableFk(Db* db, SqlQueryModelColumn* column)
 {
     multiEditor->enableFk(db, column);
+}
+
+void MultiEditorDialog::configureResetButton(SqlQueryModelColumn* column)
+{
+    multiEditor->configureResetButton(column);
 }

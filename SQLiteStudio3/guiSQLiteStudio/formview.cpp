@@ -76,10 +76,11 @@ void FormView::reload()
 
 void FormView::focusFirstEditor()
 {
-    if (editors.size() == 0)
+    QList<MultiEditor*> enabledEditors = editors | FILTER(e, {return e->isEnabled();});
+    if (enabledEditors.size() == 0)
         return;
 
-    editors.first()->focusThisEditor();
+    enabledEditors.first()->focusThisEditor();
 }
 
 void FormView::reloadInternal()
@@ -134,8 +135,10 @@ MultiEditor* FormView::addColumn(int colIdx, SqlQueryModelColumn* column)
     MultiEditor* multiEditor = new MultiEditor();
     multiEditor->setReadOnly(readOnly);
     multiEditor->setCornerLabel(groupLabel);
-    multiEditor->enableValueReset(column);
+    multiEditor->configureResetButton(column);
     dataMapper->addMapping(multiEditor, colIdx, "value");
+    dataMapper->addMapping(multiEditor, "untouched", SqlQueryItem::DataRole::UNTOUCHED);
+    dataMapper->addMapping(multiEditor, "newRow", SqlQueryItem::DataRole::NEW_ROW);
     widgets << multiEditor;
     editors << multiEditor;
     contents->layout()->addWidget(multiEditor);
