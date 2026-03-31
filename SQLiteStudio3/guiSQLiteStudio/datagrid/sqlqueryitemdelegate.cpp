@@ -25,6 +25,7 @@
 #include <QTextLayout>
 #include <QtMath>
 #include <QScreen>
+#include <QAction>
 
 bool SqlQueryItemDelegate::warnedAboutHugeContents = false;
 
