@@ -24,7 +24,6 @@
 #include "dbtree/dbtree.h"
 #include "windows/editorwindow.h"
 #include "syntaxhighlighterplugin.h"
-#include "datagrid/cellrendererplugin.h"
 #include "sqleditor.h"
 #include "style.h"
 #include "common/dialogsizehandler.h"
@@ -155,7 +154,7 @@ QString ConfigDialog::getFilterString(QTreeWidget *widget)
 {
     QList<QTreeWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QTreeWidgetItem* item : items)
+    for (QTreeWidgetItem*& item : items)
     {
         if (!item)
             continue;
@@ -171,7 +170,7 @@ QString ConfigDialog::getFilterString(QListWidget *widget)
 {
     QList<QListWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QListWidgetItem* item : items)
+    for (QListWidgetItem*& item : items)
     {
         if (item)
             strList << item->text() + " " + item->toolTip();
@@ -184,7 +183,7 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 {
     QList<QTableWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QTableWidgetItem* item : items)
+    for (QTableWidgetItem*& item : items)
     {
         if (item)
             strList << item->text() + " " + item->toolTip();
@@ -383,7 +382,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     QColor normalColor = ui->categoriesTree->palette().color(QPalette::Active, QPalette::WindowText);
     QColor disabledColor = ui->categoriesTree->palette().color(QPalette::Disabled, QPalette::WindowText);
     QList<QWidget*> widgets = ui->stackedWidget->findChildren<QWidget*>();
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
         widget->setProperty("matched", false);
 
     auto applyMatchStyle = qScopeGuard([widgets]
@@ -405,7 +404,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     }
 
     QList<QWidget*> matchedWidgets;
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
     {
         if (getFilterString(widget).contains(filter, Qt::CaseInsensitive))
         {
@@ -469,7 +468,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType:
     typedef QPair<int,MultiEditorWidgetPlugin*> PluginWithPriority;
     QList<PluginWithPriority> sortedPlugins;
     PluginWithPriority editorWithPrio;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         if (!plugin->validFor(modelDataType))
             continue;
@@ -532,7 +531,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateCustomDataTypeEditors(const 
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins;
     QListWidgetItem* item = nullptr;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
         item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
@@ -558,7 +557,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateDefaultDataTypeEditors(DataT
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins = getDefaultEditorsForType(typeEnum);
     QListWidgetItem* item = nullptr;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
         item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
@@ -618,7 +617,7 @@ void ConfigDialog::transformDataTypeEditorsToCustomList(QListWidgetItem* typeIte
     QList<MultiEditorWidgetPlugin*> plugins = getDefaultEditorsForType(dataType);
 
     QStringList pluginNames;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
         pluginNames << plugin->getName();
 
     setPluginNamesForDataTypeItem(typeItem, pluginNames);
@@ -1430,7 +1429,7 @@ void ConfigDialog::refreshFormattersPage()
 
     QList<CodeFormatterPlugin*> plugins = PLUGINS->getLoadedPlugins<CodeFormatterPlugin>();
     QHash<QString,QList<CodeFormatterPlugin*>> groupedPlugins;
-    for (CodeFormatterPlugin* plugin : plugins)
+    for (CodeFormatterPlugin*& plugin : plugins)
         groupedPlugins[plugin->getLanguage()] << plugin;
 
     formatterLangToPluginComboMap.clear();

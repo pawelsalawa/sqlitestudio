@@ -3,7 +3,6 @@
 #include "uiutils.h"
 #include "datagrid/sqlquerymodel.h"
 #include "iconmanager.h"
-#include "dblistmodel.h"
 #include "services/notifymanager.h"
 #include "dbtree/dbtree.h"
 #include "datagrid/sqlqueryitem.h"
@@ -559,7 +558,7 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
     bool isNamed = false;
     bool nameAlreadyInList = false;
     int i = 0;
-    for (TokenPtr& token : bindTokens)
+    for (auto&& token : bindTokens)
     {
         isNamed = (token->value != "?");
         nameAlreadyInList = isNamed && namedBindParams.contains(token->value);

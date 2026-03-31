@@ -74,6 +74,8 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
         void updateColumnState(int index, bool updateGlobalState = true);
         void updateState();
         void finished();
+        void selectAll();
+        void deselectAll();
 
     public:
         void accept();
