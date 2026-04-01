@@ -45,6 +45,7 @@
 #include <QItemDelegate>
 #include <QKeySequenceEdit>
 #include <QPlainTextEdit>
+#include <QTimer>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -55,7 +56,7 @@
     if (w##WidgetType)\
         return getFilterString(w##WidgetType) + " " + Widget->toolTip();
 
-class ConfigDialogItemDelegate : public QItemDelegate
+class ConfigDialogItemShortcutsDelegate : public QItemDelegate
 {
     public:
         QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -65,6 +66,16 @@ class ConfigDialogItemDelegate : public QItemDelegate
             QSize size = QItemDelegate::sizeHint(option, index);
             return isCategory ? QSize(size.width(), size.height() * 1.7) : size;
         }
+};
+
+class ConfigDialogItemMainDelegate : public QItemDelegate
+{
+public:
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+    {
+        QSize size = QItemDelegate::sizeHint(option, index);
+        return QSize(size.width(), 32);
+    }
 };
 
 ConfigDialog::ConfigDialog(QWidget *parent) :
@@ -195,18 +206,29 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 void ConfigDialog::showEvent(QShowEvent* event)
 {
     Q_UNUSED(event);
+    ui->categoriesTree->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->categoriesTree->resizeColumnToContents(0);
-    int adjustedColumnWidth = ui->categoriesTree->columnWidth(0) + 4;
-    if (adjustedColumnWidth > ui->categoriesTree->width()) {
-        if (adjustedColumnWidth > (width() / 2))
-            adjustedColumnWidth = width() / 2;
+    QTimer::singleShot(0, this, [this]()
+    {
+        int adjustedColumnWidth = ui->categoriesTree->header()->sectionSize(0)
+                                  + ui->categoriesTree->indentation()
+                                  + 2 * ui->categoriesTree->frameWidth();
+        if (adjustedColumnWidth > ui->categoriesTree->width())
+        {
+            int mainWd = ui->mainSplitter->width();
+            int splitWd = ui->mainSplitter->handleWidth();
+            if (adjustedColumnWidth > mainWd / 2)
+                adjustedColumnWidth = mainWd / 2;
 
-        QList<int> sizes = ui->splitter->sizes();
-        int rightPartSize = sizes[0] + sizes[1] - adjustedColumnWidth;
-        sizes[0] = adjustedColumnWidth;
-        sizes[1] = rightPartSize;
-        ui->splitter->setSizes(sizes);
-    }
+            QList<int> sizes = ui->mainSplitter->sizes();
+            int rightPartSize = mainWd - splitWd - adjustedColumnWidth;
+            sizes[0] = adjustedColumnWidth;
+            sizes[1] = rightPartSize;
+            ui->mainSplitter->setSizes(sizes);
+        }
+        ui->mainSplitter->setStretchFactor(0, 0);
+        ui->mainSplitter->setStretchFactor(1, 1);
+    });
 }
 
 void ConfigDialog::init()
@@ -223,6 +245,8 @@ void ConfigDialog::init()
                 );
 
     ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
+    ui->categoriesTree->setIconSize(QSize(24, 24));
+    ui->categoriesTree->setItemDelegate(new ConfigDialogItemMainDelegate());
 
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
     connectMapperSignals(configMapper);
@@ -1896,7 +1920,7 @@ void ConfigDialog::initShortcuts()
     new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
 
     QList<CfgCategory*> categories = getShortcutsCfgCategories();
-    ui->shortcutsTable->setItemDelegate(new ConfigDialogItemDelegate());
+    ui->shortcutsTable->setItemDelegate(new ConfigDialogItemShortcutsDelegate());
 
     sSort(categories, [](CfgCategory* cat1, CfgCategory* cat2) -> bool
     {
