@@ -915,7 +915,7 @@
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="2855"/>
+        <location filename="../dialogs/configdialog.ui" line="2842"/>
         <source>Configuration</source>
         <translation>配置</translation>
     </message>
@@ -961,7 +961,7 @@
         <translation>数据库列表</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1197"/>
+        <location filename="../dialogs/configdialog.ui" line="1184"/>
         <source>Code assistant</source>
         <translation>代码助手</translation>
     </message>
@@ -972,7 +972,7 @@
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="172"/>
-        <location filename="../dialogs/configdialog.ui" line="1139"/>
+        <location filename="../dialogs/configdialog.ui" line="1126"/>
         <source>SQL Editor</source>
         <translation>SQL 编辑器</translation>
     </message>
@@ -1072,355 +1072,353 @@
         <translation>浏览和编辑数据</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="524"/>
-        <location filename="../dialogs/configdialog.ui" line="537"/>
+        <location filename="../dialogs/configdialog.ui" line="530"/>
+        <location filename="../dialogs/configdialog.ui" line="556"/>
         <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;在配置文件中存储，“表填充”对话框中的最大数量。值 100 应已足够。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="540"/>
+        <location filename="../dialogs/configdialog.ui" line="559"/>
         <source>Number of memorized table populating configurations</source>
         <translation>表填充配置中的默认填充行数</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="579"/>
+        <location filename="../dialogs/configdialog.ui" line="566"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在表单视图编辑器中编辑文本时，将 Unicode 行分隔符 (U+2028, U+2029) 转换为标准 LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) 字符。&lt;/p&gt;&lt;p&gt;用此选项可保留原始字符。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="582"/>
+        <location filename="../dialogs/configdialog.ui" line="569"/>
         <source>Convert Unicode line separators to LF (\n) in form view editors</source>
         <translation>在窗体视图编辑器中将Unicode行分隔符转换为LF（\n）</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="585"/>
+        <location filename="../dialogs/configdialog.ui" line="572"/>
         <source>General.UseLfForMultilineEditors</source>
         <translation>General.UseLfForMultilineEditors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="592"/>
+        <location filename="../dialogs/configdialog.ui" line="510"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, SQLiteStudio automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后，SQLiteStudio 会自动将非常小的实数（例如 &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;）转换为科学计数法。&lt;/p&gt;&lt;p&gt;对于数值大小允许以可读的十进制表示的值，则使用十进制表示法。禁用后，实数始终以十进制表示法显示，即使这会导致小数部分非常长。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="595"/>
+        <location filename="../dialogs/configdialog.ui" line="513"/>
         <source>Use scientific notation for very small real numbers in the grid view</source>
         <translation>在网格视图中，对于非常小的实数，请使用科学计数法。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="621"/>
+        <location filename="../dialogs/configdialog.ui" line="608"/>
         <source>Data column width</source>
         <translation>数据列宽度</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="627"/>
+        <location filename="../dialogs/configdialog.ui" line="614"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;当用户在列中输入新值，且该值大于当前列宽时，应用程序将放大该列以适应新值，但宽度不得超过上述选项中定义的限制。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="630"/>
+        <location filename="../dialogs/configdialog.ui" line="617"/>
         <source>Enlarge column when entering value longer than current width</source>
         <translation>当输入的数值长于当前宽度时，放大列</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="646"/>
+        <location filename="../dialogs/configdialog.ui" line="633"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
         <translation>&lt;p&gt;当数据被加载到网格视图时，列宽会自动调整。此值限制初始化时的列宽度，之后您仍可以手动调整列宽，不受此限制。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="504"/>
+        <location filename="../dialogs/configdialog.ui" line="523"/>
         <source>Number of data rows per page:</source>
         <translation>每页数据行数：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="511"/>
+        <location filename="../dialogs/configdialog.ui" line="543"/>
         <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
         <translation>&lt;p&gt;此项启用后，用户鼠标悬停在任意数据视图（查询结果、表数据、视图数据）的单元格上时，工具提示将显示该单元格的详细信息——包括列数据类型、约束、ROWID 等。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="514"/>
+        <location filename="../dialogs/configdialog.ui" line="546"/>
         <source>Show column and row details tooltip in data view</source>
         <translation>在数据视图中展示列与行的详细信息</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="491"/>
+        <location filename="../dialogs/configdialog.ui" line="592"/>
         <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
         <translation>&lt;p&gt;编辑一个过去为 NULL 值的单元格且新输入的值为空字符串时，此选项启用则该单元格的值保持 NULL 不变，此选项未启用则空字符串覆盖原 NULL 值。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="494"/>
+        <location filename="../dialogs/configdialog.ui" line="595"/>
         <source>Keep NULL value when entering empty value</source>
         <translation>当输入空值时保持 NULL 值</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="605"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用此选项后，提交一个 NULL 值时，如果该列已定义 DEFAULT 值，即使该列允许包含 NULL 值，也始终采用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此选项则仅在列有非空（NOT NULL）约束时将 NULL 值转变为 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用此选项后，提交一个 NULL 值时，如果该列已定义 DEFAULT 值，即使该列允许包含 NULL 值，也始终采用 DEFAULT 值。&lt;/p&gt;&lt;p&gt;禁用此选项则仅在列有非空（NOT NULL）约束时将 NULL 值转变为 DEFAULT 值。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="608"/>
         <source>Use DEFAULT value (if defined), when committing NULL value</source>
-        <translation>提交 NULL 值时使用 DEFAULT 值（如果已定义）</translation>
+        <translation type="vanished">提交 NULL 值时使用 DEFAULT 值（如果已定义）</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="566"/>
+        <location filename="../dialogs/configdialog.ui" line="579"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. SQLiteStudio may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果查询结果包含数十乃至上百个列，则加载可能占用数个 GB 的空闲内存。SQLiteStudio 在这种情况下可能限制一页上显示的结果数量以保护您的计算机。如果您了解自己不会在如此大的数据库上作业，则可以禁用此限制以始终在一页上看到大量的行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="569"/>
+        <location filename="../dialogs/configdialog.ui" line="582"/>
         <source>Limit number of rows for in case of dozens of columns</source>
         <translation>列数过多时限制每页显示的行数</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="691"/>
+        <location filename="../dialogs/configdialog.ui" line="678"/>
         <source>Inserting new row in data grid</source>
         <translation>网格视图中插入新行时</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="697"/>
+        <location filename="../dialogs/configdialog.ui" line="684"/>
         <source>Before currently selected row</source>
         <translation>在选中行之前</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="713"/>
+        <location filename="../dialogs/configdialog.ui" line="700"/>
         <source>After currently selected row</source>
         <translation>在选中行之后</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="726"/>
+        <location filename="../dialogs/configdialog.ui" line="713"/>
         <source>At the end of data view</source>
         <translation>在数据视图的末尾</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="742"/>
+        <location filename="../dialogs/configdialog.ui" line="729"/>
         <source>Table windows</source>
         <translation>表窗口</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="748"/>
+        <location filename="../dialogs/configdialog.ui" line="735"/>
         <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;启用后，表窗口将显示数据选项卡，而不是结构选项卡。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="751"/>
+        <location filename="../dialogs/configdialog.ui" line="738"/>
         <source>Open Table Windows with the data tab for start</source>
         <translation>打开表窗口时显示“数据”选项卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="761"/>
+        <location filename="../dialogs/configdialog.ui" line="748"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;启用后，“数据”选项卡将作为第一个选项卡放置在每个表窗口中，而不是位于第二位。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="764"/>
+        <location filename="../dialogs/configdialog.ui" line="751"/>
         <source>Place data tab as first tab in a Table Window</source>
         <translation>将数据作为表窗口的第一项</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="777"/>
+        <location filename="../dialogs/configdialog.ui" line="764"/>
         <source>View windows</source>
         <translation>视图窗口</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="783"/>
+        <location filename="../dialogs/configdialog.ui" line="770"/>
         <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
         <translation>&lt;p&gt;启用后，视图窗口将显示数据选项卡，而不是结构选项卡。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="786"/>
+        <location filename="../dialogs/configdialog.ui" line="773"/>
         <source>Open View Windows with the data tab for start</source>
         <translation>打开视图窗口时显示“数据”选项卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="796"/>
+        <location filename="../dialogs/configdialog.ui" line="783"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
         <translation>&lt;p&gt;启用后，“数据”选项卡将作为第一个选项卡放置在每个视图窗口中，而不是位于第二个位置。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="799"/>
+        <location filename="../dialogs/configdialog.ui" line="786"/>
         <source>Place data tab as first tab in a View Window</source>
         <translation>将“数据”选项卡放置为视图窗口的首个选项卡</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="843"/>
+        <location filename="../dialogs/configdialog.ui" line="830"/>
         <source>Data types</source>
         <translation>数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="896"/>
+        <location filename="../dialogs/configdialog.ui" line="883"/>
         <source>Available editors:</source>
         <translation>可用的编辑器：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1007"/>
+        <location filename="../dialogs/configdialog.ui" line="994"/>
         <source>Schema editing</source>
         <translation>结构编辑</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1019"/>
+        <location filename="../dialogs/configdialog.ui" line="1006"/>
         <source>Number of DDL changes kept in history.</source>
         <translation>DDL 变更历史的记录数量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1032"/>
+        <location filename="../dialogs/configdialog.ui" line="1019"/>
         <source>DDL history size:</source>
         <translation>DDL 历史大小：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1039"/>
+        <location filename="../dialogs/configdialog.ui" line="1026"/>
         <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
         <translation>提交结构更改时不显示 DDL 预览对话框</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1225"/>
-        <location filename="../dialogs/configdialog.ui" line="1241"/>
+        <location filename="../dialogs/configdialog.ui" line="1212"/>
+        <location filename="../dialogs/configdialog.ui" line="1228"/>
         <source>Number of queries kept in the history.</source>
         <translation>查询历史记录数量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1254"/>
-        <location filename="../dialogs/configdialog.ui" line="1264"/>
+        <location filename="../dialogs/configdialog.ui" line="1241"/>
+        <location filename="../dialogs/configdialog.ui" line="1251"/>
         <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;历史记录中存储查询参数（:param, @param, $param, ?）的最大数量。当您重新在同一名称/位置下使用参数时，SQLiteStudio 将使用最近记忆的值预填充初始化它（仍可修改）。值 1000 应已足够。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1148"/>
+        <location filename="../dialogs/configdialog.ui" line="1135"/>
         <source>Execute only the query under the cursor</source>
         <translation>只执行输入符所在行的语句</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1257"/>
+        <location filename="../dialogs/configdialog.ui" line="1244"/>
         <source>Number of memorized query parameters</source>
         <translation>默认的查询参数数量</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="665"/>
+        <location filename="../dialogs/configdialog.ui" line="652"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;数据读入网格视图时，列宽会自动调整。该值限制了调整的初始宽度，但用户仍可手动调整列宽，使其超过该限制。当用户输入新的、更长的值时，该值也会用于扩大列宽（请参阅下面的选项）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="668"/>
+        <location filename="../dialogs/configdialog.ui" line="655"/>
         <source>Limit automatic data column width to (in pixels):</source>
         <translation>限制自动数据列宽度为（像素）：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="675"/>
+        <location filename="../dialogs/configdialog.ui" line="662"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;数据列的初始宽度将至少设置为在标题中显示列的完整名称。这仍然可以被以像素为单位指定的列宽初始限制（上述设置）所覆盖。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="678"/>
+        <location filename="../dialogs/configdialog.ui" line="665"/>
         <source>Keep at least the width to show complete column name</source>
         <translation>至少保持显示完整列名的宽度</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1171"/>
+        <location filename="../dialogs/configdialog.ui" line="1158"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用，长度超过编辑器宽度的行将被包裹，因此不需要水平滚动。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1174"/>
+        <location filename="../dialogs/configdialog.ui" line="1161"/>
         <source>Wrap lines in SQL editor</source>
         <translation>在 SQL 编辑器中换行</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1161"/>
+        <location filename="../dialogs/configdialog.ui" line="1148"/>
         <source>Highlight current query</source>
         <translation>高亮当前查询</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1052"/>
+        <location filename="../dialogs/configdialog.ui" line="1039"/>
         <source>Updates</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1058"/>
+        <location filename="../dialogs/configdialog.ui" line="1045"/>
         <source>Automatically check for updates at startup</source>
         <translation>启动时自动检查更新</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1071"/>
+        <location filename="../dialogs/configdialog.ui" line="1058"/>
         <source>Session</source>
         <translation>会话</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1077"/>
+        <location filename="../dialogs/configdialog.ui" line="1064"/>
         <source>Restore last session (active MDI windows) after startup</source>
         <translation>启动后恢复上一次会话</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1087"/>
+        <location filename="../dialogs/configdialog.ui" line="1074"/>
         <source>Allow multiple instances of the application at the same time</source>
         <translation>允许同时打开多个此程序</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1100"/>
+        <location filename="../dialogs/configdialog.ui" line="1087"/>
         <source>Status Field</source>
         <translation>状态栏</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1106"/>
+        <location filename="../dialogs/configdialog.ui" line="1093"/>
         <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
         <translation>&lt;p&gt;在用户手动关闭了状态面板后，此选项能确保有新消息被出现时状态面板自动被重新开启。如果禁用，状态面板只能由用户手动通过“视图”菜单来重新开启。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1109"/>
+        <location filename="../dialogs/configdialog.ui" line="1096"/>
         <source>Always open Status panel when new message is printed</source>
         <translation>有新消息输出时就打开状态面板</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1322"/>
+        <location filename="../dialogs/configdialog.ui" line="1309"/>
         <source>Code syntax colors</source>
         <translation>代码语法颜色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1490"/>
+        <location filename="../dialogs/configdialog.ui" line="1477"/>
         <source>Keyword foreground</source>
         <translation>关键字前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1328"/>
+        <location filename="../dialogs/configdialog.ui" line="1315"/>
         <source>Regular foreground</source>
         <translation>常规前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1409"/>
+        <location filename="../dialogs/configdialog.ui" line="1396"/>
         <source>String foreground</source>
         <translation>字符串前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1652"/>
+        <location filename="../dialogs/configdialog.ui" line="1639"/>
         <source>Comment foreground</source>
         <translation>注释前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1733"/>
+        <location filename="../dialogs/configdialog.ui" line="1720"/>
         <source>Valid objects foreground</source>
         <translation>有效对象前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2014"/>
+        <location filename="../dialogs/configdialog.ui" line="2001"/>
         <source>Current query background</source>
         <translation>当前查询背景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1895"/>
+        <location filename="../dialogs/configdialog.ui" line="1882"/>
         <source>Bind parameter foreground</source>
         <translation>绑定参数前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1976"/>
+        <location filename="../dialogs/configdialog.ui" line="1963"/>
         <source>Current line background</source>
         <translation>当前行背景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2055"/>
+        <location filename="../dialogs/configdialog.ui" line="2042"/>
         <source>Matched parenthesis background</source>
         <translation>匹配括号背景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2042"/>
+        <location filename="../dialogs/configdialog.ui" line="2029"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以在常规设置页面完全禁用当前查询高亮显示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1495,352 +1493,352 @@
         <translation>尽可能跳过对话</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="912"/>
+        <location filename="../dialogs/configdialog.ui" line="899"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;定义在 &lt;span style=&quot; font-weight:700;&quot;&gt;表单视图&lt;/span&gt; 和 &lt;span style=&quot; font-weight:700;&quot;&gt;弹出式编辑器对话框&lt;/span&gt;.中，哪些数据编辑器可用于特定列类型。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="928"/>
+        <location filename="../dialogs/configdialog.ui" line="915"/>
         <source>Preview of editors for this data type (drag to reorder):</source>
         <translation>此数据类型的编辑器预览（拖动可重新排序）：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="952"/>
+        <location filename="../dialogs/configdialog.ui" line="939"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您可以为表格列中声明的特定数据类型（不区分大小写）定义使用哪些单元格渲染器。如果未为给定类型定义渲染器，则使用默认渲染器。&lt;/p&gt;&lt;p&gt;可选插件可以提供额外的渲染器并为数据类型设置自己的默认映射，您仍然可以在此处覆盖这些映射。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="971"/>
+        <location filename="../dialogs/configdialog.ui" line="958"/>
         <source>General.DataRenderers</source>
         <translation>General.DataRenderers</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="978"/>
+        <location filename="../dialogs/configdialog.ui" line="965"/>
         <source>Data type</source>
         <translation>数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="983"/>
+        <location filename="../dialogs/configdialog.ui" line="970"/>
         <source>Renderer</source>
         <translation>渲染器</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1145"/>
+        <location filename="../dialogs/configdialog.ui" line="1132"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;当存在多个查询时，仅执行光标下的查询。&lt;br/&gt;如果禁用此功能，则执行所有查询。&lt;br/&gt;您还可以执行选定的查询或使用快捷键（%1 执行单个查询，%2 执行所有查询）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1158"/>
+        <location filename="../dialogs/configdialog.ui" line="1145"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;突出显示光标下的查询 - 使用 &lt;span style=&quot; font-style:italic;&quot;&gt;执行查询&lt;/span&gt;时将执行的相同查询。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1184"/>
+        <location filename="../dialogs/configdialog.ui" line="1171"/>
         <source>Disable blinking text cursor</source>
         <translation>禁用闪烁的文本光标</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1206"/>
+        <location filename="../dialogs/configdialog.ui" line="1193"/>
         <source>Trigger assistant after typing a dot</source>
         <translation>输入句点后触发助手</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1219"/>
+        <location filename="../dialogs/configdialog.ui" line="1206"/>
         <source>History</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1228"/>
+        <location filename="../dialogs/configdialog.ui" line="1215"/>
         <source>Query history size:</source>
         <translation>查询历史记录大小：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1371"/>
-        <location filename="../dialogs/configdialog.ui" line="1452"/>
-        <location filename="../dialogs/configdialog.ui" line="1533"/>
-        <location filename="../dialogs/configdialog.ui" line="1614"/>
-        <location filename="../dialogs/configdialog.ui" line="1695"/>
-        <location filename="../dialogs/configdialog.ui" line="1776"/>
-        <location filename="../dialogs/configdialog.ui" line="1857"/>
-        <location filename="../dialogs/configdialog.ui" line="1938"/>
-        <location filename="../dialogs/configdialog.ui" line="2130"/>
+        <location filename="../dialogs/configdialog.ui" line="1358"/>
+        <location filename="../dialogs/configdialog.ui" line="1439"/>
+        <location filename="../dialogs/configdialog.ui" line="1520"/>
+        <location filename="../dialogs/configdialog.ui" line="1601"/>
+        <location filename="../dialogs/configdialog.ui" line="1682"/>
+        <location filename="../dialogs/configdialog.ui" line="1763"/>
+        <location filename="../dialogs/configdialog.ui" line="1844"/>
+        <location filename="../dialogs/configdialog.ui" line="1925"/>
+        <location filename="../dialogs/configdialog.ui" line="2117"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1396"/>
-        <location filename="../dialogs/configdialog.ui" line="1477"/>
-        <location filename="../dialogs/configdialog.ui" line="1558"/>
-        <location filename="../dialogs/configdialog.ui" line="1639"/>
-        <location filename="../dialogs/configdialog.ui" line="1720"/>
-        <location filename="../dialogs/configdialog.ui" line="1801"/>
-        <location filename="../dialogs/configdialog.ui" line="1882"/>
-        <location filename="../dialogs/configdialog.ui" line="1963"/>
-        <location filename="../dialogs/configdialog.ui" line="2155"/>
+        <location filename="../dialogs/configdialog.ui" line="1383"/>
+        <location filename="../dialogs/configdialog.ui" line="1464"/>
+        <location filename="../dialogs/configdialog.ui" line="1545"/>
+        <location filename="../dialogs/configdialog.ui" line="1626"/>
+        <location filename="../dialogs/configdialog.ui" line="1707"/>
+        <location filename="../dialogs/configdialog.ui" line="1788"/>
+        <location filename="../dialogs/configdialog.ui" line="1869"/>
+        <location filename="../dialogs/configdialog.ui" line="1950"/>
+        <location filename="../dialogs/configdialog.ui" line="2142"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1571"/>
+        <location filename="../dialogs/configdialog.ui" line="1558"/>
         <source>Number foreground</source>
         <translation>数字前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1814"/>
+        <location filename="../dialogs/configdialog.ui" line="1801"/>
         <source>BLOB value foreground</source>
         <translation>BLOB 值前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2093"/>
+        <location filename="../dialogs/configdialog.ui" line="2080"/>
         <source>Matched parenthesis foreground</source>
         <translation>匹配括号前景色</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2192"/>
-        <location filename="../dialogs/configdialog.ui" line="2300"/>
+        <location filename="../dialogs/configdialog.ui" line="2179"/>
+        <location filename="../dialogs/configdialog.ui" line="2287"/>
         <source>Reset to defaults</source>
         <translation>重置为默认值</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2218"/>
+        <location filename="../dialogs/configdialog.ui" line="2205"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>以名称或按键组合筛选快捷键</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2262"/>
+        <location filename="../dialogs/configdialog.ui" line="2249"/>
         <source>Action</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2267"/>
+        <location filename="../dialogs/configdialog.ui" line="2254"/>
         <source>Key combination</source>
         <translation>按键组合</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2341"/>
-        <location filename="../dialogs/configdialog.ui" line="2845"/>
+        <location filename="../dialogs/configdialog.ui" line="2328"/>
+        <location filename="../dialogs/configdialog.ui" line="2832"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2347"/>
+        <location filename="../dialogs/configdialog.ui" line="2334"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>语言变更在程序重启后生效。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2364"/>
+        <location filename="../dialogs/configdialog.ui" line="2351"/>
         <source>Compact layout</source>
         <translation>紧凑布局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2370"/>
+        <location filename="../dialogs/configdialog.ui" line="2357"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation>&lt;p&gt;紧凑布局会将界面中的边框与留白减至最小，然后用这些区域展示更多数据。这会使界面看起来有一点不美观，但将可以同时展示更多的数据。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2373"/>
+        <location filename="../dialogs/configdialog.ui" line="2360"/>
         <source>Use compact layout</source>
         <translation>使用紧凑布局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2389"/>
+        <location filename="../dialogs/configdialog.ui" line="2376"/>
         <source>Main window dock areas</source>
         <translation>主窗口停靠区域</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2395"/>
+        <location filename="../dialogs/configdialog.ui" line="2382"/>
         <source>Left and right areas occupy corners</source>
         <translation>左右布局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2415"/>
+        <location filename="../dialogs/configdialog.ui" line="2402"/>
         <source>Top and bottom areas occupy corners</source>
         <translation>上下布局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2435"/>
+        <location filename="../dialogs/configdialog.ui" line="2422"/>
         <source>Toolbars</source>
         <translation>工具栏</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2441"/>
-        <location filename="../dialogs/configdialog.ui" line="2451"/>
+        <location filename="../dialogs/configdialog.ui" line="2428"/>
+        <location filename="../dialogs/configdialog.ui" line="2438"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;以默认大小的百分比表示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2444"/>
+        <location filename="../dialogs/configdialog.ui" line="2431"/>
         <source>Icon size</source>
         <translation>图标大小</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2454"/>
+        <location filename="../dialogs/configdialog.ui" line="2441"/>
         <source>General.ToolBarIconSize</source>
         <translation>General.ToolBarIconSize</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2569"/>
+        <location filename="../dialogs/configdialog.ui" line="2556"/>
         <source>Hide built-in plugins</source>
         <translation>隐藏内置插件</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2598"/>
+        <location filename="../dialogs/configdialog.ui" line="2585"/>
         <source>Current style:</source>
         <translation>当前风格：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2615"/>
+        <location filename="../dialogs/configdialog.ui" line="2602"/>
         <source>Preview</source>
         <translation>预览</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2625"/>
+        <location filename="../dialogs/configdialog.ui" line="2612"/>
         <source>Enabled</source>
         <translation>已启用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2801"/>
+        <location filename="../dialogs/configdialog.ui" line="2788"/>
         <source>Disabled</source>
         <translation>已禁用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2850"/>
+        <location filename="../dialogs/configdialog.ui" line="2837"/>
         <source>Active formatter plugin</source>
         <translation>启用格式化插件</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2888"/>
+        <location filename="../dialogs/configdialog.ui" line="2875"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;提示：&lt;/span&gt; 除了此处提供的设置外，您还可以通过按住 &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; 并滚动 &lt;span style=&quot; font-weight:700;&quot;&gt;鼠标滚轮&lt;/span&gt; 在要更改字体大小的元素上，动态调整大多数界面元素的字体大小。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2904"/>
+        <location filename="../dialogs/configdialog.ui" line="2891"/>
         <source>SQL editor font</source>
         <translation>SQL 编辑器字体</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2920"/>
+        <location filename="../dialogs/configdialog.ui" line="2907"/>
         <source>Database list font</source>
         <translation>数据库列表字体</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2936"/>
+        <location filename="../dialogs/configdialog.ui" line="2923"/>
         <source>Database list additional label font</source>
         <translation>数据库列表额外信息字体</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2952"/>
+        <location filename="../dialogs/configdialog.ui" line="2939"/>
         <source>Data view font</source>
         <translation>数据视图字体</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2968"/>
+        <location filename="../dialogs/configdialog.ui" line="2955"/>
         <source>Status field font</source>
         <translation>状态栏字体</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1203"/>
+        <location filename="../dialogs/configdialog.ui" line="1190"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如果启用该选项，当用户键入例如 &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; 到提出表格的列。 如果禁用该选项，用户就必须明确点击助手热键。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1004"/>
+        <location filename="../dialogs/configdialog.cpp" line="1003"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1005"/>
+        <location filename="../dialogs/configdialog.cpp" line="1004"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>分类：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1006"/>
+        <location filename="../dialogs/configdialog.cpp" line="1005"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1007"/>
+        <location filename="../dialogs/configdialog.cpp" line="1006"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>作者：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1009"/>
+        <location filename="../dialogs/configdialog.cpp" line="1008"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>内部名称：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1010"/>
+        <location filename="../dialogs/configdialog.cpp" line="1009"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>依赖：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1011"/>
+        <location filename="../dialogs/configdialog.cpp" line="1010"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>冲突：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1015"/>
+        <location filename="../dialogs/configdialog.cpp" line="1014"/>
         <source>Plugin details</source>
         <translation>插件详情</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1625"/>
+        <location filename="../dialogs/configdialog.cpp" line="1624"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>切换时插件会立即加载/卸载。但此列表的修改仅在点击确定按钮后被保存。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1683"/>
+        <location filename="../dialogs/configdialog.cpp" line="1682"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1（内置）</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1725"/>
+        <location filename="../dialogs/configdialog.cpp" line="1724"/>
         <source>Details</source>
         <translation>详情</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1739"/>
+        <location filename="../dialogs/configdialog.cpp" line="1738"/>
         <source>No plugins in this category.</source>
         <translation>没有此分类下的插件。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1839"/>
-        <location filename="../dialogs/configdialog.cpp" line="1868"/>
+        <location filename="../dialogs/configdialog.cpp" line="1838"/>
+        <location filename="../dialogs/configdialog.cpp" line="1867"/>
         <source>Add new data type</source>
         <translation>添加新的数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1843"/>
-        <location filename="../dialogs/configdialog.cpp" line="1872"/>
+        <location filename="../dialogs/configdialog.cpp" line="1842"/>
+        <location filename="../dialogs/configdialog.cpp" line="1871"/>
         <source>Rename selected data type</source>
         <translation>重命名所选数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1847"/>
-        <location filename="../dialogs/configdialog.cpp" line="1876"/>
+        <location filename="../dialogs/configdialog.cpp" line="1846"/>
+        <location filename="../dialogs/configdialog.cpp" line="1875"/>
         <source>Delete selected data type</source>
         <translation>删除所选数据类型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1960"/>
+        <location filename="../dialogs/configdialog.cpp" line="1959"/>
         <source>Clear hotkey for this action</source>
         <translation>清除该操作的热键</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1972"/>
+        <location filename="../dialogs/configdialog.cpp" line="1971"/>
         <source>Restore original hotkey for this action</source>
         <translation>恢复此操作的原始热键</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="2014"/>
+        <location filename="../dialogs/configdialog.cpp" line="2013"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation>您可以在此配置代码语法高亮的颜色。这些颜色在不同语言中共享，不仅适用于 SQL，也适用于 JavaScript 和其他语言。默认情况下使用基于主题的颜色。要定义自己的颜色，请选择特定颜色旁边的复选框，启用自定义颜色。</translation>
     </message>
@@ -3080,142 +3078,142 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="166"/>
+        <location filename="../windows/editorwindow.cpp" line="165"/>
         <source>Results in the separate tab</source>
         <translation>在新选项卡中显示结果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="167"/>
+        <location filename="../windows/editorwindow.cpp" line="166"/>
         <source>Results below the query</source>
         <translation>在查询下方显示结果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="204"/>
-        <location filename="../windows/editorwindow.cpp" line="206"/>
+        <location filename="../windows/editorwindow.cpp" line="203"/>
+        <location filename="../windows/editorwindow.cpp" line="205"/>
         <source>SQL editor %1</source>
         <translation>SQL 编辑器 %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.ui" line="80"/>
-        <location filename="../windows/editorwindow.cpp" line="387"/>
+        <location filename="../windows/editorwindow.cpp" line="386"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="422"/>
+        <location filename="../windows/editorwindow.cpp" line="421"/>
         <source>Execute query</source>
         <translation>执行语句</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="423"/>
+        <location filename="../windows/editorwindow.cpp" line="422"/>
         <source>Explain query</source>
         <translation>解释查询</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="426"/>
+        <location filename="../windows/editorwindow.cpp" line="425"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
         <translation>清除执行历史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="447"/>
+        <location filename="../windows/editorwindow.cpp" line="446"/>
         <source>Export results</source>
         <comment>sql editor</comment>
         <translation>导出结果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="428"/>
+        <location filename="../windows/editorwindow.cpp" line="427"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
         <translation>从查询创建视图</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="436"/>
+        <location filename="../windows/editorwindow.cpp" line="435"/>
         <source>Previous database</source>
         <translation>前一个数据库</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="437"/>
+        <location filename="../windows/editorwindow.cpp" line="436"/>
         <source>Next database</source>
         <translation>后一个数据库</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="440"/>
+        <location filename="../windows/editorwindow.cpp" line="439"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>显示下一个标签</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="441"/>
+        <location filename="../windows/editorwindow.cpp" line="440"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>显示上一个标签</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="442"/>
+        <location filename="../windows/editorwindow.cpp" line="441"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>切换焦点到下方的结果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="443"/>
+        <location filename="../windows/editorwindow.cpp" line="442"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>切换焦点到上方的 SQL 编辑器</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="444"/>
+        <location filename="../windows/editorwindow.cpp" line="443"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>删除选中的 SQL 历史记录项</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="445"/>
+        <location filename="../windows/editorwindow.cpp" line="444"/>
         <source>Execute single query under cursor</source>
         <translation>执行光标位置的单个查询</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="446"/>
+        <location filename="../windows/editorwindow.cpp" line="445"/>
         <source>Execute all queries in editor</source>
         <translation>在编辑器中执行所有查询</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="501"/>
+        <location filename="../windows/editorwindow.cpp" line="500"/>
         <source>Active database (%1/%2)</source>
         <translation>活动数据库 (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="618"/>
+        <location filename="../windows/editorwindow.cpp" line="617"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>查询用时 %1 秒。影响行数：%2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="622"/>
+        <location filename="../windows/editorwindow.cpp" line="621"/>
         <source>Query finished in %1 second(s).</source>
         <translation>查询用时 %1 秒。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="736"/>
+        <location filename="../windows/editorwindow.cpp" line="735"/>
         <source>Clear execution history</source>
         <translation>清除执行历史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="736"/>
+        <location filename="../windows/editorwindow.cpp" line="735"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>确定要删除全部的 SQL 执行历史吗？删除后不能恢复。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="761"/>
+        <location filename="../windows/editorwindow.cpp" line="760"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>无法导出，没有加载导出插件。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="782"/>
+        <location filename="../windows/editorwindow.cpp" line="781"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>没有在 SQL 编辑器中选中数据库。无法为未知的数据库创建视图。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="832"/>
+        <location filename="../windows/editorwindow.cpp" line="831"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>编辑器窗口“%1”内有未提交的数据。</translation>
     </message>
@@ -3622,49 +3620,49 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
 <context>
     <name>FormView</name>
     <message>
-        <location filename="../formview.cpp" line="283"/>
+        <location filename="../formview.cpp" line="287"/>
         <source>Commit row</source>
         <comment>form view</comment>
         <translation>提交行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="284"/>
+        <location filename="../formview.cpp" line="288"/>
         <source>Rollback row</source>
         <comment>form view</comment>
         <translation>回滚行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="285"/>
+        <location filename="../formview.cpp" line="289"/>
         <source>First row</source>
         <comment>form view</comment>
         <translation>首行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="286"/>
+        <location filename="../formview.cpp" line="290"/>
         <source>Previous row</source>
         <comment>form view</comment>
         <translation>上一行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="287"/>
+        <location filename="../formview.cpp" line="291"/>
         <source>Next row</source>
         <comment>form view</comment>
         <translation>下一行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="288"/>
+        <location filename="../formview.cpp" line="292"/>
         <source>Last row</source>
         <comment>form view</comment>
         <translation>末行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="289"/>
+        <location filename="../formview.cpp" line="293"/>
         <source>Insert new row</source>
         <comment>form view</comment>
         <translation>插入新行</translation>
     </message>
     <message>
-        <location filename="../formview.cpp" line="290"/>
+        <location filename="../formview.cpp" line="294"/>
         <source>Delete current row</source>
         <comment>form view</comment>
         <translation>删除当前行</translation>
@@ -4617,6 +4615,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <name>MultiEditor</name>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="70"/>
+        <location filename="../multieditor/multieditor.cpp" line="590"/>
         <source>Null value</source>
         <comment>multieditor</comment>
         <translation>Null 值</translation>
@@ -4642,89 +4641,94 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>打开另一个选项卡</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="332"/>
+        <location filename="../multieditor/multieditor.cpp" line="118"/>
+        <source>Reset value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../multieditor/multieditor.cpp" line="376"/>
         <source>Foreign Key</source>
         <translation>外键</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="390"/>
+        <location filename="../multieditor/multieditor.cpp" line="434"/>
         <source>All files (*)</source>
         <translation>所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="392"/>
+        <location filename="../multieditor/multieditor.cpp" line="436"/>
         <source>Text files (*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml)</source>
         <translation>文本文件（*.txt *.log *.csv *.tsv *.md *.json *.xml *.yaml *.yml）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="394"/>
+        <location filename="../multieditor/multieditor.cpp" line="438"/>
         <source>SQL files (*.sql)</source>
         <translation>SQL 文件 (*.sql)</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="396"/>
+        <location filename="../multieditor/multieditor.cpp" line="440"/>
         <source>Binary data (*.bin *.dat *.raw)</source>
         <translation>二进制数据（*.bin *.dat *.raw）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="398"/>
+        <location filename="../multieditor/multieditor.cpp" line="442"/>
         <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng)</source>
         <translation>图像（*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="400"/>
+        <location filename="../multieditor/multieditor.cpp" line="444"/>
         <source>Archives (*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz)</source>
         <translation>压缩文件（*.zip *.7z *.rar *.tar *.gz *.bz2 *.xz）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="402"/>
+        <location filename="../multieditor/multieditor.cpp" line="446"/>
         <source>Documents (*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods)</source>
         <translation>文档（*.pdf *.rtf *.doc *.docx *.odt *.xls *.xlsx *.ods）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="404"/>
+        <location filename="../multieditor/multieditor.cpp" line="448"/>
         <source>Executables (*.exe *.dll *.so *.dylib)</source>
         <translation>可执行文件（*.exe *.dll *.so *.dylib）</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="428"/>
+        <location filename="../multieditor/multieditor.cpp" line="472"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%2&apos; data type.</source>
         <translation>数据编辑器插件 &apos;%1&apos; 未加载，而它已被定义为编辑 &apos;%1&apos; 数据类型的编辑器。 {1&apos;?} {2&apos;?} {1&apos; or 2&apos;?}</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="534"/>
+        <location filename="../multieditor/multieditor.cpp" line="578"/>
         <source>Deleted</source>
         <comment>multieditor</comment>
         <translation>已删除</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="536"/>
+        <location filename="../multieditor/multieditor.cpp" line="580"/>
         <source>Read only</source>
         <comment>multieditor</comment>
         <translation>只读</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="642"/>
+        <location filename="../multieditor/multieditor.cpp" line="694"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="651"/>
+        <location filename="../multieditor/multieditor.cpp" line="703"/>
         <source>Could not open file %1 for reading.</source>
         <translation>无法打开文件 %1 进行读取。</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="667"/>
+        <location filename="../multieditor/multieditor.cpp" line="719"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="676"/>
+        <location filename="../multieditor/multieditor.cpp" line="728"/>
         <source>Could not open file %1 for writting.</source>
         <translation>无法打开文件 %1 进行写入。</translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="726"/>
+        <location filename="../multieditor/multieditor.cpp" line="778"/>
         <source>Could not write data into the file %1</source>
         <translation>无法将数据写入文件 %1</translation>
     </message>
@@ -4969,22 +4973,32 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>填充表</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.ui" line="26"/>
+        <location filename="../dialogs/populatedialog.ui" line="84"/>
         <source>Database</source>
         <translation>数据库</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.ui" line="44"/>
+        <location filename="../dialogs/populatedialog.ui" line="102"/>
         <source>Table</source>
         <translation>表</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.ui" line="72"/>
+        <location filename="../dialogs/populatedialog.ui" line="139"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/populatedialog.ui" line="152"/>
+        <source>Deselect All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/populatedialog.ui" line="48"/>
         <source>Columns</source>
         <translation>列</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.ui" line="102"/>
+        <location filename="../dialogs/populatedialog.ui" line="20"/>
         <source>Number of rows to populate:</source>
         <translation>填充的行数：</translation>
     </message>
@@ -5000,27 +5014,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="201"/>
+        <location filename="../dialogs/populatedialog.cpp" line="203"/>
         <source>Configure</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="308"/>
+        <location filename="../dialogs/populatedialog.cpp" line="310"/>
         <source>Populating configuration for this column is invalid or incomplete.</source>
         <translation>此列的填充配置无效或不完整。</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="339"/>
+        <location filename="../dialogs/populatedialog.cpp" line="341"/>
         <source>Select database with table to populate</source>
         <translation>选择要填充表的数据库</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="340"/>
+        <location filename="../dialogs/populatedialog.cpp" line="342"/>
         <source>Select table to populate</source>
         <translation>选择要填充的表</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="341"/>
+        <location filename="../dialogs/populatedialog.cpp" line="343"/>
         <source>You have to select at least one column.</source>
         <translation>您须选择至少一个字段。</translation>
     </message>
@@ -5111,34 +5125,34 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>无法编辑此列，因为它是在另一个多级视图上执行查询的视图结果（即查询另一个视图的视图）。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="435"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="479"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="497"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="533"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="505"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="523"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="559"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
         <translation>当冲突时：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="487"/>
         <source>references table %1</source>
         <comment>data view tooltip</comment>
         <translation>引用表 %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="463"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="489"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
         <translation>引用表 %1，列 %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="530"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="556"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
         <translation>字符序：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="550"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="576"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
         <translation>字符序名称：%1</translation>
@@ -6238,31 +6252,31 @@ find next</source>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="233"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="246"/>
         <source>Committing error:</source>
         <comment>data view tooltip</comment>
         <translation>提交出错：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="237"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="250"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>列：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="238"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>数据类型：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="241"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="254"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>表：</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="271"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="288"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>约束：</translation>
@@ -6271,37 +6285,52 @@ find next</source>
 <context>
     <name>SqlQueryItemDelegate</name>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="63"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="69"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="71"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="77"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="83"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="290"/>
         <source>Cannot edit this cell. Details: %1</source>
         <translation>无法编辑此单元格。详情：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="63"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
         <source>The row is marked for deletion.</source>
         <translation>该行已被标记为删除。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="75"/>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="268"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="77"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="290"/>
         <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>在上次加载数据后，此表的结构已更改。重新加载数据以继续。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="83"/>
         <source>ROWID is not available for this cell.</source>
         <translation>ROWID 不适用于此单元格。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="230"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="232"/>
         <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under right-click menu).</source>
         <translation>在内联单元格编辑器中编辑庞大的内容并不是一个好主意。它可能会变得缓慢而不方便。它&apos;s 最好在表单视图或弹出编辑器（右键菜单下可用）中编辑这些大内容。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="260"/>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="257"/>
+        <source>Reset to DEFAULT value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="259"/>
+        <source>Reset to PRIMARY KEY AUTOINCREMENT value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="261"/>
+        <source>Reset value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="282"/>
         <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
         <translation>列 %2 的外键有超过 %1 个可能的值。这太多而不能显示在下拉列表。您需要手动编辑值。</translation>
     </message>
@@ -6442,180 +6471,193 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation>粘贴为...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
         <source>Set NULL values</source>
-        <translation>设为 NULL 值</translation>
+        <translation type="vanished">设为 NULL 值</translation>
+    </message>
+    <message>
+        <source>Erase values</source>
+        <translation type="vanished">擦除值</translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+        <source>Set NULL value</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
-        <source>Erase values</source>
-        <translation>擦除值</translation>
+        <source>Erase value</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="105"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
+        <source>Reset value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
         <source>Commit</source>
         <translation>提交</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
         <source>Rollback</source>
         <translation>回滚</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
         <source>Commit selected cells</source>
         <translation>提交选中单元格</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
         <source>Rollback selected cells</source>
         <translation>回滚选中单元格</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
         <source>Edit current cell inline</source>
         <translation>编辑当前单元格</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="114"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
         <source>Define columns to sort by</source>
         <translation>定义列排序方式</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="116"/>
         <source>Remove custom sorting (Middle click)</source>
         <translation>移除自定义排序（中键单击）</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="116"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
         <source>Insert row</source>
         <translation>插入行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
         <source>Insert multiple rows</source>
         <translation>插入多行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
         <source>Delete selected row</source>
         <translation>删除已选行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
         <source>Adjust height of rows</source>
         <translation>调整行高</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="123"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="124"/>
         <source>Increase font size</source>
         <comment>data view</comment>
         <translation>增大字号</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="124"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="125"/>
         <source>Decrease font size</source>
         <comment>data view</comment>
         <translation>减小字号</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="125"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="126"/>
         <source>Invert selection</source>
         <comment>data view</comment>
         <translation>反向选取</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="175"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="176"/>
         <source>Edit value in editor</source>
         <translation>在编辑器中编辑数值</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="175"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="176"/>
         <source>Show value in a viewer</source>
         <translation>在查看器中显示值</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="193"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="202"/>
         <source>Generate query for selected cells</source>
         <translation>为选中单元格生成查询</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="533"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="542"/>
         <source>No items selected to paste clipboard contents to.</source>
         <translation>没有选择用来粘贴剪贴板内容的项。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="539"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="548"/>
         <source>Cannot paste data. Details: %1</source>
         <translation>无法粘贴数据。详情：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="539"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="548"/>
         <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
         <translation>至少一个表的结构在上次的数据加载后已变更。重新加载数据以继续。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="609"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="618"/>
         <source>Cannot paste to a cell. Details: %1</source>
         <translation>无法粘贴到单元格。详情：%1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="609"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="618"/>
         <source>The row is marked for deletion.</source>
         <translation>该行已被标记为删除。</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="620"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="629"/>
         <source>Cannot paste to column %1. Details: %2</source>
         <translation>无法粘贴到列 %1。详情：%2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="638"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="647"/>
         <source>Go to referenced row in table &apos;%1&apos;</source>
         <translation>转至表 &apos;%1&apos; 中的引用的行</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="650"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="659"/>
         <source>table &apos;%1&apos;</source>
         <translation>表“%1”</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="673"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="682"/>
         <source>Referenced row (%1)</source>
         <translation>引用的行（%1）</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="998"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1007"/>
         <source>Column renderer</source>
         <translation>列渲染器</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1005"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1014"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1156"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1165"/>
         <source>Trim pasted text?</source>
         <translation>移除粘贴文本两端的空白？</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1157"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1166"/>
         <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
         <translation>粘贴的文本两端含有空白符号。自动移除？</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1165"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1174"/>
         <source>Paste &quot;NULL&quot; as null value?</source>
         <translation>将 &quot;NULL&quot; 粘贴为空值？</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1166"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1175"/>
         <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
         <translation>粘贴的文本包含 &quot;NULL&quot; 字符。要将它们视为空值吗？</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1273"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1303"/>
         <source>Edit value</source>
         <translation>编辑值</translation>
     </message>
