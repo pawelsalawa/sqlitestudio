@@ -1018,9 +1018,14 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
             "</table>");
     static const QString row = QStringLiteral("<tr><td>%1</td><td align=\"right\">%2</td></tr>");
     static const QString hline = QStringLiteral("<tr><td colspan=\"2\"><hr/></td></tr>");
+    static const QString spanRow = QStringLiteral("<tr><td colspan=\"2\">%1</td></tr>");
 
     PluginType* type = PLUGINS->getPluginType(pluginName);
+    PluginManager::PluginDetails pluginDetails = PLUGINS->getPluginDetails(pluginName);
     Q_ASSERT(type != nullptr);
+
+    QString deps = PLUGINS->getDependencies(pluginName).join(", ");
+    QString conflicts = PLUGINS->getConflicts(pluginName).join(", ");
 
     // Rows
     QStringList rows;
@@ -1030,12 +1035,14 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
     rows << row.arg(tr("Author:", "plugin details"), PLUGINS->getAuthor(pluginName));
     rows << hline;
     rows << row.arg(tr("Internal name:", "plugin details"), pluginName);
-    rows << row.arg(tr("Dependencies:", "plugin details"), PLUGINS->getDependencies(pluginName).join(", "));
-    rows << row.arg(tr("Conflicts:", "plugin details"), PLUGINS->getConflicts(pluginName).join(", "));
+    rows << row.arg(tr("Dependencies:", "plugin details"), deps.isEmpty() ? "-" : deps);
+    rows << row.arg(tr("Conflicts:", "plugin details"), conflicts.isEmpty() ? "-" : conflicts);
+    rows << spanRow.arg(tr("File:", "plugin details"));
+    rows << spanRow.arg(QDir::toNativeSeparators(pluginDetails.filePath));
 
     // Message
-    QString pluginDetails = details.arg(PLUGINS->getTitle(pluginName), rows.join(""));
-    QMessageBox::information(this, tr("Plugin details"), pluginDetails);
+    QString dialogDetails = details.arg(PLUGINS->getTitle(pluginName), rows.join(""));
+    QMessageBox::information(this, tr("Plugin details"), dialogDetails);
 }
 
 void ConfigDialog::codeFormatterUnloaded()

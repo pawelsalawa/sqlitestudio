@@ -218,6 +218,7 @@ class API_EXPORT PluginManager : public QObject
 
         virtual QList<PluginDetails> getAllPluginDetails() const = 0;
         virtual QList<PluginDetails> getLoadedPluginDetails() const = 0;
+        virtual PluginDetails getPluginDetails(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides list of all plugin names.

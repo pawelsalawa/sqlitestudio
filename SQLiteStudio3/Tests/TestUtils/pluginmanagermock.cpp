@@ -160,3 +160,8 @@ QList<Plugin *> PluginManagerMock::getLoadedPlugins() const
 {
     return QList<Plugin *>();
 }
+
+PluginManager::PluginDetails PluginManagerMock::getPluginDetails(const QString&) const
+{
+    return PluginManager::PluginDetails();
+}
