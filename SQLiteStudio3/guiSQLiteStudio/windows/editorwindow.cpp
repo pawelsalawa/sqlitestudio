@@ -25,6 +25,7 @@
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
+#include <QFileDialog>
 
 CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
@@ -107,6 +108,7 @@ void EditorWindow::init()
     resultsModel = new SqlQueryModel(this);
     ui->dataView->init(resultsModel);
 
+    updateToolbarVisibility();
     createDbCombo();
     initActions();
     updateShortcutTips();
@@ -125,8 +127,11 @@ void EditorWindow::init()
         ui->sqlEdit->setCurrentQueryHighlighting(true);
 
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
+    MAINWINDOW->installToolbarSizeWheelHandler(ui->historyToolBar);
     MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_GRID));
     MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_FORM));
+
+    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(updateToolbarVisibility()));
 
     connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
     connect(ui->sqlEdit, SIGNAL(fileLoaded(QString)), this, SLOT(renameForFile(QString)));
@@ -422,9 +427,6 @@ void EditorWindow::createActions()
     createAction(EXPLAIN_QUERY, ICONS.EXPLAIN_QUERY, tr("Explain query"), this, SLOT(explainQuery()), ui->toolBar, ui->sqlEdit);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FORMAT_SQL));
-    createAction(CLEAR_HISTORY, ICONS.CLEAR_HISTORY, tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->toolBar);
-    ui->toolBar->addSeparator();
-    createAction(CREATE_VIEW_FROM_QUERY, ICONS.VIEW_ADD, tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE));
     attachActionInMenu(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE), ui->sqlEdit->getAction(SqlEditor::SAVE_AS_SQL_FILE), ui->toolBar);
@@ -432,15 +434,23 @@ void EditorWindow::createActions()
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);
+    ui->toolBar->addSeparator();
+    createAction(CREATE_VIEW_FROM_QUERY, ICONS.VIEW_ADD, tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
+
     createAction(PREV_DB, tr("Previous database"), this, SLOT(prevDb()), this);
     createAction(NEXT_DB, tr("Next database"), this, SLOT(nextDb()), this);
+
+    // History tab toolbar
+    createAction(CLEAR_HISTORY, ICONS.CLEAR_HISTORY, tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->historyToolBar);
+    createAction(EXPORT_HISTORY, ICONS.EXPORT, tr("Export execution history", "sql editor"), this, SLOT(exportHistory()), ui->historyToolBar);
 
     // Other actions
     createAction(SHOW_NEXT_TAB, tr("Show next tab", "sql editor"), this, SLOT(showNextTab()), this);
     createAction(SHOW_PREV_TAB, tr("Show previous tab", "sql editor"), this, SLOT(showPrevTab()), this);
     createAction(FOCUS_RESULTS_BELOW, tr("Focus results below", "sql editor"), this, SLOT(focusResultsBelow()), this);
     createAction(FOCUS_EDITOR_ABOVE, tr("Focus SQL editor above", "sql editor"), this, SLOT(focusEditorAbove()), this);
-    createAction(DELETE_SINGLE_HISTORY_SQL, tr("Delete selected SQL history entries", "sql editor"), this, SLOT(deleteSelectedSqlHistory()), ui->historyList);
+    createAction(EXPORT_SELECTED_HISTORY_SQL, tr("Export selected SQL history entries", "sql editor"), this, SLOT(exportSelectedSqlHistory()), ui->historyList);
+    createAction(DELETE_SELECTED_HISTORY_SQL, tr("Delete selected SQL history entries", "sql editor"), this, SLOT(deleteSelectedSqlHistory()), ui->historyList);
     createAction(EXEC_ONE_QUERY, ICONS.EXEC_QUERY, tr("Execute single query under cursor"), this, SLOT(execOneQuery()), this);
     createAction(EXEC_ALL_QUERIES, ICONS.EXEC_QUERY, tr("Execute all queries in editor"), this, SLOT(execAllQueries()), this);
     createAction(EXPORT_RESULTS, ICONS.TABLE_EXPORT, tr("Export results", "sql editor"), this, SLOT(exportResults()), this);
@@ -599,6 +609,41 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
     return accepted;
 }
 
+void EditorWindow::exportHistory(const QModelIndexList &idxList)
+{
+    QString dir = getFileDialogInitPath();
+    QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir);
+    if (fName.isNull())
+        return;
+
+    setFileDialogInitPathByFile(fName);
+
+    QFile file(fName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        notifyError(tr("Could not open file '%1' for writing: %2").arg(fName, file.errorString()));
+        return;
+    }
+
+    QTextStream stream(&file);
+    for (const QModelIndex& idx : idxList)
+    {
+        QString sql = idx.data().toString();
+        if (!sql.trimmed().endsWith(";"))
+            sql += ";";
+
+        QString dbName = ui->historyList->model()->index(idx.row(), histDbNameColumn).data().toString();
+        QString dateTime = ui->historyList->model()->index(idx.row(), histDatetimeColumn).data().toString();
+        stream << "-- [" << dateTime << "] " << dbName << "\n";
+        stream << sql << "\n\n";
+    }
+
+    stream.flush();
+    file.close();
+
+    notifyInfo(tr("Saved SQL contents to file: %1").arg(fName));
+}
+
 void EditorWindow::dbChanged()
 {
     Db* currentDb = getCurrentDb();
@@ -707,13 +752,13 @@ void EditorWindow::focusEditorAbove()
 void EditorWindow::historyEntrySelected(const QModelIndex& current, const QModelIndex& previous)
 {
     Q_UNUSED(previous);
-    QString sql = ui->historyList->model()->index(current.row(), 5).data().toString();
+    QString sql = ui->historyList->model()->index(current.row(), histSqlColumn).data().toString();
     ui->historyContents->setPlainText(sql);
 }
 
 void EditorWindow::historyEntryActivated(const QModelIndex& current)
 {
-    QString sql = ui->historyList->model()->index(current.row(), 5).data().toString();
+    QString sql = ui->historyList->model()->index(current.row(), histSqlColumn).data().toString();
     ui->sqlEdit->setPlainText(sql);
     ui->tabWidget->setCurrentIndex(0);
 }
@@ -730,6 +775,19 @@ void EditorWindow::deleteSelectedSqlHistory()
     CFG->deleteSqlHistory(ids);
 }
 
+void EditorWindow::exportSelectedSqlHistory()
+{
+    QSet<int> rows;
+    for (const QModelIndex& idx : ui->historyList->selectionModel()->selectedIndexes())
+        rows << idx.row();
+
+    QModelIndexList idxList;
+    for (int row : rows)
+        idxList << ui->historyList->model()->index(row, histSqlColumn);
+
+    exportHistory(idxList);
+}
+
 void EditorWindow::clearHistory()
 {
     QMessageBox::StandardButton res = QMessageBox::question(this, tr("Clear execution history"), tr("Are you sure you want to erase the entire SQL execution history? "
@@ -740,9 +798,21 @@ void EditorWindow::clearHistory()
     CFG->clearSqlHistory();
 }
 
+void EditorWindow::exportHistory()
+{
+    QModelIndexList idxList;
+    int rows = ui->historyList->model()->rowCount();
+    for (int row = 0; row < rows; ++row)
+        idxList << ui->historyList->model()->index(row, histSqlColumn);
+
+    exportHistory(idxList);
+}
+
 void EditorWindow::sqlHistoryContextMenuRequested(const QPoint &pos)
 {
-    actionMap[DELETE_SINGLE_HISTORY_SQL]->setEnabled(!ui->historyList->selectionModel()->selectedIndexes().isEmpty());
+    bool hasSelectedItems = !ui->historyList->selectionModel()->selectedIndexes().isEmpty();
+    actionMap[EXPORT_SELECTED_HISTORY_SQL]->setEnabled(hasSelectedItems);
+    actionMap[DELETE_SELECTED_HISTORY_SQL]->setEnabled(hasSelectedItems);
 
     sqlHistoryMenu->popup(ui->historyList->mapToGlobal(pos));
 }
@@ -750,7 +820,8 @@ void EditorWindow::sqlHistoryContextMenuRequested(const QPoint &pos)
 void EditorWindow::setupSqlHistoryMenu()
 {
     sqlHistoryMenu = new QMenu(this);
-    sqlHistoryMenu->addAction(actionMap[DELETE_SINGLE_HISTORY_SQL]);
+    sqlHistoryMenu->addAction(actionMap[EXPORT_SELECTED_HISTORY_SQL]);
+    sqlHistoryMenu->addAction(actionMap[DELETE_SELECTED_HISTORY_SQL]);
 }
 
 void EditorWindow::exportResults()
@@ -772,6 +843,13 @@ void EditorWindow::exportResults()
     ExportDialog dialog(this);
     dialog.setQueryMode(getCurrentDb(), queries.last().trimmed());
     dialog.exec();
+}
+
+void EditorWindow::updateToolbarVisibility()
+{
+    bool isHistTab = (ui->tabWidget->currentWidget() == ui->history);
+    ui->toolBar->setVisible(!isHistTab);
+    ui->historyToolBar->setVisible(isHistTab);
 }
 
 void EditorWindow::createViewFromQuery()

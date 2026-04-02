@@ -34,6 +34,7 @@
 - ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - ADDED: #3539 Export Dialog now has option to export View(s) together with their triggers and data. View Window now has icon on the toolbar to export the View.
 - ADDED: #4417 Html Export plugin produces now HTML tables that are sortable by clicking on their headers.
+- ADDED: #4286 SQL History tab has now function to export executed queries history (or selected subset) to a SQL file.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).

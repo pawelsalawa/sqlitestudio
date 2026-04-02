@@ -5,6 +5,7 @@
 #include "mdichild.h"
 #include "common/extactioncontainer.h"
 #include "guiSQLiteStudio_global.h"
+#include <QModelIndexList>
 #include <QWidget>
 
 namespace Ui {
@@ -66,9 +67,11 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
             FOCUS_RESULTS_BELOW,
             FOCUS_EDITOR_ABOVE,
             CLEAR_HISTORY,
+            EXPORT_HISTORY,
             EXPORT_RESULTS,
             CREATE_VIEW_FROM_QUERY,
-            DELETE_SINGLE_HISTORY_SQL
+            DELETE_SELECTED_HISTORY_SQL,
+            EXPORT_SELECTED_HISTORY_SQL
         };
         Q_ENUM(Action)
 
@@ -134,8 +137,13 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void updateShortcutTips();
         void setupSqlHistoryMenu();
         bool processBindParams(QString& sql, QHash<QString, QVariant>& queryParams);
+        void exportHistory(const QModelIndexList& idxList);
 
         static const int queryLimitForSmartExecution = 100;
+
+        static const int histDbNameColumn = 1;
+        static const int histDatetimeColumn = 2;
+        static const int histSqlColumn = 5;
 
         static ResultsDisplayMode resultsDisplayMode;
         static QHash<Action,QAction*> staticActions;
@@ -170,7 +178,9 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void historyEntrySelected(const QModelIndex& current, const QModelIndex& previous);
         void historyEntryActivated(const QModelIndex& current);
         void deleteSelectedSqlHistory();
+        void exportSelectedSqlHistory();
         void clearHistory();
+        void exportHistory();
         void sqlHistoryContextMenuRequested(const QPoint &pos);
         void createViewFromQuery();
         void updateState();
@@ -178,6 +188,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void queryHighlightingConfigChanged(const QVariant& enabled);
         void renameForFile(const QString fileName);
         void exportResults();
+        void updateToolbarVisibility();
 
     public slots:
         void openFile(const QString& fileName);
