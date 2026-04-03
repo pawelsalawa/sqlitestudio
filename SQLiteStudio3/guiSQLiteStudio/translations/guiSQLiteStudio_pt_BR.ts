@@ -1735,103 +1735,109 @@ Key</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se esta opção estiver habilitada, o assistente de código será acionado nos casos, quando tipos de usuário, por exemplo &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; para propor colunas da tabela. Se a opção estiver desativada, o usuário terá de apertar explicitamente a chave de atalho assistente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1027"/>
+        <location filename="../dialogs/configdialog.cpp" line="1032"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Descrição:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1028"/>
+        <location filename="../dialogs/configdialog.cpp" line="1033"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Categoria:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1029"/>
+        <location filename="../dialogs/configdialog.cpp" line="1034"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1030"/>
+        <location filename="../dialogs/configdialog.cpp" line="1035"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1032"/>
+        <location filename="../dialogs/configdialog.cpp" line="1037"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Nome interno:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1033"/>
+        <location filename="../dialogs/configdialog.cpp" line="1038"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Dependências:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1034"/>
+        <location filename="../dialogs/configdialog.cpp" line="1039"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Conflitos</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1038"/>
+        <location filename="../dialogs/configdialog.cpp" line="1040"/>
+        <source>File:</source>
+        <comment>plugin details</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.cpp" line="1045"/>
         <source>Plugin details</source>
         <translation>Detalhes do plugin</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1648"/>
+        <location filename="../dialogs/configdialog.cpp" line="1655"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>Plugins são carregados/descarregados imediatamente quando marcados/desmarcados, mas a lista de plugins modificados para carregar na inicialização não é salva até que você confirme toda a caixa de diálogo de configuração.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1706"/>
+        <location filename="../dialogs/configdialog.cpp" line="1713"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (embutido)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1748"/>
+        <location filename="../dialogs/configdialog.cpp" line="1755"/>
         <source>Details</source>
         <translation>Detalhes</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1762"/>
+        <location filename="../dialogs/configdialog.cpp" line="1769"/>
         <source>No plugins in this category.</source>
         <translation>Sem plugins nesta categoria.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1862"/>
-        <location filename="../dialogs/configdialog.cpp" line="1891"/>
+        <location filename="../dialogs/configdialog.cpp" line="1869"/>
+        <location filename="../dialogs/configdialog.cpp" line="1898"/>
         <source>Add new data type</source>
         <translation>Adicionar novo tipo de dado</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1866"/>
-        <location filename="../dialogs/configdialog.cpp" line="1895"/>
+        <location filename="../dialogs/configdialog.cpp" line="1873"/>
+        <location filename="../dialogs/configdialog.cpp" line="1902"/>
         <source>Rename selected data type</source>
         <translation>Renomear tipo de dados selecionados</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1870"/>
-        <location filename="../dialogs/configdialog.cpp" line="1899"/>
+        <location filename="../dialogs/configdialog.cpp" line="1877"/>
+        <location filename="../dialogs/configdialog.cpp" line="1906"/>
         <source>Delete selected data type</source>
         <translation>Excluir tipo de dado selecionado</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1983"/>
+        <location filename="../dialogs/configdialog.cpp" line="1990"/>
         <source>Clear hotkey for this action</source>
         <translation>Limpar atalho para esta ação</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1995"/>
+        <location filename="../dialogs/configdialog.cpp" line="2002"/>
         <source>Restore original hotkey for this action</source>
         <translation>Restaurar atalho original para esta ação</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="2037"/>
+        <location filename="../dialogs/configdialog.cpp" line="2044"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation>Aqui você pode configurar cores para destaque de código de sintaxe. Elas são compartilhadas entre diferentes línguas - não apenas para SQL, mas também JavaScript e outros. Por padrão é usada uma cor baseada em tema. Para definir sua própria cor, habilite uma cor personalizada, selecionando uma caixa de seleção ao lado de uma determinada cor.</translation>
     </message>
@@ -3061,152 +3067,179 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
         <translation>Editor SQL</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="42"/>
+        <location filename="../windows/editorwindow.ui" line="66"/>
         <source>Query</source>
         <translation>Consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="115"/>
+        <location filename="../windows/editorwindow.ui" line="139"/>
         <source>History</source>
         <translation>Histórico</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="165"/>
+        <location filename="../windows/editorwindow.cpp" line="170"/>
         <source>Results in the separate tab</source>
         <translation>Resultados em uma aba separada</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="166"/>
+        <location filename="../windows/editorwindow.cpp" line="171"/>
         <source>Results below the query</source>
         <translation>Resultados abaixo da consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="203"/>
-        <location filename="../windows/editorwindow.cpp" line="205"/>
+        <location filename="../windows/editorwindow.cpp" line="208"/>
+        <location filename="../windows/editorwindow.cpp" line="210"/>
         <source>SQL editor %1</source>
         <translation>Editor SQL %1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="80"/>
-        <location filename="../windows/editorwindow.cpp" line="386"/>
+        <location filename="../windows/editorwindow.ui" line="104"/>
+        <location filename="../windows/editorwindow.cpp" line="391"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="421"/>
+        <location filename="../windows/editorwindow.cpp" line="426"/>
         <source>Execute query</source>
         <translation>Executar consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="422"/>
+        <location filename="../windows/editorwindow.cpp" line="427"/>
         <source>Explain query</source>
         <translation>Expandir consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="425"/>
+        <location filename="../windows/editorwindow.cpp" line="444"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
         <translation>Limpar histórico de execução</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="446"/>
+        <location filename="../windows/editorwindow.cpp" line="456"/>
         <source>Export results</source>
         <comment>sql editor</comment>
         <translation>Exportar resultados</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="427"/>
+        <location filename="../windows/editorwindow.cpp" line="438"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
         <translation>Criar visualização a partir da consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="435"/>
+        <location filename="../windows/editorwindow.cpp" line="440"/>
         <source>Previous database</source>
         <translation>Banco de dados anterior</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="436"/>
+        <location filename="../windows/editorwindow.cpp" line="441"/>
         <source>Next database</source>
         <translation>Próximo banco de dados</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="439"/>
+        <location filename="../windows/editorwindow.cpp" line="445"/>
+        <source>Export execution history</source>
+        <comment>sql editor</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.cpp" line="448"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>Mostrar próxima aba</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="440"/>
+        <location filename="../windows/editorwindow.cpp" line="449"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>Mostrar aba anterior</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="441"/>
+        <location filename="../windows/editorwindow.cpp" line="450"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>Focar resultados abaixo</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="442"/>
+        <location filename="../windows/editorwindow.cpp" line="451"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>Focar resultados acima</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="443"/>
+        <location filename="../windows/editorwindow.cpp" line="452"/>
+        <source>Export selected SQL history entries</source>
+        <comment>sql editor</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.cpp" line="453"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>Excluir as entradas do histórico SQL selecionadas</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="444"/>
+        <location filename="../windows/editorwindow.cpp" line="454"/>
         <source>Execute single query under cursor</source>
         <translation>Executar a consulta em que o cursor está posicionado</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="445"/>
+        <location filename="../windows/editorwindow.cpp" line="455"/>
         <source>Execute all queries in editor</source>
         <translation>Executar todas as consultas no editor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="500"/>
+        <location filename="../windows/editorwindow.cpp" line="510"/>
         <source>Active database (%1/%2)</source>
         <translation>Banco de dados ativo (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="617"/>
+        <location filename="../windows/editorwindow.cpp" line="615"/>
+        <source>Save to file</source>
+        <translation type="unfinished">Salvar para arquivo</translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.cpp" line="624"/>
+        <source>Could not open file &apos;%1&apos; for writing: %2</source>
+        <translation type="unfinished">Não foi possível abrir o arquivo &apos;%1&apos; para escrever: %2</translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.cpp" line="644"/>
+        <source>Saved SQL contents to file: %1</source>
+        <translation type="unfinished">Conteúdo SQL salvo no arquivo: %1</translation>
+    </message>
+    <message>
+        <location filename="../windows/editorwindow.cpp" line="662"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>Consulta finalizada em %1 segundo(s). Linhas afetadas: %2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="621"/>
+        <location filename="../windows/editorwindow.cpp" line="666"/>
         <source>Query finished in %1 second(s).</source>
         <translation>Consulta finalizada em %1 segundo(s).</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="735"/>
+        <location filename="../windows/editorwindow.cpp" line="793"/>
         <source>Clear execution history</source>
         <translation>Limpar histórico de execução</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="735"/>
+        <location filename="../windows/editorwindow.cpp" line="793"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>Tem certeza que deseja apagar todo o histórico de execução de SQL? Isso não pode ser desfeito.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="760"/>
+        <location filename="../windows/editorwindow.cpp" line="831"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Não é possível exportar, porque nenhum plugin de exportação está carregado.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="781"/>
+        <location filename="../windows/editorwindow.cpp" line="859"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>Nenhum banco de dados selecionado no editor SQL. Não é possível criar uma view para um banco de dados desconhecido.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="831"/>
+        <location filename="../windows/editorwindow.cpp" line="909"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>Janela do editor &quot;%1&quot; possui dados não confirmados.</translation>
     </message>
@@ -5644,114 +5677,114 @@ Digite um nome novo, único ou pressione &apos;%1&apos; para abortar a operaçã
         <translation>Diminuir o tamanho da fonte</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="64"/>
-        <location filename="../uiutils.cpp" line="74"/>
+        <location filename="../uiutils.cpp" line="63"/>
+        <location filename="../uiutils.cpp" line="73"/>
         <source>All SQLite databases</source>
         <translation>Todos os bancos de dados</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="66"/>
-        <location filename="../uiutils.cpp" line="77"/>
+        <location filename="../uiutils.cpp" line="65"/>
+        <location filename="../uiutils.cpp" line="76"/>
         <source>All files</source>
         <translation>Todos os arquivos</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="67"/>
+        <location filename="../uiutils.cpp" line="66"/>
         <source>Select database file</source>
         <translation>Selecionar banco de dados</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="67"/>
+        <location filename="../uiutils.cpp" line="66"/>
         <source>Select new database file</source>
         <translation type="unfinished">Select new database file</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="73"/>
+        <location filename="../uiutils.cpp" line="72"/>
         <source>SQLite database or SQL file</source>
         <translation type="unfinished">SQLite database or SQL file</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="76"/>
+        <location filename="../uiutils.cpp" line="75"/>
         <source>SQL files</source>
         <translation type="unfinished">SQL files</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="78"/>
+        <location filename="../uiutils.cpp" line="77"/>
         <source>Select a file to open</source>
         <translation type="unfinished">Select a file to open</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="52"/>
+        <location filename="../uiutils.cpp" line="51"/>
         <source>Select</source>
         <translation>Selecionar</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="53"/>
+        <location filename="../uiutils.cpp" line="52"/>
         <source>File type</source>
         <translation>Tipo de arquivo</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="27"/>
+        <location filename="../windows/editorwindow.h" line="28"/>
         <source>SQL editor window</source>
         <translation>Editor gráfico SQL</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="28"/>
+        <location filename="../windows/editorwindow.h" line="29"/>
         <source>Execute query</source>
         <translation>Executar consulta</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="29"/>
+        <location filename="../windows/editorwindow.h" line="30"/>
         <source>Execute single query under cursor</source>
         <translation>Executar a consulta em que o cursor está posicionado</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="30"/>
+        <location filename="../windows/editorwindow.h" line="31"/>
         <source>Execute all queries in editor</source>
         <translation>Executar todas as consultas no editor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="31"/>
+        <location filename="../windows/editorwindow.h" line="32"/>
         <source>Execute EXPLAIN query</source>
         <translation type="unfinished">Execute EXPLAIN query</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="32"/>
+        <location filename="../windows/editorwindow.h" line="33"/>
         <source>Export query results</source>
         <translation type="unfinished">Export query results</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="33"/>
+        <location filename="../windows/editorwindow.h" line="34"/>
         <source>Switch current working database to previous on the list</source>
         <translation>Alternar a atual base de dados de trabalho para a anterior na lista</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="34"/>
+        <location filename="../windows/editorwindow.h" line="35"/>
         <source>Switch current working database to next on the list</source>
         <translation>Alternar a atual base de dados de trabalho para a próxima lista</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="35"/>
+        <location filename="../windows/editorwindow.h" line="36"/>
         <source>Go to next editor tab</source>
         <translation>Ir para a aba do próximo editor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="36"/>
+        <location filename="../windows/editorwindow.h" line="37"/>
         <source>Go to previous editor tab</source>
         <translation>Ir para aba editor anterior</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="37"/>
+        <location filename="../windows/editorwindow.h" line="38"/>
         <source>Move keyboard input focus to the results view below</source>
         <translation>Mover o foco de entrada do teclado para a exibição de resultados abaixo</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="38"/>
+        <location filename="../windows/editorwindow.h" line="39"/>
         <source>Move keyboard input focus to the SQL editor above</source>
         <translation>Mover o foco de entrada do teclado para o editor SQL acima</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.h" line="39"/>
+        <location filename="../windows/editorwindow.h" line="40"/>
         <source>Delete selected SQL history entries</source>
         <translation>Excluir as entradas do histórico SQL selecionadas</translation>
     </message>
