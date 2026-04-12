@@ -188,7 +188,6 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void queryHighlightingConfigChanged(const QVariant& enabled);
         void renameForFile(const QString fileName);
         void exportResults();
-        void updateToolbarVisibility();
 
     public slots:
         void openFile(const QString& fileName);
