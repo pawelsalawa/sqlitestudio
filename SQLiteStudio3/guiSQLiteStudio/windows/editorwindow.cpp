@@ -108,7 +108,6 @@ void EditorWindow::init()
     resultsModel = new SqlQueryModel(this);
     ui->dataView->init(resultsModel);
 
-    updateToolbarVisibility();
     createDbCombo();
     initActions();
     updateShortcutTips();
@@ -130,8 +129,6 @@ void EditorWindow::init()
     MAINWINDOW->installToolbarSizeWheelHandler(ui->historyToolBar);
     MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_GRID));
     MAINWINDOW->installToolbarSizeWheelHandler(ui->dataView->getToolBar(DataView::TOOLBAR_FORM));
-
-    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(updateToolbarVisibility()));
 
     connect(ui->sqlEdit, SIGNAL(textChanged()), this, SLOT(checkTextChangedForSession()));
     connect(ui->sqlEdit, SIGNAL(fileLoaded(QString)), this, SLOT(renameForFile(QString)));
@@ -843,13 +840,6 @@ void EditorWindow::exportResults()
     ExportDialog dialog(this);
     dialog.setQueryMode(getCurrentDb(), queries.last().trimmed());
     dialog.exec();
-}
-
-void EditorWindow::updateToolbarVisibility()
-{
-    bool isHistTab = (ui->tabWidget->currentWidget() == ui->history);
-    ui->toolBar->setVisible(!isHistTab);
-    ui->historyToolBar->setVisible(isHistTab);
 }
 
 void EditorWindow::createViewFromQuery()

@@ -29,33 +29,6 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item alignment="Qt::AlignmentFlag::AlignLeft">
-    <widget class="QWidget" name="tbContainer" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QToolBar" name="toolBar"/>
-      </item>
-      <item>
-       <widget class="QToolBar" name="historyToolBar"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
@@ -66,6 +39,24 @@
        <string>Query</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item alignment="Qt::AlignmentFlag::AlignLeft">
+        <widget class="QWidget" name="queryTbContainer" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QToolBar" name="toolBar"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item>
         <widget class="QSplitter" name="splitter_2">
          <property name="orientation">
@@ -139,6 +130,27 @@
        <string>History</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item alignment="Qt::AlignmentFlag::AlignLeft">
+        <widget class="QWidget" name="historyTbContainer" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QToolBar" name="historyToolBar"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item>
         <widget class="QSplitter" name="splitter">
          <property name="orientation">
