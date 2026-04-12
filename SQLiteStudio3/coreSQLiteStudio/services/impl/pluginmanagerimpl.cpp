@@ -272,7 +272,7 @@ bool PluginManagerImpl::readDependencies(const QString& pluginName, PluginManage
 
     PluginDependency dep;
     QJsonObject depObject;
-    for (const QJsonValue& value : depsArray)
+    for (const QJsonValue& value : std::as_const(depsArray))
     {
         if (value.type() == QJsonValue::Object)
         {
@@ -311,7 +311,7 @@ bool PluginManagerImpl::readConflicts(const QString& pluginName, PluginManagerIm
     else
         confArray.append(confValue);
 
-    for (const QJsonValue& value : confArray)
+    for (const QJsonValue& value : std::as_const(confArray))
         container->conflicts << value.toString();
 
     return true;
@@ -321,7 +321,7 @@ bool PluginManagerImpl::initPlugin(Plugin* plugin)
 {
     QString pluginName = plugin->getName();
     PluginType* pluginType = nullptr;
-    for (PluginType* type : registeredPluginTypes)
+    for (PluginType*& type : registeredPluginTypes)
     {
         if (type->test(plugin))
         {
@@ -357,7 +357,7 @@ bool PluginManagerImpl::shouldAutoLoad(const QString& pluginName)
 {
     QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", Qt::SkipEmptyParts);
     QStringList pair;
-    for (const QString& loadedPlugin : loadedPlugins)
+    for (const QString& loadedPlugin : std::as_const(loadedPlugins))
     {
         pair = loadedPlugin.split("=");
         if (pair.size() != 2)
@@ -563,7 +563,7 @@ bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAtte
     }
 
     // Loading depended plugins
-    for (const PluginDependency& dep : container->dependencies)
+    for (const PluginDependency& dep : std::as_const(container->dependencies))
     {
         if (!load(dep.name, alreadyAttempted, dep.minVersion, dep.maxVersion))
         {
@@ -589,7 +589,7 @@ bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAtte
         genericPlugin->loadMetaData(container->loader->metaData());
     }
 
-    if (!plugin->init())
+    if (!plugin || !plugin->init())
     {
         loader->unload();
         notifyWarn(tr("Cannot load plugin %1 (error while initializing plugin).").arg(pluginName));
@@ -758,7 +758,7 @@ QStringList PluginManagerImpl::getDependencies(const QString& pluginName) const
     QStringList outputList;
     QString depStr;
     QStringList depVerList;
-    for (const PluginDependency& dep : pluginContainer[pluginName]->dependencies)
+    for (const PluginDependency& dep : std::as_const(pluginContainer[pluginName]->dependencies))
     {
         depStr = dep.name;
         if (dep.minVersion > 0 || dep.maxVersion > 0)
@@ -813,21 +813,30 @@ QStringList PluginManagerImpl::getLoadedPluginNames() const
     return names;
 }
 
+PluginManager::PluginDetails PluginManagerImpl::getPluginDetails(const QString& pluginName) const
+{
+    PluginManager::PluginDetails details;
+    if (!pluginContainer.contains(pluginName))
+        return details;
+
+    PluginContainer* container = pluginContainer[pluginName];
+    details.name = container->name;
+    details.title = container->title;
+    details.description = container->description;
+    details.builtIn = container->builtIn;
+    details.version = container->version;
+    details.filePath = container->filePath;
+    details.versionString = formatVersion(container->version);
+    return details;
+}
+
 QList<PluginManager::PluginDetails> PluginManagerImpl::getAllPluginDetails() const
 {
     QList<PluginManager::PluginDetails> results;
-    PluginManager::PluginDetails details;
-    for (PluginContainer* container : pluginContainer.values())
-    {
-        details.name = container->name;
-        details.title = container->title;
-        details.description = container->description;
-        details.builtIn = container->builtIn;
-        details.version = container->version;
-        details.filePath = container->filePath;
-        details.versionString = formatVersion(container->version);
-        results << details;
-    }
+    QHashIterator<QString,PluginContainer*> it(pluginContainer);
+    while (it.hasNext())
+        results << getPluginDetails(it.key());
+
     return results;
 }
 

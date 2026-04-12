@@ -34,6 +34,7 @@
 - ADDED: #3934 Windows executables in the official release are now signed thanks to the SignPath.io.
 - ADDED: #3539 Export Dialog now has option to export View(s) together with their triggers and data. View Window now has icon on the toolbar to export the View.
 - ADDED: #4417 Html Export plugin produces now HTML tables that are sortable by clicking on their headers.
+- ADDED: #4286 SQL History tab has now function to export executed queries history (or selected subset) to a SQL file.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
@@ -41,6 +42,7 @@
 - CHANGE: #4762 Colors configuration for syntax highlighting now allows defining also bold/italic attributes.
 - CHANGE: #5541 Plugins Page in Configuration Dialog uses now a material-design-like toggle for loading/unloading plugins + each plugin has more vertical padding and is clickable as a whole row, not just a small box.
 - CHANGE: #5212 Configuration Dialog filter marks matched widgets with red outline.
+- CHANGE: #5597 Configuration Dialog items on the categoris list are now a bit taller, icons a bit bigger.
 - CHANGE: #5561 Database actions on main toolbar simplified, partially moved to Database List panel.
 - CHANGE: #5060 Application connects to the database that was just added to the list.
 - CHANGE: #5374 Ctrl+O (Cmd+O on macOS) now always asks for a file to open and if it's a database, it's added to the list. If it's SQL file, the SQL editor opens for it.
@@ -63,6 +65,7 @@
 - CHANGE: #5477 SQLCipher for SQLite3MultipleCiphers plugin now provides small initial pragmas configuration proposal.
 - CHANGE: #4475 Using RETURNING clause for INSERTing data to optimize the operation.
 - CHANGE: #3539 File extension in Export Dialog file input is now updated whenever export format is changed.
+- CHANGE: #4554 Added Select All and Deselect All buttons to Populate Dialog.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #2956 Export Dialog respects hotkeys for changing database in the dropdown, using the same hotkey as SQL Editor.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.

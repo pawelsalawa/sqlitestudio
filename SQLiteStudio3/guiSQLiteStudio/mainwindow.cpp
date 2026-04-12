@@ -39,8 +39,6 @@
 #include "uiutils.h"
 #include "datagrid/cellrendererplugin.h"
 #include "common/mouseshortcut.h"
-#include "windows/tableconstraintsmodel.h"
-#include "windows/tablestructuremodel.h"
 #include "common/widgetcover.h"
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -836,7 +834,7 @@ void MainWindow::refreshMdiWindows()
 
     sSort(actionNames);
 
-    for (const QString& name : actionNames)
+    for (QString& name : actionNames)
         mdiMenu->addAction(nameToAction[name]);
 
     fixToolbarTooltips(ui->viewToolbar);

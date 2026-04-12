@@ -38,6 +38,7 @@ class PluginManagerMock : public PluginManager
         QStringList getLoadedPluginNames() const;
         bool arePluginsInitiallyLoaded() const;
         QList<Plugin*> getLoadedPlugins() const;
+        PluginDetails getPluginDetails(const QString&) const;
 
     protected:
         void registerPluginType(PluginType*);

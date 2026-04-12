@@ -119,11 +119,11 @@ QString randStr(int length, const QString& charCollection)
 
 QString randBinStr(int length)
 {
-    char* output = new char[length];
-    for (int i =0; i < length; i++)
-        output[i] = rand(0, 256);
+    QByteArray buffer(length, Qt::Uninitialized);
+    for (int i = 0; i < length; i++)
+        buffer[i] = char(rand(0, 256));
 
-    return QString::fromLatin1(output, length);
+    return QString::fromLatin1(buffer);
 }
 
 QString randStrNotIn(int length, const QSet<QString> set, bool numChars, bool whiteSpaces)
@@ -447,7 +447,7 @@ QStringList applyMargin(const QString& str, int margin)
 
             while ((line + word).length() > margin)
             {
-                line += word.left(margin);
+                line += QStringView(word).left(margin);
                 lines << line;
                 word = word.mid(margin);
             }

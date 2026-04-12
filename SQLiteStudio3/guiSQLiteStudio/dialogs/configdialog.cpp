@@ -24,7 +24,6 @@
 #include "dbtree/dbtree.h"
 #include "windows/editorwindow.h"
 #include "syntaxhighlighterplugin.h"
-#include "datagrid/cellrendererplugin.h"
 #include "sqleditor.h"
 #include "style.h"
 #include "common/dialogsizehandler.h"
@@ -46,6 +45,7 @@
 #include <QItemDelegate>
 #include <QKeySequenceEdit>
 #include <QPlainTextEdit>
+#include <QTimer>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -56,7 +56,7 @@
     if (w##WidgetType)\
         return getFilterString(w##WidgetType) + " " + Widget->toolTip();
 
-class ConfigDialogItemDelegate : public QItemDelegate
+class ConfigDialogItemShortcutsDelegate : public QItemDelegate
 {
     public:
         QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -66,6 +66,16 @@ class ConfigDialogItemDelegate : public QItemDelegate
             QSize size = QItemDelegate::sizeHint(option, index);
             return isCategory ? QSize(size.width(), size.height() * 1.7) : size;
         }
+};
+
+class ConfigDialogItemMainDelegate : public QItemDelegate
+{
+public:
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+    {
+        QSize size = QItemDelegate::sizeHint(option, index);
+        return QSize(size.width(), 32);
+    }
 };
 
 ConfigDialog::ConfigDialog(QWidget *parent) :
@@ -155,7 +165,7 @@ QString ConfigDialog::getFilterString(QTreeWidget *widget)
 {
     QList<QTreeWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QTreeWidgetItem* item : items)
+    for (QTreeWidgetItem*& item : items)
     {
         if (!item)
             continue;
@@ -171,7 +181,7 @@ QString ConfigDialog::getFilterString(QListWidget *widget)
 {
     QList<QListWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QListWidgetItem* item : items)
+    for (QListWidgetItem*& item : items)
     {
         if (item)
             strList << item->text() + " " + item->toolTip();
@@ -184,7 +194,7 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 {
     QList<QTableWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    for (QTableWidgetItem* item : items)
+    for (QTableWidgetItem*& item : items)
     {
         if (item)
             strList << item->text() + " " + item->toolTip();
@@ -196,18 +206,29 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 void ConfigDialog::showEvent(QShowEvent* event)
 {
     Q_UNUSED(event);
+    ui->categoriesTree->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->categoriesTree->resizeColumnToContents(0);
-    int adjustedColumnWidth = ui->categoriesTree->columnWidth(0) + 4;
-    if (adjustedColumnWidth > ui->categoriesTree->width()) {
-        if (adjustedColumnWidth > (width() / 2))
-            adjustedColumnWidth = width() / 2;
+    QTimer::singleShot(0, this, [this]()
+    {
+        int adjustedColumnWidth = ui->categoriesTree->header()->sectionSize(0)
+                                  + ui->categoriesTree->indentation()
+                                  + 2 * ui->categoriesTree->frameWidth();
+        if (adjustedColumnWidth > ui->categoriesTree->width())
+        {
+            int mainWd = ui->mainSplitter->width();
+            int splitWd = ui->mainSplitter->handleWidth();
+            if (adjustedColumnWidth > mainWd / 2)
+                adjustedColumnWidth = mainWd / 2;
 
-        QList<int> sizes = ui->splitter->sizes();
-        int rightPartSize = sizes[0] + sizes[1] - adjustedColumnWidth;
-        sizes[0] = adjustedColumnWidth;
-        sizes[1] = rightPartSize;
-        ui->splitter->setSizes(sizes);
-    }
+            QList<int> sizes = ui->mainSplitter->sizes();
+            int rightPartSize = mainWd - splitWd - adjustedColumnWidth;
+            sizes[0] = adjustedColumnWidth;
+            sizes[1] = rightPartSize;
+            ui->mainSplitter->setSizes(sizes);
+        }
+        ui->mainSplitter->setStretchFactor(0, 0);
+        ui->mainSplitter->setStretchFactor(1, 1);
+    });
 }
 
 void ConfigDialog::init()
@@ -224,6 +245,8 @@ void ConfigDialog::init()
                 );
 
     ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
+    ui->categoriesTree->setIconSize(QSize(24, 24));
+    ui->categoriesTree->setItemDelegate(new ConfigDialogItemMainDelegate());
 
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
     connectMapperSignals(configMapper);
@@ -383,7 +406,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     QColor normalColor = ui->categoriesTree->palette().color(QPalette::Active, QPalette::WindowText);
     QColor disabledColor = ui->categoriesTree->palette().color(QPalette::Disabled, QPalette::WindowText);
     QList<QWidget*> widgets = ui->stackedWidget->findChildren<QWidget*>();
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
         widget->setProperty("matched", false);
 
     auto applyMatchStyle = qScopeGuard([widgets]
@@ -405,7 +428,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     }
 
     QList<QWidget*> matchedWidgets;
-    for (QWidget* widget : widgets)
+    for (QWidget*& widget : widgets)
     {
         if (getFilterString(widget).contains(filter, Qt::CaseInsensitive))
         {
@@ -469,7 +492,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType:
     typedef QPair<int,MultiEditorWidgetPlugin*> PluginWithPriority;
     QList<PluginWithPriority> sortedPlugins;
     PluginWithPriority editorWithPrio;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         if (!plugin->validFor(modelDataType))
             continue;
@@ -532,7 +555,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateCustomDataTypeEditors(const 
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins;
     QListWidgetItem* item = nullptr;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
         item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
@@ -558,7 +581,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateDefaultDataTypeEditors(DataT
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins = getDefaultEditorsForType(typeEnum);
     QListWidgetItem* item = nullptr;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
         item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
@@ -618,7 +641,7 @@ void ConfigDialog::transformDataTypeEditorsToCustomList(QListWidgetItem* typeIte
     QList<MultiEditorWidgetPlugin*> plugins = getDefaultEditorsForType(dataType);
 
     QStringList pluginNames;
-    for (MultiEditorWidgetPlugin* plugin : plugins)
+    for (MultiEditorWidgetPlugin*& plugin : plugins)
         pluginNames << plugin->getName();
 
     setPluginNamesForDataTypeItem(typeItem, pluginNames);
@@ -995,9 +1018,14 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
             "</table>");
     static const QString row = QStringLiteral("<tr><td>%1</td><td align=\"right\">%2</td></tr>");
     static const QString hline = QStringLiteral("<tr><td colspan=\"2\"><hr/></td></tr>");
+    static const QString spanRow = QStringLiteral("<tr><td colspan=\"2\">%1</td></tr>");
 
     PluginType* type = PLUGINS->getPluginType(pluginName);
+    PluginManager::PluginDetails pluginDetails = PLUGINS->getPluginDetails(pluginName);
     Q_ASSERT(type != nullptr);
+
+    QString deps = PLUGINS->getDependencies(pluginName).join(", ");
+    QString conflicts = PLUGINS->getConflicts(pluginName).join(", ");
 
     // Rows
     QStringList rows;
@@ -1007,12 +1035,14 @@ void ConfigDialog::detailsClicked(const QString& pluginName)
     rows << row.arg(tr("Author:", "plugin details"), PLUGINS->getAuthor(pluginName));
     rows << hline;
     rows << row.arg(tr("Internal name:", "plugin details"), pluginName);
-    rows << row.arg(tr("Dependencies:", "plugin details"), PLUGINS->getDependencies(pluginName).join(", "));
-    rows << row.arg(tr("Conflicts:", "plugin details"), PLUGINS->getConflicts(pluginName).join(", "));
+    rows << row.arg(tr("Dependencies:", "plugin details"), deps.isEmpty() ? "-" : deps);
+    rows << row.arg(tr("Conflicts:", "plugin details"), conflicts.isEmpty() ? "-" : conflicts);
+    rows << spanRow.arg(tr("File:", "plugin details"));
+    rows << spanRow.arg(QDir::toNativeSeparators(pluginDetails.filePath));
 
     // Message
-    QString pluginDetails = details.arg(PLUGINS->getTitle(pluginName), rows.join(""));
-    QMessageBox::information(this, tr("Plugin details"), pluginDetails);
+    QString dialogDetails = details.arg(PLUGINS->getTitle(pluginName), rows.join(""));
+    QMessageBox::information(this, tr("Plugin details"), dialogDetails);
 }
 
 void ConfigDialog::codeFormatterUnloaded()
@@ -1430,7 +1460,7 @@ void ConfigDialog::refreshFormattersPage()
 
     QList<CodeFormatterPlugin*> plugins = PLUGINS->getLoadedPlugins<CodeFormatterPlugin>();
     QHash<QString,QList<CodeFormatterPlugin*>> groupedPlugins;
-    for (CodeFormatterPlugin* plugin : plugins)
+    for (CodeFormatterPlugin*& plugin : plugins)
         groupedPlugins[plugin->getLanguage()] << plugin;
 
     formatterLangToPluginComboMap.clear();
@@ -1897,7 +1927,7 @@ void ConfigDialog::initShortcuts()
     new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
 
     QList<CfgCategory*> categories = getShortcutsCfgCategories();
-    ui->shortcutsTable->setItemDelegate(new ConfigDialogItemDelegate());
+    ui->shortcutsTable->setItemDelegate(new ConfigDialogItemShortcutsDelegate());
 
     sSort(categories, [](CfgCategory* cat1, CfgCategory* cat2) -> bool
     {

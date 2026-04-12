@@ -22,7 +22,7 @@
     <message>
         <location filename="../htmlexport.cpp" line="119"/>
         <source>Exported view: %1</source>
-        <translation type="unfinished">Exported view: %1</translation>
+        <translation>导出的视图: %1</translation>
     </message>
     <message>
         <location filename="../htmlexport.cpp" line="140"/>

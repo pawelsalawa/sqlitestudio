@@ -48,7 +48,7 @@
     <message>
         <location filename="../pdfexport.cpp" line="209"/>
         <source>Exported view: %1</source>
-        <translation type="unfinished">Exported view: %1</translation>
+        <translation>导出的视图: %1</translation>
     </message>
     <message>
         <location filename="../pdfexport.cpp" line="237"/>

@@ -1,7 +1,6 @@
 #include "uiutils.h"
 #include "services/config.h"
 #include "common/widgetstateindicator.h"
-#include "common/utils.h"
 #include "uiconfig.h"
 #include <QObject>
 #include <QCheckBox>

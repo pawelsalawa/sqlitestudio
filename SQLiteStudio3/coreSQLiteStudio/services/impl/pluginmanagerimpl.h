@@ -52,6 +52,7 @@ class API_EXPORT PluginManagerImpl : public PluginManager
         QStringList getLoadedPluginNames() const;
         QList<PluginDetails> getAllPluginDetails() const;
         QList<PluginDetails> getLoadedPluginDetails() const;
+        PluginDetails getPluginDetails(const QString& pluginName) const;
 
     protected:
         void registerPluginType(PluginType* type);
