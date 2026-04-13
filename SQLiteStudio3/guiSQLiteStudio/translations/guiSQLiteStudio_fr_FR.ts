@@ -3066,179 +3066,179 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
         <translation>Éditeur SQL</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="66"/>
+        <location filename="../windows/editorwindow.ui" line="39"/>
         <source>Query</source>
         <translation>Requête</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="139"/>
+        <location filename="../windows/editorwindow.ui" line="130"/>
         <source>History</source>
         <translation>Historique</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="170"/>
+        <location filename="../windows/editorwindow.cpp" line="167"/>
         <source>Results in the separate tab</source>
         <translation>Résultats dans un onglet séparé</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="171"/>
+        <location filename="../windows/editorwindow.cpp" line="168"/>
         <source>Results below the query</source>
         <translation>Résultats après la requête</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="208"/>
-        <location filename="../windows/editorwindow.cpp" line="210"/>
+        <location filename="../windows/editorwindow.cpp" line="205"/>
+        <location filename="../windows/editorwindow.cpp" line="207"/>
         <source>SQL editor %1</source>
         <translation>Éditeur SQL %1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="104"/>
-        <location filename="../windows/editorwindow.cpp" line="391"/>
+        <location filename="../windows/editorwindow.ui" line="95"/>
+        <location filename="../windows/editorwindow.cpp" line="388"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="426"/>
+        <location filename="../windows/editorwindow.cpp" line="423"/>
         <source>Execute query</source>
         <translation>Exécuter la requête</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="427"/>
+        <location filename="../windows/editorwindow.cpp" line="424"/>
         <source>Explain query</source>
         <translation>Explication de la requête</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="444"/>
+        <location filename="../windows/editorwindow.cpp" line="441"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
         <translation>Vider l’historique d’exécution</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="456"/>
+        <location filename="../windows/editorwindow.cpp" line="453"/>
         <source>Export results</source>
         <comment>sql editor</comment>
         <translation>Exporter résultats</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="438"/>
+        <location filename="../windows/editorwindow.cpp" line="435"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
         <translation>Créer une vue à partir d’une requête</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="440"/>
+        <location filename="../windows/editorwindow.cpp" line="437"/>
         <source>Previous database</source>
         <translation>Base de données précédente</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="441"/>
+        <location filename="../windows/editorwindow.cpp" line="438"/>
         <source>Next database</source>
         <translation>Base de données suivante</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="445"/>
+        <location filename="../windows/editorwindow.cpp" line="442"/>
         <source>Export execution history</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Export execution history</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="448"/>
+        <location filename="../windows/editorwindow.cpp" line="445"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>Afficher l’onglet suivant</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="449"/>
+        <location filename="../windows/editorwindow.cpp" line="446"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>Afficher l’onget précédent</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="450"/>
+        <location filename="../windows/editorwindow.cpp" line="447"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>Focus sur les résultats ci-dessous</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="451"/>
+        <location filename="../windows/editorwindow.cpp" line="448"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>Focus sur l’éditeur SQL ci-dessus</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="452"/>
+        <location filename="../windows/editorwindow.cpp" line="449"/>
         <source>Export selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Export selected SQL history entries</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="453"/>
+        <location filename="../windows/editorwindow.cpp" line="450"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>Supprimer les entrées de l&apos;historique SQL sélectionnées</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="454"/>
+        <location filename="../windows/editorwindow.cpp" line="451"/>
         <source>Execute single query under cursor</source>
         <translation>Exécute la requête sous le curseur</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="455"/>
+        <location filename="../windows/editorwindow.cpp" line="452"/>
         <source>Execute all queries in editor</source>
         <translation>Exécuter toutes les requêtes dans l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="510"/>
+        <location filename="../windows/editorwindow.cpp" line="507"/>
         <source>Active database (%1/%2)</source>
         <translation>Base de données active (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="615"/>
+        <location filename="../windows/editorwindow.cpp" line="612"/>
         <source>Save to file</source>
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="624"/>
+        <location filename="../windows/editorwindow.cpp" line="621"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>Impossible d’ouvrir en écriture le fichier « %1 » : %2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="644"/>
+        <location filename="../windows/editorwindow.cpp" line="641"/>
         <source>Saved SQL contents to file: %1</source>
         <translation>Contenu SQL sauvegardé dans le fichier : %1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="662"/>
+        <location filename="../windows/editorwindow.cpp" line="659"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>Requête terminée en %1 secondes. Nombre de lignes : %2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="666"/>
+        <location filename="../windows/editorwindow.cpp" line="663"/>
         <source>Query finished in %1 second(s).</source>
         <translation>Requête terminée en %1 seconde(s).</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="793"/>
+        <location filename="../windows/editorwindow.cpp" line="790"/>
         <source>Clear execution history</source>
         <translation>Supprimer l’historique d’exécution</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="793"/>
+        <location filename="../windows/editorwindow.cpp" line="790"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>Êtes vous certain de vouloir supprimer la totalité de l’historique d’exécution SQL ? Aucun retour possible.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="831"/>
+        <location filename="../windows/editorwindow.cpp" line="828"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Impossible d’exporter, car aucun plugin d’expertation n’est chargés.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="859"/>
+        <location filename="../windows/editorwindow.cpp" line="849"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>Aucune base de données den sélectionnée dans l’éditeur SQL. Impossible de créer une vue sur une base de données inconnue.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="909"/>
+        <location filename="../windows/editorwindow.cpp" line="899"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>La fenêtre de l&apos;éditeur &quot;%1&quot; a des données invalidées.</translation>
     </message>
