@@ -26,6 +26,8 @@ class GUI_API_EXPORT UiScriptingEdit : public UiLoaderPropertyHandler
 
             private:
                 void installNewHighlighter(const QVariant& prop);
+                void addFormatSqlAction();
+                void setupFont();
 
                 QWidget* watchedWidget = nullptr;
                 QString currentLang;

@@ -125,6 +125,7 @@ void FunctionsEditor::init()
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
 
     initActions();
+    setupContextMenu();
 
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(functionSelected(QItemSelection,QItemSelection)));
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
@@ -178,6 +179,20 @@ void FunctionsEditor::initCodeTabs()
     ui->codeTabs->setTabVisible(tabIdx[STEP], false);
     ui->codeTabs->setTabVisible(tabIdx[INVERSE], false);
     ui->codeTabs->setTabVisible(tabIdx[FINAL], false);
+}
+
+void FunctionsEditor::setupContextMenu()
+{
+    auto formatPredicateFn = [this](QPlainTextEdit* editor)
+    {
+        return currentHighlighterLang == "SQL";
+    };
+
+    addFormatSqlToContextMenu(ui->scalarCodeEdit, formatPredicateFn);
+    addFormatSqlToContextMenu(ui->initCodeEdit, formatPredicateFn);
+    addFormatSqlToContextMenu(ui->inverseCodeEdit, formatPredicateFn);
+    addFormatSqlToContextMenu(ui->stepCodeEdit, formatPredicateFn);
+    addFormatSqlToContextMenu(ui->finalCodeEdit, formatPredicateFn);
 }
 
 int FunctionsEditor::getCurrentFunctionRow() const

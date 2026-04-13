@@ -59,6 +59,7 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
 
     private:
         void init();
+        void setupContextMenu();
         int getCurrentSnippetRow() const;
         QModelIndex snipRowToSrc(const QModelIndex& idx) const;
         void snippetDeselected(int srcRow);

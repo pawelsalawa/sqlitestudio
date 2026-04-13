@@ -2,6 +2,8 @@
 #include "services/pluginmanager.h"
 #include "syntaxhighlighterplugin.h"
 #include "pluginservicebase.h"
+#include "uiconfig.h"
+#include "uiutils.h"
 #include <QPlainTextEdit>
 #include <QTextEdit>
 #include <QCoreApplication>
@@ -28,6 +30,8 @@ UiScriptingEdit::EditUpdater::EditUpdater(QWidget* widget) :
     QObject(widget), watchedWidget(widget)
 {
     widget->installEventFilter(this);
+    addFormatSqlAction();
+    setupFont();
 }
 
 bool UiScriptingEdit::EditUpdater::eventFilter(QObject* obj, QEvent* e)
@@ -71,4 +75,23 @@ void UiScriptingEdit::EditUpdater::installNewHighlighter(const QVariant& prop)
         currentLang = lang;
         break;
     }
+}
+
+void UiScriptingEdit::EditUpdater::addFormatSqlAction()
+{
+    QPlainTextEdit* edit = dynamic_cast<QPlainTextEdit*>(watchedWidget);
+    if (!edit)
+        return;
+
+    auto langPrediateFn = [this](QPlainTextEdit* edit) -> bool
+    {
+        return currentLang == "SQL";
+    };
+
+    addFormatSqlToContextMenu(edit, langPrediateFn);
+}
+
+void UiScriptingEdit::EditUpdater::setupFont()
+{
+    watchedWidget->setFont(CFG_UI.Fonts.SqlEditor.get());
 }

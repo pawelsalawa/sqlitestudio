@@ -91,6 +91,7 @@ SqlEditor::~SqlEditor()
 
 void SqlEditor::init()
 {
+    setContextMenuPolicy(Qt::CustomContextMenu);
     highlighter = new SqliteSyntaxHighlighter(document());
     initActions();
     setupMenu();
@@ -1097,23 +1098,6 @@ void SqlEditor::updateLineNumberArea()
     updateLineNumberArea(viewport()->rect(), viewport()->y());
 }
 
-bool SqlEditor::hasSelection() const
-{
-    return textCursor().hasSelection();
-}
-
-void SqlEditor::replaceSelectedText(const QString &newText)
-{
-    textCursor().insertText(newText);
-}
-
-QString SqlEditor::getSelectedText() const
-{
-    QString txt = textCursor().selectedText();
-    fixTextCursorSelectedText(txt);
-    return txt;
-}
-
 void SqlEditor::openObject(const QString& database, const QString& name)
 {
     DbObjectDialogs dialogs(db);
@@ -1190,13 +1174,7 @@ void SqlEditor::checkContentSize()
 
 void SqlEditor::formatSql()
 {
-    QString sql = hasSelection() ? getSelectedText() : toPlainText();
-    sql = SQLITESTUDIO->getCodeFormatter()->format("sql", sql, db);
-
-    if (!hasSelection())
-        selectAll();
-
-    replaceSelectedText(sql);
+    formatSqlInTextEdit(this, db);
 }
 
 void SqlEditor::saveToFile()

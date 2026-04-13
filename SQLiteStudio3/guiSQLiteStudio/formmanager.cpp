@@ -1,7 +1,6 @@
 #include "formmanager.h"
 #include "services/pluginmanager.h"
 #include "uiloader.h"
-#include "common/global.h"
 #include <QFile>
 #include <QDir>
 #include <QRegularExpression>

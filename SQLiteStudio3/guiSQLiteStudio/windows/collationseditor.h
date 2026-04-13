@@ -71,6 +71,7 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
         QStringList getCurrentDatabases() const;
         void setFont(const QFont& font);
         void updateLangCombo();
+        void setupContextMenu();
 
         Ui::CollationsEditor *ui = nullptr;
         CollationsEditorModel* model = nullptr;

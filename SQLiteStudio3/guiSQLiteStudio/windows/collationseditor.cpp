@@ -82,6 +82,7 @@ void CollationsEditor::init()
 {
     ui->setupUi(this);
     initActions();
+    setupContextMenu();
 
     setFont(CFG_UI.Fonts.SqlEditor.get());
 
@@ -399,6 +400,16 @@ void CollationsEditor::updateLangCombo()
         }
     }
     updatesForSelection = alreadyInternalUpdate;
+}
+
+void CollationsEditor::setupContextMenu()
+{
+    auto formatPredicateFn = [this](QPlainTextEdit* editor)
+    {
+        return currentHighlighterLang == "SQL";
+    };
+
+    addFormatSqlToContextMenu(ui->codeEdit, formatPredicateFn);
 }
 
 void CollationsEditor::updateModified()

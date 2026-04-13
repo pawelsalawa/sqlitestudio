@@ -1,7 +1,10 @@
 #include "uiutils.h"
+#include "services/codeformatter.h"
 #include "services/config.h"
 #include "common/widgetstateindicator.h"
 #include "uiconfig.h"
+#include "iconmanager.h"
+#include "sqleditor.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -17,6 +20,8 @@
 #include <QScreen>
 #include <QToolBar>
 #include <QToolButton>
+#include <QMenu>
+#include <QPlainTextEdit>
 
 const QList<QPageSize::PageSizeId> pageSizeIds = {
     QPageSize::A4, QPageSize::B5, QPageSize::Letter, QPageSize::Legal, QPageSize::Executive, QPageSize::A0, QPageSize::A1,
@@ -213,5 +218,67 @@ QColor findContrastingColor(const QColor& input)
 
     bool isDark = inputLum < 0.15;
     return isDark ? QColor(240,240,240) : QColor(30,30,30);
+}
+
+void formatSqlInTextEdit(QPlainTextEdit* editor, Db* db)
+{
+    QTextCursor cur = editor->textCursor();
+    QString sql = cur.hasSelection() ? cur.selectedText() : editor->toPlainText();
+    fixTextCursorSelectedText(sql);
+
+    sql = SQLITESTUDIO->getCodeFormatter()->format("sql", sql, db);
+
+    if (!cur.hasSelection())
+        editor->selectAll();
+
+    // After potential change in selection, we need to replace contents based on the new cursor
+    editor->textCursor().insertText(sql);
+}
+
+void enrichTextEditContextMenu(QPlainTextEdit* editor, std::function<void(QPlainTextEdit*,QMenu*)> enrichFunc)
+{
+    editor->setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(editor, &QWidget::customContextMenuRequested, editor, [editor, enrichFunc](const QPoint &pos)
+    {
+        QMenu *menu = editor->createStandardContextMenu();
+        menu->setParent(editor);
+        enrichFunc(editor, menu);
+        menu->exec(editor->mapToGlobal(pos));
+        delete menu;
+    });
+}
+
+void addFormatSqlToContextMenu(QPlainTextEdit* editor, std::function<bool(QPlainTextEdit*)> actionCondition)
+{
+    QAction* formatSqlAction = new QAction(ICONS.FORMAT_SQL, QObject::tr("Format SQL"), editor);
+    editor->addAction(formatSqlAction);
+
+    formatSqlAction->setShortcutContext(Qt::WidgetShortcut);
+    formatSqlAction->setShortcut(QKeySequence(CFG_KEYS_INSTANCE(SqlEditor).FORMAT_SQL.get()));
+
+    enrichTextEditContextMenu(editor, [formatSqlAction, actionCondition](QPlainTextEdit* editor, QMenu* menu)
+    {
+        if (actionCondition && !actionCondition(editor))
+            return;
+
+        auto actions = menu->actions();
+        if (actions.isEmpty())
+        {
+            menu->addAction(formatSqlAction);
+        }
+        else
+        {
+            auto sep = menu->insertSeparator(actions.first());
+            menu->insertAction(sep, formatSqlAction);
+        }
+    });
+
+    QObject::connect(formatSqlAction, &QAction::triggered, [editor, actionCondition]()
+    {
+        if (actionCondition && !actionCondition(editor))
+            return;
+
+        formatSqlInTextEdit(editor);
+    });
 }
 

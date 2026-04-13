@@ -216,9 +216,6 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void showSearchDialog();
         int sqlIndex(int idx);
         void updateLineNumberArea();
-        bool hasSelection() const;
-        void replaceSelectedText(const QString& newText);
-        QString getSelectedText() const;
         void openObject(const QString& database, const QString& name);
 
         /**

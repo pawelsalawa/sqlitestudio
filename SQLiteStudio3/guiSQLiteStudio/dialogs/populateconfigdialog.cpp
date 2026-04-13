@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QSpinBox>
+#include <QPlainTextEdit>
 
 PopulateConfigDialog::PopulateConfigDialog(PopulateEngine* engine, const QString& column, const QString& pluginName, QWidget *parent) :
     QDialog(parent),

@@ -5,8 +5,11 @@
 #include <QVariant>
 #include <QPagedPaintDevice>
 
+class Db;
 class QWidget;
 class QToolBar;
+class QPlainTextEdit;
+class QMenu;
 
 GUI_API_EXPORT QString getDbPath(bool newFileMode, const QString& startWith = QString());
 GUI_API_EXPORT QString getDbOrSqlPath(bool newFileMode, const QString &startWith = QString());
@@ -26,6 +29,9 @@ GUI_API_EXPORT QColor styleSyntaxStringColor();
 GUI_API_EXPORT QBrush styleEditorLineColor();
 GUI_API_EXPORT void fixToolbarTooltips(QToolBar* toolbar);
 GUI_API_EXPORT QColor findContrastingColor(const QColor& input);
+GUI_API_EXPORT void enrichTextEditContextMenu(QPlainTextEdit* editor, std::function<void(QPlainTextEdit*,QMenu*)> enrichFunc);
+GUI_API_EXPORT void addFormatSqlToContextMenu(QPlainTextEdit* editor, std::function<bool(QPlainTextEdit*)> actionCondition = nullptr);
+GUI_API_EXPORT void formatSqlInTextEdit(QPlainTextEdit* editor, Db* db = nullptr);
 
 // This is a hack. For example we want to display "Ctrl+W" shortcut to the user in this menu, but assigning that shortcut
 // permanently to the action makes it ambigous to Qt, because it's already a standard shortcut,

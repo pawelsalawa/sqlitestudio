@@ -7,6 +7,8 @@
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
 
+
+class QPlainTextEdit;
 namespace Ui {
 class FunctionsEditor;
 }
@@ -77,6 +79,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
 
         void init();
         void initCodeTabs();
+        void setupContextMenu();
         int getCurrentFunctionRow() const;
         void functionDeselected(int srcRow);
         void functionSelected(int srcRow);

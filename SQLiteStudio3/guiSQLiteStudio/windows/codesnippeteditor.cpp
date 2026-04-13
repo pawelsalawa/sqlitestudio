@@ -118,6 +118,7 @@ void CodeSnippetEditor::init()
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
 
     initActions();
+    setupContextMenu();
 
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(snippetSelected(QItemSelection,QItemSelection)));
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
@@ -130,6 +131,11 @@ void CodeSnippetEditor::init()
     model->setData(CODESNIPPETS->getSnippets());
 
     updateCurrentSnippetState();
+}
+
+void CodeSnippetEditor::setupContextMenu()
+{
+    addFormatSqlToContextMenu(ui->mainCodeEdit);
 }
 
 int CodeSnippetEditor::getCurrentSnippetRow() const

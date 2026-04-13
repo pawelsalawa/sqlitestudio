@@ -29,7 +29,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="queryTab">
       <attribute name="title">
@@ -98,7 +98,7 @@
           <item>
            <widget class="QSplitter" name="splitter">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <widget class="QWidget" name="outputColumnsContainer" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -129,19 +129,19 @@
                     <bool>true</bool>
                    </property>
                    <property name="dragDropMode">
-                    <enum>QAbstractItemView::InternalMove</enum>
+                    <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
                    </property>
                    <property name="defaultDropAction">
-                    <enum>Qt::MoveAction</enum>
+                    <enum>Qt::DropAction::MoveAction</enum>
                    </property>
                    <property name="alternatingRowColors">
                     <bool>true</bool>
                    </property>
                    <property name="selectionMode">
-                    <enum>QAbstractItemView::SingleSelection</enum>
+                    <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                    </property>
                    <property name="selectionBehavior">
-                    <enum>QAbstractItemView::SelectRows</enum>
+                    <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
                    </property>
                    <property name="selectionRectVisible">
                     <bool>true</bool>
@@ -155,7 +155,7 @@
             </widget>
             <widget class="SqlEditor" name="queryEdit">
              <property name="lineWrapMode">
-              <enum>QPlainTextEdit::NoWrap</enum>
+              <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
              </property>
             </widget>
            </widget>
@@ -186,19 +186,19 @@
        <item>
         <widget class="ExtTableWidget" name="triggersList">
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
          </property>
          <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
+          <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
          </property>
          <property name="horizontalScrollMode">
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
+          <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
          </property>
          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
           <bool>true</bool>
