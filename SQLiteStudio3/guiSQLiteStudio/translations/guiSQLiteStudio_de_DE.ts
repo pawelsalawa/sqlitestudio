@@ -190,17 +190,17 @@
         <translation>Code-Schnipsel-Handbuch</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="296"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="302"/>
         <source>Enter a non-empty, unique name of the snippet.</source>
         <translation>Geben Sie einen einzigartigen Namen für den Schnipsel ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="299"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="305"/>
         <source>Enter a non-empty snippet content.</source>
         <translation>Geben Sie Ihren Schnipsel-Inhalt ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="303"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="309"/>
         <source>This hotkey is not unique in context of a code assistant.</source>
         <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
     </message>
@@ -293,37 +293,37 @@
         <translation>Kollationen manuell editieren</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="307"/>
+        <location filename="../windows/collationseditor.cpp" line="308"/>
         <source>Enter a non-empty, unique name of the collation.</source>
         <translation>Geben Sie einen eindeutigen Namen für die Kollation ein.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="317"/>
+        <location filename="../windows/collationseditor.cpp" line="318"/>
         <source>Pick the implementation language.</source>
         <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="322"/>
+        <location filename="../windows/collationseditor.cpp" line="323"/>
         <source>Registration code</source>
         <translation>Registrierungscode</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="323"/>
+        <location filename="../windows/collationseditor.cpp" line="324"/>
         <source>Enter a non-empty registration code.</source>
         <translation type="unfinished">Enter a non-empty registration code.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="327"/>
+        <location filename="../windows/collationseditor.cpp" line="328"/>
         <source>Implementation code</source>
         <translation>Implementierungscode</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="328"/>
+        <location filename="../windows/collationseditor.cpp" line="329"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Geben Sie eine eindeutige Vergleichsoperatorendefinition ein.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="451"/>
+        <location filename="../windows/collationseditor.cpp" line="462"/>
         <source>Collations editor window has uncommitted modifications.</source>
         <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
     </message>
@@ -3890,35 +3890,35 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation type="unfinished">Window</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="501"/>
+        <location filename="../windows/functionseditor.cpp" line="516"/>
         <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
         <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="512"/>
+        <location filename="../windows/functionseditor.cpp" line="527"/>
         <source>Pick the implementation language.</source>
         <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="530"/>
-        <location filename="../windows/functionseditor.cpp" line="540"/>
-        <location filename="../windows/functionseditor.cpp" line="541"/>
+        <location filename="../windows/functionseditor.cpp" line="545"/>
+        <location filename="../windows/functionseditor.cpp" line="555"/>
+        <location filename="../windows/functionseditor.cpp" line="556"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Geben Sie die Anweisungen ein.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="590"/>
+        <location filename="../windows/functionseditor.cpp" line="605"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
         <translation>Argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="694"/>
+        <location filename="../windows/functionseditor.cpp" line="709"/>
         <source>Function argument cannot be empty and it cannot have duplicated name.</source>
         <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="742"/>
+        <location filename="../windows/functionseditor.cpp" line="757"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
     </message>
@@ -4985,7 +4985,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation>Konfiguration auffüllen</translation>
     </message>
     <message>
-        <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
+        <location filename="../dialogs/populateconfigdialog.cpp" line="55"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
         <translation>Konfiguriere &lt;b&gt;%1&lt;/b&gt; für Spalte &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>
@@ -5675,49 +5675,54 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="63"/>
-        <location filename="../uiutils.cpp" line="73"/>
+        <location filename="../uiutils.cpp" line="68"/>
+        <location filename="../uiutils.cpp" line="78"/>
         <source>All SQLite databases</source>
         <translation>Alle SQLite Datenbanken</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="65"/>
-        <location filename="../uiutils.cpp" line="76"/>
+        <location filename="../uiutils.cpp" line="70"/>
+        <location filename="../uiutils.cpp" line="81"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="66"/>
+        <location filename="../uiutils.cpp" line="71"/>
         <source>Select database file</source>
         <translation type="unfinished">Select database file</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="66"/>
+        <location filename="../uiutils.cpp" line="71"/>
         <source>Select new database file</source>
         <translation type="unfinished">Select new database file</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="72"/>
+        <location filename="../uiutils.cpp" line="77"/>
         <source>SQLite database or SQL file</source>
         <translation type="unfinished">SQLite database or SQL file</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="75"/>
+        <location filename="../uiutils.cpp" line="80"/>
         <source>SQL files</source>
         <translation type="unfinished">SQL files</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="77"/>
+        <location filename="../uiutils.cpp" line="82"/>
         <source>Select a file to open</source>
         <translation type="unfinished">Select a file to open</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="51"/>
+        <location filename="../uiutils.cpp" line="253"/>
+        <source>Format SQL</source>
+        <translation type="unfinished">SQL formatieren</translation>
+    </message>
+    <message>
+        <location filename="../uiutils.cpp" line="56"/>
         <source>Select</source>
         <translation type="unfinished">Select</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="52"/>
+        <location filename="../uiutils.cpp" line="57"/>
         <source>File type</source>
         <translation type="unfinished">File type</translation>
     </message>
@@ -5939,7 +5944,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/codesnippeteditor.h" line="18"/>
         <location filename="../windows/collationseditor.h" line="22"/>
-        <location filename="../windows/functionseditor.h" line="23"/>
+        <location filename="../windows/functionseditor.h" line="25"/>
         <location filename="../windows/sqliteextensioneditor.h" line="22"/>
         <source>Commit the pending changes</source>
         <translation type="unfinished">Commit the pending changes</translation>
@@ -5947,7 +5952,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/codesnippeteditor.h" line="19"/>
         <location filename="../windows/collationseditor.h" line="23"/>
-        <location filename="../windows/functionseditor.h" line="24"/>
+        <location filename="../windows/functionseditor.h" line="26"/>
         <location filename="../windows/sqliteextensioneditor.h" line="23"/>
         <source>Rollback the pending changes</source>
         <translation type="unfinished">Rollback the pending changes</translation>
@@ -5958,7 +5963,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation type="unfinished">A collation editor window</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.h" line="22"/>
+        <location filename="../windows/functionseditor.h" line="24"/>
         <source>A function editor window</source>
         <translation type="unfinished">A function editor window</translation>
     </message>
@@ -6079,197 +6084,197 @@ find next</source>
         <translation>Wort umbrechen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="163"/>
+        <location filename="../sqleditor.cpp" line="164"/>
         <source>Cut</source>
         <comment>sql editor</comment>
         <translation>Ausschneiden</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="164"/>
+        <location filename="../sqleditor.cpp" line="165"/>
         <source>Copy</source>
         <comment>sql editor</comment>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="165"/>
+        <location filename="../sqleditor.cpp" line="166"/>
         <source>Paste</source>
         <comment>sql editor</comment>
         <translation>Einfügen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="166"/>
+        <location filename="../sqleditor.cpp" line="167"/>
         <source>Delete</source>
         <comment>sql editor</comment>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="167"/>
+        <location filename="../sqleditor.cpp" line="168"/>
         <source>Select all</source>
         <comment>sql editor</comment>
         <translation>Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="168"/>
+        <location filename="../sqleditor.cpp" line="169"/>
         <source>Undo</source>
         <comment>sql editor</comment>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="169"/>
+        <location filename="../sqleditor.cpp" line="170"/>
         <source>Redo</source>
         <comment>sql editor</comment>
         <translation>Wiederholen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="171"/>
+        <location filename="../sqleditor.cpp" line="172"/>
         <source>Complete</source>
         <comment>sql editor</comment>
         <translation>Komplett</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="172"/>
+        <location filename="../sqleditor.cpp" line="173"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
         <translation>SQL formatieren</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="173"/>
+        <location filename="../sqleditor.cpp" line="174"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
         <translation>SQL in Datei speichern</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="174"/>
+        <location filename="../sqleditor.cpp" line="175"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
         <translation>Datei zum Speichern von SQL auswählen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="175"/>
+        <location filename="../sqleditor.cpp" line="176"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
         <translation>SQL aus Datei laden</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="176"/>
+        <location filename="../sqleditor.cpp" line="177"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
         <translation>Zeile löschen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="177"/>
+        <location filename="../sqleditor.cpp" line="178"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
         <translation>Block nach unten verschieben</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="178"/>
+        <location filename="../sqleditor.cpp" line="179"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
         <translation>Block nach oben verschieben</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="179"/>
+        <location filename="../sqleditor.cpp" line="180"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
         <translation>Block nach unten kopieren</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="180"/>
+        <location filename="../sqleditor.cpp" line="181"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
         <translation>Kopiere auf ab</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="181"/>
+        <location filename="../sqleditor.cpp" line="182"/>
         <source>Find or replace</source>
         <comment>sql editor</comment>
         <translation>Finden oder Ersetzen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="182"/>
+        <location filename="../sqleditor.cpp" line="183"/>
         <source>Find next</source>
         <comment>sql editor</comment>
         <translation>Nächster Fund</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="183"/>
+        <location filename="../sqleditor.cpp" line="184"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
         <translation>Vorheriger Fund</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="184"/>
+        <location filename="../sqleditor.cpp" line="185"/>
         <source>Replace</source>
         <comment>sql editor</comment>
         <translation>Ersetzen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="185"/>
+        <location filename="../sqleditor.cpp" line="186"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
         <translation>Kommentar umschalten</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="186"/>
+        <location filename="../sqleditor.cpp" line="187"/>
         <source>Increase font size</source>
         <comment>sql editor</comment>
         <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="187"/>
+        <location filename="../sqleditor.cpp" line="188"/>
         <source>Decrease font size</source>
         <comment>sql editor</comment>
         <translation>Schriftgröße verringern</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="297"/>
+        <location filename="../sqleditor.cpp" line="298"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>Die Datei &apos;%1&apos; kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="306"/>
+        <location filename="../sqleditor.cpp" line="307"/>
         <source>Saved SQL contents to file: %1</source>
         <translation>SQL Inhalte in Datei speichern: %1</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="559"/>
+        <location filename="../sqleditor.cpp" line="560"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
         <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1181"/>
+        <location filename="../sqleditor.cpp" line="1165"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1216"/>
+        <location filename="../sqleditor.cpp" line="1194"/>
         <source>Save to file</source>
         <translation>In Datei speichern</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1231"/>
+        <location filename="../sqleditor.cpp" line="1209"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1232"/>
-        <location filename="../sqleditor.cpp" line="1263"/>
+        <location filename="../sqleditor.cpp" line="1210"/>
+        <location filename="../sqleditor.cpp" line="1241"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1264"/>
+        <location filename="../sqleditor.cpp" line="1242"/>
         <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
         <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1278"/>
+        <location filename="../sqleditor.cpp" line="1256"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1472"/>
+        <location filename="../sqleditor.cpp" line="1450"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
