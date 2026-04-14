@@ -61,6 +61,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         bool afterExport() override;
         bool afterExportTable() override;
         bool afterExportQueryResults() override;
+        bool afterExportView() override;
         bool exportTableRow(SqlResultsRowPtr data) override;
         bool beforeExportSingleTable(const QString& database, const QString& table) override;
         bool afterExportSingleTable() override;

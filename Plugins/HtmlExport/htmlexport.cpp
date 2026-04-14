@@ -51,6 +51,23 @@ bool HtmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecu
     incrIndent();
     if (printHeader)
     {
+        QString viewLabel = tr("Query:");
+        int colSpan = printRownum ? columns.size() + 1 : columns.size();
+        writeln("<tr class=\"title\">");
+        incrIndent();
+        writeln(QString("<td colspan=\"%1\" align=\"center\"><b>%2</b></td>").arg(colSpan).arg(viewLabel));
+        decrIndent();
+        writeln("</tr>");
+        writeln("<tr>");
+        incrIndent();
+        writeln(QString("<td colspan=\"%1\">").arg(colSpan));
+        incrIndent();
+        writeln(QString("<pre>%1</pre>").arg(escape(query)));
+        decrIndent();
+        writeln("</td>");
+        decrIndent();
+        writeln("</tr>");
+
         writeln("<tr class=\"header\">");
         incrIndent();
         if (printRownum)

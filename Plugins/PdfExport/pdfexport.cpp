@@ -65,6 +65,12 @@ bool PdfExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     if (!beginDoc(tr("SQL query results")))
         return false;
 
+    exportObjectColumnsHeader({tr("Query:")});
+    exportObjectRow(query);
+    bufferedObjectRows.last().expandHeight = true;
+
+    flushObjectPages();
+
     totalRows = providedData[ExportManager::ROW_COUNT].toInt();
 
     QStringList columnNames;
@@ -227,6 +233,12 @@ bool PdfExport::afterExportTable()
 }
 
 bool PdfExport::afterExportQueryResults()
+{
+    flushDataPages(true);
+    return true;
+}
+
+bool PdfExport::afterExportView()
 {
     flushDataPages(true);
     return true;
