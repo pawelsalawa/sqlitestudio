@@ -215,7 +215,7 @@ void CollationsEditor::setFont(const QFont& font)
 
 void CollationsEditor::help()
 {
-    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#custom-collations");
+    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/Custom-collation-sequences");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 

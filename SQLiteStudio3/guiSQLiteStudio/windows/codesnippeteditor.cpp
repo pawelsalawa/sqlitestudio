@@ -367,6 +367,6 @@ void CodeSnippetEditor::clearAssistantShortcutPressed()
 
 void CodeSnippetEditor::help()
 {
-    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#code-snippets");
+    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/Code-snippets");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
