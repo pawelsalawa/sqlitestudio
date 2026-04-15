@@ -10,26 +10,35 @@ class QTimer;
 class GUI_API_EXPORT DialogSizeHandler : public QObject
 {
     Q_OBJECT
-public:
-    explicit DialogSizeHandler(QObject *parent);
-    DialogSizeHandler(const QString& key, QObject *parent);
-    virtual ~DialogSizeHandler();
 
-    static void applyFor(QObject *parent);
-    static void applyFor(const QString& key, QObject *parent);
+    public:
+        enum Mode
+        {
+            BOTH,
+            HORIZONTAL,
+            VERTICAL
+        };
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;
+        virtual ~DialogSizeHandler();
 
-private:
-    static const constexpr char* CONFIG_GROUP = "DialogDimensions";
+        static void applyFor(QObject *parent, Mode mode = BOTH);
+        static void applyFor(const QString& key, QObject *parent, Mode mode = BOTH);
 
-    QString configKey;
-    QTimer* saveTimer = nullptr;
-    QRect recentGeometry;
+    protected:
+        DialogSizeHandler(const QString& key, QObject *parent, Mode mode);
 
-public slots:
-    void doSave();
+        bool eventFilter(QObject *obj, QEvent *event) override;
+
+    private:
+        static const constexpr char* CONFIG_GROUP = "DialogDimensions";
+
+        QString configKey;
+        QTimer* saveTimer = nullptr;
+        QRect recentGeometry;
+        Mode mode = BOTH;
+
+    public slots:
+        void doSave();
 };
 
 #endif // DIALOGSIZEHANDLER_H
