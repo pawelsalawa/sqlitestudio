@@ -49,13 +49,14 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void init();
         void setColumn(SqliteCreateTable::Column* value);
         SqliteCreateTable::Column* getModifiedColumn();
-        QToolBar* getToolBar(int toolbar) const;
+        QToolBar* getToolBar(int toolbar) const override;
         void disableConstraint(ConstraintDialog::Constraint constraint);
 
     protected:
-        void changeEvent(QEvent *e);
-        void createActions();
-        void setupDefShortcuts();
+        void changeEvent(QEvent *e) override;
+        void createActions() override;
+        void setupDefShortcuts() override;
+        void showEvent(QShowEvent* e) override;
 
     private:
         void addConstraint(ConstraintDialog::Constraint mode);
@@ -73,6 +74,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void updateTypeForAutoIncr();
         bool hasAutoIncr() const;
         void validateFkTypeMatch();
+        void updateCompoundConstraints();
 
         Ui::ColumnDialog *ui = nullptr;
         SqliteCreateTable::ColumnPtr column;

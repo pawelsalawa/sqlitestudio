@@ -34,7 +34,6 @@ void ColumnDialog::init()
     ui->setupUi(this);
     limitDialogWidth(this);
     setWindowIcon(ICONS.COLUMN);
-    DialogSizeHandler::applyFor(this);
 
     ui->scale->setStrict(true, true);
     ui->precision->setStrict(true, true);
@@ -103,6 +102,12 @@ void ColumnDialog::setupDefShortcuts()
 {
 }
 
+void ColumnDialog::showEvent(QShowEvent* e)
+{
+    adjustSize();
+    DialogSizeHandler::applyFor(this, DialogSizeHandler::HORIZONTAL);
+}
+
 void ColumnDialog::updateConstraintsToolbarState()
 {
     QModelIndex idx = ui->constraintsView->selectionModel()->currentIndex();
@@ -161,8 +166,11 @@ void ColumnDialog::addConstraint(ConstraintDialog::Constraint mode)
 void ColumnDialog::setupConstraintCheckBoxes()
 {
     ui->pkCheck->setIcon(ICONS.CONSTRAINT_PRIMARY_KEY);
+    ui->compoundPkCheck->setIcon(ICONS.CONSTRAINT_PRIMARY_KEY);
     ui->fkCheck->setIcon(ICONS.CONSTRAINT_FOREIGN_KEY);
+    ui->compoundFkCheck->setIcon(ICONS.CONSTRAINT_FOREIGN_KEY);
     ui->uniqueCheck->setIcon(ICONS.CONSTRAINT_UNIQUE);
+    ui->compoundUniqueCheck->setIcon(ICONS.CONSTRAINT_UNIQUE);
     ui->notNullCheck->setIcon(ICONS.CONSTRAINT_NOT_NULL);
     ui->checkCheck->setIcon(ICONS.CONSTRAINT_CHECK);
     ui->collateCheck->setIcon(ICONS.CONSTRAINT_COLLATION);
@@ -683,6 +691,40 @@ void ColumnDialog::updateValidations()
     validateFkTypeMatch();
 }
 
+void ColumnDialog::updateCompoundConstraints()
+{
+    SqliteCreateTable* createTable = column->findClosestTypedParentStatement<SqliteCreateTable>();
+    if (!createTable)
+        return;
+
+    bool isPk = false;
+    bool isFk = false;
+    bool isUnique = false;
+    QList<SqliteCreateTable::Constraint*> tableConstraints = createTable->getTableConstraintsOnColumn(column->name);
+    for (auto constr : tableConstraints)
+    {
+        switch (constr->type)
+        {
+            case SqliteCreateTable::Constraint::PRIMARY_KEY:
+                isPk = true;
+                break;
+            case SqliteCreateTable::Constraint::UNIQUE:
+                isUnique = true;
+                break;
+            case SqliteCreateTable::Constraint::FOREIGN_KEY:
+                isFk = true;
+                break;
+            case SqliteCreateTable::Constraint::CHECK:
+            case SqliteCreateTable::Constraint::NAME_ONLY:
+                break;
+        }
+    }
+
+    ui->compoundPkCheck->setVisible(isPk);
+    ui->compoundFkCheck->setVisible(isFk);
+    ui->compoundUniqueCheck->setVisible(isUnique);
+}
+
 void ColumnDialog::updateConstraint(SqliteCreateTable::Column::Constraint* constraint)
 {
     QCheckBox* checkBox = getCheckBoxForConstraint(constraint);
@@ -740,6 +782,7 @@ void ColumnDialog::setColumn(SqliteCreateTable::Column* value)
     }
 
     updateValidations();
+    updateCompoundConstraints();
 }
 
 SqliteCreateTable::Column* ColumnDialog::getModifiedColumn()

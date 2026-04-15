@@ -54,6 +54,7 @@
 - CHANGE: #5456 Table Modifier optimization, so at most only single copying data can happen, instead of two. Also views/triggers support got improved for cases with subselects.
 - CHANGE: #5496 Code Assistant improved to suggest appropriate JOIN conditions when asked at the ON keyword of joining tables. Currently supports only plain table data sources (not subselects).
 - CHANGE: #5509 Foreign Key editor in Form View and dedicated editor dialog now shows preview of currently selected value of foreign table.
+- CHANGE: #5580 Column Dialog now shows Composite constraints that affect edited column as read-only checked options, to make it clear why this column has particular constraint icon on it in Table Window.
 - CHANGE: #5562 Several toolbars cleaned up, simplified.
 - CHANGE: #5591 Enhanced support for DEFAULT/AUTOINCR/GENERATED columns, so that it's the default value is distinct from NULL and user can always reset new cell value to its default value.
 - CHANGE: #5212 Database list now expands columns, indexes and triggers whenever the table is expanded.

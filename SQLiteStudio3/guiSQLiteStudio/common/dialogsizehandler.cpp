@@ -7,12 +7,7 @@
 #include <QGuiApplication>
 #include <QDebug>
 
-DialogSizeHandler::DialogSizeHandler(QObject *parent) :
-    DialogSizeHandler(parent->objectName(), parent)
-{
-}
-
-DialogSizeHandler::DialogSizeHandler(const QString &key, QObject *parent) :
+DialogSizeHandler::DialogSizeHandler(const QString &key, QObject *parent, Mode mode) :
     QObject(parent), configKey(key)
 {
     saveTimer = new QTimer(this);
@@ -24,7 +19,18 @@ DialogSizeHandler::DialogSizeHandler(const QString &key, QObject *parent) :
     if (geom.isValid() && qApp->primaryScreen()->geometry().contains(geom))
     {
         QWidget* w = qobject_cast<QWidget*>(parent);
-        w->setGeometry(geom);
+        switch (mode)
+        {
+            case BOTH:
+                w->setGeometry(geom);
+                break;
+            case HORIZONTAL:
+                w->setGeometry(geom.x(), geom.y(), geom.width(), w->height());
+                break;
+            case VERTICAL:
+                w->setGeometry(geom.x(), geom.y(), w->width(), geom.height());
+                break;
+        }
     }
 }
 
@@ -32,18 +38,18 @@ DialogSizeHandler::~DialogSizeHandler()
 {
 }
 
-void DialogSizeHandler::applyFor(QObject *parent)
+void DialogSizeHandler::applyFor(QObject *parent, Mode mode)
 {
     QString key = parent->objectName();
     if (key.isEmpty())
         key = parent->metaObject()->className();
 
-    applyFor(key, parent);
+    applyFor(key, parent, mode);
 }
 
-void DialogSizeHandler::applyFor(const QString &key, QObject *parent)
+void DialogSizeHandler::applyFor(const QString &key, QObject *parent, Mode mode)
 {
-    DialogSizeHandler* handler = new DialogSizeHandler(key, parent);
+    DialogSizeHandler* handler = new DialogSizeHandler(key, parent, mode);
     parent->installEventFilter(handler);
 }
 
