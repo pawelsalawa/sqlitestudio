@@ -9,119 +9,124 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="77"/>
-        <location filename="../htmlexport.cpp" line="171"/>
+        <location filename="../htmlexport.cpp" line="54"/>
+        <source>Query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../htmlexport.cpp" line="94"/>
+        <location filename="../htmlexport.cpp" line="188"/>
         <source>no type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="108"/>
+        <location filename="../htmlexport.cpp" line="125"/>
         <source>Exported table: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="119"/>
+        <location filename="../htmlexport.cpp" line="136"/>
         <source>Exported view: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="140"/>
-        <location filename="../htmlexport.cpp" line="263"/>
+        <location filename="../htmlexport.cpp" line="157"/>
+        <location filename="../htmlexport.cpp" line="280"/>
         <source>Table: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="266"/>
+        <location filename="../htmlexport.cpp" line="283"/>
         <source>virtual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="318"/>
+        <location filename="../htmlexport.cpp" line="335"/>
         <source>Exported database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="334"/>
+        <location filename="../htmlexport.cpp" line="351"/>
         <source>Index: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="340"/>
+        <location filename="../htmlexport.cpp" line="357"/>
         <source>For table:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="347"/>
+        <location filename="../htmlexport.cpp" line="364"/>
         <source>Unique:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="348"/>
+        <location filename="../htmlexport.cpp" line="365"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="348"/>
+        <location filename="../htmlexport.cpp" line="365"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="354"/>
+        <location filename="../htmlexport.cpp" line="371"/>
         <source>Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="355"/>
+        <location filename="../htmlexport.cpp" line="372"/>
         <source>Collating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="356"/>
+        <location filename="../htmlexport.cpp" line="373"/>
         <source>Sort order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="390"/>
+        <location filename="../htmlexport.cpp" line="407"/>
         <source>Trigger: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="396"/>
+        <location filename="../htmlexport.cpp" line="413"/>
         <source>Activated:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="404"/>
+        <location filename="../htmlexport.cpp" line="421"/>
         <source>Action:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="411"/>
+        <location filename="../htmlexport.cpp" line="428"/>
         <source>On view:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="413"/>
+        <location filename="../htmlexport.cpp" line="430"/>
         <source>On table:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="424"/>
+        <location filename="../htmlexport.cpp" line="441"/>
         <source>Activate condition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="431"/>
+        <location filename="../htmlexport.cpp" line="448"/>
         <source>Code executed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="469"/>
+        <location filename="../htmlexport.cpp" line="486"/>
         <source>View: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="546"/>
+        <location filename="../htmlexport.cpp" line="563"/>
         <source>Document generated by SQLiteStudio v%1 on %2</source>
         <translation type="unfinished"></translation>
     </message>

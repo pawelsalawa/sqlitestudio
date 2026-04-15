@@ -14,158 +14,159 @@
         <translation>SQL sorgu sonuçları</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="198"/>
+        <location filename="../pdfexport.cpp" line="204"/>
         <source>Exported table: %1</source>
         <translation>Çıkartılan tablo: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="94"/>
-        <location filename="../pdfexport.cpp" line="146"/>
+        <location filename="../pdfexport.cpp" line="100"/>
+        <location filename="../pdfexport.cpp" line="152"/>
         <source>Table: %1</source>
         <translation>Tablo: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="97"/>
-        <location filename="../pdfexport.cpp" line="253"/>
+        <location filename="../pdfexport.cpp" line="103"/>
+        <location filename="../pdfexport.cpp" line="265"/>
         <source>Column</source>
         <translation>Kolon</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="97"/>
+        <location filename="../pdfexport.cpp" line="103"/>
         <source>Data type</source>
         <translation>Veri tipi</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="97"/>
+        <location filename="../pdfexport.cpp" line="103"/>
         <source>Constraints</source>
         <translation>Constraints</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="128"/>
+        <location filename="../pdfexport.cpp" line="134"/>
         <source>Global table constraints</source>
         <translation>Global tablo constraints</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="209"/>
+        <location filename="../pdfexport.cpp" line="215"/>
         <source>Exported view: %1</source>
         <translation type="unfinished">Exported view: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="237"/>
+        <location filename="../pdfexport.cpp" line="249"/>
         <source>Exported database: %1</source>
         <translation>Çıkartılan veritabanı: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="245"/>
+        <location filename="../pdfexport.cpp" line="257"/>
         <source>Index: %1</source>
         <translation>Indeks: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="247"/>
+        <location filename="../pdfexport.cpp" line="259"/>
         <source>Property</source>
         <comment>index header</comment>
         <translation>Özellik</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="247"/>
+        <location filename="../pdfexport.cpp" line="259"/>
         <source>Value</source>
         <comment>index header</comment>
         <translation>Değer</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="250"/>
+        <location filename="../pdfexport.cpp" line="262"/>
         <source>Indexed table</source>
         <translation>İndekslenen tablo</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="251"/>
+        <location filename="../pdfexport.cpp" line="263"/>
         <source>Unique index</source>
         <translation>Unique index</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="251"/>
+        <location filename="../pdfexport.cpp" line="263"/>
         <source>Yes</source>
         <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="251"/>
+        <location filename="../pdfexport.cpp" line="263"/>
         <source>No</source>
         <translation>Hayır</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="253"/>
+        <location filename="../pdfexport.cpp" line="265"/>
         <source>Collation</source>
         <translation>Collation</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="253"/>
+        <location filename="../pdfexport.cpp" line="265"/>
         <source>Sort order</source>
         <translation>Sıralama düzeni</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="269"/>
+        <location filename="../pdfexport.cpp" line="281"/>
         <source>Partial index condition</source>
         <translation>Partial indeks koşulu</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="283"/>
+        <location filename="../pdfexport.cpp" line="295"/>
         <source>Trigger: %1</source>
         <translation>Trigger: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="285"/>
+        <location filename="../pdfexport.cpp" line="297"/>
         <source>Property</source>
         <comment>trigger header</comment>
         <translation>Özellik</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="285"/>
+        <location filename="../pdfexport.cpp" line="297"/>
         <source>Value</source>
         <comment>trigger header</comment>
         <translation>Değer</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="287"/>
+        <location filename="../pdfexport.cpp" line="299"/>
         <source>Activation time</source>
         <translation>Aktivasyon zamanı</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="290"/>
+        <location filename="../pdfexport.cpp" line="302"/>
         <source>For action</source>
         <translation>İşlemi için</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="294"/>
+        <location filename="../pdfexport.cpp" line="306"/>
         <source>On view</source>
         <translation>View</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="296"/>
+        <location filename="../pdfexport.cpp" line="308"/>
         <source>On table</source>
         <translation>Tablo</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="301"/>
+        <location filename="../pdfexport.cpp" line="313"/>
         <source>Activation condition</source>
         <translation>Aktivasyon koşulu</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="307"/>
+        <location filename="../pdfexport.cpp" line="319"/>
         <source>Code executed</source>
         <translation>Çalıştırılan kod</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="320"/>
+        <location filename="../pdfexport.cpp" line="332"/>
         <source>View: %1</source>
         <translation>View: %1</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="322"/>
+        <location filename="../pdfexport.cpp" line="68"/>
+        <location filename="../pdfexport.cpp" line="334"/>
         <source>Query:</source>
         <translation>Sorgu:</translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="687"/>
+        <location filename="../pdfexport.cpp" line="699"/>
         <source>Document generated with SQLiteStudio v%1</source>
         <translation>SQLiteStudio ile üretilen döküman üzerinde v%1</translation>
     </message>
