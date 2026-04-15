@@ -283,6 +283,7 @@ void ImportDialog::updatePluginOptions(int& rows)
         qWarning() << "Import plugin" << currentPlugin->getName() << "requested for form named" << formName << "but FormManager returned null.";
         return;
     }
+    FORMS->disableUnwantedWheelHandlers(pluginOptionsWidget);
 
     ui->dsPluginOptionsGroup->setVisible(true);
 

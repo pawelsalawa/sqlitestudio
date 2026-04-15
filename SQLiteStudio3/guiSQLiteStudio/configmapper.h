@@ -1,13 +1,12 @@
 #ifndef CONFIGMAPPER_H
 #define CONFIGMAPPER_H
 
-#include "common/bihash.h"
+#include "config_builder/cfgentry.h"
 #include "guiSQLiteStudio_global.h"
 #include <QObject>
 #include <QSet>
 
 class CfgMain;
-class CfgEntry;
 class CustomConfigWidgetPlugin;
 class ConfigComboBox;
 
@@ -97,12 +96,11 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QVariant getConfigValueFromWidget(QWidget *widget, CfgEntry* key);
         QVariant getConfigValueFromWidget(QWidget *widget);
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
-        CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
+        CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries, bool graceful = false);
         QHash<QString,CfgEntry*> getAllConfigEntries();
-        void handleDependencySettings(CfgEntry *entry, QWidget* widget);
-        void handleBoolDependencySettings(const QString& boolDependency, QWidget* widget);
+        void handleDependencySettings(CfgEntry *entry, QWidget* depChildWidget);
         void handleDependencyChange(QWidget* widget);
-        bool handleBoolDependencyChange(QWidget* widget);
+        void applyDependency(QWidget* childWidget, const QVariant& depParentValue);
         QString getConfigFullKeyForWidget(QWidget* widget);
 
         QWidget* configDialogWidget = nullptr;
@@ -116,7 +114,8 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QList<QWidget*> extraWidgets;
         QList<QWidget*> widgetsToIgnore; // main mapper will ignore plugin's forms, they have their own mappers
         QHash<QString, CfgEntry*> allEntries;
-        QHash<QWidget*, QList<QWidget*>> boolDependencyToDependingWidget;
+        QHash<CfgEntry*, QList<QWidget*>> widgetsDependentOnEntry; // for each entry, list of widgets that depend on it (have it as dependency)
+        QHash<QWidget*, const CfgEntry::CfgDependency*> depDefByChild; // dependency definition per child widget that has the dependency defined
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";

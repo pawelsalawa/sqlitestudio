@@ -1,4 +1,6 @@
 #include "formmanager.h"
+#include "common/combonowheelfilter.h"
+#include "common/spinnowheelfilter.h"
 #include "services/pluginmanager.h"
 #include "uiloader.h"
 #include <QFile>
@@ -6,6 +8,8 @@
 #include <QRegularExpression>
 #include <QApplication>
 #include <QDebug>
+#include <QComboBox>
+#include <QSpinBox>
 
 FormManager::FormManager()
 {
@@ -42,6 +46,17 @@ QStringList FormManager::getAvailableForms() const
 QStringList FormManager::getFormDirs() const
 {
     return formDirs;
+}
+
+void FormManager::disableUnwantedWheelHandlers(QWidget* widget) const
+{
+    auto cbFilter = new ComboNoWheelFilter(widget);
+    for (QComboBox* cb : widget->findChildren<QComboBox*>())
+        cb->installEventFilter(cbFilter);
+
+    auto spinFilter = new SpinNoWheelFilter(widget);
+    for (QSpinBox* spin : widget->findChildren<QSpinBox*>())
+        spin->installEventFilter(spinFilter);
 }
 
 QWidget* FormManager::createWidgetByFullPath(const QString& path)

@@ -1,4 +1,5 @@
 #include "pdfexport.h"
+#include "services/notifymanager.h"
 #include "uiutils.h"
 #include <QtMath>
 #include <QPainter>
@@ -368,11 +369,16 @@ bool PdfExport::beginDoc(const QString& title)
     painter->setPen(QPen(Qt::black, lineWidth));
 
     setupConfig();
+
+    if (!drawCustomHeader())
+        return false;
+
     return true;
 }
 
 void PdfExport::endDoc()
 {
+    drawCustomFooter();
     drawFooter();
 }
 
@@ -713,6 +719,53 @@ void PdfExport::drawFooter()
     painter->save();
     painter->setFont(italicFont);
     painter->drawText(QRect(getContentsLeft(), y, pageWidth, txtHeight), footer, opt);
+    painter->restore();
+}
+
+bool PdfExport::drawCustomHeader()
+{
+    QString err;
+    QString hdrContent = getCustomHeader(err);
+    if (!err.isEmpty())
+    {
+        notifyError(err);
+        return false;
+    }
+
+    if (!hdrContent.isEmpty())
+        drawCustomContent(hdrContent);
+
+    return true;
+}
+
+void PdfExport::drawCustomFooter()
+{
+    QString err;
+    QString ftrContent = getCustomFooter(err);
+    if (!err.isEmpty())
+        notifyError(err);
+
+    if (!ftrContent.isEmpty())
+        drawCustomContent(ftrContent);
+}
+
+void PdfExport::drawCustomContent(const QString& content)
+{
+    QTextOption opt = *textOption;
+    int y = lastRowY + minRowHeight;
+    int height = pageHeight - y;
+    int txtHeight = painter->boundingRect(QRect(0, 0, pageWidth, height), content, opt).height();
+    if ((y + txtHeight) > pageHeight)
+    {
+        newPage();
+        y = getContentsTop();
+    }
+
+    lastRowY = y + txtHeight - minRowHeight; // move back a bit to prevent big space between custom content and next object;
+
+    painter->save();
+    painter->setFont(stdFont);
+    painter->drawText(QRect(getContentsLeft(), y, pageWidth, txtHeight), content, opt);
     painter->restore();
 }
 
@@ -1447,6 +1500,45 @@ int PdfExport::getContentsBottom() const
 qreal PdfExport::mmToPoints(qreal sizeMM)
 {
     return pointsPerMm * sizeMM;
+}
+
+QString PdfExport::getCustomHeader(QString& err)
+{
+    return getCustomHeaderOrFooter(err,
+                                   &PDFEXPORT_CFG.PdfExport.CustomHeaderMode,
+                                   &PDFEXPORT_CFG.PdfExport.CustomHdrContent,
+                                   &PDFEXPORT_CFG.PdfExport.CustomHdrFile);
+}
+
+QString PdfExport::getCustomFooter(QString& err)
+{
+    return getCustomHeaderOrFooter(err,
+                                   &PDFEXPORT_CFG.PdfExport.CustomFooterMode,
+                                   &PDFEXPORT_CFG.PdfExport.CustomFtrContent,
+                                   &PDFEXPORT_CFG.PdfExport.CustomFtrFile);
+}
+
+QString PdfExport::getCustomHeaderOrFooter(QString& err, CfgEntry* modeEntry, CfgEntry* contentEntry, CfgEntry* fileEntry)
+{
+    switch (modeEntry->get().toInt())
+    {
+        case 0: // No header/footer
+            break;
+        case 1: // Inline contents
+            return contentEntry->get().toString();
+        case 2: // File with contents
+        {
+            QString err;
+            QString contents = readFileContents(fileEntry->get().toString(), &err);
+            if (!err.isEmpty())
+                notifyError(err);
+
+            return contents;
+        }
+        default:
+            qWarning() << "Unhandled header/footer mode:" << modeEntry->get();
+    }
+    return QString();
 }
 
 CfgMain* PdfExport::getConfig()

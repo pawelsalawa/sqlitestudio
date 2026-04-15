@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>335</width>
-    <height>492</height>
+    <width>401</width>
+    <height>1009</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -284,6 +284,154 @@
      </layout>
     </widget>
    </item>
+   <item>
+    <widget class="QGroupBox" name="customHeaderGroup">
+     <property name="title">
+      <string>Custom header</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="ConfigRadioButton" name="noCustomHdrRadio">
+        <property name="text">
+         <string>No custom header</string>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomHeaderMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customHdrContentRadio">
+        <property name="text">
+         <string>Define custom header content</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomHeaderMode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="customHdrContentEdit">
+        <property name="placeholderText">
+         <string>Plain text content</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomHdrContent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customHdrFileRadio">
+        <property name="text">
+         <string>Define custom header file</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomHeaderMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="FileEdit" name="headerFileEdit" native="true">
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomHdrFile</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Choose file for the header</string>
+        </property>
+        <property name="filters" stdset="0">
+         <string>Text files (*.txt);;All files (*)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="customFooterGroup">
+     <property name="title">
+      <string>Custom footer</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="ConfigRadioButton" name="noCustomFtrRadio">
+        <property name="text">
+         <string>No custom footer</string>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomFooterMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customFtrContentRadio">
+        <property name="text">
+         <string>Define custom footer content</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomFooterMode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="customFtrContentEdit">
+        <property name="placeholderText">
+         <string>Plain text content</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomFtrContent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customFtrFileRadio">
+        <property name="text">
+         <string>Define custom footer file</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomFooterMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="FileEdit" name="footerFileEdit" native="true">
+        <property name="cfg" stdset="0">
+         <string notr="true">PdfExport.CustomFtrFile</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Choose file for the footer</string>
+        </property>
+        <property name="filters" stdset="0">
+         <string>Text files (*.txt);;All files (*)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -296,6 +444,17 @@
    <class>ColorButton</class>
    <extends>QPushButton</extends>
    <header>common/colorbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileEdit</class>
+   <extends>QWidget</extends>
+   <header>common/fileedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

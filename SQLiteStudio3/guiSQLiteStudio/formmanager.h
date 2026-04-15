@@ -22,6 +22,7 @@ class GUI_API_EXPORT FormManager : public QObject
         bool hasWidget(const QString& name);
         QStringList getAvailableForms() const;
         QStringList getFormDirs() const;
+        void disableUnwantedWheelHandlers(QWidget* widget) const;
 
     private:
         void init();

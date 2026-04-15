@@ -3,6 +3,10 @@
 #include <QEvent>
 #include <QAbstractItemView>
 
+ComboNoWheelFilter::ComboNoWheelFilter(QObject* parent) : QObject(parent)
+{
+}
+
 bool ComboNoWheelFilter::eventFilter(QObject* obj, QEvent* event)
 {
     if (event->type() == QEvent::Wheel)

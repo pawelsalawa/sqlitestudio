@@ -7,64 +7,85 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>228</height>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="1">
-    <widget class="QSpinBox" name="spinBox">
-     <property name="maximumSize">
-      <size>
-       <width>100</width>
-       <height>16777215</height>
-      </size>
+   <item row="6" column="0" colspan="2">
+    <widget class="QGroupBox" name="customHeaderGroup">
+     <property name="title">
+      <string>Custom header</string>
      </property>
-     <property name="maximum">
-      <number>999999999</number>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">HtmlExport.ByteLengthLimit</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Maximum number of characters per cell:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QCheckBox" name="dataTypesCheck">
-     <property name="text">
-      <string>Include data types in first row</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">HtmlExport.PrintDataTypes</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QCheckBox" name="colNamesCheck">
-     <property name="text">
-      <string>Column names as first row</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">HtmlExport.PrintHeader</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QCheckBox" name="rowNumsCheck">
-     <property name="text">
-      <string>Row numbers as first column</string>
-     </property>
-     <property name="cfg" stdset="0">
-      <string notr="true">HtmlExport.PrintRowNum</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="ConfigRadioButton" name="noCustomHdrRadio">
+        <property name="text">
+         <string>No custom header</string>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomHeaderMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customHdrContentRadio">
+        <property name="text">
+         <string>Define custom header content</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomHeaderMode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="customHdrContentEdit">
+        <property name="placeholderText">
+         <string>HTML content</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomHdrContent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customHdrFileRadio">
+        <property name="text">
+         <string>Define custom header file</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomHeaderMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="FileEdit" name="headerFileEdit" native="true">
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomHdrFile</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Choose file for the header</string>
+        </property>
+        <property name="filters" stdset="0">
+         <string>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="5" column="0" colspan="2">
@@ -102,6 +123,33 @@
      </layout>
     </widget>
    </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QCheckBox" name="rowNumsCheck">
+     <property name="text">
+      <string>Row numbers as first column</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">HtmlExport.PrintRowNum</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Maximum number of characters per cell:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="colNamesCheck">
+     <property name="text">
+      <string>Column names as first row</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">HtmlExport.PrintHeader</string>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="0">
     <widget class="QCheckBox" name="dontEscapeCheck">
      <property name="toolTip">
@@ -115,6 +163,106 @@
      </property>
     </widget>
    </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="spinBox">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="maximum">
+      <number>999999999</number>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">HtmlExport.ByteLengthLimit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="dataTypesCheck">
+     <property name="text">
+      <string>Include data types in first row</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">HtmlExport.PrintDataTypes</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QGroupBox" name="customFooterGroup">
+     <property name="title">
+      <string>Custom footer</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="ConfigRadioButton" name="noCustomFtrRadio">
+        <property name="text">
+         <string>No custom footer</string>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+S</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomFooterMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customFtrContentRadio">
+        <property name="text">
+         <string>Define custom footer content</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomFooterMode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="customFtrContentEdit">
+        <property name="placeholderText">
+         <string>HTML content</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomFtrContent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="customFtrFileRadio">
+        <property name="text">
+         <string>Define custom footer file</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomFooterMode</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="FileEdit" name="footerFileEdit" native="true">
+        <property name="cfg" stdset="0">
+         <string notr="true">HtmlExport.CustomFtrFile</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Choose file for the footer</string>
+        </property>
+        <property name="filters" stdset="0">
+         <string>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -122,6 +270,12 @@
    <class>ConfigRadioButton</class>
    <extends>QRadioButton</extends>
    <header>common/configradiobutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileEdit</class>
+   <extends>QWidget</extends>
+   <header>common/fileedit.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

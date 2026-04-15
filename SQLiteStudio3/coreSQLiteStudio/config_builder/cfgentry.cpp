@@ -221,6 +221,11 @@ bool CfgEntry::isDependencySatisfied() const
     return resolvedDependency->get().toBool();
 }
 
+const CfgEntry::CfgDependency* CfgEntry::getDependencyDefinition() const
+{
+    return dependencyDef;
+}
+
 QString CfgEntry::getDependencyFullKey() const
 {
     if (!dependencyDef)
@@ -238,7 +243,12 @@ CfgEntry::operator QString() const
     return name;
 }
 
-CfgEntry::CfgDependency::CfgDependency(const QString &key)
+CfgEntry::CfgDependency::CfgDependency(const QString &key) :
+    CfgDependency(key, true, false)
+{
+}
+
+CfgEntry::CfgDependency::CfgDependency(const QString& key, const QVariant& expectedValue, bool hide)
 {
     QStringList parts = key.split(".");
     if (parts.size() >= 2)
@@ -250,4 +260,7 @@ CfgEntry::CfgDependency::CfgDependency(const QString &key)
     {
         entryName = parts[0];
     }
+
+    this->expectedValue = expectedValue;
+    this->hideWhenUnsatisfied = hide;
 }
