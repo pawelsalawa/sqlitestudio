@@ -1,5 +1,5 @@
 #include "htmlexport.h"
-#include "services/pluginmanager.h"
+#include "services/notifymanager.h"
 #include "schemaresolver.h"
 #include <QFile>
 #include <QDebug>
@@ -553,6 +553,8 @@ bool HtmlExport::afterExport()
     static const QString bodyEndTpl = QStringLiteral("</body>");
     static const QString docEnd = QStringLiteral("</html>");
 
+    writeCustomFooter();
+
     QFile file(":/htmlexport/htmlexport.js");
     if (!file.open(QIODevice::ReadOnly))
     {
@@ -604,6 +606,9 @@ bool HtmlExport::beginDoc(const QString& title)
     writeln(styleEndTpl);
     writeln(bodyStartTpl);
     incrIndent();
+
+    if (!writeCustomHeader())
+        return false;
 
     return true;
 }
@@ -672,6 +677,78 @@ QString HtmlExport::escape(const QString& str)
         return str;
 
     return str.toHtmlEscaped();
+}
+
+QString HtmlExport::getCustomHeader(QString& err)
+{
+    return getCustomHeaderOrFooter(err,
+                                   &cfg.HtmlExport.CustomHeaderMode,
+                                   &cfg.HtmlExport.CustomHdrContent,
+                                   &cfg.HtmlExport.CustomHdrFile);
+}
+
+QString HtmlExport::getCustomFooter(QString& err)
+{
+    return getCustomHeaderOrFooter(err,
+                                   &cfg.HtmlExport.CustomFooterMode,
+                                   &cfg.HtmlExport.CustomFtrContent,
+                                   &cfg.HtmlExport.CustomFtrFile);
+}
+
+QString HtmlExport::getCustomHeaderOrFooter(QString& err, CfgEntry* modeEntry, CfgEntry* contentEntry, CfgEntry* fileEntry)
+{
+    switch (modeEntry->get().toInt())
+    {
+        case 0: // No header/footer
+            break;
+        case 1: // Inline contents
+            return contentEntry->get().toString();
+        case 2: // File with contents
+        {
+            QString err;
+            QString contents = readFileContents(fileEntry->get().toString(), &err);
+            if (!err.isEmpty())
+                notifyError(err);
+
+            return contents;
+        }
+        default:
+            qWarning() << "Unhandled header/footer mode:" << modeEntry->get();
+    }
+    return QString();
+}
+
+bool HtmlExport::writeCustomHeader()
+{
+    QString err;
+    QString hdrContent = getCustomHeader(err);
+    if (!err.isEmpty())
+    {
+        notifyError(err);
+        return false;
+    }
+
+    if (!hdrContent.isEmpty())
+    {
+        writeln(hdrContent);
+        writeln("<br><br>");
+    }
+
+    return true;
+}
+
+void HtmlExport::writeCustomFooter()
+{
+    QString err;
+    QString ftrContent = getCustomFooter(err);
+    if (!err.isEmpty())
+        notifyError(err);
+
+    if (!ftrContent.isEmpty())
+    {
+        writeln(ftrContent);
+        writeln("<br><br>");
+    }
 }
 
 QString HtmlExport::compressCssOrJs(QString css)

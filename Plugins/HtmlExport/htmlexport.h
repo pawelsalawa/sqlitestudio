@@ -7,12 +7,18 @@
 
 CFG_CATEGORIES(HtmlExportConfig,
     CFG_CATEGORY(HtmlExport,
-        CFG_ENTRY(QString, Format,          "compress")
-        CFG_ENTRY(bool,    PrintRowNum,     true)
-        CFG_ENTRY(bool,    PrintHeader,     true)
-        CFG_ENTRY(bool,    PrintDataTypes,  true)
-        CFG_ENTRY(bool,    DontEscapeHtml,  false)
-        CFG_ENTRY(int,     ByteLengthLimit, 10000)
+        CFG_ENTRY(QString, Format,           "compress")
+        CFG_ENTRY(bool,    PrintRowNum,      true)
+        CFG_ENTRY(bool,    PrintHeader,      true)
+        CFG_ENTRY(bool,    PrintDataTypes,   true)
+        CFG_ENTRY(bool,    DontEscapeHtml,   false)
+        CFG_ENTRY(int,     ByteLengthLimit,  10000)
+        CFG_ENTRY(int,     CustomHeaderMode, 0)
+        CFG_ENTRY(QString, CustomHdrContent, QString(), CFG_DEP(CustomHeaderMode, 1, true))
+        CFG_ENTRY(QString, CustomHdrFile,    QString(), CFG_DEP(CustomHeaderMode, 2, true))
+        CFG_ENTRY(int,     CustomFooterMode, 0)
+        CFG_ENTRY(QString, CustomFtrContent, QString(), CFG_DEP(CustomFooterMode, 1, true))
+        CFG_ENTRY(QString, CustomFtrFile,    QString(), CFG_DEP(CustomFooterMode, 2, true))
     )
 )
 class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
@@ -61,6 +67,11 @@ class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
         void updateIndent();
         void writeln(const QString& str);
         QString escape(const QString& str);
+        QString getCustomHeader(QString& err);
+        QString getCustomFooter(QString& err);
+        QString getCustomHeaderOrFooter(QString& err, CfgEntry* modeEntry, CfgEntry* contentEntry, CfgEntry* fileEntry);
+        bool writeCustomHeader();
+        void writeCustomFooter();
 
         static QString compressCssOrJs(QString css);
 

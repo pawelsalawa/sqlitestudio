@@ -35,6 +35,12 @@ CFG_CATEGORIES(PdfExportConfig,
         CFG_ENTRY(int,         FontSize,         10)
         CFG_ENTRY(QColor,      HeaderBgColor,    QColor(Qt::lightGray))
         CFG_ENTRY(QColor,      NullValueColor,   QColor(Qt::gray))
+        CFG_ENTRY(int,         CustomHeaderMode, 0)
+        CFG_ENTRY(QString,     CustomHdrContent, QString(), CFG_DEP(CustomHeaderMode, 1, true))
+        CFG_ENTRY(QString,     CustomHdrFile,    QString(), CFG_DEP(CustomHeaderMode, 2, true))
+        CFG_ENTRY(int,         CustomFooterMode, 0)
+        CFG_ENTRY(QString,     CustomFtrContent, QString(), CFG_DEP(CustomFooterMode, 1, true))
+        CFG_ENTRY(QString,     CustomFtrFile,    QString(), CFG_DEP(CustomFooterMode, 2, true))
     )
 )
 
@@ -160,6 +166,9 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void drawObjectTopLine(int y);
         void drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2);
         void drawFooter();
+        bool drawCustomHeader();
+        void drawCustomFooter();
+        void drawCustomContent(const QString& content);
         void flushObjectRow(const ObjectRow& row, int y);
         void flushObjectCell(const ObjectCell& cell, int x, int y, int w, int h);
         void flushDataPages(bool forceRender = false);
@@ -187,8 +196,10 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int getContentsRight() const;
         int getContentsBottom() const;
         qreal mmToPoints(qreal sizeMM);
+        QString getCustomHeader(QString& err);
+        QString getCustomFooter(QString& err);
+        QString getCustomHeaderOrFooter(QString& err, CfgEntry* modeEntry, CfgEntry* contentEntry, CfgEntry* fileEntry);
 
-        //CFG_LOCAL_PERSISTABLE(PdfExportConfig, cfg)
         QPagedPaintDevice* pagedWriter = nullptr;
         bool takeDeviceOwnership = true;
         QPainter* painter = nullptr;

@@ -262,8 +262,8 @@ void TableWindow::createDataGridActions()
     createAction(POPULATE, ICONS.TABLE_POPULATE, tr("Populate table", "table window"), this, SLOT(populateTable()), this);
 
     QAction* before = ui->dataView->getAction(DataView::FILTER_VALUE);
-    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[EXPORT]);
     ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[IMPORT]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[EXPORT]);
     ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[POPULATE]);
     ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertSeparator(before);
 }

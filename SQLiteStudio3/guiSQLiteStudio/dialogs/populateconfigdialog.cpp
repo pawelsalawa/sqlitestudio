@@ -40,6 +40,8 @@ int PopulateConfigDialog::exec()
     if (!innerWidget)
         return QDialog::Rejected;
 
+    FORMS->disableUnwantedWheelHandlers(innerWidget);
+
     configMapper->bindToConfig(innerWidget);
     ui->contents->layout()->addWidget(innerWidget);
     adjustSize();

@@ -8,7 +8,7 @@ class ComboNoWheelFilter : public QObject
         Q_OBJECT
 
     public:
-        using QObject::QObject;
+        explicit ComboNoWheelFilter(QObject* parent = nullptr);
 
     protected:
         bool eventFilter(QObject* obj, QEvent* event) override;

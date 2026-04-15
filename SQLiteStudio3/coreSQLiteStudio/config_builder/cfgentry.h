@@ -20,9 +20,12 @@ class API_EXPORT CfgEntry : public QObject
         struct API_EXPORT CfgDependency
         {
             explicit CfgDependency(const QString& key);
+            CfgDependency(const QString& key, const QVariant& expectedValue, bool hide = false);
 
             QString categoryName;
             QString entryName;
+            QVariant expectedValue;
+            bool hideWhenUnsatisfied = false;
         };
 
         explicit CfgEntry(const CfgEntry& other);
@@ -50,6 +53,7 @@ class API_EXPORT CfgEntry : public QObject
         CfgCategory* getCategory() const;
         CfgMain* getMain() const;
         bool isDependencySatisfied() const;
+        const CfgDependency* getDependencyDefinition() const;
         QString getDependencyFullKey() const;
 
         /**

@@ -1,5 +1,4 @@
 #include "configmapper.h"
-#include "config_builder.h"
 #include "services/config.h"
 #include "services/pluginmanager.h"
 #include "customconfigwidgetplugin.h"
@@ -137,8 +136,9 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
         return;
     }
 
-    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
-               << "with value:" << value;
+    if (widget->metaObject()->className() != QString("QWidget")) // if it's exactly QWidget, then it's probably some container widget, which we want to ignore warning for
+        qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
+                   << "with value:" << value;
 }
 
 void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
@@ -165,7 +165,8 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
         APPLY_NOTIFIER(widget, key, QComboBox, SIGNAL(currentTextChanged(QString)));
     }
 
-    qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
+    if (widget->metaObject()->className() != QString("QWidget")) // if it's exactly QWidget, then it's probably some container widget, which we want to ignore warning for
+        qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
 }
 
 void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
@@ -206,7 +207,9 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
         GET_CFG_VALUE(widget, key, QComboBox, currentText);
     }
 
-    qWarning() << "Unhandled config widget type (for GET_CFG_VALUE):" << widget->metaObject()->className();
+    if (widget->metaObject()->className() != QString("QWidget")) // if it's exactly QWidget, then it's probably some container widget, which we want to ignore warning for
+        qWarning() << "Unhandled config widget type (for GET_CFG_VALUE):" << widget->metaObject()->className();
+
     ok = false;
     return QVariant();
 }
@@ -420,7 +423,7 @@ void ConfigMapper::handleFileEdit(QWidget* widget, const QHash<QString, CfgEntry
     if (!fileEdit)
         return;
 
-    CfgEntry* key = getEntryForProperty(widget, "modelName", allConfigEntries);
+    CfgEntry* key = getEntryForProperty(widget, "modelName", allConfigEntries, true);
     if (!key)
         return;
 
@@ -518,14 +521,16 @@ CfgEntry* ConfigMapper::getConfigEntry(QWidget* widget, const QHash<QString, Cfg
     return getEntryForProperty(widget, CFG_MODEL_PROPERTY, allConfigEntries);
 }
 
-CfgEntry* ConfigMapper::getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries)
+CfgEntry* ConfigMapper::getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries, bool graceful)
 {
     QString key = widget->property(propertyName).toString();
     if (!allConfigEntries.contains(key))
     {
-        qCritical() << "Config entries don't contain key" << key
-                    << "but it was requested by ConfigMapper::getEntryForProperty() for widget"
-                    << widget->metaObject()->className() << "::" << widget->objectName();
+        if (!graceful)
+            qCritical() << "Config entries don't contain key" << key << "defined in property" << propertyName
+                        << "but it was requested by ConfigMapper::getEntryForProperty() for widget"
+                        << widget->metaObject()->className() << "::" << widget->objectName();
+
         return nullptr;
     }
 
@@ -581,61 +586,56 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
     return results;
 }
 
-void ConfigMapper::handleDependencySettings(CfgEntry* entry, QWidget* widget)
+void ConfigMapper::handleDependencySettings(CfgEntry* childCfg, QWidget* depChildWidget)
 {
-    QString boolDependency = entry->getDependencyFullKey();
-    if (!boolDependency.isNull())
-    {
-        handleBoolDependencySettings(boolDependency, widget);
+    auto depDef = childCfg->getDependencyDefinition();
+    if (!depDef)
         return;
-    }
-}
 
-void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, QWidget* widget)
-{
+    QString depKey = childCfg->getDependencyFullKey();
+
     QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
-    if (!allConfigEntries.contains(boolDependency))
+    if (!allConfigEntries.contains(depKey))
     {
-        qWarning() << "Config widget" << widget->objectName() << "has dependency defined for" << boolDependency << "but that dependency config entry cannot be found.";
+        qWarning() << "Config widget" << depChildWidget->objectName() << "has dependency defined for" << depKey << "but that dependency config entry cannot be found.";
         return;
     }
 
-    CfgEntry* cfg = allConfigEntries[boolDependency];
-    QVariant cfgValue = cfg->get();
-    if (cfgValue.userType() != QMetaType::Bool)
-    {
-        qWarning() << "Config widget" << widget->objectName() << "has bool dependency defined for" << boolDependency << "but that dependency has different type:" << cfgValue.userType();
-        return;
-    }
+    CfgEntry* depParentCfg = allConfigEntries[depKey];
+    QVariant cfgValue = depParentCfg->get();
 
-    bool value = cfgValue.toBool();
-    widget->setEnabled(value);
+    widgetsDependentOnEntry[depParentCfg] << depChildWidget;
+    depDefByChild[depChildWidget] = depDef;
 
-    QWidget* dependWidget = configEntryToWidgets.value(cfg);
-    boolDependencyToDependingWidget[dependWidget] << widget;
+    applyDependency(depChildWidget, cfgValue);
 }
 
 void ConfigMapper::handleDependencyChange(QWidget* widget)
 {
-    if (handleBoolDependencyChange(widget))
+    CfgEntry* depParentCfg = getBindConfigForWidget(widget);
+    if (!widgetsDependentOnEntry.contains(depParentCfg))
         return;
+
+    QVariant value = getConfigValueFromWidget(widget);
+    QList<QWidget*> depWidList = widgetsDependentOnEntry[depParentCfg];
+    for (QWidget*& depWid : depWidList)
+        applyDependency(depWid, value);
 }
 
-bool ConfigMapper::handleBoolDependencyChange(QWidget* widget)
+void ConfigMapper::applyDependency(QWidget* childWidget, const QVariant& depParentValue)
 {
-    if (!boolDependencyToDependingWidget.contains(widget))
-        return false;
+    if (!depDefByChild.contains(childWidget))
+        return;
 
-    bool value = getConfigValueFromWidget(widget).toBool();
-    QList<QWidget*> depWidList = boolDependencyToDependingWidget[widget];
-    for (QWidget*& depWid : depWidList)
-    {
-        depWid->setEnabled(value);
-        if (!value)
-            applyConfigDefaultValueToWidget(depWid);
-    }
+    auto depDef = depDefByChild[childWidget];
+    bool satisfied = depParentValue == depDef->expectedValue;
 
-    return true;
+    childWidget->setEnabled(satisfied);
+    if (depDef->hideWhenUnsatisfied)
+        childWidget->setVisible(satisfied);
+
+    if (!satisfied)
+        applyConfigDefaultValueToWidget(childWidget);
 }
 
 bool ConfigMapper::isPersistant() const

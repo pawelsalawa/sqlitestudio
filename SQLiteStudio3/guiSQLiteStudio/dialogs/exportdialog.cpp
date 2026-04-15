@@ -743,6 +743,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
     QGridLayout* grid = dynamic_cast<QGridLayout*>(ui->optionsGroup->layout());
 
     pluginOptionsWidget = FORMS->createWidget(formName);
+    FORMS->disableUnwantedWheelHandlers(pluginOptionsWidget);
 
     if (pluginOptionsWidget->layout())
         pluginOptionsWidget->layout()->setContentsMargins(0, 0, 0, 0);

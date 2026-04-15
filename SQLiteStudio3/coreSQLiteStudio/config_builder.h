@@ -20,7 +20,7 @@
     _CFG_CATEGORY_WITH_TITLE(Name,Body,QString())
 
 #define CFG_ENTRY(Type, Name, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, ##__VA_ARGS__);
-#define CFG_DEP(Key) new CfgEntry::CfgDependency(#Key)
+#define CFG_DEP(Key, ...) new CfgEntry::CfgDependency(#Key, ##__VA_ARGS__)
 
 #define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
 #define CFG_DEFINE_RUNTIME(Type) _CFG_DEFINE(Type, false)
