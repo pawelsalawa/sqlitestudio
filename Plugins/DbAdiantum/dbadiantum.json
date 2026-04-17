@@ -1,0 +1,8 @@
+{
+    "type":          "DbPlugin",
+    "title":         "SQLite3 Adiantum VFS",
+    "description":   "Provides support for ncruces/go-sqlite3/vfs/adiantum encrypted databases using HBSH length-preserving encryption.",
+    "minAppVersion": 30300,
+    "version":       10000,
+    "author":        "Your Name"
+}

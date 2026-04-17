@@ -1,0 +1,12 @@
+#ifndef DBADIANTUM_GLOBAL_H
+#define DBADIANTUM_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(DBADIANTUM_LIBRARY)
+#  define DBADIANTUMSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define DBADIANTUMSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DBADIANTUM_GLOBAL_H

@@ -1,0 +1,107 @@
+version: 1
+
+budget:
+    total: 2500
+    l0_max: 800
+    l1_max: 1700
+    map_max: 400
+
+inject:
+    auto: true
+    code_extensions:
+        - ".cpp"
+        - ".h"
+        - ".hpp"
+        - ".c"
+        - ".py"
+        - ".ts"
+        - ".tsx"
+        - ".js"
+        - ".jsx"
+        - ".go"
+        - ".java"
+        - ".rs"
+        - ".rb"
+        - ".vue"
+        - ".svelte"
+    skip_extensions:
+        - ".md"
+        - ".txt"
+        - ".json"
+        - ".yml"
+        - ".yaml"
+        - ".toml"
+        - ".lock"
+        - ".csv"
+        - ".xml"
+        - ".svg"
+        - ".png"
+        - ".jpg"
+        - ".jpeg"
+        - ".gif"
+        - ".ico"
+        - ".pdf"
+        - ".zip"
+        - ".gz"
+        - ".tar"
+    skip_paths:
+        - "docs/**"
+        - "*.config.*"
+        - ".code-flow/**"
+        - ".claude/**"
+        - ".costrict/**"
+        - "node_modules/**"
+        - "dist/**"
+        - "build/**"
+        - "out/**"
+        - "coverage/**"
+        - ".next/**"
+        - ".cache/**"
+        - ".venv/**"
+        - "venv/**"
+        - "__pycache__/**"
+        - ".git/**"
+
+path_mapping:
+    frontend:
+        patterns:
+            - "SQLiteStudio3/guiSQLiteStudio/**"
+            - "**/*.ui"
+            - "**/*.qrc"
+        specs:
+            - path: "frontend/_map.md"
+              tags: ["*"]
+              tier: 0
+            - path: "frontend/directory-structure.md"
+              tags: ["directory", "structure", "folder", "route", "page", "layout"]
+              tier: 1
+            - path: "frontend/quality-standards.md"
+              tags: ["quality", "type", "lint", "error", "test", "state", "strict"]
+              tier: 1
+            - path: "frontend/component-specs.md"
+              tags: ["component", "prop", "hook", "render", "ui", "style"]
+              tier: 1
+    backend:
+        patterns:
+            - "SQLiteStudio3/coreSQLiteStudio/**"
+            - "SQLiteStudio3/sqlitestudiocli/**"
+            - "SQLiteStudio3/sqlitestudio/**"
+        specs:
+            - path: "backend/_map.md"
+              tags: ["*"]
+              tier: 0
+            - path: "backend/directory-structure.md"
+              tags: ["directory", "structure", "folder", "module", "layout"]
+              tier: 1
+            - path: "backend/logging.md"
+              tags: ["log", "logging", "debug", "trace", "monitor", "observe"]
+              tier: 1
+            - path: "backend/database.md"
+              tags: ["database", "db", "sql", "orm", "model", "migration", "query", "table", "schema"]
+              tier: 1
+            - path: "backend/platform-rules.md"
+              tags: ["api", "deploy", "config", "version", "compatibility", "release", "flag"]
+              tier: 1
+            - path: "backend/code-quality-performance.md"
+              tags: ["quality", "performance", "error", "exception", "test", "timeout", "retry", "cache"]
+              tier: 1

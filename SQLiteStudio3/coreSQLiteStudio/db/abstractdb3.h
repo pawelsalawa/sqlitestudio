@@ -66,6 +66,9 @@ class AbstractDb3 : public AbstractDb
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
         bool isTransactionActive() const;
+        void setDbHandle(typename T::handle* handle);
+        void setError(int code, const QString& msg);
+        void resetError();
 
     private:
         class Query : public SqlQuery
@@ -125,7 +128,6 @@ class AbstractDb3 : public AbstractDb
         QString extractLastError();
         QString extractLastError(typename T::handle* handle);
         void cleanUp();
-        void resetError();
         void checkForNewerVersionModifications();
 
         /**
@@ -446,6 +448,19 @@ template <class T>
 int AbstractDb3<T>::getErrorCodeInternal()
 {
     return dbErrorCode;
+}
+
+template <class T>
+void AbstractDb3<T>::setDbHandle(typename T::handle* handle)
+{
+    dbHandle = handle;
+}
+
+template <class T>
+void AbstractDb3<T>::setError(int code, const QString& msg)
+{
+    dbErrorCode = code;
+    dbErrorMessage = msg;
 }
 
 template <class T>

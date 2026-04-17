@@ -1,0 +1,77 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(mkdir -p build)",
+      "Bash(cmake .. -DWITH_DbAdiantum=ON)",
+      "Bash(go version *)",
+      "Bash(g++ --version)",
+      "Bash(apt list *)",
+      "Bash(sudo apt-get *)",
+      "Bash(snap install *)",
+      "Bash(sudo -S apt-get update)",
+      "Bash(sudo -S apt-get install -y cmake build-essential ninja-build libsodium-dev libssl-dev)",
+      "Bash(su -c \"apt-get update && apt-get install -y cmake build-essential ninja-build libsodium-dev libssl-dev\" root)",
+      "Bash(cmake --version)",
+      "Bash(su -c \"apt-get install -y qt6-base-dev qt6-tools-dev libqt6sql6-sqlite6 libqt6xml6\" root)",
+      "Bash(apt-cache search *)",
+      "Bash(su -c \"apt-get install -y qt6-base-dev qt6-tools-dev libqt6sql6-sqlite libqt6xml6\" root)",
+      "Bash(cmake .. -DWITH_DbAdiantum=ON -GNinja)",
+      "Bash(su -c \"apt-get install -y qt6-qml-tooling qt6-declarative-dev\" root)",
+      "Bash(su -c \"apt-get install -y libqt6qml6 libqt6qmlmodels6 qt6-declarative-dev\" root)",
+      "Bash(cmake ../SQLiteStudio3 -DWITH_DbAdiantum=ON -GNinja)",
+      "Bash(su -c \"apt-get install -y libqt6svg6 qt6-svg-dev libsqlite3-dev\" root)",
+      "Bash(ninja)",
+      "Bash(su -c \"apt-get install -y libreadline-dev\" root)",
+      "Bash(pkg-config --modversion Qt6Core)",
+      "Bash(dpkg -l)",
+      "Bash(pkg-config --modversion libsodium)",
+      "Bash(pkg-config --modversion openssl)",
+      "Bash(ninja --version)",
+      "Bash(ninja -t targets)",
+      "Bash(cmake -DWITH_DbAdiantum=ON ..)",
+      "Bash(ninja -t targets all)",
+      "Bash(cmake -DWITH_DbAdiantum=ON -DWITH_ALL_PLUGINS=OFF /home/jahan/workspace/sqlitestudio/SQLiteStudio3)",
+      "Bash(cmake *)",
+      "Bash(ninja DbAdiantum *)",
+      "Bash(make DbAdiantum *)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .code-flow/scripts/cf_inject_hook.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .code-flow/scripts/cf_session_hook.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .code-flow/scripts/cf_user_prompt_hook.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
