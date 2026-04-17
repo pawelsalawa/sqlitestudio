@@ -15,6 +15,7 @@ constexpr size_t ADIANTUM_KEY_NH_SIZE = 1072; // 1024 + 48 for NH hash
 // Adiantum context (per-file)
 struct AdiantumCtx
 {
+    uint8_t  masterKey[32];            // Original 256-bit master key
     uint8_t  aesKey[32];           // AES-256 key
     uint8_t  polyKeyT[16];         // Poly1305 key for tweak hash
     uint8_t  polyKeyM[16];         // Poly1305 key for message hash
@@ -95,6 +96,13 @@ inline void put_le64(uint8_t* b, uint64_t v) {
     b[5] = uint8_t(v >> 40);
     b[6] = uint8_t(v >> 48);
     b[7] = uint8_t(v >> 56);
+}
+
+inline void put_le32(uint8_t* b, uint32_t v) {
+    b[0] = uint8_t(v);
+    b[1] = uint8_t(v >> 8);
+    b[2] = uint8_t(v >> 16);
+    b[3] = uint8_t(v >> 24);
 }
 
 // GF(2^128) addition - out = x + y (little-endian uint128)

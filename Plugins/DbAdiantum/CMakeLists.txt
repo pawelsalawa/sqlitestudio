@@ -40,10 +40,16 @@ endif()
 if(sodium_FOUND)
     target_link_libraries(DbAdiantum PRIVATE sodium::sodium)
     target_include_directories(DbAdiantum PRIVATE ${sodium_INCLUDE_DIR})
+    target_compile_definitions(DbAdiantum PRIVATE USE_LIBSODIUM)
 endif()
 
 if(OpenSSL_FOUND)
     target_link_libraries(DbAdiantum PRIVATE OpenSSL::Crypto)
+    target_compile_definitions(DbAdiantum PRIVATE USE_OPENSSL)
+endif()
+
+if(NOT sodium_FOUND AND NOT OpenSSL_FOUND)
+    message(WARNING "DbAdiantum: Neither sodium nor OpenSSL found. Using insecure fallback implementations.")
 endif()
 
 # Compile options

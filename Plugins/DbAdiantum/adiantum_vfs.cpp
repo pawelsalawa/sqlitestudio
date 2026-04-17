@@ -39,6 +39,36 @@ static int adiantum_file_xShmUnmap(sqlite3_file* pFile, int del);
 static int adiantum_file_xFetch(sqlite3_file* pFile, int iAmt, sqlite3_int64 iOfst, void** pp);
 static int adiantum_file_xUnfetch(sqlite3_file* pFile, int iAmt, char* pPg);
 
+// Forward declaration for AdiantumFile
+struct AdiantumFile;
+
+// sqlite3_io_methods for Adiantum encrypted files
+// Initialized in AdiantumVFS::initialize() once we have all method pointers
+static sqlite3_io_methods s_adiantum_io_methods = {
+    1,  // iVersion
+    0,  // iVersion - will be updated
+};
+
+// Actual method implementations
+static int s_xClose(sqlite3_file* pFile) { return adiantum_file_xClose(pFile); }
+static int s_xRead(sqlite3_file* pFile, void* pBuf, int iAmt, sqlite3_int64 iOfst) { return adiantum_file_xRead(pFile, pBuf, iAmt, iOfst); }
+static int s_xWrite(sqlite3_file* pFile, const void* pBuf, int iAmt, sqlite3_int64 iOfst) { return adiantum_file_xWrite(pFile, pBuf, iAmt, iOfst); }
+static int s_xTruncate(sqlite3_file* pFile, sqlite3_int64 size) { return adiantum_file_xTruncate(pFile, size); }
+static int s_xSync(sqlite3_file* pFile, int flags) { return adiantum_file_xSync(pFile, flags); }
+static int s_xFileSize(sqlite3_file* pFile, sqlite3_int64* pSize) { return adiantum_file_xFileSize(pFile, pSize); }
+static int s_xLock(sqlite3_file* pFile, int level) { return adiantum_file_xLock(pFile, level); }
+static int s_xUnlock(sqlite3_file* pFile, int level) { return adiantum_file_xUnlock(pFile, level); }
+static int s_xCheckReservedLock(sqlite3_file* pFile, int* pResOut) { return adiantum_file_xCheckReservedLock(pFile, pResOut); }
+static int s_xFileControl(sqlite3_file* pFile, int op, void* pArg) { return adiantum_file_xFileControl(pFile, op, pArg); }
+static int s_xSectorSize(sqlite3_file* pFile) { return adiantum_file_xSectorSize(pFile); }
+static int s_xDeviceCharacteristics(sqlite3_file* pFile) { return adiantum_file_xDeviceCharacteristics(pFile); }
+static int s_xShmMap(sqlite3_file* pFile, int iPg, int pgsz, int flags, void volatile** pp) { return adiantum_file_xShmMap(pFile, iPg, pgsz, flags, pp); }
+static int s_xShmLock(sqlite3_file* pFile, int offset, int n, int flags) { return adiantum_file_xShmLock(pFile, offset, n, flags); }
+static void s_xShmBarrier(sqlite3_file* pFile) { return adiantum_file_xShmBarrier(pFile); }
+static int s_xShmUnmap(sqlite3_file* pFile, int del) { return adiantum_file_xShmUnmap(pFile, del); }
+static int s_xFetch(sqlite3_file* pFile, int iAmt, sqlite3_int64 iOfst, void** pp) { return adiantum_file_xFetch(pFile, iAmt, iOfst, pp); }
+static int s_xUnfetch(sqlite3_file* pFile, int iAmt, char* pPg) { return adiantum_file_xUnfetch(pFile, iAmt, pPg); }
+
 // VFS instance
 sqlite3_vfs AdiantumVFS::s_vfs;
 bool AdiantumVFS::s_initialized = false;
@@ -56,6 +86,27 @@ void AdiantumVFS::initialize()
 {
     if (s_initialized) return;
 
+    // Initialize io_methods with actual implementations
+    s_adiantum_io_methods.iVersion = 1;
+    s_adiantum_io_methods.xClose = s_xClose;
+    s_adiantum_io_methods.xRead = s_xRead;
+    s_adiantum_io_methods.xWrite = s_xWrite;
+    s_adiantum_io_methods.xTruncate = s_xTruncate;
+    s_adiantum_io_methods.xSync = s_xSync;
+    s_adiantum_io_methods.xFileSize = s_xFileSize;
+    s_adiantum_io_methods.xLock = s_xLock;
+    s_adiantum_io_methods.xUnlock = s_xUnlock;
+    s_adiantum_io_methods.xCheckReservedLock = s_xCheckReservedLock;
+    s_adiantum_io_methods.xFileControl = s_xFileControl;
+    s_adiantum_io_methods.xSectorSize = s_xSectorSize;
+    s_adiantum_io_methods.xDeviceCharacteristics = s_xDeviceCharacteristics;
+    s_adiantum_io_methods.xShmMap = s_xShmMap;
+    s_adiantum_io_methods.xShmLock = s_xShmLock;
+    s_adiantum_io_methods.xShmBarrier = s_xShmBarrier;
+    s_adiantum_io_methods.xShmUnmap = s_xShmUnmap;
+    s_adiantum_io_methods.xFetch = s_xFetch;
+    s_adiantum_io_methods.xUnfetch = s_xUnfetch;
+
     memset(&s_vfs, 0, sizeof(s_vfs));
     s_vfs.iVersion = 3;  // SQLite 3.7.0+
     s_vfs.szOsFile = sizeof(AdiantumFile);
@@ -66,14 +117,14 @@ void AdiantumVFS::initialize()
     s_vfs.xDelete = adiantum_xDelete;
     s_vfs.xAccess = adiantum_xAccess;
     s_vfs.xFullPathname = adiantum_xFullPathname;
-    s_vfs.xDlOpen = nullptr;
-    s_vfs.xDlError = nullptr;
-    s_vfs.xDlSym = nullptr;
-    s_vfs.xDlClose = nullptr;
-    s_vfs.xRandomness = nullptr;
-    s_vfs.xSleep = nullptr;
-    s_vfs.xCurrentTime = nullptr;
-    s_vfs.xGetLastError = nullptr;
+    s_vfs.xDlOpen = adiantum_xDlOpen;
+    s_vfs.xDlError = adiantum_xDlError;
+    s_vfs.xDlSym = adiantum_xDlSym;
+    s_vfs.xDlClose = adiantum_xDlClose;
+    s_vfs.xRandomness = adiantum_xRandomness;
+    s_vfs.xSleep = adiantum_xSleep;
+    s_vfs.xCurrentTime = adiantum_xCurrentTime;
+    s_vfs.xGetLastError = adiantum_xGetLastError;
 
     sqlite3_vfs_register(&s_vfs, 1);
     s_initialized = true;
@@ -198,6 +249,9 @@ static int adiantum_xOpen(sqlite3_vfs* pVfs, const char* zName, sqlite3_file* pF
         }
     }
 
+    // Assign our io_methods so SQLite calls our encryption/decryption handlers
+    pFile->pMethods = &s_adiantum_io_methods;
+
     return SQLITE_OK;
 }
 
@@ -319,13 +373,6 @@ static int adiantum_file_xRead(sqlite3_file* pFile, void* pBuf, int iAmt, sqlite
     if (!p->isEncrypted || !p->ctx || !p->ctx->initialized) {
         // Pass through to underlying file
         return p->pRealFile->pMethods->xRead(p->pRealFile, pBuf, iAmt, iOfst);
-    }
-
-    // For encrypted files, we need to decrypt
-    // If reading at offset 0 with length ~100, this is SQLite checking for header
-    // Return short read to let SQLite know this isn't a plain database
-    if (iOfst == 0 && iAmt == 100 && !p->isInitialized) {
-        return SQLITE_IOERR_SHORT_READ;
     }
 
     // Calculate aligned block range
@@ -521,7 +568,8 @@ static int adiantum_file_xFileControl(sqlite3_file* pFile, int op, void* pArg)
                 return SQLITE_OK;
             }
         }
-        return SQLITE_NOTFOUND;
+        // Unknown PRAGMA - forward to underlying VFS
+        return p->pRealFile->pMethods->xFileControl(p->pRealFile, op, pArg);
     }
 
     // Handle FCNTL_MMAP_SIZE - disable mmap for encrypted files

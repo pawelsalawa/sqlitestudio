@@ -10,6 +10,9 @@
 // Forward declarations
 struct AdiantumCtx;
 
+// Forward declaration for sqlite3_io_methods
+struct sqlite3_io_methods;
+
 // Adiantum file handle - extends sqlite3_file with encryption context
 struct AdiantumFile
 {

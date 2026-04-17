@@ -18,6 +18,7 @@
 AdiantumCtx::AdiantumCtx()
     : initialized(false)
 {
+    memset(masterKey, 0, sizeof(masterKey));
     memset(aesKey, 0, sizeof(aesKey));
     memset(polyKeyT, 0, sizeof(polyKeyT));
     memset(polyKeyM, 0, sizeof(polyKeyM));
@@ -34,6 +35,9 @@ AdiantumCtx::AdiantumCtx(const uint8_t key[ADIANTUM_KEY_SIZE])
 
 void AdiantumCtx::deriveSubKeys(const uint8_t* masterKey)
 {
+    // Save master key for HBSH operations
+    memcpy(this->masterKey, masterKey, 32);
+
     // makeAdiantum: use XChaCha12 with all-zero nonce to generate 1136 bytes
     uint8_t keyStream[32 + 16 + 16 + ADIANTUM_KEY_NH_SIZE];  // 1136 bytes
     memset(keyStream, 0, sizeof(keyStream));  // All-zero nonce for initial keystream
@@ -184,23 +188,42 @@ void poly1305_auth(uint8_t out[16], const uint8_t* msg, size_t msgLen, const uin
 
 static void chacha20_block_generic(uint32_t st[16], const uint32_t key[8], const uint32_t nonce[4], int rounds)
 {
-    // Initialize state
-    st[0] = 0x61707865;  // "expa"
-    st[1] = 0x3320646e;  // "nd 3"
-    st[2] = 0x79622d32;  // "2-by"
-    st[3] = 0x6b206574;  // "te k"
-    st[4] = key[0];
-    st[5] = key[1];
-    st[6] = key[2];
-    st[7] = key[3];
-    st[8] = key[4];
-    st[9] = key[5];
-    st[10] = key[6];
-    st[11] = key[7];
-    st[12] = nonce[0];
-    st[13] = nonce[1];
-    st[14] = nonce[2];
-    st[15] = nonce[3];
+    // Save initial state for final accumulation
+    uint32_t initial[16];
+    initial[0] = 0x61707865;  // "expa"
+    initial[1] = 0x3320646e;  // "nd 3"
+    initial[2] = 0x79622d32;  // "2-by"
+    initial[3] = 0x6b206574;  // "te k"
+    initial[4] = key[0];
+    initial[5] = key[1];
+    initial[6] = key[2];
+    initial[7] = key[3];
+    initial[8] = key[4];
+    initial[9] = key[5];
+    initial[10] = key[6];
+    initial[11] = key[7];
+    initial[12] = nonce[0];
+    initial[13] = nonce[1];
+    initial[14] = nonce[2];
+    initial[15] = nonce[3];
+
+    // Set initial state
+    st[0] = initial[0];
+    st[1] = initial[1];
+    st[2] = initial[2];
+    st[3] = initial[3];
+    st[4] = initial[4];
+    st[5] = initial[5];
+    st[6] = initial[6];
+    st[7] = initial[7];
+    st[8] = initial[8];
+    st[9] = initial[9];
+    st[10] = initial[10];
+    st[11] = initial[11];
+    st[12] = initial[12];
+    st[13] = initial[13];
+    st[14] = initial[14];
+    st[15] = initial[15];
 
     for (int i = 0; i < rounds; i += 2) {
         // Column rounds
@@ -213,6 +236,11 @@ static void chacha20_block_generic(uint32_t st[16], const uint32_t key[8], const
         CHACHA_QUARTER_ROUND(st[1], st[6], st[11], st[12]);
         CHACHA_QUARTER_ROUND(st[2], st[7], st[8], st[13]);
         CHACHA_QUARTER_ROUND(st[3], st[4], st[9], st[14]);
+    }
+
+    // Add initial state to get final keystream output
+    for (int i = 0; i < 16; i++) {
+        st[i] += initial[i];
     }
 }
 
@@ -237,14 +265,15 @@ void hchacha12(uint8_t subkey[32], const uint8_t* key, const uint8_t* nonce)
     chacha20_block_generic(st, k, n, 12);
 
     // Write output - certain state elements form the output
-    put_le64(subkey + 0, st[0]);
-    put_le64(subkey + 4, st[1]);
-    put_le64(subkey + 8, st[2]);
-    put_le64(subkey + 12, st[3]);
-    put_le64(subkey + 16, st[12]);
-    put_le64(subkey + 20, st[13]);
-    put_le64(subkey + 24, st[14]);
-    put_le64(subkey + 28, st[15]);
+    // These are uint32_t values (4 bytes each), use put_le32
+    put_le32(subkey + 0, st[0]);
+    put_le32(subkey + 4, st[1]);
+    put_le32(subkey + 8, st[2]);
+    put_le32(subkey + 12, st[3]);
+    put_le32(subkey + 16, st[12]);
+    put_le32(subkey + 20, st[13]);
+    put_le32(subkey + 24, st[14]);
+    put_le32(subkey + 28, st[15]);
 }
 
 // XChaCha12 IETF stream cipher
@@ -285,10 +314,10 @@ void xchacha12_stream(uint8_t* dst, const uint8_t* src, size_t nbytes,
 
         chacha20_block_generic(st, k, (uint32_t*)blockNonce, 12);
 
-        // Serialize state to keystream
+        // Serialize state to keystream - st[i] is uint32_t (4 bytes)
         uint8_t keystream[64];
         for (int i = 0; i < 16; i++) {
-            put_le64(keystream + i * 4, st[i]);
+            put_le32(keystream + i * 4, st[i]);
         }
 
         // XOR with input
@@ -426,9 +455,9 @@ static void stream_xor(uint8_t* msg, size_t len, const uint8_t* key, const uint8
         }
         chacha20_block_generic(st, k, (uint32_t*)nonceBlock, 12);
 
-        // Serialize
+        // Serialize - st[i] is uint32_t (4 bytes)
         for (int i = 0; i < 16; i++) {
-            put_le64(stream + i * 4, st[i]);
+            put_le32(stream + i * 4, st[i]);
         }
 
         // XOR
@@ -477,9 +506,9 @@ static void hbsh_stream_xor(uint8_t* msg, size_t msgLen,
 
         chacha20_block_generic(st, k, (uint32_t*)blockNonce, 12);
 
-        // Serialize state to keystream
+        // Serialize state to keystream - st[i] is uint32_t (4 bytes)
         for (int i = 0; i < 16; i++) {
-            put_le64(keystream + i * 4, st[i]);
+            put_le32(keystream + i * 4, st[i]);
         }
 
         // XOR with msg (up to 64 bytes per block)
@@ -529,7 +558,8 @@ void hbsh_encrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
 
     // Step 4: CL = PL ⊕ XChaCha12_Stream(PL)
     // XOR plaintext left with keystream
-    hbsh_stream_xor(pl, plLen, cm, nonce24, 0);
+    // Use master key for HChaCha12 key derivation (not the 16-byte CM)
+    hbsh_stream_xor(pl, plLen, ctx->masterKey, nonce24, 0);
 
     // Step 5: Reconstruct ciphertext: block = CL || CM
     // CL is already in place (XORed with plaintext), now copy CM to PR position
@@ -557,7 +587,8 @@ void hbsh_decrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
 
     // Step 3: PL = CL ⊕ XChaCha12_Stream(CL)
     // XOR ciphertext left with same keystream to recover plaintext
-    hbsh_stream_xor(pl, plLen, cm, nonce24, 0);
+    // Use master key for HChaCha12 key derivation
+    hbsh_stream_xor(pl, plLen, ctx->masterKey, nonce24, 0);
 
     // Step 4: PM = AES256_ECB_Decrypt(CM)
     uint8_t pm[16];
