@@ -76,7 +76,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="44"/>
       <source>MacOS X application bundle distribution.</source>
-      <translation type="unfinished">MacOS X application bundle distribution.</translation>
+      <translation>MacOS X Bundle Distribution.</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="47"/>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="203"/>
       <source>Code assistant shortcut</source>
-      <translation type="unfinished">Code assistant shortcut</translation>
+      <translation>Code-Assistent-Verknüpfung</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="219"/>
@@ -157,12 +157,12 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="73"/>
       <source>Commit all snippet changes</source>
-      <translation type="unfinished">Commit all snippet changes</translation>
+      <translation>Alle Snippet-Änderungen übertragen</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="74"/>
       <source>Rollback all snippet changes</source>
-      <translation type="unfinished">Rollback all snippet changes</translation>
+      <translation>Zurücknehmen aller Snippet-Änderungen</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="76"/>
@@ -177,7 +177,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="79"/>
       <source>Move the snippet up</source>
-      <translation>Schipsel nach oben verschieben</translation>
+      <translation>Schnipsel nach oben verschieben</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="80"/>
@@ -305,17 +305,17 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="323"/>
       <source>Registration code</source>
-      <translation>Registrierungscode</translation>
+      <translation>Registrierungskode</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="324"/>
       <source>Enter a non-empty registration code.</source>
-      <translation type="unfinished">Enter a non-empty registration code.</translation>
+      <translation>Geben Sie einen Registrierungskode ein.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="328"/>
       <source>Implementation code</source>
-      <translation>Implementierungscode</translation>
+      <translation>Implementierungskode</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="329"/>
@@ -346,17 +346,17 @@
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="65"/>
       <source>Custom colors</source>
-      <translation type="unfinished">Custom colors</translation>
+      <translation>Eigene Farben</translation>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="73"/>
       <source>Add custom color</source>
-      <translation type="unfinished">Add custom color</translation>
+      <translation>Eigene Farbe hinzufügen</translation>
     </message>
     <message>
       <location filename="../common/colorpickerpopup.cpp" line="219"/>
       <source>Select color</source>
-      <translation type="unfinished">Select color</translation>
+      <translation>Farbe auswählen</translation>
     </message>
   </context>
   <context>
@@ -701,12 +701,12 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
       <source>Referenced table:</source>
-      <translation type="unfinished">Referenced table:</translation>
+      <translation>Referenzierte Tabelle:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
       <source>Referenced column:</source>
-      <translation type="unfinished">Referenced column:</translation>
+      <translation>Referenzierte Spalte:</translation>
     </message>
     <message>
       <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
@@ -746,7 +746,7 @@
     <message>
       <location filename="../constraints/columnforeignkeypanel.cpp" line="129"/>
       <source>Column with the same name</source>
-      <translation type="unfinished">Column with the same name</translation>
+      <translation>Spalte mit dem gleichen Namen</translation>
     </message>
   </context>
   <context>
@@ -822,7 +822,7 @@
     <message>
       <location filename="../constraints/columnprimarykeypanel.cpp" line="97"/>
       <source>Descending order is not allowed with AUTOINCREMENT.</source>
-      <translation type="unfinished">Descending order is not allowed with AUTOINCREMENT.</translation>
+      <translation>Absteigende Reihenfolge ist mit AUTOINCREMENT nicht zulässig.</translation>
     </message>
   </context>
   <context>
@@ -1004,7 +1004,7 @@
       <location filename="../dialogs/configdialog.ui" line="172"/>
       <location filename="../dialogs/configdialog.ui" line="1126"/>
       <source>SQL Editor</source>
-      <translation type="unfinished">SQL Editor</translation>
+      <translation>SQL-Editor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
@@ -1094,7 +1094,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+      <translation>Datenbank nicht als &quot;permanent&quot; markieren</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="485"/>
@@ -1135,7 +1135,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="513"/>
       <source>Use scientific notation for very small real numbers in the grid view</source>
-      <translation type="unfinished">Use scientific notation for very small real numbers in the grid view</translation>
+      <translation>Die wissenschaftliche Notation für sehr kleine reale Zahlen in der Rasteransicht verwenden</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="608"/>
