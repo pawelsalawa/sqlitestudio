@@ -411,7 +411,8 @@ target_sources(MiscFiles PRIVATE
         parser/sqlite3_parse.y
 )
 
-add_library(coreSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+add_library(coreSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES}
+    common/bigdec.h common/bigdec.cpp)
 sqlitestudio_set_output_properties(coreSQLiteStudio)
 set_target_properties(coreSQLiteStudio PROPERTIES
     VERSION 1.0.0

@@ -67,6 +67,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FILTER_EXACT,
             FILTER_PER_COLUMN,
             GRID_TOTAL_ROWS,
+            GRID_SELECTED_SUM,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
             INSERT_ROW_BEFORE,
@@ -183,6 +184,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QWidget* perColumnAreaParent = nullptr;
         ExtLineEdit* filterEdit = nullptr;
         QLabel* rowCountLabel = nullptr;
+        QLabel* selSumLabel = nullptr;
         QLabel* formViewRowCountLabel = nullptr;
         QLabel* formViewCurrentRowLabel = nullptr;
         ExtLineEdit* pageEdit = nullptr;
@@ -251,6 +253,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void togglePerColumnFiltering();
         void findInData();
         void updateTabHotKeys();
+        void updateSelectionSum();
 };
 
 size_t qHash(DataView::ActionGroup action);

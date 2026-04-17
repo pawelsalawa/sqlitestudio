@@ -1,4 +1,5 @@
 #include "dataview.h"
+#include "common/bigdec.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
 #include "formview.h"
@@ -47,8 +48,10 @@ void DataView::init(SqlQueryModel* model)
     this->model->setView(gridView);
 
     rowCountLabel = new QLabel();
+    selSumLabel = new QLabel();
     formViewRowCountLabel = new QLabel();
     formViewCurrentRowLabel = new QLabel();
+    updateSelectionSum();
 
     initWidgetCover();
     initFormView();
@@ -77,6 +80,8 @@ void DataView::initSlots()
     connect(model, SIGNAL(commitStatusChanged(bool)), this, SLOT(updateCommitRollbackActions(bool)));
     connect(gridView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             model, SLOT(updateSelectiveCommitRollbackActions(QItemSelection,QItemSelection)));
+    connect(gridView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(updateSelectionSum()));
     connect(model, SIGNAL(selectiveCommitStatusChanged(bool)), this, SLOT(updateSelectiveCommitRollbackActions(bool)));
     connect(model, SIGNAL(executionStarted()), gridView, SLOT(executionStarted()));
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
@@ -241,6 +246,7 @@ void DataView::createActions()
         createFilteringActions();
 
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
+    actionMap[GRID_SELECTED_SUM] = gridToolBar->addWidget(selSumLabel);
 
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;
 
@@ -708,6 +714,59 @@ void DataView::updateTabHotKeys()
 {
     tabBar()->setTabToolTip(0, QKeySequence(DATAVIEW_KEYS.SHOW_GRID_VIEW.get()).toString(QKeySequence::NativeText));
     tabBar()->setTabToolTip(1, QKeySequence(DATAVIEW_KEYS.SHOW_FORM_VIEW.get()).toString(QKeySequence::NativeText));
+}
+
+void DataView::updateSelectionSum()
+{
+    QList<SqlQueryItem*> selItems = gridView->getSelectedItems();
+    if (selItems.isEmpty())
+    {
+        selSumLabel->setVisible(false);
+        return;
+    }
+
+    int nums = 0;
+    BigDec sum("0");
+    for (SqlQueryItem*& item : selItems)
+    {
+        QVariant val = item->getValue();
+        switch (val.userType())
+        {
+            case QMetaType::Int:
+                sum += val.toInt();
+                nums++;
+                break;
+            case QMetaType::UInt:
+                sum += val.toUInt();
+                nums++;
+                break;
+            case QMetaType::Long:
+            case QMetaType::LongLong:
+                sum += val.toLongLong();
+                nums++;
+                break;
+            case QMetaType::ULong:
+            case QMetaType::ULongLong:
+                sum += val.toULongLong();
+                nums++;
+                break;
+            case QMetaType::Double:
+                sum += val.toDouble();
+                nums++;
+                break;
+            default:
+                break;
+        }
+    }
+
+    if (nums == 0)
+    {
+        selSumLabel->setVisible(false);
+        return;
+    }
+
+    selSumLabel->setText(tr("Sum: %1").arg(sum.toString()));
+    selSumLabel->setVisible(true);
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
