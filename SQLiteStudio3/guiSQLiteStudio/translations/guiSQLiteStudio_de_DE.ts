@@ -16,7 +16,7 @@
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="30"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt; Kostenloser, quelloffener, plattformübergreifender SQLite-Datenbankmanager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&amp; quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt; Autor und aktiver Betreuer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
@@ -121,7 +121,7 @@
       <location filename="../windows/codesnippeteditor.ui" line="162"/>
       <location filename="../windows/codesnippeteditor.ui" line="200"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional shortcut, that will work only in context of the active code assistant window. It allows user to use key combinations, that would otherwise be conflicting with other shortcuts. Having the code assistant window as required context makes the choice of keys more versatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optionaler Tastenbefehl, der nur im Kontext des aktiven Code-Assistenten-Fensters funktioniert. Er ermöglicht es dem Benutzer, Tastenkombinationen zu verwenden, die andernfalls mit anderen Tastenbefehlen in Konflikt stehen würden. Da das Code-Assistent-Fenster als erforderlicher Kontext dient, ist die Auswahl der Tasten vielseitiger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
@@ -265,12 +265,12 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="54"/>
       <source>Collations editor</source>
-      <translation>Editor für Kollationen</translation>
+      <translation>Editor für Sortierreihenfolge</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="59"/>
       <source>Commit all collation changes</source>
-      <translation>Speichern aller Änderungen an Kollationen</translation>
+      <translation>Alle Sortierreihenfolgeänderungen übernehmen</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="60"/>
@@ -402,12 +402,12 @@
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
       <source>Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Ungültiger Ausdruck für den Standardwert: %1. Wenn Sie einen einfachen String als Wert verwenden möchten, denken Sie daran, ihn in Anführungszeichen zu setzen.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
-      <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+      <translation>Ungültiger Ausdruck für den Standardwert. Wenn Sie einen einfachen String als Wert verwenden möchten, denken Sie daran, ihn in Anführungszeichen zu setzen.</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
@@ -460,22 +460,22 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="138"/>
       <source>This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>Diese Spalte ist Teil eines zusammengesetzten Primärschlüssels. Zusammengesetzte Einschränkungen werden im unteren Bereich der Registerkarte „Struktur“ konfiguriert.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="141"/>
       <source>Composite Primary Key</source>
-      <translation type="unfinished">Composite Primary Key</translation>
+      <translation>Zusammengesetzter Primärschlüssel</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="161"/>
       <source>This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>Diese Spalte ist Teil eines zusammengesetzten Fremdschlüssels. Zusammengesetzte Einschränkungen werden im unteren Bereich der Registerkarte „Struktur“ konfiguriert.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Composite Foreign Key</source>
-      <translation type="unfinished">Composite Foreign Key</translation>
+      <translation>Zusammengesetzter Fremdschlüssel</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="209"/>
@@ -507,7 +507,7 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="237"/>
       <source>Collate</source>
-      <translation>Kollationieren</translation>
+      <translation>Sortieren</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="265"/>
@@ -537,12 +537,12 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="275"/>
       <source>This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>Diese Spalte ist Teil einer zusammengesetzten Eindeutigkeitsbeschränkung. Zusammengesetzte Beschränkungen werden im unteren Bereich der Registerkarte „Struktur“ konfiguriert.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="278"/>
       <source>Composite Unique</source>
-      <translation type="unfinished">Composite Unique</translation>
+      <translation>Eindeutige Zusammensetzung</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="345"/>
@@ -652,12 +652,12 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="384"/>
       <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
-      <translation type="unfinished">Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</translation>
+      <translation>Wenn für den PRIMARY KEY die Eigenschaft AUTOINCREMENT aktiviert ist, darf kein anderer Datentyp als INTEGER verwendet werden.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="385"/>
       <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
-      <translation type="unfinished">INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</translation>
+      <translation>Aufgrund der Aktivierung von AUTOINCREMENT im PRIMARY KEY wurde der Typ INTEGER erzwungen.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="407"/>
@@ -667,12 +667,12 @@
     <message>
       <location filename="../dialogs/columndialog.cpp" line="455"/>
       <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
-      <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
+      <translation>Der Datentyp der referenzierten Spalte (%1) weicht von dem in dieser Spalte deklarierten Typ ab. Dies kann beim Einfügen oder Aktualisieren von Daten zu Problemen führen.</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.cpp" line="767"/>
       <source>Could not match valid STRICT table datatype from declared type: %1.</source>
-      <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
+      <translation>Es konnte kein gültiger STRICT-Tabellendatentyp mit dem deklarierten Typ abgeglichen werden: %1.</translation>
     </message>
   </context>
   <context>
@@ -759,12 +759,12 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="35"/>
       <source>Explicit type:</source>
-      <translation type="unfinished">Explicit type:</translation>
+      <translation>Expliziter Typ:</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="58"/>
       <source>Use &quot;GENERATED ALWAYS&quot; keywords</source>
-      <translation type="unfinished">Use &quot;GENERATED ALWAYS&quot; keywords</translation>
+      <translation>Verwenden Sie das Schlüsselwort &quot;GENERATED ALWAYS&quot;</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.ui" line="71"/>
@@ -774,17 +774,17 @@
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="40"/>
       <source>Enter the column value generating expression.</source>
-      <translation type="unfinished">Enter the column value generating expression.</translation>
+      <translation>Geben Sie den Ausdruck zur Erzeugung des Spaltenwerts ein.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="87"/>
       <source>Invalid value generating expression: %1.</source>
-      <translation type="unfinished">Invalid value generating expression: %1.</translation>
+      <translation>Ausdruck, der einen ungültigen Wert erzeugt: %1</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="93"/>
       <source>Invalid value generating expression.</source>
-      <translation type="unfinished">Invalid value generating expression.</translation>
+      <translation>Ausdruck, der einen ungültigen Wert erzeugt.</translation>
     </message>
     <message>
       <location filename="../constraints/columngeneratedpanel.cpp" line="96"/>
@@ -921,7 +921,7 @@
       <location filename="../completer/completerwindow.cpp" line="250"/>
       <source>Collation: %1</source>
       <comment>completer statusbar</comment>
-      <translation>Kollation: %1</translation>
+      <translation>Sortierung: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="252"/>
@@ -1034,7 +1034,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="306"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-      <translation>Wenn die Option deaktiviert ist, werden die Spalten in der Reihenfolge  sortiert in der sie im CREATE TABLE Statement angegeben wurden.</translation>
+      <translation>Wenn die Option deaktiviert ist, werden die Spalten in der Reihenfolge sortiert in der sie im CREATE TABLE Statement angegeben wurden.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="309"/>
@@ -1069,7 +1069,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="332"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-      <translation>Wenn die Option deaktiviert ist, werden die Objekte in der Reihenfolge  sortiert in der sie in der sqlite_master Tabelle angezeigt werden (entspricht der Reihenfolge in der sie angelegt worden sind)</translation>
+      <translation>Wenn die Option deaktiviert ist, werden die Objekte in der Reihenfolge sortiert in der sie in der sqlite_master Tabelle angezeigt werden (entspricht der Reihenfolge in der sie angelegt worden sind)</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="335"/>
@@ -1089,7 +1089,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Beim Hinzufügen einer neuen Datenbank wird diese standardmäßig als &quot;permanent&quot; (in der Konfiguration gespeichert) markiert. Wenn Sie diese Option aktivieren, werden alle neuen Datenbanken standardmäßig NICHT als &quot;permanent&quot;&quot; markiert.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="427"/>
@@ -1105,27 +1105,27 @@
       <location filename="../dialogs/configdialog.ui" line="530"/>
       <location filename="../dialogs/configdialog.ui" line="556"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Maximale Anzahl der im Dialogfeld &quot;Tabellefüllen&quot; gespeicherten Konfigurationen. Ein Wert von 100 sollte ausreichen.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="559"/>
       <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
+      <translation>Anzahl der gespeicherten Konfigurationen zur Tabellenbefüllung</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="566"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Converts Unicode line separators (U+2028, U+2029) to the standard LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) character when editing text in form view editor.&lt;/p&gt;&lt;p&gt;Disable to preserve the original characters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt; Konvertiert Unicode-Zeilenumbrüche (U+2028, U+2029) in das Standardzeichen LF (&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;\n&lt;/span&gt;) bei der Bearbeitung von Text im Formularansichts-Editor.&lt;/p&gt;&lt;p&gt; Deaktivieren Sie diese Option, um die ursprünglichen Zeichen beizubehalten.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="569"/>
       <source>Convert Unicode line separators to LF (\n) in form view editors</source>
-      <translation type="unfinished">Convert Unicode line separators to LF (\n) in form view editors</translation>
+      <translation>Unicode-Zeilenumbrüche in Formularansichts-Editoren in LF (\n) umwandeln</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="572"/>
       <source>General.UseLfForMultilineEditors</source>
-      <translation type="unfinished">General.UseLfForMultilineEditors</translation>
+      <translation>Nutze LF(\n) in MultiLine-Editoren</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="510"/>
@@ -1135,7 +1135,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="513"/>
       <source>Use scientific notation for very small real numbers in the grid view</source>
-      <translation>Die wissenschaftliche Notation für sehr kleine reale Zahlen in der Rasteransicht verwenden</translation>
+      <translation>Die wissenschaftliche Schreibweise für sehr kleine reale Zahlen in der Rasteransicht verwenden</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="608"/>
@@ -1170,7 +1170,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="546"/>
       <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
+      <translation>Tooltip für Spalten- und Zeilendetails in der Datenansicht anzeigen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="592"/>
@@ -1180,7 +1180,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="595"/>
       <source>Keep NULL value when entering empty value</source>
-      <translation type="unfinished">Keep NULL value when entering empty value</translation>
+      <translation>Bei Eingabe eines leeren Werts den NULL-Wert beibehalten</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="579"/>
@@ -1190,7 +1190,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="582"/>
       <source>Limit number of rows for in case of dozens of columns</source>
-      <translation type="unfinished">Limit number of rows for in case of dozens of columns</translation>
+      <translation>Anzahl der Zeilen begrenzen, falls Dutzende von Spalten vorhanden sind</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="678"/>
@@ -1245,7 +1245,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="770"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Wenn diese Option aktiviert ist, wird das Fenster &quot;Ansicht&quot; mit der Registerkarte &quot;Daten&quot; anstelle der Registerkarte &quot;Struktur&quot; angezeigt.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="773"/>
@@ -1255,7 +1255,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="783"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Wenn diese Option aktiviert ist, wird die Registerkarte &quot;Daten&quot; in jedem Ansichtsfenster an erster Stelle angezeigt, anstatt an zweiter Stelle.&lt;/p&gt;&quot;&quot;&quot;</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="786"/>
@@ -1290,7 +1290,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1026"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-      <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
+      <translation>Beim Speichern von Schema-Änderungen den DDL-Vorschau-Dialog nicht anzeigen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1212"/>
@@ -1312,7 +1312,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1244"/>
       <source>Number of memorized query parameters</source>
-      <translation type="unfinished">Number of memorized query parameters</translation>
+      <translation>Anzahl der gespeicherten Abfrageparameter</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="652"/>
@@ -1322,7 +1322,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="655"/>
       <source>Limit automatic data column width to (in pixels):</source>
-      <translation type="unfinished">Limit automatic data column width to (in pixels):</translation>
+      <translation>Automatische Spaltenbreite auf (in Pixeln) begrenzen:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="662"/>
@@ -1332,7 +1332,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="665"/>
       <source>Keep at least the width to show complete column name</source>
-      <translation type="unfinished">Keep at least the width to show complete column name</translation>
+      <translation>Lassen Sie mindestens so viel Platz, dass der vollständige Spaltenname angezeigt wird</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1158"/>
@@ -1342,7 +1342,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1161"/>
       <source>Wrap lines in SQL editor</source>
-      <translation type="unfinished">Wrap lines in SQL editor</translation>
+      <translation>Zeilenumbruch im SQL-Editor</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1148"/>
