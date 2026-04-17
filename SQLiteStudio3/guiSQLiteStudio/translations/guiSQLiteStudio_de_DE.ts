@@ -127,7 +127,7 @@
       <location filename="../windows/codesnippeteditor.ui" line="183"/>
       <location filename="../windows/codesnippeteditor.ui" line="193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the snippet will be displayed in the code assistant. To access the list of snippets user has to hit the code assistant shortcut twice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Der Name des Snippets wird im Code-Assistenten angezeigt. Um die Liste der Snippets aufzurufen, muss der Benutzer zweimal auf die Tastenkombination für den Code-Assistenten drücken.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.ui" line="186"/>
@@ -147,7 +147,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="47"/>
       <source>Code Snippets editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
+      <translation>Das Fenster des Code-Snippet-Editors enthält nicht gespeicherte Änderungen.</translation>
     </message>
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="68"/>
@@ -202,7 +202,7 @@
     <message>
       <location filename="../windows/codesnippeteditor.cpp" line="309"/>
       <source>This hotkey is not unique in context of a code assistant.</source>
-      <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
+      <translation>Dieser Hotkey ist für einen Code-Assistenten nicht eindeutig.</translation>
     </message>
   </context>
   <context>
@@ -235,7 +235,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="175"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the collation is applied. It receives two arguments, &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first&lt;/span&gt; and &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;second&lt;/span&gt; (named according to the scripting language conventions), representing the values to compare. The code should compare these values and return an integer indicating the result: negative if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;lt; second&lt;/span&gt;, zero if equal, and positive if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;gt; second&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code executed when the collation is applied. It receives two arguments, &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first&lt;/span&gt; and &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;second&lt;/span&gt; (named according to the scripting language conventions), representing the values to compare. The code should compare these values and return an integer indicating the result: negative if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;lt; second&lt;/span&gt;, zero if equal, and positive if &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;gt; second&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Code, der ausgeführt wird, wenn die Sortierreihenfolge angewendet wird. Er erhält zwei Argumente, &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first&lt;/span&gt; und &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;second&lt;/span&gt; (benannt gemäß den Konventionen der Skriptsprache), die die zu vergleichenden Werte darstellen. Der Code sollte diese Werte vergleichen und eine Ganzzahl zurückgeben, die das Ergebnis angibt: negativ, wenn &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;lt; second&lt;/span&gt;, null bei Gleichheit und positiv, wenn &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;first &amp;gt; second&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="204"/>
@@ -245,7 +245,7 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="214"/>
       <source>Collation type:</source>
-      <translation type="unfinished">Collation type:</translation>
+      <translation>Sortierreihenfolge:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.ui" line="223"/>
@@ -325,7 +325,7 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="462"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
+      <translation>Das Fenster des Sortierreihenfolge-Editors enthält nicht gespeicherte Änderungen.</translation>
     </message>
   </context>
   <context>
@@ -1009,7 +1009,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="175"/>
       <source>sqlEditorPage</source>
-      <translation type="unfinished">sqlEditorPage</translation>
+      <translation>SQL-Editor-Seite</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="207"/>
@@ -1397,7 +1397,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1477"/>
       <source>Keyword foreground</source>
-      <translation type="unfinished">Keyword foreground</translation>
+      <translation>Schlüsselwort-Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1315"/>
@@ -1447,22 +1447,22 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="219"/>
       <source>Data renderers</source>
-      <translation type="unfinished">Data renderers</translation>
+      <translation>Daten-Renderer</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="283"/>
       <source>Expand tables when connected to a database</source>
-      <translation type="unfinished">Expand tables when connected to a database</translation>
+      <translation>Tabellen bei Verbindung mit einer Datenbank erweitern</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="405"/>
       <source>Expand views when connected to a database</source>
-      <translation type="unfinished">Expand views when connected to a database</translation>
+      <translation>Ansichten bei Verbindung mit einer Datenbank erweitern</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="319"/>
       <source>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</source>
-      <translation type="unfinished">Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</translation>
+      <translation>Das Erweitern einer Tabelle oder Ansicht erweitert auch die Spalten, Indizes und Triggerknoten, um deren Inhalt anzuzeigen.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="293"/>
