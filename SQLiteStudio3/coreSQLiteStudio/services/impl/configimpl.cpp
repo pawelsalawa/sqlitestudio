@@ -1183,7 +1183,7 @@ void ConfigImpl::updateConfigDb()
             QVariantList list = CFG_CORE.Internal.Extensions.get();
             QVariantList newList;
             QHash<QString,QVariant> extHash;
-            for (const QVariant& var : list)
+            for (QVariant& var : list)
             {
                 extHash = var.toHash();
                 QString filePath = extHash["filePath"].toString();
@@ -1256,6 +1256,8 @@ void ConfigImpl::updateConfigDb()
         {
             // 12->13
             db->exec("DELETE FROM settings WHERE [group] like 'ShortcutsCategory%'");
+            notifyInfo(tr("Configured hotkeys have been reset to their default settings following the update to version 4.0.0, "
+                          "where many shortcuts were revised to align with modern IDE standards."));
         }
         // Add cases here for next versions,
         // without a "break" instruction,

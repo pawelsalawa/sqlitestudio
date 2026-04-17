@@ -72,6 +72,7 @@
 - CHANGE: #4554 Added Select All and Deselect All buttons to Populate Dialog.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #2956 Export Dialog respects hotkeys for changing database in the dropdown, using the same hotkey as SQL Editor.
+- CHANGE: #5612 With hotkeys being reset to defaults in version 4.0.0, the relevant notification message is now printed upon the reset.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.
 - BUGFIX: #4986 Unique indexes are allowed for expressions, as they should be.
