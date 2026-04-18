@@ -43,6 +43,9 @@ static int adiantum_file_xUnfetch(sqlite3_file* pFile, sqlite3_int64 iOfst, void
 // Forward declaration for AdiantumFile
 struct AdiantumFile;
 
+// Forward declaration for path normalization
+static std::string normalizePath(const std::string& path);
+
 // sqlite3_io_methods for Adiantum encrypted files
 // Initialized in AdiantumVFS::initialize() once we have all method pointers
 static sqlite3_io_methods s_adiantum_io_methods = {
@@ -147,8 +150,9 @@ void AdiantumVFS::registerMainDbKey(const std::string& canonicalPath, const uint
 {
     std::lock_guard<std::mutex> lock(s_keyMutex);
     auto ctx = std::make_shared<AdiantumCtx>(rawKey);
-    s_keyByPath[canonicalPath] = ctx;
-    s_refCount[canonicalPath] = 0;
+    std::string norm = normalizePath(canonicalPath);
+    s_keyByPath[norm] = ctx;
+    s_refCount[norm] = 0;
 }
 
 void AdiantumVFS::unregisterMainDbKey(const std::string& canonicalPath)
@@ -176,6 +180,39 @@ void AdiantumVFS::decrementRefCount(const std::string& path)
     // remains until unregisterMainDbKey() is explicitly invoked.
 }
 
+// Normalize a path for consistent lookup: convert to forward slashes,
+// lowercase drive letters, and strip trailing slashes.
+static std::string normalizePath(const std::string& path)
+{
+    std::string result;
+    result.reserve(path.size());
+
+    size_t i = 0;
+    // Skip leading slash/backslash before drive letter (e.g. /D:/ or D:/)
+    if (path.size() >= 3 && path[0] == '/' && path[2] == ':') {
+        i = 1;
+    }
+
+    for (; i < path.size(); ++i) {
+        char c = path[i];
+        if (c == '\\') {
+            result += '/';
+        } else if (c >= 'A' && c <= 'Z' && (i == 0 || (i == 1 && path[0] == '/'))) {
+            // Lowercase drive letter (e.g. D: -> d:)
+            result += (c + 32);
+        } else {
+            result += c;
+        }
+    }
+
+    // Strip trailing slash
+    while (!result.empty() && result.back() == '/') {
+        result.pop_back();
+    }
+
+    return result;
+}
+
 std::shared_ptr<AdiantumCtx> AdiantumVFS::lookupByOpenName(const char* zName)
 {
     std::lock_guard<std::mutex> lock(s_keyMutex);
@@ -185,9 +222,16 @@ std::shared_ptr<AdiantumCtx> AdiantumVFS::lookupByOpenName(const char* zName)
     }
 
     std::string path(zName);
+    std::string norm = normalizePath(path);
 
-    // Try direct lookup first
-    auto it = s_keyByPath.find(path);
+    // Try normalized lookup first
+    auto it = s_keyByPath.find(norm);
+    if (it != s_keyByPath.end()) {
+        return it->second;
+    }
+
+    // Try original path (in case no normalization needed)
+    it = s_keyByPath.find(path);
     if (it != s_keyByPath.end()) {
         return it->second;
     }
@@ -195,10 +239,10 @@ std::shared_ptr<AdiantumCtx> AdiantumVFS::lookupByOpenName(const char* zName)
     // Try stripping suffixes (-wal, -journal, -shm)
     static const char* suffixes[] = { "-wal", "-journal", "-shm" };
     for (const char* suffix : suffixes) {
-        if (path.length() > strlen(suffix)) {
-            size_t pos = path.rfind(suffix);
-            if (pos == path.length() - strlen(suffix)) {
-                std::string base = path.substr(0, pos);
+        if (norm.length() > strlen(suffix)) {
+            size_t pos = norm.rfind(suffix);
+            if (pos == norm.length() - strlen(suffix)) {
+                std::string base = norm.substr(0, pos);
                 it = s_keyByPath.find(base);
                 if (it != s_keyByPath.end()) {
                     return it->second;
@@ -249,7 +293,7 @@ static int adiantum_xOpen(sqlite3_vfs* pVfs, const char* zName, sqlite3_file* pF
         p->ctx = AdiantumVFS::lookupByOpenName(zName);
         if (p->ctx) {
             p->isEncrypted = true;
-            p->path = zName;
+            p->path = normalizePath(std::string(zName));
             AdiantumVFS::incrementRefCount(p->path);
         }
     }
