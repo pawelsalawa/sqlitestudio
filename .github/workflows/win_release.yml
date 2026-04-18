@@ -468,10 +468,8 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                 tag_name: ${{ inputs.tag || github.ref_name }}
-                file: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
-                content_type: application/zip
-                overwrite: true
-                create: true
+                files: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                fail_on_unmatched_files: true
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

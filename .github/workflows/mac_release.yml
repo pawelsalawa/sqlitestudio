@@ -396,9 +396,8 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                 tag_name: ${{ inputs.tag || github.ref_name }}
-                file: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
-                content_type: application/x-apple-diskimage
-                overwrite: true
+                files: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                fail_on_unmatched_files: true
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
