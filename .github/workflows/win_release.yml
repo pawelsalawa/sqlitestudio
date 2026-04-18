@@ -11,18 +11,14 @@ name: Windows release build
 on:
     workflow_dispatch:
         inputs:
-          target:
-            description: "Build target"
-            type: choice
-            options:
-                - "all"
-                - "x64"
-                - "arm64"
+          BUILD_INSTALLER:
+            description: 'Build installer (requires INSTALLER_LICENSE secret)'
             required: false
-            default: "all"
+            type: boolean
+            default: false
           CODE_SIGN:
-            description: 'Sign artifacts with SignPath'
-            required: true
+            description: 'Sign artifacts with SignPath (requires SIGNPATH_* secrets)'
+            required: false
             type: boolean
             default: false
           use_ccache:
@@ -60,21 +56,7 @@ jobs:
                     "SQLITE_ARCH": "x64",
                     "OUTPUT_FILE_ARCH": "x64"
                 }'
-                MATRIX_ARM64='{
-                    "OS": "windows-11-arm",
-                    "MSYSTEM": "CLANGARM64",
-                    "CCACHE_KEY": "winarm64-release",
-                    "SQLITE_ARCH": "arm64",
-                    "OUTPUT_FILE_ARCH": "arm64"
-                }'
-
-                if [ "${{ inputs.target }}" = "x64" ]; then
-                    matrix="[$MATRIX_X64]"
-                elif [ "${{ inputs.target }}" = "arm64" ]; then
-                    matrix="[$MATRIX_ARM64]"
-                else
-                    matrix="[$MATRIX_X64,$MATRIX_ARM64]"
-                fi
+                matrix="[$MATRIX_X64]"
 
                 {
                     echo "matrix<<EOF"
@@ -341,6 +323,7 @@ jobs:
                 ls -l
 
             - name: "[Assembling] Install the InstalBuilder"
+              if: ${{ inputs.BUILD_INSTALLER }}
               shell: msys2 {0}
               env:
                 IB_LICENSE: ${{ secrets.INSTALLER_LICENSE }}
@@ -409,6 +392,7 @@ jobs:
                 echo "INSTALLER_BIN_PREFIX=$(pwd)/SQLiteStudio" >> $GITHUB_ENV
 
             - name: "[Assembling] Create installer package"
+              if: ${{ inputs.BUILD_INSTALLER }}
               shell: msys2 {0}
               run: |
                 ${{ env.INSTALLBUILDER_DIR }}/bin/builder-cli.exe build SQLiteStudio-installer.xml \
@@ -418,27 +402,27 @@ jobs:
                 ls -l
 
             - name: "[Assembling] Name fix for arm64"
-              if: ${{ matrix.OUTPUT_FILE_ARCH == 'arm64' }}
+              if: ${{ inputs.BUILD_INSTALLER && matrix.OUTPUT_FILE_ARCH == 'arm64' }}
               shell: msys2 {0}
               run: |
                 mv SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
 
             - name: "[Assembling] Prepare installer for uploading without signing"
-              if: ${{ !inputs.CODE_SIGN }}
+              if: ${{ inputs.BUILD_INSTALLER && !inputs.CODE_SIGN }}
               shell: msys2 {0}
               run: |
                 set -x
                 cp SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe unsigned/
 
             - name: "[Code Signing] Prepare installer artifact for code signing"
-              if: ${{ inputs.CODE_SIGN }}
+              if: ${{ inputs.BUILD_INSTALLER && inputs.CODE_SIGN }}
               shell: msys2 {0}
               run: |
                 set -x
                 cp SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe signing/
 
             - name: "[Code Signing] Upload unsigned installer artifact"
-              if: ${{ inputs.CODE_SIGN }}
+              if: ${{ inputs.BUILD_INSTALLER && inputs.CODE_SIGN }}
               id: upload-unsigned-artifact-installer
               uses: actions/upload-artifact@v4
               with:
@@ -446,7 +430,7 @@ jobs:
                 path: signing/*.exe
 
             - name: "[Code Signing] Sign installer artifact"
-              if: ${{ inputs.CODE_SIGN }}
+              if: ${{ inputs.BUILD_INSTALLER && inputs.CODE_SIGN }}
               uses: signpath/github-action-submit-signing-request@v2
               with:
                 api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
@@ -463,7 +447,9 @@ jobs:
               working-directory: ${{ env.SIGNED_DIR }}
               run: |
                 sha256sum sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
-                sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                if [ "${{ inputs.BUILD_INSTALLER }}" = "true" ]; then
+                    sha256sum SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
+                fi
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v4
@@ -472,6 +458,7 @@ jobs:
                 path: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload installer artifact
+              if: ${{ inputs.BUILD_INSTALLER }}
               uses: actions/upload-artifact@v4
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.exe
