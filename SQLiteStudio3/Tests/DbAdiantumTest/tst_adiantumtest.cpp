@@ -3,8 +3,8 @@
 #include <QByteArray>
 #include <QDebug>
 
-// Include the cipher implementation
-#include "../../Plugins/DbAdiantum/adiantum_cipher.h"
+// Cipher header resolved via target include dir (Plugins/DbAdiantum).
+#include "adiantum_cipher.h"
 
 
 class TestAdiantumCrypto : public QObject
@@ -360,4 +360,4 @@ void TestAdiantumCrypto::test_make_adiantum_subkeys()
 }
 
 QTEST_MAIN(TestAdiantumCrypto)
-#include "TestAdiantumCrypto.moc"
+#include "tst_adiantumtest.moc"

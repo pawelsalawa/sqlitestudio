@@ -2,6 +2,7 @@
 #define ADIANTUM_VFS_H
 
 #include <sqlite3.h>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -13,15 +14,17 @@ struct AdiantumCtx;
 // Forward declaration for sqlite3_io_methods
 struct sqlite3_io_methods;
 
-// Adiantum file handle - extends sqlite3_file with encryption context
+// Adiantum file handle - extends sqlite3_file with encryption context.
+// Lifetime: placement-new'd in xOpen, explicitly destroyed in xClose. The
+// raw storage is provided by SQLite (sqlite3_vfs::szOsFile). Never use
+// memset on this struct — the shared_ptr member has non-trivial semantics.
 struct AdiantumFile
 {
-    sqlite3_file base;                  // Parent VFS file handle
-    sqlite3_file* pRealFile;           // Underlying file handle
-    std::shared_ptr<AdiantumCtx> ctx;  // Encryption context
-    bool isEncrypted;                   // True if this file is encrypted
-    bool isInitialized;                 // True if ctx is fully initialized
-    int refCount;                       // Reference count
+    sqlite3_file base;                  // Parent VFS file handle (C struct)
+    sqlite3_file* pRealFile;            // Underlying file handle (heap-allocated char[])
+    std::shared_ptr<AdiantumCtx> ctx;   // Encryption context (owning, kept alive even if keymap removed)
+    std::string path;                   // Canonical path for keymap bookkeeping on close
+    bool isEncrypted;                   // True iff ctx is non-null and this file is encrypted
 };
 
 class AdiantumVFS

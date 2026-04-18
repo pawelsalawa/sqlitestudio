@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.16)
 option(WITH_DbAdiantum "Build DbAdiantum plugin (Adiantum VFS encryption)" ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core)
-# Crypto libraries
-find_package(sodium QUIET)  # ChaCha20/Poly1305
-find_package(OpenSSL QUIET)  # AES-256 ECB
+# Crypto libraries - mandatory. Fake fallbacks are not cryptographically secure.
+find_package(sodium REQUIRED)   # Poly1305
+find_package(OpenSSL REQUIRED)  # AES-256 ECB
 
 set(PROJECT_HEADERS
     dbadiantum_global.h
@@ -36,21 +36,13 @@ if(WIN32 OR APPLE)
     target_link_libraries(DbAdiantum PRIVATE coreSQLiteStudio)
 endif()
 
-# Link crypto libraries if found
-if(sodium_FOUND)
-    target_link_libraries(DbAdiantum PRIVATE sodium::sodium)
-    target_include_directories(DbAdiantum PRIVATE ${sodium_INCLUDE_DIR})
-    target_compile_definitions(DbAdiantum PRIVATE USE_LIBSODIUM)
-endif()
+# Link crypto libraries (mandatory)
+target_link_libraries(DbAdiantum PRIVATE sodium::sodium)
+target_include_directories(DbAdiantum PRIVATE ${sodium_INCLUDE_DIR})
+target_compile_definitions(DbAdiantum PRIVATE USE_LIBSODIUM)
 
-if(OpenSSL_FOUND)
-    target_link_libraries(DbAdiantum PRIVATE OpenSSL::Crypto)
-    target_compile_definitions(DbAdiantum PRIVATE USE_OPENSSL)
-endif()
-
-if(NOT sodium_FOUND AND NOT OpenSSL_FOUND)
-    message(WARNING "DbAdiantum: Neither sodium nor OpenSSL found. Using insecure fallback implementations.")
-endif()
+target_link_libraries(DbAdiantum PRIVATE OpenSSL::Crypto)
+target_compile_definitions(DbAdiantum PRIVATE USE_OPENSSL)
 
 # Compile options
 target_compile_options(DbAdiantum PRIVATE

@@ -79,7 +79,25 @@ void aes256_ecb_encrypt(uint8_t* dst, const uint8_t* src, const uint8_t* key);
 // AES-256 ECB single-block decryption
 void aes256_ecb_decrypt(uint8_t* dst, const uint8_t* src, const uint8_t* key);
 
+// Compute HashNHPoly1305(tweak || msg):
+//   Poly1305(polyKeyT, pad_to_16(tweak))  XOR_GF128  NH-chunked-Poly1305(polyKeyM, nhKey, msg)
+// out:   16-byte hash
+// ctx:   must be initialized with polyKeyT, polyKeyM, nhKey
+// tweak: tweak bytes
+// tweakLen: tweak length (<= 16)
+// msg:   message bytes
+// msgLen: message length (multiple of 16)
+struct AdiantumCtx;
+void hash_nh_poly1305(uint8_t out[16], const AdiantumCtx* ctx,
+                      const uint8_t* tweak, size_t tweakLen,
+                      const uint8_t* msg, size_t msgLen);
+
 // Utility functions
+inline uint32_t le32(const uint8_t* b) {
+    return uint32_t(b[0]) | (uint32_t(b[1]) << 8) |
+           (uint32_t(b[2]) << 16) | (uint32_t(b[3]) << 24);
+}
+
 inline uint64_t le64(const uint8_t* b) {
     return uint64_t(b[0]) | (uint64_t(b[1]) << 8) |
            (uint64_t(b[2]) << 16) | (uint64_t(b[3]) << 24) |
@@ -111,15 +129,9 @@ inline void gf128_add(uint8_t* out, const uint8_t* x, const uint8_t* y) {
     uint64_t x1 = le64(x + 8);
     uint64_t y0 = le64(y);
     uint64_t y1 = le64(y + 8);
-    uint64_t r0, r1, c;
-    unsigned char carry;
-
-    // Add low 64 bits
-    r0 = x0 + y0;
-    c = (r0 < x0) ? 1 : 0;
-    // Add high 64 bits with carry
-    r1 = x1 + y1 + c;
-    carry = (r1 < x1) ? 1 : 0;
+    uint64_t r0 = x0 + y0;
+    uint64_t c = (r0 < x0) ? 1 : 0;
+    uint64_t r1 = x1 + y1 + c;
 
     put_le64(out, r0);
     put_le64(out + 8, r1);

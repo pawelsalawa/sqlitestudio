@@ -4,6 +4,8 @@
 #include "common/utils_sql.h"
 #include "adiantum_vfs.h"
 #include <QFileInfo>
+#include <QUrl>
+#include <QRegularExpression>
 #include <QDebug>
 
 const char* AdiantumDriver::label = "adiantum";
@@ -98,20 +100,10 @@ void DbAdiantumInstance::initAfterOpen()
     const bool isPlain = getConnectionOptions()[DbAdiantum::PLAIN_OPT].toBool();
 
     if (!isPlain) {
-        // Disable mmap to prevent SQLite from bypassing VFS
+        // Disable mmap to prevent SQLite from bypassing the VFS for page I/O.
         res = exec("PRAGMA mmap_size = 0;", Db::Flag::NO_LOCK);
-
-        // Set the encryption key via PRAGMA
-        const QString hexKey = getConnectionOptions()[DbAdiantum::HEXKEY_OPT].toString().trimmed();
-        if (!hexKey.isEmpty()) {
-            // The key was already registered in openInternal(), but we also need to
-            // execute PRAGMA hexkey to initialize the per-connection key state
-            res = exec(QString("PRAGMA hexkey('%1');").arg(escapeString(hexKey)), Db::Flag::NO_LOCK);
-            if (res->isError()) {
-                qWarning() << "Adiantum: Failed to set hexkey:" << res->getErrorText();
-                return;
-            }
-        }
+        // Note: no PRAGMA hexkey call here — the key is pre-registered with
+        // AdiantumVFS before sqlite3_open_v2 so the VFS already owns it.
     }
 
     // Execute custom PRAGMAs
@@ -131,13 +123,15 @@ void DbAdiantumInstance::initAfterOpen()
 QString DbAdiantumInstance::getAttachSql(Db* otherDb, const QString& generatedAttachName)
 {
     auto* otherAdiantum = dynamic_cast<DbAdiantumInstance*>(otherDb);
+    const QString attachName = wrapObjIfNeeded(generatedAttachName);
+    const QString otherPath = otherDb->getPath();
+
     if (!otherAdiantum) {
-        return QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), generatedAttachName);
+        return QStringLiteral("ATTACH %1 AS %2;").arg(escapeString(otherPath), attachName);
     }
 
     const auto& opts = otherAdiantum->getConnectionOptions();
     const bool otherPlain = opts[DbAdiantum::PLAIN_OPT].toBool();
-    const QString otherPath = otherDb->getPath();
 
     if (!otherPlain) {
         const QString otherHex = opts[DbAdiantum::HEXKEY_OPT].toString().trimmed();
@@ -150,10 +144,12 @@ QString DbAdiantumInstance::getAttachSql(Db* otherDb, const QString& generatedAt
                                               reinterpret_cast<const uint8_t*>(rawKey.constData()));
             }
         }
-        return QString("ATTACH 'file:%1?vfs=adiantum' AS %2;")
-               .arg(otherPath, generatedAttachName);
+        // URI filename must be percent-encoded and quoted as an SQL string literal.
+        const QString uri = QStringLiteral("file:") + QString::fromUtf8(QUrl::toPercentEncoding(otherPath, "/"))
+                            + QStringLiteral("?vfs=adiantum");
+        return QStringLiteral("ATTACH %1 AS %2;").arg(escapeString(uri), attachName);
     }
 
-    return QString("ATTACH 'file:%1' AS %2;")
-           .arg(otherPath, generatedAttachName);
+    const QString uri = QStringLiteral("file:") + QString::fromUtf8(QUrl::toPercentEncoding(otherPath, "/"));
+    return QStringLiteral("ATTACH %1 AS %2;").arg(escapeString(uri), attachName);
 }

@@ -36,8 +36,8 @@ static int adiantum_file_xShmMap(sqlite3_file* pFile, int iPg, int pgsz, int fla
 static int adiantum_file_xShmLock(sqlite3_file* pFile, int offset, int n, int flags);
 static void adiantum_file_xShmBarrier(sqlite3_file* pFile);
 static int adiantum_file_xShmUnmap(sqlite3_file* pFile, int del);
-static int adiantum_file_xFetch(sqlite3_file* pFile, int iAmt, sqlite3_int64 iOfst, void** pp);
-static int adiantum_file_xUnfetch(sqlite3_file* pFile, int iAmt, char* pPg);
+static int adiantum_file_xFetch(sqlite3_file* pFile, sqlite3_int64 iOfst, int iAmt, void** pp);
+static int adiantum_file_xUnfetch(sqlite3_file* pFile, sqlite3_int64 iOfst, void* pPg);
 
 // Forward declaration for AdiantumFile
 struct AdiantumFile;
@@ -66,8 +66,8 @@ static int s_xShmMap(sqlite3_file* pFile, int iPg, int pgsz, int flags, void vol
 static int s_xShmLock(sqlite3_file* pFile, int offset, int n, int flags) { return adiantum_file_xShmLock(pFile, offset, n, flags); }
 static void s_xShmBarrier(sqlite3_file* pFile) { return adiantum_file_xShmBarrier(pFile); }
 static int s_xShmUnmap(sqlite3_file* pFile, int del) { return adiantum_file_xShmUnmap(pFile, del); }
-static int s_xFetch(sqlite3_file* pFile, int iAmt, sqlite3_int64 iOfst, void** pp) { return adiantum_file_xFetch(pFile, iAmt, iOfst, pp); }
-static int s_xUnfetch(sqlite3_file* pFile, int iAmt, char* pPg) { return adiantum_file_xUnfetch(pFile, iAmt, pPg); }
+static int s_xFetch(sqlite3_file* pFile, sqlite3_int64 iOfst, int iAmt, void** pp) { return adiantum_file_xFetch(pFile, iOfst, iAmt, pp); }
+static int s_xUnfetch(sqlite3_file* pFile, sqlite3_int64 iOfst, void* pPg) { return adiantum_file_xUnfetch(pFile, iOfst, pPg); }
 
 // VFS instance
 sqlite3_vfs AdiantumVFS::s_vfs;
@@ -160,13 +160,12 @@ void AdiantumVFS::decrementRefCount(const std::string& path)
 {
     std::lock_guard<std::mutex> lock(s_keyMutex);
     auto it = s_refCount.find(path);
-    if (it != s_refCount.end()) {
+    if (it != s_refCount.end() && it->second > 0) {
         it->second--;
-        if (it->second <= 0) {
-            s_keyByPath.erase(path);
-            s_refCount.erase(it);
-        }
     }
+    // Intentionally do not erase the keymap entry on refcount=0: key
+    // lifetime is owned by the caller via register/unregister. The entry
+    // remains until unregisterMainDbKey() is explicitly invoked.
 }
 
 std::shared_ptr<AdiantumCtx> AdiantumVFS::lookupByOpenName(const char* zName)
@@ -220,32 +219,30 @@ static int adiantum_xOpen(sqlite3_vfs* pVfs, const char* zName, sqlite3_file* pF
     sqlite3_vfs* pBase = getBaseVfs();
     AdiantumFile* p = reinterpret_cast<AdiantumFile*>(pFile);
 
-    // Initialize our part
-    memset(p, 0, sizeof(AdiantumFile));
-    p->pRealFile = nullptr;
-    p->ctx = nullptr;
-    p->isEncrypted = false;
-    p->isInitialized = false;
-    p->refCount = 0;
+    // SQLite passes us raw szOsFile bytes; run constructors so the shared_ptr
+    // and std::string members are properly initialized (no memset on this type).
+    new (p) AdiantumFile();
 
-    // Allocate the underlying file structure with proper size for base VFS
+    // Allocate the underlying file structure with proper size for base VFS.
     p->pRealFile = reinterpret_cast<sqlite3_file*>(new char[pBase->szOsFile]);
     memset(p->pRealFile, 0, pBase->szOsFile);
 
     // Delegate to base VFS
     int rc = pBase->xOpen(pBase, zName, p->pRealFile, flags, pOutFlags);
     if (rc != SQLITE_OK) {
-        delete p->pRealFile;
+        delete[] reinterpret_cast<char*>(p->pRealFile);
         p->pRealFile = nullptr;
+        p->~AdiantumFile();
         return rc;
     }
 
-    // If this is a main database file, lookup the key
+    // If this is a main database file, lookup the key.
     if (zName && (flags & SQLITE_OPEN_MAIN_DB)) {
         p->ctx = AdiantumVFS::lookupByOpenName(zName);
         if (p->ctx) {
             p->isEncrypted = true;
-            AdiantumVFS::incrementRefCount(std::string(zName));
+            p->path = zName;
+            AdiantumVFS::incrementRefCount(p->path);
         }
     }
 
@@ -354,16 +351,23 @@ static int adiantum_file_xClose(sqlite3_file* pFile)
 {
     AdiantumFile* p = reinterpret_cast<AdiantumFile*>(pFile);
 
+    int rc = SQLITE_OK;
     if (p->pRealFile) {
-        int rc = SQLITE_OK;
         if (p->pRealFile->pMethods) {
             rc = p->pRealFile->pMethods->xClose(p->pRealFile);
         }
         delete[] reinterpret_cast<char*>(p->pRealFile);
         p->pRealFile = nullptr;
-        return rc;
     }
-    return SQLITE_OK;
+
+    if (p->isEncrypted && !p->path.empty()) {
+        AdiantumVFS::decrementRefCount(p->path);
+    }
+
+    // Run destructors for non-trivial members (shared_ptr, string) since we
+    // placement-new'd the struct into sqlite-owned storage.
+    p->~AdiantumFile();
+    return rc;
 }
 
 static int adiantum_file_xRead(sqlite3_file* pFile, void* pBuf, int iAmt, sqlite3_int64 iOfst)
@@ -629,18 +633,19 @@ static int adiantum_file_xShmUnmap(sqlite3_file* pFile, int del)
     return p->pRealFile->pMethods->xShmUnmap(p->pRealFile, del);
 }
 
-static int adiantum_file_xFetch(sqlite3_file* pFile, int iAmt, sqlite3_int64 iOfst, void** pp)
+static int adiantum_file_xFetch(sqlite3_file* pFile, sqlite3_int64 iOfst, int iAmt, void** pp)
 {
     AdiantumFile* p = reinterpret_cast<AdiantumFile*>(pFile);
-    // Disable fetch (mmap) for encrypted files
     if (p->isEncrypted && p->ctx && p->ctx->initialized) {
+        // Disable memory-mapped fetch for encrypted files.
+        if (pp) *pp = nullptr;
         return SQLITE_OK;
     }
-    return p->pRealFile->pMethods->xFetch(p->pRealFile, iAmt, iOfst, pp);
+    return p->pRealFile->pMethods->xFetch(p->pRealFile, iOfst, iAmt, pp);
 }
 
-static int adiantum_file_xUnfetch(sqlite3_file* pFile, int iAmt, char* pPg)
+static int adiantum_file_xUnfetch(sqlite3_file* pFile, sqlite3_int64 iOfst, void* pPg)
 {
     AdiantumFile* p = reinterpret_cast<AdiantumFile*>(pFile);
-    return p->pRealFile->pMethods->xUnfetch(p->pRealFile, iAmt, pPg);
+    return p->pRealFile->pMethods->xUnfetch(p->pRealFile, iOfst, pPg);
 }

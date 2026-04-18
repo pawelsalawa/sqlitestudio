@@ -10,3 +10,7 @@ add_subdirectory(DsvFormatsTest)
 add_subdirectory(UtilsTest)
 add_subdirectory(LexerTest)
 add_subdirectory(FormatterTest)
+
+if(WITH_DbAdiantum)
+    add_subdirectory(DbAdiantumTest)
+endif()
