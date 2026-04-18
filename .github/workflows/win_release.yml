@@ -465,13 +465,13 @@ jobs:
                 path: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
 
             - name: Upload to GitHub Release
-              if: inputs.tag != ''
               uses: softprops/action-gh-release@v2
               with:
                 tag_name: ${{ inputs.tag || github.ref_name }}
                 file: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
                 content_type: application/zip
                 overwrite: true
+                create: true
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
