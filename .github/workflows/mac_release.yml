@@ -214,9 +214,9 @@ jobs:
 
             - name: Compiler config for our source code
               run: |
-                echo "CFLAGS=$CFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
-                echo "CXXFLAGS=$CXXFLAGS -arch arm64 -arch x86_64" >> $GITHUB_ENV
-                echo "LDFLAGS=-arch x86_64 -arch x86_64" >> $GITHUB_ENV
+                echo "CFLAGS=$CFLAGS -arch arm64" >> $GITHUB_ENV
+                echo "CXXFLAGS=$CXXFLAGS -arch arm64" >> $GITHUB_ENV
+                echo "LDFLAGS=-arch arm64" >> $GITHUB_ENV
 
             - name: Clone GH scripts
               uses: actions/checkout@v4
