@@ -22,6 +22,11 @@ on:
             required: false
             type: boolean
             default: false
+          tag:
+            description: 'Tag name to attach release assets to (e.g. v4.0.0)'
+            required: false
+            type: string
+            default: ''
           debug_ssh:
             description: "Open SSH tunnel at the end"
             type: boolean
@@ -385,6 +390,17 @@ jobs:
               with:
                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
                 path: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+
+            - name: Upload to GitHub Release
+              if: inputs.tag != ''
+              uses: softprops/action-gh-release@v2
+              with:
+                tag_name: ${{ inputs.tag || github.ref_name }}
+                file: output/SQLiteStudio/sqlitestudio-${{ env.PACKAGE_VERSION }}.dmg
+                content_type: application/x-apple-diskimage
+                overwrite: true
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Install Midnight Commander
               if: >
