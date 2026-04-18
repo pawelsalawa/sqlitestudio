@@ -4,7 +4,16 @@ option(WITH_DbAdiantum "Build DbAdiantum plugin (Adiantum VFS encryption)" ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core)
 # Crypto libraries - mandatory. Fake fallbacks are not cryptographically secure.
-find_package(sodium REQUIRED)   # Poly1305
+# Try CMake config first (vcpkg / some distros); fall back to pkg-config
+# (MSYS2 / Homebrew / most Linux distros only ship libsodium.pc, no CMake config).
+find_package(sodium QUIET)
+if(TARGET sodium::sodium)
+    set(SODIUM_TARGET sodium::sodium)
+else()
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SODIUM REQUIRED IMPORTED_TARGET libsodium)
+    set(SODIUM_TARGET PkgConfig::SODIUM)
+endif()
 find_package(OpenSSL REQUIRED)  # AES-256 ECB
 
 set(PROJECT_HEADERS
@@ -37,8 +46,9 @@ if(WIN32 OR APPLE)
 endif()
 
 # Link crypto libraries (mandatory)
-target_link_libraries(DbAdiantum PRIVATE sodium::sodium)
-target_include_directories(DbAdiantum PRIVATE ${sodium_INCLUDE_DIR})
+# SODIUM_TARGET (sodium::sodium or PkgConfig::SODIUM) carries
+# INTERFACE_INCLUDE_DIRECTORIES, so no explicit target_include_directories needed.
+target_link_libraries(DbAdiantum PRIVATE ${SODIUM_TARGET})
 target_compile_definitions(DbAdiantum PRIVATE USE_LIBSODIUM)
 
 target_link_libraries(DbAdiantum PRIVATE OpenSSL::Crypto)

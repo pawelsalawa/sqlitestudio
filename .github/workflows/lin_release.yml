@@ -110,6 +110,9 @@ jobs:
             - name: Workaround for Qt 6.7.x CUPS bug
               run: sudo apt install libcups2-dev
 
+            - name: Install crypto deps for DbAdiantum plugin
+              run: sudo apt-get install -y libsodium-dev libssl-dev pkg-config
+
             - name: Qt installation dir
               id: qt-installation-dir
               run: |

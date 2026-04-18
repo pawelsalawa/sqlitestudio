@@ -1,8 +1,14 @@
 # Unit tests for DbAdiantum crypto primitives (NH, HashNHPoly1305, HBSH, XChaCha12).
-# The plugin CMake entry already finds sodium + OpenSSL as REQUIRED at configure
-# time; we re-find them here so the test executable can link independently of
-# whether the plugin target is built.
-find_package(sodium REQUIRED)
+# Use the same sodium discovery scheme as Plugins/DbAdiantum/CMakeLists.txt:
+# CMake config first (vcpkg), pkg-config fallback (MSYS2 / Homebrew / most distros).
+find_package(sodium QUIET)
+if(TARGET sodium::sodium)
+    set(SODIUM_TARGET sodium::sodium)
+else()
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SODIUM REQUIRED IMPORTED_TARGET libsodium)
+    set(SODIUM_TARGET PkgConfig::SODIUM)
+endif()
 find_package(OpenSSL REQUIRED)
 
 add_executable(tst_adiantumtest
@@ -12,7 +18,6 @@ add_executable(tst_adiantumtest
 
 target_include_directories(tst_adiantumtest PRIVATE
     ${CMAKE_SOURCE_DIR}/Plugins/DbAdiantum
-    ${sodium_INCLUDE_DIR}
 )
 
 target_compile_definitions(tst_adiantumtest PRIVATE
@@ -21,7 +26,7 @@ target_compile_definitions(tst_adiantumtest PRIVATE
 )
 
 target_link_libraries(tst_adiantumtest PRIVATE
-    sodium::sodium
+    ${SODIUM_TARGET}
     OpenSSL::Crypto
 )
 

@@ -101,6 +101,8 @@ jobs:
                   ninja:p
                   tools:p
                   icu:p
+                  libsodium:p
+                  openssl:p
 
             - name: "[Prerequisites] Clone GH scripts"
               uses: actions/checkout@v5
