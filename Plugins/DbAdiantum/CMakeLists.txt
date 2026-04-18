@@ -42,7 +42,7 @@ target_link_libraries(DbAdiantum PRIVATE
     Qt::Core
 )
 if(WIN32 OR APPLE)
-    target_link_libraries(DbAdiantum PRIVATE coreSQLiteStudio)
+    target_link_libraries(DbAdiantum PRIVATE coreSQLiteStudio SQLite::SQLite3)
 endif()
 
 # Link crypto libraries (mandatory)
