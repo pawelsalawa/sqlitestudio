@@ -17,8 +17,13 @@ struct AdiantumCtx
 {
     uint8_t  masterKey[32];            // Original 256-bit master key
     uint8_t  aesKey[32];           // AES-256 key
-    uint8_t  polyKeyT[16];         // Poly1305 key for tweak hash
-    uint8_t  polyKeyM[16];         // Poly1305 key for message hash
+    // Poly1305 keys are 32 bytes (r || s). Adiantum/lukechampine fills the
+    // low 16 bytes from the XChaCha12 derivation keystream and leaves the
+    // high 16 bytes zero; deriveSubKeys must zero the full array before
+    // copying, otherwise libsodium reads uninitialised memory as the `s`
+    // half and the resulting MAC is non-deterministic across runs.
+    uint8_t  polyKeyT[32];         // Poly1305 key for tweak hash
+    uint8_t  polyKeyM[32];         // Poly1305 key for message hash
     uint8_t  nhKey[ADIANTUM_KEY_NH_SIZE]; // NH hash key (1024 + 48)
     bool     initialized;
     uint8_t  blockBuf[ADIANTUM_BLOCK_SIZE];

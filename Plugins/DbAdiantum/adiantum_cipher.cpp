@@ -52,9 +52,14 @@ void AdiantumCtx::deriveSubKeys(const uint8_t* masterKey)
     // Generate keystream using XChaCha12 with the canonical derivation nonce.
     xchacha12_stream(keyStream, keyStream, sizeof(keyStream), masterKey, deriveNonce);
 
-    // Split the keystream into sub-keys
+    // Split the keystream into sub-keys. Poly1305 keys are 32 bytes; Adiantum
+    // only fills the low 16 bytes (the `r` half), so zero the full buffer
+    // first to leave the `s` half at 0 — matching lukechampine's [32]byte
+    // key arrays that are only partially populated via copy(...[:16], ...).
     memcpy(aesKey, keyStream, 32);
+    memset(polyKeyT, 0, sizeof(polyKeyT));
     memcpy(polyKeyT, keyStream + 32, 16);
+    memset(polyKeyM, 0, sizeof(polyKeyM));
     memcpy(polyKeyM, keyStream + 48, 16);
     memcpy(nhKey, keyStream + 64, ADIANTUM_KEY_NH_SIZE);
 
@@ -363,9 +368,19 @@ static void hbsh_stream_xor(uint8_t* msg, size_t msgLen,
     }
 }
 
-// HBSH Encrypt: encrypts a 4096-byte block in-place
-// block: 4096-byte buffer (input plaintext, output ciphertext)
-// tweak: 8-byte tweak (typically block offset)
+// HBSH Encrypt — Adiantum spec / lukechampine.com/adiantum/hbsh:
+//
+//   PL = block[0 .. n-16-1], PR = block[n-16 .. n-1]
+//   PM = PR +_128 H(T, PL)        # LE128 add
+//   CM = AES256_ECB(PM)
+//   CL = PL ⊕ Stream(nonce=CM)    # XChaCha12 with nonce = CM||0x01||zeros(7)
+//   CR = CM -_128 H(T, CL)        # LE128 sub, second hash on the new CL
+//   block = CL || CR
+//
+// Earlier revisions of this file used XOR instead of LE128 add/sub and skipped
+// the second hash, copying CM straight into CR. That is self-consistent for
+// round-trip tests but produces ciphertext incompatible with every reference
+// implementation (Linux kernel crypto/adiantum.c, lukechampine, ncruces VFS).
 void hbsh_encrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
 {
     constexpr size_t blockLen = ADIANTUM_BLOCK_SIZE;
@@ -374,32 +389,29 @@ void hbsh_encrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
     uint8_t* pl = block;
     uint8_t* pr = block + blockLen - 16;
 
-    // Step 1: PM = PR ⊕ HashNHPoly1305(tweak, PL)
+    // Step 1: PM = PR +_128 H(T, PL)
     uint8_t hash[16];
     hash_nh_poly1305(hash, ctx, tweak, ADIANTUM_TWEAK_SIZE, pl, plLen);
 
     uint8_t pm[16];
-    for (int i = 0; i < 16; i++) {
-        pm[i] = pr[i] ^ hash[i];
-    }
+    gf128_add(pm, pr, hash);
 
     // Step 2: CM = AES256_ECB_Encrypt(PM)
     uint8_t cm[16];
     aes256_ecb_encrypt(cm, pm, ctx->aesKey);
 
-    // Step 3: Build XChaCha12 nonce = CM(16) || 0x01 || zeros(7).
-    // The tweak is NOT in the stream nonce; it is consumed by HashNHPoly1305.
+    // Step 3: XChaCha12 nonce = CM || 0x01 || zeros(7).
     uint8_t nonce24[24];
     memset(nonce24, 0, sizeof(nonce24));
     memcpy(nonce24, cm, 16);
     nonce24[16] = 0x01;
 
-    // Step 4: CL = PL ⊕ XChaCha12_Stream_masterKey(PL, nonce24)
+    // Step 4: CL = PL ⊕ XChaCha12(masterKey, nonce24). Done in place on pl.
     hbsh_stream_xor(pl, plLen, ctx->masterKey, nonce24, 0);
 
-    // Step 5: Reconstruct ciphertext: block = CL || CM
-    // CL is already in place (XORed with plaintext), now copy CM to PR position
-    memcpy(pr, cm, 16);
+    // Step 5: CR = CM -_128 H(T, CL). Hash uses the freshly-XORed CL bytes.
+    hash_nh_poly1305(hash, ctx, tweak, ADIANTUM_TWEAK_SIZE, pl, plLen);
+    gf128_sub(pr, cm, hash);
 }
 
 void hbsh_decrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
@@ -407,31 +419,30 @@ void hbsh_decrypt(AdiantumCtx* ctx, uint8_t* block, const uint8_t* tweak)
     constexpr size_t blockLen = ADIANTUM_BLOCK_SIZE;
     constexpr size_t plLen = blockLen - 16;
 
-    uint8_t* pl = block;
-    uint8_t* pr = block + blockLen - 16;
+    uint8_t* pl = block;  // Currently holds CL.
+    uint8_t* pr = block + blockLen - 16;  // Currently holds CR.
 
-    // Step 1: Extract CM from CR (last 16 bytes of block)
+    // Step 1: CM = CR +_128 H(T, CL). CL is still the encrypted left half.
+    uint8_t hash[16];
+    hash_nh_poly1305(hash, ctx, tweak, ADIANTUM_TWEAK_SIZE, pl, plLen);
+
     uint8_t cm[16];
-    memcpy(cm, pr, 16);
+    gf128_add(cm, pr, hash);
 
-    // Step 2: Rebuild same XChaCha12 nonce = CM(16) || 0x01 || zeros(7).
+    // Step 2: XChaCha12 nonce = CM || 0x01 || zeros(7).
     uint8_t nonce24[24];
     memset(nonce24, 0, sizeof(nonce24));
     memcpy(nonce24, cm, 16);
     nonce24[16] = 0x01;
 
-    // Step 3: PL = CL ⊕ XChaCha12_Stream_masterKey(CL, nonce24)
+    // Step 3: PL = CL ⊕ XChaCha12(masterKey, nonce24). In place on pl.
     hbsh_stream_xor(pl, plLen, ctx->masterKey, nonce24, 0);
 
-    // Step 4: PM = AES256_ECB_Decrypt(CM)
+    // Step 4: PM = AES256_ECB_Decrypt(CM).
     uint8_t pm[16];
     aes256_ecb_decrypt(pm, cm, ctx->aesKey);
 
-    // Step 5: PR = PM ⊕ HashNHPoly1305(tweak, PL)
-    uint8_t hash[16];
+    // Step 5: PR = PM -_128 H(T, PL). Hash uses the now-decrypted PL.
     hash_nh_poly1305(hash, ctx, tweak, ADIANTUM_TWEAK_SIZE, pl, plLen);
-
-    for (int i = 0; i < 16; i++) {
-        pr[i] = pm[i] ^ hash[i];
-    }
+    gf128_sub(pr, pm, hash);
 }
