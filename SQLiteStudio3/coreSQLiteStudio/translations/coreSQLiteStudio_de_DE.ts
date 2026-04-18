@@ -166,6 +166,11 @@
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>Datenbanktransaktion zum Löschen des SQL-Verlaufs konnte nicht ausgeführt werden, sodass er nicht gelöscht wurde.</translation>
     </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="1259"/>
+        <source>Configured hotkeys have been reset to their default settings following the update to version 4.0.0, where many shortcuts were revised to align with modern IDE standards.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DbManagerImpl</name>
@@ -190,7 +195,7 @@
         <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
         <source>No supporting plugin loaded.</source>
-        <translation>Es wurde kein passendes plugin geladen.</translation>
+        <translation>Es wurde kein passendes Plugin geladen.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
@@ -200,7 +205,7 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
         <source>No suitable database driver plugin found.</source>
-        <translation>Es wurde kein passender Datenbanktreiber (plugin) gefunden.</translation>
+        <translation>Es wurde kein passender Datenbanktreiber (Plugin) gefunden.</translation>
     </message>
 </context>
 <context>
@@ -260,12 +265,12 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
         <location filename="../dbobjectorganizer.cpp" line="613"/>
         <source>Error while creating view in target database: %1</source>
-        <translation>Fehler beim Erstellen eines Views  in der Zieldatenbank %1</translation>
+        <translation>Fehler beim Erstellen eines Views in der Zieldatenbank %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="618"/>
         <source>Error while creating index in target database: %1</source>
-        <translation>Fehler beim Erstellen eines Indizes  in der Zieldatenbank %1</translation>
+        <translation>Fehler beim Erstellen eines Indizes in der Zieldatenbank %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="623"/>

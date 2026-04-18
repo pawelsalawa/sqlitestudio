@@ -418,229 +418,259 @@
 <context>
     <name>ColumnDialog</name>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="14"/>
+        <location filename="../dialogs/columndialog.ui" line="20"/>
         <source>Column</source>
         <translation>Colonna</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="23"/>
+        <location filename="../dialogs/columndialog.ui" line="29"/>
         <source>Name and type</source>
         <translation>Nome e tipo</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="35"/>
+        <location filename="../dialogs/columndialog.ui" line="41"/>
         <source>Scale</source>
         <translation>Scala</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="55"/>
+        <location filename="../dialogs/columndialog.ui" line="61"/>
         <source>Precision</source>
         <translation>Precisione</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="62"/>
+        <location filename="../dialogs/columndialog.ui" line="68"/>
         <source>Data type:</source>
         <translation>Tipo di dati:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="69"/>
+        <location filename="../dialogs/columndialog.ui" line="75"/>
         <source>Column name:</source>
         <translation>Nome colonna:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="79"/>
+        <location filename="../dialogs/columndialog.ui" line="85"/>
         <source>Size:</source>
         <translation>Dimensione:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="102"/>
+        <location filename="../dialogs/columndialog.ui" line="108"/>
         <source>Constraints</source>
         <translation>Vincoli</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="178"/>
+        <location filename="../dialogs/columndialog.ui" line="138"/>
+        <source>This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="141"/>
+        <source>Composite Primary Key</source>
+        <translation type="unfinished">Composite Primary Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="161"/>
+        <source>This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <source>Composite Foreign Key</source>
+        <translation type="unfinished">Composite Foreign Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="209"/>
         <source>Generated value</source>
         <translation>Valore generato</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="150"/>
+        <location filename="../dialogs/columndialog.ui" line="223"/>
         <source>Unique</source>
         <translation>Unico</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="115"/>
-        <location filename="../dialogs/columndialog.ui" line="122"/>
-        <location filename="../dialogs/columndialog.ui" line="129"/>
-        <location filename="../dialogs/columndialog.ui" line="143"/>
-        <location filename="../dialogs/columndialog.ui" line="157"/>
-        <location filename="../dialogs/columndialog.ui" line="171"/>
-        <location filename="../dialogs/columndialog.ui" line="185"/>
-        <location filename="../dialogs/columndialog.ui" line="192"/>
+        <location filename="../dialogs/columndialog.ui" line="121"/>
+        <location filename="../dialogs/columndialog.ui" line="151"/>
+        <location filename="../dialogs/columndialog.ui" line="181"/>
+        <location filename="../dialogs/columndialog.ui" line="195"/>
+        <location filename="../dialogs/columndialog.ui" line="202"/>
+        <location filename="../dialogs/columndialog.ui" line="216"/>
+        <location filename="../dialogs/columndialog.ui" line="244"/>
+        <location filename="../dialogs/columndialog.ui" line="251"/>
         <source>Configure</source>
         <translation>Configura</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <location filename="../dialogs/columndialog.ui" line="258"/>
         <source>Foreign Key</source>
         <translation>Chiave Esterna</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="136"/>
+        <location filename="../dialogs/columndialog.ui" line="237"/>
         <source>Collate</source>
         <translation>Raccogli</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="213"/>
+        <location filename="../dialogs/columndialog.ui" line="265"/>
         <source>Not NULL</source>
         <translation>Non NULL</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="199"/>
+        <location filename="../dialogs/columndialog.ui" line="128"/>
         <source>Check condition</source>
         <translation>Verifica condizione</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="206"/>
+        <location filename="../dialogs/columndialog.ui" line="230"/>
         <source>Primary Key</source>
         <translation>Chiave Primaria</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="220"/>
+        <location filename="../dialogs/columndialog.ui" line="174"/>
         <source>Default</source>
         <translation>Predefinito</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="227"/>
+        <location filename="../dialogs/columndialog.ui" line="188"/>
         <source>Autoincrement</source>
         <translation>Autoincremento</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="291"/>
+        <location filename="../dialogs/columndialog.ui" line="275"/>
+        <source>This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="278"/>
+        <source>Composite Unique</source>
+        <translation type="unfinished">Composite Unique</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="345"/>
         <source>Advanced mode</source>
         <translation>Modalità avanzata</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="86"/>
+        <location filename="../dialogs/columndialog.cpp" line="85"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi vincolo</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
         <translation>Modifica vincolo</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="88"/>
-        <location filename="../dialogs/columndialog.cpp" line="244"/>
+        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="252"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
         <translation>Elimina vincolo</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="89"/>
+        <location filename="../dialogs/columndialog.cpp" line="88"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
         <translation>Sposta vincolo su</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="90"/>
+        <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
         <translation>Sposta vincolo giù</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="92"/>
+        <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
         <translation>Aggiungi una chiave primaria</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="93"/>
+        <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
         <translation>Aggiungi una chiave esterna</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="94"/>
+        <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo univoco</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="95"/>
+        <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo di restrizione</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="96"/>
+        <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo non nullo</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="97"/>
+        <location filename="../dialogs/columndialog.cpp" line="96"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo di ordinamento</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="98"/>
+        <location filename="../dialogs/columndialog.cpp" line="97"/>
         <source>Add a generated value constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo di valore generato</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="99"/>
+        <location filename="../dialogs/columndialog.cpp" line="98"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
         <translation>Aggiungi un vincolo predefinito</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="243"/>
+        <location filename="../dialogs/columndialog.cpp" line="251"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
         <translation>Sei sicuro di voler eliminare il vincolo &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="306"/>
+        <location filename="../dialogs/columndialog.cpp" line="314"/>
         <source>Correct the constraint&apos;s configuration.</source>
         <translation>Correggi la configurazione del vincolo.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="374"/>
+        <location filename="../dialogs/columndialog.cpp" line="382"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>La scala non è consentita per le colonne INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="375"/>
+        <location filename="../dialogs/columndialog.cpp" line="383"/>
         <source>Precision cannot be defined without the scale.</source>
         <translation>La precisione non può essere definita senza la scala.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="376"/>
+        <location filename="../dialogs/columndialog.cpp" line="384"/>
         <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
         <translation>Impossibile usare il tipo diverso da INTEGER se AUTOINCREMENT è abilitato in PRIMARY KEY.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="377"/>
+        <location filename="../dialogs/columndialog.cpp" line="385"/>
         <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
         <translation>Il tipo di INTEGER è stato imposto a causa di AUTOINCREMENT abilitato in PRIMARIO CHIAVE.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="399"/>
+        <location filename="../dialogs/columndialog.cpp" line="407"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>La precisione non è consentita per le colonne PRIMARIE INTEGER.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="447"/>
+        <location filename="../dialogs/columndialog.cpp" line="455"/>
         <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
         <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="725"/>
+        <location filename="../dialogs/columndialog.cpp" line="767"/>
         <source>Could not match valid STRICT table datatype from declared type: %1.</source>
         <translation>Impossibile abbinare il tipo di dati della tabella STRICT valido dal tipo dichiarato: %1.</translation>
     </message>
@@ -3579,7 +3609,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
         <translation>Scegliere il file in cui esportare</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="984"/>
+        <location filename="../dialogs/exportdialog.cpp" line="985"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Errore interno durante l&apos;esportazione. Questo è un bug. Si prega di segnalarlo.</translation>
     </message>
@@ -4022,7 +4052,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
         <translation>Il percorso fornito è una directory. È richiesto un file.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="376"/>
+        <location filename="../dialogs/importdialog.cpp" line="377"/>
         <source>Pick file to import from</source>
         <translation>Scegli il file da cui importare</translation>
     </message>
@@ -4986,7 +5016,7 @@ Inserisci un nuovo nome univoco o premi &apos;%1&apos; per interrompere l&apos;o
         <translation>Configurazione del popolamento</translation>
     </message>
     <message>
-        <location filename="../dialogs/populateconfigdialog.cpp" line="55"/>
+        <location filename="../dialogs/populateconfigdialog.cpp" line="57"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
         <translation>Configurazione di &lt;b&gt;%1&lt;/b&gt; per la colonna &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>

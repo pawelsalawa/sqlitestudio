@@ -418,229 +418,259 @@
 <context>
     <name>ColumnDialog</name>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="14"/>
+        <location filename="../dialogs/columndialog.ui" line="20"/>
         <source>Column</source>
         <translation>列</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="23"/>
+        <location filename="../dialogs/columndialog.ui" line="29"/>
         <source>Name and type</source>
         <translation>名稱和型別</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="35"/>
+        <location filename="../dialogs/columndialog.ui" line="41"/>
         <source>Scale</source>
         <translation>小數位數</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="55"/>
+        <location filename="../dialogs/columndialog.ui" line="61"/>
         <source>Precision</source>
         <translation>精度</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="62"/>
+        <location filename="../dialogs/columndialog.ui" line="68"/>
         <source>Data type:</source>
         <translation>資料型別：</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="69"/>
+        <location filename="../dialogs/columndialog.ui" line="75"/>
         <source>Column name:</source>
         <translation>列名：</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="79"/>
+        <location filename="../dialogs/columndialog.ui" line="85"/>
         <source>Size:</source>
         <translation>大小：</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="102"/>
+        <location filename="../dialogs/columndialog.ui" line="108"/>
         <source>Constraints</source>
         <translation>約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="178"/>
+        <location filename="../dialogs/columndialog.ui" line="138"/>
+        <source>This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="141"/>
+        <source>Composite Primary Key</source>
+        <translation type="unfinished">Composite Primary Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="161"/>
+        <source>This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <source>Composite Foreign Key</source>
+        <translation type="unfinished">Composite Foreign Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="209"/>
         <source>Generated value</source>
         <translation>生成的值</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="150"/>
+        <location filename="../dialogs/columndialog.ui" line="223"/>
         <source>Unique</source>
         <translation>唯一</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="115"/>
-        <location filename="../dialogs/columndialog.ui" line="122"/>
-        <location filename="../dialogs/columndialog.ui" line="129"/>
-        <location filename="../dialogs/columndialog.ui" line="143"/>
-        <location filename="../dialogs/columndialog.ui" line="157"/>
-        <location filename="../dialogs/columndialog.ui" line="171"/>
-        <location filename="../dialogs/columndialog.ui" line="185"/>
-        <location filename="../dialogs/columndialog.ui" line="192"/>
+        <location filename="../dialogs/columndialog.ui" line="121"/>
+        <location filename="../dialogs/columndialog.ui" line="151"/>
+        <location filename="../dialogs/columndialog.ui" line="181"/>
+        <location filename="../dialogs/columndialog.ui" line="195"/>
+        <location filename="../dialogs/columndialog.ui" line="202"/>
+        <location filename="../dialogs/columndialog.ui" line="216"/>
+        <location filename="../dialogs/columndialog.ui" line="244"/>
+        <location filename="../dialogs/columndialog.ui" line="251"/>
         <source>Configure</source>
         <translation>設定檔</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <location filename="../dialogs/columndialog.ui" line="258"/>
         <source>Foreign Key</source>
         <translation>外來鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="136"/>
+        <location filename="../dialogs/columndialog.ui" line="237"/>
         <source>Collate</source>
         <translation>字元序</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="213"/>
+        <location filename="../dialogs/columndialog.ui" line="265"/>
         <source>Not NULL</source>
         <translation>非空</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="199"/>
+        <location filename="../dialogs/columndialog.ui" line="128"/>
         <source>Check condition</source>
         <translation>條件</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="206"/>
+        <location filename="../dialogs/columndialog.ui" line="230"/>
         <source>Primary Key</source>
         <translation>主鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="220"/>
+        <location filename="../dialogs/columndialog.ui" line="174"/>
         <source>Default</source>
         <translation>預設</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="227"/>
+        <location filename="../dialogs/columndialog.ui" line="188"/>
         <source>Autoincrement</source>
         <translation>自動遞增</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="291"/>
+        <location filename="../dialogs/columndialog.ui" line="275"/>
+        <source>This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="278"/>
+        <source>Composite Unique</source>
+        <translation type="unfinished">Composite Unique</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="345"/>
         <source>Advanced mode</source>
         <translation>高階模式</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="86"/>
+        <location filename="../dialogs/columndialog.cpp" line="85"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
         <translation>新增約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
         <translation>編輯約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="88"/>
-        <location filename="../dialogs/columndialog.cpp" line="244"/>
+        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="252"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
         <translation>刪除約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="89"/>
+        <location filename="../dialogs/columndialog.cpp" line="88"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
         <translation>上移約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="90"/>
+        <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
         <translation>下移約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="92"/>
+        <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
         <translation>新增主鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="93"/>
+        <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
         <translation>新增外來鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="94"/>
+        <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
         <translation>新增唯一約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="95"/>
+        <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
         <translation>新增條件約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="96"/>
+        <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
         <translation>新增非空約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="97"/>
+        <location filename="../dialogs/columndialog.cpp" line="96"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
         <translation>新增字元序約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="98"/>
+        <location filename="../dialogs/columndialog.cpp" line="97"/>
         <source>Add a generated value constraint</source>
         <comment>column dialog</comment>
         <translation>新增生成的值約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="99"/>
+        <location filename="../dialogs/columndialog.cpp" line="98"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
         <translation>新增預設約束</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="243"/>
+        <location filename="../dialogs/columndialog.cpp" line="251"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
         <translation>確定要刪除約束“%1”嗎？</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="306"/>
+        <location filename="../dialogs/columndialog.cpp" line="314"/>
         <source>Correct the constraint&apos;s configuration.</source>
         <translation>請糾正約束設定檔。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="374"/>
+        <location filename="../dialogs/columndialog.cpp" line="382"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>INTEGER PRIMARY KEY 列中不允許小數位數。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="375"/>
+        <location filename="../dialogs/columndialog.cpp" line="383"/>
         <source>Precision cannot be defined without the scale.</source>
         <translation>有小數位數才能定義精度。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="376"/>
+        <location filename="../dialogs/columndialog.cpp" line="384"/>
         <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
         <translation>主鍵 (PRIMARY KEY) 已啟用自動遞增 (AUTOINCREMENT)，不能使用 INTEGER 以外的型別。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="377"/>
+        <location filename="../dialogs/columndialog.cpp" line="385"/>
         <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
         <translation>主鍵 (PRIMARY KEY) 已啟用自動遞增 (AUTOINCREMENT)，強制使用 INTEGER 型別。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="399"/>
+        <location filename="../dialogs/columndialog.cpp" line="407"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>不允許對整型主鍵 (INTEGER PRIMARY KEY) 設定精度。</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="447"/>
+        <location filename="../dialogs/columndialog.cpp" line="455"/>
         <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
         <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="725"/>
+        <location filename="../dialogs/columndialog.cpp" line="767"/>
         <source>Could not match valid STRICT table datatype from declared type: %1.</source>
         <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
     </message>
@@ -3579,7 +3609,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>選擇檔案匯出到</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="984"/>
+        <location filename="../dialogs/exportdialog.cpp" line="985"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>匯出時發生內部錯誤。這是一個 Bug，請反饋。</translation>
     </message>
@@ -4022,7 +4052,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>您提供的是一個目錄，而需要的是一個一般檔案。</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="376"/>
+        <location filename="../dialogs/importdialog.cpp" line="377"/>
         <source>Pick file to import from</source>
         <translation>選擇要匯入的檔案</translation>
     </message>
@@ -4985,7 +5015,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>設定檔填充</translation>
     </message>
     <message>
-        <location filename="../dialogs/populateconfigdialog.cpp" line="55"/>
+        <location filename="../dialogs/populateconfigdialog.cpp" line="57"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
         <translation>給欄位 &lt;b&gt;%2&lt;/b&gt; 設定檔 &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>

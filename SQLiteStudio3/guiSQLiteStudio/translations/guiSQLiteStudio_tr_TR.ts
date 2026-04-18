@@ -418,229 +418,259 @@
 <context>
     <name>ColumnDialog</name>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="14"/>
+        <location filename="../dialogs/columndialog.ui" line="20"/>
         <source>Column</source>
         <translation>Kolon</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="23"/>
+        <location filename="../dialogs/columndialog.ui" line="29"/>
         <source>Name and type</source>
         <translation>Adı ve tipi</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="35"/>
+        <location filename="../dialogs/columndialog.ui" line="41"/>
         <source>Scale</source>
         <translation>Ölçek</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="55"/>
+        <location filename="../dialogs/columndialog.ui" line="61"/>
         <source>Precision</source>
         <translation>Hassasiyet</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="62"/>
+        <location filename="../dialogs/columndialog.ui" line="68"/>
         <source>Data type:</source>
         <translation>Veri tipi:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="69"/>
+        <location filename="../dialogs/columndialog.ui" line="75"/>
         <source>Column name:</source>
         <translation>Sütun ismi:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="79"/>
+        <location filename="../dialogs/columndialog.ui" line="85"/>
         <source>Size:</source>
         <translation>Boyut:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="102"/>
+        <location filename="../dialogs/columndialog.ui" line="108"/>
         <source>Constraints</source>
         <translation>Kısıtlamalar</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="178"/>
+        <location filename="../dialogs/columndialog.ui" line="138"/>
+        <source>This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="141"/>
+        <source>Composite Primary Key</source>
+        <translation type="unfinished">Composite Primary Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="161"/>
+        <source>This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <source>Composite Foreign Key</source>
+        <translation type="unfinished">Composite Foreign Key</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="209"/>
         <source>Generated value</source>
         <translation>Üretilen Değerler</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="150"/>
+        <location filename="../dialogs/columndialog.ui" line="223"/>
         <source>Unique</source>
         <translation>Benzersiz</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="115"/>
-        <location filename="../dialogs/columndialog.ui" line="122"/>
-        <location filename="../dialogs/columndialog.ui" line="129"/>
-        <location filename="../dialogs/columndialog.ui" line="143"/>
-        <location filename="../dialogs/columndialog.ui" line="157"/>
-        <location filename="../dialogs/columndialog.ui" line="171"/>
-        <location filename="../dialogs/columndialog.ui" line="185"/>
-        <location filename="../dialogs/columndialog.ui" line="192"/>
+        <location filename="../dialogs/columndialog.ui" line="121"/>
+        <location filename="../dialogs/columndialog.ui" line="151"/>
+        <location filename="../dialogs/columndialog.ui" line="181"/>
+        <location filename="../dialogs/columndialog.ui" line="195"/>
+        <location filename="../dialogs/columndialog.ui" line="202"/>
+        <location filename="../dialogs/columndialog.ui" line="216"/>
+        <location filename="../dialogs/columndialog.ui" line="244"/>
+        <location filename="../dialogs/columndialog.ui" line="251"/>
         <source>Configure</source>
         <translation>Yapılandır</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="164"/>
+        <location filename="../dialogs/columndialog.ui" line="258"/>
         <source>Foreign Key</source>
         <translation>Yabancı Anahtar</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="136"/>
+        <location filename="../dialogs/columndialog.ui" line="237"/>
         <source>Collate</source>
         <translation>Harmanla</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="213"/>
+        <location filename="../dialogs/columndialog.ui" line="265"/>
         <source>Not NULL</source>
         <translation>Boş(null) olamaz</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="199"/>
+        <location filename="../dialogs/columndialog.ui" line="128"/>
         <source>Check condition</source>
         <translation>Durumu kontrol et</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="206"/>
+        <location filename="../dialogs/columndialog.ui" line="230"/>
         <source>Primary Key</source>
         <translation>Birincil Anahtar</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="220"/>
+        <location filename="../dialogs/columndialog.ui" line="174"/>
         <source>Default</source>
         <translation>Varsayılan</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="227"/>
+        <location filename="../dialogs/columndialog.ui" line="188"/>
         <source>Autoincrement</source>
         <translation type="unfinished">Autoincrement</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="291"/>
+        <location filename="../dialogs/columndialog.ui" line="275"/>
+        <source>This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</source>
+        <translation type="unfinished">This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="278"/>
+        <source>Composite Unique</source>
+        <translation type="unfinished">Composite Unique</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="345"/>
         <source>Advanced mode</source>
         <translation>Gelişmiş biçim</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="86"/>
+        <location filename="../dialogs/columndialog.cpp" line="85"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
         <translation>Kısıtlama ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
         <translation>Kısıtlmayı düzenle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="88"/>
-        <location filename="../dialogs/columndialog.cpp" line="244"/>
+        <location filename="../dialogs/columndialog.cpp" line="87"/>
+        <location filename="../dialogs/columndialog.cpp" line="252"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
         <translation>Kısıtlamayı Sil</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="89"/>
+        <location filename="../dialogs/columndialog.cpp" line="88"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
         <translation>Kısıtlamayı yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="90"/>
+        <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
         <translation>Kısıtlamayı aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="92"/>
+        <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
         <translation>Birincil anahtar ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="93"/>
+        <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
         <translation>Yabancı anahtar ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="94"/>
+        <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
         <translation>Benzersiz kısıtlama ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="95"/>
+        <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
         <translation>Kontrol kısıtlaması ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="96"/>
+        <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
         <translation>Boş olmayan kısıtlama ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="97"/>
+        <location filename="../dialogs/columndialog.cpp" line="96"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
         <translation>Harmanlama kısıtlaması ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="98"/>
+        <location filename="../dialogs/columndialog.cpp" line="97"/>
         <source>Add a generated value constraint</source>
         <comment>column dialog</comment>
         <translation>Oluşturulan değer kısıtlaması ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="99"/>
+        <location filename="../dialogs/columndialog.cpp" line="98"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
         <translation>Varsayılan kısıtlama ekle</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="243"/>
+        <location filename="../dialogs/columndialog.cpp" line="251"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
         <translation>&apos;%1&apos; kısıtlamasını silmek istediğinizden emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="306"/>
+        <location filename="../dialogs/columndialog.cpp" line="314"/>
         <source>Correct the constraint&apos;s configuration.</source>
         <translation>&apos; kısıtlama yapılandırmasını düzeltin.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="374"/>
+        <location filename="../dialogs/columndialog.cpp" line="382"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>INTEGER PRIMARY KEY sütunları için ölçeğe izin verilmez.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="375"/>
+        <location filename="../dialogs/columndialog.cpp" line="383"/>
         <source>Precision cannot be defined without the scale.</source>
         <translation>Hassasiyet, ölçek olmadan tanımlanamaz.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="376"/>
+        <location filename="../dialogs/columndialog.cpp" line="384"/>
         <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
         <translation>BİRİNCİL ANAHTAR içinde OTOMATİK ARTIRMA etkinleştirilmişse, INTEGER dışında bir tür kullanılamaz.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="377"/>
+        <location filename="../dialogs/columndialog.cpp" line="385"/>
         <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
         <translation>BİRİNCİL ANAHTAR içinde OTOMATİK ARTIRMA etkinleştirildiğinden INTEGER türü uygulandı.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="399"/>
+        <location filename="../dialogs/columndialog.cpp" line="407"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation>TAMSAYI BİRİNCİL anahtar sütunları için kesinliğe izin verilmez.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="447"/>
+        <location filename="../dialogs/columndialog.cpp" line="455"/>
         <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
         <translation type="unfinished">Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="725"/>
+        <location filename="../dialogs/columndialog.cpp" line="767"/>
         <source>Could not match valid STRICT table datatype from declared type: %1.</source>
         <translation type="unfinished">Could not match valid STRICT table datatype from declared type: %1.</translation>
     </message>
@@ -3578,7 +3608,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Pick file to export to</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="984"/>
+        <location filename="../dialogs/exportdialog.cpp" line="985"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation type="unfinished">Internal error during export. This is a bug. Please report it.</translation>
     </message>
@@ -4021,7 +4051,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Path you provided is a directory. A regular file is required.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="376"/>
+        <location filename="../dialogs/importdialog.cpp" line="377"/>
         <source>Pick file to import from</source>
         <translation type="unfinished">Pick file to import from</translation>
     </message>
@@ -4985,7 +5015,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished">Populating configuration</translation>
     </message>
     <message>
-        <location filename="../dialogs/populateconfigdialog.cpp" line="55"/>
+        <location filename="../dialogs/populateconfigdialog.cpp" line="57"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
         <translation>&lt;b&gt;%2&lt;/b&gt; sütunu için &lt;b&gt;%1&lt;/b&gt; yapılandırılıyor</translation>
     </message>
