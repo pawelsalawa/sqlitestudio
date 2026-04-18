@@ -127,6 +127,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         void applyFilter(const QString& value);
         void help();
         void changeFont(const QVariant& font);
+        void cfgFunctionListChanged();
 };
 
 #endif // FUNCTIONSEDITOR_H

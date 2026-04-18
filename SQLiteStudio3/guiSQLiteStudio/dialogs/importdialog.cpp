@@ -4,6 +4,7 @@
 #include "uiutils.h"
 #include "common/widgetcover.h"
 #include "services/dbmanager.h"
+#include "services/config.h"
 #include "plugins/importplugin.h"
 #include "ui_importdialog.h"
 #include "configmapper.h"

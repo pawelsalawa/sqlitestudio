@@ -152,6 +152,7 @@ void FunctionsEditor::init()
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
 
     model->setData(FUNCTIONS->getAllScriptFunctions());
+    connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(cfgFunctionListChanged()));
 
     // Language plugins
     for (ScriptingPlugin*& plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
@@ -739,6 +740,15 @@ void FunctionsEditor::help()
 void FunctionsEditor::changeFont(const QVariant& font)
 {
     setFont(font.value<QFont>());
+}
+
+void FunctionsEditor::cfgFunctionListChanged()
+{
+    if (model->isModified())
+        return; // Don't update list if there are uncommitted changes, because it would be disruptive for user. Changes will be visible after commit or rollback.
+
+    model->setData(FUNCTIONS->getAllScriptFunctions());
+    updateCurrentFunctionState();
 }
 
 QVariant FunctionsEditor::saveSession()

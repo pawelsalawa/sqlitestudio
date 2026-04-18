@@ -4,6 +4,7 @@
 #include "services/pluginmanager.h"
 #include <QPluginLoader>
 #include <QHash>
+#include <QDir>
 
 class API_EXPORT PluginManagerImpl : public PluginManager
 {

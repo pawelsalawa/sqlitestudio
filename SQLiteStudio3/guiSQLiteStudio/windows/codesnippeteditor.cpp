@@ -1,4 +1,5 @@
 #include "codesnippeteditor.h"
+#include "common/utils.h"
 #include "ui_codesnippeteditor.h"
 #include "uiconfig.h"
 #include "windows/codesnippeteditormodel.h"
@@ -129,6 +130,7 @@ void CodeSnippetEditor::init()
     connect(ui->clearAssistantShortcutButton, SIGNAL(clicked(bool)), this, SLOT(clearAssistantShortcutPressed()));
 
     model->setData(CODESNIPPETS->getSnippets());
+    connect(CODESNIPPETS, SIGNAL(codeSnippetListChanged()), this, SLOT(cfgCodeSnippetListChanged()));
 
     updateCurrentSnippetState();
 }
@@ -369,4 +371,13 @@ void CodeSnippetEditor::help()
 {
     static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/Code-snippets");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void CodeSnippetEditor::cfgCodeSnippetListChanged()
+{
+    if (model->isModified())
+        return; // Don't update list if there are uncommitted changes, because it would be disruptive for user. Changes will be visible after commit or rollback.
+
+    model->setData(CODESNIPPETS->getSnippets());
+    updateCurrentSnippetState();
 }

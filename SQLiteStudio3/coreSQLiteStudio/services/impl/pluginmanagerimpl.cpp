@@ -1,7 +1,9 @@
 #include "pluginmanagerimpl.h"
+#include "common/utils.h"
 #include "plugins/scriptingplugin.h"
 #include "plugins/genericplugin.h"
 #include "services/notifymanager.h"
+#include "services/config.h"
 #include "translations.h"
 #include <QCoreApplication>
 #include <QDir>

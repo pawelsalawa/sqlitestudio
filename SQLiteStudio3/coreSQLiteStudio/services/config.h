@@ -4,7 +4,6 @@
 #include "coreSQLiteStudio_global.h"
 #include "config_builder.h"
 #include "sqlitestudio.h"
-#include "common/utils.h"
 #include <QObject>
 #include <QVariant>
 #include <QHash>
@@ -69,7 +68,7 @@ class API_EXPORT Config : public QObject
         struct DbGroup;
         typedef QSharedPointer<DbGroup> DbGroupPtr;
 
-        struct DbGroup
+        struct API_EXPORT DbGroup
         {
             qint64 id;
             QString referencedDbName;
@@ -80,7 +79,7 @@ class API_EXPORT Config : public QObject
             bool dbExpanded = false;
         };
 
-        struct SqlHistoryEntry
+        struct API_EXPORT SqlHistoryEntry
         {
             QString query;
             QString dbName;
@@ -90,7 +89,7 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<SqlHistoryEntry> SqlHistoryEntryPtr;
 
-        struct DdlHistoryEntry
+        struct API_EXPORT DdlHistoryEntry
         {
             QString dbName;
             QString dbFile;
@@ -100,13 +99,22 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
 
-        struct ReportHistoryEntry
+        struct API_EXPORT ReportHistoryEntry
         {
             int id = 0;
             bool isFeatureRequest = false;
             int timestamp = 0;
             QString title;
             QString url;
+        };
+
+        struct API_EXPORT ExportImportParams
+        {
+            bool functions = true;
+            bool collations = true;
+            bool snippets = true;
+            bool extensions = true;
+            bool overwriteOnImport = false;
         };
 
         typedef QSharedPointer<ReportHistoryEntry> ReportHistoryEntryPtr;
@@ -133,8 +141,8 @@ class API_EXPORT Config : public QObject
         virtual QVariant get(const QString& group, const QString& key, const QVariant& defaultValue) = 0;
         virtual QHash<QString,QVariant> getAll() = 0;
 
-        virtual bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options) = 0;
-        virtual bool updateDb(const QString& name, const QString &newName, const QString& path, const QHash<QString, QVariant> &options) = 0;
+        virtual bool addDb(const QString& name, const QString& path, const QVariantHash& options) = 0;
+        virtual bool updateDb(const QString& name, const QString &newName, const QString& path, const QVariantHash& options) = 0;
         virtual bool removeDb(const QString& name) = 0;
         virtual bool isDbInConfig(const QString& name) = 0;
         virtual QString getLastErrorString() const = 0;
@@ -179,19 +187,18 @@ class API_EXPORT Config : public QObject
         virtual DdlHistoryModel* getDdlHistoryModel() = 0;
         virtual void clearDdlHistory() = 0;
 
-        virtual void addReportHistory(bool isFeatureRequest, const QString& title, const QString& url) = 0;
-        virtual QList<ReportHistoryEntryPtr> getReportHistory() = 0;
-        virtual void deleteReport(int id) = 0;
-        virtual void clearReportHistory() = 0;
-
-        virtual QList<QHash<QString, QVariant> > getScriptFunctions() = 0;
-        virtual void setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions) = 0;
+        virtual QList<QVariantHash> getScriptFunctions() = 0;
+        virtual void setScriptFunctions(const QList<QVariantHash>& newFunctions) = 0;
 
         virtual void begin() = 0;
         virtual void commit() = 0;
         virtual void rollback() = 0;
 
         virtual QString getSqlite3Version() const = 0;
+
+        virtual void exportConfig(const QString& filePath, const ExportImportParams& params) = 0;
+        virtual void importConfig(const QString& filePath, const ExportImportParams& params) = 0;
+        virtual ExportImportParams getParamsForConfigImport(const QString& filePath, QString* errorMsg) = 0;
 
     signals:
         void massSaveBegins();

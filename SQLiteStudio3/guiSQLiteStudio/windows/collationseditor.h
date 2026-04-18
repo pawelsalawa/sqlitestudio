@@ -95,6 +95,7 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
         void updateModified();
         void applyFilter(const QString& value);
         void changeFont(const QVariant& font);
+        void cfgCollationListChanged();
 };
 
 #endif // COLLATIONSEDITOR_H

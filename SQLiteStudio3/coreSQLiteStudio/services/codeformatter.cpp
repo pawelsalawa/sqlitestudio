@@ -1,7 +1,8 @@
 #include "codeformatter.h"
-#include "parser/parser.h"
+#include "common/utils.h"
 #include "plugins/codeformatterplugin.h"
 #include "services/pluginmanager.h"
+#include "services/config.h"
 #include <QDebug>
 
 void CodeFormatter::setFormatter(const QString& lang, CodeFormatterPlugin *formatterPlugin)
