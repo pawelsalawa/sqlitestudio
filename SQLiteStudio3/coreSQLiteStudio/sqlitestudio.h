@@ -3,7 +3,6 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "common/global.h"
-#include "services/config.h"
 #include <QString>
 #include <QStringList>
 #include <QObject>

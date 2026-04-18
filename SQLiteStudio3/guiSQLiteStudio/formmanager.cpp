@@ -1,7 +1,9 @@
 #include "formmanager.h"
 #include "common/combonowheelfilter.h"
 #include "common/spinnowheelfilter.h"
+#include "common/utils.h"
 #include "services/pluginmanager.h"
+#include "services/config.h"
 #include "uiloader.h"
 #include <QFile>
 #include <QDir>

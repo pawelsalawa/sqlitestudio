@@ -1,4 +1,5 @@
 #include "selectabledbobjmodel.h"
+#include "common/utils.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtreemodel.h"
 #include <QDebug>

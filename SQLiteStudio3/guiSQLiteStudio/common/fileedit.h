@@ -32,6 +32,8 @@ class GUI_API_EXPORT FileEdit : public QWidget
         void setChoicesModel(QAbstractItemModel* arg);
 
     private:
+        QString getSelectedFilterExtensionIfMissing(const QString& path) const;
+
         QString file;
         bool save = false;
         QString dialogTitle;
@@ -41,6 +43,7 @@ class GUI_API_EXPORT FileEdit : public QWidget
         QLineEdit* lineEdit = nullptr;
         QToolButton* button = nullptr;
         QComboBox* combo = nullptr;
+        QString* selectedFilter = nullptr;
 
     signals:
         void fileChanged(QString arg);

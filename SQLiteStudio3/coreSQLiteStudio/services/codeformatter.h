@@ -3,6 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "sqlitestudio.h"
+#include <QHash>
 
 class CodeFormatterPlugin;
 class Db;

@@ -185,11 +185,11 @@ static void globParts(QStringList& files, QList<QStringList> parts,
     bool isFile = offset == parts.size() - 1;
     QDir::Filters filters = isFile ? QDir::Files
                                    : QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks;
-    for (QString piece : parts.at(offset))
+    for (const QString &piece : parts.at(offset))
     {
         if (piece.contains('*') || piece.contains('?'))
         {
-            for (QString fileName : QDir(prefix).entryList({piece}, filters))
+            for (const QString &fileName : QDir(prefix).entryList({piece}, filters))
             {
                 if (isFile)
                     files << QDir::toNativeSeparators(prefix) + fileName;

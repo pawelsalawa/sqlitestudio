@@ -1,4 +1,5 @@
 #include "sqliteextensioneditor.h"
+#include "common/utils.h"
 #include "sqliteextensioneditormodel.h"
 #include "ui_sqliteextensioneditor.h"
 #include "selectabledbmodel.h"
@@ -110,6 +111,7 @@ void SqliteExtensionEditor::init()
     ui->databaseList->expandAll();
 
     model->setData(SQLITE_EXTENSIONS->getAllExtensions());
+    connect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(cfgExtensionListChanged()));
 
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolbar);
 
@@ -465,4 +467,11 @@ void SqliteExtensionEditor::browseForFile()
     setFileDialogInitPathByFile(filePath);
 
     ui->fileEdit->setText(filePath);
+}
+
+void SqliteExtensionEditor::cfgExtensionListChanged()
+{
+    model->setData(SQLITE_EXTENSIONS->getAllExtensions());
+    initStateForAll();
+    updateCurrentExtensionState();
 }

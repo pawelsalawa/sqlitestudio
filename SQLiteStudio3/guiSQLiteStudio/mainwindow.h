@@ -132,7 +132,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             CHECK_FOR_UPDATES,
             QUIT,
             NEW_DB,
-            OPEN_FILE
+            OPEN_FILE,
+            EXPORT_SETTINGS,
+            IMPORT_SETTINGS,
         };
         Q_ENUM(Action)
 
@@ -338,6 +340,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void scheduleSessionSave();
         void toolbarSizeChangeRequested(int steps);
         void refreshSyntaxColors();
+        void exportConfig();
+        void importConfig();
 
     signals:
         void sessionValueChanged();

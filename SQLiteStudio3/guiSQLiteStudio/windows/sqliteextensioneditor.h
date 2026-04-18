@@ -104,6 +104,7 @@ class GUI_API_EXPORT SqliteExtensionEditor : public MdiChild
         void generateName();
         void applyFilter(const QString& value);
         void browseForFile();
+        void cfgExtensionListChanged();
 };
 
 #endif // SQLITEEXTENSIONEDITOR_H

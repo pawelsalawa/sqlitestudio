@@ -89,6 +89,7 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
         void changeFont(const QVariant& font);
         void clearAssistantShortcutPressed();
         void help();
+        void cfgCodeSnippetListChanged();
 };
 
 #endif // CODESNIPPETEDITOR_H

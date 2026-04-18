@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
 #include "windows/functionseditor.h"
@@ -346,8 +348,9 @@ void MainWindow::createActions()
 #ifdef HAS_UPDATEMANAGER
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
-
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), this);
+    createAction(EXPORT_SETTINGS, ICONS.CONFIG_EXPORT, tr("Export configuration"), this, SLOT(exportConfig()), this);
+    createAction(IMPORT_SETTINGS, ICONS.CONFIG_IMPORT, tr("Import configuration"), this, SLOT(importConfig()), this);
 
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
@@ -461,6 +464,8 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();
+    toolsMenu->addAction(actionMap[IMPORT_SETTINGS]);
+    toolsMenu->addAction(actionMap[EXPORT_SETTINGS]);
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
     // Help menu
@@ -789,6 +794,18 @@ void MainWindow::refreshSyntaxColors()
         (*pluginIt)->refreshFormats();
         pluginIt++;
     }
+}
+
+void MainWindow::exportConfig()
+{
+    SettingsExportDialog dialog(this);
+    dialog.exec();
+}
+
+void MainWindow::importConfig()
+{
+    SettingsImportDialog dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::updateToolbarStyle()

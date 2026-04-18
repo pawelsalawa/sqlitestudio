@@ -5,6 +5,7 @@
 #include "services/extralicensemanager.h"
 #include "services/pluginmanager.h"
 #include "services/sqliteextensionmanager.h"
+#include "services/config.h"
 #include "formmanager.h"
 #include "iconmanager.h"
 #include "mainwindow.h"

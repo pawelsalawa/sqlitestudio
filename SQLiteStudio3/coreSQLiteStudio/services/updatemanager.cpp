@@ -1,7 +1,9 @@
+#include "common/utils.h"
 #ifdef HAS_UPDATEMANAGER
 
 #include "updatemanager.h"
 #include "services/notifymanager.h"
+#include "services/config.h"
 #include <QDebug>
 #include <QRegularExpression>
 #include <QCoreApplication>

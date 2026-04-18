@@ -5,6 +5,7 @@
 #include "sqlitestudio.h"
 #include "db/dbsqlite3.h"
 #include "common/utils.h"
+#include "services/codesnippetmanager.h"
 #include <QtGlobal>
 #include <QDebug>
 #include <QList>
@@ -21,7 +22,7 @@
 #include <QSettings>
 #include <QtWidgets/QFileDialog>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 13;
+const int SQLITESTUDIO_CONFIG_VERSION = 14;
 
 static_qstring(DB_FILE_NAME, "settings3");
 static_qstring(CONFIG_DIR_SETTING, "SQLiteStudioConfigDir");
@@ -162,14 +163,14 @@ void ConfigImpl::printErrorIfSet(SqlQueryPtr results)
     }
 }
 
-bool ConfigImpl::addDb(const QString& name, const QString& path, const QHash<QString,QVariant>& options)
+bool ConfigImpl::addDb(const QString& name, const QString& path, const QVariantHash& options)
 {
     QByteArray optBytes = hashToBytes(options);
     SqlQueryPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, optBytes});
     return !storeErrorAndReturn(results);
 }
 
-bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QHash<QString,QVariant> &options)
+bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QVariantHash& options)
 {
     QByteArray optBytes = hashToBytes(options);
     SqlQueryPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
@@ -526,44 +527,6 @@ void ConfigImpl::clearDdlHistory()
     runInThread([=, this]{ asyncClearDdlHistory(); });
 }
 
-void ConfigImpl::addReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
-{
-    runInThread([=, this]{ asyncAddReportHistory(isFeatureRequest, title, url); });
-}
-
-QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
-{
-    static_qstring(sql, "SELECT id, timestamp, title, url, feature_request FROM reports_history");
-
-    SqlQueryPtr results = db->exec(sql);
-
-    QList<ReportHistoryEntryPtr> entries;
-    SqlResultsRowPtr row;
-    ReportHistoryEntryPtr entry;
-    while (results->hasNext())
-    {
-        row = results->next();
-        entry = ReportHistoryEntryPtr::create();
-        entry->id = row->value("id").toInt();
-        entry->timestamp = row->value("timestamp").toInt();
-        entry->title = row->value("title").toString();
-        entry->url = row->value("url").toString();
-        entry->isFeatureRequest = row->value("feature_request").toBool();
-        entries << entry;
-    }
-    return entries;
-}
-
-void ConfigImpl::deleteReport(int id)
-{
-    runInThread([=, this]{ asyncDeleteReport(id); });
-}
-
-void ConfigImpl::clearReportHistory()
-{
-    runInThread([=, this]{ asyncClearReportHistory(); });
-}
-
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 {
     SqlQueryPtr results;
@@ -604,6 +567,149 @@ void ConfigImpl::commit()
 void ConfigImpl::rollback()
 {
     db->rollback();
+}
+
+void ConfigImpl::exportConfig(const QString& filePath, const ExportImportParams& params)
+{
+    QVariantMap data;
+    data["exportAppVersion"] = SQLITESTUDIO->getVersion();
+
+    if (params.functions)
+        data["functions"] = exportFunctions();
+
+    if (params.collations)
+        data["collations"] = exportCollations();
+
+    if (params.snippets)
+        data["snippets"] = exportSnippets();
+
+    if (params.extensions)
+        data["extensions"] = exportExtensions();
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        notifyError(tr("Cannot export config to file %1: %2").arg(filePath, file.errorString()));
+        return;
+    }
+
+    file.write(QJsonDocument::fromVariant(data).toJson());
+    notifyInfo(tr("Config exported successfully to %1").arg(filePath));
+}
+
+QVariant ConfigImpl::exportFunctions()
+{
+    QVariantList functions;
+    for (auto& fn : getScriptFunctions())
+        functions << fn;
+
+    return functions;
+}
+
+QVariant ConfigImpl::exportCollations()
+{
+    return CFG_CORE.Internal.Collations.get();
+}
+
+QVariant ConfigImpl::exportSnippets()
+{
+    return CFG_CORE.Internal.CodeSnippets.get();
+}
+
+QVariant ConfigImpl::exportExtensions()
+{
+    return CFG_CORE.Internal.Extensions.get();
+}
+
+void ConfigImpl::importConfig(const QString& filePath, const ExportImportParams& params)
+{
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        notifyError(tr("Cannot import config from file %1: %2").arg(filePath, file.errorString()));
+        return;
+    }
+
+    QVariantMap data = QJsonDocument::fromJson(file.readAll()).toVariant().toMap();
+    QString version = data.value("exportAppVersion").toString();
+
+    if (params.functions && data.contains("functions"))
+        importFunctions(data["functions"], params.overwriteOnImport);
+
+    if (params.collations && data.contains("collations"))
+        importCollations(data["collations"], params.overwriteOnImport);
+
+    if (params.snippets && data.contains("snippets"))
+        importSnippets(data["snippets"], params.overwriteOnImport);
+
+    if (params.extensions && data.contains("extensions"))
+        importExtensions(data["extensions"], params.overwriteOnImport);
+
+    notifyInfo(tr("Config imported successfully from %1").arg(filePath));
+}
+
+Config::ExportImportParams ConfigImpl::getParamsForConfigImport(const QString& filePath, QString* errorMsg)
+{
+    ExportImportParams params {false, false, false, false, false};
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        if (errorMsg)
+            *errorMsg = tr("Cannot read file %1: %2").arg(filePath, file.errorString());
+
+        return params;
+    }
+
+    QVariantMap data = QJsonDocument::fromJson(file.readAll()).toVariant().toMap();
+    params.functions = data.contains("functions");
+    params.collations = data.contains("collations");
+    params.snippets = data.contains("snippets");
+    params.extensions = data.contains("extensions");
+    return params;
+}
+
+void ConfigImpl::importFunctions(const QVariant& data, bool overwrite)
+{
+    QList<QVariantHash> newList;
+    for (auto& variant : data.toList())
+        newList << variant.toHash();
+
+    if (!overwrite)
+        newList += getScriptFunctions();
+
+    setScriptFunctions(newList);
+    FUNCTIONS->loadFromConfig();
+}
+
+void ConfigImpl::importCollations(const QVariant& data, bool overwrite)
+{
+    QVariantList newList = data.toList();
+    if (!overwrite)
+        newList += CFG_CORE.Internal.Collations.get();
+
+    CFG_CORE.Internal.Collations.set(newList);
+    COLLATIONS->loadFromConfig();
+}
+
+void ConfigImpl::importSnippets(const QVariant& data, bool overwrite)
+{
+    QVariantList newList = data.toList();
+    if (!overwrite)
+        newList += CFG_CORE.Internal.CodeSnippets.get();
+
+    CFG_CORE.Internal.CodeSnippets.set(newList);
+    CODESNIPPETS->loadFromConfig();
+}
+
+void ConfigImpl::importExtensions(const QVariant& data, bool overwrite)
+{
+    QVariantList newList = data.toList();
+    if (!overwrite)
+        newList += CFG_CORE.Internal.Extensions.get();
+
+    CFG_CORE.Internal.Extensions.set(newList);
+    SQLITE_EXTENSIONS->loadFromConfig();
 }
 
 QString ConfigImpl::getConfigPath()
@@ -660,9 +766,6 @@ void ConfigImpl::initTables()
     if (!tables.contains("cli_history"))
         db->exec("CREATE TABLE cli_history (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
 
-    if (!tables.contains("reports_history"))
-        db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
-
     if (!tables.contains("bind_params"))
     {
         db->exec("CREATE TABLE bind_params (id INTEGER PRIMARY KEY AUTOINCREMENT, pattern TEXT NOT NULL)");
@@ -687,9 +790,6 @@ void ConfigImpl::initTables()
                  "ON DELETE CASCADE ON UPDATE CASCADE NOT NULL, column_name TEXT NOT NULL, plugin_name TEXT NOT NULL, plugin_config BLOB)");
         db->exec("CREATE INDEX populate_plugin_history_idx ON populate_column_history (plugin_name)");
     }
-
-    if (!tables.contains("reports_history"))
-        db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
 
     if (!tables.contains("script_functions"))
         db->exec("CREATE TABLE script_functions (name TEXT, lang TEXT, code TEXT, initCode TEXT, finalCode TEXT, inverseCode TEXT, databases TEXT,"
@@ -1053,27 +1153,6 @@ void ConfigImpl::asyncClearDdlHistory()
     emit ddlHistoryRefreshNeeded();
 }
 
-void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
-{
-    static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
-    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentSecsSinceEpoch(), title, url});
-    emit reportsHistoryRefreshNeeded();
-}
-
-void ConfigImpl::asyncDeleteReport(int id)
-{
-    static_qstring(sql, "DELETE FROM reports_history WHERE id = ?");
-    db->exec(sql, {id});
-    emit reportsHistoryRefreshNeeded();
-}
-
-void ConfigImpl::asyncClearReportHistory()
-{
-    static_qstring(sql, "DELETE FROM reports_history");
-    db->exec(sql);
-    emit reportsHistoryRefreshNeeded();
-}
-
 void ConfigImpl::mergeMasterConfig()
 {
     QString masterConfigFile = Config::getMasterConfigFile();
@@ -1256,6 +1335,12 @@ void ConfigImpl::updateConfigDb()
         {
             // 12->13
             db->exec("DELETE FROM settings WHERE [group] like 'ShortcutsCategory%'");
+            [[fallthrough]];
+        }
+        case 13:
+        {
+            // 13->14
+            db->exec("DROP TABLE reports_history;");
         }
         // Add cases here for next versions,
         // without a "break" instruction,
@@ -1303,7 +1388,7 @@ void ConfigImpl::refreshDdlHistory()
         ddlHistoryModel->refresh();
 }
 
-QList<QHash<QString, QVariant> > ConfigImpl::getScriptFunctions()
+QList<QVariantHash> ConfigImpl::getScriptFunctions()
 {
     QList<QHash<QString, QVariant> > list;
     SqlQueryPtr results = db->exec("SELECT * FROM script_functions");
@@ -1318,7 +1403,7 @@ QList<QHash<QString, QVariant> > ConfigImpl::getScriptFunctions()
     return list;
 }
 
-void ConfigImpl::setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions)
+void ConfigImpl::setScriptFunctions(const QList<QVariantHash>& newFunctions)
 {
     db->begin();
     db->exec("DELETE FROM script_functions");

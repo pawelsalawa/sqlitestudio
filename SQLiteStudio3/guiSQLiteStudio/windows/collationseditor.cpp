@@ -2,7 +2,6 @@
 #include "ui_collationseditor.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
-#include "dbtree/dbtreemodel.h"
 #include "collationseditormodel.h"
 #include "common/utils.h"
 #include "uiutils.h"
@@ -11,6 +10,7 @@
 #include "plugins/scriptingplugin.h"
 #include "uiconfig.h"
 #include "common/userinputfilter.h"
+#include "dbtree/dbtreemodel.h"
 #include <QDesktopServices>
 #include <QSyntaxHighlighter>
 
@@ -115,6 +115,7 @@ void CollationsEditor::init()
 
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
+    connect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(cfgCollationListChanged()));
 
     updateLangCombo();
 
@@ -450,6 +451,15 @@ void CollationsEditor::applyFilter(const QString& value)
 void CollationsEditor::changeFont(const QVariant& font)
 {
     setFont(font.value<QFont>());
+}
+
+void CollationsEditor::cfgCollationListChanged()
+{
+    if (model->isModified())
+        return; // Don't update list if there are uncommitted changes, because it would be disruptive for user. Changes will be visible after commit or rollback.
+
+    model->setData(COLLATIONS->getAllCollations());
+    updateCurrentCollationState();
 }
 
 bool CollationsEditor::isUncommitted() const

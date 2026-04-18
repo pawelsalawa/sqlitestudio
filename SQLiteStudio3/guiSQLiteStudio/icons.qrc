@@ -275,5 +275,8 @@
         <file>img/data_select.svg</file>
         <file>img/data_update.svg</file>
         <file>img/view_export.svg</file>
+        <file>img/config_import.svg</file>
+        <file>img/config_export.svg</file>
+        <file>img/export_sql_history.svg</file>
     </qresource>
 </RCC>
