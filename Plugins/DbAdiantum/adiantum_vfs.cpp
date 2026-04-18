@@ -3,6 +3,7 @@
 #include <sqlite3.h>
 #include <cstring>
 #include <algorithm>
+#include <numeric>   // std::lcm
 #include <random>
 
 // Forward declarations of VFS methods

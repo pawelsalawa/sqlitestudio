@@ -33,12 +33,24 @@ void AdiantumCtx::deriveSubKeys(const uint8_t* masterKey)
     // Save master key for HBSH operations
     memcpy(this->masterKey, masterKey, 32);
 
-    // makeAdiantum: use XChaCha12 with all-zero nonce to generate 1136 bytes
+    // makeAdiantum: derive sub-keys via XChaCha12 keystream.
+    //
+    // Reference: lukechampine.com/adiantum/adiantum.go (chachaStream.XORKeyStream
+    // called with nonce=nil from makeAdiantum). The chachaStream wrapper always
+    // builds a 24-byte nonce as `original_nonce || 0x01 || zero_padding`. With
+    // nonce=nil the resulting XChaCha nonce is `0x01 || zeros(23)`, NOT all zero.
+    // Using an all-zero nonce here desynchronises every sub-key (aesKey,
+    // polyKeyT, polyKeyM, nhKey) from reference implementations and breaks
+    // interop with Linux kernel adiantum / lukechampine / ncruces VFS.
     uint8_t keyStream[32 + 16 + 16 + ADIANTUM_KEY_NH_SIZE];  // 1136 bytes
-    memset(keyStream, 0, sizeof(keyStream));  // All-zero nonce for initial keystream
+    memset(keyStream, 0, sizeof(keyStream));
 
-    // Generate keystream using XChaCha12
-    xchacha12_stream(keyStream, keyStream, sizeof(keyStream), masterKey, keyStream);
+    uint8_t deriveNonce[24];
+    memset(deriveNonce, 0, sizeof(deriveNonce));
+    deriveNonce[0] = 0x01;
+
+    // Generate keystream using XChaCha12 with the canonical derivation nonce.
+    xchacha12_stream(keyStream, keyStream, sizeof(keyStream), masterKey, deriveNonce);
 
     // Split the keystream into sub-keys
     memcpy(aesKey, keyStream, 32);
