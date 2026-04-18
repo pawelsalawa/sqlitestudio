@@ -16,6 +16,11 @@ on:
             required: false
             type: boolean
             default: false
+          tag:
+            description: 'Tag name to attach release assets to (e.g. v4.0.0)'
+            required: false
+            type: string
+            default: ''
           CODE_SIGN:
             description: 'Sign artifacts with SignPath (requires SIGNPATH_* secrets)'
             required: false
@@ -458,6 +463,17 @@ jobs:
               with:
                 name: sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
                 path: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+
+            - name: Upload to GitHub Release
+              if: inputs.tag != ''
+              uses: softprops/action-gh-release@v2
+              with:
+                tag_name: ${{ inputs.tag || github.ref_name }}
+                file: ${{ env.SIGNED_DIR }}/sqlitestudio-${{ env.PACKAGE_VERSION }}.zip
+                content_type: application/zip
+                overwrite: true
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Upload installer artifact
               if: ${{ inputs.BUILD_INSTALLER }}
