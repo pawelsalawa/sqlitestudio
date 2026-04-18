@@ -126,7 +126,14 @@ void AdiantumVFS::initialize()
     s_vfs.xCurrentTime = adiantum_xCurrentTime;
     s_vfs.xGetLastError = adiantum_xGetLastError;
 
-    sqlite3_vfs_register(&s_vfs, 1);
+    // makeDflt = 0: do NOT replace the default VFS. The Adiantum VFS is only
+    // selected when callers pass zVfs="adiantum" to sqlite3_open_v2 (see
+    // DbAdiantumInstance::openInternal). Registering as default would route
+    // every SQLite open in the process — including SQLiteStudio's own config
+    // database and ordinary DbSqlite3 connections — through this wrapper,
+    // which alters sectorSize, deviceCharacteristics and FCNTL handling and
+    // can deadlock or corrupt non-Adiantum databases.
+    sqlite3_vfs_register(&s_vfs, 0);
     s_initialized = true;
 }
 

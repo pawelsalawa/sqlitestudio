@@ -242,7 +242,9 @@ void aes256_ecb_decrypt(uint8_t* dst, const uint8_t* src, const uint8_t* key)
 // HBSH Hash: HashNHPoly1305(tweak, msg)
 // Reference: lukechampine.com/adiantum/adiantum.go - hashNHPoly1305.Sum
 //
-//   hT = Poly1305(keyT, LE64(8*msgLen) || tweak)           // 16-byte input
+//   hT = Poly1305(keyT, LE128(8*msgLen) || tweak)          // 24-byte input
+//        where LE128 = LE64(8*msgLen) || zeros(8)
+//        Adiantum spec: H_T = Poly1305_{K_T}(LE128(|M|·8) || T)
 //   hM = Poly1305(keyM, NH(msg[0..1023]) || NH(msg[1024..2047]) || ...)
 //   out = hT +_{GF(2^128)} hM
 //
@@ -254,15 +256,21 @@ void hash_nh_poly1305(uint8_t out[16], const AdiantumCtx* ctx,
                       const uint8_t* tweak, size_t tweakLen,
                       const uint8_t* msg, size_t msgLen)
 {
-    // Part 1: Poly1305(keyT, LE64(8*msgLen) || tweak) — 16-byte input block.
-    uint8_t tweakBuf[16];
-    memset(tweakBuf, 0, sizeof(tweakBuf));
-    put_le64(tweakBuf, uint64_t(msgLen) * 8u);
+    // Part 1: Poly1305(keyT, LE128(8*msgLen) || tweak).
+    // Per Adiantum spec, the length prefix is LE128 (16 bytes), not LE64.
+    // For msgLen up to 2^61 bytes the high 8 bytes are zero — but they MUST
+    // be present, otherwise the tweak shifts left by 8 bytes and Poly1305
+    // produces a different hT, breaking interop with reference implementations
+    // (Linux kernel crypto/adiantum.c, lukechampine.com/adiantum, etc.).
     size_t tLen = (tweakLen > 8) ? 8 : tweakLen;
-    memcpy(tweakBuf + 8, tweak, tLen);
+    uint8_t tweakBuf[24];
+    memset(tweakBuf, 0, sizeof(tweakBuf));
+    put_le64(tweakBuf, uint64_t(msgLen) * 8u);   // bytes 0..7  : LE64(bits)
+                                                  // bytes 8..15 : zero padding (LE128 high)
+    memcpy(tweakBuf + 16, tweak, tLen);          // bytes 16..  : tweak
 
     uint8_t outT[16];
-    poly1305_auth(outT, tweakBuf, sizeof(tweakBuf), ctx->polyKeyT);
+    poly1305_auth(outT, tweakBuf, 16 + tLen, ctx->polyKeyT);
 
     // Part 2: incremental Poly1305(keyM) over concatenated NH-chunk outputs.
     crypto_onetimeauth_poly1305_state macState;
