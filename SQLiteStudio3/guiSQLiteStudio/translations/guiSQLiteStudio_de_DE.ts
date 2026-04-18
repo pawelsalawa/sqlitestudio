@@ -1402,32 +1402,32 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1315"/>
       <source>Regular foreground</source>
-      <translation type="unfinished">Regular foreground</translation>
+      <translation>Normaler Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1396"/>
       <source>String foreground</source>
-      <translation type="unfinished">String foreground</translation>
+      <translation>Text im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Comment foreground</source>
-      <translation type="unfinished">Comment foreground</translation>
+      <translation>Kommentar im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1720"/>
       <source>Valid objects foreground</source>
-      <translation type="unfinished">Valid objects foreground</translation>
+      <translation>Gültige Objekte im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2001"/>
       <source>Current query background</source>
-      <translation type="unfinished">Current query background</translation>
+      <translation>aktuelle Abfrage im Hintergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1882"/>
       <source>Bind parameter foreground</source>
-      <translation type="unfinished">Bind parameter foreground</translation>
+      <translation>gebundene Parameter im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1963"/>
@@ -1512,7 +1512,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="440"/>
       <source>Skip the dialog when possible</source>
-      <translation type="unfinished">Skip the dialog when possible</translation>
+      <translation>Den Dialog wenn möglich überspringen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="899"/>
@@ -1522,7 +1522,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="915"/>
       <source>Preview of editors for this data type (drag to reorder):</source>
-      <translation type="unfinished">Preview of editors for this data type (drag to reorder):</translation>
+      <translation>Vorschau von Editoren für diesen Datentyp (Ziehen zum Umsortieren):</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="939"/>
@@ -1542,7 +1542,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="970"/>
       <source>Renderer</source>
-      <translation type="unfinished">Renderer</translation>
+      <translation>Renderer</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1132"/>
@@ -1557,12 +1557,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1171"/>
       <source>Disable blinking text cursor</source>
-      <translation type="unfinished">Disable blinking text cursor</translation>
+      <translation>blinkenden Text-Cursor deaktivieren</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1193"/>
       <source>Trigger assistant after typing a dot</source>
-      <translation type="unfinished">Trigger assistant after typing a dot</translation>
+      <translation>Trigger Assistent nach Eingabe eines Punktes</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1206"/>
@@ -1572,7 +1572,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="1215"/>
       <source>Query history size:</source>
-      <translation type="unfinished">Query history size:</translation>
+      <translation>Größe des Abfrageverlaufs:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1358"/>
@@ -1585,7 +1585,7 @@
       <location filename="../dialogs/configdialog.ui" line="1925"/>
       <location filename="../dialogs/configdialog.ui" line="2117"/>
       <source>B</source>
-      <translation type="unfinished">B</translation>
+      <translation>B</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1383"/>
@@ -1598,17 +1598,17 @@
       <location filename="../dialogs/configdialog.ui" line="1950"/>
       <location filename="../dialogs/configdialog.ui" line="2142"/>
       <source>I</source>
-      <translation type="unfinished">I</translation>
+      <translation>I</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1558"/>
       <source>Number foreground</source>
-      <translation type="unfinished">Number foreground</translation>
+      <translation>Nummer im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1801"/>
       <source>BLOB value foreground</source>
-      <translation type="unfinished">BLOB value foreground</translation>
+      <translation>BLOB Wert im Vordergrund</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2080"/>
@@ -1680,7 +1680,7 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="2422"/>
       <source>Toolbars</source>
-      <translation type="unfinished">Toolbars</translation>
+      <translation>Werkzeugleisten</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="2428"/>
@@ -1809,7 +1809,7 @@
       <location filename="../dialogs/configdialog.cpp" line="1040"/>
       <source>File:</source>
       <comment>plugin details</comment>
-      <translation type="unfinished">File:</translation>
+      <translation>Datei:</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1045"/>
@@ -1858,17 +1858,17 @@
     <message>
       <location filename="../dialogs/configdialog.cpp" line="1990"/>
       <source>Clear hotkey for this action</source>
-      <translation type="unfinished">Clear hotkey for this action</translation>
+      <translation>Hotkey für diese Aktion löschen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="2002"/>
       <source>Restore original hotkey for this action</source>
-      <translation type="unfinished">Restore original hotkey for this action</translation>
+      <translation>Original-Key für diese Aktion wiederherstellen</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.cpp" line="2044"/>
       <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
-      <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
+      <translation>Hier können Sie Farben für die Hervorhebung von Code-Syntax konfigurieren. Sie werden über verschiedene Sprachen geteilt - nicht nur für SQL, sondern auch für JavaScript und andere. Standardmäßig wird eine themenbasierte Farbe verwendet. Um Ihre eigene Farbe zu definieren, aktivieren Sie eine benutzerdefinierte Farbe, indem Sie ein Kontrollkästchen neben einer bestimmten Farbe auswählen.</translation>
     </message>
   </context>
   <context>
@@ -2043,7 +2043,7 @@
       <location filename="../dataview.cpp" line="216"/>
       <source>Find in data</source>
       <comment>data view</comment>
-      <translation type="unfinished">Find in data</translation>
+      <translation>In Daten suchen</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="217"/>
@@ -2103,13 +2103,13 @@
       <location filename="../dataview.cpp" line="1127"/>
       <source>Filter by text (if contains)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter by text (if contains)</translation>
+      <translation>Nach Text filtern (falls vorhanden)</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="1128"/>
       <source>Filter strictly by text (if equals)</source>
       <comment>data view</comment>
-      <translation type="unfinished">Filter strictly by text (if equals)</translation>
+      <translation>Nur nach Text filtern (falls gleich)</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="357"/>
@@ -2229,7 +2229,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dialogs/dbdialog.ui" line="117"/>
       <source>Change</source>
-      <translation type="unfinished">Change</translation>
+      <translation>Ändern</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="127"/>
@@ -2306,28 +2306,28 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
       <location filename="../dialogs/dbdialog.cpp" line="657"/>
       <source>Automatic</source>
       <comment>database name</comment>
-      <translation type="unfinished">Automatic</translation>
+      <translation>Automatisch</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="658"/>
       <source>Change</source>
       <comment>database name</comment>
-      <translation type="unfinished">Change</translation>
+      <translation>Ändern</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="667"/>
       <source>(empty)</source>
-      <translation type="unfinished">(empty)</translation>
+      <translation>(leer)</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="837"/>
       <source>Choose a location for the new database file</source>
-      <translation type="unfinished">Choose a location for the new database file</translation>
+      <translation>Wählen Sie einen Speicherort für die neue Datenbankdatei</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="838"/>
       <source>Browse for existing database file on local computer</source>
-      <translation type="unfinished">Browse for existing database file on local computer</translation>
+      <translation>Suche nach existierender Datenbankdatei auf lokalem Computer</translation>
     </message>
   </context>
   <context>
@@ -2606,12 +2606,12 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>Add a database</source>
-      <translation type="unfinished">Add a database</translation>
+      <translation>Datenbank hinzufügen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Rename the database</source>
-      <translation type="unfinished">Rename the database</translation>
+      <translation>Datenbank umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="156"/>
@@ -2626,32 +2626,32 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Rename the table</source>
-      <translation type="unfinished">Rename the table</translation>
+      <translation>Tabelle umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="166"/>
       <source>Export the view</source>
-      <translation type="unfinished">Export the view</translation>
+      <translation>Ansicht exportieren</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="172"/>
       <source>Rename the index</source>
-      <translation type="unfinished">Rename the index</translation>
+      <translation>Index umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="176"/>
       <source>Rename the trigger</source>
-      <translation type="unfinished">Rename the trigger</translation>
+      <translation>Trigger/Auslöser umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="180"/>
       <source>Rename the view</source>
-      <translation type="unfinished">Rename the view</translation>
+      <translation>Ansicht umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="184"/>
       <source>Rename the column</source>
-      <translation type="unfinished">Rename the column</translation>
+      <translation>Spalte umbenennen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="188"/>
@@ -2670,7 +2670,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
       <location filename="../dbtree/dbtree.cpp" line="197"/>
       <source>Drag</source>
       <comment>dbtree table action shortcut</comment>
-      <translation type="unfinished">Drag</translation>
+      <translation>Ziehen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="200"/>
@@ -2806,7 +2806,7 @@ All objects from these groups will be moved to respective parent groups.</transl
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1887"/>
       <source>Are you sure you want to delete all data from table(s): %1?</source>
-      <translation type="unfinished">Are you sure you want to delete all data from table(s): %1?</translation>
+      <translation>Möchten Sie wirklich alle Daten aus der/den Tabelle(n) %1 löschen?</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="1899"/>
@@ -2899,7 +2899,7 @@ All objects from these groups will be moved to respective parent groups.</transl
       <location filename="../dbtree/dbtreemodel.cpp" line="499"/>
       <source>Format:</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Format:</translation>
+      <translation>Format:</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="502"/>
@@ -2923,13 +2923,13 @@ All objects from these groups will be moved to respective parent groups.</transl
       <location filename="../dbtree/dbtreemodel.cpp" line="514"/>
       <source>Double-click to edit this database</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Double-click to edit this database</translation>
+      <translation>Doppelklick um diese Datenbank zu bearbeiten</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="516"/>
       <source>Double-click to connect to this database</source>
       <comment>dbtree tooltip</comment>
-      <translation type="unfinished">Double-click to connect to this database</translation>
+      <translation>Doppelklick um sich mit dieser Datenbank zu verbinden</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtreemodel.cpp" line="526"/>
@@ -3039,7 +3039,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/ddlhistorywindow.ui" line="55"/>
       <source>Clear entire history</source>
-      <translation type="unfinished">Clear entire history</translation>
+      <translation>Gesamten Verlauf löschen</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="71"/>
@@ -3053,12 +3053,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="97"/>
       <source>Clear history</source>
-      <translation type="unfinished">Clear history</translation>
+      <translation>Verlauf löschen</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="97"/>
       <source>Are you sure you want to erase entire DDL history?</source>
-      <translation type="unfinished">Are you sure you want to erase entire DDL history?</translation>
+      <translation>Sind Sie sicher, dass Sie den gesamten DDL-Verlauf löschen möchten?</translation>
     </message>
     <message>
       <location filename="../windows/ddlhistorywindow.cpp" line="129"/>
@@ -3092,7 +3092,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
       <location filename="../windows/editorwindow.ui" line="14"/>
       <source>SQL editor</source>
-      <translation type="unfinished">SQL editor</translation>
+      <translation>SQL-Editor</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.ui" line="39"/>
