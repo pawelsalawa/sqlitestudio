@@ -4,22 +4,22 @@
 <context>
     <name>CsvImport</name>
     <message>
-        <location filename="../csvimport.cpp" line="30"/>
+        <location filename="../csvimport.cpp" line="31"/>
         <source>Cannot read file %1</source>
         <translation>無法讀取檔案 %1</translation>
     </message>
     <message>
-        <location filename="../csvimport.cpp" line="62"/>
+        <location filename="../csvimport.cpp" line="63"/>
         <source>Could not find any data in the file %1.</source>
         <translation>在檔案 %1 中未找到任何資料。</translation>
     </message>
     <message>
-        <location filename="../csvimport.cpp" line="168"/>
+        <location filename="../csvimport.cpp" line="169"/>
         <source>Enter the custom separator character.</source>
         <translation>設定自訂分隔符。</translation>
     </message>
     <message>
-        <location filename="../csvimport.cpp" line="191"/>
+        <location filename="../csvimport.cpp" line="192"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>CSV 檔案 (*.csv);;文字檔案 (*.txt);;所有檔案 (*)</translation>
     </message>
