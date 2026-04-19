@@ -24,6 +24,7 @@
 #include <QScrollBar>
 #include <QToolButton>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QTimer>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
@@ -721,58 +722,61 @@ void DataView::updateTabHotKeys()
 
 void DataView::updateSelectionSum()
 {
-    QList<SqlQueryItem*> selItems = gridView->getSelectedItems();
-    if (selItems.isEmpty())
+    QTimer::singleShot(0, [this]()
     {
-        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
-        actionMap[GRID_SELECTED_SUM]->setVisible(false);
-        return;
-    }
-
-    int nums = 0;
-    BigDec sum("0");
-    for (SqlQueryItem*& item : selItems)
-    {
-        QVariant val = item->getValue();
-        switch (val.userType())
+        QList<SqlQueryItem*> selItems = gridView->getSelectedItems();
+        if (selItems.isEmpty())
         {
-            case QMetaType::Int:
-                sum += val.toInt();
-                nums++;
-                break;
-            case QMetaType::UInt:
-                sum += val.toUInt();
-                nums++;
-                break;
-            case QMetaType::Long:
-            case QMetaType::LongLong:
-                sum += val.toLongLong();
-                nums++;
-                break;
-            case QMetaType::ULong:
-            case QMetaType::ULongLong:
-                sum += val.toULongLong();
-                nums++;
-                break;
-            case QMetaType::Double:
-                sum += val.toDouble();
-                nums++;
-                break;
-            default:
-                break;
+            actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+            actionMap[GRID_SELECTED_SUM]->setVisible(false);
+            return;
         }
-    }
 
-    if (nums == 0)
-    {
-        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
-        actionMap[GRID_SELECTED_SUM]->setVisible(false);
-        return;
-    }
+        int nums = 0;
+        BigDec sum("0");
+        for (SqlQueryItem*& item : selItems)
+        {
+            QVariant val = item->getValue();
+            switch (val.userType())
+            {
+                case QMetaType::Int:
+                    sum += val.toInt();
+                    nums++;
+                    break;
+                case QMetaType::UInt:
+                    sum += val.toUInt();
+                    nums++;
+                    break;
+                case QMetaType::Long:
+                case QMetaType::LongLong:
+                    sum += val.toLongLong();
+                    nums++;
+                    break;
+                case QMetaType::ULong:
+                case QMetaType::ULongLong:
+                    sum += val.toULongLong();
+                    nums++;
+                    break;
+                case QMetaType::Double:
+                    sum += doubleToString(val, CFG_UI.General.UseSciFormatForDoubles.get());
+                    nums++;
+                    break;
+                default:
+                    break;
+            }
+        }
 
-    selSumLabel->setText(tr("Sum: %1").arg(sum.toString()));
-    actionMap[GRID_SELECTED_SUM_SEP]->setVisible(true);
-    actionMap[GRID_SELECTED_SUM]->setVisible(true);
+        if (nums == 0)
+        {
+            actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+            actionMap[GRID_SELECTED_SUM]->setVisible(false);
+            return;
+        }
+
+        selSumLabel->setText(tr("Sum: %1").arg(sum.toString()));
+        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(true);
+        actionMap[GRID_SELECTED_SUM]->setVisible(true);
+    });
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
