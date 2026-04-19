@@ -683,7 +683,8 @@ void DataView::togglePerColumnFiltering()
     bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
     CFG_UI.General.ShowPerColumnFilters.set(enable);
 
-    if (enable && !filterEdit->text().isEmpty())
+    bool needsReload = enable && !filterEdit->text().isEmpty();
+    if (needsReload)
         filterEdit->clear();
 
     filterEdit->setEnabled(!enable);
@@ -694,7 +695,8 @@ void DataView::togglePerColumnFiltering()
     perColumnAreaParent->setVisible(enable);
 
     recreateFilterInputs();
-    applyFilter();
+    if (needsReload)
+        applyFilter();
 }
 
 void DataView::findInData()
