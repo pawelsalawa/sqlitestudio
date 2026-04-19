@@ -24,11 +24,11 @@
 #include <QScrollBar>
 #include <QToolButton>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
-#include <QTimer>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QTimer>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::TabsPosition DataView::tabsPosition;
