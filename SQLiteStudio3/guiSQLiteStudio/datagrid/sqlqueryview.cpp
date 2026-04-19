@@ -84,6 +84,52 @@ void SqlQueryView::init()
     setupWidgetCover();
     initActions();
     setupHeaderMenu();
+    initPinnedView();
+}
+
+void SqlQueryView::initPinnedView()
+{
+    pinnedView = new QTableView(this);
+
+    pinnedView->setFocusPolicy(Qt::NoFocus);
+    pinnedView->verticalHeader()->hide();
+    pinnedView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    pinnedView->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    viewport()->stackUnder(pinnedView);
+
+    pinnedViewItemDelegate = new SqlQueryItemDelegate();
+    pinnedView->setItemDelegate(pinnedViewItemDelegate);
+
+    pinnedView->setStyleSheet(QString(
+                            "QTableView {"
+                            "     border-top: none;"
+                            "     border-left: none;"
+                            "     border-bottom: none;"
+                            "     border-right-width: 2px;"
+                            "     border-right-style: dashed;"
+                            "     border-right-color: %1;"
+                            "}").arg(pinnedView->palette().color(QPalette::Highlight).name()));
+    pinnedView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    pinnedView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    pinnedView->show();
+
+    updatePinnedViewGeometry();
+
+    setHorizontalScrollMode(ScrollPerPixel);
+    setVerticalScrollMode(ScrollPerPixel);
+    pinnedView->setVerticalScrollMode(ScrollPerPixel);
+
+    connect(horizontalHeader(), &QHeaderView::sectionResized, this, &SqlQueryView::syncPinnedSectionWidth);
+    connect(verticalHeader(), &QHeaderView::sectionResized, this, &SqlQueryView::syncPinnedSectionHeight);
+
+    connect(pinnedView->verticalScrollBar(), &QAbstractSlider::valueChanged, verticalScrollBar(), &QAbstractSlider::setValue);
+    connect(verticalScrollBar(), &QAbstractSlider::valueChanged, pinnedView->verticalScrollBar(), &QAbstractSlider::setValue);
+
+    connect(pinnedView, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
+
+    pinnedView->horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(pinnedView->horizontalHeader(), &QWidget::customContextMenuRequested, this, &SqlQueryView::headerContextMenuRequested);
 }
 
 void SqlQueryView::setupWidgetCover()
@@ -296,7 +342,13 @@ void SqlQueryView::setModel(QAbstractItemModel* model)
     {
         if (actionMap[ADJUST_ROWS_SIZE]->isChecked())
             verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+
+        updatePinnedViewColumns();
+        updatePinnedViewRowSizes();
     });
+
+    pinnedView->setModel(model);
+    pinnedView->setSelectionModel(selectionModel());
 }
 
 SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
@@ -451,6 +503,20 @@ void SqlQueryView::invertSelection()
         if (!idxList.isEmpty())
             selection->setCurrentIndex(selection->selectedIndexes().first(), QItemSelectionModel::NoUpdate);
     }
+}
+
+void SqlQueryView::syncPinnedSectionWidth(int logicalIndex, int oldSize, int newSize)
+{
+    if (logicalIndex == 0)
+    {
+          pinnedView->setColumnWidth(0, newSize);
+          updatePinnedViewGeometry();
+    }
+}
+
+void SqlQueryView::syncPinnedSectionHeight(int logicalIndex, int oldSize, int newSize)
+{
+    pinnedView->setRowHeight(logicalIndex, newSize);
 }
 
 void SqlQueryView::refreshColumnDelegates()
@@ -777,6 +843,53 @@ void SqlQueryView::headerMiddleClicked(int colIdx)
     emit headerMiddleButtonClicked(colIdx);
 }
 
+void SqlQueryView::updatePinnedViewGeometry()
+{
+    QHeaderView* header = horizontalHeader();
+    int totalWd = 0;
+    for (int logical = 0; logical < header->count(); ++logical)
+        if (pinnedColumns.contains(logical))
+            totalWd += columnWidth(logical);
+
+    pinnedView->setGeometry(
+                verticalHeader()->width() + frameWidth(),
+                frameWidth(),
+                totalWd,
+                viewport()->height()+horizontalHeader()->height()
+                );
+}
+
+void SqlQueryView::updatePinnedViewColumns()
+{
+    QHeaderView* header = horizontalHeader();
+    for (int logical = 0; logical < header->count(); ++logical)
+    {
+        int currentVisual = header->visualIndex(logical);
+        if (currentVisual != logical)
+            header->moveSection(currentVisual, logical);
+    }
+
+    int pinnedIdx = 0;
+    for (int logical = 0; logical < header->count(); ++logical)
+    {
+        bool isPinned = pinnedColumns.contains(logical);
+        if (isPinned)
+        {
+            header->moveSection(logical, pinnedIdx++);
+            pinnedView->setColumnWidth(logical, columnWidth(logical));
+        }
+        pinnedView->setColumnHidden(logical, !isPinned);
+    }
+
+    updatePinnedViewGeometry();
+}
+
+void SqlQueryView::updatePinnedViewRowSizes()
+{
+    for (int idx = 0; idx < model()->rowCount(); ++idx)
+        pinnedView->setRowHeight(idx, rowHeight(idx));
+}
+
 void SqlQueryView::handlePluginLoaded(Plugin* plugin, PluginType* pluginType)
 {
     Q_UNUSED(pluginType)
@@ -958,6 +1071,32 @@ void SqlQueryView::keyPressEvent(QKeyEvent *e)
     }
 }
 
+void SqlQueryView::resizeEvent(QResizeEvent* event)
+{
+    QTableView::resizeEvent(event);
+    updatePinnedViewGeometry();
+}
+
+QModelIndex SqlQueryView::moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers)
+{
+    QModelIndex current = QTableView::moveCursor(cursorAction, modifiers);
+
+    if (cursorAction == MoveLeft && current.column() > 0 && visualRect(current).topLeft().x() < pinnedView->columnWidth(0))
+    {
+        const int newValue = horizontalScrollBar()->value() +
+                             visualRect(current).topLeft().x() -
+                             pinnedView->columnWidth(0);
+        horizontalScrollBar()->setValue(newValue);
+    }
+    return current;
+}
+
+void SqlQueryView::scrollTo(const QModelIndex& index, ScrollHint hint)
+{
+    if (index.column() > 0)
+        QTableView::scrollTo(index, hint);
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -988,9 +1127,26 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
     if (simpleBrowserMode)
         return;
 
+    int logicalIdx = horizontalHeader()->logicalIndexAt(pos);
+
     headerContextMenu->clear();
     headerContextMenu->addAction(actionMap[SORT_DIALOG]);
     headerContextMenu->addAction(actionMap[RESET_SORTING]);
+
+    QAction* pinAction = new QAction(tr("Pin column"), headerContextMenu);
+    pinAction->setCheckable(true);
+    pinAction->setChecked(pinnedColumns.contains(logicalIdx));
+    connect(pinAction, &QAction::triggered, [this, logicalIdx](bool checked)
+    {
+        if (checked)
+            pinnedColumns += logicalIdx;
+        else
+            pinnedColumns.removeOne(logicalIdx);
+
+        ::sSort(pinnedColumns);
+        updatePinnedViewColumns();
+    });
+    headerContextMenu->addAction(pinAction);
 
     if (headerAdditionalActions.size() > 0)
     {
@@ -999,7 +1155,6 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
             headerContextMenu->addAction(action);
     }
 
-    int logicalIdx = horizontalHeader()->logicalIndexAt(pos);
     QList<CellRendererPlugin*> rendererPlugins = PLUGINS->getLoadedPlugins<CellRendererPlugin>();
     if (!rendererPlugins.isEmpty() && logicalIdx > -1)
     {
