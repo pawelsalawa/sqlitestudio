@@ -132,7 +132,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         };
 
         void init();
-        void initPinnedView();
+        void initPinnedView(QAbstractItemModel* model);
         void setupWidgetCover();
         void createActions() override;
         void setupDefShortcuts() override;

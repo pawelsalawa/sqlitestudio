@@ -84,16 +84,19 @@ void SqlQueryView::init()
     setupWidgetCover();
     initActions();
     setupHeaderMenu();
-    initPinnedView();
 }
 
-void SqlQueryView::initPinnedView()
+void SqlQueryView::initPinnedView(QAbstractItemModel* model)
 {
     pinnedView = new QTableView(this);
+    pinnedView->setModel(model);
+    pinnedView->setSelectionModel(selectionModel());
 
     pinnedView->setFocusPolicy(Qt::NoFocus);
     pinnedView->verticalHeader()->hide();
-    pinnedView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    pinnedView->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+    pinnedView->horizontalHeader()->setStretchLastSection(true);
+    pinnedView->horizontalHeader()->setSectionsClickable(true);
     pinnedView->setContextMenuPolicy(Qt::CustomContextMenu);
 
     viewport()->stackUnder(pinnedView);
@@ -347,8 +350,7 @@ void SqlQueryView::setModel(QAbstractItemModel* model)
         updatePinnedViewRowSizes();
     });
 
-    pinnedView->setModel(model);
-    pinnedView->setSelectionModel(selectionModel());
+    initPinnedView(model);
 }
 
 SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
