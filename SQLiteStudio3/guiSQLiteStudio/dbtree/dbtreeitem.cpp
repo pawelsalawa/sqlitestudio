@@ -138,6 +138,16 @@ QString DbTreeItem::getView() const
     return item->text();
 }
 
+void DbTreeItem::setColumnType(const QString& columnType)
+{
+    setData(columnType, DataRole::COLUMN_TYPE);
+}
+
+QString DbTreeItem::getColumnType() const
+{
+    return data(DataRole::COLUMN_TYPE).toString();
+}
+
 void DbTreeItem::setData(const QVariant& value, int role)
 {
     QStandardItem::setData(value, role);

@@ -25,6 +25,7 @@ class GUI_API_EXPORT DbTreeItemDelegate : public QStyledItemDelegate
         void paintTableLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item) const;
         void paintVirtualTableLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const;
         void paintSystemIndexLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item) const;
+        void paintColumnTypeLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item) const;
         void paintLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem* item, const QString& label) const;
 
     signals:

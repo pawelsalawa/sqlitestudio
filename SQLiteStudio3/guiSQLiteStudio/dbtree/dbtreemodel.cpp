@@ -5,7 +5,6 @@
 #include "uiconfig.h"
 #include "schemaresolver.h"
 #include "dbtreeitemfactory.h"
-#include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
 #include "dbobjectorganizer.h"
 #include "dialogs/dbdialog.h"
@@ -653,17 +652,17 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
     return items;
 }
 
-QList<QStandardItem*> DbTreeModel::refreshSchemaTableOrViewColumns(const QStringList& columns)
+QList<QStandardItem*> DbTreeModel::refreshSchemaTableOrViewColumns(const QList<QPair<QString, QString>>& columns)
 {
     bool doSort = CFG_UI.DbList.SortColumns.get();
 
-    QStringList sortedColumns = columns;
+    auto sortedColumns = columns;
     if (doSort)
-        ::sSort(sortedColumns);
+        ::sSort(sortedColumns, [](auto& p1, auto& p2) {return p1.first < p2.first;});
 
     QList<QStandardItem*> items;
-    for (const QString& column : sortedColumns)
-        items += DbTreeItemFactory::createColumn(column, this);
+    for (const QPair<QString, QString>& column : sortedColumns)
+        items += DbTreeItemFactory::createColumn(column.first, column.second, this);
 
     return items;
 }
@@ -735,7 +734,7 @@ void DbTreeModel::loadTableSchema(DbTreeItem* tableItem)
     DbTreeItem* indexesItem = tableItem->findFirstItem(DbTreeItem::Type::INDEXES);
     DbTreeItem* triggersItem = tableItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
-    QList<QStandardItem*> tableColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsUsingPragma(table));
+    QList<QStandardItem*> tableColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsAndDataTypesUsingPragma(table));
     QList<QStandardItem*> indexItems = refreshSchemaIndexes(resolver.getIndexesForTable(table), sort);
     QList<QStandardItem*> triggerItems = refreshSchemaTriggers(resolver.getTriggersForTable(table), sort);
 
@@ -771,7 +770,7 @@ void DbTreeModel::loadViewSchema(DbTreeItem* viewItem)
     DbTreeItem* columnsItem = viewItem->findFirstItem(DbTreeItem::Type::COLUMNS);
     DbTreeItem* triggersItem = viewItem->findFirstItem(DbTreeItem::Type::TRIGGERS);
 
-    QList<QStandardItem*> viewColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsUsingPragma(view));
+    QList<QStandardItem*> viewColumns = refreshSchemaTableOrViewColumns(resolver.getColumnsAndDataTypesUsingPragma(view));
     for (QStandardItem* columnItem : viewColumns)
     {
         columnItem->setEditable(false);

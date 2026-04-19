@@ -117,6 +117,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    ShowDbTreeLabels,            true) // any labels at all
         CFG_ENTRY(bool,                    ShowRegularTableLabels,      false)
         CFG_ENTRY(bool,                    ShowVirtualTableLabels,      true)
+        CFG_ENTRY(bool,                    ShowColumnTypeLabels,        true)
         CFG_ENTRY(bool,                    NewDbNotPermanentByDefault,  false)
         CFG_ENTRY(bool,                    BypassDbDialogWhenPossible,  true)
         CFG_ENTRY(bool,                    LinkWithMdiArea,             true)

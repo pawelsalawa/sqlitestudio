@@ -41,6 +41,13 @@ DbTreeItem *DbTreeItemFactory::createColumn(const QString &name, QObject *parent
     return new DbTreeItem(DbTreeItem::Type::COLUMN, ICONS.COLUMN, name, parent);
 }
 
+DbTreeItem* DbTreeItemFactory::createColumn(const QString& name, const QString& type, QObject* parent)
+{
+    auto item = new DbTreeItem(DbTreeItem::Type::COLUMN, ICONS.COLUMN, name, parent);
+    item->setColumnType(type);
+    return item;
+}
+
 DbTreeItem *DbTreeItemFactory::createTables(QObject *parent)
 {
     return new DbTreeItem(DbTreeItem::Type::TABLES, ICONS.TABLES, QObject::tr("Tables"), parent);

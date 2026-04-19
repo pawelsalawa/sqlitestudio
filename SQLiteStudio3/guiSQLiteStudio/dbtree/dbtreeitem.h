@@ -49,6 +49,8 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         QString getIndex() const;
         QString getTrigger() const;
         QString getView() const;
+        void setColumnType(const QString& columnType);
+        QString getColumnType() const;
         void setData(const QVariant& value, int role);
 
         /**
@@ -94,6 +96,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
                 ICON_PTR = 1003,
                 HIDDEN = 1004,
                 SCHEMA_READY = 1005,
+                COLUMN_TYPE = 1006,
                 SIGNATURE_OF_THIS = 9998
             };
         };
