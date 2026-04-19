@@ -507,9 +507,9 @@ void SqlQueryView::invertSelection()
 
 void SqlQueryView::syncPinnedSectionWidth(int logicalIndex, int oldSize, int newSize)
 {
-    if (logicalIndex == 0)
+    if (pinnedColumns.contains(logicalIndex))
     {
-          pinnedView->setColumnWidth(0, newSize);
+          pinnedView->setColumnWidth(logicalIndex, newSize);
           updatePinnedViewGeometry();
     }
 }
