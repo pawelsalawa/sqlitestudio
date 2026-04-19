@@ -6,7 +6,7 @@
     <message>
         <location filename="../multieditorjson.cpp" line="27"/>
         <source>Prettify</source>
-        <translation type="unfinished">Prettify</translation>
+        <translation>Verschönern</translation>
     </message>
     <message>
         <location filename="../multieditorjson.cpp" line="28"/>
@@ -16,12 +16,12 @@
     <message>
         <location filename="../multieditorjson.cpp" line="30"/>
         <source>Condense</source>
-        <translation type="unfinished">Condense</translation>
+        <translation>Zusammenfassen</translation>
     </message>
     <message>
         <location filename="../multieditorjson.cpp" line="31"/>
         <source>Remove whitespace and format on single line</source>
-        <translation type="unfinished">Remove whitespace and format on single line</translation>
+        <translation>Leerzeichen entfernen und in einer Zeile formatieren</translation>
     </message>
     <message>
         <location filename="../multieditorjson.cpp" line="35"/>

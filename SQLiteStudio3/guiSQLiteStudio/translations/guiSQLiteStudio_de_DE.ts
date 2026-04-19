@@ -69,22 +69,22 @@
         <translation>SQLite 3 Version:</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="41"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>Portable distribution.</source>
         <translation>Portable Version.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="44"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>MacOS X application bundle distribution.</source>
         <translation>MacOS X Bundle Distribution.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="47"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="48"/>
         <source>Operating system managed distribution.</source>
         <translation>Betriebssystemverwaltete Version.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="97"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="98"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
         <translation>&lt;h3&gt;Inhaltsverzeichnis:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
@@ -145,62 +145,62 @@
         <translation>Schnipsel-Code</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="47"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="48"/>
         <source>Code Snippets editor window has uncommitted modifications.</source>
         <translation type="unfinished">Code Snippets editor window has uncommitted modifications.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="68"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="69"/>
         <source>Code Snippets editor</source>
         <translation>Code-Schnipsel-Editor</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="73"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="74"/>
         <source>Commit all snippet changes</source>
         <translation>Alle Snippet-Änderungen übertragen</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="74"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="75"/>
         <source>Rollback all snippet changes</source>
         <translation>Zurücknehmen aller Snippet-Änderungen</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="76"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="77"/>
         <source>Create new snippet</source>
         <translation>Schnipsel erstellen</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="77"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="78"/>
         <source>Delete selected snippet</source>
         <translation>Ausgewählten Schnipsel löschen</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="79"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="80"/>
         <source>Move the snippet up</source>
         <translation>Schnipsel nach oben verschieben</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="80"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="81"/>
         <source>Move the snippet down</source>
         <translation>Schnipsel nach unten verschieben</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="82"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="83"/>
         <source>Code snippets manual</source>
         <translation>Code-Schnipsel-Handbuch</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="302"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="304"/>
         <source>Enter a non-empty, unique name of the snippet.</source>
         <translation>Geben Sie einen einzigartigen Namen für den Schnipsel ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="305"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="307"/>
         <source>Enter a non-empty snippet content.</source>
         <translation>Geben Sie Ihren Schnipsel-Inhalt ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="309"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="311"/>
         <source>This hotkey is not unique in context of a code assistant.</source>
         <translation type="unfinished">This hotkey is not unique in context of a code assistant.</translation>
     </message>
@@ -293,37 +293,37 @@
         <translation>Kollationen manuell editieren</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="308"/>
+        <location filename="../windows/collationseditor.cpp" line="309"/>
         <source>Enter a non-empty, unique name of the collation.</source>
         <translation>Geben Sie einen eindeutigen Namen für die Kollation ein.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="318"/>
+        <location filename="../windows/collationseditor.cpp" line="319"/>
         <source>Pick the implementation language.</source>
         <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="323"/>
+        <location filename="../windows/collationseditor.cpp" line="324"/>
         <source>Registration code</source>
         <translation>Registrierungskode</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="324"/>
+        <location filename="../windows/collationseditor.cpp" line="325"/>
         <source>Enter a non-empty registration code.</source>
         <translation>Geben Sie einen Registrierungskode ein.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="328"/>
+        <location filename="../windows/collationseditor.cpp" line="329"/>
         <source>Implementation code</source>
         <translation>Implementierungskode</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="329"/>
+        <location filename="../windows/collationseditor.cpp" line="330"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Geben Sie eine eindeutige Vergleichsoperatorendefinition ein.</translation>
     </message>
     <message>
-        <location filename="../windows/collationseditor.cpp" line="462"/>
+        <location filename="../windows/collationseditor.cpp" line="472"/>
         <source>Collations editor window has uncommitted modifications.</source>
         <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
     </message>
@@ -1764,109 +1764,109 @@
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1032"/>
+        <location filename="../dialogs/configdialog.cpp" line="1033"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Bezeichnung:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1033"/>
+        <location filename="../dialogs/configdialog.cpp" line="1034"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1034"/>
+        <location filename="../dialogs/configdialog.cpp" line="1035"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1035"/>
+        <location filename="../dialogs/configdialog.cpp" line="1036"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1037"/>
+        <location filename="../dialogs/configdialog.cpp" line="1038"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Interner Name:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1038"/>
+        <location filename="../dialogs/configdialog.cpp" line="1039"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Abhängigkeiten:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1039"/>
+        <location filename="../dialogs/configdialog.cpp" line="1040"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Konflikte:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1040"/>
+        <location filename="../dialogs/configdialog.cpp" line="1041"/>
         <source>File:</source>
         <comment>plugin details</comment>
         <translation type="unfinished">File:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1045"/>
+        <location filename="../dialogs/configdialog.cpp" line="1046"/>
         <source>Plugin details</source>
         <translation>Plugin Details</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1655"/>
+        <location filename="../dialogs/configdialog.cpp" line="1656"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>Plugins werden direkt beim Aktivieren/Deaktivieren geladen bzw. entfernt, die modifizierte Pluginliste wird jedoch erst beim Bestätigen  und Schließen des Konfigurationsfensters gespeichert.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1713"/>
+        <location filename="../dialogs/configdialog.cpp" line="1714"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (integriert)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1755"/>
+        <location filename="../dialogs/configdialog.cpp" line="1756"/>
         <source>Details</source>
         <translation>Details</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1769"/>
+        <location filename="../dialogs/configdialog.cpp" line="1770"/>
         <source>No plugins in this category.</source>
         <translation>Keine Plugins in dieser Kategorie.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1869"/>
-        <location filename="../dialogs/configdialog.cpp" line="1898"/>
+        <location filename="../dialogs/configdialog.cpp" line="1870"/>
+        <location filename="../dialogs/configdialog.cpp" line="1899"/>
         <source>Add new data type</source>
         <translation>Neuen Datentypen zufügen</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1873"/>
-        <location filename="../dialogs/configdialog.cpp" line="1902"/>
+        <location filename="../dialogs/configdialog.cpp" line="1874"/>
+        <location filename="../dialogs/configdialog.cpp" line="1903"/>
         <source>Rename selected data type</source>
         <translation>Markierten Datentypen umbenennen</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1877"/>
-        <location filename="../dialogs/configdialog.cpp" line="1906"/>
+        <location filename="../dialogs/configdialog.cpp" line="1878"/>
+        <location filename="../dialogs/configdialog.cpp" line="1907"/>
         <source>Delete selected data type</source>
         <translation>Markierten Datentypen löschen</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1990"/>
+        <location filename="../dialogs/configdialog.cpp" line="1991"/>
         <source>Clear hotkey for this action</source>
         <translation type="unfinished">Clear hotkey for this action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="2002"/>
+        <location filename="../dialogs/configdialog.cpp" line="2003"/>
         <source>Restore original hotkey for this action</source>
         <translation type="unfinished">Restore original hotkey for this action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="2044"/>
+        <location filename="../dialogs/configdialog.cpp" line="2045"/>
         <source>Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</source>
         <translation type="unfinished">Here you can configure colors for code syntax highlighting. They are shared across different languages - not only for SQL, but also JavaScript and others. By default a theme-based color is used. To define your own color, enable a custom color by selecting a checkbox next to a particular color.</translation>
     </message>
@@ -3227,47 +3227,47 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation>In Datei speichern</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="621"/>
+        <location filename="../windows/editorwindow.cpp" line="623"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>Die Datei &apos;%1&apos; kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="641"/>
+        <location filename="../windows/editorwindow.cpp" line="643"/>
         <source>Saved SQL contents to file: %1</source>
         <translation>SQL Inhalte in Datei speichern: %1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="659"/>
+        <location filename="../windows/editorwindow.cpp" line="661"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>Abfrage in %1 Sekunde(n) abgeschlossen. %2 Zeile(n) betroffen</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="663"/>
+        <location filename="../windows/editorwindow.cpp" line="665"/>
         <source>Query finished in %1 second(s).</source>
         <translation>Abfrage in %1 Sekunde(n) abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="790"/>
+        <location filename="../windows/editorwindow.cpp" line="792"/>
         <source>Clear execution history</source>
         <translation>Lösche Ausführungsverlauf</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="790"/>
+        <location filename="../windows/editorwindow.cpp" line="792"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>Sind Sie sicher, dass Sie den gesamten SQL Ausführungsverlauf löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="828"/>
+        <location filename="../windows/editorwindow.cpp" line="830"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Es kann nicht exportiert werden, da kein Export Plugin geladen ist.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="849"/>
+        <location filename="../windows/editorwindow.cpp" line="851"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>Es ist keine Datenbank im SQL Editor selektiert. Für eine unbekannte Datenbank kann kein View erzeugt werden.</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="899"/>
+        <location filename="../windows/editorwindow.cpp" line="901"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation type="unfinished">Editor window &quot;%1&quot; has uncommitted data.</translation>
     </message>
@@ -3920,35 +3920,35 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation type="unfinished">Window</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="516"/>
+        <location filename="../windows/functionseditor.cpp" line="517"/>
         <source>Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</source>
         <translation type="unfinished">Enter a unique, non-empty function name. Duplicate names are allowed if the number of input parameters differs.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="527"/>
+        <location filename="../windows/functionseditor.cpp" line="528"/>
         <source>Pick the implementation language.</source>
         <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="545"/>
-        <location filename="../windows/functionseditor.cpp" line="555"/>
+        <location filename="../windows/functionseditor.cpp" line="546"/>
         <location filename="../windows/functionseditor.cpp" line="556"/>
+        <location filename="../windows/functionseditor.cpp" line="557"/>
         <source>Enter a non-empty implementation code.</source>
         <translation>Geben Sie die Anweisungen ein.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="605"/>
+        <location filename="../windows/functionseditor.cpp" line="606"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
         <translation>Argument</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="709"/>
+        <location filename="../windows/functionseditor.cpp" line="710"/>
         <source>Function argument cannot be empty and it cannot have duplicated name.</source>
         <translation type="unfinished">Function argument cannot be empty and it cannot have duplicated name.</translation>
     </message>
     <message>
-        <location filename="../windows/functionseditor.cpp" line="757"/>
+        <location filename="../windows/functionseditor.cpp" line="767"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
     </message>
@@ -4016,42 +4016,42 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation>Datenquellenoptionen</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="125"/>
+        <location filename="../dialogs/importdialog.cpp" line="126"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="156"/>
+        <location filename="../dialogs/importdialog.cpp" line="157"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Wenn Sie einen Tabellenname eingeben, der noch nicht existiert, dann wird diese neue Tabelle erzeugt werden.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="156"/>
+        <location filename="../dialogs/importdialog.cpp" line="157"/>
         <source>Enter the table name</source>
         <translation>Datenbankname eingeben</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="174"/>
+        <location filename="../dialogs/importdialog.cpp" line="175"/>
         <source>Select import plugin.</source>
         <translation>Importplugin auswählen</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="183"/>
+        <location filename="../dialogs/importdialog.cpp" line="184"/>
         <source>You must provide a file to import from.</source>
         <translation>Sie müssen den Namen der Importdatei angeben.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="190"/>
+        <location filename="../dialogs/importdialog.cpp" line="191"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Die Datei &apos;%1&apos; existiert nicht.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="196"/>
+        <location filename="../dialogs/importdialog.cpp" line="197"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Der von Ihnen angegebene Pfad ist ein Verzeichnis. Es wird jedoch eine Datei benötigt.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="377"/>
+        <location filename="../dialogs/importdialog.cpp" line="378"/>
         <source>Pick file to import from</source>
         <translation>Wählen Sie eine Datei aus von der importiert werden soll.</translation>
     </message>
@@ -4270,380 +4270,390 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation>Ansichtenleiste</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>Configuration widgets</source>
         <translation>Konfigurationshelfer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="136"/>
+        <location filename="../mainwindow.cpp" line="138"/>
         <source>Syntax highlighting engines</source>
         <translation>Syntaxhervorhebungen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="137"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Data editors</source>
         <translation>Dateneditoren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="152"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
         <translation>Ablauf im Debugmodus. Zum Öffnen der Debugkonsole drücken Sie %1 oder wählen Menü &apos;Hilfe&apos; den Eintrag &apos;Debugkonsole öffnen&apos; aus.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="152"/>
+        <location filename="../mainwindow.cpp" line="154"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
         <translation>Ablauf im Debugmodus. Debugmeldungen werden in der Standardausgabe angezeigt..</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
+        <location filename="../mainwindow.cpp" line="263"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>Das Programm muss neu gestartet werden, damit die Änderung der Sprache wirksam wird.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Open SQL &amp;editor</source>
         <translation>SQL &amp;Editor öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="350"/>
+        <location filename="../mainwindow.cpp" line="351"/>
         <source>Open DDL &amp;history</source>
         <translation>DDL &amp;Verlauf öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="309"/>
         <source>Open SQL &amp;functions editor</source>
         <translation>SQL &amp;Funktionseditor öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>Open code &amp;snippets editor</source>
         <translation type="unfinished">Open code &amp;snippets editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Open &amp;collations editor</source>
         <translation type="unfinished">Open &amp;collations editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="312"/>
         <source>Open ex&amp;tension manager</source>
         <translation>Erwei&amp;terungsmanager öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>&amp;Import</source>
         <translation>&amp;Importieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="315"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xportieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="314"/>
+        <location filename="../mainwindow.cpp" line="316"/>
         <source>Open confi&amp;guration dialog</source>
         <translation type="unfinished">Open confi&amp;guration dialog</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="318"/>
         <source>&amp;Tile windows</source>
         <translation>Fenster &amp;kacheln</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>Tile windows &amp;horizontally</source>
         <translation>Fenster waagerecht anordnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="318"/>
+        <location filename="../mainwindow.cpp" line="320"/>
         <source>Tile windows &amp;vertically</source>
         <translation>Fenster senkrecht anordnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="319"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source>&amp;Cascade windows</source>
         <translation>Fenster staffeln</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="321"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Next window</source>
         <translation>Nächstes Fenster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="322"/>
         <source>Previous window</source>
         <translation>Vorheriges Fenster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="324"/>
+        <location filename="../mainwindow.cpp" line="326"/>
         <source>Hide status field</source>
         <translation>Statusfeld verbergen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="330"/>
         <source>Close &amp;all windows</source>
         <translation>&amp;Alle Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="331"/>
+        <location filename="../mainwindow.cpp" line="333"/>
         <source>Re&amp;store recently closed window</source>
         <translation>&amp;Zuletzt geschlossenes Fenster wiederherstellen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>Close current &amp;window</source>
         <translation>Aktuelles Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="138"/>
+        <location filename="../mainwindow.cpp" line="140"/>
         <source>Data renderers</source>
         <translation type="unfinished">Data renderers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Close &amp;other windows</source>
         <translation>&amp;Andere Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="331"/>
         <source>Close windows on the &amp;left</source>
         <translation type="unfinished">Close windows on the &amp;left</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="330"/>
+        <location filename="../mainwindow.cpp" line="332"/>
         <source>Close windows on the &amp;right</source>
         <translation type="unfinished">Close windows on the &amp;right</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="332"/>
+        <location filename="../mainwindow.cpp" line="334"/>
         <source>Re&amp;name selected window</source>
         <translation>Ausgewähltes &amp;Fenster neu benennen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="334"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>Open Debug Console</source>
         <translation>Debug Konsole öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="335"/>
+        <location filename="../mainwindow.cpp" line="337"/>
         <source>Open CSS Console</source>
         <translation>CSS Konsole öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.cpp" line="338"/>
         <source>Report a &amp;bug</source>
         <translation>Fehler melden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="337"/>
+        <location filename="../mainwindow.cpp" line="339"/>
         <source>D&amp;onate</source>
         <translation>Spen&amp;den</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="338"/>
+        <location filename="../mainwindow.cpp" line="340"/>
         <source>Propose a new &amp;feature</source>
         <translation>Neue &amp;Funktion vorschlagen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="341"/>
         <source>&amp;About</source>
         <translation>&amp;Über SQLiteStudio</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="342"/>
         <source>&amp;Licenses</source>
         <translation>&amp;Lizenzen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="341"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>Open home &amp;page</source>
         <translation>Webseite &amp;öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="342"/>
+        <location filename="../mainwindow.cpp" line="344"/>
         <source>User &amp;Manual</source>
         <translation>&amp;Benutzerhandbuch</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>SQLite &amp;documentation</source>
         <translation>SQLite &amp;Dokumentation</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="346"/>
         <source>Bugs and feature &amp;requests</source>
         <translation>Fehler- und Funktionswünsche</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
+        <location filename="../mainwindow.cpp" line="347"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="347"/>
+        <location filename="../mainwindow.cpp" line="349"/>
         <source>Check for &amp;updates</source>
         <translation>Nach Akt&amp;ualisierungen suchen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="371"/>
+        <location filename="../mainwindow.cpp" line="374"/>
         <source>&amp;Database</source>
         <comment>menubar</comment>
         <translation>&amp;Datenbank</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="399"/>
         <source>&amp;Structure</source>
         <comment>menubar</comment>
         <translation>&amp;Struktur</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="723"/>
+        <location filename="../mainwindow.cpp" line="728"/>
         <source>&amp;View</source>
         <comment>menubar</comment>
         <translation>&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="422"/>
+        <location filename="../mainwindow.cpp" line="425"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>Fensterliste</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source>Move window earlier</source>
         <translation type="unfinished">Move window earlier</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="323"/>
+        <location filename="../mainwindow.cpp" line="325"/>
         <source>Move window later</source>
         <translation type="unfinished">Move window later</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="452"/>
+        <location filename="../mainwindow.cpp" line="352"/>
+        <source>Export configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="353"/>
+        <source>Import configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="455"/>
         <source>&amp;Tools</source>
         <comment>menubar</comment>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="468"/>
+        <location filename="../mainwindow.cpp" line="473"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="660"/>
+        <location filename="../mainwindow.cpp" line="665"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>Der folgende Stil kann nicht gesetzt werden: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="885"/>
+        <location filename="../mainwindow.cpp" line="902"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Es kann nicht exportiert werden, da kein Export Plugin geladen ist.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="902"/>
+        <location filename="../mainwindow.cpp" line="919"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Es kann nicht importiert werden, da kein Import Plugin geladen ist.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="945"/>
+        <location filename="../mainwindow.cpp" line="962"/>
         <source>Rename window</source>
         <translation>Fenster umbenennen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="945"/>
+        <location filename="../mainwindow.cpp" line="962"/>
         <source>Enter new name for the window:</source>
         <translation>Neuen Namen für das Fenster eingeben:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1047"/>
+        <location filename="../mainwindow.cpp" line="1064"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Neues Update verfügbar. &lt;a href=&quot;%1&quot;&gt;Weitere Details&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1053"/>
+        <location filename="../mainwindow.cpp" line="1070"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Sie haben bereits die aktuellste Version. Keine Update verfügbar.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1137"/>
+        <location filename="../mainwindow.cpp" line="1154"/>
         <source>Toolbar &amp;icons</source>
         <comment>menubar</comment>
         <translation type="unfinished">Toolbar &amp;icons</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="1161"/>
         <source>Size: %1%</source>
         <comment>toolbar icons</comment>
         <translation type="unfinished">Size: %1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1231"/>
+        <location filename="../mainwindow.cpp" line="1248"/>
         <source>Drop files to open them</source>
         <translation type="unfinished">Drop files to open them</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1295"/>
+        <location filename="../mainwindow.cpp" line="1312"/>
         <source>The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1.</source>
         <translation type="unfinished">The dropped file appears to be a SQLite 2 database, which is not supported by this SQLiteStudio version. Last version supporting SQLite 2 was 3.2.1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1298"/>
+        <location filename="../mainwindow.cpp" line="1315"/>
         <source>The dropped file type is unsupported: %1 (%2)</source>
         <translation type="unfinished">The dropped file type is unsupported: %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1308"/>
+        <location filename="../mainwindow.cpp" line="1325"/>
         <source>SQLite 3 database - add to database list and open</source>
         <translation type="unfinished">SQLite 3 database - add to database list and open</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1310"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
         <source>It may be an encrypted SQLite 3 database. You can try to open it.</source>
         <translation type="unfinished">It may be an encrypted SQLite 3 database. You can try to open it.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1312"/>
+        <location filename="../mainwindow.cpp" line="1329"/>
         <source>Empty file, but also empty SQLite 3 database - open as database</source>
         <translation type="unfinished">Empty file, but also empty SQLite 3 database - open as database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1314"/>
+        <location filename="../mainwindow.cpp" line="1331"/>
         <source>SQL file - open in SQL Editor</source>
         <translation type="unfinished">SQL file - open in SQL Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1316"/>
+        <location filename="../mainwindow.cpp" line="1333"/>
         <source>Text file - open in SQL Editor</source>
         <translation type="unfinished">Text file - open in SQL Editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1318"/>
+        <location filename="../mainwindow.cpp" line="1335"/>
         <source>CSV file - import using Import Dialog</source>
         <translation type="unfinished">CSV file - import using Import Dialog</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1320"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
         <source>SQLite 2 database - not supported anymore</source>
         <translation type="unfinished">SQLite 2 database - not supported anymore</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1322"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>Unsupported file type</source>
         <translation type="unfinished">Unsupported file type</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1372"/>
+        <location filename="../mainwindow.cpp" line="1389"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>Die Datenbank, die mittels Programmparameter übergeben wurde (%1), war bereits in der Liste unter dem Namen %2 vorhanden.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1379"/>
+        <location filename="../mainwindow.cpp" line="1396"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Die Datenbank, die mittels Programmparameter übergeben wurde (%1), wurde in der Liste termporär unter dem Namen %2 zugefügt.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1384"/>
+        <location filename="../mainwindow.cpp" line="1401"/>
         <source>Could not add database %1 to list.</source>
         <translation>Die Datenbank %1 konnte nicht hinzugefügt werden.</translation>
     </message>
@@ -5058,38 +5068,38 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <translation>Anzahl an Datenzeilen zum Auffüllen:</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="51"/>
+        <location filename="../dialogs/populatedialog.cpp" line="52"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
         <translation>Füllen</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="66"/>
+        <location filename="../dialogs/populatedialog.cpp" line="67"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="203"/>
+        <location filename="../dialogs/populatedialog.cpp" line="204"/>
         <source>Configure</source>
         <translation>Konfigurieren</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="310"/>
+        <location filename="../dialogs/populatedialog.cpp" line="311"/>
         <source>Populating configuration for this column is invalid or incomplete.</source>
         <translation>Die Konfiguration für diese Spalte ist ungültig oder unvollständig.</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="341"/>
+        <location filename="../dialogs/populatedialog.cpp" line="342"/>
         <source>Select database with table to populate</source>
         <translation>Wählen Sie die Datebank und Tabelle zum Auffüllen aus</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="342"/>
+        <location filename="../dialogs/populatedialog.cpp" line="343"/>
         <source>Select table to populate</source>
         <translation>Wählen Sie die Tabelle zum Auffüllen aus</translation>
     </message>
     <message>
-        <location filename="../dialogs/populatedialog.cpp" line="343"/>
+        <location filename="../dialogs/populatedialog.cpp" line="344"/>
         <source>You have to select at least one column.</source>
         <translation>Sie müssen mindestens eine Spalte auswählen.</translation>
     </message>
@@ -5713,6 +5723,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../uiutils.cpp" line="70"/>
         <location filename="../uiutils.cpp" line="81"/>
+        <location filename="../windows/editorwindow.cpp" line="614"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
@@ -5733,6 +5744,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     </message>
     <message>
         <location filename="../uiutils.cpp" line="80"/>
+        <location filename="../windows/editorwindow.cpp" line="613"/>
         <source>SQL files</source>
         <translation type="unfinished">SQL files</translation>
     </message>
@@ -6068,6 +6080,119 @@ find next</source>
         <location filename="../dialogs/searchtextdialog.ui" line="75"/>
         <source>Find</source>
         <translation>Finden</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsExportDialog</name>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="14"/>
+        <source>Export configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="20"/>
+        <location filename="../dialogs/settingsexportdialog.ui" line="32"/>
+        <source>Output JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="29"/>
+        <source>JSON file (*.json);;All files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="45"/>
+        <source>What to export?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="51"/>
+        <source>User-defined SQL functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="61"/>
+        <source>User-defined collation sequences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="71"/>
+        <source>User-defined code snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsexportdialog.ui" line="81"/>
+        <source>Configured SQLite extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsImportDialog</name>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="14"/>
+        <source>Import configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="20"/>
+        <location filename="../dialogs/settingsimportdialog.ui" line="29"/>
+        <source>Input JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="26"/>
+        <source>JSON file (*.json);;All files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="39"/>
+        <source>What to import?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="45"/>
+        <source>User-defined SQL functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="52"/>
+        <source>User-defined collation sequences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="59"/>
+        <source>User-defined code snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="66"/>
+        <source>Configured SQLite extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="76"/>
+        <source>Import mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="82"/>
+        <source>Imports selected items without modifying or removing ones existing in your current configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="85"/>
+        <source>Add to existing items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="95"/>
+        <source>Removes all existing items in the selected categories, then imports the new ones from the file. This action cannot be undone!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsimportdialog.ui" line="98"/>
+        <source>Replace existing items</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6765,77 +6890,77 @@ Such deletion will be permanent. Are you sure you want to delete them?</translat
         <translation>In den folgenden Datenbanken registrieren:</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="44"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="45"/>
         <source>Extension manager window has uncommitted modifications.</source>
         <translation type="unfinished">Extension manager window has uncommitted modifications.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="65"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="66"/>
         <source>Extension manager</source>
         <translation>Erweiterungsmanager</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="70"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
         <source>Commit all extension changes</source>
         <translation type="unfinished">Commit all extension changes</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="71"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="72"/>
         <source>Rollback all extension changes</source>
         <translation type="unfinished">Rollback all extension changes</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="73"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
         <source>Add new extension</source>
         <translation type="unfinished">Add new extension</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="74"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="75"/>
         <source>Remove selected extension</source>
         <translation type="unfinished">Remove selected extension</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="76"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="77"/>
         <source>Editing extensions manual</source>
         <translation type="unfinished">Editing extensions manual</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="263"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="265"/>
         <source>File with given path does not exist or is not readable.</source>
         <translation type="unfinished">File with given path does not exist or is not readable.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="269"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="271"/>
         <source>Unable to load extension: %1</source>
         <translation type="unfinished">Unable to load extension: %1</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="384"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="386"/>
         <source>Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</source>
         <translation type="unfinished">Invalid initialization function name. Function name can contain only alpha-numeric characters and underscore.</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="453"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="455"/>
         <source>Dynamic link libraries (*.dll);;All files (*)</source>
         <translation type="unfinished">Dynamic link libraries (*.dll);;All files (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="455"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="457"/>
         <source>Shared objects (*.so);;All files (*)</source>
         <translation type="unfinished">Shared objects (*.so);;All files (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="457"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="459"/>
         <source>Dynamic libraries (*.dylib);;All files (*)</source>
         <translation type="unfinished">Dynamic libraries (*.dylib);;All files (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="459"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="461"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../windows/sqliteextensioneditor.cpp" line="461"/>
+        <location filename="../windows/sqliteextensioneditor.cpp" line="463"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>

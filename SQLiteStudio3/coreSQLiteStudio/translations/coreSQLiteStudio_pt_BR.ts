@@ -157,17 +157,42 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="879"/>
+        <location filename="../services/impl/configimpl.cpp" line="592"/>
+        <source>Cannot export config to file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="597"/>
+        <source>Config exported successfully to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="629"/>
+        <source>Cannot import config from file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="648"/>
+        <source>Config imported successfully from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="659"/>
+        <source>Cannot read file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="979"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>Não foi possível iniciar a transação do banco de dados para excluir o histórico do SQL. Portanto, ela não será excluída.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="886"/>
+        <location filename="../services/impl/configimpl.cpp" line="986"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>Não foi possível submeter a transação do banco de dados para excluir o histórico do SQL. Portanto, não será excluída.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="1259"/>
+        <location filename="../services/impl/configimpl.cpp" line="1344"/>
         <source>Configured hotkeys have been reset to their default settings following the update to version 4.0.0, where many shortcuts were revised to align with modern IDE standards.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -408,38 +433,38 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
         <translation>Número inválido de argumentos para a função &apos;%1&apos;. Esperado %2, mas tem %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Nenhuma função registrada no SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>A função %1(%2) foi registrada no idioma %3, mas o plugin que suporta essa linguagem não está atualmente carregado.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="426"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Expressão regular inválida: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="478"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Não foi possível abrir o arquivo %1 para leitura: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="500"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Não foi possível abrir o arquivo %1 para escrita: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="520"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Erro ao gravar o arquivo %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="538"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Idioma do script não suportado: %1</translation>
     </message>
@@ -515,33 +540,33 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Não foi possível carregar o plugin %1, porque está em conflito com o plugin %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="572"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Não foi possível carregar o plugin %1, porque sua dependência não foi carregada: %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="581"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Não foi possível carregar o plugin %1. Detalhes do erro: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="597"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Não é possível carregar o plugin %1 (erro durante a inicialização do plugin).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="758"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>min: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="759"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>max: %1</translation>
@@ -926,48 +951,48 @@ Tabelas, índices, trigger e visualizações copiadas para o banco de dados %3 p
         <translation>Não foi possível resolver a tabela para a coluna &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="759"/>
+        <location filename="../services/impl/configimpl.cpp" line="859"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
         <translation>Não foi possível inicializar o arquivo de configuração. Quaisquer alterações de configuração e histórico de consultas serão perdidos após a reinicialização do aplicativo. Não foi possível criar um arquivo nos seguintes locais: %1.</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="351"/>
+        <location filename="../sqlitestudio.cpp" line="361"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>Objetivo geral</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="352"/>
+        <location filename="../sqlitestudio.cpp" line="362"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>Suporte do banco de dados</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="353"/>
+        <location filename="../sqlitestudio.cpp" line="363"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>Formatador de código</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="354"/>
+        <location filename="../sqlitestudio.cpp" line="364"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Linguagens dos scripts</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="356"/>
+        <location filename="../sqlitestudio.cpp" line="366"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>Exportando</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="357"/>
+        <location filename="../sqlitestudio.cpp" line="367"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>Importando</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="358"/>
+        <location filename="../sqlitestudio.cpp" line="368"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>Preencher a tabela</translation>
@@ -1165,7 +1190,7 @@ A visualização permanecerá como é.</translation>
 <context>
     <name>UpdateManager</name>
     <message>
-        <location filename="../services/updatemanager.cpp" line="97"/>
+        <location filename="../services/updatemanager.cpp" line="99"/>
         <source>Could not check for updates (%1).</source>
         <translation>Não foi possível verificar se há atualizações (%1).</translation>
     </message>

@@ -157,17 +157,42 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="879"/>
+        <location filename="../services/impl/configimpl.cpp" line="592"/>
+        <source>Cannot export config to file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="597"/>
+        <source>Config exported successfully to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="629"/>
+        <source>Cannot import config from file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="648"/>
+        <source>Config imported successfully from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="659"/>
+        <source>Cannot read file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="979"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>删除 SQL 历史的数据库事务启动失败，因此未删除。</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="886"/>
+        <location filename="../services/impl/configimpl.cpp" line="986"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>删除 SQL 历史的数据库事务提交失败，因此未删除。</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="1259"/>
+        <location filename="../services/impl/configimpl.cpp" line="1344"/>
         <source>Configured hotkeys have been reset to their default settings following the update to version 4.0.0, where many shortcuts were revised to align with modern IDE standards.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -408,38 +433,38 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>无效的参数个数。对于函数 %1，需要 %2 个，但得到 %3 个。</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>SQLiteStudio 中没有注册该函数：%1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>函数 %1(%2) 以 %3 语言注册，但是支持该语言的插件没有被正确加载。</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="426"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>无效的正则表达式模式：%1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="478"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>无法以读模式打开文件 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="500"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>无法以写模式打开文件 %1：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="520"/>
         <source>Error while writting to file %1: %2</source>
         <translation>写入文件 %1 时发生错误：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="538"/>
         <source>Unsupported scripting language: %1</source>
         <translation>不支持的脚本语言：%1</translation>
     </message>
@@ -515,33 +540,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>无法加载插件 %1，因为它与这些插件冲突：%2。</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="572"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>无法加载插件 %1，因为它依赖的这些插件没有被加载：%2。</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="581"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>无法加载插件 %1。错误详情：%2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="597"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>无法加载插件 %1（初始化插件时发生错误）。</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="758"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>最小：%1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="759"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>最大：%1</translation>
@@ -926,48 +951,48 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>无法解析表的列 &apos;%1&apos;。</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="759"/>
+        <location filename="../services/impl/configimpl.cpp" line="859"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
         <translation>无法初始化配置文件。所有的配置更改和查询历史都将在应用程序重启时丢失。无法在下列位置创建文件：%1。</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="351"/>
+        <location filename="../sqlitestudio.cpp" line="361"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>一般用途</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="352"/>
+        <location filename="../sqlitestudio.cpp" line="362"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>数据库支持</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="353"/>
+        <location filename="../sqlitestudio.cpp" line="363"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>代码格式化</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="354"/>
+        <location filename="../sqlitestudio.cpp" line="364"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>脚本语言</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="356"/>
+        <location filename="../sqlitestudio.cpp" line="366"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>导出</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="357"/>
+        <location filename="../sqlitestudio.cpp" line="367"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="358"/>
+        <location filename="../sqlitestudio.cpp" line="368"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>数据表填充</translation>
@@ -1165,7 +1190,7 @@ The view will remain as it is.</source>
 <context>
     <name>UpdateManager</name>
     <message>
-        <location filename="../services/updatemanager.cpp" line="97"/>
+        <location filename="../services/updatemanager.cpp" line="99"/>
         <source>Could not check for updates (%1).</source>
         <translation>检查更新失败 (%1)。</translation>
     </message>
