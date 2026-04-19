@@ -12,8 +12,18 @@ class SettingsImportDialog : public QDialog
         Q_OBJECT
 
     public:
+        enum QuickMode
+        {
+            FUNCTION,
+            COLLATION,
+            SNIPPET,
+            EXTENSION,
+        };
+
         explicit SettingsImportDialog(QWidget *parent = nullptr);
         ~SettingsImportDialog();
+
+        static void importFromFile(QuickMode quickMode);
 
     private:
         Ui::SettingsImportDialog *ui;

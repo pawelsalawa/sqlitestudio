@@ -1,8 +1,12 @@
 #include "settingsimportdialog.h"
+#include "services/notifymanager.h"
 #include "ui_settingsimportdialog.h"
 #include "services/config.h"
+#include "uiconfig.h"
 #include "uiutils.h"
+#include "mainwindow.h"
 #include <QDialog>
+#include <QFileDialog>
 #include <QPushButton>
 
 SettingsImportDialog::SettingsImportDialog(QWidget *parent) :
@@ -19,6 +23,66 @@ SettingsImportDialog::SettingsImportDialog(QWidget *parent) :
 SettingsImportDialog::~SettingsImportDialog()
 {
     delete ui;
+}
+
+void SettingsImportDialog::importFromFile(QuickMode quickMode)
+{
+    QString dir = getFileDialogInitPath();
+    QString path = QFileDialog::getOpenFileName(MAINWINDOW, tr("Input JSON file"), dir, "JSON file (*.json);;All files (*)");
+
+    if (path.isEmpty())
+        return;
+
+    setFileDialogInitPathByFile(path);
+
+    QString err;
+    Config::ExportImportParams queriedParams = CFG->getParamsForConfigImport(path, &err);
+    if (!err.isEmpty())
+    {
+        notifyWarn(tr("Invalid input file to import: %1").arg(err));
+        return;
+    }
+
+    Config::ExportImportParams params = {false, false, false, false, false};
+    switch (quickMode)
+    {
+        case FUNCTION:
+        {
+            if (!queriedParams.functions)
+            {
+                notifyWarn(tr("Selected file does not contain functions to import."));
+                return;
+            }
+            params.functions = true;
+            break;
+        }
+        case COLLATION:
+            if (!queriedParams.collations)
+            {
+                notifyWarn(tr("Selected file does not contain collation sequences to import."));
+                return;
+            }
+            params.collations = true;
+            break;
+        case SNIPPET:
+            if (!queriedParams.snippets)
+            {
+                notifyWarn(tr("Selected file does not contain code snippets to import."));
+                return;
+            }
+            params.snippets = true;
+            break;
+        case EXTENSION:
+            if (!queriedParams.extensions)
+            {
+                notifyWarn(tr("Selected file does not contain SQLite extensions to import."));
+                return;
+            }
+            params.extensions = true;
+            break;
+    }
+
+    CFG->importConfig(path, params);
 }
 
 void SettingsImportDialog::fileChanged(const QString& filePath)

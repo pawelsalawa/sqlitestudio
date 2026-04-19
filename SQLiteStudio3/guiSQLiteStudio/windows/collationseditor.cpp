@@ -1,4 +1,6 @@
 #include "collationseditor.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "ui_collationseditor.h"
 #include "selectabledbmodel.h"
 #include "dbtree/dbtree.h"
@@ -62,6 +64,8 @@ void CollationsEditor::createActions()
     createAction(ADD, ICONS.NEW_COLLATION, tr("Create new collation"), this, SLOT(newCollation()), ui->toolbar, this);
     createAction(DELETE, ICONS.DELETE_COLLATION, tr("Delete selected collation"), this, SLOT(deleteCollation()), ui->toolbar, this);
     ui->toolbar->addSeparator();
+    createAction(IMPORT, ICONS.COLLATIONS_IMPORT, tr("Import collations from file"), this, SLOT(importCollations()), ui->toolbar, this);
+    createAction(EXPORT, ICONS.COLLATIONS_EXPORT, tr("Export collations to file"), this, SLOT(exportCollations()), ui->toolbar, this);
     createAction(HELP, ICONS.HELP, tr("Editing collations manual"), this, SLOT(help()), ui->toolbar, this);
 }
 
@@ -460,6 +464,16 @@ void CollationsEditor::cfgCollationListChanged()
 
     model->setData(COLLATIONS->getAllCollations());
     updateCurrentCollationState();
+}
+
+void CollationsEditor::importCollations()
+{
+    SettingsImportDialog::importFromFile(SettingsImportDialog::COLLATION);
+}
+
+void CollationsEditor::exportCollations()
+{
+    SettingsExportDialog::exportToFile(SettingsExportDialog::COLLATION);
 }
 
 bool CollationsEditor::isUncommitted() const

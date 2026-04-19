@@ -12,15 +12,17 @@
 #include "common/userinputfilter.h"
 #include "selectabledbmodel.h"
 #include "uiconfig.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include <QDebug>
 #include <QDesktopServices>
 #include <QStyleFactory>
-#include <QSyntaxHighlighter>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QSyntaxHighlighter>
 
 // TODO handle plugin loading/unloading to update editor state
 
@@ -67,6 +69,8 @@ void FunctionsEditor::createActions()
     createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new function"), this, SLOT(newFunction()), ui->toolBar, this);
     createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected function"), this, SLOT(deleteFunction()), ui->toolBar, this);
     ui->toolBar->addSeparator();
+    createAction(IMPORT, ICONS.FUNCTIONS_IMPORT, tr("Import functions from file"), this, SLOT(importFunctions()), ui->toolBar, this);
+    createAction(EXPORT, ICONS.FUNCTIONS_EXPORT, tr("Export functions to file"), this, SLOT(exportFunctions()), ui->toolBar, this);
     createAction(HELP, ICONS.HELP, tr("Custom SQL functions manual"), this, SLOT(help()), ui->toolBar, this);
 
     // Args toolbar
@@ -749,6 +753,16 @@ void FunctionsEditor::cfgFunctionListChanged()
 
     model->setData(FUNCTIONS->getAllScriptFunctions());
     updateCurrentFunctionState();
+}
+
+void FunctionsEditor::importFunctions()
+{
+    SettingsImportDialog::importFromFile(SettingsImportDialog::FUNCTION);
+}
+
+void FunctionsEditor::exportFunctions()
+{
+    SettingsExportDialog::exportToFile(SettingsExportDialog::FUNCTION);
 }
 
 QVariant FunctionsEditor::saveSession()

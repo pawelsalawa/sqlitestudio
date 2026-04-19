@@ -34,6 +34,8 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
             ROLLBACK,
             ADD,
             DELETE,
+            IMPORT,
+            EXPORT,
             HELP
         };
         Q_ENUM(Action)
@@ -96,6 +98,8 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
         void applyFilter(const QString& value);
         void changeFont(const QVariant& font);
         void cfgCollationListChanged();
+        void importCollations();
+        void exportCollations();
 };
 
 #endif // COLLATIONSEDITOR_H

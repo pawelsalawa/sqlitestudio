@@ -1,5 +1,7 @@
 #include "codesnippeteditor.h"
 #include "common/utils.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "ui_codesnippeteditor.h"
 #include "uiconfig.h"
 #include "windows/codesnippeteditormodel.h"
@@ -80,6 +82,8 @@ void CodeSnippetEditor::createActions()
     createAction(MOVE_UP, ICONS.MOVE_UP, tr("Move the snippet up"), this, SLOT(moveSnippetUp()), ui->toolBar, this);
     createAction(MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move the snippet down"), this, SLOT(moveSnippetDown()), ui->toolBar, this);
     ui->toolBar->addSeparator();
+    createAction(IMPORT, ICONS.CODE_SNIPPETS_IMPORT, tr("Import snippets from file"), this, SLOT(importSnippets()), ui->toolBar, this);
+    createAction(EXPORT, ICONS.CODE_SNIPPETS_EXPORT, tr("Export snippets to file"), this, SLOT(exportSnippets()), ui->toolBar, this);
     createAction(HELP, ICONS.HELP, tr("Code snippets manual"), this, SLOT(help()), ui->toolBar, this);
 
 #ifdef Q_OS_MACX
@@ -380,4 +384,14 @@ void CodeSnippetEditor::cfgCodeSnippetListChanged()
 
     model->setData(CODESNIPPETS->getSnippets());
     updateCurrentSnippetState();
+}
+
+void CodeSnippetEditor::importSnippets()
+{
+    SettingsImportDialog::importFromFile(SettingsImportDialog::SNIPPET);
+}
+
+void CodeSnippetEditor::exportSnippets()
+{
+    SettingsExportDialog::exportToFile(SettingsExportDialog::SNIPPET);
 }

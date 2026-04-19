@@ -1,5 +1,7 @@
 #include "sqliteextensioneditor.h"
 #include "common/utils.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "sqliteextensioneditormodel.h"
 #include "ui_sqliteextensioneditor.h"
 #include "selectabledbmodel.h"
@@ -74,6 +76,8 @@ void SqliteExtensionEditor::createActions()
     createAction(ADD, ICONS.EXTENSION_ADD, tr("Add new extension"), this, SLOT(newExtension()), ui->toolbar, this);
     createAction(DELETE, ICONS.EXTENSION_DELETE, tr("Remove selected extension"), this, SLOT(deleteExtension()), ui->toolbar, this);
     ui->toolbar->addSeparator();
+    createAction(IMPORT, ICONS.EXTENSION_IMPORT, tr("Import extension list from file"), this, SLOT(importExtensions()), ui->toolbar, this);
+    createAction(EXPORT, ICONS.EXTENSION_EXPORT, tr("Export extension list file"), this, SLOT(exportExtensions()), ui->toolbar, this);
     createAction(HELP, ICONS.HELP, tr("Editing extensions manual"), this, SLOT(help()), ui->toolbar, this);
 }
 
@@ -474,4 +478,14 @@ void SqliteExtensionEditor::cfgExtensionListChanged()
     model->setData(SQLITE_EXTENSIONS->getAllExtensions());
     initStateForAll();
     updateCurrentExtensionState();
+}
+
+void SqliteExtensionEditor::importExtensions()
+{
+    SettingsImportDialog::importFromFile(SettingsImportDialog::EXTENSION);
+}
+
+void SqliteExtensionEditor::exportExtensions()
+{
+    SettingsExportDialog::exportToFile(SettingsExportDialog::EXTENSION);
 }

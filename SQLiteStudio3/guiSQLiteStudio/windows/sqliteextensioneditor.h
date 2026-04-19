@@ -34,6 +34,8 @@ class GUI_API_EXPORT SqliteExtensionEditor : public MdiChild
             ROLLBACK,
             ADD,
             DELETE,
+            IMPORT,
+            EXPORT,
             HELP
         };
         Q_ENUM(Action)
@@ -105,6 +107,8 @@ class GUI_API_EXPORT SqliteExtensionEditor : public MdiChild
         void applyFilter(const QString& value);
         void browseForFile();
         void cfgExtensionListChanged();
+        void importExtensions();
+        void exportExtensions();
 };
 
 #endif // SQLITEEXTENSIONEDITOR_H

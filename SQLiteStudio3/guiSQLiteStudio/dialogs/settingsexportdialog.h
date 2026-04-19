@@ -12,8 +12,18 @@ class SettingsExportDialog : public QDialog
         Q_OBJECT
 
     public:
+        enum QuickMode
+        {
+            FUNCTION,
+            COLLATION,
+            SNIPPET,
+            EXTENSION,
+        };
+
         explicit SettingsExportDialog(QWidget *parent = nullptr);
         ~SettingsExportDialog();
+
+        static void exportToFile(QuickMode quickMode);
 
     private:
         Ui::SettingsExportDialog *ui;
