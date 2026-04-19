@@ -44,12 +44,20 @@
         <property name="text">
          <string>User-defined SQL functions</string>
         </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/functions.svg</normaloff>:/icons/img/functions.svg</iconset>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QCheckBox" name="collationsCheck">
         <property name="text">
          <string>User-defined collation sequences</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/collations.svg</normaloff>:/icons/img/collations.svg</iconset>
         </property>
        </widget>
       </item>
@@ -58,12 +66,20 @@
         <property name="text">
          <string>User-defined code snippets</string>
         </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/code_snippets.svg</normaloff>:/icons/img/code_snippets.svg</iconset>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QCheckBox" name="extensionsCheck">
         <property name="text">
          <string>Configured SQLite extensions</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/extensions.svg</normaloff>:/icons/img/extensions.svg</iconset>
         </property>
        </widget>
       </item>
@@ -122,7 +138,9 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

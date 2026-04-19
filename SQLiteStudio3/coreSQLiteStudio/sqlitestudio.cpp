@@ -350,13 +350,15 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     pluginManager = new PluginManagerImpl();
 
-    // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
-    // connections and register functions.
     functionManager = new FunctionManagerImpl();
     collationManager = new CollationManagerImpl();
     extensionManager = new SqliteExtensionManagerImpl();
-
     dbManager = new DbManagerImpl();
+
+    functionManager->init();
+    collationManager->init();
+    extensionManager->init();
+    dbManager->init();
 
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support", "plugin category name"));

@@ -67,6 +67,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FILTER_EXACT,
             FILTER_PER_COLUMN,
             GRID_TOTAL_ROWS,
+            GRID_SELECTED_SUM_SEP,
             GRID_SELECTED_SUM,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,

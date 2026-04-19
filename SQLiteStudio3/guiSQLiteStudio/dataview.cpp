@@ -49,9 +49,9 @@ void DataView::init(SqlQueryModel* model)
 
     rowCountLabel = new QLabel();
     selSumLabel = new QLabel();
+    selSumLabel->setToolTip(tr("Sum of values in selected cells", "data view"));
     formViewRowCountLabel = new QLabel();
     formViewCurrentRowLabel = new QLabel();
-    updateSelectionSum();
 
     initWidgetCover();
     initFormView();
@@ -60,6 +60,7 @@ void DataView::init(SqlQueryModel* model)
     initActions();
     initUpdates();
     initSlots();
+    updateSelectionSum();
     updateTabsMode();
     updatePageEdit();
     updateResultsCount(0);
@@ -246,6 +247,8 @@ void DataView::createActions()
         createFilteringActions();
 
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
+
+    actionMap[GRID_SELECTED_SUM_SEP] = gridToolBar->addSeparator();
     actionMap[GRID_SELECTED_SUM] = gridToolBar->addWidget(selSumLabel);
 
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;
@@ -721,7 +724,8 @@ void DataView::updateSelectionSum()
     QList<SqlQueryItem*> selItems = gridView->getSelectedItems();
     if (selItems.isEmpty())
     {
-        selSumLabel->setVisible(false);
+        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+        actionMap[GRID_SELECTED_SUM]->setVisible(false);
         return;
     }
 
@@ -761,12 +765,14 @@ void DataView::updateSelectionSum()
 
     if (nums == 0)
     {
-        selSumLabel->setVisible(false);
+        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+        actionMap[GRID_SELECTED_SUM]->setVisible(false);
         return;
     }
 
     selSumLabel->setText(tr("Sum: %1").arg(sum.toString()));
-    selSumLabel->setVisible(true);
+    actionMap[GRID_SELECTED_SUM_SEP]->setVisible(true);
+    actionMap[GRID_SELECTED_SUM]->setVisible(true);
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)

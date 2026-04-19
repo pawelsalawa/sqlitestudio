@@ -13,9 +13,9 @@ class SqliteExtensionManagerImpl : public SqliteExtensionManager
         QList<ExtensionPtr> getExtensionForDatabase(const QString& dbName) const;
         QStringList getExtensionDirs() const;
         void loadFromConfig();
+        void init();
 
     private:
-        void init();
         void scanExtensionDirs();
         void storeInConfig();
 

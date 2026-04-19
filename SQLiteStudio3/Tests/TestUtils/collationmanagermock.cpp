@@ -36,3 +36,7 @@ int CollationManagerMock::evaluateDefault(const QString&, const QString&)
 void CollationManagerMock::loadFromConfig()
 {
 }
+
+void CollationManagerMock::init()
+{
+}

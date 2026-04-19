@@ -3,7 +3,6 @@
 
 #include "db/db.h"
 #include "coreSQLiteStudio_global.h"
-#include "common/global.h"
 #include "sqlitestudio.h"
 #include <QObject>
 #include <QList>
@@ -209,6 +208,7 @@ class API_EXPORT DbManager : public QObject
         virtual void notifyDatabasesAreLoaded() = 0;
 
         virtual void rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin) = 0;
+        virtual void init() = 0;
 
     signals:
         /**

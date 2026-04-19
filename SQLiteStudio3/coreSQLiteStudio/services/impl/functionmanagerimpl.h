@@ -30,6 +30,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         void evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
                                            QHash<QString, QVariant>& aggregateStorage);
         void loadFromConfig();
+        void init();
 
     private:
         struct Key
@@ -45,7 +46,6 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         friend size_t qHash(const FunctionManagerImpl::Key& key);
         friend bool operator==(const FunctionManagerImpl::Key& key1, const FunctionManagerImpl::Key& key2);
 
-        void init();
         void initNativeFunctions();
         void refreshFunctionsByKey();
         void refreshNativeFunctionsByKey();

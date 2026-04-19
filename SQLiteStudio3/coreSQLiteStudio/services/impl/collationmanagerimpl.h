@@ -21,9 +21,9 @@ class API_EXPORT CollationManagerImpl : public CollationManager
         int evaluateDefault(const QString& value1, const QString& value2);
         CollationPtr getCollation(const QString &name) const;
         void loadFromConfig();
+        void init();
 
     private:
-        void init();
         void storeInConfig();
         void refreshCollationsByKey();
         QString updateScriptingQtLang(const QString& lang) const;

@@ -74,6 +74,7 @@ class API_EXPORT FunctionManager : public QObject
         virtual void evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
                                            QHash<QString, QVariant>& aggregateStorage) = 0;
         virtual void loadFromConfig() = 0;
+        virtual void init() = 0;
 
     signals:
         void functionListChanged();
