@@ -290,7 +290,6 @@ void FunctionManagerImpl::init()
 {
     loadFromConfig();
     initNativeFunctions();
-    refreshFunctionsByKey();
     connect(DBLIST, &DbManager::dbUpdated, this, &FunctionManagerImpl::handleDbUpdated);
 }
 
@@ -385,6 +384,8 @@ void FunctionManagerImpl::loadFromConfig()
         func->deterministic = fnHash["deterministic"].toBool();
         functions << func;
     }
+    refreshFunctionsByKey();
+    emit functionListChanged();
 }
 
 void FunctionManagerImpl::clearFunctions()

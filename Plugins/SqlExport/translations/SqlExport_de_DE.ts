@@ -64,7 +64,7 @@
     <message>
         <location filename="../SqlExportCommon.ui" line="20"/>
         <source>Use SQL formatter to format exported SQL statements</source>
-        <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
+        <translation>SQL-Formatierer verwenden, um exportierte SQL-Anweisungen zu formatieren</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="../SqlExportQuery.ui" line="47"/>
         <source>Use SQL formatter to format exported SQL statements</source>
-        <translation type="unfinished">Use SQL formatter to format exported SQL statements</translation>
+        <translation>SQL-Formatierer verwenden, um exportierte SQL-Anweisungen zu formatieren</translation>
     </message>
     <message>
         <location filename="../SqlExportQuery.ui" line="40"/>
@@ -82,27 +82,27 @@
     <message>
         <location filename="../SqlExportQuery.ui" line="64"/>
         <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-        <translation type="unfinished">Generate &quot;CREATE TABLE&quot; statement at the begining</translation>
+        <translation>Erstelle zu Beginn eine &quot;CREATE TABLE&quot;-Anweisung</translation>
     </message>
     <message>
         <location filename="../SqlExportQuery.ui" line="20"/>
         <source>Include the query in comments</source>
-        <translation type="unfinished">Include the query in comments</translation>
+        <translation>Die Abfrage in Kommentare einfügen</translation>
     </message>
     <message>
         <location filename="../SqlExportQuery.ui" line="30"/>
         <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-        <translation type="unfinished">Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</translation>
+        <translation>Erstelle eine &quot;DROP IF EXISTS&quot;-Anweisung vor der &quot;CREATE&quot;-Anweisung</translation>
     </message>
     <message>
         <location filename="../SqlExportQuery.ui" line="74"/>
         <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-        <translation type="unfinished">Format DDL statements only (excludes &quot;INSERT&quot; statements)</translation>
+        <translation>Nur DDL-Anweisungen formatieren (ausgenommen &quot;INSERT&quot; Anweisungen)</translation>
     </message>
     <message>
         <location filename="../SqlExportQuery.ui" line="84"/>
         <source>Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</source>
-        <translation type="unfinished">Add &quot;IF NOT EXISTS&quot; clause to &quot;CREATE&quot; statement</translation>
+        <translation>&quot;IF NICHT EXISTS&quot; Klausel zu &quot;CREATE&quot; Anweisung hinzufügen</translation>
     </message>
 </context>
 </TS>

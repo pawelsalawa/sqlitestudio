@@ -12,12 +12,12 @@ class SqliteExtensionManagerImpl : public SqliteExtensionManager
         QList<ExtensionPtr> getAllExtensions() const;
         QList<ExtensionPtr> getExtensionForDatabase(const QString& dbName) const;
         QStringList getExtensionDirs() const;
+        void loadFromConfig();
 
     private:
         void init();
         void scanExtensionDirs();
         void storeInConfig();
-        void loadFromConfig();
 
         QList<ExtensionPtr> extensions;
         QStringList extensionDirs;

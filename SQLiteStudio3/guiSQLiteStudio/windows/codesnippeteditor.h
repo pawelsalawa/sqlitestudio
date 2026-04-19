@@ -32,6 +32,8 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
             DELETE,
             MOVE_UP,
             MOVE_DOWN,
+            IMPORT,
+            EXPORT,
             HELP
         };
         Q_ENUM(Action)
@@ -89,6 +91,9 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
         void changeFont(const QVariant& font);
         void clearAssistantShortcutPressed();
         void help();
+        void cfgCodeSnippetListChanged();
+        void importSnippets();
+        void exportSnippets();
 };
 
 #endif // CODESNIPPETEDITOR_H

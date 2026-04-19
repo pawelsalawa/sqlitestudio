@@ -275,5 +275,16 @@
         <file>img/data_select.svg</file>
         <file>img/data_update.svg</file>
         <file>img/view_export.svg</file>
+        <file>img/config_import.svg</file>
+        <file>img/config_export.svg</file>
+        <file>img/export_sql_history.svg</file>
+        <file>img/collations_export.svg</file>
+        <file>img/collations_import.svg</file>
+        <file>img/code_snippets_export.svg</file>
+        <file>img/code_snippets_import.svg</file>
+        <file>img/extensions_export.svg</file>
+        <file>img/extensions_import.svg</file>
+        <file>img/functions_export.svg</file>
+        <file>img/functions_import.svg</file>
     </qresource>
 </RCC>

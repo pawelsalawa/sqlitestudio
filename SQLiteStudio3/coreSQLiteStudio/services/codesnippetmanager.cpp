@@ -19,6 +19,7 @@ void CodeSnippetManager::setSnippets(const QList<CodeSnippet*>& snippets)
     allSnippets = snippets;
     refreshNames();
     saveToConfig();
+    emit codeSnippetListChanged();
 }
 
 const QList<CodeSnippetManager::CodeSnippet*>& CodeSnippetManager::getSnippets() const
@@ -68,6 +69,7 @@ void CodeSnippetManager::loadFromConfig()
         allSnippets << snip;
     }
     refreshNames();
+    emit codeSnippetListChanged();
 }
 
 void CodeSnippetManager::refreshNames()

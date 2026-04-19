@@ -29,6 +29,7 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         QVariant evaluateWindowValue(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
         void evaluateWindowInverse(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
                                            QHash<QString, QVariant>& aggregateStorage);
+        void loadFromConfig();
 
     private:
         struct Key
@@ -49,7 +50,6 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         void refreshFunctionsByKey();
         void refreshNativeFunctionsByKey();
         void storeInConfig();
-        void loadFromConfig();
         void clearFunctions();
         QString cannotFindFunctionError(const QString& name, int argCount);
         QString langUnsupportedError(const QString& name, int argCount, const QString& lang);

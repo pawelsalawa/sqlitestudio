@@ -55,12 +55,11 @@ class ConfigMock : public Config
         const QString &getConfigDir() const;
         QString getConfigFilePath() const;
         bool isMassSaving() const;
-        void addReportHistory(bool, const QString &, const QString &);
-        QList<ReportHistoryEntryPtr> getReportHistory();
-        void deleteReport(int);
-        void clearReportHistory();
         QString getSqlite3Version() const;
         bool isInMemory() const;
+        void exportConfig(const QString&, const ExportImportParams&);
+        void importConfig(const QString&, const ExportImportParams&);
+        ExportImportParams getParamsForConfigImport(const QString&, QString*);
 
     public slots:
         void refreshSqlHistory();

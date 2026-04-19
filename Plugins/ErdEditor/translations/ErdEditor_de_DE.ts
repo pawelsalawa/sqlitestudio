@@ -6,7 +6,7 @@
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="14"/>
         <source>Pending changes registry</source>
-        <translation type="unfinished">Pending changes registry</translation>
+        <translation>Ausstehende Änderungen der Registry</translation>
     </message>
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="65"/>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="105"/>
         <source>DDL preview</source>
-        <translation type="unfinished">DDL preview</translation>
+        <translation>DDL-Vorschau</translation>
     </message>
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="143"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="146"/>
         <source>Show effective changes only</source>
-        <translation type="unfinished">Show effective changes only</translation>
+        <translation>Nur wirksame Änderungen anzeigen</translation>
     </message>
     <message>
         <location filename="../changes/erdchangeregistrydialog.ui" line="153"/>
@@ -42,7 +42,7 @@
         <location filename="../changes/erdchangeregistrydialog.cpp" line="58"/>
         <source>-- This is a change applied only to the diagram. It has no database schema efects.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">-- This is a change applied only to the diagram. It has no database schema efects.</translation>
+        <translation>-- Dies ist eine Änderung, die nur auf das Diagramm angewendet wird und keine Auswirkung auf die Datenbank hat.</translation>
     </message>
 </context>
 <context>
@@ -50,12 +50,12 @@
     <message>
         <location filename="../erdconfig.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../erdconfig.ui" line="33"/>
         <source>Maximum number of tables for ERD editor</source>
-        <translation type="unfinished">Maximum number of tables for ERD editor</translation>
+        <translation>Maximale Anzahl von Tabellen für ERD-Editor</translation>
     </message>
     <message>
         <location filename="../erdconfig.ui" line="40"/>
@@ -88,12 +88,12 @@
     <message>
         <location filename="../panel/erdconnectionpanel.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.ui" line="59"/>
         <source>Foreign key properties</source>
-        <translation type="unfinished">Foreign key properties</translation>
+        <translation>Fremdschlüssel Eigenschaften</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.ui" line="83"/>
@@ -119,13 +119,13 @@
         <location filename="../panel/erdconnectionpanel.cpp" line="57"/>
         <source>Apply changes to diagram</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Apply changes to diagram</translation>
+        <translation>Änderungen auf Diagramm anwenden</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="58"/>
         <source>Abort changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Abort changes</translation>
+        <translation>Änderungen abbrechen</translation>
     </message>
     <message>
         <location filename="../panel/erdconnectionpanel.cpp" line="240"/>
@@ -148,12 +148,12 @@
     <message>
         <location filename="../erdeditorplugin.cpp" line="20"/>
         <source>Open ERD editor</source>
-        <translation type="unfinished">Open ERD editor</translation>
+        <translation>ERD-Editor öffnen</translation>
     </message>
     <message>
         <location filename="../erdeditorplugin.cpp" line="74"/>
         <source>ERD editor cannot open because the database contains %1 tables, exceeding the configured limit of %2 tables. You can increase this limit in the settings, but higher values may slow down or freeze the application.</source>
-        <translation type="unfinished">ERD editor cannot open because the database contains %1 tables, exceeding the configured limit of %2 tables. You can increase this limit in the settings, but higher values may slow down or freeze the application.</translation>
+        <translation>ERD-Editor kann nicht geöffnet werden, da die Datenbank %1 Tabellen enthält und das konfigurierte Limit der %2 Tabellen überschreitet. Sie können dieses Limit in den Einstellungen erhöhen, aber höhere Werte können die Anwendung verlangsamen oder einfrieren.</translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@
         <location filename="../scene/erdscene.cpp" line="530"/>
         <source>Delete multiple diagram elements.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Delete multiple diagram elements.</translation>
+        <translation>Mehrere Diagrammelemente löschen.</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="547"/>
@@ -185,12 +185,12 @@
     <message>
         <location filename="../scene/erdscene.cpp" line="607"/>
         <source>Delete foreign key between &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished">Delete foreign key between &quot;%1&quot; and &quot;%2&quot;.</translation>
+        <translation>Fremdschlüssel zwischen &quot;%1&quot; und &quot;%2&quot; löschen.</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="616"/>
         <source>Failed to execute DDL required for foreign key deletion. Details: %1</source>
-        <translation type="unfinished">Failed to execute DDL required for foreign key deletion. Details: %1</translation>
+        <translation>Fehler beim Ausführen der DDL zum Löschen des Fremdschlüssels. Details: %1</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="824"/>
@@ -210,12 +210,12 @@
     <message>
         <location filename="../scene/erdscene.cpp" line="851"/>
         <source>Change color of multiple tables.</source>
-        <translation type="unfinished">Change color of multiple tables.</translation>
+        <translation>Farbe von mehreren Tabellen ändern.</translation>
     </message>
     <message>
         <location filename="../scene/erdscene.cpp" line="696"/>
         <source>Apply diagram layout</source>
-        <translation type="unfinished">Apply diagram layout</translation>
+        <translation>Diagramm-Layout anwenden</translation>
     </message>
 </context>
 <context>
@@ -224,13 +224,13 @@
         <location filename="../panel/erdtablewindow.cpp" line="29"/>
         <source>Apply changes to diagram</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Apply changes to diagram</translation>
+        <translation>Änderungen auf Diagramm anwenden</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="30"/>
         <source>Abort changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Abort changes</translation>
+        <translation>Änderungen verwerfen</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="49"/>
@@ -241,13 +241,13 @@
         <location filename="../panel/erdtablewindow.cpp" line="106"/>
         <source>Invalid table changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Invalid table changes</translation>
+        <translation>Ungültige Tabellenänderung</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="108"/>
         <source>&lt;b&gt;The table contains invalid changes&lt;/b&gt;</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">&lt;b&gt;The table contains invalid changes&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Die Tabelle enthält ungültige Änderungen&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../panel/erdtablewindow.cpp" line="109"/>
@@ -259,7 +259,7 @@
         <location filename="../panel/erdtablewindow.cpp" line="118"/>
         <source>Fix errors</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Fix errors</translation>
+        <translation>Fehler korrigieren</translation>
     </message>
 </context>
 <context>
@@ -268,17 +268,17 @@
         <location filename="../scene/erdview.cpp" line="323"/>
         <source>Cannot edit compound foreign keys this way. Such connections have to be edited through the side panel.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Cannot edit compound foreign keys this way. Such connections have to be edited through the side panel.</translation>
+        <translation>Fremdschlüssel können auf diese Weise nicht bearbeitet werden. Solche Verknüpfungen müssen über das Seitenfenster bearbeitet werden.</translation>
     </message>
     <message>
         <location filename="../scene/erdview.cpp" line="633"/>
         <source>Move table &quot;%1&quot;</source>
-        <translation type="unfinished">Move table &quot;%1&quot;</translation>
+        <translation>Tabelle &quot;%1&quot; verschieben</translation>
     </message>
     <message>
         <location filename="../scene/erdview.cpp" line="639"/>
         <source>Move tables: %1</source>
-        <translation type="unfinished">Move tables: %1</translation>
+        <translation>Tabellen verschieben: %1</translation>
     </message>
 </context>
 <context>
@@ -286,24 +286,24 @@
     <message>
         <location filename="../erdwindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../erdwindow.ui" line="86"/>
         <source>Select an item to edit its properties</source>
-        <translation type="unfinished">Select an item to edit its properties</translation>
+        <translation>Wählen Sie ein Element aus, um seine Eigenschaften zu bearbeiten</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="164"/>
         <source>Cancels ongoing action</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Cancels ongoing action</translation>
+        <translation>Laufende Aktion abbrechen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="165"/>
         <source>Create a table</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Create a table</translation>
+        <translation>Tabelle erstellen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="167"/>
@@ -316,41 +316,41 @@
         <location filename="../erdwindow.cpp" line="168"/>
         <source>Commit all pending changes</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Commit all pending changes</translation>
+        <translation>Alle ausstehenden Änderungen übertragen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="169"/>
         <source>Revert diagram to initial state</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Revert diagram to initial state</translation>
+        <translation>Diagramm auf Ausgangszustand zurücksetzen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="171"/>
         <source>Undo</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Undo</translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="172"/>
         <source>Redo</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Redo</translation>
+        <translation>Wiederholen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="188"/>
         <source>Create a table</source>
-        <translation type="unfinished">Create a table</translation>
+        <translation>Tabelle erstellen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="201"/>
         <source>Select all</source>
-        <translation type="unfinished">Select all</translation>
+        <translation>Alles auswählen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="310"/>
         <source>Filter items</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Filter items</translation>
+        <translation>Elemente filtern</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="311"/>
@@ -362,25 +362,25 @@
         <location filename="../erdwindow.cpp" line="447"/>
         <source>table name</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">table name</translation>
+        <translation>Tabellenname</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="449"/>
         <source>column name</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">column name</translation>
+        <translation>Spaltenname</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="569"/>
         <source>All changes have been successfully applied to the database.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">All changes have been successfully applied to the database.</translation>
+        <translation>Alle Änderungen wurden erfolgreich auf die Datenbank übertragen.</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="575"/>
         <source>The changes were successfully committed. No modifications to the database schema were required.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">The changes were successfully committed. No modifications to the database schema were required.</translation>
+        <translation>Die Änderungen wurden erfolgreich übertragen. Es waren keine Änderungen am Datenbankschema erforderlich.</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="583"/>
@@ -401,12 +401,12 @@
     <message>
         <location filename="../erdwindow.cpp" line="1138"/>
         <source>ERD editor (%1)</source>
-        <translation type="unfinished">ERD editor (%1)</translation>
+        <translation>ERD-Editor (%1)</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="1140"/>
         <source>ERD editor</source>
-        <translation type="unfinished">ERD editor</translation>
+        <translation>ERD-Editor</translation>
     </message>
     <message>
         <location filename="../erdwindow.ui" line="114"/>
@@ -423,13 +423,13 @@
         <location filename="../erdwindow.cpp" line="189"/>
         <source>Add a foreign key</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Add a foreign key</translation>
+        <translation>Fremdschlüssel hinzufügen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="191"/>
         <source>Delete selected items</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Delete selected items</translation>
+        <translation>Ausgewählte Elemente löschen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="197"/>
@@ -447,19 +447,19 @@
         <location filename="../erdwindow.cpp" line="212"/>
         <source>Set table color</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Set table color</translation>
+        <translation>Tabellenfarbe festlegen</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="240"/>
         <source>Use straight line</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Use straight line</translation>
+        <translation>Gerade Linie verwenden</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="241"/>
         <source>Use curvy line</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Use curvy line</translation>
+        <translation>Kurvige Linie verwenden</translation>
     </message>
     <message>
         <location filename="../erdwindow.cpp" line="242"/>
@@ -471,7 +471,7 @@
         <location filename="../erdwindow.cpp" line="253"/>
         <source>Choose line type</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Choose line type</translation>
+        <translation>Linientyp auswählen</translation>
     </message>
 </context>
 <context>
@@ -480,19 +480,19 @@
         <location filename="../changes/erdchangedeleteentity.cpp" line="48"/>
         <source>Drop table &quot;%1&quot;.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Drop table &quot;%1&quot;.</translation>
+        <translation>Tabelle &quot;%1&quot; löschen.</translation>
     </message>
     <message>
         <location filename="../changes/erdchangemodifyentity.cpp" line="61"/>
         <source>Modify table &quot;%1&quot;.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Modify table &quot;%1&quot;.</translation>
+        <translation>Tabelle &quot;%1&quot; ändern.</translation>
     </message>
     <message>
         <location filename="../changes/erdchangenewentity.cpp" line="54"/>
         <source>Create table &quot;%1&quot;.</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Create table &quot;%1&quot;.</translation>
+        <translation>Tabelle &quot;%1&quot; erstellen.</translation>
     </message>
     <message>
         <location filename="../changes/erdeffectivechangemerger.cpp" line="31"/>
@@ -503,7 +503,7 @@
         <location filename="../changes/erdeffectivechangemerger.cpp" line="399"/>
         <source>Drop tables: %1</source>
         <comment>ERD editor</comment>
-        <translation type="unfinished">Drop tables: %1</translation>
+        <translation>Tabellen löschen: %1</translation>
     </message>
     <message>
         <location filename="../scene/erdconnection.cpp" line="149"/>
@@ -523,7 +523,7 @@
     <message>
         <location filename="../changes/erdchangemoveentity.cpp" line="28"/>
         <source>Move table &quot;%1&quot;</source>
-        <translation type="unfinished">Move table &quot;%1&quot;</translation>
+        <translation>Tabelle &quot;%1&quot; verschieben</translation>
     </message>
 </context>
 </TS>

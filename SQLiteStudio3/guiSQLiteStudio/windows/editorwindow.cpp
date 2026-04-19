@@ -439,7 +439,7 @@ void EditorWindow::createActions()
 
     // History tab toolbar
     createAction(CLEAR_HISTORY, ICONS.CLEAR_HISTORY, tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->historyToolBar);
-    createAction(EXPORT_HISTORY, ICONS.EXPORT, tr("Export execution history", "sql editor"), this, SLOT(exportHistory()), ui->historyToolBar);
+    createAction(EXPORT_HISTORY, ICONS.EXPORT_SQL_HISTORY, tr("Export execution history", "sql editor"), this, SLOT(exportHistory()), ui->historyToolBar);
 
     // Other actions
     createAction(SHOW_NEXT_TAB, tr("Show next tab", "sql editor"), this, SLOT(showNextTab()), this);
@@ -609,7 +609,9 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
 void EditorWindow::exportHistory(const QModelIndexList &idxList)
 {
     QString dir = getFileDialogInitPath();
-    QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir);
+    QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir,
+                                                 QObject::tr("SQL files")+" (*.sql);;" +
+                                                 QObject::tr("All files")+" (*)");
     if (fName.isNull())
         return;
 

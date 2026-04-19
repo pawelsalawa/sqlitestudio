@@ -157,14 +157,44 @@
   <context>
     <name>ConfigImpl</name>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="879"/>
+      <location filename="../services/impl/configimpl.cpp" line="592"/>
+      <source>Cannot export config to file %1: %2</source>
+      <translation type="unfinished">Cannot export config to file %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="597"/>
+      <source>Config exported successfully to %1</source>
+      <translation type="unfinished">Config exported successfully to %1</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="629"/>
+      <source>Cannot import config from file %1: %2</source>
+      <translation type="unfinished">Cannot import config from file %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="648"/>
+      <source>Config imported successfully from %1</source>
+      <translation type="unfinished">Config imported successfully from %1</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="659"/>
+      <source>Cannot read file %1: %2</source>
+      <translation type="unfinished">Cannot read file %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="979"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Datenbanktransaktion zum Löschen des SQL-Verlaufs konnte nicht gestartet werden, sodass er nicht gelöscht wurde.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="886"/>
+      <location filename="../services/impl/configimpl.cpp" line="986"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
       <translation>Datenbanktransaktion zum Löschen des SQL-Verlaufs konnte nicht ausgeführt werden, sodass er nicht gelöscht wurde.</translation>
+    </message>
+    <message>
+      <location filename="../services/impl/configimpl.cpp" line="1344"/>
+      <source>Configured hotkeys have been reset to their default settings following the update to version 4.0.0, where many shortcuts were revised to align with modern IDE standards.</source>
+      <translation type="unfinished">Configured hotkeys have been reset to their default settings following the update to version 4.0.0, where many shortcuts were revised to align with modern IDE standards.</translation>
     </message>
   </context>
   <context>
@@ -403,38 +433,38 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Falsche Anzahl an Parametern für Funktion &apos;%1&apos;. Erwartet wurden %2, angegeben wurden jedoch %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation>Diese Funktion ist in SQLiteStudio nicht verfügbar: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation>Die Funktion %1(%2) wurde für die Sprache %3 erstellt, jedoch ist das Plugin, welches diese Sprache unterstützt, derzeit nicht geladen.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="426"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation>Ungültiges Muster für die regulären Ausdrücke: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="478"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation>Datei %1 kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="500"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation>Datei %1 kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="520"/>
       <source>Error while writting to file %1: %2</source>
       <translation>Fehler beim Schreiben in Datei %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="538"/>
       <source>Unsupported scripting language: %1</source>
       <translation>Nicht unterstützte Skriptsprache: %1</translation>
     </message>
@@ -510,33 +540,33 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="559"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Plugin %1 konnte nicht geladen werden, weil ein Konflikt besteht mit Plugin %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="570"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="572"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Plugin %1 konnte nicht geladen werden, da dessen Abhängigkeiten nicht geladen worden sind: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="581"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Plugin %1 konnte nicht geladen. Problembeschreibung: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="595"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="597"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Plugin %1 konnte wegen eines Fehlers bei der Initialisierung nicht geladen werden.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="756"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="758"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>Min: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="757"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="759"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>Max: %1</translation>
@@ -921,48 +951,48 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
       <translation>Tabelle für Spalte &apos;%1&apos; konnte nicht aufgelöst werden.</translation>
     </message>
     <message>
-      <location filename="../services/impl/configimpl.cpp" line="759"/>
+      <location filename="../services/impl/configimpl.cpp" line="859"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
       <translation>Die Konfigurationsdatei konnte nicht initialisiert werden. Alle Konfigurationsänderungen und der Abfrageverlauf gehen nach dem Neustart der Anwendung verloren. Datei kann nicht an folgenden Orten erstellt werden: %1.</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="351"/>
+      <location filename="../sqlitestudio.cpp" line="361"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
       <translation>Allgemeine Verwendung</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="352"/>
+      <location filename="../sqlitestudio.cpp" line="362"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
       <translation>Datenbankunterstützung</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="353"/>
+      <location filename="../sqlitestudio.cpp" line="363"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
       <translation>Codeformatierer</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="354"/>
+      <location filename="../sqlitestudio.cpp" line="364"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
       <translation>Skriptsprachen</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="356"/>
+      <location filename="../sqlitestudio.cpp" line="366"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation>Exportieren</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="357"/>
+      <location filename="../sqlitestudio.cpp" line="367"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation>Importieren</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="358"/>
+      <location filename="../sqlitestudio.cpp" line="368"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
       <translation>Tabellen füllen</translation>
@@ -1043,7 +1073,7 @@ The view will remain as it is.</source>
       <location filename="../db/queryexecutor.cpp" line="421"/>
       <location filename="../db/queryexecutor.cpp" line="691"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-      <translation type="unfinished">An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
+      <translation>Beim Ausführen der Count(*)-Anfrage ist ein Fehler aufgetreten, wodurch die Datenausgabe deaktiviert wird. Fehlerdetails der Datenbank: %1</translation>
     </message>
     <message>
       <location filename="../db/queryexecutor.cpp" line="610"/>
@@ -1159,7 +1189,7 @@ The view will remain as it is.</source>
   <context>
     <name>UpdateManager</name>
     <message>
-      <location filename="../services/updatemanager.cpp" line="97"/>
+      <location filename="../services/updatemanager.cpp" line="99"/>
       <source>Could not check for updates (%1).</source>
       <translation>Konnte nicht auf Updates prüfen (%1).</translation>
     </message>

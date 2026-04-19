@@ -6,6 +6,7 @@
 #include "services/pluginmanager.h"
 #include "multieditor/multieditorwidgetplugin.h"
 #include "multieditor/multieditorwidget.h"
+#include "services/config.h"
 #include <QDebug>
 
 BindParamsDialog::BindParamsDialog(QWidget *parent) :

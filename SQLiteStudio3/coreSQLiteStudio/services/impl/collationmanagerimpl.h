@@ -20,11 +20,11 @@ class API_EXPORT CollationManagerImpl : public CollationManager
         int evaluate(const QString& name, const QString& value1, const QString& value2);
         int evaluateDefault(const QString& value1, const QString& value2);
         CollationPtr getCollation(const QString &name) const;
+        void loadFromConfig();
 
     private:
         void init();
         void storeInConfig();
-        void loadFromConfig();
         void refreshCollationsByKey();
         QString updateScriptingQtLang(const QString& lang) const;
 

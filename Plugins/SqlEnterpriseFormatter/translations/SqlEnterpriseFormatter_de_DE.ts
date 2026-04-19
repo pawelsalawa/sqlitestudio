@@ -8,7 +8,7 @@
         <location filename="../sqlenterpriseformatter.cpp" line="96"/>
         <source>name</source>
         <comment>example name wrapper</comment>
-        <translation type="unfinished">name</translation>
+        <translation>Name</translation>
     </message>
 </context>
 <context>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="58"/>
         <source>Line up keywords in multi-line queries</source>
-        <translation type="unfinished">Line up keywords in multi-line queries</translation>
+        <translation>Suchbegriffe in mehrzeiligen Abfragen aufteilen</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="68"/>
@@ -61,32 +61,32 @@
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="200"/>
         <source>Before opening parenthesis in expressions</source>
-        <translation type="unfinished">Before opening parenthesis in expressions</translation>
+        <translation>Vor geöffneten Klammern in Ausdrücken</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="210"/>
         <source>After opening parenthesis in expressions</source>
-        <translation type="unfinished">After opening parenthesis in expressions</translation>
+        <translation>Nach öffnenden Klammern in Ausdrücken</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="220"/>
         <source>Before closing parenthesis in expressions</source>
-        <translation type="unfinished">Before closing parenthesis in expressions</translation>
+        <translation>Vor schließenden Klammern in Ausdrücken</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="230"/>
         <source>After closing parenthesis in expressions</source>
-        <translation type="unfinished">After closing parenthesis in expressions</translation>
+        <translation>Nach schließenden Klammern in Ausdrücken</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="240"/>
         <source>After JOIN keywords in FROM clause</source>
-        <translation type="unfinished">After JOIN keywords in FROM clause</translation>
+        <translation>Nach JOIN-Schlüsselwörtern in FROM-Klausel</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="250"/>
         <source>Put each column constraint in CREATE TABLE into new line</source>
-        <translation type="unfinished">Put each column constraint in CREATE TABLE into new line</translation>
+        <translation>Jede Spaltenbeschränkung in CREATE TABLE in neue Zeile setzen</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="260"/>
@@ -127,47 +127,47 @@
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="412"/>
         <source>Before opening parenthesis</source>
-        <translation type="unfinished">Before opening parenthesis</translation>
+        <translation>Vor öffnenden Klammern</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="422"/>
         <source>After opening parenthesis</source>
-        <translation type="unfinished">After opening parenthesis</translation>
+        <translation>Nach öffnenden Klammern</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="432"/>
         <source>Before closing parenthesis</source>
-        <translation type="unfinished">Before closing parenthesis</translation>
+        <translation>Vor schließenden Klammern</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="442"/>
         <source>After closing parenthesis</source>
-        <translation type="unfinished">After closing parenthesis</translation>
+        <translation>Nach schließenden Klammern</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="452"/>
         <source>No space between SQL function name and opening parenthesis</source>
-        <translation type="unfinished">No space between SQL function name and opening parenthesis</translation>
+        <translation>Kein Leerzeichen zwischen SQL-Funktionsnamen und öffnender Klammer</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="462"/>
         <source>Before dot operator (in path to database object)</source>
-        <translation type="unfinished">Before dot operator (in path to database object)</translation>
+        <translation>Vor dem Punkt-Operator (im Pfad zum Datenbankobjekt)</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="472"/>
         <source>After dot operator (in path to database object)</source>
-        <translation type="unfinished">After dot operator (in path to database object)</translation>
+        <translation>Nach dem Punkt-Operator (im Pfad zum Datenbankobjekt)</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="482"/>
         <source>Before mathematical operator</source>
-        <translation type="unfinished">Before mathematical operator</translation>
+        <translation>Vor dem mathematischen Operator</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="492"/>
         <source>After mathematical operator</source>
-        <translation type="unfinished">After mathematical operator</translation>
+        <translation>Nach mathematischem Operator</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="502"/>
@@ -182,22 +182,22 @@
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="583"/>
         <source>Preferred name wrapper</source>
-        <translation type="unfinished">Preferred name wrapper</translation>
+        <translation>Bevorzugter Namen-Wrapper</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="600"/>
         <source>Always use name wrapping</source>
-        <translation type="unfinished">Always use name wrapping</translation>
+        <translation>Immer Namen-Wrapper verwenden</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="610"/>
         <source>Uppercase data type names</source>
-        <translation type="unfinished">Uppercase data type names</translation>
+        <translation>Datentypnamen in Großbuchstaben </translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="620"/>
         <source>Uppercase keywords</source>
-        <translation type="unfinished">Uppercase keywords</translation>
+        <translation>Schlüsselwörter in Großbuchstaben </translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="631"/>
@@ -207,17 +207,17 @@
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="637"/>
         <source>Preferred comment marker (where possible):</source>
-        <translation type="unfinished">Preferred comment marker (where possible):</translation>
+        <translation>Bevorzugte Markierung für Kommentare (sofern möglich):</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="654"/>
         <source>Move all comments to the line end</source>
-        <translation type="unfinished">Move all comments to the line end</translation>
+        <translation>Alle Kommentare an das Zeilenende verschieben</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="664"/>
         <source>Line up comments at the line end</source>
-        <translation type="unfinished">Line up comments at the line end</translation>
+        <translation>Kommentare am Zeilenende anordnen</translation>
     </message>
     <message>
         <location filename="../sqlenterpriseformatter.ui" line="695"/>

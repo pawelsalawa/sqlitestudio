@@ -175,6 +175,9 @@ set(PROJECT_HEADERS
     windows/tablestructuremodel.h
     windows/tablewindow.h
     windows/viewwindow.h
+    common/spinnowheelfilter.h
+    dialogs/settingsexportdialog.h
+    dialogs/settingsimportdialog.h
 )
 
 set(PROJECT_SOURCES
@@ -345,6 +348,9 @@ set(PROJECT_SOURCES
     windows/tablestructuremodel.cpp
     windows/tablewindow.cpp
     windows/viewwindow.cpp
+    common/spinnowheelfilter.cpp
+    dialogs/settingsexportdialog.cpp
+    dialogs/settingsimportdialog.cpp
 )
 qt_add_resources(PROJECT_SOURCES
     guiSQLiteStudio.qrc
@@ -406,10 +412,11 @@ qt_wrap_ui(PROJECT_SOURCES
     windows/sqliteextensioneditor.ui
     windows/tablewindow.ui
     windows/viewwindow.ui
+    dialogs/settingsexportdialog.ui
+    dialogs/settingsimportdialog.ui
 )
 
-add_library(guiSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES}
-    common/spinnowheelfilter.h common/spinnowheelfilter.cpp)
+add_library(guiSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 sqlitestudio_set_output_properties(guiSQLiteStudio)
 set_target_properties(guiSQLiteStudio PROPERTIES
     VERSION 1.0.0

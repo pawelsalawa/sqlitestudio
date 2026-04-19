@@ -34,8 +34,8 @@ class API_EXPORT ConfigImpl : public Config
         QVariant get(const QString& group, const QString& key, const QVariant& defaultValue);
         QHash<QString,QVariant> getAll();
 
-        bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options);
-        bool updateDb(const QString& name, const QString &newName, const QString& path, const QHash<QString, QVariant> &options);
+        bool addDb(const QString& name, const QString& path, const QVariantHash& options);
+        bool updateDb(const QString& name, const QString &newName, const QString& path, const QVariantHash& options);
         bool removeDb(const QString& name);
         bool isDbInConfig(const QString& name);
         QString getLastErrorString() const;
@@ -81,17 +81,16 @@ class API_EXPORT ConfigImpl : public Config
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
 
-        void addReportHistory(bool isFeatureRequest, const QString& title, const QString& url);
-        QList<ReportHistoryEntryPtr> getReportHistory();
-        void deleteReport(int id);
-        void clearReportHistory();
-
-        QList<QHash<QString, QVariant> > getScriptFunctions();
-        void setScriptFunctions(const QList<QHash<QString, QVariant> >& newFunctions);
+        QList<QVariantHash> getScriptFunctions();
+        void setScriptFunctions(const QList<QVariantHash>& newFunctions);
 
         void begin();
         void commit();
         void rollback();
+
+        void exportConfig(const QString& filePath, const ExportImportParams& params);
+        void importConfig(const QString& filePath, const ExportImportParams& params);
+        ExportImportParams getParamsForConfigImport(const QString& filePath, QString* errorMsg);
 
     private:
         struct ConfigDirCandidate
@@ -138,14 +137,20 @@ class API_EXPORT ConfigImpl : public Config
         void asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
         void asyncClearDdlHistory();
 
-        void asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url);
-        void asyncDeleteReport(int id);
-        void asyncClearReportHistory();
-
         void mergeMasterConfig();
         void updateConfigDb();
         bool tryToMigrateOldGlobalPath(const QString& oldPath, const QString& newPath);
         QString getLegacyConfigPath();
+
+        QVariant exportFunctions();
+        QVariant exportCollations();
+        QVariant exportSnippets();
+        QVariant exportExtensions();
+
+        void importFunctions(const QVariant& data, bool overwrite);
+        void importCollations(const QVariant& data, bool overwrite);
+        void importSnippets(const QVariant& data, bool overwrite);
+        void importExtensions(const QVariant& data, bool overwrite);
 
         static Config* instance;
         static qint64 sqlHistoryId;

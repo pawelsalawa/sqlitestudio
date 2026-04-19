@@ -42,6 +42,8 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
             ARG_DEL,
             ARG_MOVE_UP,
             ARG_MOVE_DOWN,
+            IMPORT,
+            EXPORT,
             HELP
         };
         Q_ENUM(Action)
@@ -127,6 +129,9 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         void applyFilter(const QString& value);
         void help();
         void changeFont(const QVariant& font);
+        void cfgFunctionListChanged();
+        void importFunctions();
+        void exportFunctions();
 };
 
 #endif // FUNCTIONSEDITOR_H
