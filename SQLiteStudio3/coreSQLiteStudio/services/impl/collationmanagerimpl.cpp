@@ -18,7 +18,6 @@ CollationFunctionInfoImpl collationFunctionInfo;
 
 CollationManagerImpl::CollationManagerImpl()
 {
-    init();
 }
 
 void CollationManagerImpl::setCollations(const QList<CollationManager::CollationPtr>& newCollations)

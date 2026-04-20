@@ -65,7 +65,6 @@ bool FunctionInfoImpl::getUndefinedArgs() const
 
 FunctionManagerImpl::FunctionManagerImpl()
 {
-    init();
 }
 
 void FunctionManagerImpl::setScriptFunctions(const QList<ScriptFunction*>& newFunctions)
