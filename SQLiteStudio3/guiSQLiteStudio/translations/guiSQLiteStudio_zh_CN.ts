@@ -480,22 +480,22 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="138"/>
       <source>This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite primary key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>此列是复合主键的一部分。复合约束在“结构”选项卡的底部进行配置。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="141"/>
       <source>Composite Primary Key</source>
-      <translation type="unfinished">Composite Primary Key</translation>
+      <translation>复合主键</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="161"/>
       <source>This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite foreign key. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>此列是复合外键的一部分。复合约束在“结构”选项卡的底部进行配置。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="164"/>
       <source>Composite Foreign Key</source>
-      <translation type="unfinished">Composite Foreign Key</translation>
+      <translation>复合外键</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="209"/>
@@ -557,12 +557,12 @@
     <message>
       <location filename="../dialogs/columndialog.ui" line="275"/>
       <source>This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</source>
-      <translation type="unfinished">This column is part of a composite unique constraint. Composite constraints are configured in the bottom part of Structure tab.</translation>
+      <translation>此列是复合唯一约束的一部分。复合约束在“结构”选项卡的底部进行配置。</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="278"/>
       <source>Composite Unique</source>
-      <translation type="unfinished">Composite Unique</translation>
+      <translation>复合型独特</translation>
     </message>
     <message>
       <location filename="../dialogs/columndialog.ui" line="345"/>
@@ -4577,12 +4577,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../mainwindow.cpp" line="352"/>
       <source>Export configuration</source>
-      <translation type="unfinished">Export configuration</translation>
+      <translation>导出配置</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="353"/>
       <source>Import configuration</source>
-      <translation type="unfinished">Import configuration</translation>
+      <translation>导入配置</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="455"/>
@@ -6143,44 +6143,44 @@ find next</source>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="14"/>
       <source>Export configuration</source>
-      <translation type="unfinished">Export configuration</translation>
+      <translation>导入配置</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="20"/>
       <location filename="../dialogs/settingsexportdialog.ui" line="32"/>
       <location filename="../dialogs/settingsexportdialog.cpp" line="24"/>
       <source>Output JSON file</source>
-      <translation type="unfinished">Output JSON file</translation>
+      <translation>输出 JSON 文件</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="29"/>
       <source>JSON file (*.json);;All files (*)</source>
-      <translation type="unfinished">JSON file (*.json);;All files (*)</translation>
+      <translation>JSON 文件 (*.json)；所有文件 (*)</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="45"/>
       <source>What to export?</source>
-      <translation type="unfinished">What to export?</translation>
+      <translation>导出什么？</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="51"/>
       <source>User-defined SQL functions</source>
-      <translation type="unfinished">User-defined SQL functions</translation>
+      <translation>用户自定义 SQL 函数</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="65"/>
       <source>User-defined collation sequences</source>
-      <translation type="unfinished">User-defined collation sequences</translation>
+      <translation>用户自定义排序序列</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="79"/>
       <source>User-defined code snippets</source>
-      <translation type="unfinished">User-defined code snippets</translation>
+      <translation>用户自定义代码片段</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsexportdialog.ui" line="93"/>
       <source>Configured SQLite extensions</source>
-      <translation type="unfinished">Configured SQLite extensions</translation>
+      <translation>已配置的 SQLite 扩展</translation>
     </message>
   </context>
   <context>
@@ -6188,7 +6188,7 @@ find next</source>
     <message>
       <location filename="../dialogs/settingsimportdialog.ui" line="14"/>
       <source>Import configuration</source>
-      <translation type="unfinished">Import configuration</translation>
+      <translation>导入配置</translation>
     </message>
     <message>
       <location filename="../dialogs/settingsimportdialog.ui" line="20"/>
