@@ -28,6 +28,7 @@
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QSpinBox>
 #include <QTimer>
 
 CFG_KEYS_DEFINE(DataView)
@@ -51,8 +52,6 @@ void DataView::init(SqlQueryModel* model)
     rowCountLabel = new QLabel();
     selSumLabel = new QLabel();
     selSumLabel->setToolTip(tr("Sum of values in selected cells", "data view"));
-    formViewRowCountLabel = new QLabel();
-    formViewCurrentRowLabel = new QLabel();
 
     initWidgetCover();
     initFormView();
@@ -101,6 +100,11 @@ void DataView::initSlots()
 
 void DataView::initFormView()
 {
+    formViewRowCountLabel = new QLabel();
+    formViewCurrentRowLabel = new QLabel(tr("Row:"));
+    formViewCurrentRowSpin = new QSpinBox();
+    connect(formViewCurrentRowSpin, SIGNAL(editingFinished()), this, SLOT(goToVisualFormRow()));
+
     formView = new FormView();
     formWidget->layout()->addWidget(formView);
     formView->setModel(model);
@@ -296,7 +300,8 @@ void DataView::createActions()
     formToolBar->addSeparator();
     actionMap[FORM_TOTAL_ROWS] = formToolBar->addWidget(formViewRowCountLabel);
     formToolBar->addSeparator();
-    actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowLabel);
+    formToolBar->addWidget(formViewCurrentRowLabel);
+    actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowSpin);
 
     noConfigShortcutActions << FORM_TOTAL_ROWS;
 
@@ -474,13 +479,7 @@ void DataView::goToFormRow(IndexModifier idxMod)
             break;
     }
 
-    QModelIndex newRowIdx = model->index(row, 0);
-    if (!newRowIdx.isValid())
-        return;
-
-    gridView->setCurrentIndex(newRowIdx);
-    formView->updateFromGrid();
-    updateCurrentFormViewRow();
+    goToFormRow(row);
 }
 
 void DataView::setNavigationState(bool enabled)
@@ -519,8 +518,18 @@ void DataView::updateFormNavigationState()
     bool nextRowAvailable = row < lastRow;
     bool prevRowAvailable = row > 0;
 
-    formView->getAction(FormView::NEXT_ROW)->setEnabled(navigationState && nextRowAvailable);
+    int page = model->getCurrentPage();
+    int rowsPerPage = model->getRowsPerPage();
+    int minRow = page * rowsPerPage + 1;
+    int maxRow = qMin((page + 1) * rowsPerPage, (minRow - 1 + model->rowCount()));
+    formViewCurrentRowSpin->setMinimum(minRow);
+    formViewCurrentRowSpin->setMaximum(maxRow);
+    formViewCurrentRowSpin->setToolTip(tr("Rows available on current page: %1 - %2", "data view").arg(minRow).arg(maxRow));
+
+    formView->getAction(FormView::FIRST_ROW)->setEnabled(navigationState && prevRowAvailable);
     formView->getAction(FormView::PREV_ROW)->setEnabled(navigationState && prevRowAvailable);
+    formView->getAction(FormView::NEXT_ROW)->setEnabled(navigationState && nextRowAvailable);
+    formView->getAction(FormView::LAST_ROW)->setEnabled(navigationState && nextRowAvailable);
 
     // We changed row in form view, this one might be already modified and be capable for commit/rollback
     updateFormCommitRollbackActions();
@@ -881,6 +890,23 @@ void DataView::recreatePinnedPerColumnFilters()
     updatePinnedPerColumnWidgetGeometry();
 }
 
+void DataView::goToVisualFormRow()
+{
+    goToFormRow(formViewCurrentRowSpin->value() - 1); // visual row index (from spin box) is higher by 1
+}
+
+void DataView::goToFormRow(int row)
+{
+    QModelIndex newRowIdx = model->index(row, 0);
+    if (!newRowIdx.isValid())
+        return;
+
+    gridView->setCurrentIndex(newRowIdx);
+    formView->updateFromGrid();
+    updateCurrentFormViewRow();
+
+}
+
 void DataView::updateCommitRollbackActions(bool enabled)
 {
     gridView->getAction(SqlQueryView::COMMIT)->setEnabled(enabled);
@@ -927,7 +953,7 @@ void DataView::updatePageEdit()
     QString text = QString::number(page);
     int totalPages = model->getTotalPages();
     pageEdit->setText(text);
-    pageEdit->setToolTip(QObject::tr("Total pages available: %1").arg(totalPages));
+    pageEdit->setToolTip(tr("Total pages available: %1").arg(totalPages));
     pageValidator->setTop(totalPages);
     pageValidator->setDefaultValue(page);
     updateCurrentFormViewRow();
@@ -937,7 +963,7 @@ void DataView::updateResultsCount(int resultsCount)
 {
     if (resultsCount >= 0)
     {
-        QString msg = QObject::tr("Total rows loaded: %1").arg(resultsCount);
+        QString msg = tr("Total rows loaded: %1").arg(resultsCount);
         rowCountLabel->setText(msg);
         formViewRowCountLabel->setText(msg);
         rowCountLabel->setToolTip(QString());
@@ -960,8 +986,10 @@ void DataView::updateCurrentFormViewRow()
 {
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
     int page = gridView->getModel()->getCurrentPage();
-    int row = rowsPerPage * page + 1 + gridView->getCurrentIndex().row();
-    formViewCurrentRowLabel->setText(tr("Row: %1").arg(row));
+    int row = rowsPerPage * page + gridView->getCurrentIndex().row();
+
+    QSignalBlocker signalBlocker(formViewCurrentRowSpin);
+    formViewCurrentRowSpin->setValue(row + 1); // visual row index (from spin box) is higher by 1
 }
 
 void DataView::setFormViewEnabled(bool enabled)

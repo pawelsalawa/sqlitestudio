@@ -27,6 +27,8 @@ class QLineEdit;
 #define LAST_DATA_PAGE_KEY_SEQ  Qt::CTRL | Qt::Key_End
 #endif
 
+
+class QSpinBox;
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    QKeySequence::Refresh,                 QObject::tr("Refresh data"))
      CFG_KEY_ENTRY(FIND_IN_DATA,    QKeySequence::Find,                    QObject::tr("Find in data"))
@@ -154,6 +156,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void createContents();
         void createFilterPanel();
         void goToFormRow(IndexModifier idxMod);
+        void goToFormRow(int row);
         void setNavigationState(bool enabled);
         void updateNavigationState();
         void updateGridNavigationState();
@@ -189,6 +192,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QLabel* selSumLabel = nullptr;
         QLabel* formViewRowCountLabel = nullptr;
         QLabel* formViewCurrentRowLabel = nullptr;
+        QSpinBox* formViewCurrentRowSpin = nullptr;
         ExtLineEdit* pageEdit = nullptr;
         IntValidator* pageValidator = nullptr;
         bool navigationState = false;
@@ -260,6 +264,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void updatePinnedPerColumnWidgetGeometry();
         void updatePinnedFilterSizes(int logicalIndex, int oldSize, int newSize);
         void recreatePinnedPerColumnFilters();
+        void goToVisualFormRow();
 };
 
 size_t qHash(DataView::ActionGroup action);

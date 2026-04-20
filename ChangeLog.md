@@ -42,6 +42,7 @@
 - ADDED: #4502 When selecting multiple cells, sum of all numerical values will be shown in the toolbar, next to numer of loaded rows.
 - ADDED: #5345 Column data types are now displayed as labels for column on database list. It can be switched off in configuration.
 - ADDED: #4724 Columns in Data Grid View can now be pinned from header's context menu.
+- ADDED: #4623 Form View row number is now an editable input, allowing to jump to arbitraty row number within currently loaded page of data.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).

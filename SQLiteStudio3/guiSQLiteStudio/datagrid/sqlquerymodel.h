@@ -162,6 +162,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         int getCurrentPage(bool includeOneBeingLoaded = false) const;
         void gotoPage(int newPage);
+        int getRowsPerPage() const;
         bool canReload();
         virtual bool supportsModifyingQueriesInMenu() const;
         Qt::Alignment findValueAlignment(const QVariant& value, SqlQueryModelColumn* column);
@@ -401,7 +402,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void recalculateRowsAndPages(int rowsDelta);
         int getInsertRowIndex();
         void notifyItemEditionEnded(const QModelIndex& idx);
-        int getRowsPerPage() const;
         bool isEmptyQuery() const;
         void restoreFocusedCell();
 
