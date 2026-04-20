@@ -159,6 +159,9 @@ void DataView::createContents()
     gridView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     gridWidget->layout()->addWidget(gridView);
 
+    connect(gridView, &SqlQueryView::pinnedColumnsChanged, this, &DataView::recreatePinnedPerColumnFilters);
+    connect(gridView, &SqlQueryView::pinnedSectionResized, this, &DataView::updatePinnedFilterSizes);
+
     updateTabHotKeys();
 }
 
@@ -188,6 +191,16 @@ void DataView::createFilterPanel()
     perColumnWidget->setBackgroundRole(QPalette::Window);
     perColumnFilterArea->setWidget(perColumnWidget);
     perColumnAreaParent->layout()->addWidget(perColumnFilterArea);
+
+    perColumnPinnedWidget = new QWidget(perColumnFilterArea);
+    perColumnPinnedWidget->setLayout(new QHBoxLayout());
+    perColumnPinnedWidget->layout()->setSizeConstraint(QLayout::SetFixedSize);
+    perColumnPinnedWidget->layout()->setSpacing(0);
+    perColumnPinnedWidget->layout()->setContentsMargins(0, 0, 0, 0);
+    perColumnPinnedWidget->setAutoFillBackground(true);
+    perColumnPinnedWidget->setBackgroundRole(QPalette::Window);
+    perColumnFilterArea->viewport()->stackUnder(perColumnPinnedWidget);
+    updatePinnedPerColumnWidgetGeometry();
 
     filterRightSpacer = new QWidget();
     perColumnAreaParent->layout()->addWidget(filterRightSpacer);
@@ -656,6 +669,8 @@ void DataView::resizeFilters()
     {
         int newSize = gridView->columnWidth(section);
         filterInputs[section]->setFixedWidth(newSize);
+        if (pinnedFilterInputs.contains(section))
+            pinnedFilterInputs[section]->setFixedWidth(newSize);
     }
 }
 
@@ -676,6 +691,8 @@ void DataView::resizeFilter(int section, int oldSize, int newSize)
     }
 
     filterInputs[section]->setFixedWidth(newSize);
+    if (pinnedFilterInputs.contains(section))
+        pinnedFilterInputs[section]->setFixedWidth(newSize);
 }
 
 void DataView::togglePerColumnFiltering()
@@ -683,7 +700,8 @@ void DataView::togglePerColumnFiltering()
     bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
     CFG_UI.General.ShowPerColumnFilters.set(enable);
 
-    if (enable && !filterEdit->text().isEmpty())
+    bool needsReload = enable && !filterEdit->text().isEmpty();
+    if (needsReload)
         filterEdit->clear();
 
     filterEdit->setEnabled(!enable);
@@ -694,7 +712,8 @@ void DataView::togglePerColumnFiltering()
     perColumnAreaParent->setVisible(enable);
 
     recreateFilterInputs();
-    applyFilter();
+    if (needsReload)
+        applyFilter();
 }
 
 void DataView::findInData()
@@ -777,6 +796,89 @@ void DataView::updateSelectionSum()
         actionMap[GRID_SELECTED_SUM_SEP]->setVisible(true);
         actionMap[GRID_SELECTED_SUM]->setVisible(true);
     });
+}
+
+void DataView::updatePinnedPerColumnWidgetGeometry()
+{
+    if (!model || !model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (filterInputs.isEmpty())
+        return;
+
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    QHeaderView* header = gridView->horizontalHeader();
+    int totalWd = 0;
+
+    for (int logical = 0; logical < header->count(); ++logical)
+        if (pinnedColumns.contains(logical))
+            totalWd += gridView->columnWidth(logical);
+
+    perColumnPinnedWidget->setGeometry(0, 0, totalWd, perColumnWidget->height());
+}
+
+void DataView::updatePinnedFilterSizes(int logicalIndex, int oldSize, int newSize)
+{
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    if (!pinnedColumns.contains(logicalIndex) || !pinnedFilterInputs.contains(logicalIndex))
+        return;
+
+    gridView->setColumnWidth(logicalIndex, newSize);
+    gridView->updatePinnedViewGeometry();
+    pinnedFilterInputs[logicalIndex]->setFixedWidth(newSize);
+    updatePinnedPerColumnWidgetGeometry();
+}
+
+void DataView::recreatePinnedPerColumnFilters()
+{
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (filterInputs.isEmpty())
+        return;
+
+    for (auto& edit : pinnedFilterInputs.values())
+        delete edit;
+
+    pinnedFilterInputs.clear();
+
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    for (int section = 0; section < filterInputs.size(); section++)
+    {
+        if (!pinnedColumns.contains(section))
+            continue;
+
+        ExtLineEdit* edit = new ExtLineEdit(perColumnPinnedWidget);
+        edit->setPlaceholderText(filterInputs[section]->placeholderText());
+        edit->setClearButtonEnabled(true);
+        edit->setFixedWidth(gridView->columnWidth(section));
+        edit->setToolTip(filterInputs[section]->toolTip());
+        QString currValue = filterInputs[section]->text();
+        if (!currValue.isEmpty())
+            edit->setText(currValue);
+
+        connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(valueErased()), this, SLOT(applyFilter()));
+        connect(edit, &QLineEdit::textChanged, filterInputs[section], &QLineEdit::setText);
+        pinnedFilterInputs[section] = edit;
+
+        pinnedColumns.indexOf(section);
+        perColumnPinnedWidget->layout()->addWidget(edit);
+    }
+
+    // Reorder the main, scrollable fileters widget, so pinned filters are before non-pinned ones, just like columns in the view
+    QHBoxLayout* filterLayout = static_cast<QHBoxLayout*>(perColumnWidget->layout());
+    for (int section = 0; section < filterInputs.size(); section++)
+        filterLayout->removeWidget(filterInputs[section]);
+
+    for (int section : pinnedColumns)
+        filterLayout->addWidget(filterInputs[section]);
+
+    for (int section = 0; section < filterInputs.size(); section++)
+        if (!pinnedColumns.contains(section))
+            filterLayout->addWidget(filterInputs[section]);
+
+    updatePinnedPerColumnWidgetGeometry();
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
@@ -1186,6 +1288,7 @@ void DataView::recreateFilterInputs()
         perColumnAreaParent->setFixedHeight(hg);
     }
 
+    recreatePinnedPerColumnFilters();
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     syncFilterScrollPosition();

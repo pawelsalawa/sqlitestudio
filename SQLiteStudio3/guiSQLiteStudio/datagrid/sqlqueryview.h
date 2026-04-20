@@ -87,9 +87,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QList<SqlQueryItem*> getSelectedItems();
         SqlQueryItem* getCurrentItem();
         SqlQueryModel* getModel();
-        void setModel(QAbstractItemModel *model);
+        void setModel(QAbstractItemModel *model) override;
         SqlQueryItem *itemAt(const QPoint& pos);
-        QToolBar* getToolBar(int toolbar) const;
+        QToolBar* getToolBar(int toolbar) const override;
         void addAdditionalAction(QAction* action);
         void addHeaderAdditionalAction(QAction* action);
         QModelIndex getCurrentIndex() const;
@@ -103,12 +103,16 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QSize getColumnCustomDelegateCellSize(int colIdx);
         QVariant getCustomDelegatesForSession() const;
         void restoreCustomDelegatesFromSession(const QVariant& sessionValue);
+        void scrollTo(const QModelIndex & index, ScrollHint hint = EnsureVisible) override;
+        QList<int> getPinnedColumns() const;
 
         static void staticInit();
 
     protected:
-        void scrollContentsBy(int dx, int dy);
-        void keyPressEvent(QKeyEvent *e);
+        void scrollContentsBy(int dx, int dy) override;
+        void keyPressEvent(QKeyEvent *e) override;
+        void resizeEvent(QResizeEvent *event) override;
+        QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override;
 
     private:
         class Header : public QHeaderView
@@ -129,9 +133,10 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         };
 
         void init();
+        void initPinnedView(QAbstractItemModel* model);
         void setupWidgetCover();
-        void createActions();
-        void setupDefShortcuts();
+        void createActions() override;
+        void setupDefShortcuts() override;
         void refreshShortcuts();
         void setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
         void setupHeaderMenu();
@@ -143,11 +148,13 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void copy(bool withHeaders);
         void changeFontSize(int factor);
         void headerMiddleClicked(int colIdx);
+        void setItemDelegateForColumn(int column, QAbstractItemDelegate *delegate);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
         constexpr static const int minHeaderWidth = 15;
 
         SqlQueryItemDelegate* itemDelegate = nullptr;
+        SqlQueryItemDelegate* pinnedViewItemDelegate = nullptr;
         QMenu* contextMenu = nullptr;
         QMenu* headerContextMenu = nullptr;
         QMenu* referencedTablesMenu = nullptr;
@@ -162,6 +169,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         int beforeExecutionVerticalPosition = -1;
         QHash<int, CellRendererPlugin*> customColumnDelegates;
         QHash<QString, CellRendererPlugin*> manualCustomDelegates;
+        QTableView* pinnedView = nullptr;
+        QList<int> pinnedColumns;
 
     private slots:
         void handlePluginLoaded(Plugin* plugin, PluginType* pluginType);
@@ -186,8 +195,13 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void incrFontSize();
         void decrFontSize();
         void invertSelection();
+        void syncPinnedSectionHeight(int logicalIndex, int oldSize, int newSize);
+        void updatePinnedViewColumns();
+        void updatePinnedViewRowSizes();
 
     public slots:
+        void syncPinnedSectionWidth(int logicalIndex, int oldSize, int newSize);
+        void updatePinnedViewGeometry();
         void executionStarted();
         void executionEnded();
         void setCurrentRow(int row);
@@ -215,6 +229,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void scrolledBy(int dx, int dy);
         void headerMiddleButtonClicked(int section);
         void newFontMetricsApplied();
+        void pinnedColumnsChanged();
+        void pinnedSectionResized(int logicalIndex, int oldSize, int newSize);
 };
 
 GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);

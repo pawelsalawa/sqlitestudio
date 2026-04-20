@@ -13,7 +13,6 @@
 
 SqliteExtensionManagerImpl::SqliteExtensionManagerImpl()
 {
-    init();
 }
 
 void SqliteExtensionManagerImpl::setExtensions(const QList<SqliteExtensionManager::ExtensionPtr>& newExtensions)
