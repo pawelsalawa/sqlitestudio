@@ -104,6 +104,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QVariant getCustomDelegatesForSession() const;
         void restoreCustomDelegatesFromSession(const QVariant& sessionValue);
         void scrollTo(const QModelIndex & index, ScrollHint hint = EnsureVisible) override;
+        QList<int> getPinnedColumns() const;
 
         static void staticInit();
 
@@ -147,7 +148,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void copy(bool withHeaders);
         void changeFontSize(int factor);
         void headerMiddleClicked(int colIdx);
-        void updatePinnedViewGeometry();
+        void setItemDelegateForColumn(int column, QAbstractItemDelegate *delegate);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
         constexpr static const int minHeaderWidth = 15;
@@ -194,12 +195,13 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void incrFontSize();
         void decrFontSize();
         void invertSelection();
-        void syncPinnedSectionWidth(int logicalIndex, int oldSize, int newSize);
         void syncPinnedSectionHeight(int logicalIndex, int oldSize, int newSize);
         void updatePinnedViewColumns();
         void updatePinnedViewRowSizes();
 
     public slots:
+        void syncPinnedSectionWidth(int logicalIndex, int oldSize, int newSize);
+        void updatePinnedViewGeometry();
         void executionStarted();
         void executionEnded();
         void setCurrentRow(int row);
@@ -227,6 +229,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void scrolledBy(int dx, int dy);
         void headerMiddleButtonClicked(int section);
         void newFontMetricsApplied();
+        void pinnedColumnsChanged();
+        void pinnedSectionResized(int logicalIndex, int oldSize, int newSize);
 };
 
 GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);

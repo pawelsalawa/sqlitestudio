@@ -182,6 +182,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QWidget* formWidget = nullptr;
         QScrollArea* perColumnFilterArea = nullptr;
         QWidget* perColumnWidget = nullptr;
+        QWidget* perColumnPinnedWidget = nullptr;
         QWidget* perColumnAreaParent = nullptr;
         ExtLineEdit* filterEdit = nullptr;
         QLabel* rowCountLabel = nullptr;
@@ -197,6 +198,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool uncommittedForm = false;
         WidgetCover* widgetCover = nullptr;
         QList<ExtLineEdit*> filterInputs;
+        QHash<int, ExtLineEdit*> pinnedFilterInputs;
         QStringList lastColumnFilterValues;
         QString lastSingleFilterValue;
         QWidget* filterLeftSpacer = nullptr;
@@ -255,6 +257,9 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void findInData();
         void updateTabHotKeys();
         void updateSelectionSum();
+        void updatePinnedPerColumnWidgetGeometry();
+        void updatePinnedFilterSizes(int logicalIndex, int oldSize, int newSize);
+        void recreatePinnedPerColumnFilters();
 };
 
 size_t qHash(DataView::ActionGroup action);

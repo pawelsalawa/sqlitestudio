@@ -124,6 +124,7 @@ void SqlQueryView::initPinnedView(QAbstractItemModel* model)
     pinnedView->setVerticalScrollMode(ScrollPerPixel);
 
     connect(horizontalHeader(), &QHeaderView::sectionResized, this, &SqlQueryView::syncPinnedSectionWidth);
+    connect(pinnedView->horizontalHeader(), &QHeaderView::sectionResized, this, &SqlQueryView::pinnedSectionResized);
     connect(verticalHeader(), &QHeaderView::sectionResized, this, &SqlQueryView::syncPinnedSectionHeight);
 
     connect(pinnedView->verticalScrollBar(), &QAbstractSlider::valueChanged, verticalScrollBar(), &QAbstractSlider::setValue);
@@ -511,8 +512,8 @@ void SqlQueryView::syncPinnedSectionWidth(int logicalIndex, int oldSize, int new
 {
     if (pinnedColumns.contains(logicalIndex))
     {
-          pinnedView->setColumnWidth(logicalIndex, newSize);
-          updatePinnedViewGeometry();
+        pinnedView->setColumnWidth(logicalIndex, newSize);
+        updatePinnedViewGeometry();
     }
 }
 
@@ -845,6 +846,12 @@ void SqlQueryView::headerMiddleClicked(int colIdx)
     emit headerMiddleButtonClicked(colIdx);
 }
 
+void SqlQueryView::setItemDelegateForColumn(int column, QAbstractItemDelegate* delegate)
+{
+    QTableView::setItemDelegateForColumn(column, delegate);
+    pinnedView->setItemDelegateForColumn(column, delegate);
+}
+
 void SqlQueryView::updatePinnedViewGeometry()
 {
     QHeaderView* header = horizontalHeader();
@@ -859,6 +866,11 @@ void SqlQueryView::updatePinnedViewGeometry()
                 totalWd,
                 viewport()->height()+horizontalHeader()->height()
                 );
+}
+
+QList<int> SqlQueryView::getPinnedColumns() const
+{
+    return pinnedColumns;
 }
 
 void SqlQueryView::updatePinnedViewColumns()
@@ -1148,6 +1160,7 @@ void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
         ::sSort(pinnedColumns);
         updatePinnedViewColumns();
     });
+    connect(pinAction, &QAction::triggered, this, &SqlQueryView::pinnedColumnsChanged);
     headerContextMenu->addAction(pinAction);
 
     if (headerAdditionalActions.size() > 0)
