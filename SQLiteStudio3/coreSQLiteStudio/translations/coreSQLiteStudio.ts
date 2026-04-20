@@ -955,43 +955,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="361"/>
+        <location filename="../sqlitestudio.cpp" line="363"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="362"/>
+        <location filename="../sqlitestudio.cpp" line="364"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="363"/>
+        <location filename="../sqlitestudio.cpp" line="365"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="364"/>
+        <location filename="../sqlitestudio.cpp" line="366"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="366"/>
+        <location filename="../sqlitestudio.cpp" line="368"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="367"/>
+        <location filename="../sqlitestudio.cpp" line="369"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="368"/>
+        <location filename="../sqlitestudio.cpp" line="370"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
