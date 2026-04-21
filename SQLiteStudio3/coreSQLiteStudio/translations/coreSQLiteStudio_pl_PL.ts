@@ -200,35 +200,35 @@
 <context>
     <name>DbManagerImpl</name>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
         <source>Could not add database %1: %2</source>
         <translation>Nie udało się dodać bazę danych %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="149"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="148"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>Nie udało się zaktualizować baza danych %1 z powodu błędu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="385"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="414"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Plik bazy danych nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="387"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="416"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="632"/>
         <source>No supporting plugin loaded.</source>
         <translation>Nie załadowano obsługującej wtyczki.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="550"/>
         <source>Database could not be initialized.</source>
         <translation>Nie udało się zainicjalizować bazy danych.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="560"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Nie znaleziono odpowiedniej wtyczki sterownika.</translation>
     </message>
@@ -423,48 +423,48 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
         <source>Could not create scripting context, probably the plugin is not configured properly</source>
         <translation>Nie można utworzyć kontekstu skryptowego, prawdopodobnie wtyczka nie jest poprawnie skonfigurowana</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="281"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>Niepoprawna liczba argumentów do funkcji &apos;%1&apos;. Oczekiwano %2, a jest %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Nie znaleziono funkcji zarejestrowanej w SQLiteStudio: %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>Funkcja %1 (%2) została zarejestrowana dla języka %3, ale wtyczka obsługująca ten język nie jest aktualnie załadowana.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="426"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Niepoprawne wyrażenie regularne: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="478"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Nie udało się otworzyć pliku %1 do odczytu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="500"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Nie udało się otworzyć pliku %2 do zapisu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="520"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Błąd podczas zapisu do pliku %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="538"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Nieobsługiwany język skryptowy: %1</translation>
     </message>

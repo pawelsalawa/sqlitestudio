@@ -2059,175 +2059,191 @@
 <context>
     <name>DataView</name>
     <message>
-        <location filename="../dataview.cpp" line="120"/>
+        <location filename="../dataview.cpp" line="124"/>
         <source>Filter data</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="129"/>
+        <location filename="../dataview.cpp" line="133"/>
         <source>Grid view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="130"/>
+        <location filename="../dataview.cpp" line="134"/>
         <source>Form view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="223"/>
+        <location filename="../dataview.cpp" line="240"/>
         <source>Find in data</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="224"/>
+        <location filename="../dataview.cpp" line="241"/>
         <source>Refresh table data</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="241"/>
+        <location filename="../dataview.cpp" line="258"/>
         <source>First page</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="242"/>
+        <location filename="../dataview.cpp" line="259"/>
         <source>Previous page</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="244"/>
+        <location filename="../dataview.cpp" line="261"/>
         <source>Next page</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="245"/>
+        <location filename="../dataview.cpp" line="262"/>
         <source>Last page</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="257"/>
+        <location filename="../dataview.cpp" line="274"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="258"/>
+        <location filename="../dataview.cpp" line="275"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="259"/>
+        <location filename="../dataview.cpp" line="276"/>
         <source>Show grid view of results</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="260"/>
+        <location filename="../dataview.cpp" line="277"/>
         <source>Show form view of results</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="776"/>
+        <location filename="../dataview.cpp" line="527"/>
+        <source>Rows available on current page: %1 - %2</source>
+        <comment>data view</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="804"/>
         <source>Sum: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1196"/>
+        <location filename="../dataview.cpp" line="956"/>
+        <source>Total pages available: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="966"/>
+        <source>Total rows loaded: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="1327"/>
         <source>Filter by text (if contains)</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1197"/>
+        <location filename="../dataview.cpp" line="1328"/>
         <source>Filter strictly by text (if equals)</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="367"/>
+        <location filename="../dataview.cpp" line="385"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="53"/>
+        <location filename="../dataview.cpp" line="54"/>
         <source>Sum of values in selected cells</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="368"/>
+        <location filename="../dataview.cpp" line="104"/>
+        <source>Row:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="386"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="393"/>
+        <location filename="../dataview.cpp" line="411"/>
         <source>Place new rows above selected row</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="394"/>
+        <location filename="../dataview.cpp" line="412"/>
         <source>Place new rows below selected row</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="395"/>
+        <location filename="../dataview.cpp" line="413"/>
         <source>Place new rows at the end of the data view</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="851"/>
+        <location filename="../dataview.cpp" line="979"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="862"/>
-        <source>Row: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dataview.cpp" line="1164"/>
+        <location filename="../dataview.cpp" line="1294"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1167"/>
+        <location filename="../dataview.cpp" line="1297"/>
         <source>Hit Enter key or press &quot;Apply filter&quot; button on toolbar to apply new value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1198"/>
+        <location filename="../dataview.cpp" line="1329"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1199"/>
+        <location filename="../dataview.cpp" line="1330"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1218"/>
+        <location filename="../dataview.cpp" line="1349"/>
         <source>Show filter inputs per column</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="1222"/>
+        <location filename="../dataview.cpp" line="1353"/>
         <source>Apply filter</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
@@ -5348,37 +5364,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="828"/>
-        <source>Total pages available: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dataview.cpp" line="838"/>
-        <source>Total rows loaded: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dataview.h" line="30"/>
+        <location filename="../dataview.h" line="32"/>
         <source>Data view (both grid and form)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="31"/>
+        <location filename="../dataview.h" line="33"/>
         <source>Refresh data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="32"/>
+        <location filename="../dataview.h" line="34"/>
         <source>Find in data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="33"/>
+        <location filename="../dataview.h" line="35"/>
         <source>Switch to grid view of the data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="34"/>
+        <location filename="../dataview.h" line="36"/>
         <source>Switch to form view of the data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5497,25 +5503,25 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="35"/>
+        <location filename="../dataview.h" line="37"/>
         <location filename="../formview.h" line="18"/>
         <source>Go to first row on current page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="37"/>
+        <location filename="../dataview.h" line="39"/>
         <location filename="../formview.h" line="19"/>
         <source>Go to next row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="36"/>
+        <location filename="../dataview.h" line="38"/>
         <location filename="../formview.h" line="20"/>
         <source>Go to previous row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dataview.h" line="38"/>
+        <location filename="../dataview.h" line="40"/>
         <location filename="../formview.h" line="21"/>
         <source>Go to last row on current page</source>
         <translation type="unfinished"></translation>
@@ -6705,210 +6711,215 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="97"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="147"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="98"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="148"/>
         <source>Copy with headers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="99"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="149"/>
         <source>Copy as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="100"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="150"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="101"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="151"/>
         <source>Paste as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="102"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="152"/>
         <source>Set NULL value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="103"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="153"/>
         <source>Erase value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="104"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="154"/>
         <source>Reset value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="106"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="156"/>
         <source>Commit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="107"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="157"/>
         <source>Rollback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="108"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="158"/>
         <source>Commit selected cells</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="109"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="159"/>
         <source>Rollback selected cells</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="110"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="160"/>
         <source>Edit current cell inline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="115"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="165"/>
         <source>Define columns to sort by</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="116"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="166"/>
         <source>Remove custom sorting (Middle click)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="117"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="167"/>
         <source>Insert row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="118"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="168"/>
         <source>Insert multiple rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="119"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="169"/>
         <source>Delete selected row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="120"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="170"/>
         <source>Adjust height of rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="124"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="174"/>
         <source>Increase font size</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="125"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="175"/>
         <source>Decrease font size</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="126"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="176"/>
         <source>Invert selection</source>
         <comment>data view</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="176"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="226"/>
         <source>Edit value in editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="176"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="226"/>
         <source>Show value in a viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="202"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="252"/>
         <source>Generate query for selected cells</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="542"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="611"/>
         <source>No items selected to paste clipboard contents to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="548"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="617"/>
         <source>Cannot paste data. Details: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="548"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="617"/>
         <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="618"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="687"/>
         <source>Cannot paste to a cell. Details: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="618"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="687"/>
         <source>The row is marked for deletion.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="629"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="698"/>
         <source>Cannot paste to column %1. Details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="647"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="716"/>
         <source>Go to referenced row in table &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="659"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="728"/>
         <source>table &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="682"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="751"/>
         <source>Referenced row (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1007"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1150"/>
+        <source>Pin column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1177"/>
         <source>Column renderer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1014"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1184"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1165"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1335"/>
         <source>Trim pasted text?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1166"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1336"/>
         <source>The pasted text contains leading or trailing white space. Trim it automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1174"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1344"/>
         <source>Paste &quot;NULL&quot; as null value?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1175"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1345"/>
         <source>The pasted text contains &quot;NULL&quot; literals. Do you want to consider them as NULL values?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="1303"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="1473"/>
         <source>Edit value</source>
         <translation type="unfinished"></translation>
     </message>
