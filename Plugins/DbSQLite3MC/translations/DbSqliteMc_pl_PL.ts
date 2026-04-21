@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="pl" sourcelanguage="en">
-<context>
+  <context>
     <name>DbSqliteMc</name>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="42"/>
-        <source>Password (key)</source>
-        <translation>Hasło (klucz)</translation>
+      <location filename="../dbsqlitemc.cpp" line="42"/>
+      <source>Password (key)</source>
+      <translation>Hasło (klucz)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="43"/>
-        <source>Leave empty to create or connect to decrypted database.</source>
-        <translation>Pozostaw puste, aby utworzyć lub połączyć się z odszyfrowaną bazą danych.</translation>
+      <location filename="../dbsqlitemc.cpp" line="43"/>
+      <source>Leave empty to create or connect to decrypted database.</source>
+      <translation>Pozostaw puste, aby utworzyć lub połączyć się z odszyfrowaną bazą danych.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="44"/>
-        <source>Encryption password</source>
-        <translation>Hasło szyfrowania</translation>
+      <location filename="../dbsqlitemc.cpp" line="44"/>
+      <source>Encryption password</source>
+      <translation>Hasło szyfrowania</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="50"/>
-        <source>Cipher</source>
-        <translation>Szyfr</translation>
+      <location filename="../dbsqlitemc.cpp" line="50"/>
+      <source>Cipher</source>
+      <translation>Szyfr</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="51"/>
-        <source>Cipher determines encryption algorithm used to encrypt the database.</source>
-        <translation>Szyfr określa algorytm szyfrowania używany do szyfrowania bazy danych.</translation>
+      <location filename="../dbsqlitemc.cpp" line="51"/>
+      <source>Cipher determines encryption algorithm used to encrypt the database.</source>
+      <translation>Szyfr określa algorytm szyfrowania używany do szyfrowania bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="61"/>
-        <source>Cipher configuration (optional)</source>
-        <translation>Konfiguracja szyfru (opcjonalnie)</translation>
+      <location filename="../dbsqlitemc.cpp" line="61"/>
+      <source>Cipher configuration (optional)</source>
+      <translation>Konfiguracja szyfru (opcjonalnie)</translation>
     </message>
     <message>
-        <location filename="../dbsqlitemc.cpp" line="62"/>
-        <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
+      <location filename="../dbsqlitemc.cpp" line="62"/>
+      <source>PRAGMA statements to customize SQLite3 Multiple Ciphers configuration, such as KDF iterations, legacy mode, etc.
 They will be executed upon each opening of the database.
 See documentation for SQLite3 Multiple Ciphers for details.</source>
-        <translation>Instrukcje PRAGMA do dostosowywania konfiguracji SQLite3 Multiple Ciphers, takich jak iteracje KDF, tryb zgodności itp.
+      <translation>Instrukcje PRAGMA do dostosowywania konfiguracji SQLite3 Multiple Ciphers, takich jak iteracje KDF, tryb zgodności itp.
 Zostaną one wykonane po każdym otwarciu bazy danych.
 Zobacz dokumentację dla SQLite3 Multiple Ciphers, aby poznać szczegóły.</translation>
     </message>
-</context>
+  </context>
 </TS>
