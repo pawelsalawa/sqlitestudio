@@ -28,6 +28,9 @@ class GUI_API_EXPORT DdlPreviewDialog : public QDialog
         Ui::DdlPreviewDialog *ui = nullptr;
         Db* db = nullptr;
 
+    private slots:
+        void openInEditor();
+
     public slots:
         void accept();
 };

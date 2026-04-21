@@ -5,6 +5,10 @@
 #include "sqlitestudio.h"
 #include "db/db.h"
 #include "common/dialogsizehandler.h"
+#include "mainwindow.h"
+#include "windows/editorwindow.h"
+#include <QPushButton>
+#include <QDialogButtonBox>
 
 DdlPreviewDialog::DdlPreviewDialog(Db* db, QWidget *parent) :
     QDialog(parent),
@@ -12,6 +16,7 @@ DdlPreviewDialog::DdlPreviewDialog(Db* db, QWidget *parent) :
     db(db)
 {
     ui->setupUi(this);
+    connect(ui->openInEditorBtn, SIGNAL(clicked(bool)), this, SLOT(openInEditor()));
     DialogSizeHandler::applyFor(this);
 }
 
@@ -51,6 +56,14 @@ void DdlPreviewDialog::changeEvent(QEvent *e)
         default:
             break;
     }
+}
+
+void DdlPreviewDialog::openInEditor()
+{
+    QString ddl = ui->ddlEdit->toPlainText();
+    auto editor = MAINWINDOW->openSqlEditor(db, ddl);
+    editor->getMdiWindow()->rename(windowTitle());
+    QDialog::reject();
 }
 
 void DdlPreviewDialog::accept()
