@@ -3133,6 +3133,16 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <source>Don&apos;t show again</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../dialogs/ddlpreviewdialog.ui" line="49"/>
+        <source>Opens the DDL in the SQL Editor without executing it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/ddlpreviewdialog.ui" line="52"/>
+        <source>Open in editor</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DebugConsole</name>
