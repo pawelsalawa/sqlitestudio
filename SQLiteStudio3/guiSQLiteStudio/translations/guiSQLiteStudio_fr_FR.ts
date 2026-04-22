@@ -3141,6 +3141,16 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
       <source>Don&apos;t show again</source>
       <translation>Ne plus afficher</translation>
     </message>
+    <message>
+      <location filename="../dialogs/ddlpreviewdialog.ui" line="49"/>
+      <source>Opens the DDL in the SQL Editor without executing it.</source>
+      <translation type="unfinished">Opens the DDL in the SQL Editor without executing it.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/ddlpreviewdialog.ui" line="52"/>
+      <source>Open in editor</source>
+      <translation type="unfinished">Open in editor</translation>
+    </message>
   </context>
   <context>
     <name>DebugConsole</name>
