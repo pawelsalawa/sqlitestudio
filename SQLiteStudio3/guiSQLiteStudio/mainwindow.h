@@ -39,6 +39,7 @@ class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
 class CodeSnippetEditor;
+class CodeSnippetsPanel;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ         Qt::CTRL | Qt::ALT | Qt::Key_Left
@@ -262,6 +263,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
         Ui::MainWindow *ui = nullptr;
         DbTree* dbTree = nullptr;
+        CodeSnippetsPanel* codeSnippetsPanel = nullptr;
         StatusField* statusField = nullptr;
         QMenu* mdiMenu = nullptr;
         FormManager* formManager = nullptr;

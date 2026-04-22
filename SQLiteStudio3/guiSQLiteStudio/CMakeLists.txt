@@ -178,6 +178,7 @@ set(PROJECT_HEADERS
     common/spinnowheelfilter.h
     dialogs/settingsexportdialog.h
     dialogs/settingsimportdialog.h
+    codesnippetspanel.h
 )
 
 set(PROJECT_SOURCES
@@ -351,6 +352,7 @@ set(PROJECT_SOURCES
     common/spinnowheelfilter.cpp
     dialogs/settingsexportdialog.cpp
     dialogs/settingsimportdialog.cpp
+    codesnippetspanel.cpp
 )
 qt_add_resources(PROJECT_SOURCES
     guiSQLiteStudio.qrc
@@ -414,9 +416,11 @@ qt_wrap_ui(PROJECT_SOURCES
     windows/viewwindow.ui
     dialogs/settingsexportdialog.ui
     dialogs/settingsimportdialog.ui
+    codesnippetspanel.ui
 )
 
-add_library(guiSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+add_library(guiSQLiteStudio SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES}
+    completer/completersnippetdelegate.h completer/completersnippetdelegate.cpp)
 sqlitestudio_set_output_properties(guiSQLiteStudio)
 set_target_properties(guiSQLiteStudio PROPERTIES
     VERSION 1.0.0

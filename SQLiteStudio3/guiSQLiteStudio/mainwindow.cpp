@@ -37,6 +37,7 @@
 #include "style.h"
 #include "services/codeformatter.h"
 #include "windows/codesnippeteditor.h"
+#include "codesnippetspanel.h"
 #include "sqleditor.h"
 #include "uiutils.h"
 #include "datagrid/cellrendererplugin.h"
@@ -101,6 +102,12 @@ void MainWindow::init()
     DbTreeModel::staticInit();
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
+
+    codeSnippetsPanel = new CodeSnippetsPanel(this);
+    addDockWidget(Qt::LeftDockWidgetArea, codeSnippetsPanel);
+
+    tabifyDockWidget(dbTree, codeSnippetsPanel);
+    dbTree->raise();
 
     statusField = new StatusField(this);
     addDockWidget(Qt::BottomDockWidgetArea, statusField);
@@ -524,6 +531,7 @@ void MainWindow::saveSession(MdiWindow* currWindow)
     }
 
     sessionValue["dbTree"] = dbTree->saveSession();
+    sessionValue["snippetsPanel"] = codeSnippetsPanel->saveSession();
     sessionValue["style"] = currentStyle();
 
     CFG_UI.General.Session.set(sessionValue);
@@ -580,6 +588,9 @@ void MainWindow::restoreSession()
 
     if (sessionValue.contains("dbTree"))
         dbTree->restoreSession(sessionValue["dbTree"]);
+
+    if (sessionValue.contains("snippetsPanel"))
+        codeSnippetsPanel->restoreSession(sessionValue["snippetsPanel"]);
 
     if (CFG_UI.General.RestoreSession.get())
     {

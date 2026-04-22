@@ -16,38 +16,35 @@ class GUI_API_EXPORT CodeSnippetEditorModel : public QAbstractListModel
         {
             CODE = 1000,
             MODIFIED = 1001,
-            VALID = 1002
+            VALID = 1002,
+            HOTKEY = 1003
         };
 
         explicit CodeSnippetEditorModel(QObject *parent = 0);
 
         void clearModified();
         bool isModified() const;
-        bool isModified(int row) const;
-        void setModified(int row, bool modified);
         bool isValid() const;
-        bool isValid(int row) const;
-        void setValid(int row, bool valid);
-        void setCode(int row, const QString& code);
-        QString getCode(int row) const;
-        void setName(int row, const QString& newName);
-        QString getName(int row) const;
-        void setHotkey(int row, const QKeySequence& value);
-        QKeySequence getHotkey(int row) const;
-        void setData(const QList<CodeSnippetManager::CodeSnippet*>& snippets);
+        void setSnippets(const QList<CodeSnippetManager::CodeSnippet*>& snippets);
         void addSnippet(CodeSnippetManager::CodeSnippet* snippet);
-        void deleteSnippet(int row);
+        void deleteSnippet(const QModelIndex& idx);
         QList<CodeSnippetManager::CodeSnippet*> generateSnippets() const;
         QStringList getSnippetNames() const;
         void validateNames();
-        bool isAllowedName(int rowToSkip, const QString& nameToValidate);
-        bool isAllowedHotkey(int rowToSkip, const QKeySequence& hotkeyToValidate);
-        bool isValidRowIndex(int row) const;
+        bool isAllowedName(const QModelIndex& idx, const QString& nameToValidate);
+        bool isAllowedHotkey(const QModelIndex& idx, const QKeySequence& hotkeyToValidate);
+        void setDragEnabled(bool value);
 
-        int moveUp(int row);
-        int moveDown(int row);
-        int rowCount(const QModelIndex& parent = QModelIndex()) const;
-        QVariant data(const QModelIndex& index, int role) const;
+        QModelIndex moveUp(const QModelIndex& idx);
+        QModelIndex moveDown(const QModelIndex& idx);
+        int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex& index, int role) const override;
+        bool setData(const QModelIndex& index, const QVariant& value, int role) override;
+        Qt::ItemFlags flags(const QModelIndex &index) const override;
+        QStringList mimeTypes() const override;
+        QMimeData* mimeData(const QModelIndexList &indexes) const override;
+
+        static const constexpr char* MIMETYPE = "application/x-sqlitestudio-codesnippet";
 
     private:
         struct Snippet
@@ -61,8 +58,6 @@ class GUI_API_EXPORT CodeSnippetEditorModel : public QAbstractListModel
             QString originalName;
         };
 
-        void emitDataChanged(int row);
-
         QList<Snippet*> snippetList;
 
         /**
@@ -75,6 +70,11 @@ class GUI_API_EXPORT CodeSnippetEditorModel : public QAbstractListModel
          */
         QList<Snippet*> originalSnippetList;
         bool listModified = false;
+
+        /**
+         * @brief Whether dragging snippets outside of the list is enabled.
+         */
+        bool dragEnabled = false;
 };
 
 #endif // CODESNIPPETEDITORMODEL_H
