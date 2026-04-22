@@ -220,7 +220,7 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
-              <widget class="QPlainTextEdit" name="mainCodeEdit">
+              <widget class="SqlEditor" name="mainCodeEdit">
                <property name="lineWrapMode">
                 <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                </property>
@@ -238,6 +238,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>snippetFilterEdit</tabstop>
   <tabstop>list</tabstop>

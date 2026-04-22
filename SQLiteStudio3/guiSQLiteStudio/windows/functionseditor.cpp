@@ -721,7 +721,7 @@ bool FunctionsEditor::updateArgsState()
 void FunctionsEditor::applyFilter(const QString& value)
 {
     // Remembering old selection, clearing it and restoring afterwards is a workaround for a problem,
-    // which causees application to crash, when the item was selected, but after applying filter string,
+    // which causes application to crash, when the item was selected, but after applying filter string,
     // item was about to disappear.
     // This must have something to do with the underlying model (FunctionsEditorModel) implementation,
     // but for now I don't really know what is that.

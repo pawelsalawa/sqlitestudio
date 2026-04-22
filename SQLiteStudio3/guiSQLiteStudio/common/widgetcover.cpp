@@ -117,6 +117,7 @@ void WidgetCover::show()
     animation->setStartValue(QVariant(pal.brush(QPalette::Window).color()));
     animation->setEndValue(QVariant(QColor(0, 0, 0, transparency)));
     setVisible(true);
+    raise();
     container->setVisible(true);
     animation->start();
 }

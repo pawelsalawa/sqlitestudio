@@ -1254,6 +1254,7 @@ void MainWindow::handlePostRestoreConfigUpdates()
 void MainWindow::initDropOverlay()
 {
     dropOverlay = new WidgetCover(this);
+    dropOverlay->setTransparency(192);
     QGridLayout* dropLayout = dropOverlay->getContainerLayout();
     dropLayout->setContentsMargins(0, 0, 0, 0);
     QLabel* dropLabel = new QLabel(tr("Drop files to open them"), dropOverlay);

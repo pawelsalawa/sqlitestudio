@@ -49,12 +49,8 @@ bool CodeSnippetEditorModel::isValid() const
 void CodeSnippetEditorModel::setSnippets(const QList<CodeSnippetManager::CodeSnippet*>& snippets)
 {
     beginResetModel();
-
-    for (Snippet*& snippetPtr : snippetList)
-        delete snippetPtr;
-
+    qDeleteAll(snippetList);
     snippetList.clear();
-
     for (CodeSnippetManager::CodeSnippet* snip : snippets)
         snippetList << new Snippet(snip);
 
@@ -62,6 +58,7 @@ void CodeSnippetEditorModel::setSnippets(const QList<CodeSnippetManager::CodeSni
     originalSnippetList = snippetList;
 
     endResetModel();
+
 }
 
 void CodeSnippetEditorModel::addSnippet(CodeSnippetManager::CodeSnippet* snippet)
@@ -158,7 +155,7 @@ bool CodeSnippetEditorModel::isAllowedHotkey(const QModelIndex& idx, const QKeyS
 
 void CodeSnippetEditorModel::setDragEnabled(bool value)
 {
-
+    dragEnabled = value;
 }
 
 QModelIndex CodeSnippetEditorModel::moveUp(const QModelIndex& idx)
@@ -166,8 +163,16 @@ QModelIndex CodeSnippetEditorModel::moveUp(const QModelIndex& idx)
     if (!idx.isValid() || idx.row() <= 0)
         return idx;
 
-    snippetList.move(idx.row(), idx.row() - 1);
-    return index(idx.row() - 1);
+    const int sourceRow = idx.row();
+    const int destinationChild = sourceRow - 1;
+
+    beginMoveRows(QModelIndex(), sourceRow, sourceRow,
+                  QModelIndex(), destinationChild);
+
+    snippetList.move(sourceRow, sourceRow - 1);
+
+    endMoveRows();
+    return index(sourceRow - 1, 0);
 }
 
 QModelIndex CodeSnippetEditorModel::moveDown(const QModelIndex& idx)
@@ -175,22 +180,37 @@ QModelIndex CodeSnippetEditorModel::moveDown(const QModelIndex& idx)
     if (!idx.isValid() || idx.row() + 1 >= snippetList.size())
         return idx;
 
-    snippetList.move(idx.row(), idx.row() + 1);
-    return index(idx.row() + 1);
+    const int sourceRow = idx.row();
+
+    beginMoveRows(QModelIndex(), sourceRow, sourceRow,
+                  QModelIndex(), sourceRow + 2);
+
+    snippetList.move(sourceRow, sourceRow + 1);
+
+    endMoveRows();
+    return index(sourceRow + 1, 0);
 }
 
 int CodeSnippetEditorModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid())
+        return 0;
+
     return snippetList.size();
 }
 
 QVariant CodeSnippetEditorModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+        return {};
 
-    Snippet* sn = snippetList[index.row()];
+    if (index.column() != 0)
+        return {};
+
+    if (index.row() < 0 || index.row() >= snippetList.size())
+        return {};
+
+    const Snippet* sn = snippetList[index.row()];
     switch (role)
     {
         case Qt::DisplayRole:
@@ -212,6 +232,12 @@ QVariant CodeSnippetEditorModel::data(const QModelIndex& index, int role) const
 bool CodeSnippetEditorModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     if (!index.isValid())
+        return false;
+
+    if (index.column() != 0)
+        return false;
+
+    if (index.row() < 0 || index.row() >= snippetList.size())
         return false;
 
     Snippet* sn = snippetList[index.row()];
@@ -243,7 +269,7 @@ bool CodeSnippetEditorModel::setData(const QModelIndex& index, const QVariant& v
 Qt::ItemFlags CodeSnippetEditorModel::flags(const QModelIndex& index) const
 {
     Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
-    if (index.isValid())
+    if (dragEnabled && index.isValid())
         return defaultFlags | Qt::ItemIsDragEnabled;
 
     return defaultFlags;
@@ -251,11 +277,17 @@ Qt::ItemFlags CodeSnippetEditorModel::flags(const QModelIndex& index) const
 
 QStringList CodeSnippetEditorModel::mimeTypes() const
 {
+    if (!dragEnabled)
+        return {};
+
     return {"text/plain", MIMETYPE};
 }
 
 QMimeData* CodeSnippetEditorModel::mimeData(const QModelIndexList& indexes) const
 {
+    if (!dragEnabled)
+        return nullptr;
+
     QMimeData *mimeData = new QMimeData();
     if (indexes.isEmpty())
         return mimeData;

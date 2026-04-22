@@ -93,6 +93,9 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
         void cfgCodeSnippetListChanged();
         void importSnippets();
         void exportSnippets();
+
+    public slots:
+        void editSnippet(const QString& name);
 };
 
 #endif // CODESNIPPETEDITOR_H

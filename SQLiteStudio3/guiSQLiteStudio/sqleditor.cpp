@@ -26,6 +26,7 @@
 #include "db/dbsqlite3.h"
 #include "dialogs/dbdialog.h"
 #include "windows/codesnippeteditormodel.h"
+#include "services/dbmanager.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -563,6 +564,9 @@ void SqlEditor::backspacePressed()
 
 void SqlEditor::complete()
 {
+    if (!autoCompletion)
+        return;
+
     if (!db || !db->isValid())
     {
         notifyWarn(tr("Syntax completion can be used only when a valid database is set for the SQL editor."));
