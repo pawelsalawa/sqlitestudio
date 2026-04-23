@@ -145,6 +145,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 
         void prepareTableDataExport(const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData, const QString& headerLabel);
         QList<int> getColumnDataLengths(int columnCount, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
+        void initPainter();
         bool beginDoc(const QString& title);
         void endDoc();
         void setupConfig();

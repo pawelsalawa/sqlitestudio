@@ -91,6 +91,7 @@
 - BUGFIX: #5584 Fixed user-defined collations.
 - BUGFIX: #5583 Fixed table labels on Database List to enforce the lazy-loaded table schemas to be loaded at once when this option is enabled.
 - BUGFIX: #5609 Fixed SQL syntax highlighter for multi-line comments with empty linies inside.
+- BUGFIX: #5628 Fixed PDF export bugs (first page size too small, occasional table overlapping, page numbers cut off).
 
 ### 3.4.21
 - ADDED: #5466 Support foreign keys with implicit columns (proper values in FK combobox columns).
