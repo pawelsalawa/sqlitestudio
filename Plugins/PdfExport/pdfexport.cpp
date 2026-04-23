@@ -353,6 +353,21 @@ bool PdfExport::isBinaryData() const
     return true;
 }
 
+void PdfExport::initPainter()
+{
+    painter = new QPainter(pagedWriter);
+    painter->setBrush(Qt::NoBrush);
+    painter->setPen(QPen(Qt::black, lineWidth));
+    painter->setFont(stdFont);
+
+    updateMargins();
+
+    QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
+    minRowHeight = rect.height() + padding * 2;
+    maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
+    rowsToPrebuffer = (int)qCeil((double)pageHeight / minRowHeight);
+}
+
 bool PdfExport::beginDoc(const QString& title)
 {
     safe_delete(painter);
@@ -364,11 +379,8 @@ bool PdfExport::beginDoc(const QString& title)
     if (!pagedWriter)
         return false;
 
-    painter = new QPainter(pagedWriter);
-    painter->setBrush(Qt::NoBrush);
-    painter->setPen(QPen(Qt::black, lineWidth));
-
     setupConfig();
+    initPainter();
 
     if (!drawCustomHeader())
         return false;
@@ -402,21 +414,14 @@ void PdfExport::setupConfig()
     boldFont.setBold(true);
     italicFont = stdFont;
     italicFont.setItalic(true);
-    painter->setFont(stdFont);
 
     topMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.TopMargin.get());
     rightMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.RightMargin.get());
     leftMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.LeftMargin.get());
     bottomMargin = mmToPoints(PDFEXPORT_CFG.PdfExport.BottomMargin.get());
-    updateMargins();
 
     maxColWidth = pageWidth / 5;
     padding = mmToPoints(PDFEXPORT_CFG.PdfExport.Padding.get());
-
-    QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
-    minRowHeight = rect.height() + padding * 2;
-    maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
-    rowsToPrebuffer = (int)qCeil((double)pageHeight / minRowHeight);
 
     cellDataLimit = PDFEXPORT_CFG.PdfExport.MaxCellBytes.get();
     printRowNum = PDFEXPORT_CFG.PdfExport.PrintRowNum.get();
@@ -733,7 +738,10 @@ bool PdfExport::drawCustomHeader()
     }
 
     if (!hdrContent.isEmpty())
+    {
+        newPage();
         drawCustomContent(hdrContent);
+    }
 
     return true;
 }
@@ -994,6 +1002,11 @@ void PdfExport::flushDataPages(bool forceRender)
     int rowsToRender = 0;
     int totalRowHeight = 0;
     int colStartAt = 0;
+
+    // int totalHeight = lastRowY - getContentsTop();
+    // if (totalHeight <= 0)
+    // newPage();
+
     while ((bufferedDataRows.size() >= rowsToPrebuffer) || (forceRender && bufferedDataRows.size() > 0))
     {
         // Calculate how many rows we can render on single page
@@ -1244,7 +1257,7 @@ void PdfExport::renderPageNumber()
     QRect rect = painter->boundingRect(QRect(0, 0, 1, 1), page, opt).toRect();
     int x = getContentsRight() - rect.width();
     int y = getContentsBottom(); // the bottom margin was already increased to hold page numbers
-    QRect newRect(x, y, rect.width(), rect.height());
+    QRect newRect(x, y, rect.width() + 10, rect.height()); // +10 width for safety, cause sometimes the text is drawn a bit wider than the bounding rect and causes text wrap (even it should not...)
     painter->drawText(newRect, page, *textOption);
     painter->restore();
 }
