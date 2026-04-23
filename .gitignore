@@ -136,3 +136,9 @@ translations/*.qm
 .env
 .env.*
 .local/
+
+# Claude Code configuration (should not be in project)
+.claude/
+.code-flow/
+.claude
+.code-flow
