@@ -1,250 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="tr" sourcelanguage="en">
-<context>
+  <context>
     <name>HtmlExport</name>
     <message>
-        <location filename="../htmlexport.cpp" line="45"/>
-        <source>SQL query results</source>
-        <translation>SQL sorgu sonucu</translation>
+      <location filename="../htmlexport.cpp" line="45"/>
+      <source>SQL query results</source>
+      <translation>SQL sorgu sonucu</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="54"/>
-        <source>Query:</source>
-        <translation type="unfinished">Query:</translation>
+      <location filename="../htmlexport.cpp" line="54"/>
+      <source>Query:</source>
+      <translation type="unfinished">Query:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="94"/>
-        <location filename="../htmlexport.cpp" line="188"/>
-        <source>no type</source>
-        <translation>tip yok</translation>
+      <location filename="../htmlexport.cpp" line="94"/>
+      <location filename="../htmlexport.cpp" line="188"/>
+      <source>no type</source>
+      <translation>tip yok</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="125"/>
-        <source>Exported table: %1</source>
-        <translation>Çıkartılan tablo: %1</translation>
+      <location filename="../htmlexport.cpp" line="125"/>
+      <source>Exported table: %1</source>
+      <translation>Çıkartılan tablo: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="136"/>
-        <source>Exported view: %1</source>
-        <translation type="unfinished">Exported view: %1</translation>
+      <location filename="../htmlexport.cpp" line="136"/>
+      <source>Exported view: %1</source>
+      <translation type="unfinished">Exported view: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="157"/>
-        <location filename="../htmlexport.cpp" line="280"/>
-        <source>Table: %1</source>
-        <translation>Tablo: %1</translation>
+      <location filename="../htmlexport.cpp" line="157"/>
+      <location filename="../htmlexport.cpp" line="280"/>
+      <source>Table: %1</source>
+      <translation>Tablo: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="283"/>
-        <source>virtual</source>
-        <translation>sanal</translation>
+      <location filename="../htmlexport.cpp" line="283"/>
+      <source>virtual</source>
+      <translation>sanal</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="335"/>
-        <source>Exported database: %1</source>
-        <translation>Çıkartılan veritabanı: %1</translation>
+      <location filename="../htmlexport.cpp" line="335"/>
+      <source>Exported database: %1</source>
+      <translation>Çıkartılan veritabanı: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="351"/>
-        <source>Index: %1</source>
-        <translation>Indeks: %1</translation>
+      <location filename="../htmlexport.cpp" line="351"/>
+      <source>Index: %1</source>
+      <translation>Indeks: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="357"/>
-        <source>For table:</source>
-        <translation>Hedef tablo:</translation>
+      <location filename="../htmlexport.cpp" line="357"/>
+      <source>For table:</source>
+      <translation>Hedef tablo:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="364"/>
-        <source>Unique:</source>
-        <translation>Unique:</translation>
+      <location filename="../htmlexport.cpp" line="364"/>
+      <source>Unique:</source>
+      <translation>Unique:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="365"/>
-        <source>Yes</source>
-        <translation>Evet</translation>
+      <location filename="../htmlexport.cpp" line="365"/>
+      <source>Yes</source>
+      <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="365"/>
-        <source>No</source>
-        <translation>Hayır</translation>
+      <location filename="../htmlexport.cpp" line="365"/>
+      <source>No</source>
+      <translation>Hayır</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="371"/>
-        <source>Column</source>
-        <translation>Kolon</translation>
+      <location filename="../htmlexport.cpp" line="371"/>
+      <source>Column</source>
+      <translation>Kolon</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="372"/>
-        <source>Collating</source>
-        <translation>Collating</translation>
+      <location filename="../htmlexport.cpp" line="372"/>
+      <source>Collating</source>
+      <translation>Collating</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="373"/>
-        <source>Sort order</source>
-        <translation>Sıralama düzeni</translation>
+      <location filename="../htmlexport.cpp" line="373"/>
+      <source>Sort order</source>
+      <translation>Sıralama düzeni</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="407"/>
-        <source>Trigger: %1</source>
-        <translation>Trigger: %1</translation>
+      <location filename="../htmlexport.cpp" line="407"/>
+      <source>Trigger: %1</source>
+      <translation>Trigger: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="413"/>
-        <source>Activated:</source>
-        <translation>Etkinleştirildi:</translation>
+      <location filename="../htmlexport.cpp" line="413"/>
+      <source>Activated:</source>
+      <translation>Etkinleştirildi:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="421"/>
-        <source>Action:</source>
-        <translation>Eylem:</translation>
+      <location filename="../htmlexport.cpp" line="421"/>
+      <source>Action:</source>
+      <translation>Eylem:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="428"/>
-        <source>On view:</source>
-        <translation>View:</translation>
+      <location filename="../htmlexport.cpp" line="428"/>
+      <source>On view:</source>
+      <translation>View:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="430"/>
-        <source>On table:</source>
-        <translation>Tablo:</translation>
+      <location filename="../htmlexport.cpp" line="430"/>
+      <source>On table:</source>
+      <translation>Tablo:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="441"/>
-        <source>Activate condition:</source>
-        <translation>Aktifleştirme koşulu:</translation>
+      <location filename="../htmlexport.cpp" line="441"/>
+      <source>Activate condition:</source>
+      <translation>Aktifleştirme koşulu:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="448"/>
-        <source>Code executed:</source>
-        <translation>Çalıştırılan kod:</translation>
+      <location filename="../htmlexport.cpp" line="448"/>
+      <source>Code executed:</source>
+      <translation>Çalıştırılan kod:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="486"/>
-        <source>View: %1</source>
-        <translation>View: %1</translation>
+      <location filename="../htmlexport.cpp" line="486"/>
+      <source>View: %1</source>
+      <translation>View: %1</translation>
     </message>
     <message>
-        <location filename="../htmlexport.cpp" line="565"/>
-        <source>Document generated by SQLiteStudio v%1 on %2</source>
-        <translation>SQLiteStudio ile üretilen döküman %2 üzerinde v%1</translation>
+      <location filename="../htmlexport.cpp" line="565"/>
+      <source>Document generated by SQLiteStudio v%1 on %2</source>
+      <translation>SQLiteStudio ile üretilen döküman %2 üzerinde v%1</translation>
     </message>
-</context>
-<context>
+  </context>
+  <context>
     <name>HtmlExportConfig</name>
     <message>
-        <location filename="../htmlexport.ui" line="139"/>
-        <source>Maximum number of characters per cell:</source>
-        <translation>Hücre başına maksimum karakter sayısı:</translation>
+      <location filename="../htmlexport.ui" line="139"/>
+      <source>Maximum number of characters per cell:</source>
+      <translation>Hücre başına maksimum karakter sayısı:</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="185"/>
-        <source>Include data types in first row</source>
-        <translation>İlk satırda veri tiplerini içer</translation>
+      <location filename="../htmlexport.ui" line="185"/>
+      <source>Include data types in first row</source>
+      <translation>İlk satırda veri tiplerini içer</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="146"/>
-        <source>Column names as first row</source>
-        <translation>İlk satıda kolon isimleri</translation>
+      <location filename="../htmlexport.ui" line="146"/>
+      <source>Column names as first row</source>
+      <translation>İlk satıda kolon isimleri</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="129"/>
-        <source>Row numbers as first column</source>
-        <translation>İlk kolon satır sayıları</translation>
+      <location filename="../htmlexport.ui" line="129"/>
+      <source>Row numbers as first column</source>
+      <translation>İlk kolon satır sayıları</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="94"/>
-        <source>Output format</source>
-        <translation>Çıktı formatı</translation>
+      <location filename="../htmlexport.ui" line="94"/>
+      <source>Output format</source>
+      <translation>Çıktı formatı</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="20"/>
-        <source>Custom header</source>
-        <translation type="unfinished">Custom header</translation>
+      <location filename="../htmlexport.ui" line="20"/>
+      <source>Custom header</source>
+      <translation type="unfinished">Custom header</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="26"/>
-        <source>No custom header</source>
-        <translation type="unfinished">No custom header</translation>
+      <location filename="../htmlexport.ui" line="26"/>
+      <source>No custom header</source>
+      <translation type="unfinished">No custom header</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="29"/>
-        <location filename="../htmlexport.ui" line="204"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished">Ctrl+S</translation>
+      <location filename="../htmlexport.ui" line="29"/>
+      <location filename="../htmlexport.ui" line="204"/>
+      <source>Ctrl+S</source>
+      <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="42"/>
-        <source>Define custom header content</source>
-        <translation type="unfinished">Define custom header content</translation>
+      <location filename="../htmlexport.ui" line="42"/>
+      <source>Define custom header content</source>
+      <translation type="unfinished">Define custom header content</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="55"/>
-        <location filename="../htmlexport.ui" line="230"/>
-        <source>HTML content</source>
-        <translation type="unfinished">HTML content</translation>
+      <location filename="../htmlexport.ui" line="55"/>
+      <location filename="../htmlexport.ui" line="230"/>
+      <source>HTML content</source>
+      <translation type="unfinished">HTML content</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="65"/>
-        <source>Define custom header file</source>
-        <translation type="unfinished">Define custom header file</translation>
+      <location filename="../htmlexport.ui" line="65"/>
+      <source>Define custom header file</source>
+      <translation type="unfinished">Define custom header file</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="81"/>
-        <source>Choose file for the header</source>
-        <translation type="unfinished">Choose file for the header</translation>
+      <location filename="../htmlexport.ui" line="81"/>
+      <source>Choose file for the header</source>
+      <translation type="unfinished">Choose file for the header</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="84"/>
-        <location filename="../htmlexport.ui" line="259"/>
-        <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished">HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</translation>
+      <location filename="../htmlexport.ui" line="84"/>
+      <location filename="../htmlexport.ui" line="259"/>
+      <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
+      <translation type="unfinished">HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="100"/>
-        <source>Format document (new lines, indentation)</source>
-        <translation>Döküman biçimi (yeni satırlar, girintiler)</translation>
+      <location filename="../htmlexport.ui" line="100"/>
+      <source>Format document (new lines, indentation)</source>
+      <translation>Döküman biçimi (yeni satırlar, girintiler)</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="113"/>
-        <source>Compress (everything in one line)</source>
-        <translation>Sıkıştır (her şeyi bir satırda)</translation>
+      <location filename="../htmlexport.ui" line="113"/>
+      <source>Compress (everything in one line)</source>
+      <translation>Sıkıştır (her şeyi bir satırda)</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="156"/>
-        <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Aktif olduğunda, &amp;lt;, &amp;gt; ve &amp; gibi HTML karakterleri çıkartılan dosyalarda kaçış karakteri olarak değerlendirilmez. Bu size hyper-link içeren dökümanları çıkarmayı sağlar, fakat düzgün olmayan HTLM dökümanına da sebep olabilir (eşleşmeyen &amp;lt; ve &amp;gt; karakterleri gibi). Dikkat edin.&lt;/p&gt;</translation>
+      <location filename="../htmlexport.ui" line="156"/>
+      <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
+      <translation>&lt;p&gt;Aktif olduğunda, &amp;lt;, &amp;gt; ve &amp; gibi HTML karakterleri çıkartılan dosyalarda kaçış karakteri olarak değerlendirilmez. Bu size hyper-link içeren dökümanları çıkarmayı sağlar, fakat düzgün olmayan HTLM dökümanına da sebep olabilir (eşleşmeyen &amp;lt; ve &amp;gt; karakterleri gibi). Dikkat edin.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="159"/>
-        <source>Don&apos;t escape HTML characters</source>
-        <translation>HTML karakterlerini ayırma</translation>
+      <location filename="../htmlexport.ui" line="159"/>
+      <source>Don&apos;t escape HTML characters</source>
+      <translation>HTML karakterlerini ayırma</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="195"/>
-        <source>Custom footer</source>
-        <translation type="unfinished">Custom footer</translation>
+      <location filename="../htmlexport.ui" line="195"/>
+      <source>Custom footer</source>
+      <translation type="unfinished">Custom footer</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="201"/>
-        <source>No custom footer</source>
-        <translation type="unfinished">No custom footer</translation>
+      <location filename="../htmlexport.ui" line="201"/>
+      <source>No custom footer</source>
+      <translation type="unfinished">No custom footer</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="217"/>
-        <source>Define custom footer content</source>
-        <translation type="unfinished">Define custom footer content</translation>
+      <location filename="../htmlexport.ui" line="217"/>
+      <source>Define custom footer content</source>
+      <translation type="unfinished">Define custom footer content</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="240"/>
-        <source>Define custom footer file</source>
-        <translation type="unfinished">Define custom footer file</translation>
+      <location filename="../htmlexport.ui" line="240"/>
+      <source>Define custom footer file</source>
+      <translation type="unfinished">Define custom footer file</translation>
     </message>
     <message>
-        <location filename="../htmlexport.ui" line="256"/>
-        <source>Choose file for the footer</source>
-        <translation type="unfinished">Choose file for the footer</translation>
+      <location filename="../htmlexport.ui" line="256"/>
+      <source>Choose file for the footer</source>
+      <translation type="unfinished">Choose file for the footer</translation>
     </message>
-</context>
+  </context>
 </TS>
