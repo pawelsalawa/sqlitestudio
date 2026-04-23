@@ -181,6 +181,33 @@ bool InvalidDb::rollback(bool noLock)
     return false;
 }
 
+bool InvalidDb::begin(const QString& txName, bool noLock)
+{
+    Q_UNUSED(txName);
+    Q_UNUSED(noLock);
+    return false;
+}
+
+bool InvalidDb::commit(const QString& txName, bool noLock)
+{
+    Q_UNUSED(txName);
+    Q_UNUSED(noLock);
+    return false;
+}
+
+bool InvalidDb::rollback(const QString& txName, bool noLock)
+{
+    Q_UNUSED(txName);
+    Q_UNUSED(noLock);
+    return false;
+}
+
+QString InvalidDb::beginNamed(bool noLock)
+{
+    Q_UNUSED(noLock);
+    return QString();
+}
+
 void InvalidDb::asyncInterrupt()
 {
 }

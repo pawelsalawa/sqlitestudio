@@ -68,6 +68,10 @@ class API_EXPORT AbstractDb : public Db
         bool begin(bool noLock = false);
         bool commit(bool noLock = false);
         bool rollback(bool noLock = false);
+        bool begin(const QString& txName, bool noLock = false);
+        bool commit(const QString& txName, bool noLock = false);
+        bool rollback(const QString& txName, bool noLock = false);
+        QString beginNamed(bool noLock = false);
         void interrupt();
         void asyncInterrupt();
         bool isReadable();
@@ -212,6 +216,9 @@ class API_EXPORT AbstractDb : public Db
         bool beginNoLock();
         bool commitNoLock();
         bool rollbackNoLock();
+        bool beginNoLock(const QString& txName);
+        bool commitNoLock(const QString& txName);
+        bool rollbackNoLock(const QString& txName);
 
         /**
          * @brief Registers a collation sequence implementation in the database.

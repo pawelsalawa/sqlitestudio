@@ -1,4 +1,5 @@
 #include "configmock.h"
+#include "db/dbsqlite3.h"
 
 void ConfigMock::init()
 {
@@ -225,7 +226,12 @@ void ConfigMock::setScriptFunctions(const QList<QHash<QString, QVariant> >&)
 
 QString ConfigMock::getSqlite3Version() const
 {
-    return "3.8.8";
+    Db* db = new DbSqlite3("mock db", ":memory:", {{DB_PURE_INIT, true}});
+    db->openQuiet();
+    QString ver = db->exec("SELECT sqlite_version()")->getSingleCell().toString();
+    db->closeQuiet();
+    delete db;
+    return ver;
 }
 
 bool ConfigMock::isInMemory() const

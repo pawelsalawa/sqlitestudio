@@ -12,16 +12,30 @@ class API_EXPORT SqlFileExecutor : public QObject
     Q_OBJECT
 
     public:
+        enum ExecutionMode
+        {
+            STRICT,
+            PERMISSIVE,
+            EXTENDED
+        };
+
         explicit SqlFileExecutor(QObject *parent = nullptr);
         void execSqlFromFile(Db* db, const QString& filePath, bool ignoreErrors, QString codec, bool async = true);
         bool isExecuting() const;
+        ExecutionMode getExecutionMode() const;
+        void setExecutionMode(ExecutionMode newExecutionMode);
 
     private:
         bool execQueryFromFile(Db* db, const QString& sql);
         void execInThread();
         void handleExecutionResults(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis);
         QList<QPair<QString, QString>> executeFromStream(QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize);
-        bool shouldSkipQuery(const QString& sql);
+        bool shouldSkipQuery(const QString& sql, bool isEnd) const;
+        QString processDotCommands(const QString& sql, QList<QPair<QString, QString> >& errors);
+        void handleDotCommand(const QString& cmdLine, QList<QPair<QString, QString> >& errors);
+        QStringList splitArgs(const QString& line);
+        void rollback();
+        bool commit();
 
         QAtomicInt executionInProgress = 0;
         Db* db = nullptr;
@@ -29,6 +43,8 @@ class API_EXPORT SqlFileExecutor : public QObject
         bool ignoreErrors = false;
         QString codec;
         QString filePath;
+        QString txName;
+        ExecutionMode executionMode = STRICT;
 
     public slots:
         void stopExecution();

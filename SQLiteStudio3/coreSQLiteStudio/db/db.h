@@ -462,7 +462,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @brief Begins SQL transaction.
          * @return true on success, or false on failure.
          *
-         * This method uses basic "BEGIN" statement to begin transaction, therefore recurrent transactions are not supported.
+         * This method uses basic "BEGIN" statement to begin transaction, therefore nested transactions are not supported.
          */
         virtual bool begin(bool noLock = false) = 0;
 
@@ -475,8 +475,45 @@ class API_EXPORT Db : public QObject, public Interruptable
         /**
          * @brief Rolls back the transaction.
          * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
+         *
+         * If there are pending nested, named transations, they will be rolled back too.
          */
         virtual bool rollback(bool noLock = false) = 0;
+
+        /**
+         * @brief Begins nested/nestable SQL transaction.
+         * @param txName Name of the transaction. It can be any string, but it should be unique among other transactions. It's recommended to use some prefix, to avoid possible conflicts with user-defined savepoints.
+         * @return true on success, or false on failure.
+         *
+         * This method uses the "SAVEPOINT" statement to begin transaction, to allow nested transactions.
+         */
+        virtual bool begin(const QString& txName, bool noLock = false) = 0;
+
+        /**
+         * @brief Begins named/nested SQL transaction and returns its name.
+         * @return Name of the transaction on success, or null string on failure.
+         *
+         * This method is a convenient wrapper around begin(const QString& txName). It generates unique transaction name, begins transaction with that name and returns it to you.
+         */
+        virtual QString beginNamed(bool noLock = false) = 0;
+
+        /**
+         * @brief Commits the named SQL transaction.
+         * @param txName Name of the transaction.
+         * @return true on success, or false otherwise.
+         *
+         * Commits named/nested transaction. If there are pending nested transactions inside this transaction, they will be commited too.
+         */
+        virtual bool commit(const QString& txName, bool noLock = false) = 0;
+
+        /**
+         * @brief Rolls back the named transaction.
+         * @param txName Name of the transaction.
+         * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
+         *
+         * Rolls back the named transaction. If there are pending nested transactions inside this transaction, they will be rolled back too.
+         */
+        virtual bool rollback(const QString& txName, bool noLock = false) = 0;
 
         /**
          * @brief Interrupts current execution asynchronously.

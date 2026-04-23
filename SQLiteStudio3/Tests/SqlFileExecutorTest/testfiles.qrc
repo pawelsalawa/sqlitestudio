@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sql">
+        <file>testPrint.sql</file>
+        <file>testRead1.sql</file>
+        <file>testRead2.sql</file>
+        <file>testReadNested1.sql</file>
+        <file>testReadNested2.sql</file>
+    </qresource>
+</RCC>

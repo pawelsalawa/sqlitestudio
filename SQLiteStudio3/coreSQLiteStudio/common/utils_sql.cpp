@@ -16,6 +16,7 @@ QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
 QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
 QSet<QString> sqlite3ReservedLiterals = {"true", "false"}; // true/false as column names - #5065
+int uniqueTxNameSequence = 1;
 
 void initUtilsSql()
 {
@@ -955,4 +956,10 @@ QString columnToBindParamName(const QString& colName)
     }
 
     return ":" + result;
+}
+
+QString generateUniqueTxName(const QString& prefix)
+{
+    int seq = uniqueTxNameSequence++;
+    return QString("%1sqlitestudio_tx_%2").arg(prefix).arg(seq);
 }

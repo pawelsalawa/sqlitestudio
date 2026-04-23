@@ -32,9 +32,26 @@ QString ExecFromFileDialog::codec() const
     return ui->encodingCombo->currentText();
 }
 
+SqlFileExecutor::ExecutionMode ExecFromFileDialog::getExecutionMode() const
+{
+    if (ui->permModeRadio->isChecked())
+        return SqlFileExecutor::PERMISSIVE;
+
+    if (ui->strictModeRadio->isChecked())
+        return SqlFileExecutor::STRICT;
+
+    if (ui->extModeRadio->isChecked())
+        return SqlFileExecutor::EXTENDED;
+
+    qCritical() << "Unknown execution mode in ExecFromFileDialog";
+    return SqlFileExecutor::PERMISSIVE;
+}
+
 void ExecFromFileDialog::init()
 {
     ui->setupUi(this);
+
+    ui->permModeRadio->setChecked(true);
 
     connect(ui->fileBrowse, SIGNAL(clicked()), this, SLOT(browseForInputFile()));
     connect(ui->fileEdit, SIGNAL(textChanged(const QString&)), this, SLOT(updateState()));

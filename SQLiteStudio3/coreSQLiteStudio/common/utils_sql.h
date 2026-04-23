@@ -94,6 +94,7 @@ API_EXPORT QString valueToSqlLiteral(const QVariant& value);
 API_EXPORT QString trimQueryEnd(const QString& query);
 API_EXPORT QByteArray blobFromLiteral(const QString& value);
 API_EXPORT QVariant idToBool(const QString& id);
+API_EXPORT QString generateUniqueTxName(const QString& prefix = QString());
 
 
 #endif // UTILS_SQL_H

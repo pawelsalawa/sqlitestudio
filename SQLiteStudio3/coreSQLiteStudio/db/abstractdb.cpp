@@ -575,6 +575,51 @@ bool AbstractDb::rollbackNoLock()
     return true;
 }
 
+bool AbstractDb::beginNoLock(const QString& txName)
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec(QString("SAVEPOINT %1;").arg(txName), Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while starting a transaction (a savepoint): " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::commitNoLock(const QString& txName)
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec(QString("RELEASE %1;").arg(txName), Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while committing a transaction (a savepoint): " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
+bool AbstractDb::rollbackNoLock(const QString& txName)
+{
+    if (!isOpenInternal())
+        return false;
+
+    SqlQueryPtr results = exec(QString("ROLLBACK TO %1;").arg(txName), Flag::NO_LOCK);
+    if (results->isError())
+    {
+        qCritical() << "Error while rolling back a transaction (a savepoint): " << results->getErrorCode() << results->getErrorText();
+        return false;
+    }
+
+    return true;
+}
+
 QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)
 {
     if (!memPtr)
@@ -905,6 +950,42 @@ bool AbstractDb::rollback(bool noLock)
 
     QWriteLocker locker(&dbOperLock);
     return rollbackNoLock();
+}
+
+bool AbstractDb::begin(const QString& txName, bool noLock)
+{
+    if (noLock)
+        return beginNoLock(txName);
+
+    QWriteLocker locker(&dbOperLock);
+    return beginNoLock(txName);
+}
+
+bool AbstractDb::commit(const QString& txName, bool noLock)
+{
+    if (noLock)
+        return commitNoLock(txName);
+
+    QWriteLocker locker(&dbOperLock);
+    return commitNoLock(txName);
+}
+
+bool AbstractDb::rollback(const QString& txName, bool noLock)
+{
+    if (noLock)
+        return rollbackNoLock(txName);
+
+    QWriteLocker locker(&dbOperLock);
+    return rollbackNoLock(txName);
+}
+
+QString AbstractDb::beginNamed(bool noLock)
+{
+    QString txName = generateUniqueTxName();
+    if (begin(txName, noLock))
+        return txName;
+
+    return QString();
 }
 
 void AbstractDb::interrupt()

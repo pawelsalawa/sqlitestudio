@@ -2472,6 +2472,7 @@ void DbTree::execSqlFromFile()
         return;
 
     fileExecWidgetCover->show();
+    fileExecutor->setExecutionMode(dialog.getExecutionMode());
     fileExecutor->execSqlFromFile(db, dialog.filePath(), dialog.ignoreErrors(), dialog.codec());
 }
 

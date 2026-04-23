@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>216</height>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,6 +68,45 @@
         <property name="text">
          <string>Skip failing SQL statements</string>
         </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QGroupBox" name="execModeGroup">
+        <property name="title">
+         <string>Exection mode</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QRadioButton" name="strictModeRadio">
+           <property name="toolTip">
+            <string>Any content that is not valid SQL will cause a statement to fail.</string>
+           </property>
+           <property name="text">
+            <string>Strict (only SQL content allowed)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="permModeRadio">
+           <property name="toolTip">
+            <string>Allows dot commands (used by official SQLite CLI application) in the file.</string>
+           </property>
+           <property name="text">
+            <string>Permissive (dot commands ignored)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="extModeRadio">
+           <property name="toolTip">
+            <string>Allows dot commands (used by official SQLite CLI application) in the file and even executes some of them (i.e. .print and .read). All other dot commands are ignored.</string>
+           </property>
+           <property name="text">
+            <string>Extended (dot commands executed)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>

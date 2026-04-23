@@ -1,9 +1,11 @@
 #include "sqlfileexecutor.h"
 #include "common/utils.h"
+#include "common/utils_sql.h"
 #include "db/db.h"
 #include "db/sqlquery.h"
 #include "services/notifymanager.h"
-
+#include "sqlitestudio.h"
+// #include "services/config.h"
 #include <QDebug>
 #include <QElapsedTimer>
 #include <QFile>
@@ -51,7 +53,8 @@ void SqlFileExecutor::execSqlFromFile(Db* db, const QString& filePath, bool igno
     this->filePath = filePath;
     this->db = db;
     emit updateProgress(0);
-    if (!db->begin())
+    txName = db->beginNamed();
+    if (txName.isNull())
     {
         notifyError(tr("Could not execute SQL, because application has failed to start transaction: %1").arg(db->getErrorText()));
         emit execEnded();
@@ -82,7 +85,7 @@ void SqlFileExecutor::stopExecution()
     if (db) // should always be there, but just in case
     {
         db->interrupt();
-        db->rollback();
+        rollback();
         db = nullptr;
         notifyWarn(tr("Execution from file cancelled. Any queries executed so far have been rolled back."));
     }
@@ -143,10 +146,10 @@ void SqlFileExecutor::handleExecutionResults(Db* db, int executed, int attempted
     bool doCommit = ok ? true : ignoreErrors;
     if (doCommit)
     {
-        if (!db->commit())
+        if (!commit())
         {
             notifyError(tr("Could not execute SQL, because application has failed to commit the transaction: %1").arg(db->getErrorText()));
-            db->rollback();
+            rollback();
         }
         else if (!ok) // committed with errors
         {
@@ -162,12 +165,17 @@ void SqlFileExecutor::handleExecutionResults(Db* db, int executed, int attempted
     }
     else
     {
-        db->rollback();
+        rollback();
         notifyError(tr("Could not execute SQL due to error."));
     }
 }
 
-QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, qint64 fileSize)
+QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(
+        QTextStream& stream,
+        int& executed,
+        int& attemptedExecutions,
+        bool& ok,
+        qint64 fileSize)
 {
     QList<QPair<QString, QString>> errors;
     qint64 pos = 0;
@@ -188,7 +196,9 @@ QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& s
             }
         }
 
-        if (shouldSkipQuery(sql))
+        sql = processDotCommands(sql, errors);
+
+        if (shouldSkipQuery(sql, stream.atEnd()))
         {
             sql.clear();
             continue;
@@ -216,9 +226,9 @@ QList<QPair<QString, QString>> SqlFileExecutor::executeFromStream(QTextStream& s
     return errors;
 }
 
-bool SqlFileExecutor::shouldSkipQuery(const QString& sql)
+bool SqlFileExecutor::shouldSkipQuery(const QString& sql, bool isEnd) const
 {
-    if (sql.trimmed().isEmpty() || !db->isComplete(sql))
+    if (sql.trimmed().isEmpty() || (!isEnd && !db->isComplete(sql)))
         return true;
 
     QString upper = sql.toUpper().trimmed();
@@ -226,4 +236,127 @@ bool SqlFileExecutor::shouldSkipQuery(const QString& sql)
             upper.startsWith("COMMIT") ||
             upper.startsWith("ROLLBACK") ||
             upper.startsWith("END"));
+}
+
+QString SqlFileExecutor::processDotCommands(const QString& sql, QList<QPair<QString, QString>>& errors)
+{
+    if (executionMode == STRICT || !sql.startsWith(".") && !sql.contains("\n."))
+        return sql;
+
+    QString content = removeComments(sql);
+    if (content.trimmed().startsWith("."))
+    {
+        QStringList lines = content.split("\n");
+        QStringList processedLines;
+        for (const QString& line : lines)
+        {
+            if (line.trimmed().startsWith("."))
+                handleDotCommand(line.trimmed(), errors);
+            else
+                processedLines << line;
+        }
+        content = processedLines.join("\n");
+    }
+    return content;
+}
+
+void SqlFileExecutor::handleDotCommand(const QString& cmdLine, QList<QPair<QString, QString>>& errors)
+{
+    if (executionMode == PERMISSIVE)
+        return;
+
+    QString line = cmdLine.trimmed();
+    while (line.endsWith(';'))
+        line.chop(1);
+
+    QStringList tokens = splitArgs(line);
+    QString cmd = tokens[0].mid(1).toLower(); // usuń '.'
+
+    if (cmd == "print")
+    {
+        notifyInfo(tokens.mid(1).join(" "));
+        return;
+    }
+
+    if (cmd == "read")
+    {
+        QString path = tokens.mid(1).join(" ");
+        SqlFileExecutor nestedExecutor;
+        nestedExecutor.setExecutionMode(executionMode);
+        connect(&nestedExecutor, &SqlFileExecutor::schemaNeedsRefreshing, this, &SqlFileExecutor::schemaNeedsRefreshing);
+        connect(&nestedExecutor, &SqlFileExecutor::execErrors, this, [this, &errors](const QList<QPair<QString, QString>>& nestedErrors, bool rolledBack)
+        {
+            errors += nestedErrors;
+        });;
+        nestedExecutor.execSqlFromFile(db, path, ignoreErrors, codec, false);
+        return;
+    }
+
+    qDebug() << "Ignored unsupported dot command in SQL file:" << cmdLine;;
+}
+
+QStringList SqlFileExecutor::splitArgs(const QString& line)
+{
+    QStringList result;
+    QString current;
+    bool inQuotes = false;
+    for (QChar c : line)
+    {
+        if (c == '"')
+        {
+            inQuotes = !inQuotes;
+            continue;
+        }
+
+        if (c.isSpace() && !inQuotes)
+        {
+            if (!current.isEmpty())
+            {
+                result << current;
+                current.clear();
+            }
+        }
+        else
+            current.append(c);
+    }
+
+    if (!current.isEmpty())
+        result << current;
+
+    return result;
+}
+
+void SqlFileExecutor::rollback()
+{
+    if (txName.isNull())
+    {
+        qCritical() << "No txName while calling SqlFileExecutor::rollback()";
+        return;
+    }
+
+    db->rollback(txName);
+    txName = QString();
+}
+
+bool SqlFileExecutor::commit()
+{
+    if (txName.isNull())
+    {
+        qCritical() << "No txName while calling SqlFileExecutor::commit()";
+        return false;
+    }
+
+    bool res = db->commit(txName);
+    txName = QString();
+    return res;
+}
+
+SqlFileExecutor::ExecutionMode SqlFileExecutor::getExecutionMode() const
+{
+    return executionMode;
+}
+
+void SqlFileExecutor::setExecutionMode(ExecutionMode newExecutionMode)
+{
+    executionMode = newExecutionMode;
 }

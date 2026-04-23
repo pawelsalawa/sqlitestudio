@@ -2,6 +2,7 @@
 #define EXECFROMFILEDIALOG_H
 
 #include "guiSQLiteStudio_global.h"
+#include "sqlfileexecutor.h"
 #include <QDialog>
 
 namespace Ui {
@@ -19,6 +20,7 @@ class GUI_API_EXPORT ExecFromFileDialog : public QDialog
         bool ignoreErrors() const;
         QString filePath() const;
         QString codec() const;
+        SqlFileExecutor::ExecutionMode getExecutionMode() const;
 
     private:
         void init();

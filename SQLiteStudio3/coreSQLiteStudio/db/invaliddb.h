@@ -36,6 +36,10 @@ class API_EXPORT InvalidDb : public Db
         bool begin(bool noLock = false);
         bool commit(bool noLock = false);
         bool rollback(bool noLock = false);
+        bool begin(const QString& txName, bool noLock);
+        bool commit(const QString& txName, bool noLock);
+        bool rollback(const QString& txName, bool noLock);
+        QString beginNamed(bool noLock);
         void asyncInterrupt();
         bool isReadable();
         bool isWritable();
