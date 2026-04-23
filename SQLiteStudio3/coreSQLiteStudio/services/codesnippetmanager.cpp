@@ -1,5 +1,5 @@
 #include "codesnippetmanager.h"
-#include "common/utils.h"
+#include "common/collections.h"
 #include "services/config.h"
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -19,6 +19,15 @@ void CodeSnippetManager::setSnippets(const QList<CodeSnippet*>& snippets)
     allSnippets = snippets;
     refreshNames();
     saveToConfig();
+    emit codeSnippetListChanged();
+}
+
+void CodeSnippetManager::addSnippet(CodeSnippet* snippet)
+{
+    allSnippets << snippet;
+    refreshNames();
+    saveToConfig();
+    emit codeSnippetListChanged();
 }
 
 const QList<CodeSnippetManager::CodeSnippet*>& CodeSnippetManager::getSnippets() const
@@ -68,6 +77,7 @@ void CodeSnippetManager::loadFromConfig()
         allSnippets << snip;
     }
     refreshNames();
+    emit codeSnippetListChanged();
 }
 
 void CodeSnippetManager::refreshNames()
@@ -77,9 +87,7 @@ void CodeSnippetManager::refreshNames()
 
 void CodeSnippetManager::clearSnippets()
 {
-    for (CodeSnippet*& snip : allSnippets)
-        delete snip;
-
+    qDeleteAll(allSnippets);
     allSnippets.clear();
 }
 

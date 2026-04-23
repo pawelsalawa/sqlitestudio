@@ -1,4 +1,5 @@
 #include "dataview.h"
+#include "common/bigdec.h"
 #include "datagrid/sqlquerymodel.h"
 #include "datagrid/sqlqueryview.h"
 #include "formview.h"
@@ -27,6 +28,8 @@
 #else
 #include <qsystemdetection.h>
 #endif
+#include <QSpinBox>
+#include <QTimer>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::TabsPosition DataView::tabsPosition;
@@ -47,8 +50,8 @@ void DataView::init(SqlQueryModel* model)
     this->model->setView(gridView);
 
     rowCountLabel = new QLabel();
-    formViewRowCountLabel = new QLabel();
-    formViewCurrentRowLabel = new QLabel();
+    selSumLabel = new QLabel();
+    selSumLabel->setToolTip(tr("Sum of values in selected cells", "data view"));
 
     initWidgetCover();
     initFormView();
@@ -57,6 +60,7 @@ void DataView::init(SqlQueryModel* model)
     initActions();
     initUpdates();
     initSlots();
+    updateSelectionSum();
     updateTabsMode();
     updatePageEdit();
     updateResultsCount(0);
@@ -77,6 +81,8 @@ void DataView::initSlots()
     connect(model, SIGNAL(commitStatusChanged(bool)), this, SLOT(updateCommitRollbackActions(bool)));
     connect(gridView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             model, SLOT(updateSelectiveCommitRollbackActions(QItemSelection,QItemSelection)));
+    connect(gridView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(updateSelectionSum()));
     connect(model, SIGNAL(selectiveCommitStatusChanged(bool)), this, SLOT(updateSelectiveCommitRollbackActions(bool)));
     connect(model, SIGNAL(executionStarted()), gridView, SLOT(executionStarted()));
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
@@ -94,6 +100,11 @@ void DataView::initSlots()
 
 void DataView::initFormView()
 {
+    formViewRowCountLabel = new QLabel();
+    formViewCurrentRowLabel = new QLabel(tr("Row:"));
+    formViewCurrentRowSpin = new QSpinBox();
+    connect(formViewCurrentRowSpin, SIGNAL(editingFinished()), this, SLOT(goToVisualFormRow()));
+
     formView = new FormView();
     formWidget->layout()->addWidget(formView);
     formView->setModel(model);
@@ -152,6 +163,9 @@ void DataView::createContents()
     gridView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     gridWidget->layout()->addWidget(gridView);
 
+    connect(gridView, &SqlQueryView::pinnedColumnsChanged, this, &DataView::recreatePinnedPerColumnFilters);
+    connect(gridView, &SqlQueryView::pinnedSectionResized, this, &DataView::updatePinnedFilterSizes);
+
     updateTabHotKeys();
 }
 
@@ -181,6 +195,16 @@ void DataView::createFilterPanel()
     perColumnWidget->setBackgroundRole(QPalette::Window);
     perColumnFilterArea->setWidget(perColumnWidget);
     perColumnAreaParent->layout()->addWidget(perColumnFilterArea);
+
+    perColumnPinnedWidget = new QWidget(perColumnFilterArea);
+    perColumnPinnedWidget->setLayout(new QHBoxLayout());
+    perColumnPinnedWidget->layout()->setSizeConstraint(QLayout::SetFixedSize);
+    perColumnPinnedWidget->layout()->setSpacing(0);
+    perColumnPinnedWidget->layout()->setContentsMargins(0, 0, 0, 0);
+    perColumnPinnedWidget->setAutoFillBackground(true);
+    perColumnPinnedWidget->setBackgroundRole(QPalette::Window);
+    perColumnFilterArea->viewport()->stackUnder(perColumnPinnedWidget);
+    updatePinnedPerColumnWidgetGeometry();
 
     filterRightSpacer = new QWidget();
     perColumnAreaParent->layout()->addWidget(filterRightSpacer);
@@ -242,6 +266,9 @@ void DataView::createActions()
 
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
 
+    actionMap[GRID_SELECTED_SUM_SEP] = gridToolBar->addSeparator();
+    actionMap[GRID_SELECTED_SUM] = gridToolBar->addWidget(selSumLabel);
+
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;
 
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit changes for selected cells", "data view"), this, SLOT(selectiveCommitGrid()), this);
@@ -273,7 +300,8 @@ void DataView::createActions()
     formToolBar->addSeparator();
     actionMap[FORM_TOTAL_ROWS] = formToolBar->addWidget(formViewRowCountLabel);
     formToolBar->addSeparator();
-    actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowLabel);
+    formToolBar->addWidget(formViewCurrentRowLabel);
+    actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowSpin);
 
     noConfigShortcutActions << FORM_TOTAL_ROWS;
 
@@ -451,13 +479,7 @@ void DataView::goToFormRow(IndexModifier idxMod)
             break;
     }
 
-    QModelIndex newRowIdx = model->index(row, 0);
-    if (!newRowIdx.isValid())
-        return;
-
-    gridView->setCurrentIndex(newRowIdx);
-    formView->updateFromGrid();
-    updateCurrentFormViewRow();
+    goToFormRow(row);
 }
 
 void DataView::setNavigationState(bool enabled)
@@ -496,8 +518,18 @@ void DataView::updateFormNavigationState()
     bool nextRowAvailable = row < lastRow;
     bool prevRowAvailable = row > 0;
 
-    formView->getAction(FormView::NEXT_ROW)->setEnabled(navigationState && nextRowAvailable);
+    int page = model->getCurrentPage();
+    int rowsPerPage = model->getRowsPerPage();
+    int minRow = page * rowsPerPage + 1;
+    int maxRow = qMin((page + 1) * rowsPerPage, (minRow - 1 + model->rowCount()));
+    formViewCurrentRowSpin->setMinimum(minRow);
+    formViewCurrentRowSpin->setMaximum(maxRow);
+    formViewCurrentRowSpin->setToolTip(tr("Rows available on current page: %1 - %2", "data view").arg(minRow).arg(maxRow));
+
+    formView->getAction(FormView::FIRST_ROW)->setEnabled(navigationState && prevRowAvailable);
     formView->getAction(FormView::PREV_ROW)->setEnabled(navigationState && prevRowAvailable);
+    formView->getAction(FormView::NEXT_ROW)->setEnabled(navigationState && nextRowAvailable);
+    formView->getAction(FormView::LAST_ROW)->setEnabled(navigationState && nextRowAvailable);
 
     // We changed row in form view, this one might be already modified and be capable for commit/rollback
     updateFormCommitRollbackActions();
@@ -646,6 +678,8 @@ void DataView::resizeFilters()
     {
         int newSize = gridView->columnWidth(section);
         filterInputs[section]->setFixedWidth(newSize);
+        if (pinnedFilterInputs.contains(section))
+            pinnedFilterInputs[section]->setFixedWidth(newSize);
     }
 }
 
@@ -666,6 +700,8 @@ void DataView::resizeFilter(int section, int oldSize, int newSize)
     }
 
     filterInputs[section]->setFixedWidth(newSize);
+    if (pinnedFilterInputs.contains(section))
+        pinnedFilterInputs[section]->setFixedWidth(newSize);
 }
 
 void DataView::togglePerColumnFiltering()
@@ -673,7 +709,8 @@ void DataView::togglePerColumnFiltering()
     bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
     CFG_UI.General.ShowPerColumnFilters.set(enable);
 
-    if (enable && !filterEdit->text().isEmpty())
+    bool needsReload = enable && !filterEdit->text().isEmpty();
+    if (needsReload)
         filterEdit->clear();
 
     filterEdit->setEnabled(!enable);
@@ -684,7 +721,8 @@ void DataView::togglePerColumnFiltering()
     perColumnAreaParent->setVisible(enable);
 
     recreateFilterInputs();
-    applyFilter();
+    if (needsReload)
+        applyFilter();
 }
 
 void DataView::findInData()
@@ -708,6 +746,165 @@ void DataView::updateTabHotKeys()
 {
     tabBar()->setTabToolTip(0, QKeySequence(DATAVIEW_KEYS.SHOW_GRID_VIEW.get()).toString(QKeySequence::NativeText));
     tabBar()->setTabToolTip(1, QKeySequence(DATAVIEW_KEYS.SHOW_FORM_VIEW.get()).toString(QKeySequence::NativeText));
+}
+
+void DataView::updateSelectionSum()
+{
+    QTimer::singleShot(0, [this]()
+    {
+        QList<SqlQueryItem*> selItems = gridView->getSelectedItems();
+        if (selItems.isEmpty())
+        {
+            actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+            actionMap[GRID_SELECTED_SUM]->setVisible(false);
+            return;
+        }
+
+        int nums = 0;
+        BigDec sum("0");
+        for (SqlQueryItem*& item : selItems)
+        {
+            QVariant val = item->getValue();
+            switch (val.userType())
+            {
+                case QMetaType::Int:
+                    sum += val.toInt();
+                    nums++;
+                    break;
+                case QMetaType::UInt:
+                    sum += val.toUInt();
+                    nums++;
+                    break;
+                case QMetaType::Long:
+                case QMetaType::LongLong:
+                    sum += val.toLongLong();
+                    nums++;
+                    break;
+                case QMetaType::ULong:
+                case QMetaType::ULongLong:
+                    sum += val.toULongLong();
+                    nums++;
+                    break;
+                case QMetaType::Double:
+                    sum += doubleToString(val, CFG_UI.General.UseSciFormatForDoubles.get());
+                    nums++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (nums == 0)
+        {
+            actionMap[GRID_SELECTED_SUM_SEP]->setVisible(false);
+            actionMap[GRID_SELECTED_SUM]->setVisible(false);
+            return;
+        }
+
+        selSumLabel->setText(tr("Sum: %1").arg(sum.toString()));
+        actionMap[GRID_SELECTED_SUM_SEP]->setVisible(true);
+        actionMap[GRID_SELECTED_SUM]->setVisible(true);
+    });
+}
+
+void DataView::updatePinnedPerColumnWidgetGeometry()
+{
+    if (!model || !model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (filterInputs.isEmpty())
+        return;
+
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    QHeaderView* header = gridView->horizontalHeader();
+    int totalWd = 0;
+
+    for (int logical = 0; logical < header->count(); ++logical)
+        if (pinnedColumns.contains(logical))
+            totalWd += gridView->columnWidth(logical);
+
+    perColumnPinnedWidget->setGeometry(0, 0, totalWd, perColumnWidget->height());
+}
+
+void DataView::updatePinnedFilterSizes(int logicalIndex, int oldSize, int newSize)
+{
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    if (!pinnedColumns.contains(logicalIndex) || !pinnedFilterInputs.contains(logicalIndex))
+        return;
+
+    gridView->setColumnWidth(logicalIndex, newSize);
+    gridView->updatePinnedViewGeometry();
+    pinnedFilterInputs[logicalIndex]->setFixedWidth(newSize);
+    updatePinnedPerColumnWidgetGeometry();
+}
+
+void DataView::recreatePinnedPerColumnFilters()
+{
+    if (!model->features().testFlag(SqlQueryModel::FILTERING))
+        return;
+
+    if (filterInputs.isEmpty())
+        return;
+
+    for (auto& edit : pinnedFilterInputs.values())
+        delete edit;
+
+    pinnedFilterInputs.clear();
+
+    QList<int> pinnedColumns = gridView->getPinnedColumns();
+    for (int section = 0; section < filterInputs.size(); section++)
+    {
+        if (!pinnedColumns.contains(section))
+            continue;
+
+        ExtLineEdit* edit = new ExtLineEdit(perColumnPinnedWidget);
+        edit->setPlaceholderText(filterInputs[section]->placeholderText());
+        edit->setClearButtonEnabled(true);
+        edit->setFixedWidth(gridView->columnWidth(section));
+        edit->setToolTip(filterInputs[section]->toolTip());
+        QString currValue = filterInputs[section]->text();
+        if (!currValue.isEmpty())
+            edit->setText(currValue);
+
+        connect(edit, SIGNAL(editingFinished()), this, SLOT(applyFilter()));
+        connect(edit, SIGNAL(valueErased()), this, SLOT(applyFilter()));
+        connect(edit, &QLineEdit::textChanged, filterInputs[section], &QLineEdit::setText);
+        pinnedFilterInputs[section] = edit;
+
+        pinnedColumns.indexOf(section);
+        perColumnPinnedWidget->layout()->addWidget(edit);
+    }
+
+    // Reorder the main, scrollable fileters widget, so pinned filters are before non-pinned ones, just like columns in the view
+    QHBoxLayout* filterLayout = static_cast<QHBoxLayout*>(perColumnWidget->layout());
+    for (int section = 0; section < filterInputs.size(); section++)
+        filterLayout->removeWidget(filterInputs[section]);
+
+    for (int section : pinnedColumns)
+        filterLayout->addWidget(filterInputs[section]);
+
+    for (int section = 0; section < filterInputs.size(); section++)
+        if (!pinnedColumns.contains(section))
+            filterLayout->addWidget(filterInputs[section]);
+
+    updatePinnedPerColumnWidgetGeometry();
+}
+
+void DataView::goToVisualFormRow()
+{
+    goToFormRow(formViewCurrentRowSpin->value() - 1); // visual row index (from spin box) is higher by 1
+}
+
+void DataView::goToFormRow(int row)
+{
+    QModelIndex newRowIdx = model->index(row, 0);
+    if (!newRowIdx.isValid())
+        return;
+
+    gridView->setCurrentIndex(newRowIdx);
+    formView->updateFromGrid();
+    updateCurrentFormViewRow();
+
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
@@ -756,7 +953,7 @@ void DataView::updatePageEdit()
     QString text = QString::number(page);
     int totalPages = model->getTotalPages();
     pageEdit->setText(text);
-    pageEdit->setToolTip(QObject::tr("Total pages available: %1").arg(totalPages));
+    pageEdit->setToolTip(tr("Total pages available: %1").arg(totalPages));
     pageValidator->setTop(totalPages);
     pageValidator->setDefaultValue(page);
     updateCurrentFormViewRow();
@@ -766,7 +963,7 @@ void DataView::updateResultsCount(int resultsCount)
 {
     if (resultsCount >= 0)
     {
-        QString msg = QObject::tr("Total rows loaded: %1").arg(resultsCount);
+        QString msg = tr("Total rows loaded: %1").arg(resultsCount);
         rowCountLabel->setText(msg);
         formViewRowCountLabel->setText(msg);
         rowCountLabel->setToolTip(QString());
@@ -789,8 +986,10 @@ void DataView::updateCurrentFormViewRow()
 {
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
     int page = gridView->getModel()->getCurrentPage();
-    int row = rowsPerPage * page + 1 + gridView->getCurrentIndex().row();
-    formViewCurrentRowLabel->setText(tr("Row: %1").arg(row));
+    int row = rowsPerPage * page + gridView->getCurrentIndex().row();
+
+    QSignalBlocker signalBlocker(formViewCurrentRowSpin);
+    formViewCurrentRowSpin->setValue(row + 1); // visual row index (from spin box) is higher by 1
 }
 
 void DataView::setFormViewEnabled(bool enabled)
@@ -1117,6 +1316,7 @@ void DataView::recreateFilterInputs()
         perColumnAreaParent->setFixedHeight(hg);
     }
 
+    recreatePinnedPerColumnFilters();
     qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
     syncFilterScrollPosition();

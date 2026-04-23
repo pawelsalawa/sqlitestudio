@@ -69,6 +69,7 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
         case DbTreeItem::Type::COLUMN:
+            paintColumnTypeLabel(painter, opt, index, item);
         case DbTreeItem::Type::ITEM_PROTOTYPE:
             break;
     }
@@ -141,6 +142,22 @@ void DbTreeItemDelegate::paintSystemIndexLabel(QPainter* painter, const QStyleOp
         return;
 
     paintLabel(painter, option, index, item, tr("(system index)", "database tree label"));
+}
+
+void DbTreeItemDelegate::paintColumnTypeLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const
+{
+    if (!CFG_UI.DbList.ShowColumnTypeLabels.get())
+        return;
+
+    Db* db = item->getDb();
+    if (!db || !db->isValid())
+        return;
+
+    QString type = item->getColumnType();
+    if (type.isEmpty())
+        return;
+
+    paintLabel(painter, option, index, item, QString(": %1").arg(type));
 }
 
 void DbTreeItemDelegate::paintLabel(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem *item, const QString &label) const

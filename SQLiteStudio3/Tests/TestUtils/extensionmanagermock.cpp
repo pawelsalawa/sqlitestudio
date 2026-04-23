@@ -22,3 +22,11 @@ QStringList ExtensionManagerMock::getExtensionDirs() const
 {
     return QStringList();
 }
+
+void ExtensionManagerMock::loadFromConfig()
+{
+}
+
+void ExtensionManagerMock::init()
+{
+}

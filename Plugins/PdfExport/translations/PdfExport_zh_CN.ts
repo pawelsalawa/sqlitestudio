@@ -260,70 +260,70 @@
     <message>
         <location filename="../pdfexport.ui" line="290"/>
         <source>Custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义标头</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="296"/>
         <source>No custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>没有自定义标头</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="299"/>
         <location filename="../pdfexport.ui" line="373"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="312"/>
         <source>Define custom header content</source>
-        <translation type="unfinished"></translation>
+        <translation>定义自定义标头内容</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="325"/>
         <location filename="../pdfexport.ui" line="399"/>
         <source>Plain text content</source>
-        <translation type="unfinished"></translation>
+        <translation>纯文本内容</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="335"/>
         <source>Define custom header file</source>
-        <translation type="unfinished"></translation>
+        <translation>定义自定义标头文件</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="351"/>
         <source>Choose file for the header</source>
-        <translation type="unfinished"></translation>
+        <translation>选择文件作为标头</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="354"/>
         <location filename="../pdfexport.ui" line="428"/>
         <source>Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>文本文件（*.txt）；所有文件（*）</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="364"/>
         <source>Custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义页脚</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="370"/>
         <source>No custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>没有自定义页脚</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="386"/>
         <source>Define custom footer content</source>
-        <translation type="unfinished"></translation>
+        <translation>定义自定义页脚内容</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="409"/>
         <source>Define custom footer file</source>
-        <translation type="unfinished"></translation>
+        <translation>定义自定义页脚文件</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="425"/>
         <source>Choose file for the footer</source>
-        <translation type="unfinished"></translation>
+        <translation>选择页脚文件</translation>
     </message>
 </context>
 </TS>

@@ -1,4 +1,7 @@
 #include "codesnippeteditor.h"
+#include "common/utils.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "ui_codesnippeteditor.h"
 #include "uiconfig.h"
 #include "windows/codesnippeteditormodel.h"
@@ -39,7 +42,7 @@ bool CodeSnippetEditor::restoreSessionNextTime()
 
 bool CodeSnippetEditor::isUncommitted() const
 {
-    return model->isModified() || currentModified;
+    return dataModel->isModified() || currentModified;
 }
 
 QString CodeSnippetEditor::getQuitUncommittedConfirmMessage() const
@@ -79,6 +82,8 @@ void CodeSnippetEditor::createActions()
     createAction(MOVE_UP, ICONS.MOVE_UP, tr("Move the snippet up"), this, SLOT(moveSnippetUp()), ui->toolBar, this);
     createAction(MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move the snippet down"), this, SLOT(moveSnippetDown()), ui->toolBar, this);
     ui->toolBar->addSeparator();
+    createAction(IMPORT, ICONS.CODE_SNIPPETS_IMPORT, tr("Import snippets from file"), this, SLOT(importSnippets()), ui->toolBar, this);
+    createAction(EXPORT, ICONS.CODE_SNIPPETS_EXPORT, tr("Export snippets to file"), this, SLOT(exportSnippets()), ui->toolBar, this);
     createAction(HELP, ICONS.HELP, tr("Code snippets manual"), this, SLOT(help()), ui->toolBar, this);
 
 #ifdef Q_OS_MACX
@@ -103,17 +108,18 @@ QToolBar* CodeSnippetEditor::getToolBar(int toolbar) const
 void CodeSnippetEditor::init()
 {
     ui->setupUi(this);
+    ui->mainCodeEdit->setAutoCompletion(false);
     clearEdits();
 
     ui->mainCodeEdit->setFont(CFG_UI.Fonts.SqlEditor.get());
 
-    model = new CodeSnippetEditorModel(this);
-    snippetFilterModel = new QSortFilterProxyModel(this);
-    snippetFilterModel->setSourceModel(model);
-    ui->list->setModel(snippetFilterModel);
+    dataModel = new CodeSnippetEditorModel(this);
+    viewModel = new QSortFilterProxyModel(this);
+    viewModel->setSourceModel(dataModel);
+    ui->list->setModel(viewModel);
 
     new UserInputFilter(ui->snippetFilterEdit, this, SLOT(applyFilter(QString)));
-    snippetFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    viewModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolBar);
 
@@ -128,7 +134,8 @@ void CodeSnippetEditor::init()
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
     connect(ui->clearAssistantShortcutButton, SIGNAL(clicked(bool)), this, SLOT(clearAssistantShortcutPressed()));
 
-    model->setData(CODESNIPPETS->getSnippets());
+    dataModel->setSnippets(CODESNIPPETS->getSnippets());
+    connect(CODESNIPPETS, SIGNAL(codeSnippetListChanged()), this, SLOT(cfgCodeSnippetListChanged()));
 
     updateCurrentSnippetState();
 }
@@ -138,51 +145,48 @@ void CodeSnippetEditor::setupContextMenu()
     addFormatSqlToContextMenu(ui->mainCodeEdit);
 }
 
-int CodeSnippetEditor::getCurrentSnippetRow() const
+QModelIndex CodeSnippetEditor::getCurrentSnippetIndex() const
 {
     QModelIndexList idxList = ui->list->selectionModel()->selectedIndexes();
     if (idxList.size() == 0)
-        return -1;
+        return QModelIndex();
 
-    return snipRowToSrc(idxList.first()).row();
+    return idxList.first();
 }
 
-QModelIndex CodeSnippetEditor::snipRowToSrc(const QModelIndex &idx) const
+void CodeSnippetEditor::snippetDeselected(const QModelIndex& idx)
 {
-    return snippetFilterModel->mapToSource(idx);
+    viewModel->setData(idx, ui->nameEdit->text(), Qt::DisplayRole);
+    viewModel->setData(idx, ui->mainCodeEdit->toPlainText(), CodeSnippetEditorModel::CODE);
+    viewModel->setData(idx, ui->assistantShortcutEdit->keySequence().toString(QKeySequence::NativeText), CodeSnippetEditorModel::HOTKEY);
+    viewModel->setData(idx, currentModified, CodeSnippetEditorModel::MODIFIED);
+    dataModel->validateNames();
 }
 
-void CodeSnippetEditor::snippetDeselected(int srcRow)
-{
-    model->setName(srcRow, ui->nameEdit->text());
-    model->setCode(srcRow, ui->mainCodeEdit->toPlainText());
-    model->setHotkey(srcRow, ui->assistantShortcutEdit->keySequence());
-    model->setModified(srcRow, currentModified);
-    model->validateNames();
-}
-
-void CodeSnippetEditor::snippetSelected(int srcRow)
+void CodeSnippetEditor::snippetSelected(const QModelIndex& idx)
 {
     updatesForSelection = true;
-    ui->nameEdit->setText(model->getName(srcRow));
-    ui->mainCodeEdit->setPlainText(model->getCode(srcRow));
-    ui->assistantShortcutEdit->setKeySequence(model->getHotkey(srcRow));
+    ui->nameEdit->setText(viewModel->data(idx, Qt::DisplayRole).toString());
+    ui->mainCodeEdit->setPlainText(viewModel->data(idx, CodeSnippetEditorModel::CODE).toString());
+    ui->assistantShortcutEdit->setKeySequence(viewModel->data(idx, CodeSnippetEditorModel::HOTKEY).toString());
 
     updatesForSelection = false;
-    currentModified = model->isModified(srcRow);
+    currentModified = idx.data(CodeSnippetEditorModel::MODIFIED).toBool();
 
     updateCurrentSnippetState();
+
+    ui->mainCodeEdit->setFocus(Qt::OtherFocusReason);
 }
 
-void CodeSnippetEditor::selectSnippet(int srcRow, bool skipModelUpdates)
+void CodeSnippetEditor::selectSnippet(const QModelIndex& idx, bool skipModelUpdates)
 {
-    if (!model->isValidRowIndex(srcRow))
+    if (!idx.isValid())
         return;
 
     if (skipModelUpdates)
         skipModelUpdatesDuringSelection = true;
 
-    ui->list->selectionModel()->setCurrentIndex(snippetFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->list->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 
     if (skipModelUpdates)
         skipModelUpdatesDuringSelection = false;
@@ -197,32 +201,34 @@ void CodeSnippetEditor::clearEdits()
 
 void CodeSnippetEditor::commit()
 {
-    int srcRow = getCurrentSnippetRow();
-    if (model->isValidRowIndex(srcRow))
-        snippetDeselected(srcRow);
+    QModelIndex idx = getCurrentSnippetIndex();
+    if (idx.isValid())
+        snippetDeselected(idx);
 
-    QList<CodeSnippetManager::CodeSnippet*> snippets = model->generateSnippets();
+    QList<CodeSnippetManager::CodeSnippet*> snippets = dataModel->generateSnippets();
 
     CODESNIPPETS->setSnippets(snippets);
-    model->clearModified();
+    dataModel->clearModified();
     currentModified = false;
 
-    if (model->isValidRowIndex(srcRow))
-        selectSnippet(srcRow);
+    idx = viewModel->index(idx.row(), idx.column());
+    if (idx.isValid())
+        selectSnippet(idx);
 
     updateState();
 }
 
 void CodeSnippetEditor::rollback()
 {
-    int selectedBefore = getCurrentSnippetRow();
+    QModelIndex idx = getCurrentSnippetIndex();
 
-    model->setData(CODESNIPPETS->getSnippets());
+    dataModel->setSnippets(CODESNIPPETS->getSnippets());
     currentModified = false;
     clearEdits();
 
-    if (model->isValidRowIndex(selectedBefore))
-        selectSnippet(selectedBefore);
+    idx = viewModel->index(idx.row(), idx.column());
+    if (idx.isValid())
+        selectSnippet(idx);
 
     updateState();
 }
@@ -230,40 +236,45 @@ void CodeSnippetEditor::rollback()
 void CodeSnippetEditor::newSnippet()
 {
     CodeSnippetManager::CodeSnippet* snip = new CodeSnippetManager::CodeSnippet();
-    snip->name = generateUniqueName("snippet", model->getSnippetNames());
+    snip->name = generateUniqueName("snippet", dataModel->getSnippetNames());
 
-    model->addSnippet(snip);
+    dataModel->addSnippet(snip);
 
-    selectSnippet(model->rowCount() - 1);
+    QModelIndex idx = viewModel->index(viewModel->rowCount() - 1, 0);
+    selectSnippet(idx);
 }
 
 void CodeSnippetEditor::deleteSnippet()
 {
-    int srcRow = getCurrentSnippetRow();
-    model->deleteSnippet(srcRow);
+    QModelIndex idx = getCurrentSnippetIndex();
+    dataModel->deleteSnippet(viewModel->mapToSource(idx));
     clearEdits();
 
-    srcRow = getCurrentSnippetRow();
-    if (model->isValidRowIndex(srcRow))
-        snippetSelected(srcRow);
+    idx = getCurrentSnippetIndex();
+    if (idx.isValid())
+        snippetSelected(idx);
 
     updateState();
 }
 
 void CodeSnippetEditor::moveSnippetUp()
 {
-    int row = getCurrentSnippetRow();
-    int newRow = model->moveUp(row);
-    if (row != newRow)
-        selectSnippet(newRow, true);
+    QModelIndex idx = getCurrentSnippetIndex();
+    QModelIndex newIdx = viewModel->mapFromSource(dataModel->moveUp(viewModel->mapToSource(idx)));
+    if (idx != newIdx)
+        selectSnippet(newIdx, true);
+
+    updateState();
 }
 
 void CodeSnippetEditor::moveSnippetDown()
 {
-    int row = getCurrentSnippetRow();
-    int newRow = model->moveDown(row);
-    if (row != newRow)
-        selectSnippet(newRow, true);
+    QModelIndex idx = getCurrentSnippetIndex();
+    QModelIndex newIdx = viewModel->mapFromSource(dataModel->moveDown(viewModel->mapToSource(idx)));
+    if (idx != newIdx)
+        selectSnippet(newIdx, true);
+
+    updateState();
 }
 
 void CodeSnippetEditor::updateModified()
@@ -271,12 +282,12 @@ void CodeSnippetEditor::updateModified()
     if (updatesForSelection)
         return;
 
-    int row = getCurrentSnippetRow();
-    if (model->isValidRowIndex(row))
+    QModelIndex idx = getCurrentSnippetIndex();
+    if (idx.isValid())
     {
-        bool nameDiff = model->getName(row) != ui->nameEdit->text();
-        bool codeDiff = model->getCode(row) != ui->mainCodeEdit->toPlainText();
-        bool hotkeyDiff = model->getHotkey(row) != ui->assistantShortcutEdit->keySequence();
+        bool nameDiff = idx.data(Qt::DisplayRole) != ui->nameEdit->text();
+        bool codeDiff = idx.data(CodeSnippetEditorModel::CODE) != ui->mainCodeEdit->toPlainText();
+        bool hotkeyDiff = QKeySequence(idx.data(CodeSnippetEditorModel::HOTKEY).toString()) != ui->assistantShortcutEdit->keySequence();
         currentModified = (nameDiff || codeDiff || hotkeyDiff);
     }
 
@@ -285,8 +296,8 @@ void CodeSnippetEditor::updateModified()
 
 void CodeSnippetEditor::updateCurrentSnippetState()
 {
-    int row = getCurrentSnippetRow();
-    bool validRow = model->isValidRowIndex(row);
+    QModelIndex idx = getCurrentSnippetIndex();
+    bool validRow = idx.isValid();
     ui->rightWidget->setEnabled(validRow);
     if (!validRow)
     {
@@ -297,25 +308,27 @@ void CodeSnippetEditor::updateCurrentSnippetState()
         return;
     }
 
+    QModelIndex srcIdx = viewModel->mapToSource(idx);
+
     QString name = ui->nameEdit->text();
-    bool nameOk = !name.trimmed().isEmpty() && model->isAllowedName(row, name);
+    bool nameOk = !name.trimmed().isEmpty() && dataModel->isAllowedName(srcIdx, name);
     setValidState(ui->nameEdit, nameOk, tr("Enter a non-empty, unique name of the snippet."));
 
     bool codeOk = !ui->mainCodeEdit->toPlainText().trimmed().isEmpty();
     setValidState(ui->mainCodeEdit, codeOk, tr("Enter a non-empty snippet content."));
 
     QKeySequence assistantHotkey = ui->assistantShortcutEdit->keySequence();
-    bool hotkeyOk = assistantHotkey.isEmpty() || model->isAllowedHotkey(row, assistantHotkey);
+    bool hotkeyOk = assistantHotkey.isEmpty() || dataModel->isAllowedHotkey(srcIdx, assistantHotkey);
     setValidState(ui->assistantShortcutWidget, hotkeyOk, tr("This hotkey is not unique in context of a code assistant."));
 
-    model->setValid(row, codeOk && nameOk && hotkeyOk);
+    viewModel->setData(idx, codeOk && nameOk && hotkeyOk, CodeSnippetEditorModel::VALID);
     updateState();
 }
 
 void CodeSnippetEditor::updateState()
 {
-    bool modified = model->isModified() || currentModified;
-    bool valid = model->isValid();
+    bool modified = dataModel->isModified() || currentModified;
+    bool valid = dataModel->isValid();
 
     actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);
@@ -331,10 +344,10 @@ void CodeSnippetEditor::snippetSelected(const QItemSelection& selected, const QI
     int selCnt = selected.indexes().size();
 
     if (deselCnt > 0)
-        snippetDeselected(snipRowToSrc(deselected.indexes().first()).row());
+        snippetDeselected(deselected.indexes().first());
 
     if (selCnt > 0)
-        snippetSelected(snipRowToSrc(selected.indexes().first()).row());
+        snippetSelected(selected.indexes().first());
 
     if (deselCnt > 0 && selCnt == 0)
     {
@@ -346,12 +359,12 @@ void CodeSnippetEditor::snippetSelected(const QItemSelection& selected, const QI
 void CodeSnippetEditor::applyFilter(const QString& value)
 {
     // The selection hack (clear & set) below is described in more details in FunctionsEditor::applyFilter().
-    int srcRow = getCurrentSnippetRow();
+    QModelIndex idx = getCurrentSnippetIndex();
     ui->list->selectionModel()->clearSelection();
 
-    snippetFilterModel->setFilterFixedString(value);
+    viewModel->setFilterFixedString(value);
 
-    selectSnippet(srcRow);
+    selectSnippet(idx);
 }
 
 void CodeSnippetEditor::changeFont(const QVariant& font)
@@ -369,4 +382,32 @@ void CodeSnippetEditor::help()
 {
     static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/Code-snippets");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void CodeSnippetEditor::cfgCodeSnippetListChanged()
+{
+    if (dataModel->isModified())
+        return; // Don't update list if there are uncommitted changes, because it would be disruptive for user. Changes will be visible after commit or rollback.
+
+    dataModel->setSnippets(CODESNIPPETS->getSnippets());
+    updateCurrentSnippetState();
+}
+
+void CodeSnippetEditor::importSnippets()
+{
+    SettingsImportDialog::importFromFile(SettingsImportDialog::SNIPPET);
+}
+
+void CodeSnippetEditor::exportSnippets()
+{
+    SettingsExportDialog::exportToFile(SettingsExportDialog::SNIPPET);
+}
+
+void CodeSnippetEditor::editSnippet(const QString& name)
+{
+    QModelIndexList resList = viewModel->match(viewModel->index(0, 0), Qt::DisplayRole, name, 1, Qt::MatchExactly);
+    if (resList.isEmpty())
+        return;
+
+    selectSnippet(resList.first());
 }

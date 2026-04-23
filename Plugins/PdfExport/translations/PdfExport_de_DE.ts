@@ -261,70 +261,70 @@
     <message>
         <location filename="../pdfexport.ui" line="290"/>
         <source>Custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierter Header</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="296"/>
         <source>No custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein benutzerdefinierter Header</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="299"/>
         <location filename="../pdfexport.ui" line="373"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg+S</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="312"/>
         <source>Define custom header content</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenen Header-Inhalt definieren</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="325"/>
         <location filename="../pdfexport.ui" line="399"/>
         <source>Plain text content</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhalt im Klartext</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="335"/>
         <source>Define custom header file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Header-Datei definieren</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="351"/>
         <source>Choose file for the header</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei für den Header auswählen</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="354"/>
         <location filename="../pdfexport.ui" line="428"/>
         <source>Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Textdateien (*.txt);;Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="364"/>
         <source>Custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="370"/>
         <source>No custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="386"/>
         <source>Define custom footer content</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenen Footer-Inhalt definieren</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="409"/>
         <source>Define custom footer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Fußzeile Datei definieren</translation>
     </message>
     <message>
         <location filename="../pdfexport.ui" line="425"/>
         <source>Choose file for the footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei für den Footer auswählen</translation>
     </message>
 </context>
 </TS>

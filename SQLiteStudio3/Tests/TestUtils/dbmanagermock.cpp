@@ -92,6 +92,10 @@ QString DbManagerMock::generateUniqueDbName(DbPlugin*, const QString&)
     return QString();
 }
 
+void DbManagerMock::init()
+{
+}
+
 QString DbManagerMock::quickAddDb(const QString &, const QHash<QString, QVariant> &)
 {
     return QString();

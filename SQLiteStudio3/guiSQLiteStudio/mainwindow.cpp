@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "dialogs/settingsexportdialog.h"
+#include "dialogs/settingsimportdialog.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
 #include "windows/functionseditor.h"
@@ -35,6 +37,7 @@
 #include "style.h"
 #include "services/codeformatter.h"
 #include "windows/codesnippeteditor.h"
+#include "codesnippetspanel.h"
 #include "sqleditor.h"
 #include "uiutils.h"
 #include "datagrid/cellrendererplugin.h"
@@ -99,6 +102,12 @@ void MainWindow::init()
     DbTreeModel::staticInit();
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
+
+    codeSnippetsPanel = new CodeSnippetsPanel(this);
+    addDockWidget(Qt::LeftDockWidgetArea, codeSnippetsPanel);
+
+    tabifyDockWidget(dbTree, codeSnippetsPanel);
+    dbTree->raise();
 
     statusField = new StatusField(this);
     addDockWidget(Qt::BottomDockWidgetArea, statusField);
@@ -346,8 +355,9 @@ void MainWindow::createActions()
 #ifdef HAS_UPDATEMANAGER
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
-
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), this);
+    createAction(EXPORT_SETTINGS, ICONS.CONFIG_EXPORT, tr("Export configuration"), this, SLOT(exportConfig()), this);
+    createAction(IMPORT_SETTINGS, ICONS.CONFIG_IMPORT, tr("Import configuration"), this, SLOT(importConfig()), this);
 
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
@@ -461,6 +471,8 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();
+    toolsMenu->addAction(actionMap[IMPORT_SETTINGS]);
+    toolsMenu->addAction(actionMap[EXPORT_SETTINGS]);
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
     // Help menu
@@ -519,6 +531,7 @@ void MainWindow::saveSession(MdiWindow* currWindow)
     }
 
     sessionValue["dbTree"] = dbTree->saveSession();
+    sessionValue["snippetsPanel"] = codeSnippetsPanel->saveSession();
     sessionValue["style"] = currentStyle();
 
     CFG_UI.General.Session.set(sessionValue);
@@ -575,6 +588,9 @@ void MainWindow::restoreSession()
 
     if (sessionValue.contains("dbTree"))
         dbTree->restoreSession(sessionValue["dbTree"]);
+
+    if (sessionValue.contains("snippetsPanel"))
+        codeSnippetsPanel->restoreSession(sessionValue["snippetsPanel"]);
 
     if (CFG_UI.General.RestoreSession.get())
     {
@@ -789,6 +805,18 @@ void MainWindow::refreshSyntaxColors()
         (*pluginIt)->refreshFormats();
         pluginIt++;
     }
+}
+
+void MainWindow::exportConfig()
+{
+    SettingsExportDialog dialog(this);
+    dialog.exec();
+}
+
+void MainWindow::importConfig()
+{
+    SettingsImportDialog dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::updateToolbarStyle()
@@ -1226,6 +1254,7 @@ void MainWindow::handlePostRestoreConfigUpdates()
 void MainWindow::initDropOverlay()
 {
     dropOverlay = new WidgetCover(this);
+    dropOverlay->setTransparency(192);
     QGridLayout* dropLayout = dropOverlay->getContainerLayout();
     dropLayout->setContentsMargins(0, 0, 0, 0);
     QLabel* dropLabel = new QLabel(tr("Drop files to open them"), dropOverlay);

@@ -4,7 +4,6 @@
 #include "db/db.h"
 #include "coreSQLiteStudio_global.h"
 #include "common/strhash.h"
-#include "common/global.h"
 #include "services/dbmanager.h"
 #include <QObject>
 #include <QList>
@@ -50,6 +49,7 @@ class API_EXPORT DbManagerImpl : public DbManager
         DbPlugin* getPluginForDbFile(const QString& filePath);
         QString generateUniqueDbName(const QString& filePath);
         QString generateUniqueDbName(DbPlugin* plugin, const QString& filePath);
+        void init();
 
         /**
          * @brief Defines database plugin used for creating in-memory databases.
@@ -58,12 +58,6 @@ class API_EXPORT DbManagerImpl : public DbManager
         void setInMemDbCreatorPlugin(DbPlugin* plugin);
 
     private:
-        /**
-         * @brief Internal manager initialization.
-         *
-         * Called from any constructor.
-         */
-        void init();
 
         /**
          * @brief Loads initial list of databases.

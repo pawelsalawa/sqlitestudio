@@ -37,6 +37,8 @@ class API_EXPORT CollationManager : public QObject
         virtual int evaluate(const QString& name, const QString& value1, const QString& value2) = 0;
         virtual int evaluateDefault(const QString& value1, const QString& value2) = 0;
         virtual CollationPtr getCollation(const QString &name) const = 0;
+        virtual void loadFromConfig() = 0;
+        virtual void init() = 0;
 
     signals:
         void collationListChanged();

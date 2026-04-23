@@ -11,7 +11,7 @@
     <message>
         <location filename="../htmlexport.cpp" line="54"/>
         <source>Query:</source>
-        <translation type="unfinished">Query:</translation>
+        <translation>Abfrage:</translation>
     </message>
     <message>
         <location filename="../htmlexport.cpp" line="94"/>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../htmlexport.cpp" line="136"/>
         <source>Exported view: %1</source>
-        <translation type="unfinished">Exported view: %1</translation>
+        <translation>Exportierte Ansicht: %1</translation>
     </message>
     <message>
         <location filename="../htmlexport.cpp" line="157"/>
@@ -161,45 +161,45 @@
     <message>
         <location filename="../htmlexport.ui" line="20"/>
         <source>Custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierter Header</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="26"/>
         <source>No custom header</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein benutzerdefinierter Header</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="29"/>
         <location filename="../htmlexport.ui" line="204"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg+S</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="42"/>
         <source>Define custom header content</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenen Header-Inhalt definieren</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="55"/>
         <location filename="../htmlexport.ui" line="230"/>
         <source>HTML content</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Inhalt</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="65"/>
         <source>Define custom header file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Header-Datei definieren</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="81"/>
         <source>Choose file for the header</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei für den Header auswählen</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="84"/>
         <location filename="../htmlexport.ui" line="259"/>
         <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-Dateien (*.htm, *.html);;Textdateien (*.txt);;Alle Dateien (*)</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="100"/>
@@ -224,27 +224,27 @@
     <message>
         <location filename="../htmlexport.ui" line="195"/>
         <source>Custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="201"/>
         <source>No custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="217"/>
         <source>Define custom footer content</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigenen Footer-Inhalt definieren</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="240"/>
         <source>Define custom footer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene Fußzeile Datei definieren</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="256"/>
         <source>Choose file for the footer</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei für den Footer auswählen</translation>
     </message>
 </context>
 </TS>

@@ -39,6 +39,7 @@ class QTimer;
 class ThemeTuner;
 class SqliteExtensionEditor;
 class CodeSnippetEditor;
+class CodeSnippetsPanel;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ         Qt::CTRL | Qt::ALT | Qt::Key_Left
@@ -132,7 +133,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             CHECK_FOR_UPDATES,
             QUIT,
             NEW_DB,
-            OPEN_FILE
+            OPEN_FILE,
+            EXPORT_SETTINGS,
+            IMPORT_SETTINGS,
         };
         Q_ENUM(Action)
 
@@ -179,11 +182,11 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void restoreSession();
         bool setStyle(const QString& styleName);
         FormManager* getFormManager() const;
-        bool eventFilter(QObject* obj, QEvent* e);
+        bool eventFilter(QObject* obj, QEvent* e) override;
         void pushClosedWindowSessionValue(const QVariant& value);
         bool hasClosedWindowToRestore() const;
         bool isClosingApp() const;
-        QToolBar* getToolBar(int toolbar) const;
+        QToolBar* getToolBar(int toolbar) const override;
         void openDb(const QString& path);
         QMenu* getDatabaseMenu() const;
         QMenu* getStructureMenu() const;
@@ -194,8 +197,13 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         ThemeTuner* getThemeTuner() const;
         EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
         EditorWindow* openSqlEditorForFile(Db* dbToSet, const QString& fileName);
+        DdlHistoryWindow* openDdlHistory();
+        FunctionsEditor* openFunctionEditor();
+        CodeSnippetEditor* openCodeSnippetEditor();
+        CollationsEditor* openCollationEditor();
+        SqliteExtensionEditor* openExtensionManager();
         void installToolbarSizeWheelHandler(QToolBar* toolbar);
-        QMenu* createPopupMenu();
+        QMenu* createPopupMenu() override;
 
         template <class T, typename... Args>
         T* openMdiWindow(Args&&... args);
@@ -205,7 +213,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         static int defaultToolbarIconSize;
 
     protected:
-        void closeEvent(QCloseEvent *event);
+        void closeEvent(QCloseEvent *event) override;
 
     private:
         class ToolBarStyleEnforcer : public QObject
@@ -222,19 +230,14 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
         void init();
         void observeSessionChanges();
-        void createActions();
-        void setupDefShortcuts();
+        void createActions() override;
+        void setupDefShortcuts() override;
         void initMenuBar();
         void saveSession(MdiWindow* currWindow);
         void saveSession(bool hide);
         void restoreWindowSessions(const QList<QVariant>& windowSessions);
         MdiWindow *restoreWindowSession(const QVariant& windowSessions);
         void closeNonSessionWindows();
-        DdlHistoryWindow* openDdlHistory();
-        FunctionsEditor* openFunctionEditor();
-        CodeSnippetEditor* openCodeSnippetEditor();
-        CollationsEditor* openCollationEditor();
-        SqliteExtensionEditor* openExtensionManager();
         void fixFonts();
         void fixToolbars();
         QMenu* createToolbarStyleMenu(QMenu* parentMenu);
@@ -260,6 +263,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
         Ui::MainWindow *ui = nullptr;
         DbTree* dbTree = nullptr;
+        CodeSnippetsPanel* codeSnippetsPanel = nullptr;
         StatusField* statusField = nullptr;
         QMenu* mdiMenu = nullptr;
         FormManager* formManager = nullptr;
@@ -338,6 +342,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void scheduleSessionSave();
         void toolbarSizeChangeRequested(int steps);
         void refreshSyntaxColors();
+        void exportConfig();
+        void importConfig();
 
     signals:
         void sessionValueChanged();

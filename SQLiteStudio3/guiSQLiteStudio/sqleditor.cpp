@@ -25,6 +25,8 @@
 #include "common/lazytrigger.h"
 #include "db/dbsqlite3.h"
 #include "dialogs/dbdialog.h"
+#include "windows/codesnippeteditormodel.h"
+#include "services/dbmanager.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -39,6 +41,13 @@
 #include <QStyle>
 
 CFG_KEYS_DEFINE(SqlEditor)
+
+// This is a workaround to Qt bug https://www.qtcentre.org/threads/16935-Cursor-stops-being-redrawn-when-QTextEdit-dropEvent()-overrided
+// (still not fixed...), which causes cursor to stop blinking after customizing the dropEvent().
+#define QT_BUG_16935_WORKAROUND(e) \
+    setReadOnly(true); \
+    QPlainTextEdit::dropEvent(e); \
+    setReadOnly(false);
 
 QHash<SqlEditor::Action, QAction*> SqlEditor::staticActions;
 bool SqlEditor::wrapWords = false;
@@ -555,6 +564,9 @@ void SqlEditor::backspacePressed()
 
 void SqlEditor::complete()
 {
+    if (!autoCompletion)
+        return;
+
     if (!db || !db->isValid())
     {
         notifyWarn(tr("Syntax completion can be used only when a valid database is set for the SQL editor."));
@@ -1900,24 +1912,24 @@ QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
     return ICONS.DATA_INSERT;
 }
 
-void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action)
+void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action, const QPointF& pos)
 {
     QList<DbTreeItem*> onlyParentSelectedItems = items | FILTER(item, {return !items.contains(item->parentDbTreeItem());});
     switch (action)
     {
         case Qt::CopyAction:
-            handleDbTreeUpdateDrop(onlyParentSelectedItems);
+            handleDbTreeUpdateDrop(onlyParentSelectedItems, pos);
             break;
         case Qt::LinkAction:
-            handleDbTreeInsertDrop(onlyParentSelectedItems);
+            handleDbTreeInsertDrop(onlyParentSelectedItems, pos);
             break;
         default:
-            handleDbTreeSelectDrop(onlyParentSelectedItems);
+            handleDbTreeSelectDrop(onlyParentSelectedItems, pos);
             break;
     }
 }
 
-void SqlEditor::handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items)
+void SqlEditor::handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items, const QPointF& pos)
 {
     QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
 
@@ -1934,10 +1946,10 @@ void SqlEditor::handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items)
         parts << updateTpl.arg(sourceAndCols.first, setPart);
     }
     setFocus(Qt::MouseFocusReason);
-    insertPlainText(parts.join("\n"));
+    insertPlainTextAt(parts.join("\n"), pos);
 }
 
-void SqlEditor::handleDbTreeInsertDrop(const QList<DbTreeItem*>& items)
+void SqlEditor::handleDbTreeInsertDrop(const QList<DbTreeItem*>& items, const QPointF& pos)
 {
     QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
 
@@ -1954,10 +1966,10 @@ void SqlEditor::handleDbTreeInsertDrop(const QList<DbTreeItem*>& items)
         parts << insertTpl.arg(sourceAndCols.first, columnsPart, bindParams);
     }
     setFocus(Qt::MouseFocusReason);
-    insertPlainText(parts.join("\n"));
+    insertPlainTextAt(parts.join("\n"), pos);
 }
 
-void SqlEditor::handleDbTreeSelectDrop(const QList<DbTreeItem*>& items)
+void SqlEditor::handleDbTreeSelectDrop(const QList<DbTreeItem*>& items, const QPointF& pos)
 {
     QList<QPair<QString, QStringList>> sourceAndColumns = getSourceAndColumnsForDrop(items);
 
@@ -1969,7 +1981,7 @@ void SqlEditor::handleDbTreeSelectDrop(const QList<DbTreeItem*>& items)
         parts << selectTpl.arg(columnsPart, sourceAndCols.first);
     }
     setFocus(Qt::MouseFocusReason);
-    insertPlainText(parts.join("\n"));
+    insertPlainTextAt(parts.join("\n"), pos);
 }
 
 QList<QPair<QString, QStringList>> SqlEditor::getSourceAndColumnsForDrop(const QList<DbTreeItem*>& items)
@@ -2049,8 +2061,22 @@ QList<QPair<QString, QStringList>> SqlEditor::getSourceAndColumnsForDrop(const Q
     return result;
 }
 
+void SqlEditor::insertPlainTextAt(const QString& content, const QPointF& pos)
+{
+    insertPlainTextAt(content, pos.toPoint());
+}
+
+void SqlEditor::insertPlainTextAt(const QString& content, const QPoint& pos)
+{
+    QTextCursor cursor = cursorForPosition(pos);
+    setTextCursor(cursor);
+    insertPlainText(content);
+}
+
 void SqlEditor::dropEvent(QDropEvent* e)
 {
+    QT_BUG_16935_WORKAROUND(e);
+
     const QMimeData* data = e->mimeData();
     DbTreeModel* treeModel = MAINWINDOW->getDbTree()->getModel();
     if (DbTreeModel::hasDbTreeItem(data))
@@ -2063,21 +2089,15 @@ void SqlEditor::dropEvent(QDropEvent* e)
             return;
         }
 
-        // This is a workaround to Qt bug https://www.qtcentre.org/threads/16935-Cursor-stops-being-redrawn-when-QTextEdit-dropEvent()-overrided
-        // (still not fixed...), which causes cursor to stop blinking after customizing the dropEvent().
-        setReadOnly(true);
-        QPlainTextEdit::dropEvent(e);
-        setReadOnly(false);
-
-        handleDbTreeDrop(srcItems, e->dropAction());
-        e->ignore();
-        return;
+        handleDbTreeDrop(srcItems, e->dropAction(), e->position());
     }
-
-    // Same workaround as above
-    setReadOnly(true);
-    QPlainTextEdit::dropEvent(e);
-    setReadOnly(false);
+    else if (data->hasFormat(CodeSnippetEditorModel::MIMETYPE))
+    {
+        QByteArray snippetData = data->data(CodeSnippetEditorModel::MIMETYPE);
+        QString code = QString::fromUtf8(snippetData);
+        setFocus(Qt::MouseFocusReason);
+        insertPlainTextAt(code, e->position());
+    }
 
     // Ignore - we proparage drops from external apps to main window, where it's handled globally
     e->ignore();

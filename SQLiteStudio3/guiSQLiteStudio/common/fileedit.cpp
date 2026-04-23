@@ -1,6 +1,7 @@
 #include "fileedit.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
+#include "common/collections.h"
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QComboBox>
@@ -55,15 +56,26 @@ QVariant FileEdit::getChoicesModelName() const
 
 void FileEdit::browse()
 {
+    selectedFilter = nullptr;
+    if (filters.contains(";;"))
+    {
+        QStringList filterList = filters.split(";;");
+        selectedFilter = &filterList[0];
+    }
+
     QString path;
     QString dir = getFileDialogInitPath();
     if (save)
-        path = QFileDialog::getSaveFileName(this, dialogTitle, dir, filters);
+        path = QFileDialog::getSaveFileName(this, dialogTitle, dir, filters, selectedFilter);
     else
-        path = QFileDialog::getOpenFileName(this, dialogTitle, dir, filters);
+        path = QFileDialog::getOpenFileName(this, dialogTitle, dir, filters, selectedFilter);
 
     if (path.isNull())
         return;
+
+    QString ext = getSelectedFilterExtensionIfMissing(path);
+    if (!ext.isEmpty())
+        path += "." + ext;
 
     setFile(path);
     setFileDialogInitPathByFile(path);
@@ -137,6 +149,30 @@ void FileEdit::setChoicesModel(QAbstractItemModel* arg)
         }
         connect(lineEdit, SIGNAL(textChanged(QString)), this, SLOT(lineTextChanged()));
     }
+}
+
+QString FileEdit::getSelectedFilterExtensionIfMissing(const QString& path) const
+{
+    if (!selectedFilter)
+        return QString();
+
+    int idx = selectedFilter->lastIndexOf("(");
+    if (idx < 0)
+        return QString();
+
+    QStringList extensions = selectedFilter->mid(idx + 1).chopped(1).split(",")
+                            | MAP(e, {return e.mid(2);});
+    if (extensions.isEmpty())
+        return QString();
+
+    QString lowerPath = path.toLower();
+    for (QString& ext : extensions)
+    {
+        if (lowerPath.endsWith(ext.toLower()))
+            return QString();
+    }
+
+    return extensions.first();
 }
 
 void FileEdit::setChoicesModelName(QVariant arg)

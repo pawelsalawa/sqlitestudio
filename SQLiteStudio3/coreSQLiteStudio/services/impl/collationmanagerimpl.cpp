@@ -1,7 +1,7 @@
 #include "collationmanagerimpl.h"
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
-#include "services/notifymanager.h"
+#include "services/config.h"
 #include "services/dbmanager.h"
 #include "common/utils.h"
 #include <QDebug>
@@ -18,7 +18,6 @@ CollationFunctionInfoImpl collationFunctionInfo;
 
 CollationManagerImpl::CollationManagerImpl()
 {
-    init();
 }
 
 void CollationManagerImpl::setCollations(const QList<CollationManager::CollationPtr>& newCollations)
@@ -98,7 +97,6 @@ int CollationManagerImpl::evaluateDefault(const QString& value1, const QString& 
 void CollationManagerImpl::init()
 {
     loadFromConfig();
-    refreshCollationsByKey();
     connect(DBLIST, &DbManager::dbUpdated, this, &CollationManagerImpl::handleDbUpdated);
 }
 
@@ -106,14 +104,14 @@ void CollationManagerImpl::storeInConfig()
 {
     QVariantList list;
     QHash<QString,QVariant> collHash;
-    for (CollationPtr coll : collations)
+    for (const CollationPtr &coll : collations)
     {
         collHash["name"] = coll->name;
         collHash["type"] = coll->type;
         collHash["lang"] = coll->lang;
         collHash["code"] = coll->code;
         collHash["allDatabases"] = coll->allDatabases;
-        collHash["databases"] =common(DBLIST->getDbNames(),  coll->databases);
+        collHash["databases"] = common(DBLIST->getDbNames(),  coll->databases);
         list << collHash;
     }
     CFG_CORE.Internal.Collations.set(list);
@@ -141,6 +139,8 @@ void CollationManagerImpl::loadFromConfig()
         coll->allDatabases = collHash["allDatabases"].toBool();
         collations << coll;
     }
+    refreshCollationsByKey();
+    emit collationListChanged();
 }
 
 void CollationManagerImpl::refreshCollationsByKey()

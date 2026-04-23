@@ -32,6 +32,8 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
             DELETE,
             MOVE_UP,
             MOVE_DOWN,
+            IMPORT,
+            EXPORT,
             HELP
         };
         Q_ENUM(Action)
@@ -60,16 +62,15 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
     private:
         void init();
         void setupContextMenu();
-        int getCurrentSnippetRow() const;
-        QModelIndex snipRowToSrc(const QModelIndex& idx) const;
-        void snippetDeselected(int srcRow);
-        void snippetSelected(int srcRow);
-        void selectSnippet(int srcRow, bool forRowMovement = false);
+        QModelIndex getCurrentSnippetIndex() const;
+        void snippetDeselected(const QModelIndex& srcRow);
+        void snippetSelected(const QModelIndex& idx);
+        void selectSnippet(const QModelIndex& idx, bool forRowMovement = false);
         void clearEdits();
 
         Ui::CodeSnippetEditor *ui;
-        CodeSnippetEditorModel* model = nullptr;
-        QSortFilterProxyModel* snippetFilterModel = nullptr;
+        CodeSnippetEditorModel* dataModel = nullptr;
+        QSortFilterProxyModel* viewModel = nullptr;
         bool currentModified = false;
         bool updatesForSelection = false;
         bool skipModelUpdatesDuringSelection = false;
@@ -89,6 +90,12 @@ class GUI_API_EXPORT CodeSnippetEditor : public MdiChild
         void changeFont(const QVariant& font);
         void clearAssistantShortcutPressed();
         void help();
+        void cfgCodeSnippetListChanged();
+        void importSnippets();
+        void exportSnippets();
+
+    public slots:
+        void editSnippet(const QString& name);
 };
 
 #endif // CODESNIPPETEDITOR_H

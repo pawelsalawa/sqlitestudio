@@ -87,7 +87,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void refreshSchema(Db* db, QStandardItem* item);
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
         QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QSet<QString>& virtualTables, bool sort);
-        QList<QStandardItem*> refreshSchemaTableOrViewColumns(const QStringList& columns);
+        QList<QStandardItem*> refreshSchemaTableOrViewColumns(const QList<QPair<QString, QString>>& columns);
         QList<QStandardItem*> refreshSchemaIndexes(const QStringList& indexes, bool sort);
         QList<QStandardItem*> refreshSchemaTriggers(const QStringList& triggers, bool sort);
         QList<QStandardItem*> refreshSchemaViews(const QStringList &views, bool sort);

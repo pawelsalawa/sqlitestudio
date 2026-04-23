@@ -4,168 +4,169 @@
   <context>
     <name>PdfExport</name>
     <message>
-      <location filename="../pdfexport.cpp" line="32"/>
+      <location filename="../pdfexport.cpp" line="33"/>
       <source>SQLiteStudio v%1</source>
       <translation type="unfinished">SQLiteStudio v%1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="65"/>
+      <location filename="../pdfexport.cpp" line="66"/>
       <source>SQL query results</source>
       <translation type="unfinished">SQL query results</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="198"/>
+      <location filename="../pdfexport.cpp" line="205"/>
       <source>Exported table: %1</source>
       <translation type="unfinished">Exported table: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="94"/>
-      <location filename="../pdfexport.cpp" line="146"/>
+      <location filename="../pdfexport.cpp" line="101"/>
+      <location filename="../pdfexport.cpp" line="153"/>
       <source>Table: %1</source>
       <translation type="unfinished">Table: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="97"/>
-      <location filename="../pdfexport.cpp" line="253"/>
+      <location filename="../pdfexport.cpp" line="104"/>
+      <location filename="../pdfexport.cpp" line="266"/>
       <source>Column</source>
       <translation>Qatar</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="97"/>
+      <location filename="../pdfexport.cpp" line="104"/>
       <source>Data type</source>
       <translation type="unfinished">Data type</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="97"/>
+      <location filename="../pdfexport.cpp" line="104"/>
       <source>Constraints</source>
       <translation type="unfinished">Constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="128"/>
+      <location filename="../pdfexport.cpp" line="135"/>
       <source>Global table constraints</source>
       <translation type="unfinished">Global table constraints</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="209"/>
+      <location filename="../pdfexport.cpp" line="216"/>
       <source>Exported view: %1</source>
       <translation type="unfinished">Exported view: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="237"/>
+      <location filename="../pdfexport.cpp" line="250"/>
       <source>Exported database: %1</source>
       <translation type="unfinished">Exported database: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="245"/>
+      <location filename="../pdfexport.cpp" line="258"/>
       <source>Index: %1</source>
       <translation type="unfinished">Index: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="247"/>
+      <location filename="../pdfexport.cpp" line="260"/>
       <source>Property</source>
       <comment>index header</comment>
       <translation type="unfinished">Property</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="247"/>
+      <location filename="../pdfexport.cpp" line="260"/>
       <source>Value</source>
       <comment>index header</comment>
       <translation type="unfinished">Value</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="250"/>
+      <location filename="../pdfexport.cpp" line="263"/>
       <source>Indexed table</source>
       <translation type="unfinished">Indexed table</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="251"/>
+      <location filename="../pdfexport.cpp" line="264"/>
       <source>Unique index</source>
       <translation type="unfinished">Unique index</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="251"/>
+      <location filename="../pdfexport.cpp" line="264"/>
       <source>Yes</source>
       <translation>Awa</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="251"/>
+      <location filename="../pdfexport.cpp" line="264"/>
       <source>No</source>
       <translation>Yaq</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="253"/>
+      <location filename="../pdfexport.cpp" line="266"/>
       <source>Collation</source>
       <translation type="unfinished">Collation</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="253"/>
+      <location filename="../pdfexport.cpp" line="266"/>
       <source>Sort order</source>
       <translation type="unfinished">Sort order</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="269"/>
+      <location filename="../pdfexport.cpp" line="282"/>
       <source>Partial index condition</source>
       <translation type="unfinished">Partial index condition</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="283"/>
+      <location filename="../pdfexport.cpp" line="296"/>
       <source>Trigger: %1</source>
       <translation type="unfinished">Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="285"/>
+      <location filename="../pdfexport.cpp" line="298"/>
       <source>Property</source>
       <comment>trigger header</comment>
       <translation type="unfinished">Property</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="285"/>
+      <location filename="../pdfexport.cpp" line="298"/>
       <source>Value</source>
       <comment>trigger header</comment>
       <translation type="unfinished">Value</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="287"/>
+      <location filename="../pdfexport.cpp" line="300"/>
       <source>Activation time</source>
       <translation type="unfinished">Activation time</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="290"/>
+      <location filename="../pdfexport.cpp" line="303"/>
       <source>For action</source>
       <translation type="unfinished">For action</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="294"/>
+      <location filename="../pdfexport.cpp" line="307"/>
       <source>On view</source>
       <translation type="unfinished">On view</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="296"/>
+      <location filename="../pdfexport.cpp" line="309"/>
       <source>On table</source>
       <translation type="unfinished">On table</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="301"/>
+      <location filename="../pdfexport.cpp" line="314"/>
       <source>Activation condition</source>
       <translation type="unfinished">Activation condition</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="307"/>
+      <location filename="../pdfexport.cpp" line="320"/>
       <source>Code executed</source>
       <translation type="unfinished">Code executed</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="320"/>
+      <location filename="../pdfexport.cpp" line="333"/>
       <source>View: %1</source>
       <translation type="unfinished">View: %1</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="322"/>
+      <location filename="../pdfexport.cpp" line="69"/>
+      <location filename="../pdfexport.cpp" line="335"/>
       <source>Query:</source>
       <translation type="unfinished">Query:</translation>
     </message>
     <message>
-      <location filename="../pdfexport.cpp" line="687"/>
+      <location filename="../pdfexport.cpp" line="705"/>
       <source>Document generated with SQLiteStudio v%1</source>
       <translation type="unfinished">Document generated with SQLiteStudio v%1</translation>
     </message>
@@ -255,6 +256,74 @@
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
       <translation type="unfinished">Print page numbers</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="290"/>
+      <source>Custom header</source>
+      <translation type="unfinished">Custom header</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="296"/>
+      <source>No custom header</source>
+      <translation type="unfinished">No custom header</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="299"/>
+      <location filename="../pdfexport.ui" line="373"/>
+      <source>Ctrl+S</source>
+      <translation type="unfinished">Ctrl+S</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="312"/>
+      <source>Define custom header content</source>
+      <translation type="unfinished">Define custom header content</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="325"/>
+      <location filename="../pdfexport.ui" line="399"/>
+      <source>Plain text content</source>
+      <translation type="unfinished">Plain text content</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="335"/>
+      <source>Define custom header file</source>
+      <translation type="unfinished">Define custom header file</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="351"/>
+      <source>Choose file for the header</source>
+      <translation type="unfinished">Choose file for the header</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="354"/>
+      <location filename="../pdfexport.ui" line="428"/>
+      <source>Text files (*.txt);;All files (*)</source>
+      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="364"/>
+      <source>Custom footer</source>
+      <translation type="unfinished">Custom footer</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="370"/>
+      <source>No custom footer</source>
+      <translation type="unfinished">No custom footer</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="386"/>
+      <source>Define custom footer content</source>
+      <translation type="unfinished">Define custom footer content</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="409"/>
+      <source>Define custom footer file</source>
+      <translation type="unfinished">Define custom footer file</translation>
+    </message>
+    <message>
+      <location filename="../pdfexport.ui" line="425"/>
+      <source>Choose file for the footer</source>
+      <translation type="unfinished">Choose file for the footer</translation>
     </message>
   </context>
 </TS>

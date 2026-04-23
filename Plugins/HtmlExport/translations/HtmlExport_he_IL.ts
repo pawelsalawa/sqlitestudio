@@ -161,45 +161,45 @@
     <message>
         <location filename="../htmlexport.ui" line="20"/>
         <source>Custom header</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Custom header</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="26"/>
         <source>No custom header</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No custom header</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="29"/>
         <location filename="../htmlexport.ui" line="204"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="42"/>
         <source>Define custom header content</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Define custom header content</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="55"/>
         <location filename="../htmlexport.ui" line="230"/>
         <source>HTML content</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML content</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="65"/>
         <source>Define custom header file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Define custom header file</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="81"/>
         <source>Choose file for the header</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Choose file for the header</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="84"/>
         <location filename="../htmlexport.ui" line="259"/>
         <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="100"/>
@@ -224,27 +224,27 @@
     <message>
         <location filename="../htmlexport.ui" line="195"/>
         <source>Custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Custom footer</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="201"/>
         <source>No custom footer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No custom footer</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="217"/>
         <source>Define custom footer content</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Define custom footer content</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="240"/>
         <source>Define custom footer file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Define custom footer file</translation>
     </message>
     <message>
         <location filename="../htmlexport.ui" line="256"/>
         <source>Choose file for the footer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Choose file for the footer</translation>
     </message>
 </context>
 </TS>

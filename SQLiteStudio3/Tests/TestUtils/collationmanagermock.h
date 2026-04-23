@@ -14,6 +14,8 @@ class CollationManagerMock : public CollationManager
         int evaluate(const QString&, const QString&, const QString&);
         int evaluateDefault(const QString&, const QString&);
         CollationPtr getCollation(const QString &name) const;
+        void loadFromConfig();
+        void init();
 };
 
 #endif // COLLATIONMANAGERMOCK_H

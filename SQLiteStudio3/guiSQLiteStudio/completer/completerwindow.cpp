@@ -1,4 +1,5 @@
 #include "completerwindow.h"
+#include "completer/completersnippetdelegate.h"
 #include "ui_completerwindow.h"
 #include "completermodel.h"
 #include "sqleditor.h"
@@ -41,6 +42,8 @@ void CompleterWindow::init()
     ui->list->setModel(model);
     model->setCompleterView(ui->list);
 
+    ui->snippets->setItemDelegate(new CompleterSnippetDelegate(ui->snippets));
+
     setFocusProxy(ui->list);
     connect(ui->list, SIGNAL(focusOut()), this, SLOT(focusOut()));
     connect(ui->list, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(doubleClicked(QModelIndex)));
@@ -73,6 +76,7 @@ void CompleterWindow::refreshSnippets()
             snippetShortcuts << shortcut;
             snippetSignalMapper->setMapping(shortcut, i);
             connect(shortcut, SIGNAL(activated()), snippetSignalMapper, SLOT(map()));
+            ui->snippets->item(i)->setData(QListWidgetItem::UserType, snip->hotkey);
         }
         i++;
     }

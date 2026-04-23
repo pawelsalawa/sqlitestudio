@@ -18,7 +18,6 @@
 DbManagerImpl::DbManagerImpl(QObject *parent) :
     DbManager(parent)
 {
-    init();
 }
 
 DbManagerImpl::~DbManagerImpl()

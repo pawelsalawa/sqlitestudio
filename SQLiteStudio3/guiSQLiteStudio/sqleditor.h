@@ -231,11 +231,13 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void saveToFile(const QString& fileName);
         void toggleLineCommentForLine(const QTextBlock& block);
         bool hasSqlGenerativeDbTreeItemType(const QList<DbTreeItem*>& items) const;
-        void handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action);
-        void handleDbTreeSelectDrop(const QList<DbTreeItem*>& items);
-        void handleDbTreeInsertDrop(const QList<DbTreeItem*>& items);
-        void handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items);
+        void handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action, const QPointF& pos);
+        void handleDbTreeSelectDrop(const QList<DbTreeItem*>& items, const QPointF& pos);
+        void handleDbTreeInsertDrop(const QList<DbTreeItem*>& items, const QPointF& pos);
+        void handleDbTreeUpdateDrop(const QList<DbTreeItem*>& items, const QPointF& pos);
         QList<QPair<QString, QStringList>> getSourceAndColumnsForDrop(const QList<DbTreeItem*>& items);
+        void insertPlainTextAt(const QString& content, const QPointF& pos);
+        void insertPlainTextAt(const QString& content, const QPoint& pos);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;

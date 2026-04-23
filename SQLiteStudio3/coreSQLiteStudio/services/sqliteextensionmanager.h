@@ -31,6 +31,8 @@ class API_EXPORT SqliteExtensionManager : public QObject
         virtual QList<ExtensionPtr> getAllExtensions() const = 0;
         virtual QList<ExtensionPtr> getExtensionForDatabase(const QString& dbName) const = 0;
         virtual QStringList getExtensionDirs() const = 0;
+        virtual void loadFromConfig() = 0;
+        virtual void init() = 0;
 
         static QString resolvePath(QString path)
         {

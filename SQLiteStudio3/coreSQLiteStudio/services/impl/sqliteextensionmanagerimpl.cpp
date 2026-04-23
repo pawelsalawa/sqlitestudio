@@ -1,5 +1,7 @@
 #include "sqliteextensionmanagerimpl.h"
+#include "common/utils.h"
 #include "services/dbmanager.h"
+#include "services/config.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
@@ -11,7 +13,6 @@
 
 SqliteExtensionManagerImpl::SqliteExtensionManagerImpl()
 {
-    init();
 }
 
 void SqliteExtensionManagerImpl::setExtensions(const QList<SqliteExtensionManager::ExtensionPtr>& newExtensions)
@@ -122,6 +123,8 @@ void SqliteExtensionManagerImpl::loadFromConfig()
         extensions << ext;
         qDebug() << "SQLite extension from config:" << ext->filePath;
     }
+
+    emit extensionListChanged();
 }
 
 void SqliteExtensionManagerImpl::handleDbUpdated(const QString& oldName, Db* db)

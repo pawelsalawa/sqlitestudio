@@ -18,6 +18,8 @@ class FunctionManagerMock : public FunctionManager
         void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type);
         void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type);
         QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage, FunctionBase::Type);
+        void loadFromConfig();
+        void init();
 };
 
 #endif // FUNCTIONMANAGERMOCK_H

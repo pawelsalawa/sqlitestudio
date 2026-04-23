@@ -1,5 +1,6 @@
 #include "translations.h"
 #include "sqlitestudio.h"
+#include "services/config.h"
 #include <QTranslator>
 #include <QCoreApplication>
 #include <QDir>

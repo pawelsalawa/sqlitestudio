@@ -26,6 +26,7 @@ class DbManagerMock : public DbManager
         DbPlugin* getPluginForDbFile(const QString&);
         QString generateUniqueDbName(const QString&);
         QString generateUniqueDbName(DbPlugin*, const QString&);
+        void init();
 
     public slots:
         void notifyDatabasesAreLoaded();

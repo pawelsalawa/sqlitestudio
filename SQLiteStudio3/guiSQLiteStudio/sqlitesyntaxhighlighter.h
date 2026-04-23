@@ -105,7 +105,18 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
             int to;
         };
 
+        void init();
         void init(const QHash<State,QTextCharFormat>* formats);
+
+        /**
+         * @brief Checks if the highlighter is initialized, and if not, initializes it.
+         * @return true if the highlighter is initialized.
+         *
+         * This method is necessary, because some SQL highlighter instances are created
+         * before plugin is initialized, so they can't be initialized in constructor,
+         * because plugin provides formats for highlighter, which are necessary for initialization.
+         */
+        bool makeSureInitialized();
 
         void setupMapping();
 
@@ -161,6 +172,7 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         QList<DbObject> dbObjects;
         bool objectLinksEnabled = false;
         bool createTriggerContext = false;
+        bool initialized = false;
         const QHash<State,QTextCharFormat>* formats = nullptr;
 };
 

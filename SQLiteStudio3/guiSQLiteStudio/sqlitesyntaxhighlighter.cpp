@@ -1,7 +1,5 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "parser/lexer.h"
-#include "services/config.h"
-#include "style.h"
 #include "parser/keywords.h"
 #include "uiconfig.h"
 #include "services/pluginmanager.h"
@@ -20,15 +18,31 @@ SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent, const QH
 SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument* parent) :
     QSyntaxHighlighter(parent)
 {
+    init();
+}
+
+void SqliteSyntaxHighlighter::init()
+{
     SqliteHighlighterPlugin* plugin = dynamic_cast<SqliteHighlighterPlugin*>(PLUGINS->getLoadedPlugin("SqliteHighlighterPlugin"));
-    init(plugin->getFormats());
+    if (plugin)
+        init(plugin->getFormats());
 }
 
 void SqliteSyntaxHighlighter::init(const QHash<State, QTextCharFormat>* formats)
 {
     this->formats = formats;
+    initialized = true;
     setupMapping();
     setCurrentBlockState(regulartTextBlockState);
+}
+
+bool SqliteSyntaxHighlighter::makeSureInitialized()
+{
+    if (initialized)
+        return true;
+
+    init();
+    return initialized;
 }
 
 void SqliteSyntaxHighlighter::setupMapping()
@@ -75,6 +89,9 @@ QString SqliteSyntaxHighlighter::getPreviousStatePrefix(TextBlockState textBlock
 
 void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
 {
+    if (!makeSureInitialized())
+        return;
+
     if (document()->characterCount() > MAX_QUERY_LENGTH)
         return;
 

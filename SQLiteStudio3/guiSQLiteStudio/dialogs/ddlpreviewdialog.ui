@@ -44,12 +44,22 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="openInEditorBtn">
+        <property name="toolTip">
+         <string>Opens the DDL in the SQL Editor without executing it.</string>
+        </property>
+        <property name="text">
+         <string>Open in editor</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QDialogButtonBox" name="buttonBox">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
         </property>
         <property name="centerButtons">
          <bool>false</bool>

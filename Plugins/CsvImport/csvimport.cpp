@@ -1,4 +1,5 @@
 #include "csvimport.h"
+#include "common/utils.h"
 #include "services/importmanager.h"
 #include "sqlitestudio.h"
 #include "services/notifymanager.h"

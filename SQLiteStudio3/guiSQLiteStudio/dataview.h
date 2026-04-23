@@ -27,6 +27,8 @@ class QLineEdit;
 #define LAST_DATA_PAGE_KEY_SEQ  Qt::CTRL | Qt::Key_End
 #endif
 
+
+class QSpinBox;
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    QKeySequence::Refresh,                 QObject::tr("Refresh data"))
      CFG_KEY_ENTRY(FIND_IN_DATA,    QKeySequence::Find,                    QObject::tr("Find in data"))
@@ -67,6 +69,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FILTER_EXACT,
             FILTER_PER_COLUMN,
             GRID_TOTAL_ROWS,
+            GRID_SELECTED_SUM_SEP,
+            GRID_SELECTED_SUM,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
             INSERT_ROW_BEFORE,
@@ -152,6 +156,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void createContents();
         void createFilterPanel();
         void goToFormRow(IndexModifier idxMod);
+        void goToFormRow(int row);
         void setNavigationState(bool enabled);
         void updateNavigationState();
         void updateGridNavigationState();
@@ -180,11 +185,14 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QWidget* formWidget = nullptr;
         QScrollArea* perColumnFilterArea = nullptr;
         QWidget* perColumnWidget = nullptr;
+        QWidget* perColumnPinnedWidget = nullptr;
         QWidget* perColumnAreaParent = nullptr;
         ExtLineEdit* filterEdit = nullptr;
         QLabel* rowCountLabel = nullptr;
+        QLabel* selSumLabel = nullptr;
         QLabel* formViewRowCountLabel = nullptr;
         QLabel* formViewCurrentRowLabel = nullptr;
+        QSpinBox* formViewCurrentRowSpin = nullptr;
         ExtLineEdit* pageEdit = nullptr;
         IntValidator* pageValidator = nullptr;
         bool navigationState = false;
@@ -194,6 +202,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool uncommittedForm = false;
         WidgetCover* widgetCover = nullptr;
         QList<ExtLineEdit*> filterInputs;
+        QHash<int, ExtLineEdit*> pinnedFilterInputs;
         QStringList lastColumnFilterValues;
         QString lastSingleFilterValue;
         QWidget* filterLeftSpacer = nullptr;
@@ -251,6 +260,11 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void togglePerColumnFiltering();
         void findInData();
         void updateTabHotKeys();
+        void updateSelectionSum();
+        void updatePinnedPerColumnWidgetGeometry();
+        void updatePinnedFilterSizes(int logicalIndex, int oldSize, int newSize);
+        void recreatePinnedPerColumnFilters();
+        void goToVisualFormRow();
 };
 
 size_t qHash(DataView::ActionGroup action);

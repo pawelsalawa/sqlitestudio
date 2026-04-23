@@ -37,6 +37,14 @@ QVariant FunctionManagerMock::evaluateAggregateFinal(const QString&, int, Db*, b
     return QVariant();
 }
 
+void FunctionManagerMock::loadFromConfig()
+{
+}
+
+void FunctionManagerMock::init()
+{
+}
+
 QVariant FunctionManagerMock::evaluateWindowValue(const QString&, int, Db*, bool&, QHash<QString, QVariant>&)
 {
     return QVariant();

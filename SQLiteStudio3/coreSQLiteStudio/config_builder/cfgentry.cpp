@@ -1,4 +1,5 @@
 #include "cfgentry.h"
+#include "common/utils.h"
 #include "config_builder/cfgmain.h"
 #include "config_builder/cfgcategory.h"
 #include "services/config.h"

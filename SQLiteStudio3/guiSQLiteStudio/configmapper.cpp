@@ -242,6 +242,12 @@ QVariant ConfigMapper::getConfigValueFromWidget(QWidget* widget, CfgEntry* key)
 
 QVariant ConfigMapper::getConfigValueFromWidget(QWidget* widget)
 {
+    if (!widget)
+    {
+        qWarning() << "Asked for config value from null widget.";
+        return QVariant();
+    }
+
     QString keyStr = widget->property(CFG_MODEL_PROPERTY).toString();
     QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
     if (!allConfigEntries.contains(keyStr))

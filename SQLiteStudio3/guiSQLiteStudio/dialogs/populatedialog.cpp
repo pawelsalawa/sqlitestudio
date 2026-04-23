@@ -5,6 +5,7 @@
 #include "services/dbmanager.h"
 #include "schemaresolver.h"
 #include "services/pluginmanager.h"
+#include "services/config.h"
 #include "plugins/populateplugin.h"
 #include "populateconfigdialog.h"
 #include "uiutils.h"

@@ -3,19 +3,8 @@
 #include "iconmanager.h"
 
 #include <QKeySequence>
-
-#define SETTER(X, Y) \
-if (!isValidRowIndex(row) || X == Y) \
-        return; \
-    \
-    X = Y; \
-    emitDataChanged(row);
-
-#define GETTER(X, Y) \
-if (!isValidRowIndex(row)) \
-        return Y; \
-    \
-    return X;
+#include <QListWidgetItem>
+#include <QMimeData>
 
 CodeSnippetEditorModel::CodeSnippetEditorModel(QObject* parent) :
     QAbstractListModel(parent)
@@ -47,16 +36,6 @@ bool CodeSnippetEditorModel::isModified() const
     return false;
 }
 
-bool CodeSnippetEditorModel::isModified(int row) const
-{
-    GETTER(snippetList[row]->modified, false);
-}
-
-void CodeSnippetEditorModel::setModified(int row, bool modified)
-{
-    SETTER(snippetList[row]->modified, modified);
-}
-
 bool CodeSnippetEditorModel::isValid() const
 {
     for (Snippet* snip : snippetList)
@@ -67,55 +46,11 @@ bool CodeSnippetEditorModel::isValid() const
     return true;
 }
 
-bool CodeSnippetEditorModel::isValid(int row) const
-{
-    GETTER(snippetList[row]->valid, false);
-}
-
-void CodeSnippetEditorModel::setValid(int row, bool valid)
-{
-    SETTER(snippetList[row]->valid, valid);
-}
-
-void CodeSnippetEditorModel::setCode(int row, const QString& code)
-{
-    SETTER(snippetList[row]->data.code, code);
-}
-
-QString CodeSnippetEditorModel::getCode(int row) const
-{
-    GETTER(snippetList[row]->data.code, QString());
-}
-
-void CodeSnippetEditorModel::setName(int row, const QString& newName)
-{
-    SETTER(snippetList[row]->data.name, newName);
-}
-
-QString CodeSnippetEditorModel::getName(int row) const
-{
-    GETTER(snippetList[row]->data.name, QString());
-}
-
-void CodeSnippetEditorModel::setHotkey(int row, const QKeySequence& value)
-{
-    SETTER(snippetList[row]->data.hotkey, value.toString());
-}
-
-QKeySequence CodeSnippetEditorModel::getHotkey(int row) const
-{
-    GETTER(QKeySequence(snippetList[row]->data.hotkey), QKeySequence());
-}
-
-void CodeSnippetEditorModel::setData(const QList<CodeSnippetManager::CodeSnippet*>& snippets)
+void CodeSnippetEditorModel::setSnippets(const QList<CodeSnippetManager::CodeSnippet*>& snippets)
 {
     beginResetModel();
-
-    for (Snippet*& snippetPtr : snippetList)
-        delete snippetPtr;
-
+    qDeleteAll(snippetList);
     snippetList.clear();
-
     for (CodeSnippetManager::CodeSnippet* snip : snippets)
         snippetList << new Snippet(snip);
 
@@ -123,6 +58,7 @@ void CodeSnippetEditorModel::setData(const QList<CodeSnippetManager::CodeSnippet
     originalSnippetList = snippetList;
 
     endResetModel();
+
 }
 
 void CodeSnippetEditorModel::addSnippet(CodeSnippetManager::CodeSnippet* snippet)
@@ -137,15 +73,15 @@ void CodeSnippetEditorModel::addSnippet(CodeSnippetManager::CodeSnippet* snippet
     endInsertRows();
 }
 
-void CodeSnippetEditorModel::deleteSnippet(int row)
+void CodeSnippetEditorModel::deleteSnippet(const QModelIndex& idx)
 {
-    if (!isValidRowIndex(row))
+    if (!idx.isValid())
         return;
 
-    beginRemoveRows(QModelIndex(), row, row);
+    beginRemoveRows(QModelIndex(), idx.row(), idx.row());
 
-    delete snippetList[row];
-    snippetList.removeAt(row);
+    delete snippetList[idx.row()];
+    snippetList.removeAt(idx.row());
 
     listModified = true;
 
@@ -188,7 +124,7 @@ void CodeSnippetEditorModel::validateNames()
         if (cntIt.value().size() > 1)
         {
             for (int cntRow : cntIt.value())
-                setValid(cntRow, false);
+                setData(index(cntRow), false, VALID);
         }
     }
 
@@ -200,75 +136,167 @@ void CodeSnippetEditorModel::validateNames()
     }
 }
 
-bool CodeSnippetEditorModel::isAllowedName(int rowToSkip, const QString& nameToValidate)
+bool CodeSnippetEditorModel::isAllowedName(const QModelIndex& idx, const QString& nameToValidate)
 {
     QStringList names = getSnippetNames();
-    names.removeAt(rowToSkip);
+    names.removeAt(idx.row());
     return !names.contains(nameToValidate, Qt::CaseInsensitive);
 }
 
-bool CodeSnippetEditorModel::isAllowedHotkey(int rowToSkip, const QKeySequence& hotkeyToValidate)
+bool CodeSnippetEditorModel::isAllowedHotkey(const QModelIndex& idx, const QKeySequence& hotkeyToValidate)
 {
     QList<QKeySequence> keys;
     for (Snippet*& snip : snippetList)
         keys << snip->data.hotkey;
 
-    keys.removeAt(rowToSkip);
+    keys.removeAt(idx.row());
     return !keys.contains(hotkeyToValidate);
 }
 
-bool CodeSnippetEditorModel::isValidRowIndex(int row) const
+void CodeSnippetEditorModel::setDragEnabled(bool value)
 {
-    return (row >= 0 && row < snippetList.size());
+    dragEnabled = value;
 }
 
-int CodeSnippetEditorModel::moveUp(int row)
+QModelIndex CodeSnippetEditorModel::moveUp(const QModelIndex& idx)
 {
-    if (row <= 0 || row >= snippetList.size())
-        return row;
+    if (!idx.isValid() || idx.row() <= 0)
+        return idx;
 
-    snippetList.move(row, row - 1);
-    return row - 1;
+    const int sourceRow = idx.row();
+    const int destinationChild = sourceRow - 1;
+
+    beginMoveRows(QModelIndex(), sourceRow, sourceRow,
+                  QModelIndex(), destinationChild);
+
+    snippetList.move(sourceRow, sourceRow - 1);
+
+    endMoveRows();
+    return index(sourceRow - 1, 0);
 }
 
-int CodeSnippetEditorModel::moveDown(int row)
+QModelIndex CodeSnippetEditorModel::moveDown(const QModelIndex& idx)
 {
-    if (row < 0 || row + 1 >= snippetList.size())
-        return row;
+    if (!idx.isValid() || idx.row() + 1 >= snippetList.size())
+        return idx;
 
-    snippetList.move(row, row + 1);
-    return row + 1;
+    const int sourceRow = idx.row();
+
+    beginMoveRows(QModelIndex(), sourceRow, sourceRow,
+                  QModelIndex(), sourceRow + 2);
+
+    snippetList.move(sourceRow, sourceRow + 1);
+
+    endMoveRows();
+    return index(sourceRow + 1, 0);
 }
 
 int CodeSnippetEditorModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    if (parent.isValid())
+        return 0;
+
     return snippetList.size();
 }
 
 QVariant CodeSnippetEditorModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !isValidRowIndex(index.row()))
-        return QVariant();
+    if (!index.isValid())
+        return {};
 
-    if (role == Qt::DisplayRole)
+    if (index.column() != 0)
+        return {};
+
+    if (index.row() < 0 || index.row() >= snippetList.size())
+        return {};
+
+    const Snippet* sn = snippetList[index.row()];
+    switch (role)
     {
-        Snippet* sn = snippetList[index.row()];
-        return sn->data.name;
+        case Qt::DisplayRole:
+            return sn->data.name;
+        case MODIFIED:
+            return sn->modified;
+        case VALID:
+            return sn->valid;
+        case CODE:
+            return sn->data.code;
+        case HOTKEY:
+            return sn->data.hotkey;
+        case Qt::DecorationRole:
+            return sn->valid ? ICONS.CODE_SNIPPET : ICONS.CODE_SNIPPET_ERROR;
     }
-
-    if (role == Qt::DecorationRole)
-    {
-        return snippetList[index.row()]->valid ? ICONS.CODE_SNIPPET : ICONS.CODE_SNIPPET_ERROR;
-    }
-
     return QVariant();
 }
 
-void CodeSnippetEditorModel::emitDataChanged(int row)
+bool CodeSnippetEditorModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    QModelIndex idx = index(row);
-    emit dataChanged(idx, idx);
+    if (!index.isValid())
+        return false;
+
+    if (index.column() != 0)
+        return false;
+
+    if (index.row() < 0 || index.row() >= snippetList.size())
+        return false;
+
+    Snippet* sn = snippetList[index.row()];
+    switch (role)
+    {
+        case Qt::DisplayRole:
+            sn->data.name = value.toString();
+            break;
+        case MODIFIED:
+            sn->modified = value.toBool();
+            break;
+        case VALID:
+            sn->valid = value.toBool();
+            break;
+        case CODE:
+            sn->data.code = value.toString();
+            break;
+        case HOTKEY:
+            sn->data.hotkey = value.toString();
+            break;
+        defaut:
+            return true;
+    }
+
+    emit dataChanged(index, index);
+    return true;
+}
+
+Qt::ItemFlags CodeSnippetEditorModel::flags(const QModelIndex& index) const
+{
+    Qt::ItemFlags defaultFlags = QAbstractItemModel::flags(index);
+    if (dragEnabled && index.isValid())
+        return defaultFlags | Qt::ItemIsDragEnabled;
+
+    return defaultFlags;
+}
+
+QStringList CodeSnippetEditorModel::mimeTypes() const
+{
+    if (!dragEnabled)
+        return {};
+
+    return {"text/plain", MIMETYPE};
+}
+
+QMimeData* CodeSnippetEditorModel::mimeData(const QModelIndexList& indexes) const
+{
+    if (!dragEnabled)
+        return nullptr;
+
+    QMimeData *mimeData = new QMimeData();
+    if (indexes.isEmpty())
+        return mimeData;
+
+    QString text = indexes.first().data(CODE).toString();
+    mimeData->setText(text);
+    mimeData->setData(MIMETYPE, text.toUtf8());
+
+    return mimeData;
 }
 
 CodeSnippetEditorModel::Snippet::Snippet()

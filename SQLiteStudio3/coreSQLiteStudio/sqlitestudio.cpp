@@ -1,6 +1,8 @@
 #include "sqlitestudio.h"
+#include "config_builder/cfgmain.h"
 #include "plugins/plugin.h"
 #include "services/codesnippetmanager.h"
+#include "services/impl/configimpl.h"
 #include "services/pluginmanager.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
@@ -17,7 +19,6 @@
 #include "plugins/exportplugin.h"
 #include "plugins/scriptingqt.h"
 #include "plugins/dbpluginsqlite3.h"
-#include "services/impl/configimpl.h"
 #include "services/impl/dbmanagerimpl.h"
 #include "services/impl/functionmanagerimpl.h"
 #include "services/impl/collationmanagerimpl.h"
@@ -35,6 +36,8 @@
 #include "services/sqliteextensionmanager.h"
 #include "translations.h"
 #include "chillout/chillout.h"
+#include "config_builder/cfglazyinitializer.h"
+#include "services/config.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -346,7 +349,16 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     loadTranslations(initialTranslationFiles);
 
     pluginManager = new PluginManagerImpl();
+
+    functionManager = new FunctionManagerImpl();
+    collationManager = new CollationManagerImpl();
+    extensionManager = new SqliteExtensionManagerImpl();
     dbManager = new DbManagerImpl();
+
+    functionManager->init();
+    collationManager->init();
+    extensionManager->init();
+    dbManager->init();
 
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support", "plugin category name"));
@@ -360,13 +372,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     codeFormatter = new CodeFormatter();
     connect(CFG_CORE.General.ActiveCodeFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateCurrentCodeFormatter()));
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(updateCodeFormatter()));
-
-    // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
-    // connections and register functions.
-    functionManager = new FunctionManagerImpl();
-
-    collationManager = new CollationManagerImpl();
-    extensionManager = new SqliteExtensionManagerImpl();
 
     cmdLineArgs = cmdListArguments;
 

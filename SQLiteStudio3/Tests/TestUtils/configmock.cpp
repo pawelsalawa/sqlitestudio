@@ -206,23 +206,6 @@ bool ConfigMock::isMassSaving() const
     return false;
 }
 
-void ConfigMock::addReportHistory(bool, const QString &, const QString &)
-{
-}
-
-QList<Config::ReportHistoryEntryPtr> ConfigMock::getReportHistory()
-{
-    return QList<Config::ReportHistoryEntryPtr>();
-}
-
-void ConfigMock::deleteReport(int)
-{
-}
-
-void ConfigMock::clearReportHistory()
-{
-}
-
 void ConfigMock::refreshSqlHistory()
 {
 }
@@ -248,4 +231,17 @@ QString ConfigMock::getSqlite3Version() const
 bool ConfigMock::isInMemory() const
 {
     return true;
+}
+
+void ConfigMock::exportConfig(const QString&, const ExportImportParams&)
+{
+}
+
+void ConfigMock::importConfig(const QString&, const ExportImportParams&)
+{
+}
+
+Config::ExportImportParams ConfigMock::getParamsForConfigImport(const QString&, QString*)
+{
+    return ExportImportParams();
 }

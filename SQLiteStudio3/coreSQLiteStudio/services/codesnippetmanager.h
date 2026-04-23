@@ -21,13 +21,14 @@ class API_EXPORT CodeSnippetManager : public QObject
         CodeSnippetManager(Config* config);
 
         void setSnippets(const QList<CodeSnippet*>& snippets);
+        void addSnippet(CodeSnippet* snippet);
         const QList<CodeSnippet*>& getSnippets() const;
         const QStringList& getNames() const;
         void saveToConfig();
         QString getCodeByName(const QString& name) const;
+        void loadFromConfig();
 
     private:
-        void loadFromConfig();
         void refreshNames();
         void clearSnippets();
         void createDefaultSnippets();
@@ -35,6 +36,9 @@ class API_EXPORT CodeSnippetManager : public QObject
         Config* config = nullptr;
         QList<CodeSnippet*> allSnippets;
         QStringList names;
+
+    signals:
+        void codeSnippetListChanged();
 };
 
 #define CODESNIPPETS SQLITESTUDIO->getCodeSnippetManager()

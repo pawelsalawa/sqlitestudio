@@ -32,3 +32,11 @@ int CollationManagerMock::evaluateDefault(const QString&, const QString&)
 {
     return 0;
 }
+
+void CollationManagerMock::loadFromConfig()
+{
+}
+
+void CollationManagerMock::init()
+{
+}
