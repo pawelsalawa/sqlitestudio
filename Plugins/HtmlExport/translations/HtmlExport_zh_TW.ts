@@ -1,250 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh-TW" sourcelanguage="en">
-  <context>
+<context>
     <name>HtmlExport</name>
     <message>
-      <location filename="../htmlexport.cpp" line="45"/>
-      <source>SQL query results</source>
-      <translation>SQL 查詢結果</translation>
+        <location filename="../htmlexport.cpp" line="45"/>
+        <source>SQL query results</source>
+        <translation>SQL 查詢結果</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="54"/>
-      <source>Query:</source>
-      <translation type="unfinished">Query:</translation>
+        <location filename="../htmlexport.cpp" line="54"/>
+        <source>Query:</source>
+        <translation type="unfinished">Query:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="94"/>
-      <location filename="../htmlexport.cpp" line="188"/>
-      <source>no type</source>
-      <translation>無型別</translation>
+        <location filename="../htmlexport.cpp" line="94"/>
+        <location filename="../htmlexport.cpp" line="188"/>
+        <source>no type</source>
+        <translation>無型別</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="125"/>
-      <source>Exported table: %1</source>
-      <translation>匯出的表：%1</translation>
+        <location filename="../htmlexport.cpp" line="125"/>
+        <source>Exported table: %1</source>
+        <translation>匯出的表：%1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="136"/>
-      <source>Exported view: %1</source>
-      <translation type="unfinished">Exported view: %1</translation>
+        <location filename="../htmlexport.cpp" line="136"/>
+        <source>Exported view: %1</source>
+        <translation type="unfinished">Exported view: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="157"/>
-      <location filename="../htmlexport.cpp" line="280"/>
-      <source>Table: %1</source>
-      <translation>表：%1</translation>
+        <location filename="../htmlexport.cpp" line="157"/>
+        <location filename="../htmlexport.cpp" line="280"/>
+        <source>Table: %1</source>
+        <translation>表：%1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="283"/>
-      <source>virtual</source>
-      <translation>虛擬</translation>
+        <location filename="../htmlexport.cpp" line="283"/>
+        <source>virtual</source>
+        <translation>虛擬</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="335"/>
-      <source>Exported database: %1</source>
-      <translation>匯出的資料庫：%1</translation>
+        <location filename="../htmlexport.cpp" line="335"/>
+        <source>Exported database: %1</source>
+        <translation>匯出的資料庫：%1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="351"/>
-      <source>Index: %1</source>
-      <translation>索引: %1</translation>
+        <location filename="../htmlexport.cpp" line="351"/>
+        <source>Index: %1</source>
+        <translation>索引: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="357"/>
-      <source>For table:</source>
-      <translation>表：</translation>
+        <location filename="../htmlexport.cpp" line="357"/>
+        <source>For table:</source>
+        <translation>表：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="364"/>
-      <source>Unique:</source>
-      <translation>唯一：</translation>
+        <location filename="../htmlexport.cpp" line="364"/>
+        <source>Unique:</source>
+        <translation>唯一：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="365"/>
-      <source>Yes</source>
-      <translation>是</translation>
+        <location filename="../htmlexport.cpp" line="365"/>
+        <source>Yes</source>
+        <translation>是</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="365"/>
-      <source>No</source>
-      <translation>否</translation>
+        <location filename="../htmlexport.cpp" line="365"/>
+        <source>No</source>
+        <translation>否</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="371"/>
-      <source>Column</source>
-      <translation>列</translation>
+        <location filename="../htmlexport.cpp" line="371"/>
+        <source>Column</source>
+        <translation>列</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="372"/>
-      <source>Collating</source>
-      <translation>字元序</translation>
+        <location filename="../htmlexport.cpp" line="372"/>
+        <source>Collating</source>
+        <translation>字元序</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="373"/>
-      <source>Sort order</source>
-      <translation>排序方式</translation>
+        <location filename="../htmlexport.cpp" line="373"/>
+        <source>Sort order</source>
+        <translation>排序方式</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="407"/>
-      <source>Trigger: %1</source>
-      <translation>觸發器：%1</translation>
+        <location filename="../htmlexport.cpp" line="407"/>
+        <source>Trigger: %1</source>
+        <translation>觸發器：%1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="413"/>
-      <source>Activated:</source>
-      <translation>啟用時間：</translation>
+        <location filename="../htmlexport.cpp" line="413"/>
+        <source>Activated:</source>
+        <translation>啟用時間：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="421"/>
-      <source>Action:</source>
-      <translation>操作：</translation>
+        <location filename="../htmlexport.cpp" line="421"/>
+        <source>Action:</source>
+        <translation>操作：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="428"/>
-      <source>On view:</source>
-      <translation>於檢視：</translation>
+        <location filename="../htmlexport.cpp" line="428"/>
+        <source>On view:</source>
+        <translation>於檢視：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="430"/>
-      <source>On table:</source>
-      <translation>於表：</translation>
+        <location filename="../htmlexport.cpp" line="430"/>
+        <source>On table:</source>
+        <translation>於表：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="441"/>
-      <source>Activate condition:</source>
-      <translation>啟用條件：</translation>
+        <location filename="../htmlexport.cpp" line="441"/>
+        <source>Activate condition:</source>
+        <translation>啟用條件：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="448"/>
-      <source>Code executed:</source>
-      <translation>執行程式碼：</translation>
+        <location filename="../htmlexport.cpp" line="448"/>
+        <source>Code executed:</source>
+        <translation>執行程式碼：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="486"/>
-      <source>View: %1</source>
-      <translation>檢視：%1</translation>
+        <location filename="../htmlexport.cpp" line="486"/>
+        <source>View: %1</source>
+        <translation>檢視：%1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="565"/>
-      <source>Document generated by SQLiteStudio v%1 on %2</source>
-      <translation>由 SQLiteStudio v%1 在 %2 生成的文件</translation>
+        <location filename="../htmlexport.cpp" line="565"/>
+        <source>Document generated by SQLiteStudio v%1 on %2</source>
+        <translation>由 SQLiteStudio v%1 在 %2 生成的文件</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>HtmlExportConfig</name>
     <message>
-      <location filename="../htmlexport.ui" line="139"/>
-      <source>Maximum number of characters per cell:</source>
-      <translation>每個單元格的最大字元數：</translation>
+        <location filename="../htmlexport.ui" line="139"/>
+        <source>Maximum number of characters per cell:</source>
+        <translation>每個單元格的最大字元數：</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="185"/>
-      <source>Include data types in first row</source>
-      <translation>第一行包含資料型別</translation>
+        <location filename="../htmlexport.ui" line="185"/>
+        <source>Include data types in first row</source>
+        <translation>第一行包含資料型別</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="146"/>
-      <source>Column names as first row</source>
-      <translation>列名作為首行</translation>
+        <location filename="../htmlexport.ui" line="146"/>
+        <source>Column names as first row</source>
+        <translation>列名作為首行</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="129"/>
-      <source>Row numbers as first column</source>
-      <translation>行號作為首列</translation>
+        <location filename="../htmlexport.ui" line="129"/>
+        <source>Row numbers as first column</source>
+        <translation>行號作為首列</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="94"/>
-      <source>Output format</source>
-      <translation>輸出格式</translation>
+        <location filename="../htmlexport.ui" line="94"/>
+        <source>Output format</source>
+        <translation>輸出格式</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="20"/>
-      <source>Custom header</source>
-      <translation type="unfinished">Custom header</translation>
+        <location filename="../htmlexport.ui" line="20"/>
+        <source>Custom header</source>
+        <translation type="unfinished">Custom header</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="26"/>
-      <source>No custom header</source>
-      <translation type="unfinished">No custom header</translation>
+        <location filename="../htmlexport.ui" line="26"/>
+        <source>No custom header</source>
+        <translation type="unfinished">No custom header</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="29"/>
-      <location filename="../htmlexport.ui" line="204"/>
-      <source>Ctrl+S</source>
-      <translation type="unfinished">Ctrl+S</translation>
+        <location filename="../htmlexport.ui" line="29"/>
+        <location filename="../htmlexport.ui" line="204"/>
+        <source>Ctrl+S</source>
+        <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="42"/>
-      <source>Define custom header content</source>
-      <translation type="unfinished">Define custom header content</translation>
+        <location filename="../htmlexport.ui" line="42"/>
+        <source>Define custom header content</source>
+        <translation type="unfinished">Define custom header content</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="55"/>
-      <location filename="../htmlexport.ui" line="230"/>
-      <source>HTML content</source>
-      <translation type="unfinished">HTML content</translation>
+        <location filename="../htmlexport.ui" line="55"/>
+        <location filename="../htmlexport.ui" line="230"/>
+        <source>HTML content</source>
+        <translation type="unfinished">HTML content</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="65"/>
-      <source>Define custom header file</source>
-      <translation type="unfinished">Define custom header file</translation>
+        <location filename="../htmlexport.ui" line="65"/>
+        <source>Define custom header file</source>
+        <translation type="unfinished">Define custom header file</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="81"/>
-      <source>Choose file for the header</source>
-      <translation type="unfinished">Choose file for the header</translation>
+        <location filename="../htmlexport.ui" line="81"/>
+        <source>Choose file for the header</source>
+        <translation type="unfinished">Choose file for the header</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="84"/>
-      <location filename="../htmlexport.ui" line="259"/>
-      <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</translation>
+        <location filename="../htmlexport.ui" line="84"/>
+        <location filename="../htmlexport.ui" line="259"/>
+        <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
+        <translation type="unfinished">HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="100"/>
-      <source>Format document (new lines, indentation)</source>
-      <translation>格式化的文件 (新行，縮排)</translation>
+        <location filename="../htmlexport.ui" line="100"/>
+        <source>Format document (new lines, indentation)</source>
+        <translation>格式化的文件 (新行，縮排)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="113"/>
-      <source>Compress (everything in one line)</source>
-      <translation>壓縮 (單行檔案)</translation>
+        <location filename="../htmlexport.ui" line="113"/>
+        <source>Compress (everything in one line)</source>
+        <translation>壓縮 (單行檔案)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="156"/>
-      <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;如果啟用，匯出值中不會轉義諸如 &amp;lt;、&amp;gt; 和 &amp; 等 HTML 字元。請小心，這使您能匯出有超連結的文件，但也可能導致不正確的 HTML 文件 (不配對的 &amp;lt; 和 &amp;gt; 字元)。&lt;/p&gt;</translation>
+        <location filename="../htmlexport.ui" line="156"/>
+        <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;如果啟用，匯出值中不會轉義諸如 &amp;lt;、&amp;gt; 和 &amp; 等 HTML 字元。請小心，這使您能匯出有超連結的文件，但也可能導致不正確的 HTML 文件 (不配對的 &amp;lt; 和 &amp;gt; 字元)。&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="159"/>
-      <source>Don&apos;t escape HTML characters</source>
-      <translation>不轉義 HTML 字元</translation>
+        <location filename="../htmlexport.ui" line="159"/>
+        <source>Don&apos;t escape HTML characters</source>
+        <translation>不轉義 HTML 字元</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="195"/>
-      <source>Custom footer</source>
-      <translation type="unfinished">Custom footer</translation>
+        <location filename="../htmlexport.ui" line="195"/>
+        <source>Custom footer</source>
+        <translation type="unfinished">Custom footer</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="201"/>
-      <source>No custom footer</source>
-      <translation type="unfinished">No custom footer</translation>
+        <location filename="../htmlexport.ui" line="201"/>
+        <source>No custom footer</source>
+        <translation type="unfinished">No custom footer</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="217"/>
-      <source>Define custom footer content</source>
-      <translation type="unfinished">Define custom footer content</translation>
+        <location filename="../htmlexport.ui" line="217"/>
+        <source>Define custom footer content</source>
+        <translation type="unfinished">Define custom footer content</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="240"/>
-      <source>Define custom footer file</source>
-      <translation type="unfinished">Define custom footer file</translation>
+        <location filename="../htmlexport.ui" line="240"/>
+        <source>Define custom footer file</source>
+        <translation type="unfinished">Define custom footer file</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="256"/>
-      <source>Choose file for the footer</source>
-      <translation type="unfinished">Choose file for the footer</translation>
+        <location filename="../htmlexport.ui" line="256"/>
+        <source>Choose file for the footer</source>
+        <translation type="unfinished">Choose file for the footer</translation>
     </message>
-  </context>
+</context>
 </TS>

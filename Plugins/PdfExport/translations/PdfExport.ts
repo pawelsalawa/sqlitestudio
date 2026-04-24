@@ -166,7 +166,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pdfexport.cpp" line="705"/>
+        <location filename="../pdfexport.cpp" line="710"/>
         <source>Document generated with SQLiteStudio v%1</source>
         <translation type="unfinished"></translation>
     </message>

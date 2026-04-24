@@ -1,250 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="de" sourcelanguage="en">
-  <context>
+<context>
     <name>HtmlExport</name>
     <message>
-      <location filename="../htmlexport.cpp" line="45"/>
-      <source>SQL query results</source>
-      <translation>SQL Abfragenergebnis</translation>
+        <location filename="../htmlexport.cpp" line="45"/>
+        <source>SQL query results</source>
+        <translation>SQL Abfragenergebnis</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="54"/>
-      <source>Query:</source>
-      <translation>Abfrage:</translation>
+        <location filename="../htmlexport.cpp" line="54"/>
+        <source>Query:</source>
+        <translation>Abfrage:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="94"/>
-      <location filename="../htmlexport.cpp" line="188"/>
-      <source>no type</source>
-      <translation>kein Typ</translation>
+        <location filename="../htmlexport.cpp" line="94"/>
+        <location filename="../htmlexport.cpp" line="188"/>
+        <source>no type</source>
+        <translation>kein Typ</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="125"/>
-      <source>Exported table: %1</source>
-      <translation>Exportierte Tabelle: %1</translation>
+        <location filename="../htmlexport.cpp" line="125"/>
+        <source>Exported table: %1</source>
+        <translation>Exportierte Tabelle: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="136"/>
-      <source>Exported view: %1</source>
-      <translation>Exportierte Ansicht: %1</translation>
+        <location filename="../htmlexport.cpp" line="136"/>
+        <source>Exported view: %1</source>
+        <translation>Exportierte Ansicht: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="157"/>
-      <location filename="../htmlexport.cpp" line="280"/>
-      <source>Table: %1</source>
-      <translation>Tabelle: %1</translation>
+        <location filename="../htmlexport.cpp" line="157"/>
+        <location filename="../htmlexport.cpp" line="280"/>
+        <source>Table: %1</source>
+        <translation>Tabelle: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="283"/>
-      <source>virtual</source>
-      <translation>virtuell</translation>
+        <location filename="../htmlexport.cpp" line="283"/>
+        <source>virtual</source>
+        <translation>virtuell</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="335"/>
-      <source>Exported database: %1</source>
-      <translation>Exportierte Datenbank: %1</translation>
+        <location filename="../htmlexport.cpp" line="335"/>
+        <source>Exported database: %1</source>
+        <translation>Exportierte Datenbank: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="351"/>
-      <source>Index: %1</source>
-      <translation>Index: %1</translation>
+        <location filename="../htmlexport.cpp" line="351"/>
+        <source>Index: %1</source>
+        <translation>Index: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="357"/>
-      <source>For table:</source>
-      <translation>Für Tabelle:</translation>
+        <location filename="../htmlexport.cpp" line="357"/>
+        <source>For table:</source>
+        <translation>Für Tabelle:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="364"/>
-      <source>Unique:</source>
-      <translation>Einzigartig:</translation>
+        <location filename="../htmlexport.cpp" line="364"/>
+        <source>Unique:</source>
+        <translation>Einzigartig:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="365"/>
-      <source>Yes</source>
-      <translation>Ja</translation>
+        <location filename="../htmlexport.cpp" line="365"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="365"/>
-      <source>No</source>
-      <translation>Nein</translation>
+        <location filename="../htmlexport.cpp" line="365"/>
+        <source>No</source>
+        <translation>Nein</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="371"/>
-      <source>Column</source>
-      <translation>Spalte</translation>
+        <location filename="../htmlexport.cpp" line="371"/>
+        <source>Column</source>
+        <translation>Spalte</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="372"/>
-      <source>Collating</source>
-      <translation>Sortierung</translation>
+        <location filename="../htmlexport.cpp" line="372"/>
+        <source>Collating</source>
+        <translation>Sortierung</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="373"/>
-      <source>Sort order</source>
-      <translation>Sortierreihenfolge</translation>
+        <location filename="../htmlexport.cpp" line="373"/>
+        <source>Sort order</source>
+        <translation>Sortierreihenfolge</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="407"/>
-      <source>Trigger: %1</source>
-      <translation>Trigger: %1</translation>
+        <location filename="../htmlexport.cpp" line="407"/>
+        <source>Trigger: %1</source>
+        <translation>Trigger: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="413"/>
-      <source>Activated:</source>
-      <translation>Aktiviert:</translation>
+        <location filename="../htmlexport.cpp" line="413"/>
+        <source>Activated:</source>
+        <translation>Aktiviert:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="421"/>
-      <source>Action:</source>
-      <translation>Aktion:</translation>
+        <location filename="../htmlexport.cpp" line="421"/>
+        <source>Action:</source>
+        <translation>Aktion:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="428"/>
-      <source>On view:</source>
-      <translation>Auf Ansicht:</translation>
+        <location filename="../htmlexport.cpp" line="428"/>
+        <source>On view:</source>
+        <translation>Auf Ansicht:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="430"/>
-      <source>On table:</source>
-      <translation>Auf Tabelle:</translation>
+        <location filename="../htmlexport.cpp" line="430"/>
+        <source>On table:</source>
+        <translation>Auf Tabelle:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="441"/>
-      <source>Activate condition:</source>
-      <translation>Ausführungsbedingung:</translation>
+        <location filename="../htmlexport.cpp" line="441"/>
+        <source>Activate condition:</source>
+        <translation>Ausführungsbedingung:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="448"/>
-      <source>Code executed:</source>
-      <translation>Code ausgeführt:</translation>
+        <location filename="../htmlexport.cpp" line="448"/>
+        <source>Code executed:</source>
+        <translation>Code ausgeführt:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="486"/>
-      <source>View: %1</source>
-      <translation>View: %1</translation>
+        <location filename="../htmlexport.cpp" line="486"/>
+        <source>View: %1</source>
+        <translation>View: %1</translation>
     </message>
     <message>
-      <location filename="../htmlexport.cpp" line="565"/>
-      <source>Document generated by SQLiteStudio v%1 on %2</source>
-      <translation>Dokument erstellt von SQLiteStudio v%1 am %2</translation>
+        <location filename="../htmlexport.cpp" line="565"/>
+        <source>Document generated by SQLiteStudio v%1 on %2</source>
+        <translation>Dokument erstellt von SQLiteStudio v%1 am %2</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>HtmlExportConfig</name>
     <message>
-      <location filename="../htmlexport.ui" line="139"/>
-      <source>Maximum number of characters per cell:</source>
-      <translation>Maximale Zeichenanzahl pro Zelle:</translation>
+        <location filename="../htmlexport.ui" line="139"/>
+        <source>Maximum number of characters per cell:</source>
+        <translation>Maximale Zeichenanzahl pro Zelle:</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="185"/>
-      <source>Include data types in first row</source>
-      <translation>Datentypen in der ersten Zeile einbeziehen</translation>
+        <location filename="../htmlexport.ui" line="185"/>
+        <source>Include data types in first row</source>
+        <translation>Datentypen in der ersten Zeile einbeziehen</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="146"/>
-      <source>Column names as first row</source>
-      <translation>Spaltenname als erste Zeile verwenden</translation>
+        <location filename="../htmlexport.ui" line="146"/>
+        <source>Column names as first row</source>
+        <translation>Spaltenname als erste Zeile verwenden</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="129"/>
-      <source>Row numbers as first column</source>
-      <translation>Zeilennummern als erste Spalte</translation>
+        <location filename="../htmlexport.ui" line="129"/>
+        <source>Row numbers as first column</source>
+        <translation>Zeilennummern als erste Spalte</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="94"/>
-      <source>Output format</source>
-      <translation>Ausgabeformat</translation>
+        <location filename="../htmlexport.ui" line="94"/>
+        <source>Output format</source>
+        <translation>Ausgabeformat</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="20"/>
-      <source>Custom header</source>
-      <translation>Benutzerdefinierter Header</translation>
+        <location filename="../htmlexport.ui" line="20"/>
+        <source>Custom header</source>
+        <translation>Benutzerdefinierter Header</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="26"/>
-      <source>No custom header</source>
-      <translation>Kein benutzerdefinierter Header</translation>
+        <location filename="../htmlexport.ui" line="26"/>
+        <source>No custom header</source>
+        <translation>Kein benutzerdefinierter Header</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="29"/>
-      <location filename="../htmlexport.ui" line="204"/>
-      <source>Ctrl+S</source>
-      <translation>Strg+S</translation>
+        <location filename="../htmlexport.ui" line="29"/>
+        <location filename="../htmlexport.ui" line="204"/>
+        <source>Ctrl+S</source>
+        <translation>Strg+S</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="42"/>
-      <source>Define custom header content</source>
-      <translation>Eigenen Header-Inhalt definieren</translation>
+        <location filename="../htmlexport.ui" line="42"/>
+        <source>Define custom header content</source>
+        <translation>Eigenen Header-Inhalt definieren</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="55"/>
-      <location filename="../htmlexport.ui" line="230"/>
-      <source>HTML content</source>
-      <translation>HTML Inhalt</translation>
+        <location filename="../htmlexport.ui" line="55"/>
+        <location filename="../htmlexport.ui" line="230"/>
+        <source>HTML content</source>
+        <translation>HTML Inhalt</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="65"/>
-      <source>Define custom header file</source>
-      <translation>Eigene Header-Datei definieren</translation>
+        <location filename="../htmlexport.ui" line="65"/>
+        <source>Define custom header file</source>
+        <translation>Eigene Header-Datei definieren</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="81"/>
-      <source>Choose file for the header</source>
-      <translation>Datei für den Header auswählen</translation>
+        <location filename="../htmlexport.ui" line="81"/>
+        <source>Choose file for the header</source>
+        <translation>Datei für den Header auswählen</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="84"/>
-      <location filename="../htmlexport.ui" line="259"/>
-      <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
-      <translation>HTML-Dateien (*.htm, *.html);;Textdateien (*.txt);;Alle Dateien (*)</translation>
+        <location filename="../htmlexport.ui" line="84"/>
+        <location filename="../htmlexport.ui" line="259"/>
+        <source>HTML files (*.htm, *.html);;Text files (*.txt);;All files (*)</source>
+        <translation>HTML-Dateien (*.htm, *.html);;Textdateien (*.txt);;Alle Dateien (*)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="100"/>
-      <source>Format document (new lines, indentation)</source>
-      <translation>Dokument formatieren (neue Zeilen, Einrückung)</translation>
+        <location filename="../htmlexport.ui" line="100"/>
+        <source>Format document (new lines, indentation)</source>
+        <translation>Dokument formatieren (neue Zeilen, Einrückung)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="113"/>
-      <source>Compress (everything in one line)</source>
-      <translation>Komprimieren (alles in einer Zeile)</translation>
+        <location filename="../htmlexport.ui" line="113"/>
+        <source>Compress (everything in one line)</source>
+        <translation>Komprimieren (alles in einer Zeile)</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="156"/>
-      <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-      <translation>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</translation>
+        <location filename="../htmlexport.ui" line="156"/>
+        <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="159"/>
-      <source>Don&apos;t escape HTML characters</source>
-      <translation>HTML-Zeichen nicht maskieren</translation>
+        <location filename="../htmlexport.ui" line="159"/>
+        <source>Don&apos;t escape HTML characters</source>
+        <translation>HTML-Zeichen nicht maskieren</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="195"/>
-      <source>Custom footer</source>
-      <translation>Benutzerdefinierte Fußzeile</translation>
+        <location filename="../htmlexport.ui" line="195"/>
+        <source>Custom footer</source>
+        <translation>Benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="201"/>
-      <source>No custom footer</source>
-      <translation>Keine benutzerdefinierte Fußzeile</translation>
+        <location filename="../htmlexport.ui" line="201"/>
+        <source>No custom footer</source>
+        <translation>Keine benutzerdefinierte Fußzeile</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="217"/>
-      <source>Define custom footer content</source>
-      <translation>Eigenen Footer-Inhalt definieren</translation>
+        <location filename="../htmlexport.ui" line="217"/>
+        <source>Define custom footer content</source>
+        <translation>Eigenen Footer-Inhalt definieren</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="240"/>
-      <source>Define custom footer file</source>
-      <translation>Eigene Fußzeile Datei definieren</translation>
+        <location filename="../htmlexport.ui" line="240"/>
+        <source>Define custom footer file</source>
+        <translation>Eigene Fußzeile Datei definieren</translation>
     </message>
     <message>
-      <location filename="../htmlexport.ui" line="256"/>
-      <source>Choose file for the footer</source>
-      <translation>Datei für den Footer auswählen</translation>
+        <location filename="../htmlexport.ui" line="256"/>
+        <source>Choose file for the footer</source>
+        <translation>Datei für den Footer auswählen</translation>
     </message>
-  </context>
+</context>
 </TS>

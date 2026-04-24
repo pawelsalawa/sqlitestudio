@@ -10,7 +10,7 @@
         <translation>연결되지 않은 데이터베이스에서 쿼리를 실행할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="749"/>
+        <location filename="../db/abstractdb.cpp" line="794"/>
         <source>Error attaching database %1: %2</source>
         <translation>데이터베이스 등록 중 오류 %1: %2</translation>
     </message>
@@ -1106,37 +1106,37 @@ The view will remain as it is.</translation>
 <context>
     <name>SqlFileExecutor</name>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="56"/>
+        <location filename="../sqlfileexecutor.cpp" line="59"/>
         <source>Could not execute SQL, because application has failed to start transaction: %1</source>
         <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="87"/>
+        <location filename="../sqlfileexecutor.cpp" line="90"/>
         <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
         <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="103"/>
+        <location filename="../sqlfileexecutor.cpp" line="106"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="148"/>
+        <location filename="../sqlfileexecutor.cpp" line="151"/>
         <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
         <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="153"/>
+        <location filename="../sqlfileexecutor.cpp" line="156"/>
         <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
         <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="159"/>
+        <location filename="../sqlfileexecutor.cpp" line="162"/>
         <source>Finished executing %1 queries in %2 seconds.</source>
         <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-        <location filename="../sqlfileexecutor.cpp" line="166"/>
+        <location filename="../sqlfileexecutor.cpp" line="169"/>
         <source>Could not execute SQL due to error.</source>
         <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>
