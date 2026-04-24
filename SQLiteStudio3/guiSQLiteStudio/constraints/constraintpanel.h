@@ -22,6 +22,19 @@ class GUI_API_EXPORT ConstraintPanel : public QWidget
         virtual void setDb(Db* value);
 
         /**
+         * @brief Validates less important conditions and provides potential warning for this constraint.
+         * @return Warning message or null string if no warning is issued.
+         *
+         * Validates panel for correct data filled in, but instead of returning boolean result it returns a warning message
+         * to be shown to user if there's something that may be wrong with the configuration, but not necessarily will cause an error.
+         * For example, in Foreign Key constraint if the referenced column isn't PRIMARY KEY or UNIQUE,
+         * it may cause issues while inserting or updating data, but it's not an error per se and SQLite allows it.
+         * In that case validate() will return true, but validateForWarning()
+         * will return a message to be shown to user as a warning.
+         */
+        virtual QString validateForWarning();
+
+        /**
          * @brief validate Validates panel for correct data filled in.
          * @return true if the data is valid, or false otherwise.
          * Apart from returning boolean result it also marks

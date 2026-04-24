@@ -419,6 +419,15 @@ void TableForeignKeyPanel::storeMatchCondition(const QString& reaction)
 
 void TableForeignKeyPanel::handleFkTypeMatched(QWidget* indicatorParent, const QString &localColumn, const QString fkColumn)
 {
+    QString fkTable = ui->fkTableCombo->currentText();
+
+    SchemaResolver resolver(db);
+    if (!fkTable.isEmpty() && !fkColumn.isEmpty() && !resolver.isColumnPkOrUnique(fkTable, fkColumn))
+    {
+        setValidStateWarning(indicatorParent, tr("Referenced column is not PRIMARY KEY or UNIQUE. It may cause issues while inserting or updating data."));
+        return;
+    }
+
     SqliteCreateTable::Column* column = createTableStmt->getColumn(localColumn);
     if (!column || !column->type)
         return;
@@ -426,12 +435,8 @@ void TableForeignKeyPanel::handleFkTypeMatched(QWidget* indicatorParent, const Q
     QString localType = column->type->toDataType().toString();
 
     // FK column type
-    QString fkTable = ui->fkTableCombo->currentText();
     if (!fkTableTypesCache.contains(fkTable, Qt::CaseInsensitive))
-    {
-        SchemaResolver resolver(db);
         fkTableTypesCache[fkTable] = resolver.getTableColumnDataTypesByName(fkTable);
-    }
 
     StrHash<DataType> fkTypes = fkTableTypesCache.value(fkTable, Qt::CaseInsensitive);
     if (!fkTypes.contains(fkColumn, Qt::CaseInsensitive))

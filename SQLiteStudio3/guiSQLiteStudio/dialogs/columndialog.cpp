@@ -298,6 +298,7 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
 
     bool result = true;
     ConstraintPanel* panel = ConstraintPanel::produce(constraint);
+    QString warning;
     if (!panel)
     {
         qCritical() << "Could not produce ConstraintPanel for constraint validation in ColumnDialog::updateConstraintState().";
@@ -308,6 +309,7 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
         panel->setColumnStmt(column.data());
         panel->setConstraint(constraint);
         result = panel->validateOnly();
+        warning = panel->validateForWarning();
         delete panel;
     }
 
@@ -319,6 +321,8 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
         QPushButton* btn = ui->buttonBox->button(QDialogButtonBox::Ok);
         btn->setEnabled(false);
     }
+    else if (!warning.isEmpty())
+        setValidStateWarning(toolButton, warning);
 }
 
 QCheckBox* ColumnDialog::getCheckBoxForConstraint(SqliteCreateTable::Column::Constraint* constraint)

@@ -23,6 +23,7 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         ~ColumnForeignKeyPanel();
 
         bool validate();
+        QString validateForWarning();
 
     protected:
         void changeEvent(QEvent *e);
@@ -35,6 +36,7 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         void readCondition(SqliteForeignKey::Condition* condition);
         void storeCondition(SqliteForeignKey::Condition::Action action, const QString& reaction);
         void storeMatchCondition(const QString& reaction);
+        bool isColumnOkForFk();
 
         Ui::ColumnForeignKeyPanel *ui = nullptr;
         QStandardItemModel fkColumnsModel;

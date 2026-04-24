@@ -26,12 +26,11 @@ ExpiringCache<QString, QString> SchemaResolver::autoIndexDdlCache;
 SchemaResolver::SchemaResolver(Db *db)
     : db(db)
 {
-    parser = new Parser();
 }
 
 SchemaResolver::~SchemaResolver()
 {
-    delete parser;
+    safe_delete(parser);
 }
 
 QStringList SchemaResolver::getTables(const QString &database)
@@ -784,10 +783,10 @@ QString SchemaResolver::getSqliteAutoIndexDdl(const QString& database, const QSt
 
 SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
 {
-    if (!parser->parse(ddl))
+    if (!getParser()->parse(ddl))
     {
         qDebug() << "Could not parse DDL for parsing object by SchemaResolver. Errors are:";
-        for (ParserError* err : parser->getErrors())
+        for (ParserError* err : getParser()->getErrors())
             qDebug() << err->getMessage();
 
         qDebug() << "The DDL is:" << ddl;
@@ -796,7 +795,7 @@ SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
     }
 
     // Validate parsed DDL
-    QList<SqliteQueryPtr> queries = parser->getQueries();
+    QList<SqliteQueryPtr> queries = getParser()->getQueries();
     if (queries.size() == 0)
     {
         qDebug() << "No parsed query while getting temp table columns.";
@@ -1449,6 +1448,37 @@ void SchemaResolver::staticInit()
     cache.setExpireTime(3000);
 }
 
+bool SchemaResolver::isColumnPkOrUnique(const QString& table, const QString& column)
+{
+    return isColumnPkOrUnique("main", table, column);
+}
+
+bool SchemaResolver::isColumnPkOrUnique(const QString& database, const QString& table, const QString& column)
+{
+    // First, let's check if it's PK column
+    QStringList pkColumns = getTablePrimaryKeyColumns(database, table);
+    if (pkColumns.contains(column, Qt::CaseInsensitive))
+        return true;
+
+    // Not a PK column. Let's check if it's a unique index column.
+    SqlQueryPtr uniqIndexResults = db->exec(
+                "SELECT DISTINCT ii.name"
+                "  FROM sqlite_schema AS m,"
+                "       pragma_index_list(m.name) AS il,"
+                "       pragma_index_info(il.name) AS ii"
+                " WHERE m.type = 'table'"
+                "   AND il.[unique] = 1"
+                "   AND m.name = ?;",
+                {table});
+    if (uniqIndexResults->isError())
+    {
+        qWarning() << "Could not get unique index list using PRAGMA for table:" << table << ", error was:" << uniqIndexResults->getErrorText();
+        return false;
+    }
+    QStringList idxNames = uniqIndexResults->getAll() | MAP(row, {return row->value("name").toString();});
+    return idxNames.contains(column, Qt::CaseInsensitive);
+}
+
 bool SchemaResolver::usesCache()
 {
     return db->getConnectionOptions().contains(USE_SCHEMA_CACHING) && db->getConnectionOptions()[USE_SCHEMA_CACHING].toBool();
@@ -1686,6 +1716,14 @@ QStringList SchemaResolver::getObjectDdlsReferencingTableOrView(const QString& d
 
     return ddls;
 
+}
+
+Parser* SchemaResolver::getParser()
+{
+    if (!parser)
+        parser = new Parser();
+
+    return parser;
 }
 
 SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, const QString& value1, const QString& value2, const QString& value3) :

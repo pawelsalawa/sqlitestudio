@@ -41,7 +41,36 @@ bool ColumnForeignKeyPanel::validate()
     setValidState(ui->fkColumnCombo, columnOk, tr("Pick the foreign column."));
     setValidState(ui->nameEdit, nameOk, tr("Enter a name of the constraint."));
 
+    if (columnOk)
+        setValidStateWarning(ui->fkColumnCombo, validateForWarning());
+
     return tableOk && columnOk && nameOk;
+}
+
+QString ColumnForeignKeyPanel::validateForWarning()
+{
+    return isColumnOkForFk() ? QString() : tr("The referenced column should be a PRIMARY KEY or UNIQUE.");
+}
+
+bool ColumnForeignKeyPanel::isColumnOkForFk()
+{
+    int tableIdx = ui->fkTableCombo->currentIndex();
+    if (tableIdx == -1)
+        return true;
+
+    QString tableName = ui->fkTableCombo->currentText();
+
+    int columnIdx = ui->fkColumnCombo->currentIndex();
+    if (columnIdx == -1)
+        return true;
+
+    QStandardItem* colItem = fkColumnsModel.item(columnIdx);
+    QString colName = colItem->text();
+    if (colItem->data().toBool())
+        colName = columnStmt->name;
+
+    SchemaResolver resolver(db);
+    return resolver.isColumnPkOrUnique(tableName, colName);
 }
 
 void ColumnForeignKeyPanel::constraintAvailable()
@@ -62,9 +91,9 @@ void ColumnForeignKeyPanel::init()
 
     connect(ui->namedCheckBox, SIGNAL(toggled(bool)), this, SIGNAL(updateValidation()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SIGNAL(updateValidation()));
-    connect(ui->fkTableCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(updateValidation()));
     connect(ui->fkTableCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateFkColumns()));
     connect(ui->fkTableCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateState()));
+    connect(ui->fkTableCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(updateValidation()));
     connect(ui->onDeleteCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateState()));
     connect(ui->onUpdateCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateState()));
     connect(ui->matchCheckBox, SIGNAL(toggled(bool)), this, SLOT(updateState()));
@@ -130,6 +159,7 @@ void ColumnForeignKeyPanel::updateFkColumns()
     QFont font = ui->fkColumnCombo->font();
     font.setItalic(true);
     item->setData(font, Qt::FontRole);
+    item->setData(true);
     fkColumnsModel.insertRow(0, item);
 }
 

@@ -49,6 +49,11 @@ void ConstraintPanel::setDb(Db* value)
     db = value;
 }
 
+QString ConstraintPanel::validateForWarning()
+{
+    return QString();
+}
+
 bool ConstraintPanel::validateOnly()
 {
     return validate();

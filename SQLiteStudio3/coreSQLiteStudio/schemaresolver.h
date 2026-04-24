@@ -227,6 +227,8 @@ class API_EXPORT SchemaResolver
         StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
         QStringList getTablePrimaryKeyColumns(const QString& table);
         QStringList getTablePrimaryKeyColumns(const QString& database, const QString& table);
+        bool isColumnPkOrUnique(const QString& table, const QString& column);
+        bool isColumnPkOrUnique(const QString& database, const QString& table, const QString& column);
 
         QString getSqliteAutoIndexDdl(const QString& database, const QString& index);
         static QString getSqliteMasterDdl(bool schema, bool temp = false);
@@ -263,6 +265,7 @@ class API_EXPORT SchemaResolver
         StrHash<QString> getIndexesWithTables(const QString& database = QString());
         QString normalizeCaseObjectNameByQuery(const QString& query, const QString& name);
         QStringList getObjectDdlsReferencingTableOrView(const QString& database, const QString& table, ObjectType type);
+        Parser* getParser();
 
         template <class T>
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
