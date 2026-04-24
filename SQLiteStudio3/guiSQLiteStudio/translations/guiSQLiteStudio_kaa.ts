@@ -2504,7 +2504,7 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Databases</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="2498"/>
+      <location filename="../dbtree/dbtree.cpp" line="2499"/>
       <source>Filter by name</source>
       <translation type="unfinished">Filter by name</translation>
     </message>
@@ -2939,12 +2939,12 @@ All objects from these groups will be moved to respective parent groups.</transl
       <translation type="unfinished">Delete objects</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="2524"/>
+      <location filename="../dbtree/dbtree.cpp" line="2525"/>
       <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;body&gt;&lt;p&gt;Connected.&lt;/p&gt;&lt;p&gt;Click here to disconnect, or middle-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dbtree/dbtree.cpp" line="2532"/>
+      <location filename="../dbtree/dbtree.cpp" line="2533"/>
       <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished">&lt;html&gt;&lt;body&gt;&lt;p&gt;Disconnected.&lt;/p&gt;&lt;p&gt;Click here to connect, or double-click on the database.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -3434,22 +3434,57 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Skip failing SQL statements</translation>
     </message>
     <message>
-      <location filename="../dialogs/execfromfiledialog.cpp" line="49"/>
+      <location filename="../dialogs/execfromfiledialog.ui" line="76"/>
+      <source>Exection mode</source>
+      <translation type="unfinished">Exection mode</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="82"/>
+      <source>Any content that is not valid SQL will cause a statement to fail.</source>
+      <translation type="unfinished">Any content that is not valid SQL will cause a statement to fail.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="85"/>
+      <source>Strict (only SQL content allowed)</source>
+      <translation type="unfinished">Strict (only SQL content allowed)</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="92"/>
+      <source>Allows dot commands (used by official SQLite CLI application) in the file.</source>
+      <translation type="unfinished">Allows dot commands (used by official SQLite CLI application) in the file.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="95"/>
+      <source>Permissive (dot commands ignored)</source>
+      <translation type="unfinished">Permissive (dot commands ignored)</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="102"/>
+      <source>Allows dot commands (used by official SQLite CLI application) in the file and even executes some of them (i.e. .print and .read). All other dot commands are ignored.</source>
+      <translation type="unfinished">Allows dot commands (used by official SQLite CLI application) in the file and even executes some of them (i.e. .print and .read). All other dot commands are ignored.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.ui" line="105"/>
+      <source>Extended (dot commands executed)</source>
+      <translation type="unfinished">Extended (dot commands executed)</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/execfromfiledialog.cpp" line="66"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation type="unfinished">SQL scripts (*.sql);;All files (*)</translation>
     </message>
     <message>
-      <location filename="../dialogs/execfromfiledialog.cpp" line="50"/>
+      <location filename="../dialogs/execfromfiledialog.cpp" line="67"/>
       <source>Execute SQL file</source>
       <translation type="unfinished">Execute SQL file</translation>
     </message>
     <message>
-      <location filename="../dialogs/execfromfiledialog.cpp" line="64"/>
+      <location filename="../dialogs/execfromfiledialog.cpp" line="81"/>
       <source>Please provide file to be executed.</source>
       <translation type="unfinished">Please provide file to be executed.</translation>
     </message>
     <message>
-      <location filename="../dialogs/execfromfiledialog.cpp" line="71"/>
+      <location filename="../dialogs/execfromfiledialog.cpp" line="88"/>
       <source>Provided file does not exist or cannot be read.</source>
       <translation type="unfinished">Provided file does not exist or cannot be read.</translation>
     </message>
