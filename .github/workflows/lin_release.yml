@@ -418,11 +418,14 @@ jobs:
 
                 mkdir SQLiteStudio.AppDir
                 cp -R SQLiteStudio SQLiteStudio.AppDir/
+
                 cd SQLiteStudio.AppDir
 
                 ln -s SQLiteStudio/sqlitestudio AppRun
                 cp SQLiteStudio/sqlitestudio_256.png sqlitestudio.png
                 cp SQLiteStudio/sqlitestudio.desktop sqlitestudio.desktop
+
+                cd ..
 
                 APPIMAGENAME=SQLiteStudio-${PACKAGE_VERSION}-${TARGET_ARCH}.AppImage
                 ARCH=$TARGET_ARCH appimagetool SQLiteStudio.AppDir $APPIMAGENAME
