@@ -131,11 +131,6 @@ jobs:
                 extra: '--external 7z'
                 modules: 'qtimageformats'
 
-            - name: Install AppImage Tool
-              run: |
-                sudo wget ${{ matrix.APPIMAGE_URL }} -O /usr/local/bin/appimagetool
-                sudo chmod +x /usr/local/bin/appimagetool
-
             - name: Clone GH scripts
               uses: actions/checkout@v3
               with:
@@ -417,6 +412,10 @@ jobs:
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}/..
               run: |
+                sudo apt install binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync
+                sudo wget ${{ matrix.APPIMAGE_URL }} -O /usr/local/bin/appimagetool
+                sudo chmod +x /usr/local/bin/appimagetool
+
                 mkdir SQLiteStudio.AppDir
                 cp -R SQLiteStudio SQLiteStudio.AppDir/
                 cd SQLiteStudio.AppDir
