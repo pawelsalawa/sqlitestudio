@@ -419,7 +419,7 @@ jobs:
                 cp -R SQLiteStudio SQLiteStudio.AppDir/
                 cd SQLiteStudio.AppDir
 
-                ln -s AppRun SQLiteStudio/sqlitestudio
+                ln -s SQLiteStudio/sqlitestudio AppRun
                 cp SQLiteStudio/sqlitestudio_256.png sqlitestudio.png
                 cp SQLiteStudio/sqlitestudio.desktop sqlitestudio.desktop
 
