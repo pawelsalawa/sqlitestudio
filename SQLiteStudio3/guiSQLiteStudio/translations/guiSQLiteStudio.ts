@@ -688,42 +688,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="314"/>
+        <location filename="../dialogs/columndialog.cpp" line="316"/>
         <source>Correct the constraint&apos;s configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="382"/>
+        <location filename="../dialogs/columndialog.cpp" line="386"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="383"/>
+        <location filename="../dialogs/columndialog.cpp" line="387"/>
         <source>Precision cannot be defined without the scale.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="384"/>
+        <location filename="../dialogs/columndialog.cpp" line="388"/>
         <source>Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="385"/>
+        <location filename="../dialogs/columndialog.cpp" line="389"/>
         <source>INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="407"/>
+        <location filename="../dialogs/columndialog.cpp" line="411"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="455"/>
+        <location filename="../dialogs/columndialog.cpp" line="459"/>
         <source>Referenced column type (%1) is different than type declared in this column. It may cause issues while inserting or updating data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.cpp" line="767"/>
+        <location filename="../dialogs/columndialog.cpp" line="771"/>
         <source>Could not match valid STRICT table datatype from declared type: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,7 +797,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../constraints/columnforeignkeypanel.cpp" line="129"/>
+        <location filename="../constraints/columnforeignkeypanel.cpp" line="52"/>
+        <source>The referenced column should be a PRIMARY KEY or UNIQUE.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/columnforeignkeypanel.cpp" line="158"/>
         <source>Column with the same name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7251,7 +7256,12 @@ Such deletion will be permanent. Are you sure you want to delete them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.cpp" line="445"/>
+        <location filename="../constraints/tableforeignkeypanel.cpp" line="427"/>
+        <source>Referenced column is not PRIMARY KEY or UNIQUE. It may cause issues while inserting or updating data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../constraints/tableforeignkeypanel.cpp" line="450"/>
         <source>Referenced column type (%1) is different than type declared for local column (%2). It may cause issues while inserting or updating data.</source>
         <translation type="unfinished"></translation>
     </message>
