@@ -427,7 +427,7 @@ jobs:
 
                 cd ..
 
-                APPIMAGENAME=SQLiteStudio-${PACKAGE_VERSION}.AppImage
+                APPIMAGENAME=SQLiteStudio-${SQLITESTUDIO_VERSION}-${{ matrix.TARGET_ARCH }}.AppImage
                 ARCH=${{ matrix.TARGET_ARCH }} appimagetool SQLiteStudio.AppDir $APPIMAGENAME
                 ls -l
                 echo "APPIMAGENAME=$APPIMAGENAME" >> $GITHUB_ENV
