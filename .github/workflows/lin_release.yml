@@ -129,6 +129,11 @@ jobs:
                 extra: '--external 7z'
                 modules: 'qtimageformats'
 
+            - name: Install AppImage Tool
+              run: |
+                sudo wget https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
+                sudo chmod +x /usr/local/bin/appimagetool
+
             - name: Clone GH scripts
               uses: actions/checkout@v3
               with:
@@ -406,6 +411,23 @@ jobs:
                     --setvars project.version=$SQLITESTUDIO_VERSION
                 ls -l
 
+            - name: Create AppImage
+              shell: bash
+              working-directory: ${{ env.PORTABLE_DIR }}/..
+              run: |
+                mkdir SQLiteStudio.AppDir
+                cp -R SQLiteStudio SQLiteStudio.AppDir/
+                cd SQLiteStudio.AppDir
+
+                ln -s AppRun SQLiteStudio/sqlitestudio
+                cp SQLiteStudio/sqlitestudio_256.png sqlitestudio.png
+                cp SQLiteStudio/sqlitestudio.desktop sqlitestudio.desktop
+
+                APPIMAGENAME=SQLiteStudio-${PACKAGE_VERSION}-${TARGET_ARCH}.AppImage
+                ARCH=$TARGET_ARCH appimagetool SQLiteStudio.AppDir $APPIMAGENAME
+                ls -l
+                echo "APPIMAGENAME=$APPIMAGENAME" >> $GITHUB_ENV
+
             - name: SHA256 checksums
               shell: bash
               run: |
@@ -423,6 +445,12 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
                 path: SQLiteStudio-${{ env.PACKAGE_VERSION }}-installer.run
+
+            - name: Upload AppImage artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: ${{ env.APPIMAGENAME }}
+                path: ${{ env.APPIMAGENAME }}
 
             - name: Install Midnight Commander
               if: >
