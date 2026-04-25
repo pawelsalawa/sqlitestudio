@@ -59,7 +59,7 @@ jobs:
                     "INSTALLBUILDER_URL": "https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-x64-installer.run",
                     "LIBSSL_DIR_URL": "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/",
                     "LIBSSL_DEB": "libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb",
-                    "APPIMAGE_URL": "https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage"
+                    "APPIMAGE_URL": "https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage",
                     "PYTHON_ARCH": "x64",
                     "SQLITE_ARCH": "x64",
                     "OUTPUT_FILE_ARCH": "x64"
@@ -73,7 +73,7 @@ jobs:
                     "INSTALLBUILDER_URL": "https://releases.installbuilder.com/installbuilder/installbuilder-enterprise-26.2.0-linux-arm64-installer.run",
                     "LIBSSL_DIR_URL": "http://ports.ubuntu.com/pool/main/o/openssl/",
                     "LIBSSL_DEB": "libssl1.1_1.1.1f-1ubuntu2.24_arm64.deb",
-                    "APPIMAGE_URL": "https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-aarch64.AppImage"
+                    "APPIMAGE_URL": "https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-aarch64.AppImage",
                     "PYTHON_ARCH": "arm64",
                     "SQLITE_ARCH": "arm",
                     "OUTPUT_FILE_ARCH": "arm64"
