@@ -427,8 +427,8 @@ jobs:
 
                 cd ..
 
-                APPIMAGENAME=SQLiteStudio-${PACKAGE_VERSION}-${TARGET_ARCH}.AppImage
-                ARCH=$TARGET_ARCH appimagetool SQLiteStudio.AppDir $APPIMAGENAME
+                APPIMAGENAME=SQLiteStudio-${PACKAGE_VERSION}.AppImage
+                ARCH=${{ matrix.TARGET_ARCH }} appimagetool SQLiteStudio.AppDir $APPIMAGENAME
                 ls -l
                 echo "APPIMAGENAME=$APPIMAGENAME" >> $GITHUB_ENV
 
@@ -454,7 +454,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ env.APPIMAGENAME }}
-                path: ${{ env.APPIMAGENAME }}
+                path: output/portable/${{ env.APPIMAGENAME }}
 
             - name: Install Midnight Commander
               if: >
