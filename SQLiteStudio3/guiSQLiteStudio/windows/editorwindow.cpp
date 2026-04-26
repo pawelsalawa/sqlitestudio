@@ -655,7 +655,7 @@ void EditorWindow::executionSuccessful()
 {
     double secs = ((double)resultsModel->getExecutionTime()) / 1000000000;
     QString time = QString::number(secs, 'f', CFG_UI.General.SqlEditorExecTimePrecision.get());
-    while (time.endsWith("0"))
+    while (time.endsWith("0") && time.contains("."))
         time.chop(1);
 
     if (time.endsWith("."))
