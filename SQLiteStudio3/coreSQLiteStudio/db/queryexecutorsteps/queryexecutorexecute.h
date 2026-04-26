@@ -74,14 +74,14 @@ class QueryExecutorExecute : public QueryExecutorStep
          */
         QHash<QString, QVariant> getBindParamsForQuery(SqliteQueryPtr query);
 
-        /**
-         * @brief Number of milliseconds since 1970 at execution start moment.
-         */
-        qint64 startTime;
-
         bool isBeginTransaction(SqliteQueryType queryType);
         bool isCommitTransaction(SqliteQueryType queryType);
         bool isRollbackTransaction(SqliteQueryType queryType);
+
+        /**
+         * @brief Timer to measure how long the query execution took.
+         */
+        QElapsedTimer executionTimer;
 };
 
 #endif // QUERYEXECUTOREXECUTE_H

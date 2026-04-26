@@ -38,7 +38,7 @@ SqlFileExecutor::ExecutionMode ExecFromFileDialog::getExecutionMode() const
         return SqlFileExecutor::PERMISSIVE;
 
     if (ui->strictModeRadio->isChecked())
-        return SqlFileExecutor::STRICT;
+        return SqlFileExecutor::STRICT_MODE;
 
     if (ui->extModeRadio->isChecked())
         return SqlFileExecutor::EXTENDED;

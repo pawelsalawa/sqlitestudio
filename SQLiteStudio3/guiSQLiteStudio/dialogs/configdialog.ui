@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -487,8 +487,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>489</width>
-                <height>740</height>
+                <width>461</width>
+                <height>704</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -1139,33 +1139,36 @@
               <string>SQL Editor</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
-              <item row="1" column="0">
-               <widget class="QCheckBox" name="execQueryUnderCursorCheck">
+              <item row="5" column="0">
+               <widget class="QLabel" name="execTimePrecCheck">
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifies the maximum number of decimal places shown for query execution time. Up to 9 digits (nanoseconds) can be configured. Trailing zeros are automatically trimmed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>Execute only the query under the cursor</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.ExecuteCurrentQueryOnly</string>
+                 <string>Execution time precision (decimal places)</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QCheckBox" name="highlightCurrentQueryCheck">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <item row="5" column="1">
+               <widget class="QSpinBox" name="execTimePrecSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
                 </property>
-                <property name="text">
-                 <string>Highlight current query</string>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifies the maximum number of decimal places shown for query execution time. Up to 9 digits (nanoseconds) can be configured. Trailing zeros are automatically trimmed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="maximum">
+                 <number>9</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string notr="true">General.SqlEditorCurrQueryHighlight</string>
+                 <string>General.SqlEditorExecTimePrecision</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="3" column="0" colspan="2">
                <widget class="QCheckBox" name="wrapLinesInSqlEditorCheck">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1178,13 +1181,39 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="4" column="0" colspan="2">
                <widget class="QCheckBox" name="disableBlinkingCusrorCheck">
                 <property name="text">
                  <string>Disable blinking text cursor</string>
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">General.DisableBlinkingCursor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QCheckBox" name="highlightCurrentQueryCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Highlight current query</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.SqlEditorCurrQueryHighlight</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QCheckBox" name="execQueryUnderCursorCheck">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Execute only the query under the cursor</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.ExecuteCurrentQueryOnly</string>
                 </property>
                </widget>
               </item>
@@ -2330,8 +2359,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>389</width>
-                <height>366</height>
+                <width>366</width>
+                <height>353</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -2786,7 +2815,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -2877,8 +2906,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>235</width>
-                <height>493</height>
+                <width>224</width>
+                <height>481</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">

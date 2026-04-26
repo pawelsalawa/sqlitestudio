@@ -240,7 +240,7 @@ bool SqlFileExecutor::shouldSkipQuery(const QString& sql, bool isEnd) const
 
 QString SqlFileExecutor::processDotCommands(const QString& sql, QList<QPair<QString, QString>>& errors)
 {
-    if (executionMode == STRICT || !sql.startsWith(".") && !sql.contains("\n."))
+    if (executionMode == STRICT_MODE || !sql.startsWith(".") && !sql.contains("\n."))
         return sql;
 
     QString content = removeComments(sql);

@@ -26,6 +26,7 @@
 #include <QActionGroup>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <qlocale.h>
 
 CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
@@ -652,8 +653,13 @@ void EditorWindow::dbChanged()
 
 void EditorWindow::executionSuccessful()
 {
-    double secs = ((double)resultsModel->getExecutionTime()) / 1000;
-    QString time = QString::number(secs, 'f', 3);
+    double secs = ((double)resultsModel->getExecutionTime()) / 1000000000;
+    QString time = QString::number(secs, 'f', CFG_UI.General.SqlEditorExecTimePrecision.get());
+    while (time.endsWith("0"))
+        time.chop(1);
+
+    if (time.endsWith("."))
+        time.chop(1);
 
     if (resultsModel->wasDataModifyingQuery())
     {

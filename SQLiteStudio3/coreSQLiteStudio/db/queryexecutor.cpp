@@ -562,7 +562,7 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecutor->setDb(db);
     simpleExecutor->setAsync(false); // this is already in a thread
 
-    simpleExecutionStartTime = QDateTime::currentMSecsSinceEpoch();
+    simpleExecutionTimer.restart();
     simpleExecutor->exec();
 }
 
@@ -576,7 +576,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         handleErrorsFromSmartAndSimpleMethods(results);
         return;
     }
-    context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
+    context->executionTime = simpleExecutionTimer.nsecsElapsed();
 
     if (simpleExecIsSelect())
         context->countingQuery = "SELECT count(*) AS cnt FROM ("+trimQueryEnd(queriesForSimpleExecution.last())+");";
