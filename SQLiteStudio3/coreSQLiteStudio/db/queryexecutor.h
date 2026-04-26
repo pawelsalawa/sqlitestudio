@@ -11,6 +11,7 @@
 #include <QHash>
 #include <QMutex>
 #include <QRunnable>
+#include <QElapsedTimer>
 
 /** @file */
 
@@ -811,9 +812,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         /**
          * @brief Gets time of how long it took to execute query.
-         * @return Execution time in milliseconds.
+         * @return Execution time in nenoseconds.
          *
-         * The execution time is number of milliseconds from begining of the query execution, till receiving of the results.
+         * The execution time is number of nanoseconds from begining of the query execution, till receiving of the results.
          */
         qint64 getLastExecutionTime() const;
 
@@ -1415,11 +1416,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         int queryCountLimitForSmartMode = -1;
 
         /**
-         * @brief Exact moment when query execution started.
-         *
-         * Expressed in number of milliseconds since 1970-01-01 00:00:00.
+         * @brief Timer for measuring how long the simple method execution took.
          */
-        qint64 simpleExecutionStartTime;
+        QElapsedTimer simpleExecutionTimer;
 
         /**
          * @brief Flag indicating results preloading.

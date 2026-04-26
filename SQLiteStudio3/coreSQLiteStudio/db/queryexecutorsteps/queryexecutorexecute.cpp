@@ -16,7 +16,7 @@ bool QueryExecutorExecute::exec()
 {
     //qDebug() << "q:" << context->processedQuery;
 
-    startTime = QDateTime::currentMSecsSinceEpoch();
+    executionTimer.start();
     return executeQueries();
 }
 
@@ -88,7 +88,7 @@ void QueryExecutorExecute::handleSuccessfulResult(SqlQueryPtr results)
         provideResultColumns(results);
     }
 
-    context->executionTime = QDateTime::currentMSecsSinceEpoch() - startTime;
+    context->executionTime = executionTimer.nsecsElapsed();
 
     // For PRAGMA and EXPLAIN we simply count results for rows returned
     SqliteQueryPtr lastQuery = context->parsedQueries.last();

@@ -14,7 +14,7 @@ class API_EXPORT SqlFileExecutor : public QObject
     public:
         enum ExecutionMode
         {
-            STRICT,
+            STRICT_MODE, // not just STRICT, cause it's reserved symbol in qwindefs_win.h
             PERMISSIVE,
             EXTENDED
         };
@@ -44,7 +44,7 @@ class API_EXPORT SqlFileExecutor : public QObject
         QString codec;
         QString filePath;
         QString txName;
-        ExecutionMode executionMode = STRICT;
+        ExecutionMode executionMode = STRICT_MODE;
 
     public slots:
         void stopExecution();

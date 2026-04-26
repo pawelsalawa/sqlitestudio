@@ -430,7 +430,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         /**
          * @brief lastExecutionTime
-         * Keeps number of milliseconds that recently successfully executed query took to complete.
+         * Keeps number of nanoseconds that recently successfully executed query took to complete.
          * If there was no such query executed, this will be 0.
          */
         quint64 lastExecutionTime = 0;

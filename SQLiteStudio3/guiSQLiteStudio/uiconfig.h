@@ -129,6 +129,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(QString,                 SqlEditorDbListOrder,        "LikeDbTree")
         CFG_ENTRY(bool,                    SqlEditorWrapWords,          false)
         CFG_ENTRY(bool,                    SqlEditorCurrQueryHighlight, true)
+        CFG_ENTRY(qint64,                  SqlEditorExecTimePrecision,  9)
         CFG_ENTRY(bool,                    DisableBlinkingCursor,       false)
         CFG_ENTRY(bool,                    ExecuteCurrentQueryOnly,     true)
         CFG_ENTRY(int,                     NumberOfRowsPerPage,         1000)

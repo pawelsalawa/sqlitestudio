@@ -100,7 +100,7 @@ void SqlQueryExecutorTest::testPrintExtended()
 void SqlQueryExecutorTest::testPrintStrict()
 {
     SqlFileExecutor fileExecutor;
-    fileExecutor.setExecutionMode(SqlFileExecutor::STRICT);
+    fileExecutor.setExecutionMode(SqlFileExecutor::STRICT_MODE);
     QSignalSpy spyErrors(&fileExecutor, &SqlFileExecutor::execErrors);
     QSignalSpy spyNotifyInfo(NOTIFY_MANAGER, &NotifyManager::notifyInfo);
 
