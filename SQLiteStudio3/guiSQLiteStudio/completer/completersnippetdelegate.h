@@ -10,6 +10,11 @@ class GUI_API_EXPORT CompleterSnippetDelegate : public QStyledItemDelegate
         explicit CompleterSnippetDelegate(QObject *parent = 0);
 
         void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+
+        void setShowHotkeys(bool newShowHotkeys);
+
+    private:
+        bool showHotKeys = true;
 };
 
 #endif // COMPLETERSNIPPETDELEGATE_H

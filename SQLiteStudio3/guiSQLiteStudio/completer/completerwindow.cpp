@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QListWidget>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QLineEdit>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
@@ -42,19 +43,23 @@ void CompleterWindow::init()
     ui->list->setModel(model);
     model->setCompleterView(ui->list);
 
-    ui->snippets->setItemDelegate(new CompleterSnippetDelegate(ui->snippets));
+    snippetDelegate = new CompleterSnippetDelegate(ui->snippets);
+    ui->snippets->setItemDelegate(snippetDelegate);
 
     setFocusProxy(ui->list);
     connect(ui->list, SIGNAL(focusOut()), this, SLOT(focusOut()));
     connect(ui->list, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(doubleClicked(QModelIndex)));
     connect(ui->list->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(currentRowChanged(QModelIndex,QModelIndex)));
-    connect(ui->list, SIGNAL(textTyped(QString)), this, SIGNAL(textTyped(QString)));
-    connect(ui->list, SIGNAL(backspace()), this, SIGNAL(backspacePressed()));
-    connect(ui->list, SIGNAL(left()), this, SIGNAL(leftPressed()));
-    connect(ui->list, SIGNAL(right()), this, SIGNAL(rightPressed()));
     connect(modeChangeShortcut, SIGNAL(activated()), this, SLOT(modeChangeRequested()));
     connect(ui->snippets, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(snippetDoubleClicked(QListWidgetItem*)));
     connect(snippetSignalMapper, SIGNAL(mappedInt(int)), this, SLOT(snippetHotkeyPressed(int)));
+
+    ui->list->installEventFilter(this);
+    ui->snippets->installEventFilter(this);
+
+    QShortcut* snippetToggleShortcut = new QShortcut(Qt::Key_Slash, ui->snippets);
+    connect(snippetToggleShortcut, &QShortcut::activated, this, &CompleterWindow::toggleSnippetsKeyMode);
+
     reset();
 }
 
@@ -85,6 +90,53 @@ void CompleterWindow::refreshSnippets()
         ui->snippets->setCurrentRow(0);
 }
 
+QString CompleterWindow::getSnippetsStatusMsg() const
+{
+    return snippetKeyMode == HOTKEY ? tr("Press / to filter snippets") : tr("Press / to use hotkeys");
+}
+
+void CompleterWindow::setSnippetsKeyMode(SnippetKeyMode mode)
+{
+    snippetKeyMode = mode;
+    ui->status->showMessage(getSnippetsStatusMsg());
+    applyFilterToSnippets();
+
+    switch (mode)
+    {
+        case HOTKEY:
+        {
+            for (QShortcut*& sc : snippetShortcuts)
+                sc->setEnabled(true);
+
+            snippetDelegate->setShowHotkeys(true);
+            break;
+        }
+        case FILTER:
+        {
+            for (QShortcut*& sc : snippetShortcuts)
+                sc->setEnabled(false);
+
+            snippetDelegate->setShowHotkeys(false);
+            break;
+        }
+    }
+
+    auto model = ui->snippets->model();
+    QModelIndex topLeft = model->index(0, 0);
+    QModelIndex bottomRight = model->index(model->rowCount() - 1, 0);
+    emit model->dataChanged(topLeft, bottomRight);
+}
+
+CompleterWindow::SnippetKeyMode CompleterWindow::getSnippetKeyMode() const
+{
+    return snippetKeyMode;
+}
+
+void CompleterWindow::setInitialMode(Mode newInitialMode)
+{
+    initialMode = newInitialMode;
+}
+
 void CompleterWindow::reset()
 {
     model->clear();
@@ -109,9 +161,25 @@ void CompleterWindow::updateFilter()
 {
     model->setFilter(filter);
     ui->list->selectFirstVisible();
+    applyFilterToSnippets();
 
-    if (!ui->list->hasVisibleItem())
-        reject();
+    switch (getMode())
+    {
+        case CODE:
+        {
+            if (!ui->list->hasVisibleItem())
+                reject();
+
+            break;
+        }
+        case SNIPPETS:
+        {
+            if (!hasVisibleSnippets())
+                reject();
+
+            break;
+        }
+    }
 }
 
 void CompleterWindow::shringFilterBy(int chars)
@@ -148,6 +216,7 @@ void CompleterWindow::extendFilterBy(const QString& text)
 
 bool CompleterWindow::immediateResolution()
 {
+    setMode(initialMode);
     if (ui->list->countVisibleItem() == 1)
     {
         accept();
@@ -159,6 +228,24 @@ bool CompleterWindow::immediateResolution()
 CompleterWindow::Mode CompleterWindow::getMode() const
 {
     return static_cast<Mode>(ui->modeStack->currentIndex());
+}
+
+void CompleterWindow::setMode(Mode mode)
+{
+    if (getMode() == mode)
+        return;
+
+    ui->modeStack->setCurrentIndex(mode);
+    switch (mode)
+    {
+        case SNIPPETS:
+            setSnippetsKeyMode(HOTKEY);
+            refreshSnippets();
+            break;
+        case CODE:
+            ui->status->showMessage(getStatusMsg(ui->list->currentIndex()));
+            break;
+    }
 }
 
 QString CompleterWindow::getSnippetName() const
@@ -210,6 +297,9 @@ void CompleterWindow::keyPressEvent(QKeyEvent* e)
 
 QString CompleterWindow::getStatusMsg(const QModelIndex& index)
 {
+    if (getMode() == CompleterWindow::SNIPPETS)
+        return getSnippetsStatusMsg();
+
     ExpectedToken::Type type = (ExpectedToken::Type)index.data(CompleterModel::TYPE).toInt();
     QString value = index.data(CompleterModel::VALUE).toString();
     QString label = index.data(CompleterModel::LABEL).toString();
@@ -270,6 +360,28 @@ QString CompleterWindow::getStatusMsg(const QModelIndex& index)
     return "";
 }
 
+bool CompleterWindow::hasVisibleSnippets() const
+{
+    int visibleCount = 0;
+    for (int i = 0; i < ui->snippets->count(); ++i)
+    {
+        if (!ui->snippets->item(i)->isHidden())
+            visibleCount++;
+    }
+    return visibleCount > 0;
+}
+
+void CompleterWindow::applyFilterToSnippets()
+{
+    bool filterEnabled = !filter.isEmpty() && snippetKeyMode == FILTER;
+    QString lowFilter = filter.toLower();
+    for (int i = 0; i < ui->snippets->count(); ++i)
+    {
+        auto item = ui->snippets->item(i);
+        item->setHidden(filterEnabled && !item->text().toLower().contains(lowFilter));
+    }
+}
+
 void CompleterWindow::focusOut()
 {
     QWidget* focused = QApplication::focusWidget();
@@ -293,18 +405,8 @@ void CompleterWindow::currentRowChanged(const QModelIndex& current, const QModel
 
 void CompleterWindow::modeChangeRequested()
 {
-    ui->modeStack->setCurrentIndex((ui->modeStack->currentIndex() + 1) % ui->modeStack->count());
-
-    switch (ui->modeStack->currentIndex())
-    {
-        case SNIPPETS:
-            ui->status->showMessage(tr("Insert a code snippet"));
-            refreshSnippets();
-            break;
-        case CODE:
-            ui->status->showMessage(getStatusMsg(ui->list->currentIndex()));
-            break;
-        }
+    Mode newMode = static_cast<Mode>((ui->modeStack->currentIndex() + 1) % ui->modeStack->count());
+    setMode(newMode);
 }
 
 void CompleterWindow::snippetHotkeyPressed(int index)
@@ -319,9 +421,15 @@ void CompleterWindow::snippetDoubleClicked(QListWidgetItem* item)
     accept();
 }
 
+void CompleterWindow::toggleSnippetsKeyMode()
+{
+    setSnippetsKeyMode(snippetKeyMode == HOTKEY ? FILTER : HOTKEY);
+}
+
 void CompleterWindow::showEvent(QShowEvent*e)
 {
-    ui->modeStack->setCurrentIndex(0);
+    setSnippetsKeyMode(HOTKEY);
+    setMode(initialMode);
     QDialog::showEvent(e);
 
     // A hack for Gnome3 to give this widget a focus. Harmless for others.
@@ -329,4 +437,45 @@ void CompleterWindow::showEvent(QShowEvent*e)
 
     // Refresh hotkey if changed
     modeChangeShortcut->setKey(GET_SHORTCUTS_CATEGORY(SqlEditor).COMPLETE.get());
+}
+
+bool CompleterWindow::eventFilter(QObject* obj, QEvent* event)
+{
+    if (obj != ui->snippets && obj != ui->list)
+        return false;
+
+    if (event->type() != QEvent::KeyPress)
+        return false;
+
+    if (obj == ui->snippets && snippetKeyMode == HOTKEY)
+        return false;
+
+    QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+
+    QKeySequence hotkey = GET_SHORTCUTS_CATEGORY(SqlEditor).COMPLETE.get();
+    QKeySequence theKey = QKeySequence(keyEvent->key() | keyEvent->modifiers());
+    if (hotkey == theKey)
+        return true;
+
+    QString txt = keyEvent->text();
+    if (!txt.isEmpty() && txt[0].isPrint())
+    {
+        emit textTyped(txt);
+        return true;
+    }
+
+    switch (keyEvent->key())
+    {
+        case Qt::Key_Backspace:
+            emit backspacePressed();
+            return true;
+        case Qt::Key_Left:
+            emit leftPressed();
+            return true;
+        case Qt::Key_Right:
+            emit rightPressed();
+            return true;
+    }
+
+    return false;
 }

@@ -16,6 +16,8 @@ class API_EXPORT CodeSnippetManager : public QObject
             QString name;
             QString code;
             QString hotkey;
+
+            QVariantHash toHash() const;
         };
 
         CodeSnippetManager(Config* config);
@@ -27,6 +29,7 @@ class API_EXPORT CodeSnippetManager : public QObject
         void saveToConfig();
         QString getCodeByName(const QString& name) const;
         void loadFromConfig();
+        static QList<CodeSnippet*> createDefaultSnippetsFor(int appVersion);
 
     private:
         void refreshNames();

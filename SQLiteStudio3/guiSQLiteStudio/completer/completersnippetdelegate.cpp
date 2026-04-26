@@ -14,6 +14,8 @@ void CompleterSnippetDelegate::paint(QPainter* painter, const QStyleOptionViewIt
     initStyleOption(&opt, index);
 
     QStyledItemDelegate::paint(painter, opt, index);
+    if (!showHotKeys)
+        return;
 
     QString hotkey = index.data(QListWidgetItem::UserType).toString();
     if (!hotkey.isEmpty())
@@ -31,4 +33,9 @@ void CompleterSnippetDelegate::paint(QPainter* painter, const QStyleOptionViewIt
         painter->drawText(opt.rect.adjusted(0, 0, -5, 0), Qt::AlignRight | Qt::AlignVCenter, QString("(%1)").arg(hotkey));
         painter->restore();
     }
+}
+
+void CompleterSnippetDelegate::setShowHotkeys(bool newShowHotkeys)
+{
+    showHotKeys = newShowHotkeys;
 }

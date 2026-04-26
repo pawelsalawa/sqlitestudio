@@ -575,6 +575,7 @@ void SqlEditor::complete()
 
     QString sql = toPlainText();
     int curPos = textCursor().position();
+    bool isEmptySql = sql.trimmed().isEmpty();
 
     if (!virtualSqlExpression.isNull())
     {
@@ -590,6 +591,7 @@ void SqlEditor::complete()
 
     completer->setData(result);
     completer->setDb(db);
+    completer->setInitialMode(isEmptySql ? CompleterWindow::SNIPPETS : CompleterWindow::CODE);
     if (completer->immediateResolution())
         return;
 
@@ -608,6 +610,7 @@ void SqlEditor::completeSelected()
 {
     if (completer->getMode() == CompleterWindow::SNIPPETS)
     {
+        deletePreviousChars(completer->getNumberOfCharsToRemove());
         insertPlainText(CODESNIPPETS->getCodeByName(completer->getSnippetName()));
         return;
     }

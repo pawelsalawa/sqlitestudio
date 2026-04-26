@@ -17,14 +17,9 @@ class GUI_API_EXPORT CompleterView : public QListView
 
     protected:
         void focusOutEvent(QFocusEvent* e);
-        void keyPressEvent(QKeyEvent* e);
 
     signals:
         void focusOut();
-        void textTyped(const QString& text);
-        void backspace();
-        void left();
-        void right();
 };
 
 #endif // COMPLETERLIST_H

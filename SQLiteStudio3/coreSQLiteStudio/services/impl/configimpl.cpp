@@ -22,7 +22,7 @@
 #include <QSettings>
 #include <QtWidgets/QFileDialog>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 14;
+const int SQLITESTUDIO_CONFIG_VERSION = 15;
 
 static_qstring(DB_FILE_NAME, "settings3");
 static_qstring(CONFIG_DIR_SETTING, "SQLiteStudioConfigDir");
@@ -1343,6 +1343,20 @@ void ConfigImpl::updateConfigDb()
             db->exec("DROP TABLE reports_history;");
             notifyInfo(tr("Configured hotkeys have been reset to their default settings following the update to version 4.0.0, "
                           "where many shortcuts were revised to align with modern IDE standards."));
+            [[fallthrough]];
+        }
+        case 14:
+        {
+            // 14->15
+            if (CFG_CORE.Internal.DefaultSnippetsCreated.get())
+            {
+                auto defSnipList = CodeSnippetManager::createDefaultSnippetsFor(40000);
+                QVariantList snippets = CFG_CORE.Internal.CodeSnippets.get();
+                for (auto& snip : defSnipList)
+                    snippets << snip->toHash();
+
+                CFG_CORE.Internal.CodeSnippets.set(snippets);
+            }
         }
         // Add cases here for next versions,
         // without a "break" instruction,

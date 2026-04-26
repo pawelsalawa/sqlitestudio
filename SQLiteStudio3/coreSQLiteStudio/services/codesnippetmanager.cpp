@@ -43,14 +43,9 @@ const QStringList& CodeSnippetManager::getNames() const
 void CodeSnippetManager::saveToConfig()
 {
     QVariantList list;
-    QHash<QString,QVariant> snHash;
     for (CodeSnippet*& snip : allSnippets)
-    {
-        snHash["name"] = snip->name;
-        snHash["code"] = snip->code;
-        snHash["hoteky"] = snip->hotkey;
-        list << snHash;
-    }
+        list << snip->toHash();
+
     CFG_CORE.Internal.CodeSnippets.set(list);
 }
 
@@ -65,11 +60,10 @@ void CodeSnippetManager::loadFromConfig()
     clearSnippets();
 
     QVariantList list = CFG_CORE.Internal.CodeSnippets.get();
-    QHash<QString,QVariant> snHash;
     CodeSnippet* snip = nullptr;
     for (const QVariant& var : list)
     {
-        snHash = var.toHash();
+        QHash<QString,QVariant> snHash = var.toHash();
         snip = new CodeSnippet();
         snip->name = snHash["name"].toString();
         snip->code = snHash["code"].toString();
@@ -93,29 +87,88 @@ void CodeSnippetManager::clearSnippets()
 
 void CodeSnippetManager::createDefaultSnippets()
 {
-    CodeSnippet* snip = new CodeSnippet();
-    snip->name = "Create Table";
-    snip->code = "CREATE TABLE tableName (\n"
-                  "   id      INTEGER PRIMARY KEY AUTOINCREMENT,\n"
-                  "   value   TEXT,\n"
-                  "   image   BLOB\n"
-                  ");";
-    snip->hotkey = "c";
-    allSnippets << snip;
-
-    snip = new CodeSnippet();
-    snip->name = "With Recursive";
-    snip->code = "WITH RECURSIVE\n"
-                  "   cnt(x) AS (\n"
-                  "       SELECT 1\n"
-                  "        UNION ALL\n"
-                  "       SELECT x+1 FROM cnt\n"
-                  "        LIMIT 1000000\n"
-                  "   )\n"
-                  "SELECT x FROM cnt;";
-    snip->hotkey = "w";
-    allSnippets << snip;
+    allSnippets += createDefaultSnippetsFor(0);
 
     saveToConfig();
     CFG_CORE.Internal.DefaultSnippetsCreated.set(true);
+}
+
+QList<CodeSnippetManager::CodeSnippet*> CodeSnippetManager::createDefaultSnippetsFor(int appVersion)
+{
+    QList<CodeSnippetManager::CodeSnippet*> results;
+    CodeSnippet* snip;
+
+    // 0 is always for initial run when user had no configuration yet
+    // Then 40000 is for version 4.0.0, in which basic snippets were added, so if user had config from 4.0.0 or older, they get those snippets as default ones.
+    // Future versions can be added here with more default snippets, if needed, and users will get them if they update from version older than that.
+
+    if (appVersion == 0 || appVersion == 40000)
+    {
+        snip = new CodeSnippet();
+        snip->name = "Select From Table";
+        snip->code = "SELECT * FROM :table_name;";
+        snip->hotkey = "s";
+        results << snip;
+
+        snip = new CodeSnippet();
+        snip->name = "Select From Table, Where...";
+        snip->code = "SELECT * FROM :table_name WHERE :conditions;";
+        snip->hotkey = "Shift+S";
+        results << snip;
+
+        snip = new CodeSnippet();
+        snip->name = "Delete From Table, Where...";
+        snip->code = "DELETE FROM :table_name WHERE :conditions;";
+        snip->hotkey = "d";
+        results << snip;
+
+        snip = new CodeSnippet();
+        snip->name = "Insert Into Table";
+        snip->code = "INSERT INTO :table_name (:columns) VALUES (:values);";
+        snip->hotkey = "i";
+        results << snip;
+
+        snip = new CodeSnippet();
+        snip->name = "Update Table, Where...";
+        snip->code = "UPDATE :table_name SET :assignments WHERE :conditions;";
+        snip->hotkey = "u";
+        results << snip;
+    }
+
+    if (appVersion == 0)
+    {
+        snip = new CodeSnippet();
+        snip->name = "Create Table";
+        snip->code = "CREATE TABLE tableName (\n"
+                     "   id      INTEGER PRIMARY KEY AUTOINCREMENT,\n"
+                     "   value   TEXT,\n"
+                     "   image   BLOB\n"
+                     ");";
+        snip->hotkey = "c";
+        results << snip;
+
+        snip = new CodeSnippet();
+        snip->name = "With Recursive";
+        snip->code = "WITH RECURSIVE\n"
+                      "   cnt(x) AS (\n"
+                      "       SELECT 1\n"
+                      "        UNION ALL\n"
+                      "       SELECT x+1 FROM cnt\n"
+                      "        LIMIT 1000000\n"
+                      "   )\n"
+                      "SELECT x FROM cnt;";
+        snip->hotkey = "w";
+        results << snip;
+    }
+
+    return results;
+}
+
+QVariantHash CodeSnippetManager::CodeSnippet::toHash() const
+{
+    return QVariantHash {
+        {"name", name},
+        {"code", code},
+        {"hoteky", hotkey}
+    };
 }
