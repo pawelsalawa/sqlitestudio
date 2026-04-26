@@ -39,6 +39,7 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QMessageBox>
 #include <QStyle>
+#include <QToolTip>
 
 CFG_KEYS_DEFINE(SqlEditor)
 
@@ -104,6 +105,7 @@ void SqlEditor::init()
     highlighter = new SqliteSyntaxHighlighter(document());
     initActions();
     setupMenu();
+    setMouseTracking(true);
 
     objectsInNamedDbWatcher = new QFutureWatcher<AsyncObjectsRefreshResults>(this);
     connect(objectsInNamedDbWatcher, SIGNAL(finished()), this, SLOT(scheduleQueryParserForSchemaRefresh()));
@@ -679,7 +681,6 @@ void SqlEditor::refreshValidObjects()
 void SqlEditor::setObjectLinks(bool enabled)
 {
     objectLinksEnabled = enabled;
-    setMouseTracking(enabled);
     highlighter->setObjectLinksEnabled(enabled);
     highlightSyntax();
 
@@ -1590,9 +1591,9 @@ void SqlEditor::decrFontSize()
 void SqlEditor::openObjectAtCurrentPosition()
 {
     int position = textCursor().position();
-    DbObject* obj = const_cast<DbObject*>(getValidObjectForPosition(position, true));
+    DbObject* obj = const_cast<DbObject*>(getValidObjectForPosition(position));
     if (!obj)
-        obj = const_cast<DbObject*>(getValidObjectForPosition(position, false));
+        obj = const_cast<DbObject*>(getValidObjectForPosition(position - 1));
 
     if (obj)
     {
@@ -1716,6 +1717,30 @@ void SqlEditor::mousePressEvent(QMouseEvent* e)
     QPlainTextEdit::mousePressEvent(e);
 }
 
+bool SqlEditor::event(QEvent* e)
+{
+    if (e->type() == QEvent::ToolTip)
+    {
+        QHelpEvent *he = static_cast<QHelpEvent *>(e);
+        QPoint pos = he->pos();
+        pos.rx() -= lineNumberAreaWidth();
+
+        const DbObject* dbObj = getValidObjectForPosition(pos);
+        if (dbObj)
+        {
+            QToolTip::showText(mapToGlobal(he->pos()), tr("Ctrl+click to open this table or view"), this);
+        }
+        else
+        {
+            QToolTip::hideText();
+            e->ignore();
+        }
+
+        return true;
+    }
+    return QPlainTextEdit::event(e);
+}
+
 void SqlEditor::resizeEvent(QResizeEvent* e)
 {
     QPlainTextEdit::resizeEvent(e);
@@ -1728,17 +1753,7 @@ void SqlEditor::handleValidObjectCursor(const QPoint& point)
     if (!objectLinksEnabled)
         return;
 
-    QTextCursor cursor = cursorForPosition(point);
-    int position = cursor.position();
-    QRect curRect = cursorRect(cursor);
-    bool isValid = false;
-    if (point.y() >= curRect.top() && point.y() <= curRect.bottom())
-    {
-        // Mouse pointer is at the same line as cursor, so cursor was returned for actual character under mouse
-        // and not just first/last character of the line, because mouse was out of text.
-        bool movedLeft = (curRect.x() - point.x()) < 0;
-        isValid = (getValidObjectForPosition(position, movedLeft) != nullptr);
-    }
+    bool isValid = getValidObjectForPosition(point) != nullptr;
     viewport()->setCursor(isValid ? Qt::PointingHandCursor : Qt::IBeamCursor);
 }
 
@@ -1837,19 +1852,36 @@ const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& po
 {
     QTextCursor cursor = cursorForPosition(point);
     int position = cursor.position();
-    bool movedLeft = (cursorRect(cursor).x() - point.x()) < 0;
-    return getValidObjectForPosition(position, movedLeft);
+    QTextBlock block = document()->findBlock(position);
+    if (block.text().isEmpty())
+        return nullptr;
+
+    QTextLayout* blockLayout = block.layout();
+    if (blockLayout->lineCount() == 0)
+        return nullptr;
+
+    QTextLine line = blockLayout->lineAt(0);
+    QRectF blockRect = line.naturalTextRect();
+    for (int i = 1; i < blockLayout->lineCount(); i++)
+    {
+        line = blockLayout->lineAt(i);
+        blockRect = blockRect.united(line.naturalTextRect());
+    }
+
+    blockRect.translate(blockBoundingGeometry(block).topLeft() + contentOffset());
+
+    if (!blockRect.contains(point))
+        return nullptr;
+
+    return getValidObjectForPosition(position);
 }
 
-const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position, bool movedLeft)
+const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position)
 {
     for (DbObject& obj : validDbObjects)
     {
-        if ((!movedLeft && position > obj.from && position-1 <= obj.to) ||
-            (movedLeft && position >= obj.from && position <= obj.to))
-        {
+        if (position >= obj.from && position-1 <= obj.to)
             return &obj;
-        }
     }
     return nullptr;
 }

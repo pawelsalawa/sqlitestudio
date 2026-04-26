@@ -144,6 +144,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void focusInEvent(QFocusEvent* e);
         void mouseMoveEvent(QMouseEvent* e);
         void mousePressEvent(QMouseEvent* e);
+        bool event(QEvent *e);
         void resizeEvent(QResizeEvent *e);
         void changeEvent(QEvent* e);
         void showEvent(QShowEvent* event);
@@ -224,7 +225,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
          * @param movedLeft true if Qt moved cursor left from click point, which means that user clicked closer to left border of character. Otherwise cursor was moved towards right.
          * @return Object identified under given text position, or null if there was no valid object under that position.
          */
-        const DbObject* getValidObjectForPosition(int position, bool movedLeft);
+        const DbObject* getValidObjectForPosition(int position);
         const DbObject* getValidObjectForPosition(const QPoint& point);
         void handleValidObjectCursor(const QPoint& point);
         bool handleValidObjectContextMenu(const QPoint& pos);
