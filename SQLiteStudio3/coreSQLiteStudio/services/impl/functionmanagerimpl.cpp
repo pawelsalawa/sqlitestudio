@@ -287,8 +287,8 @@ QVariant FunctionManagerImpl::evaluateNativeScalar(NativeFunction* func, const Q
 
 void FunctionManagerImpl::init()
 {
-    loadFromConfig();
     initNativeFunctions();
+    loadFromConfig();
     connect(DBLIST, &DbManager::dbUpdated, this, &FunctionManagerImpl::handleDbUpdated);
 }
 
