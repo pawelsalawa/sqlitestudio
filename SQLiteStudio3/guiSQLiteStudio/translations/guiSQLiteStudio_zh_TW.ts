@@ -904,106 +904,115 @@
 <context>
     <name>CompleterWindow</name>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="220"/>
+        <location filename="../completer/completerwindow.cpp" line="95"/>
+        <source>Press / to filter snippets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../completer/completerwindow.cpp" line="95"/>
+        <source>Press / to use hotkeys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../completer/completerwindow.cpp" line="310"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
         <translation>列：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="222"/>
+        <location filename="../completer/completerwindow.cpp" line="312"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
         <translation>表：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="224"/>
+        <location filename="../completer/completerwindow.cpp" line="314"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
         <translation>索引：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="226"/>
+        <location filename="../completer/completerwindow.cpp" line="316"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
         <translation>觸發器：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="228"/>
+        <location filename="../completer/completerwindow.cpp" line="318"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
         <translation>檢視：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="230"/>
+        <location filename="../completer/completerwindow.cpp" line="320"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
         <translation>資料庫：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="242"/>
+        <location filename="../completer/completerwindow.cpp" line="332"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
         <translation>關鍵字：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="244"/>
+        <location filename="../completer/completerwindow.cpp" line="334"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
         <translation>函式：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="246"/>
+        <location filename="../completer/completerwindow.cpp" line="336"/>
         <source>Operator: %1</source>
         <comment>completer statusbar</comment>
         <translation>運算子：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="248"/>
+        <location filename="../completer/completerwindow.cpp" line="338"/>
         <source>String</source>
         <comment>completer statusbar</comment>
         <translation>字串</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="250"/>
+        <location filename="../completer/completerwindow.cpp" line="340"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
         <translation>數值</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="252"/>
+        <location filename="../completer/completerwindow.cpp" line="342"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
         <translation>二進位制資料</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="254"/>
+        <location filename="../completer/completerwindow.cpp" line="344"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
         <translation>字元序：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="256"/>
+        <location filename="../completer/completerwindow.cpp" line="346"/>
         <source>Pragma function: %1</source>
         <comment>completer statusbar</comment>
         <translation>Pragma 函式：%1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="258"/>
+        <location filename="../completer/completerwindow.cpp" line="348"/>
         <source>Join condition: %1</source>
         <comment>completer statusbar</comment>
         <translation type="unfinished">Join condition: %1</translation>
     </message>
     <message>
-        <location filename="../completer/completerwindow.cpp" line="301"/>
         <source>Insert a code snippet</source>
-        <translation type="unfinished">Insert a code snippet</translation>
+        <translation type="obsolete">Insert a code snippet</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="2855"/>
+        <location filename="../dialogs/configdialog.ui" line="2884"/>
         <source>Configuration</source>
         <translation>設定檔</translation>
     </message>
@@ -1049,7 +1058,7 @@
         <translation>資料庫清單</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1197"/>
+        <location filename="../dialogs/configdialog.ui" line="1226"/>
         <source>Code assistant</source>
         <translation type="unfinished">Code assistant</translation>
     </message>
@@ -1351,24 +1360,24 @@
         <translation>提交結構更改時不顯示 DDL 預覽對話方塊</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1225"/>
-        <location filename="../dialogs/configdialog.ui" line="1241"/>
+        <location filename="../dialogs/configdialog.ui" line="1254"/>
+        <location filename="../dialogs/configdialog.ui" line="1270"/>
         <source>Number of queries kept in the history.</source>
         <translation>查詢歷史記錄數量。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1254"/>
-        <location filename="../dialogs/configdialog.ui" line="1264"/>
+        <location filename="../dialogs/configdialog.ui" line="1283"/>
+        <location filename="../dialogs/configdialog.ui" line="1293"/>
         <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
         <translation>&lt;p&gt;歷史記錄中儲存查詢引數 (:param, @param, $param, ?) 的最大數量。當您重新在同一名稱/位置下使用引數時，SQLiteStudio 將使用最近記憶的值預填充初始化它 (仍可修改)。值 1000 應已足夠。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1148"/>
+        <location filename="../dialogs/configdialog.ui" line="1213"/>
         <source>Execute only the query under the cursor</source>
         <translation>只執行輸入符所在行的語句</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1257"/>
+        <location filename="../dialogs/configdialog.ui" line="1286"/>
         <source>Number of memorized query parameters</source>
         <translation>預設的查詢引數數量</translation>
     </message>
@@ -1393,17 +1402,17 @@
         <translation type="unfinished">Keep at least the width to show complete column name</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1171"/>
+        <location filename="../dialogs/configdialog.ui" line="1174"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1174"/>
+        <location filename="../dialogs/configdialog.ui" line="1177"/>
         <source>Wrap lines in SQL editor</source>
         <translation type="unfinished">Wrap lines in SQL editor</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1161"/>
+        <location filename="../dialogs/configdialog.ui" line="1200"/>
         <source>Highlight current query</source>
         <translation type="unfinished">Highlight current query</translation>
     </message>
@@ -1448,57 +1457,57 @@
         <translation>有新訊息輸出時就開啟狀態面板</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1322"/>
+        <location filename="../dialogs/configdialog.ui" line="1351"/>
         <source>Code syntax colors</source>
         <translation type="unfinished">Code syntax colors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1490"/>
+        <location filename="../dialogs/configdialog.ui" line="1519"/>
         <source>Keyword foreground</source>
         <translation type="unfinished">Keyword foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1328"/>
+        <location filename="../dialogs/configdialog.ui" line="1357"/>
         <source>Regular foreground</source>
         <translation type="unfinished">Regular foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1409"/>
+        <location filename="../dialogs/configdialog.ui" line="1438"/>
         <source>String foreground</source>
         <translation type="unfinished">String foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1652"/>
+        <location filename="../dialogs/configdialog.ui" line="1681"/>
         <source>Comment foreground</source>
         <translation type="unfinished">Comment foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1733"/>
+        <location filename="../dialogs/configdialog.ui" line="1762"/>
         <source>Valid objects foreground</source>
         <translation type="unfinished">Valid objects foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2014"/>
+        <location filename="../dialogs/configdialog.ui" line="2043"/>
         <source>Current query background</source>
         <translation type="unfinished">Current query background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1895"/>
+        <location filename="../dialogs/configdialog.ui" line="1924"/>
         <source>Bind parameter foreground</source>
         <translation type="unfinished">Bind parameter foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1976"/>
+        <location filename="../dialogs/configdialog.ui" line="2005"/>
         <source>Current line background</source>
         <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2055"/>
+        <location filename="../dialogs/configdialog.ui" line="2084"/>
         <source>Matched parenthesis background</source>
         <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2042"/>
+        <location filename="../dialogs/configdialog.ui" line="2071"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1618,221 +1627,237 @@
         <translation type="unfinished">Renderer</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1145"/>
+        <location filename="../dialogs/configdialog.ui" line="1210"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1158"/>
+        <location filename="../dialogs/configdialog.ui" line="1197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1184"/>
+        <location filename="../dialogs/configdialog.ui" line="1145"/>
+        <location filename="../dialogs/configdialog.ui" line="1161"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifies the maximum number of decimal places shown for query execution time. Up to 9 digits (nanoseconds) can be configured. Trailing zeros are automatically trimmed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1148"/>
+        <source>Execution time precision (decimal places)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1167"/>
+        <source>General.SqlEditorExecTimePrecision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1187"/>
         <source>Disable blinking text cursor</source>
         <translation type="unfinished">Disable blinking text cursor</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1206"/>
+        <location filename="../dialogs/configdialog.ui" line="1235"/>
         <source>Trigger assistant after typing a dot</source>
         <translation type="unfinished">Trigger assistant after typing a dot</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1219"/>
+        <location filename="../dialogs/configdialog.ui" line="1248"/>
         <source>History</source>
         <translation>歷史</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1228"/>
+        <location filename="../dialogs/configdialog.ui" line="1257"/>
         <source>Query history size:</source>
         <translation type="unfinished">Query history size:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1371"/>
-        <location filename="../dialogs/configdialog.ui" line="1452"/>
-        <location filename="../dialogs/configdialog.ui" line="1533"/>
-        <location filename="../dialogs/configdialog.ui" line="1614"/>
-        <location filename="../dialogs/configdialog.ui" line="1695"/>
-        <location filename="../dialogs/configdialog.ui" line="1776"/>
-        <location filename="../dialogs/configdialog.ui" line="1857"/>
-        <location filename="../dialogs/configdialog.ui" line="1938"/>
-        <location filename="../dialogs/configdialog.ui" line="2130"/>
+        <location filename="../dialogs/configdialog.ui" line="1400"/>
+        <location filename="../dialogs/configdialog.ui" line="1481"/>
+        <location filename="../dialogs/configdialog.ui" line="1562"/>
+        <location filename="../dialogs/configdialog.ui" line="1643"/>
+        <location filename="../dialogs/configdialog.ui" line="1724"/>
+        <location filename="../dialogs/configdialog.ui" line="1805"/>
+        <location filename="../dialogs/configdialog.ui" line="1886"/>
+        <location filename="../dialogs/configdialog.ui" line="1967"/>
+        <location filename="../dialogs/configdialog.ui" line="2159"/>
         <source>B</source>
         <translation type="unfinished">B</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1396"/>
-        <location filename="../dialogs/configdialog.ui" line="1477"/>
-        <location filename="../dialogs/configdialog.ui" line="1558"/>
-        <location filename="../dialogs/configdialog.ui" line="1639"/>
-        <location filename="../dialogs/configdialog.ui" line="1720"/>
-        <location filename="../dialogs/configdialog.ui" line="1801"/>
-        <location filename="../dialogs/configdialog.ui" line="1882"/>
-        <location filename="../dialogs/configdialog.ui" line="1963"/>
-        <location filename="../dialogs/configdialog.ui" line="2155"/>
+        <location filename="../dialogs/configdialog.ui" line="1425"/>
+        <location filename="../dialogs/configdialog.ui" line="1506"/>
+        <location filename="../dialogs/configdialog.ui" line="1587"/>
+        <location filename="../dialogs/configdialog.ui" line="1668"/>
+        <location filename="../dialogs/configdialog.ui" line="1749"/>
+        <location filename="../dialogs/configdialog.ui" line="1830"/>
+        <location filename="../dialogs/configdialog.ui" line="1911"/>
+        <location filename="../dialogs/configdialog.ui" line="1992"/>
+        <location filename="../dialogs/configdialog.ui" line="2184"/>
         <source>I</source>
         <translation type="unfinished">I</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1571"/>
+        <location filename="../dialogs/configdialog.ui" line="1600"/>
         <source>Number foreground</source>
         <translation type="unfinished">Number foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1814"/>
+        <location filename="../dialogs/configdialog.ui" line="1843"/>
         <source>BLOB value foreground</source>
         <translation type="unfinished">BLOB value foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2093"/>
+        <location filename="../dialogs/configdialog.ui" line="2122"/>
         <source>Matched parenthesis foreground</source>
         <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2192"/>
-        <location filename="../dialogs/configdialog.ui" line="2300"/>
+        <location filename="../dialogs/configdialog.ui" line="2221"/>
+        <location filename="../dialogs/configdialog.ui" line="2329"/>
         <source>Reset to defaults</source>
         <translation>重置為預設值</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2218"/>
+        <location filename="../dialogs/configdialog.ui" line="2247"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>以名稱或按鍵組合篩選快捷鍵</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2262"/>
+        <location filename="../dialogs/configdialog.ui" line="2291"/>
         <source>Action</source>
         <translation>操作</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2267"/>
+        <location filename="../dialogs/configdialog.ui" line="2296"/>
         <source>Key combination</source>
         <translation>按鍵組合</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2341"/>
-        <location filename="../dialogs/configdialog.ui" line="2845"/>
+        <location filename="../dialogs/configdialog.ui" line="2370"/>
+        <location filename="../dialogs/configdialog.ui" line="2874"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2347"/>
+        <location filename="../dialogs/configdialog.ui" line="2376"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>語言變更在程式重啟後生效。</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2364"/>
+        <location filename="../dialogs/configdialog.ui" line="2393"/>
         <source>Compact layout</source>
         <translation>緊湊佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2370"/>
+        <location filename="../dialogs/configdialog.ui" line="2399"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation>&lt;p&gt;緊湊佈局會將介面中的邊框與留白減至最小，然後用這些區域展示更多資料。這會使介面看起來有一點不美觀，但將可以同時展示更多的資料。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2373"/>
+        <location filename="../dialogs/configdialog.ui" line="2402"/>
         <source>Use compact layout</source>
         <translation>使用緊湊佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2389"/>
+        <location filename="../dialogs/configdialog.ui" line="2418"/>
         <source>Main window dock areas</source>
         <translation>主視窗停靠區域</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2395"/>
+        <location filename="../dialogs/configdialog.ui" line="2424"/>
         <source>Left and right areas occupy corners</source>
         <translation>左右佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2415"/>
+        <location filename="../dialogs/configdialog.ui" line="2444"/>
         <source>Top and bottom areas occupy corners</source>
         <translation>上下佈局</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2435"/>
+        <location filename="../dialogs/configdialog.ui" line="2464"/>
         <source>Toolbars</source>
         <translation type="unfinished">Toolbars</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2441"/>
-        <location filename="../dialogs/configdialog.ui" line="2451"/>
+        <location filename="../dialogs/configdialog.ui" line="2470"/>
+        <location filename="../dialogs/configdialog.ui" line="2480"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2444"/>
+        <location filename="../dialogs/configdialog.ui" line="2473"/>
         <source>Icon size</source>
         <translation type="unfinished">Icon size</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2454"/>
+        <location filename="../dialogs/configdialog.ui" line="2483"/>
         <source>General.ToolBarIconSize</source>
         <translation type="unfinished">General.ToolBarIconSize</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2569"/>
+        <location filename="../dialogs/configdialog.ui" line="2598"/>
         <source>Hide built-in plugins</source>
         <translation>隱藏內建外掛</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2598"/>
+        <location filename="../dialogs/configdialog.ui" line="2627"/>
         <source>Current style:</source>
         <translation>當前風格：</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2615"/>
+        <location filename="../dialogs/configdialog.ui" line="2644"/>
         <source>Preview</source>
         <translation>預覽</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2625"/>
+        <location filename="../dialogs/configdialog.ui" line="2654"/>
         <source>Enabled</source>
         <translation>已啟用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2801"/>
+        <location filename="../dialogs/configdialog.ui" line="2830"/>
         <source>Disabled</source>
         <translation>已禁用</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2850"/>
+        <location filename="../dialogs/configdialog.ui" line="2879"/>
         <source>Active formatter plugin</source>
         <translation>啟用格式化外掛</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2888"/>
+        <location filename="../dialogs/configdialog.ui" line="2917"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2904"/>
+        <location filename="../dialogs/configdialog.ui" line="2933"/>
         <source>SQL editor font</source>
         <translation>SQL 編輯器字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2920"/>
+        <location filename="../dialogs/configdialog.ui" line="2949"/>
         <source>Database list font</source>
         <translation>資料庫清單字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2936"/>
+        <location filename="../dialogs/configdialog.ui" line="2965"/>
         <source>Database list additional label font</source>
         <translation>資料庫清單額外資訊字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2952"/>
+        <location filename="../dialogs/configdialog.ui" line="2981"/>
         <source>Data view font</source>
         <translation>資料檢視字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2968"/>
+        <location filename="../dialogs/configdialog.ui" line="2997"/>
         <source>Status field font</source>
         <translation>狀態列字型</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1203"/>
+        <location filename="../dialogs/configdialog.ui" line="1232"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -3216,169 +3241,169 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="167"/>
+        <location filename="../windows/editorwindow.cpp" line="168"/>
         <source>Results in the separate tab</source>
         <translation>在新選項卡中顯示結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="168"/>
+        <location filename="../windows/editorwindow.cpp" line="169"/>
         <source>Results below the query</source>
         <translation>在查詢下方顯示結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="205"/>
-        <location filename="../windows/editorwindow.cpp" line="207"/>
+        <location filename="../windows/editorwindow.cpp" line="206"/>
+        <location filename="../windows/editorwindow.cpp" line="208"/>
         <source>SQL editor %1</source>
         <translation>SQL 編輯器 %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.ui" line="95"/>
-        <location filename="../windows/editorwindow.cpp" line="388"/>
+        <location filename="../windows/editorwindow.cpp" line="389"/>
         <source>Results</source>
         <translation>結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="423"/>
+        <location filename="../windows/editorwindow.cpp" line="424"/>
         <source>Execute query</source>
         <translation>執行語句</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="424"/>
+        <location filename="../windows/editorwindow.cpp" line="425"/>
         <source>Explain query</source>
         <translation>解釋查詢</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="441"/>
+        <location filename="../windows/editorwindow.cpp" line="442"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
         <translation>清除執行歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="453"/>
+        <location filename="../windows/editorwindow.cpp" line="454"/>
         <source>Export results</source>
         <comment>sql editor</comment>
         <translation>匯出結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="435"/>
+        <location filename="../windows/editorwindow.cpp" line="436"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
         <translation>從查詢建立檢視</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="437"/>
+        <location filename="../windows/editorwindow.cpp" line="438"/>
         <source>Previous database</source>
         <translation>前一個數據庫</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="438"/>
+        <location filename="../windows/editorwindow.cpp" line="439"/>
         <source>Next database</source>
         <translation>後一個數據庫</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="442"/>
+        <location filename="../windows/editorwindow.cpp" line="443"/>
         <source>Export execution history</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Export execution history</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="445"/>
+        <location filename="../windows/editorwindow.cpp" line="446"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
         <translation>顯示下一個標籤</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="446"/>
+        <location filename="../windows/editorwindow.cpp" line="447"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
         <translation>顯示上一個標籤</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="447"/>
+        <location filename="../windows/editorwindow.cpp" line="448"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
         <translation>切換焦點到下方的結果</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="448"/>
+        <location filename="../windows/editorwindow.cpp" line="449"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
         <translation>切換焦點到上方的 SQL 編輯器</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="449"/>
+        <location filename="../windows/editorwindow.cpp" line="450"/>
         <source>Export selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Export selected SQL history entries</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="450"/>
+        <location filename="../windows/editorwindow.cpp" line="451"/>
         <source>Delete selected SQL history entries</source>
         <comment>sql editor</comment>
         <translation>刪除選中的 SQL 歷史記錄項</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="451"/>
+        <location filename="../windows/editorwindow.cpp" line="452"/>
         <source>Execute single query under cursor</source>
         <translation type="unfinished">Execute single query under cursor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="452"/>
+        <location filename="../windows/editorwindow.cpp" line="453"/>
         <source>Execute all queries in editor</source>
         <translation type="unfinished">Execute all queries in editor</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="507"/>
+        <location filename="../windows/editorwindow.cpp" line="508"/>
         <source>Active database (%1/%2)</source>
         <translation>活動資料庫 (%1/%2)</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="612"/>
+        <location filename="../windows/editorwindow.cpp" line="613"/>
         <source>Save to file</source>
         <translation>儲存到檔案</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="623"/>
+        <location filename="../windows/editorwindow.cpp" line="624"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>無法以寫模式開啟檔案 %1：%2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="643"/>
+        <location filename="../windows/editorwindow.cpp" line="644"/>
         <source>Saved SQL contents to file: %1</source>
         <translation>儲存 SQL 內容至檔案：%1</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="661"/>
+        <location filename="../windows/editorwindow.cpp" line="667"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
         <translation>查詢用時 %1 秒。影響行數：%2</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="665"/>
+        <location filename="../windows/editorwindow.cpp" line="671"/>
         <source>Query finished in %1 second(s).</source>
         <translation>查詢用時 %1 秒。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="792"/>
+        <location filename="../windows/editorwindow.cpp" line="798"/>
         <source>Clear execution history</source>
         <translation>清除執行歷史</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="792"/>
+        <location filename="../windows/editorwindow.cpp" line="798"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
         <translation>確定要刪除全部的 SQL 執行歷史嗎？刪除後不能恢復。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="830"/>
+        <location filename="../windows/editorwindow.cpp" line="836"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>無法匯出，沒有載入匯出外掛。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="851"/>
+        <location filename="../windows/editorwindow.cpp" line="857"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
         <translation>沒有在 SQL 編輯器中選中資料庫。無法為未知的資料庫建立檢視。</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.cpp" line="901"/>
+        <location filename="../windows/editorwindow.cpp" line="907"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation>編輯器視窗“%1”內有未提交的資料。</translation>
     </message>
@@ -5868,7 +5893,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="70"/>
         <location filename="../uiutils.cpp" line="81"/>
-        <location filename="../windows/editorwindow.cpp" line="614"/>
+        <location filename="../windows/editorwindow.cpp" line="615"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
@@ -5889,7 +5914,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../uiutils.cpp" line="80"/>
-        <location filename="../windows/editorwindow.cpp" line="613"/>
+        <location filename="../windows/editorwindow.cpp" line="614"/>
         <source>SQL files</source>
         <translation type="unfinished">SQL files</translation>
     </message>
@@ -6405,205 +6430,210 @@ find next</source>
 <context>
     <name>SqlEditor</name>
     <message>
-        <location filename="../sqleditor.cpp" line="57"/>
+        <location filename="../sqleditor.cpp" line="58"/>
         <source>Wrap words</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Wrap words</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="173"/>
+        <location filename="../sqleditor.cpp" line="175"/>
         <source>Cut</source>
         <comment>sql editor</comment>
         <translation>剪下</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="174"/>
+        <location filename="../sqleditor.cpp" line="176"/>
         <source>Copy</source>
         <comment>sql editor</comment>
         <translation>複製</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="175"/>
+        <location filename="../sqleditor.cpp" line="177"/>
         <source>Paste</source>
         <comment>sql editor</comment>
         <translation>貼上</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="176"/>
+        <location filename="../sqleditor.cpp" line="178"/>
         <source>Delete</source>
         <comment>sql editor</comment>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="177"/>
+        <location filename="../sqleditor.cpp" line="179"/>
         <source>Select all</source>
         <comment>sql editor</comment>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="178"/>
+        <location filename="../sqleditor.cpp" line="180"/>
         <source>Undo</source>
         <comment>sql editor</comment>
         <translation>撤銷</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="179"/>
+        <location filename="../sqleditor.cpp" line="181"/>
         <source>Redo</source>
         <comment>sql editor</comment>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="181"/>
+        <location filename="../sqleditor.cpp" line="183"/>
         <source>Complete</source>
         <comment>sql editor</comment>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="182"/>
+        <location filename="../sqleditor.cpp" line="184"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
         <translation>格式化 SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="183"/>
+        <location filename="../sqleditor.cpp" line="185"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
         <translation>儲存 SQL 到檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="184"/>
+        <location filename="../sqleditor.cpp" line="186"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
         <translation>選擇 SQL 要儲存到的檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="185"/>
+        <location filename="../sqleditor.cpp" line="187"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
         <translation>從檔案載入 SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="186"/>
+        <location filename="../sqleditor.cpp" line="188"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
         <translation>刪除行</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="187"/>
+        <location filename="../sqleditor.cpp" line="189"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
         <translation>整塊下移</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="188"/>
+        <location filename="../sqleditor.cpp" line="190"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
         <translation>整塊上移</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="189"/>
+        <location filename="../sqleditor.cpp" line="191"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
         <translation>副本貼上方</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="190"/>
+        <location filename="../sqleditor.cpp" line="192"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
         <translation>副本貼下方</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="191"/>
+        <location filename="../sqleditor.cpp" line="193"/>
         <source>Find or replace</source>
         <comment>sql editor</comment>
         <translation>查詢與替換</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="192"/>
+        <location filename="../sqleditor.cpp" line="194"/>
         <source>Find next</source>
         <comment>sql editor</comment>
         <translation>查詢下一個</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="193"/>
+        <location filename="../sqleditor.cpp" line="195"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
         <translation>查詢上一個</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="194"/>
+        <location filename="../sqleditor.cpp" line="196"/>
         <source>Replace</source>
         <comment>sql editor</comment>
         <translation>替換</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="195"/>
+        <location filename="../sqleditor.cpp" line="197"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
         <translation>切換註釋</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="196"/>
+        <location filename="../sqleditor.cpp" line="198"/>
         <source>Increase font size</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Increase font size</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="197"/>
+        <location filename="../sqleditor.cpp" line="199"/>
         <source>Decrease font size</source>
         <comment>sql editor</comment>
         <translation type="unfinished">Decrease font size</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="307"/>
+        <location filename="../sqleditor.cpp" line="309"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>無法以寫模式開啟檔案 %1：%2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="316"/>
+        <location filename="../sqleditor.cpp" line="318"/>
         <source>Saved SQL contents to file: %1</source>
         <translation>儲存 SQL 內容至檔案：%1</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="572"/>
+        <location filename="../sqleditor.cpp" line="574"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
         <translation>SQL 編輯器的語法補全功能僅當存在有效資料庫時可用。</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1177"/>
+        <location filename="../sqleditor.cpp" line="1181"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>SQL 編輯器有大量內容，因此錯誤偵測和現有物件的高亮顯示功能被暫時禁用。</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1206"/>
+        <location filename="../sqleditor.cpp" line="1210"/>
         <source>Save to file</source>
         <translation>儲存到檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1221"/>
+        <location filename="../sqleditor.cpp" line="1225"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>SQL檔案 (*.sql);;所有檔案 (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1222"/>
-        <location filename="../sqleditor.cpp" line="1253"/>
+        <location filename="../sqleditor.cpp" line="1226"/>
+        <location filename="../sqleditor.cpp" line="1257"/>
         <source>Open file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1254"/>
+        <location filename="../sqleditor.cpp" line="1258"/>
         <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
         <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1268"/>
+        <location filename="../sqleditor.cpp" line="1272"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>無法以讀模式開啟檔案 %1：%2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1462"/>
+        <location filename="../sqleditor.cpp" line="1466"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>已到文件底部。再次點選查詢將從頭開始搜尋。</translation>
+    </message>
+    <message>
+        <location filename="../sqleditor.cpp" line="1731"/>
+        <source>Ctrl+click to open this table or view</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
