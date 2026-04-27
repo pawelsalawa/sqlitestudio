@@ -122,6 +122,7 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
         prevData = dynamic_cast<TextBlockData*>(prevBlock.userData());
 
     TextBlockData* data = new TextBlockData();
+    int finalState = regulartTextBlockState;
     int errorStart = -1;
     TokenPtr token = lexer.getToken();
     TokenPtr aheadToken;
@@ -129,7 +130,7 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
     {
         aheadToken = lexer.getToken();
 
-        if (handleToken(token, aheadToken, idxModifier, errorStart, data, prevData))
+        if (handleToken(token, aheadToken, idxModifier, errorStart, data, prevData, finalState))
             errorStart = token->start + currentBlock().position();
 
         if (data->getEndsWithQuerySeparator())
@@ -139,11 +140,12 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
         token = aheadToken;
     }
 
+    setCurrentBlockState(finalState);
     setCurrentBlockUserData(data);
 }
 
 bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, TokenPtr aheadToken, qint32 idxModifier, int errorStart, TextBlockData* currBlockData,
-                                          TextBlockData* previousBlockData)
+                                          TextBlockData* previousBlockData, int& resultState)
 {
     qint64 start = token->start - idxModifier;
     qint64 lgt = token->end - token->start + 1;
@@ -194,9 +196,9 @@ bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, TokenPtr aheadToken, q
     // Save block state
     TolerantTokenPtr tolerantToken = token.dynamicCast<TolerantToken>();
     if (tolerantToken->invalid)
-        setStateForUnfinishedToken(tolerantToken);
+        resultState = getStateForUnfinishedToken(tolerantToken);
     else
-        setCurrentBlockState(regulartTextBlockState);
+        resultState = regulartTextBlockState;
 
     currBlockData->setEndsWithError(fatalError);
     currBlockData->setEndsWithQuerySeparator(querySeparator);
@@ -275,7 +277,7 @@ bool SqliteSyntaxHighlighter::isValid(int start, int lgt)
     return false;
 }
 
-void SqliteSyntaxHighlighter::setStateForUnfinishedToken(TolerantTokenPtr tolerantToken)
+int SqliteSyntaxHighlighter::getStateForUnfinishedToken(TolerantTokenPtr tolerantToken)
 {
     switch (tolerantToken->type)
     {
@@ -284,29 +286,24 @@ void SqliteSyntaxHighlighter::setStateForUnfinishedToken(TolerantTokenPtr tolera
             switch (tolerantToken->value.at(0).toLatin1())
             {
                 case '[':
-                    setCurrentBlockState(static_cast<int>(TextBlockState::ID_1));
-                    break;
+                    return static_cast<int>(TextBlockState::ID_1);
                 case '"':
-                    setCurrentBlockState(static_cast<int>(TextBlockState::ID_2));
-                    break;
+                    return static_cast<int>(TextBlockState::ID_2);
                 case '`':
-                    setCurrentBlockState(static_cast<int>(TextBlockState::ID_3));
-                    break;
+                    return static_cast<int>(TextBlockState::ID_3);
             }
             break;
         }
         case Token::STRING:
-            setCurrentBlockState(static_cast<int>(TextBlockState::STRING));
-            break;
+            return static_cast<int>(TextBlockState::STRING);
         case Token::COMMENT:
-            setCurrentBlockState(static_cast<int>(TextBlockState::COMMENT));
-            break;
+            return static_cast<int>(TextBlockState::COMMENT);
         case Token::BLOB:
-            setCurrentBlockState(static_cast<int>(TextBlockState::BLOB));
-            break;
+            return static_cast<int>(TextBlockState::BLOB);
         default:
             break;
     }
+    return regulartTextBlockState;
 }
 void SqliteSyntaxHighlighter::clearErrors()
 {
