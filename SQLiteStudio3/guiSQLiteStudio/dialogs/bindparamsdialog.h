@@ -5,6 +5,8 @@
 #include <QDialog>
 #include <QHash>
 
+
+class QLineEdit;
 namespace Ui {
     class BindParamsDialog;
 }
@@ -24,17 +26,28 @@ class GUI_API_EXPORT BindParamsDialog : public QDialog
 
     private:
         void init();
-        void initEditors();
-        MultiEditor* initEditor(BindParam* param, const QVariant& cachedValue);
+        void initMultiEditors(const QVector<QPair<QString, QVariant>>& savedParams);
+        void initSimpleEditors(const QVector<QPair<QString, QVariant>>& savedParams);
+        bool needsMultiEditor(const QVector<QPair<QString, QVariant>>& savedParams) const;
+        MultiEditor* initMultiEditor(BindParam* param, const QVariant& cachedValue);
+        QVector<QPair<QString, QVariant>> getSavedParams() const;
+        QVector<QPair<QString, QVariant> > collectCurrentValues() const;
+        void clearCurrentEditors();
 
-        static const int margins = 2;
-        static const int spacing = 2;
+        static const int multiMargins = 2;
+        static const int multiSpacing = 2;
+        static const int simpleMargins = 9;
+        static const int simpleSpacing = 6;
         static const int minimumFieldHeight = 120;
 
         Ui::BindParamsDialog *ui;
         QVector<BindParam*> bindParams;
-        QHash<BindParam*, MultiEditor*> editors;
+        QHash<BindParam*, MultiEditor*> multiEditors;
+        QHash<BindParam*, QLineEdit*> simpleEditors;
         QWidget* contents = nullptr;
+
+    private slots:
+        void toggleMode(bool advanced);
 
     public slots:
         void accept();
