@@ -106,31 +106,31 @@ QList<CodeSnippetManager::CodeSnippet*> CodeSnippetManager::createDefaultSnippet
     {
         snip = new CodeSnippet();
         snip->name = "Select From Table";
-        snip->code = "SELECT * FROM :table_name;";
+        snip->code = "SELECT * FROM tableName;";
         snip->hotkey = "s";
         results << snip;
 
         snip = new CodeSnippet();
         snip->name = "Select From Table, Where...";
-        snip->code = "SELECT * FROM :table_name WHERE :conditions;";
+        snip->code = "SELECT * FROM tableName WHERE conditions;";
         snip->hotkey = "Shift+S";
         results << snip;
 
         snip = new CodeSnippet();
         snip->name = "Delete From Table, Where...";
-        snip->code = "DELETE FROM :table_name WHERE :conditions;";
+        snip->code = "DELETE FROM tableName WHERE conditions;";
         snip->hotkey = "d";
         results << snip;
 
         snip = new CodeSnippet();
         snip->name = "Insert Into Table";
-        snip->code = "INSERT INTO :table_name (:columns) VALUES (:values);";
+        snip->code = "INSERT INTO tableName (columns) VALUES (values);";
         snip->hotkey = "i";
         results << snip;
 
         snip = new CodeSnippet();
         snip->name = "Update Table, Where...";
-        snip->code = "UPDATE :table_name SET :assignments WHERE :conditions;";
+        snip->code = "UPDATE tableName SET assignments WHERE conditions;";
         snip->hotkey = "u";
         results << snip;
     }

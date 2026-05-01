@@ -593,7 +593,7 @@ void SqlEditor::complete()
 
     completer->setData(result);
     completer->setDb(db);
-    completer->setInitialMode(isEmptySql ? CompleterWindow::SNIPPETS : CompleterWindow::CODE);
+    completer->setInitialMode(isEmptySql && CFG_UI.General.SqlEditorSnippetsIfEmpty.get() ? CompleterWindow::SNIPPETS : CompleterWindow::CODE);
     if (completer->immediateResolution())
         return;
 
@@ -613,7 +613,8 @@ void SqlEditor::completeSelected()
     if (completer->getMode() == CompleterWindow::SNIPPETS)
     {
         deletePreviousChars(completer->getNumberOfCharsToRemove());
-        insertPlainText(CODESNIPPETS->getCodeByName(completer->getSnippetName()));
+        QString snippetCode = CODESNIPPETS->getCodeByName(completer->getSnippetName());
+        insertPlainText(snippetCode);
         return;
     }
 
@@ -645,6 +646,16 @@ void SqlEditor::checkForAutoCompletion()
 
     if (tokens.size() > 0 && tokens.last()->type == Token::OPERATOR && tokens.last()->value == ".")
         complete();
+}
+
+bool SqlEditor::getErrorsCheckingEnabled() const
+{
+    return errorsCheckingEnabled;
+}
+
+void SqlEditor::setErrorsCheckingEnabled(bool enabled)
+{
+    errorsCheckingEnabled = enabled;
 }
 
 void SqlEditor::deletePreviousChars(int length)
@@ -1020,6 +1031,9 @@ void SqlEditor::scheduleQueryParserForSchemaRefresh()
 
 void SqlEditor::checkForSyntaxErrors()
 {
+    if (!errorsCheckingEnabled)
+        return;
+
     syntaxValidated = true;
 
     removeErrorMarkers();

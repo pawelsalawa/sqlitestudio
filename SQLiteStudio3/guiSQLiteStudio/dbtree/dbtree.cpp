@@ -108,7 +108,7 @@ void DbTree::init()
 
     initActions();
 
-    new UserInputFilter(nameFilter, treeModel, SLOT(applyFilter(QString)), true);
+    new UserInputFilter(nameFilter, treeModel, SLOT(applyFilter(QString)), false);
 
     if (DBLIST->getDbList().size() > 0)
         treeModel->loadDbList();

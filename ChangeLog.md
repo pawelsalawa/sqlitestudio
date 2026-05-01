@@ -79,6 +79,7 @@
 - CHANGE: #3539 File extension in Export Dialog file input is now updated whenever export format is changed.
 - CHANGE: #4554 Added Select All and Deselect All buttons to Populate Dialog.
 - CHANGE: #5321 Reported query execution time now shows more decimal places and removes trailing zeros. The precision is now also configurable.
+- CHANGE: #5209 Default Code Snippet list extended and now they are preferred in the Code Assist when SQL Editor is empty.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #2956 Export Dialog respects hotkeys for changing database in the dropdown, using the same hotkey as SQL Editor.
 - CHANGE: #5612 With hotkeys being reset to defaults in version 4.0.0, the relevant notification message is now printed upon the reset.

@@ -109,6 +109,7 @@ void CodeSnippetEditor::init()
 {
     ui->setupUi(this);
     ui->mainCodeEdit->setAutoCompletion(false);
+    ui->mainCodeEdit->setErrorsCheckingEnabled(false);
     clearEdits();
 
     ui->mainCodeEdit->setFont(CFG_UI.Fonts.SqlEditor.get());

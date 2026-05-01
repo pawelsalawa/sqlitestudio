@@ -126,6 +126,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QPixmap getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const;
         QPixmap getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const;
         QPixmap getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const;
+        bool getErrorsCheckingEnabled() const;
+        void setErrorsCheckingEnabled(bool enabled);
 
         static QHash<Action, QAction*> staticActions;
         static bool wrapWords;
@@ -262,6 +264,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         int storedSelectionEnd = 0;
         bool richFeaturesEnabled = true;
         bool alwaysEnforceErrorsChecking = false;
+        bool errorsCheckingEnabled = true;
         bool highlightingSyntax = true;
         QBrush currentQueryBrush;
         QTimer* currentQueryTimer = nullptr;
