@@ -168,7 +168,7 @@ namespace Cfg
 
         QObject::connect(splitter, SIGNAL(splitterMoved(int,int)), timer, SLOT(start()));
         QObject::connect(splitter, SIGNAL(destroyed(QObject*)), timer, SLOT(stop()));
-        QObject::connect(timer, &QTimer::timeout, [key, splitter]()
+        QObject::connect(timer, &QTimer::timeout, timer, [key, splitter]()
         {
             QHash<QString, QByteArray> savedStates = CFG_UI.General.SplitterStates.get();
             savedStates[key] = splitter->saveState();
