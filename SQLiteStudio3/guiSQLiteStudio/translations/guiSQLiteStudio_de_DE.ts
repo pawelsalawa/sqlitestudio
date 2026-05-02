@@ -101,6 +101,11 @@
         <source>Please provide values for query parameters</source>
         <translation>Bitte geben Sie Werte für Abfrageparameter ein</translation>
     </message>
+    <message>
+        <location filename="../dialogs/bindparamsdialog.ui" line="68"/>
+        <source>Advanced mode</source>
+        <translation type="unfinished">Erweiterter Modus</translation>
+    </message>
 </context>
 <context>
     <name>CellRendererTable</name>
@@ -200,17 +205,17 @@
         <translation>Code-Schnipsel-Handbuch</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="315"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="316"/>
         <source>Enter a non-empty, unique name of the snippet.</source>
         <translation>Geben Sie einen einzigartigen Namen für den Schnipsel ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="318"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="319"/>
         <source>Enter a non-empty snippet content.</source>
         <translation>Geben Sie Ihren Schnipsel-Inhalt ein.</translation>
     </message>
     <message>
-        <location filename="../windows/codesnippeteditor.cpp" line="322"/>
+        <location filename="../windows/codesnippeteditor.cpp" line="323"/>
         <source>This hotkey is not unique in context of a code assistant.</source>
         <translation>Dieser Hotkey ist für einen Code-Assistenten nicht eindeutig.</translation>
     </message>
@@ -1008,7 +1013,7 @@
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="2884"/>
+        <location filename="../dialogs/configdialog.ui" line="2897"/>
         <source>Configuration</source>
         <translation>Einstellungen</translation>
     </message>
@@ -1356,14 +1361,14 @@
         <translation>Beim Speichern von Schema-Änderungen den DDL-Vorschau-Dialog nicht anzeigen</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1254"/>
-        <location filename="../dialogs/configdialog.ui" line="1270"/>
+        <location filename="../dialogs/configdialog.ui" line="1267"/>
+        <location filename="../dialogs/configdialog.ui" line="1283"/>
         <source>Number of queries kept in the history.</source>
         <translation>Maximale Anzahl an SQL Abfragen im Verlauf.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1283"/>
-        <location filename="../dialogs/configdialog.ui" line="1293"/>
+        <location filename="../dialogs/configdialog.ui" line="1296"/>
+        <location filename="../dialogs/configdialog.ui" line="1306"/>
         <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
         <translation type="unfinished">&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</translation>
     </message>
@@ -1373,7 +1378,7 @@
         <translation>Führt nur die Abfrage unter dem Cursor aus</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1286"/>
+        <location filename="../dialogs/configdialog.ui" line="1299"/>
         <source>Number of memorized query parameters</source>
         <translation>Anzahl der gespeicherten Abfrageparameter</translation>
     </message>
@@ -1453,57 +1458,57 @@
         <translation>Den Panel Status immer öffnen, wenn eine neue Meldung ausgegeben wird</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1351"/>
+        <location filename="../dialogs/configdialog.ui" line="1364"/>
         <source>Code syntax colors</source>
         <translation>Syntax-Farben</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1519"/>
+        <location filename="../dialogs/configdialog.ui" line="1532"/>
         <source>Keyword foreground</source>
         <translation>Schlüsselwort-Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1357"/>
+        <location filename="../dialogs/configdialog.ui" line="1370"/>
         <source>Regular foreground</source>
         <translation>Normaler Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1438"/>
+        <location filename="../dialogs/configdialog.ui" line="1451"/>
         <source>String foreground</source>
         <translation>Text im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1681"/>
+        <location filename="../dialogs/configdialog.ui" line="1694"/>
         <source>Comment foreground</source>
         <translation>Kommentar im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1762"/>
+        <location filename="../dialogs/configdialog.ui" line="1775"/>
         <source>Valid objects foreground</source>
         <translation>Gültige Objekte im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2043"/>
+        <location filename="../dialogs/configdialog.ui" line="2056"/>
         <source>Current query background</source>
         <translation>aktuelle Abfrage im Hintergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1924"/>
+        <location filename="../dialogs/configdialog.ui" line="1937"/>
         <source>Bind parameter foreground</source>
         <translation>gebundene Parameter im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2005"/>
+        <location filename="../dialogs/configdialog.ui" line="2018"/>
         <source>Current line background</source>
         <translation type="unfinished">Current line background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2084"/>
+        <location filename="../dialogs/configdialog.ui" line="2097"/>
         <source>Matched parenthesis background</source>
         <translation type="unfinished">Matched parenthesis background</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2071"/>
+        <location filename="../dialogs/configdialog.ui" line="2084"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1659,196 +1664,211 @@
         <translation>Trigger Assistent nach Eingabe eines Punktes</translation>
     </message>
     <message>
+        <location filename="../dialogs/configdialog.ui" line="1245"/>
+        <source>When enabled, invoking code completion in an empty editor shows code snippets first instead of syntax suggestions. Invoking code completion again switches to syntax suggestions (and vice versa).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../dialogs/configdialog.ui" line="1248"/>
+        <source>Prefer snippets in empty editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1251"/>
+        <source>General.SqlEditorSnippetsIfEmpty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1261"/>
         <source>History</source>
         <translation>Verlauf</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1257"/>
+        <location filename="../dialogs/configdialog.ui" line="1270"/>
         <source>Query history size:</source>
         <translation>Größe des Abfrageverlaufs:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1400"/>
-        <location filename="../dialogs/configdialog.ui" line="1481"/>
-        <location filename="../dialogs/configdialog.ui" line="1562"/>
-        <location filename="../dialogs/configdialog.ui" line="1643"/>
-        <location filename="../dialogs/configdialog.ui" line="1724"/>
-        <location filename="../dialogs/configdialog.ui" line="1805"/>
-        <location filename="../dialogs/configdialog.ui" line="1886"/>
-        <location filename="../dialogs/configdialog.ui" line="1967"/>
-        <location filename="../dialogs/configdialog.ui" line="2159"/>
+        <location filename="../dialogs/configdialog.ui" line="1413"/>
+        <location filename="../dialogs/configdialog.ui" line="1494"/>
+        <location filename="../dialogs/configdialog.ui" line="1575"/>
+        <location filename="../dialogs/configdialog.ui" line="1656"/>
+        <location filename="../dialogs/configdialog.ui" line="1737"/>
+        <location filename="../dialogs/configdialog.ui" line="1818"/>
+        <location filename="../dialogs/configdialog.ui" line="1899"/>
+        <location filename="../dialogs/configdialog.ui" line="1980"/>
+        <location filename="../dialogs/configdialog.ui" line="2172"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1425"/>
-        <location filename="../dialogs/configdialog.ui" line="1506"/>
-        <location filename="../dialogs/configdialog.ui" line="1587"/>
-        <location filename="../dialogs/configdialog.ui" line="1668"/>
-        <location filename="../dialogs/configdialog.ui" line="1749"/>
-        <location filename="../dialogs/configdialog.ui" line="1830"/>
-        <location filename="../dialogs/configdialog.ui" line="1911"/>
-        <location filename="../dialogs/configdialog.ui" line="1992"/>
-        <location filename="../dialogs/configdialog.ui" line="2184"/>
+        <location filename="../dialogs/configdialog.ui" line="1438"/>
+        <location filename="../dialogs/configdialog.ui" line="1519"/>
+        <location filename="../dialogs/configdialog.ui" line="1600"/>
+        <location filename="../dialogs/configdialog.ui" line="1681"/>
+        <location filename="../dialogs/configdialog.ui" line="1762"/>
+        <location filename="../dialogs/configdialog.ui" line="1843"/>
+        <location filename="../dialogs/configdialog.ui" line="1924"/>
+        <location filename="../dialogs/configdialog.ui" line="2005"/>
+        <location filename="../dialogs/configdialog.ui" line="2197"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1600"/>
+        <location filename="../dialogs/configdialog.ui" line="1613"/>
         <source>Number foreground</source>
         <translation>Nummer im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1843"/>
+        <location filename="../dialogs/configdialog.ui" line="1856"/>
         <source>BLOB value foreground</source>
         <translation>BLOB Wert im Vordergrund</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2122"/>
+        <location filename="../dialogs/configdialog.ui" line="2135"/>
         <source>Matched parenthesis foreground</source>
         <translation type="unfinished">Matched parenthesis foreground</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2221"/>
-        <location filename="../dialogs/configdialog.ui" line="2329"/>
+        <location filename="../dialogs/configdialog.ui" line="2234"/>
+        <location filename="../dialogs/configdialog.ui" line="2342"/>
         <source>Reset to defaults</source>
         <translation>Auf Standardwerte zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2247"/>
+        <location filename="../dialogs/configdialog.ui" line="2260"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>Filtere Tastaturkürzel nach Name oder Tastenkombination</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2291"/>
+        <location filename="../dialogs/configdialog.ui" line="2304"/>
         <source>Action</source>
         <translation>Aktion</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2296"/>
+        <location filename="../dialogs/configdialog.ui" line="2309"/>
         <source>Key combination</source>
         <translation>Tastenkombination</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2370"/>
-        <location filename="../dialogs/configdialog.ui" line="2874"/>
+        <location filename="../dialogs/configdialog.ui" line="2383"/>
+        <location filename="../dialogs/configdialog.ui" line="2887"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2376"/>
+        <location filename="../dialogs/configdialog.ui" line="2389"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>Die Änderung der Sprache erfordert einen Neustart des Programms.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2393"/>
+        <location filename="../dialogs/configdialog.ui" line="2406"/>
         <source>Compact layout</source>
         <translation>Kompaktes Layout</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2399"/>
+        <location filename="../dialogs/configdialog.ui" line="2412"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Das kompakte Layout reduziert alle Lücken und Abstände der Oberfläche auf ein Minimum, um mehr Platz für die Darstellung der Daten zu schaffen. Die Oberfläche sieht dann zwar nicht mehr sehr ästhetisch aus, aber man hat mehr Daten im Überblick.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2402"/>
+        <location filename="../dialogs/configdialog.ui" line="2415"/>
         <source>Use compact layout</source>
         <translation>Benutze kompaktes Layout</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2418"/>
+        <location filename="../dialogs/configdialog.ui" line="2431"/>
         <source>Main window dock areas</source>
         <translation>Dockingbereiche des Hauptfensters</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2424"/>
+        <location filename="../dialogs/configdialog.ui" line="2437"/>
         <source>Left and right areas occupy corners</source>
         <translation>Linke und rechte Bereiche belegen die Ecken</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2444"/>
+        <location filename="../dialogs/configdialog.ui" line="2457"/>
         <source>Top and bottom areas occupy corners</source>
         <translation>Obere und untere Bereiche belegen die Ecken</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2464"/>
+        <location filename="../dialogs/configdialog.ui" line="2477"/>
         <source>Toolbars</source>
         <translation>Werkzeugleisten</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2470"/>
-        <location filename="../dialogs/configdialog.ui" line="2480"/>
+        <location filename="../dialogs/configdialog.ui" line="2483"/>
+        <location filename="../dialogs/configdialog.ui" line="2493"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2473"/>
+        <location filename="../dialogs/configdialog.ui" line="2486"/>
         <source>Icon size</source>
         <translation type="unfinished">Icon size</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2483"/>
+        <location filename="../dialogs/configdialog.ui" line="2496"/>
         <source>General.ToolBarIconSize</source>
         <translation type="unfinished">General.ToolBarIconSize</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2598"/>
+        <location filename="../dialogs/configdialog.ui" line="2611"/>
         <source>Hide built-in plugins</source>
         <translation>Verberge eingebaute Plugins</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2627"/>
+        <location filename="../dialogs/configdialog.ui" line="2640"/>
         <source>Current style:</source>
         <translation>Aktueller Stil:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2644"/>
+        <location filename="../dialogs/configdialog.ui" line="2657"/>
         <source>Preview</source>
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2654"/>
+        <location filename="../dialogs/configdialog.ui" line="2667"/>
         <source>Enabled</source>
         <translation>Aktiviert</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2830"/>
+        <location filename="../dialogs/configdialog.ui" line="2843"/>
         <source>Disabled</source>
         <translation>Deaktiviert</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2879"/>
+        <location filename="../dialogs/configdialog.ui" line="2892"/>
         <source>Active formatter plugin</source>
         <translation>Aktives Formatierungsplugin</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2917"/>
+        <location filename="../dialogs/configdialog.ui" line="2930"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2933"/>
+        <location filename="../dialogs/configdialog.ui" line="2946"/>
         <source>SQL editor font</source>
         <translation>Schriftart des SQL Editors</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2949"/>
+        <location filename="../dialogs/configdialog.ui" line="2962"/>
         <source>Database list font</source>
         <translation>Schriftart der Datenbankliste</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2965"/>
+        <location filename="../dialogs/configdialog.ui" line="2978"/>
         <source>Database list additional label font</source>
         <translation>Zusätzliche Bezeichnungen in der Datenbankliste</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2981"/>
+        <location filename="../dialogs/configdialog.ui" line="2994"/>
         <source>Data view font</source>
         <translation>Schriftart der Ergebnisansicht</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="2997"/>
+        <location filename="../dialogs/configdialog.ui" line="3010"/>
         <source>Status field font</source>
         <translation>Schriftart des Statusfelds</translation>
     </message>
@@ -6591,43 +6611,43 @@ find next</source>
         <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1181"/>
+        <location filename="../sqleditor.cpp" line="1195"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1210"/>
+        <location filename="../sqleditor.cpp" line="1224"/>
         <source>Save to file</source>
         <translation>In Datei speichern</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1225"/>
+        <location filename="../sqleditor.cpp" line="1239"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1226"/>
-        <location filename="../sqleditor.cpp" line="1257"/>
+        <location filename="../sqleditor.cpp" line="1240"/>
+        <location filename="../sqleditor.cpp" line="1271"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1258"/>
+        <location filename="../sqleditor.cpp" line="1272"/>
         <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
         <translation type="unfinished">This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1272"/>
+        <location filename="../sqleditor.cpp" line="1286"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1466"/>
+        <location filename="../sqleditor.cpp" line="1480"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1731"/>
+        <location filename="../sqleditor.cpp" line="1745"/>
         <source>Ctrl+click to open this table or view</source>
         <translation type="unfinished">Ctrl+click to open this table or view</translation>
     </message>
