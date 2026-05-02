@@ -7,9 +7,9 @@
 #include <QStandardItem>
 #include <QDir>
 #include <QDebug>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QSplitter>
 #include <QTimer>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
@@ -168,7 +168,7 @@ namespace Cfg
 
         QObject::connect(splitter, SIGNAL(splitterMoved(int,int)), timer, SLOT(start()));
         QObject::connect(splitter, SIGNAL(destroyed(QObject*)), timer, SLOT(stop()));
-        QObject::connect(timer, &QTimer::timeout, timer, [key, splitter]()
+        QObject::connect(timer, &QTimer::timeout, [key, splitter]()
         {
             QHash<QString, QByteArray> savedStates = CFG_UI.General.SplitterStates.get();
             savedStates[key] = splitter->saveState();
