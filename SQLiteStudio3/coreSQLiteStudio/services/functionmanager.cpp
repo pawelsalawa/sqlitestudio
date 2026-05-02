@@ -12,7 +12,7 @@ QString FunctionManager::FunctionBase::toString() const
 {
     static const QString format = "%1(%2)";
     QString args = undefinedArgs ? "..." : arguments.join(", ");
-    return format.arg(name).arg(args);
+    return format.arg(name, args);
 }
 
 QString FunctionManager::FunctionBase::typeString(Type type)
@@ -25,6 +25,20 @@ QString FunctionManager::FunctionBase::typeString(Type type)
             return "AGGREGATE";
         case ScriptFunction::AGG_WINDOW:
             return "AGG_WINDOW";
+    }
+    return QString();
+}
+
+QString FunctionManager::FunctionBase::displayString(Type type)
+{
+    switch (type)
+    {
+        case FunctionManager::FunctionBase::SCALAR:
+            return tr("Scalar");
+        case FunctionManager::FunctionBase::AGGREGATE:
+            return tr("Aggregate");
+        case FunctionManager::FunctionBase::AGG_WINDOW:
+            return tr("Window");
     }
     return QString();
 }

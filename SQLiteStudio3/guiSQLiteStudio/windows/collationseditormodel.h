@@ -43,8 +43,9 @@ class GUI_API_EXPORT CollationsEditorModel : public QAbstractListModel
         bool isAllowedName(int rowToSkip, const QString& nameToValidate);
         bool isValidRowIndex(int row) const;
 
-        int rowCount(const QModelIndex& parent = QModelIndex()) const;
-        QVariant data(const QModelIndex& index, int role) const;
+        int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+        int columnCount(const QModelIndex& parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex& index, int role) const override;
 
     private:
         struct Collation

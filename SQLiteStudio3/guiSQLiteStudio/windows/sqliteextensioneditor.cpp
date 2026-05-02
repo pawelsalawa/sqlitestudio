@@ -105,6 +105,13 @@ void SqliteExtensionEditor::init()
     extensionFilterModel = new QSortFilterProxyModel(this);
     extensionFilterModel->setSourceModel(model);
     ui->extensionList->setModel(extensionFilterModel);
+    ui->extensionList->horizontalHeader()->setMinimumSectionSize(20);
+    ui->extensionList->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    ui->splitter->setSizes({1, 1});
+    ui->splitter->setStretchFactor(0, 0);
+    ui->splitter->setStretchFactor(1, 1);
+    Cfg::handleSplitterState(ui->splitter);
 
     new UserInputFilter(ui->extensionFilterEdit, this, SLOT(applyFilter(QString)));
     extensionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -116,6 +123,7 @@ void SqliteExtensionEditor::init()
 
     model->setData(SQLITE_EXTENSIONS->getAllExtensions());
     connect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(cfgExtensionListChanged()));
+    ui->extensionList->resizeColumnsToContents();
 
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolbar);
 
@@ -208,7 +216,7 @@ void SqliteExtensionEditor::selectExtension(int srcRow)
     if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->extensionList->selectionModel()->setCurrentIndex(extensionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->extensionList->selectionModel()->setCurrentIndex(extensionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
 
 QStringList SqliteExtensionEditor::getCurrentDatabases() const
@@ -317,6 +325,7 @@ void SqliteExtensionEditor::commit()
         selectExtension(srcRow);
 
     updateState();
+    ui->extensionList->resizeColumnsToContents();
 }
 
 void SqliteExtensionEditor::rollback()

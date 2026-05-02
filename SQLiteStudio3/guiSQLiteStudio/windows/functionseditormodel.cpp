@@ -346,27 +346,70 @@ int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
     return functionList.size();
 }
 
+int FunctionsEditorModel::columnCount(const QModelIndex& parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
 QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !isValidRowIndex(index.row()))
+    switch (index.column())
     {
-        if (role == Qt::DecorationRole)
-            return ICONS.FUNCTION_ERROR;
+        case 0:
+        {
+            if (!index.isValid() || !isValidRowIndex(index.row()))
+            {
+                if (role == Qt::DecorationRole)
+                    return ICONS.FUNCTION_ERROR;
 
-        return QVariant();
+                return QVariant();
+            }
+
+            if (role == Qt::DisplayRole)
+            {
+                Function* fn = functionList[index.row()];
+                return fn->data.toString();
+            }
+
+            if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data.lang))
+                return functionList[index.row()]->valid ? langToIcon[functionList[index.row()]->data.lang] : ICONS.FUNCTION_ERROR;
+
+            if (role == Qt::DecorationRole)
+                return ICONS.LIST_ITEM_OTHER;
+
+            break;
+        }
+        case 1:
+        {
+            if (!index.isValid() || !isValidRowIndex(index.row()))
+                return QVariant();
+
+            if (role == Qt::DisplayRole)
+            {
+                auto fn = functionList[index.row()];
+                return fn->data.allDatabases ? "*" : QString::number(fn->data.databases.size());
+            }
+
+            break;
+        }
     }
 
-    if (role == Qt::DisplayRole)
+    if (role == Qt::ToolTipRole)
     {
-        Function* fn = functionList[index.row()];
-        return fn->data.toString();
+        auto fn = functionList[index.row()];
+        QString dbPart = fn->data.allDatabases ? tr("all databases") : fn->data.databases.join(", ");
+        QString typeStr = FunctionManager::FunctionBase::displayString(fn->data.type);
+
+        static_qstring(rowTpl, "<tr><td align='right'>%1</td><td><b>%2</b></td></tr>");
+        return "<table>" +
+               rowTpl.arg(tr("Function:"), fn->data.toString()) +
+               rowTpl.arg(tr("Type:"), typeStr) +
+               rowTpl.arg(tr("Deterministic:"), fn->data.deterministic ? tr("Yes") : tr("No")) +
+               rowTpl.arg(tr("Language:"), fn->data.lang) +
+               rowTpl.arg(tr("Registered in:"), dbPart) +
+               "</table>";
     }
-
-    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data.lang))
-        return functionList[index.row()]->valid ? langToIcon[functionList[index.row()]->data.lang] : ICONS.FUNCTION_ERROR;
-
-    if (role == Qt::DecorationRole)
-        return ICONS.LIST_ITEM_OTHER;
 
     return QVariant();
 }

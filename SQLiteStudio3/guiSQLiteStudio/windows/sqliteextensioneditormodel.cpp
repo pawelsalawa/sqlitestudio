@@ -196,16 +196,39 @@ int SqliteExtensionEditorModel::rowCount(const QModelIndex& parent) const
     return extensionList.size();
 }
 
+int SqliteExtensionEditorModel::columnCount(const QModelIndex& parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
 QVariant SqliteExtensionEditorModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || !isValidRowIndex(index.row()))
         return QVariant();
 
-    if (role == Qt::DisplayRole)
-        return getName(index.row());
+    switch (index.column())
+    {
+        case 0:
+        {
+            if (role == Qt::DisplayRole)
+                return getName(index.row());
 
-    if (role == Qt::DecorationRole)
-        return isValid(index.row()) ? ICONS.EXTENSION : ICONS.EXTENSION_ERROR;
+            if (role == Qt::DecorationRole)
+                return isValid(index.row()) ? ICONS.EXTENSION : ICONS.EXTENSION_ERROR;
+
+            break;
+        }
+        case 1:
+        {
+            if (role == Qt::DisplayRole)
+            {
+                auto ext = extensionList[index.row()];
+                return ext->data->allDatabases ? "*" : QString::number(ext->data->databases.size());
+            }
+            break;
+        }
+    }
 
     return QVariant();
 }

@@ -118,6 +118,13 @@ void CodeSnippetEditor::init()
     viewModel = new QSortFilterProxyModel(this);
     viewModel->setSourceModel(dataModel);
     ui->list->setModel(viewModel);
+    ui->list->horizontalHeader()->setMinimumSectionSize(20);
+    ui->list->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    ui->splitter->setSizes({1, 1});
+    ui->splitter->setStretchFactor(0, 0);
+    ui->splitter->setStretchFactor(1, 1);
+    Cfg::handleSplitterState(ui->splitter);
 
     new UserInputFilter(ui->snippetFilterEdit, this, SLOT(applyFilter(QString)));
     viewModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -137,6 +144,7 @@ void CodeSnippetEditor::init()
 
     dataModel->setSnippets(CODESNIPPETS->getSnippets());
     connect(CODESNIPPETS, SIGNAL(codeSnippetListChanged()), this, SLOT(cfgCodeSnippetListChanged()));
+    ui->list->resizeColumnsToContents();
 
     updateCurrentSnippetState();
 }
@@ -187,7 +195,7 @@ void CodeSnippetEditor::selectSnippet(const QModelIndex& idx, bool skipModelUpda
     if (skipModelUpdates)
         skipModelUpdatesDuringSelection = true;
 
-    ui->list->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->list->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 
     if (skipModelUpdates)
         skipModelUpdatesDuringSelection = false;
@@ -217,6 +225,7 @@ void CodeSnippetEditor::commit()
         selectSnippet(idx);
 
     updateState();
+    ui->list->resizeColumnsToContents();
 }
 
 void CodeSnippetEditor::rollback()

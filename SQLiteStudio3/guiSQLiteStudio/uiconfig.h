@@ -10,6 +10,8 @@
 
 #define CFG_UI_CATEGORIES(Type,Body) _CFG_CATEGORIES_WITH_METANAME_AND_TITLE(Type,Body,"",QString(),GUI_API_EXPORT)
 
+
+class QSplitter;
 namespace Cfg
 {
     GUI_API_EXPORT QVariant getStyleDefaultValue();
@@ -40,11 +42,13 @@ namespace Cfg
     GUI_API_EXPORT QTextCharFormat getSyntaxBlobFormat();
     GUI_API_EXPORT QTextCharFormat getSyntaxCommentFormat();
     GUI_API_EXPORT QTextCharFormat getSyntaxNumberFormat();
+    GUI_API_EXPORT void handleSplitterState(QSplitter* splitter);
 
     typedef QHash<QString,QVariant> Session;
     typedef QHash<QString,QVariant> DataEditorsOrder;
     typedef QHash<QString,QVariant> ColorPickerConfig;
     typedef QHash<QString,QString> DataRenderers;
+    typedef QHash<QString,QByteArray> SplitterStates;
     enum InsertRowPlacement
     {
         BEFORE_CURRENT,
@@ -137,6 +141,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(bool,                    LimitRowsForManyColumns,     true)
         CFG_ENTRY(QString,                 Style,                       &Cfg::getStyleDefaultValue)
         CFG_ENTRY(Cfg::Session,            Session,                     Cfg::Session())
+        CFG_ENTRY(Cfg::SplitterStates,     SplitterStates,              Cfg::SplitterStates())
         CFG_ENTRY(bool,                    AllowMultipleSessions,       false)
         CFG_ENTRY(bool,                    RestoreSession,              true)
         CFG_ENTRY(bool,                    DontShowDdlPreview,          false)

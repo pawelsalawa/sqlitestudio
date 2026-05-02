@@ -70,6 +70,7 @@ class GUI_API_EXPORT FunctionsEditorModel : public QAbstractListModel
         bool isValidRowIndex(int row) const;
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const;
+        int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role) const;
 
     private:

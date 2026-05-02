@@ -49,6 +49,9 @@
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
+        <property name="childrenCollapsible">
+         <bool>false</bool>
+        </property>
         <widget class="QWidget" name="leftWidget" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -71,6 +74,12 @@
           </property>
           <item>
            <widget class="QLineEdit" name="extensionFilterEdit">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="placeholderText">
              <string>Filter extensions</string>
             </property>
@@ -80,7 +89,26 @@
            </widget>
           </item>
           <item>
-           <widget class="QListView" name="extensionList"/>
+           <widget class="QTableView" name="extensionList">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+            </property>
+            <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>false</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+           </widget>
           </item>
          </layout>
         </widget>

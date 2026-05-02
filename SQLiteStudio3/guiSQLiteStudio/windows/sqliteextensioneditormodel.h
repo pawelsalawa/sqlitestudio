@@ -39,8 +39,9 @@ class GUI_API_EXPORT SqliteExtensionEditorModel : public QAbstractListModel
         QList<SqliteExtensionManager::ExtensionPtr> getExtensions() const;
         bool isValidRowIndex(int row) const;
 
-        int rowCount(const QModelIndex& parent = QModelIndex()) const;
-        QVariant data(const QModelIndex& index, int role) const;
+        int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+        int columnCount(const QModelIndex& parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex& index, int role) const override;
 
     private:
         struct Extension

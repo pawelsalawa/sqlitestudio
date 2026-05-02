@@ -113,15 +113,27 @@ void FunctionsEditor::init()
     functionFilterModel = new QSortFilterProxyModel(this);
     functionFilterModel->setSourceModel(model);
     ui->list->setModel(functionFilterModel);
+    ui->list->horizontalHeader()->setMinimumSectionSize(20);
+    ui->list->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    ui->splitter->setSizes({1, 1});
+    ui->splitter->setStretchFactor(0, 0);
+    ui->splitter->setStretchFactor(1, 1);
+    Cfg::handleSplitterState(ui->splitter);
+    Cfg::handleSplitterState(ui->splitter_2);
 
     dbListModel = new SelectableDbModel(this);
     dbListModel->setSourceModel(DBTREE->getModel());
     ui->databasesList->setModel(dbListModel);
     ui->databasesList->expandAll();
 
-    ui->typeCombo->addItem(tr("Scalar"), FunctionManager::ScriptFunction::SCALAR);
-    ui->typeCombo->addItem(tr("Aggregate"), FunctionManager::ScriptFunction::AGGREGATE);
-    ui->typeCombo->addItem(tr("Window"), FunctionManager::ScriptFunction::AGG_WINDOW);
+    for (auto t : {
+         FunctionManager::ScriptFunction::SCALAR,
+         FunctionManager::ScriptFunction::AGGREGATE,
+         FunctionManager::ScriptFunction::AGG_WINDOW})
+    {
+        ui->typeCombo->addItem(FunctionManager::FunctionBase::displayString(t), t);
+    }
 
     new UserInputFilter(ui->functionFilterEdit, this, SLOT(applyFilter(QString)));
     functionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -157,6 +169,7 @@ void FunctionsEditor::init()
 
     model->setData(FUNCTIONS->getAllScriptFunctions());
     connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(cfgFunctionListChanged()));
+    ui->list->resizeColumnsToContents();
 
     // Language plugins
     for (ScriptingPlugin*& plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
@@ -331,7 +344,7 @@ void FunctionsEditor::selectFunction(int srcRow)
     if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->list->selectionModel()->setCurrentIndex(functionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->list->selectionModel()->setCurrentIndex(functionFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
 
 void FunctionsEditor::setFont(const QFont& font)
@@ -405,6 +418,7 @@ void FunctionsEditor::commit()
         selectFunction(srcRow);
 
     updateState();
+    ui->list->resizeColumnsToContents();
 }
 
 void FunctionsEditor::rollback()

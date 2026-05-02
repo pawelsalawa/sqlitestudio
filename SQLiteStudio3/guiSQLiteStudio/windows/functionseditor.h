@@ -56,18 +56,18 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         explicit FunctionsEditor(QWidget *parent = 0);
         ~FunctionsEditor();
 
-        bool restoreSessionNextTime();
-        bool isUncommitted() const;
-        QString getQuitUncommittedConfirmMessage() const;
+        bool restoreSessionNextTime() override;
+        bool isUncommitted() const override;
+        QString getQuitUncommittedConfirmMessage() const override;
 
     protected:
-        QVariant saveSession();
-        bool restoreSession(const QVariant &sessionValue);
-        Icon* getIconNameForMdiWindow();
-        QString getTitleForMdiWindow();
-        void createActions();
-        void setupDefShortcuts();
-        QToolBar* getToolBar(int toolbar) const;
+        QVariant saveSession() override;
+        bool restoreSession(const QVariant &sessionValue) override;
+        Icon* getIconNameForMdiWindow() override;
+        QString getTitleForMdiWindow() override;
+        void createActions() override;
+        void setupDefShortcuts() override;
+        QToolBar* getToolBar(int toolbar) const override;
 
     private:
         enum CodeTab

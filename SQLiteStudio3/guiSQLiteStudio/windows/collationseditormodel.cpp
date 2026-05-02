@@ -250,21 +250,48 @@ int CollationsEditorModel::rowCount(const QModelIndex& parent) const
     return collationList.size();
 }
 
+int CollationsEditorModel::columnCount(const QModelIndex& parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
 QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || !isValidRowIndex(index.row()))
         return QVariant();
 
-    if (role == Qt::DisplayRole)
-        return collationList[index.row()]->data->name;
-
-    if (role == Qt::DecorationRole)
+    switch (index.column())
     {
-        auto coll = collationList[index.row()]->data;
-        bool isExtension = coll->type == CollationManager::CollationType::EXTENSION_BASED;
-        if (isExtension || langToIcon.contains(coll->lang))
+        case 0:
         {
-            return isExtension ? ICONS.CONSTRAINT_COLLATION: langToIcon[coll->lang];
+            if (role == Qt::DisplayRole)
+                return collationList[index.row()]->data->name;
+
+            if (role == Qt::DecorationRole)
+            {
+                auto coll = collationList[index.row()]->data;
+                bool isExtension = coll->type == CollationManager::CollationType::EXTENSION_BASED;
+                if (isExtension || langToIcon.contains(coll->lang))
+                {
+                    return isExtension ? ICONS.CONSTRAINT_COLLATION: langToIcon[coll->lang];
+                }
+            }
+
+            break;
+        }
+        case 1:
+        {
+            if (!index.isValid() || !isValidRowIndex(index.row()))
+                return QVariant();
+
+            if (role == Qt::DisplayRole)
+            {
+                auto coll = collationList[index.row()];
+                return coll->data->allDatabases ? "*" : QString::number(coll->data->databases.size());
+            }
+
+            break;
         }
     }
 

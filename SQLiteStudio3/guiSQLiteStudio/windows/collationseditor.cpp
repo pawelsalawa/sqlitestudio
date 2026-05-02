@@ -94,6 +94,14 @@ void CollationsEditor::init()
     collationFilterModel = new QSortFilterProxyModel(this);
     collationFilterModel->setSourceModel(model);
     ui->collationList->setModel(collationFilterModel);
+    ui->collationList->horizontalHeader()->setMinimumSectionSize(20);
+    ui->collationList->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    ui->splitter->setSizes({1, 1});
+    ui->splitter->setStretchFactor(0, 0);
+    ui->splitter->setStretchFactor(1, 1);
+    Cfg::handleSplitterState(ui->splitter);
+    Cfg::handleSplitterState(ui->splitter_2);
 
     dbListModel = new SelectableDbModel(this);
     dbListModel->setSourceModel(DBTREE->getModel());
@@ -101,6 +109,7 @@ void CollationsEditor::init()
     ui->databaseList->expandAll();
 
     model->setData(COLLATIONS->getAllCollations());
+    ui->collationList->resizeColumnsToContents();
 
     MAINWINDOW->installToolbarSizeWheelHandler(ui->toolbar);
 
@@ -205,7 +214,7 @@ void CollationsEditor::selectCollation(int srcRow)
     if (!model->isValidRowIndex(srcRow))
         return;
 
-    ui->collationList->selectionModel()->setCurrentIndex(collationFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    ui->collationList->selectionModel()->setCurrentIndex(collationFilterModel->mapFromSource(model->index(srcRow)), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
 }
 
 QStringList CollationsEditor::getCurrentDatabases() const
@@ -240,6 +249,7 @@ void CollationsEditor::commit()
         selectCollation(srcRow);
 
     updateState();
+    ui->collationList->resizeColumnsToContents();
 }
 
 void CollationsEditor::rollback()

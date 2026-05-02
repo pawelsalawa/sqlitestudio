@@ -1,5 +1,6 @@
 #include "uiconfig.h"
 #include "style.h"
+#include "common/global.h"
 #include <QApplication>
 #include <QPlainTextEdit>
 #include <QStyle>
@@ -7,6 +8,8 @@
 #include <QDir>
 #include <QDebug>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QSplitter>
+#include <QTimer>
 #include <QtSystemDetection>
 #else
 #include <qsystemdetection.h>
@@ -150,6 +153,28 @@ namespace Cfg
     DEFINE_FORMAT_FN_FG(getSyntaxBlobFormat, SyntaxBlobFg)
     DEFINE_FORMAT_FN_FG(getSyntaxCommentFormat, SyntaxCommentFg)
     DEFINE_FORMAT_FN_FG(getSyntaxNumberFormat, SyntaxNumberFg)
+
+    void handleSplitterState(QSplitter* splitter)
+    {
+        static_qstring(keyTpl, "%1.%2");
+        QString key = keyTpl.arg(splitter->window()->objectName(), splitter->objectName());
+        QHash<QString, QByteArray> savedStates = CFG_UI.General.SplitterStates.get();
+        if (savedStates.contains(key))
+            splitter->restoreState(savedStates[key]);
+
+        QTimer* timer = new QTimer(splitter);
+        timer->setSingleShot(true);
+        timer->setInterval(500);
+
+        QObject::connect(splitter, SIGNAL(splitterMoved(int,int)), timer, SLOT(start()));
+        QObject::connect(splitter, SIGNAL(destroyed(QObject*)), timer, SLOT(stop()));
+        QObject::connect(timer, &QTimer::timeout, [key, splitter]()
+        {
+            QHash<QString, QByteArray> savedStates = CFG_UI.General.SplitterStates.get();
+            savedStates[key] = splitter->saveState();
+            CFG_UI.General.SplitterStates.set(savedStates);
+        });
+    }
 }
 
 CFG_DEFINE(Ui)

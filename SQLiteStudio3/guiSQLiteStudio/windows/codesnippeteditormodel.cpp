@@ -1,7 +1,7 @@
 #include "codesnippeteditormodel.h"
 #include "common/strhash.h"
 #include "iconmanager.h"
-
+#include "common/global.h"
 #include <QKeySequence>
 #include <QListWidgetItem>
 #include <QMimeData>
@@ -199,33 +199,62 @@ int CodeSnippetEditorModel::rowCount(const QModelIndex& parent) const
     return snippetList.size();
 }
 
+int CodeSnippetEditorModel::columnCount(const QModelIndex& parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
 QVariant CodeSnippetEditorModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid())
         return {};
 
-    if (index.column() != 0)
+    if (index.column() < 0 || index.column() > 1)
         return {};
 
     if (index.row() < 0 || index.row() >= snippetList.size())
         return {};
 
     const Snippet* sn = snippetList[index.row()];
-    switch (role)
+    switch (index.column())
     {
-        case Qt::DisplayRole:
-            return sn->data.name;
-        case MODIFIED:
-            return sn->modified;
-        case VALID:
-            return sn->valid;
-        case CODE:
-            return sn->data.code;
-        case HOTKEY:
-            return sn->data.hotkey;
-        case Qt::DecorationRole:
-            return sn->valid ? ICONS.CODE_SNIPPET : ICONS.CODE_SNIPPET_ERROR;
+        case 0:
+        {
+            switch (role)
+            {
+                case Qt::DisplayRole:
+                    return sn->data.name;
+                case MODIFIED:
+                    return sn->modified;
+                case VALID:
+                    return sn->valid;
+                case CODE:
+                    return sn->data.code;
+                case HOTKEY:
+                    return sn->data.hotkey;
+                case Qt::DecorationRole:
+                    return sn->valid ? ICONS.CODE_SNIPPET : ICONS.CODE_SNIPPET_ERROR;
+            }
+        }
+        case 1:
+        {
+            if (role == Qt::DisplayRole)
+                return sn->data.hotkey;
+
+            break;
+        }
     }
+
+    if (role == Qt::ToolTipRole)
+    {
+        static_qstring(rowTpl, "<tr><td align='right'>%1</td><td><b>%2</b></td></tr>");
+        return "<table>" +
+               rowTpl.arg(tr("Name:"), sn->data.name) +
+               rowTpl.arg(tr("Hotkey:"), sn->data.hotkey) +
+               "</table>";
+    }
+
     return QVariant();
 }
 
