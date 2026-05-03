@@ -10,7 +10,7 @@
       <translation type="unfinished">Cannot execute query on closed database.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb.cpp" line="749"/>
+      <location filename="../db/abstractdb.cpp" line="794"/>
       <source>Error attaching database %1: %2</source>
       <translation type="unfinished">Error attaching database %1: %2</translation>
     </message>
@@ -200,35 +200,35 @@
   <context>
     <name>DbManagerImpl</name>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
       <source>Could not add database %1: %2</source>
       <translation type="unfinished">Could not add database %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="149"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="148"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
       <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="415"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="385"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="414"/>
       <source>Database file doesn&apos;t exist.</source>
       <translation type="unfinished">Database file doesn&apos;t exist.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="388"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="417"/>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="633"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="387"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="416"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="632"/>
       <source>No supporting plugin loaded.</source>
       <translation type="unfinished">No supporting plugin loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="551"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="550"/>
       <source>Database could not be initialized.</source>
       <translation type="unfinished">Database could not be initialized.</translation>
     </message>
     <message>
-      <location filename="../services/impl/dbmanagerimpl.cpp" line="561"/>
+      <location filename="../services/impl/dbmanagerimpl.cpp" line="560"/>
       <source>No suitable database driver plugin found.</source>
       <translation type="unfinished">No suitable database driver plugin found.</translation>
     </message>
@@ -421,50 +421,68 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     </message>
   </context>
   <context>
+    <name>FunctionManager</name>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="37"/>
+      <source>Scalar</source>
+      <translation type="unfinished">Scalar</translation>
+    </message>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="39"/>
+      <source>Aggregate</source>
+      <translation type="unfinished">Aggregate</translation>
+    </message>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="41"/>
+      <source>Window</source>
+      <translation type="unfinished">Window</translation>
+    </message>
+  </context>
+  <context>
     <name>FunctionManagerImpl</name>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="233"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
       <source>Could not create scripting context, probably the plugin is not configured properly</source>
       <translation type="unfinished">Could not create scripting context, probably the plugin is not configured properly</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="282"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="281"/>
       <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
       <translation type="unfinished">Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="402"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="401"/>
       <source>No such function registered in SQLiteStudio: %1(%2)</source>
       <translation type="unfinished">No such function registered in SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="408"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="407"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
       <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="426"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="425"/>
       <source>Invalid regular expression pattern: %1</source>
       <translation type="unfinished">Invalid regular expression pattern: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="478"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="444"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
       <source>Could not open file %1 for reading: %2</source>
       <translation type="unfinished">Could not open file %1 for reading: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="500"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="499"/>
       <source>Could not open file %1 for writting: %2</source>
       <translation type="unfinished">Could not open file %1 for writting: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="520"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="519"/>
       <source>Error while writting to file %1: %2</source>
       <translation type="unfinished">Error while writting to file %1: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/functionmanagerimpl.cpp" line="538"/>
+      <location filename="../services/impl/functionmanagerimpl.cpp" line="537"/>
       <source>Unsupported scripting language: %1</source>
       <translation type="unfinished">Unsupported scripting language: %1</translation>
     </message>
@@ -956,43 +974,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="361"/>
+      <location filename="../sqlitestudio.cpp" line="363"/>
       <source>General purpose</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">General purpose</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="362"/>
+      <location filename="../sqlitestudio.cpp" line="364"/>
       <source>Database support</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Database support</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="363"/>
+      <location filename="../sqlitestudio.cpp" line="365"/>
       <source>Code formatter</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Code formatter</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="364"/>
+      <location filename="../sqlitestudio.cpp" line="366"/>
       <source>Scripting languages</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Scripting languages</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="366"/>
+      <location filename="../sqlitestudio.cpp" line="368"/>
       <source>Exporting</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Exporting</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="367"/>
+      <location filename="../sqlitestudio.cpp" line="369"/>
       <source>Importing</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Importing</translation>
     </message>
     <message>
-      <location filename="../sqlitestudio.cpp" line="368"/>
+      <location filename="../sqlitestudio.cpp" line="370"/>
       <source>Table populating</source>
       <comment>plugin category name</comment>
       <translation type="unfinished">Table populating</translation>
@@ -1106,37 +1124,37 @@ The view will remain as it is.</translation>
   <context>
     <name>SqlFileExecutor</name>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="56"/>
+      <location filename="../sqlfileexecutor.cpp" line="59"/>
       <source>Could not execute SQL, because application has failed to start transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to start transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="87"/>
+      <location filename="../sqlfileexecutor.cpp" line="90"/>
       <source>Execution from file cancelled. Any queries executed so far have been rolled back.</source>
       <translation type="unfinished">Execution from file cancelled. Any queries executed so far have been rolled back.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="103"/>
+      <location filename="../sqlfileexecutor.cpp" line="106"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="148"/>
+      <location filename="../sqlfileexecutor.cpp" line="151"/>
       <source>Could not execute SQL, because application has failed to commit the transaction: %1</source>
       <translation type="unfinished">Could not execute SQL, because application has failed to commit the transaction: %1</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="153"/>
+      <location filename="../sqlfileexecutor.cpp" line="156"/>
       <source>Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds. %3 were not executed due to errors.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="159"/>
+      <location filename="../sqlfileexecutor.cpp" line="162"/>
       <source>Finished executing %1 queries in %2 seconds.</source>
       <translation type="unfinished">Finished executing %1 queries in %2 seconds.</translation>
     </message>
     <message>
-      <location filename="../sqlfileexecutor.cpp" line="166"/>
+      <location filename="../sqlfileexecutor.cpp" line="169"/>
       <source>Could not execute SQL due to error.</source>
       <translation type="unfinished">Could not execute SQL due to error.</translation>
     </message>

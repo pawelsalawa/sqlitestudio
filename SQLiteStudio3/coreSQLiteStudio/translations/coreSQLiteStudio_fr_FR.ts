@@ -421,6 +421,24 @@ Tables, indexes, déclencheurs et vues copiés dans la base de données %3 reste
     </message>
   </context>
   <context>
+    <name>FunctionManager</name>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="37"/>
+      <source>Scalar</source>
+      <translation type="unfinished">Scalar</translation>
+    </message>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="39"/>
+      <source>Aggregate</source>
+      <translation type="unfinished">Aggregate</translation>
+    </message>
+    <message>
+      <location filename="../services/functionmanager.cpp" line="41"/>
+      <source>Window</source>
+      <translation type="unfinished">Window</translation>
+    </message>
+  </context>
+  <context>
     <name>FunctionManagerImpl</name>
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
