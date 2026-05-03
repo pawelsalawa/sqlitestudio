@@ -267,7 +267,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -486,9 +486,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>489</width>
-                <height>740</height>
+                <y>-239</y>
+                <width>679</width>
+                <height>842</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -679,6 +679,41 @@
                     </property>
                     <property name="cfg" stdset="0">
                      <string notr="true">General.ColumnWidthForName</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="columnHdrActionGroup">
+                 <property name="title">
+                  <string>Column header actions</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_25">
+                  <item>
+                   <widget class="ConfigRadioButton" name="colHdrClickSelectsRadio">
+                    <property name="text">
+                     <string>Single-click selects column data; double-click sorts by column</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.SingleColumnClickSort</string>
+                    </property>
+                    <property name="assignedValue" stdset="0">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="ConfigRadioButton" name="colHdrClickSortsRadio">
+                    <property name="text">
+                     <string>Single-click sorts by column; Alt+click selects column data</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.SingleColumnClickSort</string>
+                    </property>
+                    <property name="assignedValue" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>

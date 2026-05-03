@@ -208,11 +208,28 @@ QVariant SqlQueryItem::adjustVariantType(const QVariant& value)
 
 QString SqlQueryItem::getToolTip() const
 {
-    static const QString tableTmp = "<table>%1</table>";
+    if (!index().isValid())
+        return QString();
+
+    SqlQueryModelColumn* col = getColumn();
+    if (!col)
+        return QString(); // happens when simple execution method was performed
+
+    return formatToolTip(col, true, getRowId(), isCommittingError(), getCommittingErrorMessage());
+}
+
+QString SqlQueryItem::formatToolTip(SqlQueryModelColumn* col, const QString& footer)
+{
+    return formatToolTip(col, false, RowId(), false, QString(), footer);
+}
+
+QString SqlQueryItem::formatToolTip(SqlQueryModelColumn* col, bool withRowId, RowId rowId, bool withCommittingError, const QString& committingErrorMsg, const QString& footer)
+{
+    static const QString tableTmp = "<div><table>%1</table></div>";
     static const QString rowTmp = R"(
         <tr>
             <td colspan=2 style="white-space: pre">%1</td>
-            <td style="align: right"><b>%2</b></td>
+            <td style="text-align: right"><b>%2</b></td>
         </tr>)";
     static const QString hdrRowTmp = R"(
         <tr>
@@ -221,9 +238,9 @@ QString SqlQueryItem::getToolTip() const
         </tr>)";
     static const QString constrRowTmp = R"(
         <tr>
-            <td width=16><img src="%1" width="16" height="16"/></td>
+            <td width=16 style="text-align: center"><img src="%1" width="16" height="16"/></td>
             <td style="white-space: pre"><b>%2</b></td>
-            <td>%3</td>
+            <td><code>%3</code></td>
         </tr>)";
     static const QString emptyRow = "<tr><td colspan=3></td></tr>";
     static const QString topErrorRowTmp = R"(
@@ -232,18 +249,15 @@ QString SqlQueryItem::getToolTip() const
             <td style="white-space: pre"><b>%2</b></td>
             <td>%3</td>
         </tr>)";
-
-    if (!index().isValid())
-        return QString();
-
-    SqlQueryModelColumn* col = getColumn();
-    if (!col)
-        return QString(); // happens when simple execution method was performed
+    static const QString footerRowTmp = R"(
+        <tr>
+            <td colspan=3>%1</td>
+        </tr>)";
 
     QStringList rows;
-    if (isCommittingError())
+    if (withCommittingError)
     {
-        rows << topErrorRowTmp.arg(ICONS.STATUS_WARNING.getPath(), tr("Committing error:", "data view tooltip"), getCommittingErrorMessage());
+        rows << topErrorRowTmp.arg(ICONS.STATUS_WARNING.getPath(), tr("Committing error:", "data view tooltip"), committingErrorMsg);
         rows << emptyRow;
     }
 
@@ -253,33 +267,35 @@ QString SqlQueryItem::getToolTip() const
     {
         rows << rowTmp.arg(tr("Table:", "data view tooltip"), col->table);
 
-        RowId rowId = getRowId();
-        QString rowIdStr;
-        if (rowId.size() == 0)
+        if (withRowId)
         {
-            rowIdStr = "-";
-        }
-        else if (rowId.size() == 1)
-        {
-            rowIdStr = rowId.values().constFirst().toString();
-        }
-        else
-        {
-            QStringList values;
-            QString rowIdValue;
-            QHashIterator<QString,QVariant> it(rowId);
-            while (it.hasNext())
+            QString rowIdStr;
+            if (rowId.size() == 0)
             {
-                it.next();
-                rowIdValue = it.value().toString();
-                if (rowIdValue.length() > 30)
-                    rowIdValue = rowIdValue.left(27) + "...";
-
-                values << it.key() + "=" + rowIdValue;
+                rowIdStr = "-";
             }
-            rowIdStr = "[" + values.join(", ") + "]";
+            else if (rowId.size() == 1)
+            {
+                rowIdStr = rowId.values().constFirst().toString();
+            }
+            else
+            {
+                QStringList values;
+                QString rowIdValue;
+                QHashIterator<QString,QVariant> it(rowId);
+                while (it.hasNext())
+                {
+                    it.next();
+                    rowIdValue = it.value().toString();
+                    if (rowIdValue.length() > 30)
+                        rowIdValue = rowIdValue.left(27) + "...";
+
+                    values << it.key() + "=" + rowIdValue;
+                }
+                rowIdStr = "[" + values.join(", ") + "]";
+            }
+            rows << rowTmp.arg("ROWID:", rowIdStr);
         }
-        rows << rowTmp.arg("ROWID:", rowIdStr);
     }
 
     if (!col->getConstraints().isEmpty())
@@ -290,6 +306,11 @@ QString SqlQueryItem::getToolTip() const
             rows << constrRowTmp.arg(constr->getIcon()->toUrl(), constr->getTypeString(), constr->getDetails());
     }
 
+    if (!footer.isEmpty())
+    {
+        rows += footerRowTmp.arg("<hr>");
+        rows += footerRowTmp.arg(footer);
+    }
     return tableTmp.arg(rows.join(""));
 }
 

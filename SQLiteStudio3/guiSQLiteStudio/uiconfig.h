@@ -170,6 +170,7 @@ CFG_UI_CATEGORIES(Ui,
         CFG_ENTRY(int,                     ToolBarIconSize,             0)
         CFG_ENTRY(QString,                 LastUsedConfigPage,          QString())
         CFG_ENTRY(bool,                    ShowPerColumnFilters,        false)
+        CFG_ENTRY(bool,                    SingleColumnClickSort,       false)
     )
 )
 

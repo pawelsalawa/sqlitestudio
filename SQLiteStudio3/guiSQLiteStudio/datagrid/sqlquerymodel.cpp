@@ -2162,6 +2162,26 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
     if (role == Qt::TextAlignmentRole && orientation == Qt::Horizontal)
         return Qt::AlignLeft;
 
+    if (role == Qt::ToolTipRole && orientation == Qt::Horizontal)
+    {
+        if (section < 0 || section >= headerColumns.size())
+            return QVariant();
+
+        QString clickBehaviorPart = CFG_UI.General.SingleColumnClickSort.get() ?
+                    tr("Single-click sorts by the column.<br>"
+                       "Alt+click selects data in the column.") :
+                    tr("Single-click selects data in the column.<br>"
+                       "Double-click sorts by the column.");
+
+        QString footer = QString("<p><i>%1<br>%2</i></p><p><i>%3</i></p>").arg(
+                    clickBehaviorPart,
+                    tr("Middle-click resets sorting."),
+                    tr("More options are available in the context menu.")
+                    );
+
+        return SqlQueryItem::formatToolTip(columns[section].data(), footer);
+    }
+
     return QAbstractItemModel::headerData(section, orientation, role);
 }
 

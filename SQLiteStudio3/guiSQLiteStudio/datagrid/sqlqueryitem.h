@@ -92,6 +92,9 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         void skipInitialFocusSelection();
         bool shoulSkipInitialFocusSelection() const;
 
+        static QString formatToolTip(SqlQueryModelColumn* col, const QString& footer);
+        static QString formatToolTip(SqlQueryModelColumn* col, bool withRowId, RowId rowId, bool withCommittingError, const QString& committingErrorMsg, const QString& footer = QString());
+
     private:
         QString getNullDisplayString() const;
         QVariant adjustVariantType(const QVariant& value);

@@ -239,7 +239,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void prevRow();
         void nextRow();
         void lastRow();
-        void columnsHeaderDoubleClicked(int columnIdx);
+        void columnSortingRequested(int columnIdx);
         void columnsHeaderMiddleClicked(int columnIdx);
         void tabChanged(int newIndex);
         void updateFormNavigationState();

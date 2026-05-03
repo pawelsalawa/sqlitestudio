@@ -87,7 +87,7 @@ void DataView::initSlots()
     connect(model, SIGNAL(executionStarted()), gridView, SLOT(executionStarted()));
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
     connect(model, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
-    connect(gridView->horizontalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(columnsHeaderDoubleClicked(int)));
+    connect(gridView, SIGNAL(columnSortingRequested(int)), this, SLOT(columnSortingRequested(int)));
     connect(gridView, SIGNAL(headerMiddleButtonClicked(int)), this, SLOT(columnsHeaderMiddleClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
@@ -1376,7 +1376,7 @@ bool DataView::getNavigationState() const
     return navigationState;
 }
 
-void DataView::columnsHeaderDoubleClicked(int columnIdx)
+void DataView::columnSortingRequested(int columnIdx)
 {
     model->changeSorting(columnIdx);
 }

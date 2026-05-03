@@ -851,6 +851,11 @@ void SqlQueryView::headerMiddleClicked(int colIdx)
     emit headerMiddleButtonClicked(colIdx);
 }
 
+void SqlQueryView::requestColumnSorting(int colIdx)
+{
+    emit columnSortingRequested(colIdx);
+}
+
 void SqlQueryView::setItemDelegateForColumn(int column, QAbstractItemDelegate* delegate)
 {
     QTableView::setItemDelegateForColumn(column, delegate);
@@ -1541,6 +1546,13 @@ void SqlQueryView::Header::mousePressEvent(QMouseEvent *e)
         int sectionCount = count();
         for (int i = 0; i < sectionCount; i++)
             lastSectionSizes[i] = sectionSize(i);
+
+        int section = logicalIndexAt(e->pos());
+        if (section >= 0 && CFG_UI.General.SingleColumnClickSort.get() && !e->modifiers().testFlag(Qt::AltModifier))
+        {
+            qobject_cast<SqlQueryView*>(parentWidget())->requestColumnSorting(section);
+            return;
+        }
     }
 
     QHeaderView::mousePressEvent(e);
@@ -1548,9 +1560,19 @@ void SqlQueryView::Header::mousePressEvent(QMouseEvent *e)
 
 void SqlQueryView::Header::mouseDoubleClickEvent(QMouseEvent* e)
 {
-    dblClickResizing = true;
+    QScopedValueRollback scopedRollback(dblClickResizing, true);
+
+    if (e->button() == Qt::LeftButton)
+    {
+        int section = logicalIndexAt(e->pos());
+        if (section >= 0 && CFG_UI.General.SingleColumnClickSort.get())
+            e->accept();
+        else
+            qobject_cast<SqlQueryView*>(parentWidget())->requestColumnSorting(section);
+
+        return;
+    }
     QHeaderView::mouseDoubleClickEvent(e);
-    dblClickResizing = false;
 }
 
 void SqlQueryView::Header::handleSectionResize(int logicalIndex, int oldSize, int newSize)

@@ -150,6 +150,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void copy(bool withHeaders, bool cutOperation);
         void changeFontSize(int factor);
         void headerMiddleClicked(int colIdx);
+        void requestColumnSorting(int colIdx);
         void setItemDelegateForColumn(int column, QAbstractItemDelegate *delegate);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
@@ -234,6 +235,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void newFontMetricsApplied();
         void pinnedColumnsChanged();
         void pinnedSectionResized(int logicalIndex, int oldSize, int newSize);
+        void columnSortingRequested(int section);
 };
 
 GUI_API_EXPORT size_t qHash(SqlQueryView::Action action);
