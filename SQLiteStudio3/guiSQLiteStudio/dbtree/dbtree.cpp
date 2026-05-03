@@ -282,7 +282,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     // It's handled outside of "item with db", above
                     break;
                 case DbTreeItem::Type::DB:
-                    enabled << CREATE_GROUP << DELETE_DB << EDIT_DB << EXEC_SQL_FROM_FILE;
+                    enabled << CREATE_GROUP << DELETE_DB << EDIT_DB;
                     break;
                 case DbTreeItem::Type::TABLES:
                     break;
@@ -403,7 +403,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
     if (treeModel->rowCount() > 0)
         enabled << SELECT_ALL; // if there's at least 1 item, enable this
 
-    enabled << REFRESH_SCHEMAS << LINK_WITH_MDI;
+    enabled << REFRESH_SCHEMAS << LINK_WITH_MDI << EXEC_SQL_FROM_FILE;
 
     for (int action : actionMap.keys())
         setActionEnabled(action, enabled.contains(action));
@@ -525,11 +525,11 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                     actions += ActionEntry(ADD_VIEW);
                     actions += ActionEntry(_separator);
                     actions += ActionEntry(REFRESH_SCHEMA);
+                    actions += ActionEntry(EXEC_SQL_FROM_FILE);
                     actions += ActionEntry(IMPORT_INTO_DB);
                     actions += ActionEntry(EXPORT_DB);
                     actions += ActionEntry(VACUUM_DB);
                     actions += ActionEntry(INTEGRITY_CHECK);
-                    actions += ActionEntry(EXEC_SQL_FROM_FILE);
                     actions += ActionEntry(OPEN_DB_DIRECTORY);
                     actions += ActionEntry(_separator);
                 }
@@ -548,6 +548,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
             case DbTreeItem::Type::TABLES:
                 actions += ActionEntry(ADD_TABLE);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::TABLE:
@@ -561,6 +563,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
                 actions += genQueryEntry;
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 actions += ActionEntry(IMPORT_TABLE);
                 if (exportableItems.size() > 1)
                     actions += ActionEntry(EXPORT_DB);
@@ -580,6 +583,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                 actions += ActionEntry(RENAME_TABLE);
                 actions += ActionEntry(DEL_TABLE);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::INDEXES:
@@ -588,6 +593,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                 actions += ActionEntry(ADD_TABLE);
                 actions += ActionEntry(EDIT_TABLE);
                 actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -600,6 +607,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                 actions += ActionEntry(ADD_TABLE);
                 actions += ActionEntry(EDIT_TABLE);
                 actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -621,6 +630,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                     actions += ActionEntry(DEL_VIEW);
                     actions += ActionEntry(_separator);
                 }
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             }
@@ -645,11 +656,15 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                     actions += ActionEntry(DEL_VIEW);
                     actions += ActionEntry(_separator);
                 }
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             }
             case DbTreeItem::Type::VIEWS:
                 actions += ActionEntry(ADD_VIEW);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -664,6 +679,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                 actions += ActionEntry(DEL_TRIGGER);
                 actions += ActionEntry(_separator);
                 actions += genViewQueryEntry;
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 actions += ActionEntry(EXPORT_VIEW);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
@@ -689,6 +705,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                     actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 if (isInTableNode)
                 {
                     actions += ActionEntry(IMPORT_TABLE);
@@ -726,6 +743,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, const QList<DbTreeItem*>&
                     actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(EXEC_SQL_FROM_FILE);
                 if (isInTableNode)
                 {
                     actions += ActionEntry(IMPORT_TABLE);
@@ -2453,11 +2471,11 @@ void DbTree::openDbDirectory()
 
 void DbTree::execSqlFromFile()
 {
-    Db* db = getSelectedDb();
-    if (!db || !db->isOpen())
-        return;
-
     ExecFromFileDialog dialog(MAINWINDOW);
+    Db* db = getSelectedDb();
+    if (db && db->isOpen())
+        dialog.selectDb(db);
+
     int res = dialog.exec();
     if (res != QDialog::Accepted)
         return;
@@ -2465,9 +2483,13 @@ void DbTree::execSqlFromFile()
     if (fileExecutor->isExecuting())
         return;
 
+    Db* selectedDb = dialog.selectedDb();
+    if (!selectedDb || !selectedDb->isOpen())
+        return;
+
     fileExecWidgetCover->show();
     fileExecutor->setExecutionMode(dialog.getExecutionMode());
-    fileExecutor->execSqlFromFile(db, dialog.filePath(), dialog.ignoreErrors(), dialog.codec());
+    fileExecutor->execSqlFromFile(selectedDb, dialog.filePath(), dialog.ignoreErrors(), dialog.codec());
 }
 
 void DbTree::setupDefShortcuts()

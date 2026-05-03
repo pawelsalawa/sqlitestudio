@@ -20,7 +20,7 @@ class QStringDecoder;
 
 API_EXPORT void initUtils();
 
-namespace API_EXPORT OpenFileFilters
+namespace OpenFileFilters
 {
     struct API_EXPORT Filters
     {

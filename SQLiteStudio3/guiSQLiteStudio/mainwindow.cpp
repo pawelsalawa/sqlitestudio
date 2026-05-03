@@ -468,6 +468,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_SNIPPETS_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
+    toolsMenu->addAction(dbTree->getAction(DbTree::EXEC_SQL_FROM_FILE));
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();

@@ -1,9 +1,12 @@
 #include "execfromfiledialog.h"
+#include "dblistmodel.h"
 #include "ui_execfromfiledialog.h"
 #include "common/utils.h"
 #include "uiconfig.h"
 #include "uiutils.h"
 #include <QFileDialog>
+#include <QDialogButtonBox>
+#include <QPushButton>
 
 ExecFromFileDialog::ExecFromFileDialog(QWidget *parent) :
     QDialog(parent),
@@ -47,9 +50,27 @@ SqlFileExecutor::ExecutionMode ExecFromFileDialog::getExecutionMode() const
     return SqlFileExecutor::PERMISSIVE;
 }
 
+void ExecFromFileDialog::selectDb(Db *db)
+{
+    if (!db->isOpen())
+        return;
+
+    ui->dbCombo->setCurrentIndex(dbListModel->getIndexForDb(db));
+}
+
+Db *ExecFromFileDialog::selectedDb() const
+{
+    return dbListModel->getDb(ui->dbCombo->currentIndex());
+}
+
 void ExecFromFileDialog::init()
 {
     ui->setupUi(this);
+
+    dbListModel = new DbListModel(this);
+    dbListModel->setCombo(ui->dbCombo);
+    dbListModel->setSortMode(DbListModel::SortMode::AlphabeticalCaseInsensitive);
+    ui->dbCombo->setModel(dbListModel);
 
     ui->permModeRadio->setChecked(true);
 
@@ -75,19 +96,32 @@ void ExecFromFileDialog::browseForInputFile()
 
 void ExecFromFileDialog::updateState()
 {
+    bool fileOk = true;
     QString path = ui->fileEdit->text();
     if (path.isEmpty())
     {
         setValidState(ui->fileEdit, false, tr("Please provide file to be executed."));
-        return;
+        fileOk = false;
     }
 
-    QFileInfo fi(path);
-    if (!fi.exists() || !fi.isReadable())
+    if (fileOk)
     {
-        setValidState(ui->fileEdit, false, tr("Provided file does not exist or cannot be read."));
-        return;
+        QFileInfo fi(path);
+        if (!fi.exists() || !fi.isReadable())
+        {
+            setValidState(ui->fileEdit, false, tr("Provided file does not exist or cannot be read."));
+            fileOk = false;
+        }
     }
 
-    setValidState(ui->fileEdit, true);
+    if (fileOk)
+        setValidState(ui->fileEdit, true);
+
+    bool dbOk = ui->dbCombo->currentIndex() >= 0;
+    if (dbOk)
+        setValidState(ui->dbCombo, true);
+    else
+        setValidState(ui->dbCombo, false, tr("Select a database to execute the SQL file on."));
+
+   ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(dbOk && fileOk);
 }

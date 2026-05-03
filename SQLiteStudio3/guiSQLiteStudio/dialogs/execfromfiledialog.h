@@ -5,6 +5,8 @@
 #include "sqlfileexecutor.h"
 #include <QDialog>
 
+
+class DbListModel;
 namespace Ui {
     class ExecFromFileDialog;
 }
@@ -21,11 +23,14 @@ class GUI_API_EXPORT ExecFromFileDialog : public QDialog
         QString filePath() const;
         QString codec() const;
         SqlFileExecutor::ExecutionMode getExecutionMode() const;
+        void selectDb(Db* db);
+        Db* selectedDb() const;
 
     private:
         void init();
 
         Ui::ExecFromFileDialog *ui;
+        DbListModel* dbListModel = nullptr;
 
     private slots:
         void browseForInputFile();

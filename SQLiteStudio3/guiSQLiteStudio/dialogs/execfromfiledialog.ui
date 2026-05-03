@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>353</height>
+    <height>399</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,6 +43,18 @@
           <normaloff>:/icons/img/directory_open.svg</normaloff>:/icons/img/directory_open.svg</iconset>
         </property>
        </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="dbGroup">
+     <property name="title">
+      <string>Database</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QComboBox" name="dbCombo"/>
       </item>
      </layout>
     </widget>
