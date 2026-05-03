@@ -24,6 +24,7 @@ class Plugin;
 class PluginType;
 CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(EDIT_CURRENT,      Qt::Key_F2,                              QObject::tr("Edit current cell inline"))
+    CFG_KEY_ENTRY(CUT,               QKeySequence::Cut,                       QObject::tr("Cut cell(s) contents to clipboard"))
     CFG_KEY_ENTRY(COPY,              QKeySequence::Copy,                      QObject::tr("Copy cell(s) contents to clipboard"))
     CFG_KEY_ENTRY(COPY_WITH_HEADER,  Qt::CTRL | Qt::SHIFT | Qt::Key_C,        QObject::tr("Copy cell(s) contents together with header to clipboard"))
 //    CFG_KEY_ENTRY(COPY_AS,           Qt::CTRL | Qt::ALT | Qt::Key_C,        QObject::tr(""))
@@ -48,6 +49,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
     public:
         enum Action
         {
+            CUT,
             COPY,
             COPY_WITH_HEADER,
             COPY_AS,
@@ -145,7 +147,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool validatePasting(QSet<QString>& warnedColumns, bool& warnedRowDeletion, SqlQueryItem* item);
         void addFkActionsToContextMenu(SqlQueryItem* currentItem);
         void goToReferencedRow(const QString& table, const QString& column, const QVariant& value);
-        void copy(bool withHeaders);
+        void copy(bool withHeaders, bool cutOperation);
         void changeFontSize(int factor);
         void headerMiddleClicked(int colIdx);
         void setItemDelegateForColumn(int column, QAbstractItemDelegate *delegate);
@@ -206,6 +208,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void executionEnded();
         void setCurrentRow(int row);
         void refreshColumnDelegates();
+        void cut();
         void copy();
         void copyWithHeader();
         void paste();

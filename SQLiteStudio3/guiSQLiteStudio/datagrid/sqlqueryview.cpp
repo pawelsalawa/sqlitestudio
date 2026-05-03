@@ -144,6 +144,7 @@ void SqlQueryView::setupWidgetCover()
 
 void SqlQueryView::createActions()
 {
+    createAction(CUT, ICONS.ACT_CUT, tr("Cut"), this, SLOT(cut()), this);
     createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
     createAction(COPY_WITH_HEADER, ICONS.ACT_COPY, tr("Copy with headers"), this, SLOT(copyWithHeader()), this);
     createAction(COPY_AS, ICONS.ACT_COPY, tr("Copy as..."), this, SLOT(copyAs()), this);
@@ -178,7 +179,7 @@ void SqlQueryView::createActions()
 
 void SqlQueryView::setupDefShortcuts()
 {
-    setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, COPY, COPY_AS,
+    setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, CUT, COPY, COPY_AS,
                        PASTE, PASTE_AS, ADJUST_ROWS_SIZE, INCR_FONT_SIZE, DECR_FONT_SIZE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlQueryView, Action);
@@ -278,6 +279,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         }
 
         contextMenu->addSeparator();
+        contextMenu->addAction(actionMap[CUT]);
         contextMenu->addAction(actionMap[COPY]);
         contextMenu->addAction(actionMap[COPY_WITH_HEADER]);
         //contextMenu->addAction(actionMap[COPY_AS]); // TODO uncomment when implemented
@@ -752,7 +754,7 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
     win->execute();
 }
 
-void SqlQueryView::copy(bool withHeader)
+void SqlQueryView::copy(bool withHeader, bool cutOperation)
 {
     if (simpleBrowserMode)
         return;
@@ -809,6 +811,9 @@ void SqlQueryView::copy(bool withHeader)
                 cells << itemValue.toString();
 
             theDataRow << itemValue;
+
+            if (cutOperation && item->getColumn()->editionForbiddenReason.isEmpty())
+                item->setValue(QVariant(QString()), false);
         }
 
         rows << cells;
@@ -1284,14 +1289,19 @@ void SqlQueryView::setCurrentRow(int row)
     scrollTo(idx);
 }
 
+void SqlQueryView::cut()
+{
+    copy(false, true);
+}
+
 void SqlQueryView::copy()
 {
-    copy(false);
+    copy(false, false);
 }
 
 void SqlQueryView::copyWithHeader()
 {
-    copy(true);
+    copy(true, false);
 }
 
 void SqlQueryView::paste()

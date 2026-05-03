@@ -46,6 +46,7 @@
 - ADDED: #4539 Added the Open In Editor button to DDL preview dialog.
 - ADDED: #5290 Execute From File Dialog now supports 3 execution modes, allowing SQLite CLI dot commands in the executed file.
 - ADDED: #4225 Foreign Key constraint configuration dialogs now warns about using foreign column that is neither PRIMARY KEY nor UNIQUE.
+- ADDED: #5085 Added 'Cut' entry to context menu of data Grid View.
 - CHANGE: #4553 Application has moved to Qt 6 (dropping Qt 5 support). This solves several technical issues (for example accented characters on MacOS, better UI scaling for high DPI displays, better dark theme support and more).
 - CHANGE: #5102 All raster icons are replaced with vector icons (SVG). This makes them scalable and work well with high DPI displays.
 - CHANGE: #4271 Value Editor (and Form View) got small visual lifting to be more convenient to use (bigger column labels, etc).
