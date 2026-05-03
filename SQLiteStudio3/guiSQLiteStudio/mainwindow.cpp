@@ -1503,7 +1503,7 @@ MainWindow::DropFileType MainWindow::mimeToFileType(const QString& mimeValue)
     if (mimeValue == "application/octet-stream")
         return DropFileType::SQLITE3_POSSIBLE;
 
-    if (mimeValue == "application/sql")
+    if (mimeValue == "application/sql" || mimeValue == "text/x-sql")
         return DropFileType::SQL;
 
     if (mimeValue == "text/plain")
