@@ -204,6 +204,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         SqliteExtensionEditor* openExtensionManager();
         void installToolbarSizeWheelHandler(QToolBar* toolbar);
         QMenu* createPopupMenu() override;
+        void handleDroppedFile(const QString& filePath);
 
         template <class T, typename... Args>
         T* openMdiWindow(Args&&... args);
@@ -249,7 +250,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void initDropOverlay();
         void handleExternalDragEnter(const QStringList& filePaths);
         void handleExternalDragLeave();
-        void handleDroppedFile(const QString& filePath);
         QString dropDescriptionByFileType(const DropFileContext& ctx);
 
         static bool confirmQuit(const QList<Committable*>& instances);

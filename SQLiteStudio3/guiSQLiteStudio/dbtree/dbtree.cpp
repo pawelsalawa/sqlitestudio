@@ -1385,17 +1385,11 @@ void DbTree::openDb()
 
 void DbTree::openFile()
 {
-    QString path = getDbOrSqlPath(false);
+    QString path = getOpenFilePath(false);
     if (path.isNull())
         return;
 
-    if (path.toLower().endsWith(".sql"))
-    {
-        MAINWINDOW->openSqlEditorForFile(getSelectedDb(), path);
-        return;
-    }
-
-    openDb(path);
+    MAINWINDOW->handleDroppedFile(path);
 }
 
 void DbTree::openDb(const QString& path)

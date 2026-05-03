@@ -37,6 +37,32 @@ const QStringList pageSizes = pageSizeIds | MAP_NO_CAP(id, {
 
 const QStringList pageSizesWithDimensions;
 
+namespace OpenFileFilters
+{
+    struct Filters
+    {
+        QString sqliteOrSql;
+        QString sqlite;
+        QString sql;
+        QString csv;
+        QString text;
+        QString all;
+    };
+
+    Filters get()
+    {
+        // Created each time in function to respect current language settings
+        Filters filters;
+        filters.sqliteOrSql = QObject::tr("SQLite database or SQL file")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3, *.sql)";
+        filters.sqlite = "SQLite3 (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)";
+        filters.sql = QObject::tr("SQL files")+" (*.sql)";
+        filters.csv = QObject::tr("CSV files")+" (*.csv *.tsv)";
+        filters.text = QObject::tr("Text files")+" (*.db3 *.s3db *.sqlite3 *.sl3)";
+        filters.all = QObject::tr("All files")+" (*)";
+        return filters;
+    }
+};
+
 QString getDbPath(bool newFileMode, const QString &startWith, const QStringList& filters, const QString& dialogTitle)
 {
     QString dir = startWith;
@@ -64,22 +90,36 @@ QString getDbPath(bool newFileMode, const QString &startWith, const QStringList&
 
 QString getDbPath(bool newFileMode, const QString &startWith)
 {
+    OpenFileFilters::Filters filters = OpenFileFilters::get();
     return getDbPath(newFileMode, startWith, {
-            QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
-            "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
-            QObject::tr("All files")+" (*)"
-        }, newFileMode ? QObject::tr("Select new database file") : QObject::tr("Select database file"));
+                         filters.sqlite,
+                         filters.all
+                     },
+                     newFileMode ? QObject::tr("Select new database file") : QObject::tr("Select database file"));
 }
 
 QString getDbOrSqlPath(bool newFileMode, const QString &startWith)
 {
+    OpenFileFilters::Filters filters = OpenFileFilters::get();
     return getDbPath(newFileMode, startWith, {
-            QObject::tr("SQLite database or SQL file")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3, *.sql)",
-            QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)",
-            "SQLite3 (*.db3 *.s3db *.sqlite3 *.sl3)",
-            QObject::tr("SQL files")+" (*.sql)",
-            QObject::tr("All files")+" (*)"
-        }, QObject::tr("Select a file to open"));
+                         filters.sqliteOrSql,
+                         filters.sqlite,
+                         filters.sql,
+                         filters.all
+                     }, QObject::tr("Select a file to open"));
+}
+
+QString getOpenFilePath(bool newFileMode, const QString &startWith)
+{
+    OpenFileFilters::Filters filters = OpenFileFilters::get();
+    return getDbPath(newFileMode, startWith, {
+                         filters.sqliteOrSql,
+                         filters.sqlite,
+                         filters.sql,
+                         filters.csv,
+                         filters.text,
+                         filters.all
+                     }, QObject::tr("Select a file to open"));
 }
 
 void setValidState(QWidget *widget, bool valid, const QString& message)
