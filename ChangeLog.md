@@ -85,6 +85,7 @@
 - CHANGE: #5092 Functions, Collations, Code Snippets and Extensions windows now show more info on their list (number of databases in which they are registered, etc). Additionally their splitter position is now remembered.
 - CHANGE: #4688 Added metadata to Windows executables.
 - CHANGE: #2956 Export Dialog respects hotkeys for changing database in the dropdown, using the same hotkey as SQL Editor.
+- CHANGE: #4964 Import Dialog has now inverted order of pages - the imported file first and then the target table, for which the name is concluded from imported file name. Also filter for CSV import is now extended with tsv files.
 - CHANGE: #5612 With hotkeys being reset to defaults in version 4.0.0, the relevant notification message is now printed upon the reset.
 - CHANGE: Windows x86 (32-bit) binaries will no longer by provided in official builds.
 - BUGFIX: #3079 Enterprise Formatter now handles comments much better than before.

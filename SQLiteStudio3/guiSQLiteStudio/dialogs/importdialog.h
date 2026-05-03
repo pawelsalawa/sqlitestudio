@@ -41,6 +41,7 @@ class GUI_API_EXPORT ImportDialog : public QWizard
         void removeOldOptions();
         void updateStandardOptions();
         void updatePluginOptions(int& rows);
+        void updateTableByDataSource();
         bool isPluginConfigValid() const;
         void storeStdConfig(ImportManager::StandardImportConfig& stdConfig);
         void readStdConfig();

@@ -70,6 +70,22 @@ void initUtils()
     qRegisterMetaType<QList<QPair<QString, QString>>>("QList<QPair<QString, QString>>");
 }
 
+namespace OpenFileFilters
+{
+    Filters get()
+    {
+        // Created each time in function to respect current language settings
+        Filters filters;
+        filters.sqliteOrSql = QObject::tr("SQLite database or SQL file")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3, *.sql)";
+        filters.sqlite = "SQLite3 (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)";
+        filters.sql = QObject::tr("SQL files")+" (*.sql)";
+        filters.csv = QObject::tr("CSV files")+" (*.csv *.tsv)";
+        filters.text = QObject::tr("Text files")+" (*.db3 *.s3db *.sqlite3 *.sl3)";
+        filters.all = QObject::tr("All files")+" (*)";
+        return filters;
+    }
+};
+
 bool isXDigit(const QChar& c)
 {
     return c.isDigit() || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');

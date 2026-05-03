@@ -37,32 +37,6 @@ const QStringList pageSizes = pageSizeIds | MAP_NO_CAP(id, {
 
 const QStringList pageSizesWithDimensions;
 
-namespace OpenFileFilters
-{
-    struct Filters
-    {
-        QString sqliteOrSql;
-        QString sqlite;
-        QString sql;
-        QString csv;
-        QString text;
-        QString all;
-    };
-
-    Filters get()
-    {
-        // Created each time in function to respect current language settings
-        Filters filters;
-        filters.sqliteOrSql = QObject::tr("SQLite database or SQL file")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3, *.sql)";
-        filters.sqlite = "SQLite3 (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3)";
-        filters.sql = QObject::tr("SQL files")+" (*.sql)";
-        filters.csv = QObject::tr("CSV files")+" (*.csv *.tsv)";
-        filters.text = QObject::tr("Text files")+" (*.db3 *.s3db *.sqlite3 *.sl3)";
-        filters.all = QObject::tr("All files")+" (*)";
-        return filters;
-    }
-};
-
 QString getDbPath(bool newFileMode, const QString &startWith, const QStringList& filters, const QString& dialogTitle)
 {
     QString dir = startWith;

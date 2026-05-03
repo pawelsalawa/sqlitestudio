@@ -3,6 +3,7 @@
 #include "services/importmanager.h"
 #include "sqlitestudio.h"
 #include "services/notifymanager.h"
+#include "common/utils.h"
 #include <QVariant>
 #include <QFile>
 #include <QTextStream>
@@ -189,7 +190,8 @@ bool CsvImport::validateOptions()
 
 QString CsvImport::getFileFilter() const
 {
-    return tr("CSV files (*.csv);;Text files (*.txt);;All files (*)");
+    OpenFileFilters::Filters filters = OpenFileFilters::get();
+    return QStringList({filters.csv, filters.text, filters.all}).join(";;");
 }
 
 bool CsvImport::init()

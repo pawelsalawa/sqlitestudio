@@ -19,69 +19,6 @@
   <property name="options">
    <set>QWizard::WizardOption::CancelButtonOnLeft|QWizard::WizardOption::NoDefaultButton</set>
   </property>
-  <widget class="VerifiableWizardPage" name="tablePage">
-   <property name="title">
-    <string>Table to import to</string>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QFrame" name="existingTableFrame">
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="3">
-        <widget class="QLabel" name="tableNameLabel">
-         <property name="text">
-          <string>Table</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="dbNameLabel">
-         <property name="text">
-          <string>Database</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="tableSeparatorLabel">
-         <property name="text">
-          <string notr="true">.</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QComboBox" name="dbNameCombo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QComboBox" name="tableNameCombo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="VerifiableWizardPage" name="dsPage">
    <property name="title">
     <string>Data source to import from</string>
@@ -106,8 +43,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>179</width>
-         <height>253</height>
+         <width>475</width>
+         <height>295</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -225,6 +162,69 @@
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="VerifiableWizardPage" name="tablePage">
+   <property name="title">
+    <string>Table to import to</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QFrame" name="existingTableFrame">
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="3">
+        <widget class="QLabel" name="tableNameLabel">
+         <property name="text">
+          <string>Table</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="dbNameLabel">
+         <property name="text">
+          <string>Database</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="tableSeparatorLabel">
+         <property name="text">
+          <string notr="true">.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="dbNameCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QComboBox" name="tableNameCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>

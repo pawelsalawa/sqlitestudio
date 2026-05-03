@@ -209,6 +209,8 @@ void ImportDialog::initDataSourcePage()
     connect(ui->inputFileEdit, SIGNAL(textChanged(QString)), ui->dsPage, SIGNAL(completeChanged()));
 
     ui->dsTypeCombo->addItems(IMPORT_MANAGER->getImportDataSourceTypes());
+
+    readStdConfig();
 }
 
 void ImportDialog::removeOldOptions()
@@ -300,6 +302,14 @@ void ImportDialog::updatePluginOptions(int& rows)
     updateValidation();
 }
 
+void ImportDialog::updateTableByDataSource()
+{
+    QFileInfo fi(ui->inputFileEdit->text());
+    QString table = fi.baseName();
+    if (!table.isNull())
+        ui->tableNameCombo->setCurrentText(table);
+}
+
 void ImportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg)
 {
     QWidget* w = configMapper->getBindWidgetForConfig(key);
@@ -358,11 +368,10 @@ void ImportDialog::updateValidation()
 
 void ImportDialog::pageChanged()
 {
-    if (currentPage() == ui->dsPage)
-    {
-        readStdConfig();
-        updateValidation();
-    }
+    if (currentPage() == ui->tablePage)
+        updateTableByDataSource();
+
+    updateValidation();
 }
 
 void ImportDialog::browseForInputFile()

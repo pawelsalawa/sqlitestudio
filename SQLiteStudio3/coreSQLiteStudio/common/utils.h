@@ -20,6 +20,21 @@ class QStringDecoder;
 
 API_EXPORT void initUtils();
 
+namespace API_EXPORT OpenFileFilters
+{
+    struct API_EXPORT Filters
+    {
+        QString sqliteOrSql;
+        QString sqlite;
+        QString sql;
+        QString csv;
+        QString text;
+        QString all;
+    };
+
+    API_EXPORT Filters get();
+};
+
 class API_EXPORT Range
 {
     public:
