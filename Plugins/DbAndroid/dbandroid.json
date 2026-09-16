@@ -2,7 +2,7 @@
     "type":          "DbPlugin",
     "title":         "Android SQLite",
     "description":   "Provides support for remote SQLite databases on Android devices.",
-    "version":       10202,
+    "version":       10300,
     "author":        "letos.org",
     "minAppVersion": 30300,
     "gui":           true,

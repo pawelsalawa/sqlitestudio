@@ -324,6 +324,7 @@ DbAndroidConnection::ExecutionResult DbAndroidJsonConnection::executeQuery(const
 
     if (responseObject.contains("error_code"))
     {
+        executionResults.wasError = true;
         executionResults.errorCode = responseObject["error_code"].toInt();
         executionResults.errorMsg = responseObject["error_message"].toString();
         return executionResults;

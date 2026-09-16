@@ -43,6 +43,9 @@ class DbAndroidInstance : public AbstractDb
         bool closeInternal(bool walCheckpoint = true);
         bool registerCollationInternal(const QString& name);
         bool deregisterCollationInternal(const QString& name);
+        void initAfterOpen();
+
+        QHash<QString, QString> collectDbPathParams() const;
 
     private:
         DbAndroidConnection* createConnection();

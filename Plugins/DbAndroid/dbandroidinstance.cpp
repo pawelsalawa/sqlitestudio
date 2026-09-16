@@ -1,5 +1,6 @@
 #include "dbandroidconnection.h"
 #include "dbandroidinstance.h"
+#include "parser/ast/sqlitepragma.h"
 #include "sqlqueryandroid.h"
 #include "db/sqlerrorcodes.h"
 #include "dbandroid.h"
@@ -10,6 +11,8 @@
 #include "services/notifymanager.h"
 #include "db/dbsqlite3.h"
 #include "parser/parser.h"
+#include "common/utils.h"
+#include "../Letos/core/common/utils_sql.h"
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -39,7 +42,12 @@ QList<AliasedColumn> DbAndroidInstance::columnsForQuery(const QString& query)
     if (!isDataReturningQuery(parser.getQueries().last()->queryType))
         return QList<AliasedColumn>();
 
-    SqlQueryPtr results = exec(query);
+    static_qstring(zeroResultsTpl, "select * from letos_inspect_columns(?);");
+    QString queryStr = query.trimmed();
+    if (queryStr.endsWith(";"))
+        queryStr.chop(1);
+
+    SqlQueryPtr results = exec(zeroResultsTpl, queryStr);
     if (results->isError())
     {
         qWarning() << "Could not execute query for providing columnsForQuery from DbAndroid:" << query
@@ -49,9 +57,12 @@ QList<AliasedColumn> DbAndroidInstance::columnsForQuery(const QString& query)
 
     QList<AliasedColumn> columns;
     AliasedColumn column;
-    for (QString& colName : results->getColumnNames())
+    for (SqlResultsRowPtr row : results->getAll())
     {
-        column.setAlias(colName);
+        column.setDatabase(row->value("database").toString());
+        column.setTable(row->value("table_name").toString());
+        column.setColumn(row->value("column_name").toString());
+        column.setAlias(row->value("alias").toString());
         columns << column;
     }
     return columns;
@@ -132,6 +143,42 @@ AbstractDb* DbAndroidInstance::createCloneInstance() const
     return new DbAndroidInstance(plugin, name, path, connOptions);
 }
 
+void DbAndroidInstance::initAfterOpen()
+{
+    SqlQueryPtr res;
+
+    QString cipher = connOptions[DbAndroid::CIPHER_OPT].toString();
+    if (!cipher.isEmpty())
+    {
+        res = exec(QString("PRAGMA cipher = '%1';").arg(cipher), Flag::NO_LOCK);
+        if (res->isError())
+            qWarning() << "Error while defining SQLite3MC cipher:" << res->getErrorText();
+    }
+
+    QString pragmas = connOptions[DbAndroid::PRAGMAS_OPT].toString();
+    QStringList pragmaList = quickSplitQueries(pragmas);
+    for (const QString& pragma : pragmaList)
+    {
+        QString pragmaSql = removeComments(pragma).trimmed();
+        if (pragmaSql.isEmpty())
+            continue;
+
+        res = exec(pragmaSql, Flag::NO_LOCK);
+        if (res->isError())
+            qWarning() << "Error while defining SQLite3MC pragma" << pragma << ":" << res->getErrorText();
+    }
+
+    QString key = connOptions[DbAndroid::PASSWORD_OPT].toString();
+    if (!key.isEmpty())
+    {
+        res = exec(QString("PRAGMA key = '%1';").arg(escapeString(key)), Flag::NO_LOCK);
+        if (res->isError())
+            qWarning() << "Error while defining SQLite3MC key:" << res->getErrorText();
+    }
+
+    AbstractDb::initAfterOpen();
+}
+
 bool DbAndroidInstance::isTransactionActive() const
 {
     SqlQueryPtr res = exec("BEGIN");
@@ -172,8 +219,9 @@ int DbAndroidInstance::getErrorCodeInternal()
 
 bool DbAndroidInstance::openInternal()
 {
+    DbAndroidUrl dbUrl(path);
     connection = createConnection();
-    bool res = connection->connectToAndroid(DbAndroidUrl(path));
+    bool res = connection->connectToAndroid(dbUrl);
     if (!res)
     {
         safe_delete(connection);
@@ -220,7 +268,7 @@ DbAndroidConnection* DbAndroidInstance::createConnection()
     if (!url.isValid(false))
         return nullptr;
 
-    return plugin->getConnectionFactory()->create(url, this);
+    return plugin->getConnectionFactory()->create(url);
 }
 
 void DbAndroidInstance::handleDisconnected()

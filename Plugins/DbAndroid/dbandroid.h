@@ -38,6 +38,8 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
         DbAndroidConnectionFactory* getConnectionFactory() const;
 
         static_char* PASSWORD_OPT = "remote_access_password";
+        static_char* CIPHER_OPT = "cipher";
+        static_char* PRAGMAS_OPT = "pragmas";
 
     private:
         void initAdb();

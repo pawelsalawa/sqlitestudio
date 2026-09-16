@@ -1127,7 +1127,7 @@ QList<SchemaResolver::TableListItem> SchemaResolver::getAllTableListItems(const 
         //SqlQueryPtr results = db->exec(queryTpl.arg(getPrefixDb(database)), dbFlags);
         if (results->isError())
         {
-            qCritical() << "Error while getting all table list items in SchemaResolver:" << results->getErrorCode();
+            qCritical() << "Error while getting all table list items in SchemaResolver:" << results->getErrorCode() << results->getErrorText();
             return items;
         }
 

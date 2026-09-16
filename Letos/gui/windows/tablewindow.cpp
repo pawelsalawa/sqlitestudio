@@ -496,7 +496,7 @@ void TableWindow::defineCurrentContextDb()
 
 void TableWindow::initDbAndTable()
 {
-    if (table.isNull())
+    if (table.isNull() && existingTable)
         return;
 
     ui->structureView->setItemDelegateForColumn(0, iconPositionDelegate);

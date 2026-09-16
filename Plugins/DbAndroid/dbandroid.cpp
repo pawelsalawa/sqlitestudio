@@ -48,6 +48,17 @@ Db* DbAndroid::getInstance(const QString& name, const QString& path, const QHash
 
 QList<DbPluginOption> DbAndroid::getOptionsList() const
 {
+    QString defaultCipher = "aes256cbc";
+
+    QMap<QString, QVariant> ciphers;
+    ciphers.insert("wxSQLite3: AES 128 Bit", QVariant("aes128cbc"));
+    ciphers.insert("wxSQLite3: AES 256 Bit", QVariant("aes256cbc"));
+    ciphers.insert("sqleet: ChaCha20-Poly1305", QVariant("chacha20"));
+    ciphers.insert("SQLCipher: AES 256 Bit", QVariant("sqlcipher"));
+    ciphers.insert("System.Data.SQLite: RC4", QVariant("rc4"));
+    ciphers.insert("Ascon-128 v1.2", QVariant("ascon128"));
+    ciphers.insert("AEGIS", QVariant("aegis"));
+
     QList<DbPluginOption> options;
 
     DbPluginOption customBrowseOpt;
@@ -64,6 +75,31 @@ QList<DbPluginOption> DbAndroid::getOptionsList() const
         return dialog.getUrl().toUrlString();
     };
     options << customBrowseOpt;
+
+    DbPluginOption optPass;
+    optPass.type = DbPluginOption::PASSWORD;
+    optPass.key = PASSWORD_OPT;
+    optPass.label = tr("Password (key)");
+    optPass.toolTip = tr("Leave empty to create or connect to decrypted database.");
+    optPass.placeholderText = tr("Encryption password");
+    options << optPass;
+
+    DbPluginOption optCipher;
+    optCipher.type = DbPluginOption::CHOICE;
+    optCipher.key = CIPHER_OPT;
+    optCipher.label = tr("Cipher");
+    optCipher.toolTip = tr("Cipher determines encryption algorithm used to encrypt the database.");
+    optCipher.choiceDataValues = ciphers;
+    optCipher.defaultValue = defaultCipher;
+    options << optCipher;
+
+    DbPluginOption optPragmas;
+    optPragmas.type = DbPluginOption::SQL;
+    optPragmas.key = PRAGMAS_OPT;
+    optPragmas.defaultValue = "-- Optional PRAGMA statements for cipher configuration";
+    optPragmas.label = tr("Cipher configuration (optional)");
+    optPragmas.toolTip = tr("PRAGMA statements to customize cipher configuration, such as KDF iterations, legacy mode, etc.\nThey will be executed upon each opening of the database.");
+    options << optPragmas;
 
     return options;
 }

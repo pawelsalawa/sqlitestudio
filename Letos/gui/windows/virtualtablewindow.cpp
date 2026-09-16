@@ -127,7 +127,7 @@ void VirtualTableWindow::init()
 
 void VirtualTableWindow::initDbAndTable()
 {
-    if (table.isNull())
+    if (table.isNull() && existingTable)
         return;
 
     ui->columnsView->setItemDelegateForColumn(0, iconPositionDelegate);
