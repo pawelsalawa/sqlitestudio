@@ -124,7 +124,7 @@ bool DbAndroid::init()
     connect(this, SIGNAL(invalidAdb()), this, SLOT(handleInvalidAdb()));
     connect(MAINWINDOW->getStatusField(), SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
-    connect(ICONMANAGER, SIGNAL(rescannedFor(QString)), this, SLOT(createJarAction(QString)));
+    connect(ICONMANAGER, SIGNAL(rescannedFor(QString)), this, SLOT(createAarAction(QString)));
 
     connectionFactory = new DbAndroidConnectionFactory(this);
 
@@ -136,7 +136,7 @@ bool DbAndroid::init()
         qDebug() << "Using ADB binary:" << cfg.DbAndroid.AdbPath.get();
         adbValid = true;
         adbManager->getDevices(true);
-        showJarMessage();
+        showAarMessage();
     }
     else
         runInThread([=, this]{ initAdb(); });
@@ -146,10 +146,10 @@ bool DbAndroid::init()
 
 void DbAndroid::deinit()
 {
-    if (jarAction)
-        MAINWINDOW->getToolsMenu()->removeAction(jarAction);
+    if (aarAction)
+        MAINWINDOW->getToolsMenu()->removeAction(aarAction);
 
-    safe_delete(jarAction);
+    safe_delete(aarAction);
     safe_delete(connectionFactory);
     safe_delete(adbManager);
     SQLS_CLEANUP_RESOURCE(dbandroid);
@@ -208,25 +208,25 @@ void DbAndroid::handleValidAdb(bool showMessage)
     if (showMessage)
         notifyInfo(tr("Using Android Debug Bridge: %1").arg(cfg.DbAndroid.AdbPath.get()));
 
-    showJarMessage();
+    showAarMessage();
     DBLIST->rescanInvalidDatabasesForPlugin(this);
 }
 
-void DbAndroid::showJarMessage()
+void DbAndroid::showAarMessage()
 {
-    if (!cfg.DbAndroid.JarDownloadNotified.get())
+    if (!cfg.DbAndroid.AarDownloadNotified.get())
     {
-        notifyInfo(tr("You can grab Android connector JAR file from Tools menu. It's required for 2 of 3 connections supported by the Android plugin. "
+        notifyInfo(tr("You can grab Android connector AAR file from Tools menu. It's required for 2 of 3 connections supported by the Android plugin. "
                       "For more details read plugin's documentation on <a href=\"%1\">Letos's wiki page.</a>").arg(PLUGIN_MANUAL_URL));
-        cfg.DbAndroid.JarDownloadNotified.set(true);
+        cfg.DbAndroid.AarDownloadNotified.set(true);
     }
 }
 
-void DbAndroid::createJarAction()
+void DbAndroid::createAarAction()
 {
     QIcon i = ICONMANAGER->getIcon("android");
-    jarAction = MAINWINDOW->getToolsMenu()->addAction(i, tr("Get Android connector JAR file"));
-    connect(jarAction, SIGNAL(triggered()), this, SLOT(getJar()));
+    aarAction = MAINWINDOW->getToolsMenu()->addAction(i, tr("Get Android connector AAR file"));
+    connect(aarAction, SIGNAL(triggered()), this, SLOT(getAar()));
 }
 
 void DbAndroid::handleInvalidAdb()
@@ -273,27 +273,27 @@ void DbAndroid::deviceListChanged()
     DBLIST->rescanInvalidDatabasesForPlugin(this);
 }
 
-void DbAndroid::getJar()
+void DbAndroid::getAar()
 {
-    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save JAR file"));
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save AAR file"));
     if (path.isEmpty())
         return;
 
-    QString newPath = path + "/SQLiteStudioRemote.jar";
-    QFile jarFile(":/dbandroid/SQLiteStudioRemote.jar");
-    if (jarFile.copy(newPath)) {
-        notifyInfo("Android connector JAR file saved at " + newPath);
+    QString newPath = path + "/letosremote.aar";
+    QFile aarFile(":/dbandroid/letosremote.aar");
+    if (aarFile.copy(newPath)) {
+        notifyInfo("Android connector AAR file saved at " + newPath);
     } else {
-        notifyError("Unable to save android connector JAR file at " + newPath);
+        notifyError("Unable to save android connector AAR file at " + newPath);
     }
 }
 
-void DbAndroid::createJarAction(const QString& pluginName)
+void DbAndroid::createAarAction(const QString& pluginName)
 {
     if (pluginName != "" && pluginName != getName())
         return;
 
-    createJarAction();
+    createAarAction();
 }
 
 AdbManager* DbAndroid::getAdbManager() const

@@ -13,7 +13,7 @@ class QAction;
 CFG_CATEGORIES_EX(DbAndroidConfig, DBANDROIDSHARED_EXPORT,
     CFG_CATEGORY_EX(DbAndroid, DBANDROIDSHARED_EXPORT,
         CFG_ENTRY(QString, AdbPath, QString())
-        CFG_ENTRY(bool,    JarDownloadNotified, false)
+        CFG_ENTRY(bool,    AarDownloadNotified, false)
     )
 )
 
@@ -44,13 +44,13 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
     private:
         void initAdb();
         QString askForAdbPath();
-        void showJarMessage();
-        void createJarAction();
+        void showAarMessage();
+        void createAarAction();
 
         AdbManager* adbManager = nullptr;
         DbAndroidConnectionFactory* connectionFactory = nullptr;
         bool adbValid = false;
-        QAction* jarAction = nullptr;
+        QAction* aarAction = nullptr;
 
         static_char* PLUGIN_MANUAL_URL = "https://github.com/pawelsalawa/letos/wiki/DbAndroid";
         static_char* SELECT_ADB_URL = "select_adb://";
@@ -62,8 +62,8 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
         void handleInvalidAdb();
         void statusFieldLinkClicked(const QString& link);
         void deviceListChanged();
-        void getJar();
-        void createJarAction(const QString& pluginName);
+        void getAar();
+        void createAarAction(const QString& pluginName);
 
     signals:
         void adbReady(bool showMessage);

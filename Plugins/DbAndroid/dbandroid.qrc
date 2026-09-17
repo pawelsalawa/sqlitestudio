@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/dbandroid">
-        <file>SQLiteStudioRemote.jar</file>
+        <file>letosremote.aar</file>
     </qresource>
     <qresource prefix="/icons">
         <file>android.svg</file>
