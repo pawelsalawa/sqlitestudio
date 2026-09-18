@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/dbandroid">
-        <file>letosremote.aar</file>
+        <file>bin/letosremote.aar</file>
+        <file>bin/arm64-v8a/sqlite3</file>
+        <file>bin/armeabi-v7a/sqlite3</file>
+        <file>bin/x86/sqlite3</file>
+        <file>bin/x86_64/sqlite3</file>
     </qresource>
     <qresource prefix="/icons">
         <file>android.svg</file>

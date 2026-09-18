@@ -99,7 +99,6 @@ cmake-build-*/
 # Visual Studio (in case of Windows builds)
 .vs/
 [Bb]uild*/
-[Bb]in/
 [Dd]ebug*/
 [Rr]elease*/
 x64/

@@ -280,7 +280,7 @@ void DbAndroid::getAar()
         return;
 
     QString newPath = path + "/letosremote.aar";
-    QFile aarFile(":/dbandroid/letosremote.aar");
+    QFile aarFile(":/dbandroid/bin/letosremote.aar");
     if (aarFile.copy(newPath)) {
         notifyInfo("Android connector AAR file saved at " + newPath);
     } else {
