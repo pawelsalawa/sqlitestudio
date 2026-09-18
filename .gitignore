@@ -42,7 +42,6 @@ Makefile
 # Common out-of-source build dirs
 build/
 build-*/
-bin/
 lib/
 obj/
 out/
