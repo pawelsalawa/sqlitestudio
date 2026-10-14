@@ -6,6 +6,17 @@
 #include "schemaresolver.h"
 #include <QDebug>
 
+static SelectResolver::Table normalizeRowIdTable(SelectResolver::Table table)
+{
+    if (table.database.compare("main", Qt::CaseInsensitive) == 0 &&
+            (table.originalDatabase.isNull() || table.originalDatabase.compare("main", Qt::CaseInsensitive) == 0))
+    {
+        table.database = QString();
+        table.originalDatabase = QString();
+    }
+    return table;
+}
+
 bool QueryExecutorAddRowIds::exec()
 {
     if (context->noMetaColumns)
@@ -56,10 +67,23 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     // Go trough subselects to add ROWID result columns there and collect rowId mapping to use here.
     for (SqliteSelect*& subSelect : getSubSelects(core))
     {
-        unite(rowIdColsMap, addRowIdForTables(subSelect, ok, false));
+        auto subSelectRowIds = addRowIdForTables(subSelect, ok, false);
         if (!ok)
             return rowIdColsMap;
 
+        // Expose inner row IDs under the source's alias at this SELECT boundary.
+        // Otherwise separate references to the same table can overwrite each other.
+        auto source = dynamic_cast<SqliteSelect::Core::SingleSource*>(subSelect->parentStatement());
+        for (auto it = subSelectRowIds.constBegin(); it != subSelectRowIds.constEnd(); ++it)
+        {
+            SelectResolver::Table table = it.key();
+            if (source && !source->alias.isNull())
+            {
+                table.pushTableAlias();
+                table.tableAlias = source->alias;
+            }
+            rowIdColsMap[table] = it.value();
+        }
     }
     select->rebuildTokens();
 
@@ -68,6 +92,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
 
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
+    QHash<SelectResolver::Table,QHash<QString,QString>> currentRowIds;
     for (const SelectResolver::Table& table : tables)
     {
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT |
@@ -86,8 +111,10 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
             ok = false;
             return rowIdColsMap;
         }
+        SelectResolver::Table keyTable = normalizeRowIdTable(table);
+        currentRowIds[keyTable] = rowIdColsMap.value(keyTable);
     }
-    return rowIdColsMap;
+    return currentRowIds;
 }
 
 QList<SqliteSelect*> QueryExecutorAddRowIds::getSubSelects(SqliteSelect::Core* core)
@@ -127,12 +154,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
-    SelectResolver::Table destilledTable = table;
-    if (destilledTable.database.toLower() == "main" && (destilledTable.originalDatabase.isNull() || destilledTable.originalDatabase.toLower() == "main"))
-    {
-        destilledTable.database = QString();
-        destilledTable.originalDatabase = QString();
-    }
+    SelectResolver::Table destilledTable = normalizeRowIdTable(table);
 
     SelectResolver::Table keyTable = destilledTable;
 
@@ -152,6 +174,10 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     {
         for (auto rowIdColsMapTable = rowIdColsMap.keyBegin(), end = rowIdColsMap.keyEnd(); rowIdColsMapTable != end; ++rowIdColsMapTable)
         {
+            if (destilledTable.database.compare(rowIdColsMapTable->database, Qt::CaseInsensitive) != 0 ||
+                    destilledTable.table.compare(rowIdColsMapTable->table, Qt::CaseInsensitive) != 0)
+                continue;
+
             if (!table.oldTableAliases.contains(rowIdColsMapTable->tableAlias, Qt::CaseInsensitive))
                 continue;
 
@@ -178,6 +204,8 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
         qCritical() << "No result column defined for a table in QueryExecutorAddRowIds::addResCols().";
         return false;
     }
+
+    rowIdColsMap[destilledTable] = executorToRealColumns;
 
     QHashIterator<QString,QString> it(executorToRealColumns);
     while (it.hasNext())

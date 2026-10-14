@@ -74,10 +74,10 @@ TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents(bool repl
         case ANY:
             break;
         case MATERIALIZED:
-            builder.withKeyword("MATERIALIZED");
+            builder.withSpace().withKeyword("MATERIALIZED");
             break;
         case NOT_MATERIALIZED:
-            builder.withKeyword("NOT").withSpace().withKeyword("MATERIALIZED");
+            builder.withSpace().withKeyword("NOT").withSpace().withKeyword("MATERIALIZED");
             break;
     }
 

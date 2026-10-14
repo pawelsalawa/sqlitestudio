@@ -1,6 +1,7 @@
 #include "sqliteexpr.h"
 #include "sqliteraise.h"
 #include "sqliteselect.h"
+#include "sqlitewith.h"
 #include "sqlitecolumntype.h"
 #include "sqlitefilterover.h"
 #include "sqliteorderby.h"
@@ -503,7 +504,7 @@ QStringList SqliteExpr::getTablesInStatement()
 
 QStringList SqliteExpr::getDatabasesInStatement()
 {
-    if (database.isNull() && !table.isNull() && validDbNames.contains(table, Qt::CaseInsensitive))
+    if (isDatabasePrefix())
         return getStrListFromValue(table); // it's a "db.", not a "db.table."
 
     return getStrListFromValue(database);
@@ -544,12 +545,42 @@ TokenList SqliteExpr::getTableTokensInStatement()
 TokenList SqliteExpr::getDatabaseTokensInStatement()
 {
     TokenList list;
-    if (database.isNull() && !table.isNull() && validDbNames.contains(table, Qt::CaseInsensitive))
+    if (isDatabasePrefix())
         list << tokens[0]; // it's a "db.", not a "db.table."
     else if (!database.isNull())
         list << tokens[0];
 
     return list;
+}
+
+bool SqliteExpr::isDatabasePrefix() const
+{
+    if (!database.isNull() || table.isNull() || !validDbNames.contains(stripObjName(table), Qt::CaseInsensitive))
+        return false;
+
+    // A visible table/alias or CTE takes precedence over a registered database name.
+    for (SqliteStatement* stmt = parentStatement(); stmt; stmt = stmt->parentStatement())
+    {
+        if (auto core = dynamic_cast<SqliteSelect::Core*>(stmt); core && core->from)
+        {
+            for (auto source : core->from->getAllTypedStatements<SqliteSelect::Core::SingleSource>())
+            {
+                if (source->findClosestTypedParentStatement<SqliteSelect::Core>() != core)
+                    continue;
+
+                QString qualifier = source->alias.isNull() ? source->table : source->alias;
+                if (stripObjName(qualifier).compare(stripObjName(table), Qt::CaseInsensitive) == 0)
+                    return false;
+            }
+        }
+        if (auto select = dynamic_cast<SqliteSelect*>(stmt); select && select->with)
+        {
+            for (auto cte : select->with->cteList)
+                if (stripObjName(cte->table).compare(stripObjName(table), Qt::CaseInsensitive) == 0)
+                    return false;
+        }
+    }
+    return true;
 }
 
 QList<SqliteStatement::FullObject> SqliteExpr::getFullObjectsInStatement()

@@ -154,6 +154,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void evaluatePostParsing();
 
     private:
+        bool isDatabasePrefix() const;
         bool doubleQuotesChecked = false;
         TokenList rebuildId(bool replaceStatementTokens) const;
         TokenList rebuildLike(bool replaceStatementTokens) const;

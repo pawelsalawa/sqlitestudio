@@ -674,9 +674,6 @@ QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Co
                 ctePart.chop(1); // Remove trailing semicolon, because it will break the query
 
             withDefs += ctePart;
-
-            if (withCte->table.compare(cte->table, Qt::CaseInsensitive) == 0)
-                break;
         }
     }
 
@@ -689,7 +686,7 @@ QList<SelectResolver::Column> SelectResolver::resolveCteColumns(SqliteSelect::Co
     for (Column& column : columnSources)
     {
         column.flags |= FROM_CTE_SELECT;
-        column.tableAlias = cte->table;
+        column.tableAlias = joinSrc->alias.isNull() ? cte->table : joinSrc->alias;
 
         // From CTE perspective, however the column is received as "result column name" from SQLite API
         // is what we report back to user of the CTE as available column. No matter if it's actual alias,

@@ -2,7 +2,38 @@
 #include "parser/ast/sqlitecreateview.h"
 #include "parser/ast/sqliteselect.h"
 #include "schemaresolver.h"
+#include "common/utils_sql.h"
 #include <QDebug>
+
+static void qualifyViewSources(SqliteSelect* select, const QString& database)
+{
+    auto qualifySource = [&](SqliteStatement* source, QString& sourceDatabase, const QString& table)
+    {
+        if (table.isNull() || !sourceDatabase.isNull())
+            return;
+
+        for (SqliteStatement* stmt = source->parentStatement(); stmt; stmt = stmt->parentStatement())
+        {
+            auto scopedSelect = dynamic_cast<SqliteSelect*>(stmt);
+            if (!scopedSelect || !scopedSelect->with)
+                continue;
+
+            for (auto cte : scopedSelect->with->cteList)
+                if (stripObjName(cte->table).compare(stripObjName(table), Qt::CaseInsensitive) == 0)
+                    return;
+        }
+        sourceDatabase = database;
+    };
+
+    for (auto source : select->getAllTypedStatements<SqliteSelect::Core::SingleSource>())
+        qualifySource(source, source->database, source->table);
+
+    for (auto expr : select->getAllTypedStatements<SqliteExpr>())
+    {
+        if (expr->mode == SqliteExpr::Mode::IN)
+            qualifySource(expr, expr->database, expr->table);
+    }
+}
 
 QueryExecutorReplaceViews::~QueryExecutorReplaceViews()
 {
@@ -76,6 +107,10 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         if (src->table.isNull())
             continue;
 
+        // TEMP views can refer to multiple schemas, so retain their native name resolution.
+        if (src->database.compare("temp", Qt::CaseInsensitive) == 0)
+            continue;
+
         QStringList viewsInDatabase = getViews(src->database);
         if (!viewsInDatabase.contains(src->table, Qt::CaseInsensitive))
             continue;
@@ -113,6 +148,9 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         else
         {
             pair.first->select = new SqliteSelect(*dynamic_cast<SqliteSelect *>(parser.getQueries().first().get()));
+            QString database = pair.first->database.isNull() ? "main" : pair.first->database;
+            qualifyViewSources(pair.first->select, database);
+            pair.first->select->setParent(pair.first);
             pair.first->alias = alias;
             pair.first->database = QString();
             pair.first->table = QString();

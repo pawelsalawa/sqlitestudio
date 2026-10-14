@@ -176,6 +176,10 @@ void QueryExecutor::executeChain()
             stepFailed(currentStep);
             return;
         }
+
+        // Fallback must keep implicit attachment aliases, without subsequent metadata transformations.
+        if (qobject_cast<QueryExecutorAttaches*>(currentStep))
+            queriesForSimpleExecution = splitQueries(context->processedQuery, false, true);
     }
 
     requiredDbAttaches = context->dbNameToAttach.leftValues();

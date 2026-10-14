@@ -9,13 +9,13 @@
 
 // add necessary includes here
 
-class SqlQueryExecutorTest : public QObject
+class SqlFileExecutorTest : public QObject
 {
         Q_OBJECT
 
     public:
-        SqlQueryExecutorTest();
-        ~SqlQueryExecutorTest();
+        SqlFileExecutorTest();
+        ~SqlFileExecutorTest();
 
     private:
         void printErrors(QSignalSpy& spyErrors);
@@ -35,17 +35,17 @@ class SqlQueryExecutorTest : public QObject
 
 };
 
-SqlQueryExecutorTest::SqlQueryExecutorTest()
+SqlFileExecutorTest::SqlFileExecutorTest()
 {
 
 }
 
-SqlQueryExecutorTest::~SqlQueryExecutorTest()
+SqlFileExecutorTest::~SqlFileExecutorTest()
 {
 
 }
 
-void SqlQueryExecutorTest::printErrors(QSignalSpy& spyErrors)
+void SqlFileExecutorTest::printErrors(QSignalSpy& spyErrors)
 {
     if (spyErrors.count() > 0)
     {
@@ -56,31 +56,31 @@ void SqlQueryExecutorTest::printErrors(QSignalSpy& spyErrors)
     }
 }
 
-void SqlQueryExecutorTest::initTestCase()
+void SqlFileExecutorTest::initTestCase()
 {
     initKeywords();
     Lexer::staticInit();
     initMocks();
 }
 
-void SqlQueryExecutorTest::init()
+void SqlFileExecutorTest::init()
 {
     db = new DbSqlite3Mock("testdb");
     db->open();
 }
 
-void SqlQueryExecutorTest::cleanup()
+void SqlFileExecutorTest::cleanup()
 {
     db->close();
     delete db;
     db = nullptr;
 }
 
-void SqlQueryExecutorTest::cleanupTestCase()
+void SqlFileExecutorTest::cleanupTestCase()
 {
 }
 
-void SqlQueryExecutorTest::testPrintExtended()
+void SqlFileExecutorTest::testPrintExtended()
 {
     SqlFileExecutor fileExecutor;
     fileExecutor.setExecutionMode(SqlFileExecutor::EXTENDED);
@@ -98,7 +98,7 @@ void SqlQueryExecutorTest::testPrintExtended()
     QVERIFY(infoMsgs.contains("x3"));
 }
 
-void SqlQueryExecutorTest::testPrintStrict()
+void SqlFileExecutorTest::testPrintStrict()
 {
     SqlFileExecutor fileExecutor;
     fileExecutor.setExecutionMode(SqlFileExecutor::STRICT_MODE);
@@ -111,7 +111,7 @@ void SqlQueryExecutorTest::testPrintStrict()
     QVERIFY(spyErrors.count() == 1);
 }
 
-void SqlQueryExecutorTest::testPrintPermissive()
+void SqlFileExecutorTest::testPrintPermissive()
 {
     SqlFileExecutor fileExecutor;
     fileExecutor.setExecutionMode(SqlFileExecutor::PERMISSIVE);
@@ -129,7 +129,7 @@ void SqlQueryExecutorTest::testPrintPermissive()
     QVERIFY(!infoMsgs.contains("x3"));
 }
 
-void SqlQueryExecutorTest::testRead1()
+void SqlFileExecutorTest::testRead1()
 {
     SqlFileExecutor fileExecutor;
     fileExecutor.setExecutionMode(SqlFileExecutor::EXTENDED);
@@ -145,7 +145,7 @@ void SqlQueryExecutorTest::testRead1()
     QVERIFY(infoMsgs.contains("expected value 1 2 3"));
 }
 
-void SqlQueryExecutorTest::testRead2()
+void SqlFileExecutorTest::testRead2()
 {
     SqlFileExecutor fileExecutor;
     fileExecutor.setExecutionMode(SqlFileExecutor::EXTENDED);
@@ -158,6 +158,6 @@ void SqlQueryExecutorTest::testRead2()
     QVERIFY(spyErrors.count() == 1);
 }
 
-QTEST_APPLESS_MAIN(SqlQueryExecutorTest)
+QTEST_APPLESS_MAIN(SqlFileExecutorTest)
 
-#include "tst_sqlqueryexecutortest.moc"
+#include "tst_sqlfileexecutortest.moc"
