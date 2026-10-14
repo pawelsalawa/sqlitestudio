@@ -536,14 +536,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
         <location filename="../importworker.cpp" line="134"/>
-        <location filename="../importworker.cpp" line="181"/>
-        <location filename="../importworker.cpp" line="188"/>
         <source>Error while importing data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="134"/>
-        <location filename="../importworker.cpp" line="188"/>
+        <location filename="../importworker.cpp" line="190"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation type="unfinished"></translation>
@@ -551,6 +549,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../importworker.cpp" line="176"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importworker.cpp" line="181"/>
+        <location filename="../importworker.cpp" line="189"/>
+        <source>Error while importing data row number %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
