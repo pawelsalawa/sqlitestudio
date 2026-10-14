@@ -72,6 +72,7 @@ class ParserTest : public QObject
         void testTrueFalseLiterals1();
         void testDollarInName();
         void testExprIsString();
+        void testNotEqualOperator();
 };
 
 ParserTest::ParserTest()
@@ -881,6 +882,31 @@ void ParserTest::testExprIsString()
     select->rebuildTokens();
     QString detokenized = select->detokenize();
     QVERIFY(detokenized.compare("select SomeColumn IS 'This literal string with spaces';", Qt::CaseInsensitive) == 0);
+}
+
+void ParserTest::testNotEqualOperator()
+{
+    // Regression test: "a!=0" used to parse as column "a!" compared with "="
+    // to 0, which rebuilt as "a! = 0" and was rejected by SQLite.
+    QString sql = "SELECT a FROM t WHERE a!=0;";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteSelectPtr select = parser3->getQueries().first().dynamicCast<SqliteSelect>();
+    QVERIFY(select);
+
+    SqliteExpr* where = select->coreSelects.first()->where;
+    QVERIFY(where);
+    QCOMPARE(where->mode, SqliteExpr::Mode::BINARY_OP);
+    QCOMPARE(where->binaryOp, "!=");
+    QVERIFY(where->expr1);
+    QCOMPARE(where->expr1->column, "a");
+    QVERIFY(where->expr2);
+    QCOMPARE(where->expr2->mode, SqliteExpr::Mode::LITERAL_VALUE);
+
+    select->rebuildTokens();
+    QCOMPARE(select->detokenize(), "SELECT a FROM t WHERE a != 0;");
 }
 
 void ParserTest::initTestCase()

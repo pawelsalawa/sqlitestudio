@@ -19,6 +19,7 @@ class LexerTest : public QObject
         void testBindParam1();
         void testBlobLiteral();
         void testDollarId();
+        void testNotEqualOperator();
         void testNormalizeWhitespaceTokens();
 };
 
@@ -113,6 +114,23 @@ void LexerTest::testDollarId()
     QCOMPARE(tokens.size(), 3);
     QCOMPARE(tokens[2]->value, "v$test");
     QCOMPARE(tokens[2]->type, Token::OTHER);
+}
+
+void LexerTest::testNotEqualOperator()
+{
+    // Regression test: "!" must not be absorbed into the preceding identifier.
+    // It used to lex "a!=0" as "a!" "=" "0" and rebuild it as "a! = 0".
+    QString sql = "SELECT a FROM t WHERE a!=0";
+
+    Lexer lex;
+    TokenList tokens = lex.tokenize(sql);
+    QCOMPARE(tokens.size(), 13);
+    QCOMPARE(tokens[10]->type, Token::OTHER);
+    QCOMPARE(tokens[10]->value, "a");
+    QCOMPARE(tokens[11]->type, Token::OPERATOR);
+    QCOMPARE(tokens[11]->value, "!=");
+    QCOMPARE(tokens[12]->type, Token::INTEGER);
+    QCOMPARE(tokens[12]->value, "0");
 }
 
 void LexerTest::testNormalizeWhitespaceTokens()
