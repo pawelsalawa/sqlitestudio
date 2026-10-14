@@ -178,14 +178,16 @@ bool ImportWorker::importData(int& rowCount)
             }
             else
             {
-                error(tr("Error while importing data: %1").arg(query->getErrorText()));
+                error(tr("Error while importing data row number %1: %2")
+                      .arg(QString::number(rowCount + 1), query->getErrorText()));
                 return false;
             }
         }
 
         if ((rowCount % 100) == 0 && isInterrupted())
         {
-            error(tr("Error while importing data: %1").arg(tr("Interrupted.", "import process status update")));
+            error(tr("Error while importing data row number %1: %2")
+                  .arg(QString::number(rowCount + 1), tr("Interrupted.", "import process status update")));
             return false;
         }
         rowCount++;

@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 4.0.4
+- BUGFIX: #5816 Include the data row number in import errors for CSV and other import sources.
 - BUGFIX: #5804 Fixed renaming columns used by dependent views, CHECK constraints, generated columns and table keys, and dropping views before rebuilding their tables.
 - BUGFIX: #5810 Fixed unreadable Debug Console text in dark themes by using the theme's text color.
 - BUGFIX: #5814 Fixed queries using implicitly attached databases with views, CTE aliases, forward references and materialization hints, including incorrect results when table names overlap.
