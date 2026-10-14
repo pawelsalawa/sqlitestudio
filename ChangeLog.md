@@ -1,5 +1,8 @@
 # ChangeLog
 
+### 4.0.4
+- BUGFIX: #5831 Fixed using `!` and `!=` operators without a whitespace separating it from the value or id.
+
 ### 4.0.3
 - ADDED: #5794 Added glowing effect for entities & arrows being in relation with the selected entity. Can be turned off/on.
 - BUGFIX: #5794 Scene area once again refreshes after entity is moved out of the scene, so it's possible to scroll to see it.
