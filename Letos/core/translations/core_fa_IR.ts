@@ -537,14 +537,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="181"/>
-      <location filename="../importworker.cpp" line="188"/>
       <source>Error while importing data: %1</source>
       <translation>خطا هنگام وارد کردن داده‌ها: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="188"/>
+      <location filename="../importworker.cpp" line="190"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>قطع شد.</translation>
@@ -554,37 +552,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>نمی‌توان ردیف دادهٔ شمارهٔ %1 را وارد کرد. ردیف نادیده گرفته شد. جزئیات مشکل: %2</translation>
     </message>
+    <message>
+      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="189"/>
+      <source>Error while importing data row number %1: %2</source>
+      <translation>خطا هنگام درون‌ریزی ردیف داده شماره %1: %2</translation>
+    </message>
   </context>
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="564"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="567"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>نمی‌توان افزونهٔ %1&apos; را بارگذاری کرد، زیرا با افزونهٔ %2 تداخل دارد.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="578"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>نمی‌توان افزونهٔ %1 را بارگذاری کرد، زیرا وابستگی آن بارگذاری نشده است: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="584"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="587"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>نمی‌توان افزونهٔ %1 را بارگذاری کرد. جزئیات خطا: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="600"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="603"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>نمی‌توان افزونهٔ %1 را بارگذاری کرد (خطا هنگام مقداردهی اولیهٔ افزونه).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="761"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="764"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>حداقل: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="762"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="765"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>حداکثر: %1</translation>
@@ -857,32 +861,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="79"/>
+      <location filename="../common/utils.cpp" line="81"/>
       <source>SQLite database or SQL file</source>
       <translation>پایگاه دادهٔ SQLite یا فایل SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="81"/>
+      <location filename="../common/utils.cpp" line="83"/>
       <source>SQL files</source>
       <translation>فایل‌های SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="82"/>
+      <location filename="../common/utils.cpp" line="84"/>
       <source>CSV files</source>
       <translation>فایل‌های CSV</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="83"/>
+      <location filename="../common/utils.cpp" line="85"/>
       <source>Text files</source>
       <translation>فایل‌های متنی</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="84"/>
+      <location filename="../common/utils.cpp" line="86"/>
       <source>All files</source>
       <translation>همهٔ فایل‌ها</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="968"/>
+      <location filename="../common/utils.cpp" line="982"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>نمی‌توان فایل &apos;%1&apos; را برای خواندن باز کرد: %2</translation>
     </message>
@@ -1041,41 +1045,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>پر کردن جدول</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="286"/>
+      <location filename="../tablemodifier.cpp" line="302"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>جدول %1 به جدول %2 ارجاع می‌دهد، اما تعریف کلید خارجی برای تعریف جدید جدول به‌دلیل مشکلات هنگام تجزیهٔ DDL جدول %3 به‌روزرسانی نخواهد شد.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="666"/>
+      <location filename="../tablemodifier.cpp" line="682"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>همهٔ ستون‌هایی که توسط نمایهٔ %1 نمایه‌گذاری شده بودند از بین رفته‌اند. این نمایه پس از تغییر جدول دوباره ایجاد نخواهد شد.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="710"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>مشکلی در پردازش صحیح ماشهٔ %1 وجود دارد. ممکن است پس از آن به‌طور کامل به‌روزرسانی نشود و به توجه شما نیاز داشته باشد.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="725"/>
+      <location filename="../tablemodifier.cpp" line="741"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>همهٔ ستون‌های پوشش‌داده‌شده توسط ماشهٔ %1 از بین رفته‌اند. این ماشه پس از تغییر جدول دوباره ایجاد نخواهد شد.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="757"/>
+      <location filename="../tablemodifier.cpp" line="773"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>نمی‌توان ماشهٔ %1 را مطابق با تغییر جدول %2 به‌روزرسانی کرد.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="776"/>
+      <location filename="../tablemodifier.cpp" line="811"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>نمی‌توان نمای %1 را مطابق با تغییرات جدول %2 به‌روزرسانی کرد.
 نما همان‌گونه که هست باقی خواهد ماند.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="961"/>
-      <location filename="../tablemodifier.cpp" line="985"/>
-      <location filename="../tablemodifier.cpp" line="1004"/>
+      <location filename="../tablemodifier.cpp" line="990"/>
+      <location filename="../tablemodifier.cpp" line="1014"/>
+      <location filename="../tablemodifier.cpp" line="1033"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>مشکلی در به‌روزرسانی دستور %1 درون ماشهٔ %2 وجود دارد. یکی از زیر‌دستورهای %1 که ممکن است به جدول %3 ارجاع دهد، نمی‌تواند به‌درستی تغییر داده شود. ممکن است به‌روزرسانی دستی ماشه لازم باشد.</translation>
     </message>
@@ -1108,28 +1112,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="207"/>
       <source>Execution interrupted.</source>
       <translation>اجرا قطع شد.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="249"/>
       <source>Database is not open.</source>
       <translation>پایگاه داده باز نیست.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="254"/>
+      <location filename="../db/queryexecutor.cpp" line="258"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>فقط یک پرس‌وجو می‌تواند هم‌زمان اجرا شود.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="363"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="367"/>
+      <location filename="../db/queryexecutor.cpp" line="612"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>هنگام اجرای پرس‌وجوی count(*) خطایی رخ داد، بنابراین صفحه‌بندی داده‌ها غیرفعال خواهد شد. جزئیات خطا از پایگاه داده: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="525"/>
+      <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>Letos was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>Letos&apos; نتوانست فراداده را از پرس‌وجو استخراج کند. نتایج قابل ویرایش نخواهند بود.</translation>
     </message>
