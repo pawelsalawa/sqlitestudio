@@ -1106,28 +1106,28 @@ The view will remain as it is.</source>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="203"/>
+        <location filename="../db/queryexecutor.cpp" line="207"/>
         <source>Execution interrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="245"/>
+        <location filename="../db/queryexecutor.cpp" line="249"/>
         <source>Database is not open.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="254"/>
+        <location filename="../db/queryexecutor.cpp" line="258"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="363"/>
-        <location filename="../db/queryexecutor.cpp" line="608"/>
+        <location filename="../db/queryexecutor.cpp" line="367"/>
+        <location filename="../db/queryexecutor.cpp" line="612"/>
         <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="525"/>
+        <location filename="../db/queryexecutor.cpp" line="529"/>
         <source>Letos was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation type="unfinished"></translation>
     </message>
