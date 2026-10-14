@@ -6879,208 +6879,208 @@ find next</source>
 <context>
     <name>SqlEditor</name>
     <message>
-        <location filename="../sqleditor.cpp" line="194"/>
+        <location filename="../sqleditor.cpp" line="195"/>
         <source>Wrap words</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="158"/>
+        <location filename="../sqleditor.cpp" line="159"/>
         <source>Cut</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="159"/>
+        <location filename="../sqleditor.cpp" line="160"/>
         <source>Copy</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="160"/>
+        <location filename="../sqleditor.cpp" line="161"/>
         <source>Paste</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="161"/>
+        <location filename="../sqleditor.cpp" line="162"/>
         <source>Delete</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="162"/>
+        <location filename="../sqleditor.cpp" line="163"/>
         <source>Select all</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="163"/>
+        <location filename="../sqleditor.cpp" line="164"/>
         <source>Undo</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="164"/>
+        <location filename="../sqleditor.cpp" line="165"/>
         <source>Redo</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="166"/>
+        <location filename="../sqleditor.cpp" line="167"/>
         <source>Complete</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="167"/>
+        <location filename="../sqleditor.cpp" line="168"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="168"/>
+        <location filename="../sqleditor.cpp" line="169"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="169"/>
+        <location filename="../sqleditor.cpp" line="170"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="170"/>
+        <location filename="../sqleditor.cpp" line="171"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="171"/>
+        <location filename="../sqleditor.cpp" line="172"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="172"/>
+        <location filename="../sqleditor.cpp" line="173"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="173"/>
+        <location filename="../sqleditor.cpp" line="174"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="174"/>
+        <location filename="../sqleditor.cpp" line="175"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="175"/>
+        <location filename="../sqleditor.cpp" line="176"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="176"/>
+        <location filename="../sqleditor.cpp" line="177"/>
         <source>Find or replace</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="177"/>
+        <location filename="../sqleditor.cpp" line="178"/>
         <source>Find next</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="178"/>
+        <location filename="../sqleditor.cpp" line="179"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="179"/>
+        <location filename="../sqleditor.cpp" line="180"/>
         <source>Replace</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="180"/>
+        <location filename="../sqleditor.cpp" line="181"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="181"/>
+        <location filename="../sqleditor.cpp" line="182"/>
         <source>Increase font size</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="182"/>
+        <location filename="../sqleditor.cpp" line="183"/>
         <source>Decrease font size</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="297"/>
+        <location filename="../sqleditor.cpp" line="298"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="306"/>
+        <location filename="../sqleditor.cpp" line="307"/>
         <source>Saved SQL contents to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="562"/>
+        <location filename="../sqleditor.cpp" line="563"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1183"/>
+        <location filename="../sqleditor.cpp" line="1184"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1212"/>
+        <location filename="../sqleditor.cpp" line="1213"/>
         <source>Save to file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1227"/>
+        <location filename="../sqleditor.cpp" line="1228"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1228"/>
-        <location filename="../sqleditor.cpp" line="1259"/>
+        <location filename="../sqleditor.cpp" line="1229"/>
+        <location filename="../sqleditor.cpp" line="1260"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1260"/>
+        <location filename="../sqleditor.cpp" line="1261"/>
         <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1274"/>
+        <location filename="../sqleditor.cpp" line="1275"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1468"/>
+        <location filename="../sqleditor.cpp" line="1469"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1740"/>
+        <location filename="../sqleditor.cpp" line="1741"/>
         <source>Ctrl+click to open this table or view</source>
         <translation type="unfinished"></translation>
     </message>
