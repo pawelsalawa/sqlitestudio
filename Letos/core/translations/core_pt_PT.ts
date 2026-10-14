@@ -537,14 +537,12 @@ Tabelas, índices, gatilhos e visões copiados para o banco de dados %3 permanec
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="181"/>
-      <location filename="../importworker.cpp" line="188"/>
       <source>Error while importing data: %1</source>
       <translation>Erro ao importar dados: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="188"/>
+      <location filename="../importworker.cpp" line="190"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Interrompido.</translation>
@@ -554,37 +552,43 @@ Tabelas, índices, gatilhos e visões copiados para o banco de dados %3 permanec
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Não foi possível importar a linha de dados número %1. A linha foi ignorada. Detalhes do problema: %2</translation>
     </message>
+    <message>
+      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="189"/>
+      <source>Error while importing data row number %1: %2</source>
+      <translation>Erro ao importar a linha de dados número %1: %2</translation>
+    </message>
   </context>
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="564"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="567"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Não é possível carregar o plugin %1, pois ele está em conflito com o plugin %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="578"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Não é possível carregar o plugin %1, pois sua dependência não foi carregada: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="584"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="587"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Não é possível carregar o plugin %1. Detalhes do erro: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="600"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="603"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Não é possível carregar o plugin %1 (erro ao inicializar o plugin).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="761"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="764"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>mín.: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="762"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="765"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>máx.: %1</translation>
@@ -857,32 +861,32 @@ Tabelas, índices, gatilhos e visões copiados para o banco de dados %3 permanec
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="79"/>
+      <location filename="../common/utils.cpp" line="81"/>
       <source>SQLite database or SQL file</source>
       <translation>Banco de dados SQLite ou arquivo SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="81"/>
+      <location filename="../common/utils.cpp" line="83"/>
       <source>SQL files</source>
       <translation>Arquivos SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="82"/>
+      <location filename="../common/utils.cpp" line="84"/>
       <source>CSV files</source>
       <translation>Arquivos CSV</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="83"/>
+      <location filename="../common/utils.cpp" line="85"/>
       <source>Text files</source>
       <translation>Arquivos de texto</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="84"/>
+      <location filename="../common/utils.cpp" line="86"/>
       <source>All files</source>
       <translation>Todos os arquivos</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="968"/>
+      <location filename="../common/utils.cpp" line="982"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Não foi possível abrir o arquivo &apos;%1&apos; para leitura: %2</translation>
     </message>
@@ -1041,41 +1045,41 @@ Tabelas, índices, gatilhos e visões copiados para o banco de dados %3 permanec
       <translation>Preenchimento de tabelas</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="286"/>
+      <location filename="../tablemodifier.cpp" line="302"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>A tabela %1 está referenciando a tabela %2, mas a definição da chave estrangeira não será atualizada para a nova definição da tabela devido a problemas ao analisar o DDL da tabela %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="666"/>
+      <location filename="../tablemodifier.cpp" line="682"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Todas as colunas indexadas pelo índice %1 desapareceram. O índice não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="710"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Há um problema ao processar corretamente o gatilho %1. Ele pode não ser totalmente atualizado depois e precisará da sua atenção.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="725"/>
+      <location filename="../tablemodifier.cpp" line="741"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Todas as colunas cobertas pelo gatilho %1 desapareceram. O gatilho não será recriado após a modificação da tabela.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="757"/>
+      <location filename="../tablemodifier.cpp" line="773"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Não é possível atualizar o gatilho %1 de acordo com a modificação da tabela %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="776"/>
+      <location filename="../tablemodifier.cpp" line="811"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Não é possível atualizar a visão %1 de acordo com as modificações da tabela %2.
 A visão permanecerá como está.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="961"/>
-      <location filename="../tablemodifier.cpp" line="985"/>
-      <location filename="../tablemodifier.cpp" line="1004"/>
+      <location filename="../tablemodifier.cpp" line="990"/>
+      <location filename="../tablemodifier.cpp" line="1014"/>
+      <location filename="../tablemodifier.cpp" line="1033"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Há um problema ao atualizar uma instrução %1 dentro do gatilho %2. Uma das subinstruções %1 que pode estar se referindo à tabela %3 não pode ser modificada corretamente. Pode ser necessário atualizar o gatilho manualmente.</translation>
     </message>
@@ -1108,28 +1112,28 @@ A visão permanecerá como está.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="207"/>
       <source>Execution interrupted.</source>
       <translation>Execução interrompida.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="249"/>
       <source>Database is not open.</source>
       <translation>O banco de dados não está aberto.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="254"/>
+      <location filename="../db/queryexecutor.cpp" line="258"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Apenas uma consulta pode ser executada simultaneamente.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="363"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="367"/>
+      <location filename="../db/queryexecutor.cpp" line="612"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Ocorreu um erro ao executar a consulta count(*); portanto, a paginação de dados será desativada. Detalhes do erro do banco de dados: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="525"/>
+      <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>Letos was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>O Letos não conseguiu extrair metadados da consulta. Os resultados não serão editáveis.</translation>
     </message>
