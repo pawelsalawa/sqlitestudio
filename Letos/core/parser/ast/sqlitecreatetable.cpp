@@ -548,6 +548,8 @@ void SqliteCreateTable::Column::Constraint::initGeneratedAs(SqliteExpr* expr, bo
     this->expr = expr;
     this->generatedKw = genKw;
     this->generatedType = generatedTypeFrom(type);
+    if (expr)
+        expr->setParent(this);
 }
 
 QString SqliteCreateTable::Column::Constraint::typeString() const

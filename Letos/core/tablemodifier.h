@@ -63,8 +63,8 @@ class API_EXPORT TableModifier
         void handleTriggers();
         void handleTrigger(SqliteCreateTriggerPtr trigger);
         void handleTriggerQueries(SqliteCreateTriggerPtr trigger);
-        void handleViews();
-        void handleView(SqliteCreateViewPtr view);
+        void handleViews(int dropSqlPosition);
+        bool handleView(SqliteCreateViewPtr view);
         SqliteQuery* handleTriggerQuery(SqliteQuery* query, const QString& trigName, const QString& trigTable);
         SqliteSelect* handleSelect(SqliteSelect* select, const QString& trigTable = QString());
         SqliteUpdate* handleTriggerUpdate(SqliteUpdate* update, const QString& trigName, const QString& trigTable);

@@ -54,8 +54,24 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     existingColumns = newCreateTable->getColumnNames();
     newName = newCreateTable->table;
 
+    // Expressions and local keys still refer to the original column names.
+    for (SqliteExpr* expr : newCreateTable->getAllTypedStatements<SqliteExpr>())
+    {
+        if (expr->mode == SqliteExpr::Mode::ID && tableColMap.contains(expr->column.toLower()))
+            expr->column = tableColMap.value(expr->column.toLower());
+    }
+    for (SqliteCreateTable::Constraint* constraint : newCreateTable->constraints)
+    {
+        for (SqliteIndexedColumn* column : constraint->indexedColumns)
+        {
+            if (tableColMap.contains(column->name.toLower()))
+                column->name = tableColMap.value(column->name.toLower());
+        }
+    }
+
     handleFkConstrains(newCreateTable.data(), createTable->table, newName); // validate FKs in this (but new) table
 
+    int dropSqlPosition = sqls.size();
     bool doCopyData = !getColumnsToCopyData(newCreateTable).isEmpty();
     if (table.compare(newName, Qt::CaseInsensitive) == 0)
     {
@@ -91,7 +107,7 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
 
     handleIndexes();
     handleTriggers();
-    handleViews();
+    handleViews(dropSqlPosition);
 
     postProcess();
 }
@@ -474,7 +490,7 @@ bool TableModifier::handleColumnTokens(TokenList& columnsToUpdate)
         lowerName = stripObjName(token->value).toLower();
         if (tableColMap.contains(lowerName))
         {
-            token->value = tableColMap[lowerName];
+            token->value = wrapObjIfNeeded(tableColMap[lowerName]);
             modified = true;
             continue;
         }
@@ -759,44 +775,56 @@ void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
     trigger->queries = newQueries;
 }
 
-void TableModifier::handleViews()
+void TableModifier::handleViews(int dropSqlPosition)
 {
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(true);
     QList<SqliteCreateViewPtr> parsedViewsForTable = resolver.getParsedViewsForTable(originalTable);
+    // Include views of views: their output columns can change as well, and they
+    // must not remain invalid while ALTER TABLE validates the schema.
+    for (int i = 0; i < parsedViewsForTable.size(); i++)
+    {
+        const QString viewName = parsedViewsForTable[i]->view;
+        for (const SqliteCreateViewPtr& dependent : resolver.getParsedViewsForTable(viewName))
+        {
+            bool included = false;
+            for (const SqliteCreateViewPtr& view : parsedViewsForTable)
+                included |= view->view.compare(dependent->view, Qt::CaseInsensitive) == 0;
+            if (!included)
+                parsedViewsForTable << dependent;
+        }
+    }
+    // Drop all affected views before rebuilding any tables, then recreate them
+    // (and their triggers) after the tables are back in place.
     for (SqliteCreateViewPtr& view : parsedViewsForTable)
-        handleView(view);
+    {
+        if (handleView(view))
+            sqls.insert(dropSqlPosition++, QString("DROP VIEW %1;").arg(wrapObjIfNeeded(view->view)));
+    }
 }
 
-void TableModifier::handleView(SqliteCreateViewPtr view)
+bool TableModifier::handleView(SqliteCreateViewPtr view)
 {
     SqliteSelect* newSelect = handleSelect(view->select);
     if (!newSelect)
     {
         errors << QObject::tr("Cannot not update view %1 according to table %2 modifications.\nThe view will remain as it is.").arg(view->view, originalTable);
-        return;
+        return false;
     }
 
-    view->select->rebuildTokens();
-    QString originalSelect = view->select->tokens.detokenize();
-
     newSelect->rebuildTokens();
-    QString newSelectStr = newSelect->tokens.detokenize();
-
-    if (originalSelect == newSelectStr)
-        return;
 
     delete view->select;
     view->select = newSelect;
     view->select->setParent(view.data());
     view->rebuildTokens();
 
-    sqls << QString("DROP VIEW %1;").arg(wrapObjIfNeeded(view->view));
     sqls << view->detokenize();
 
     simpleHandleTriggers(view->view);
 
     modifiedViews << view->view;
+    return true;
 }
 
 SqliteQuery* TableModifier::handleTriggerQuery(SqliteQuery* query, const QString& trigName, const QString& trigTable)
@@ -833,7 +861,7 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
         tableTokens = core->getContextTableTokens(false);
         for (TokenPtr& token : tableTokens)
         {
-            if (token->value.compare(originalTable, Qt::CaseInsensitive) != 0)
+            if (stripObjName(token->value).compare(originalTable, Qt::CaseInsensitive) != 0)
                 continue;
 
             SqliteSelect::Core* tokenCore = core->findTypedStatementWithToken<SqliteSelect::Core>(token);
@@ -843,7 +871,7 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
             if (isTableAliasUsedForColumn(token, resolvedTables, selSources))
                 continue;
 
-            token->value = newName;
+            token->value = wrapObjIfNeeded(newName);
         }
     }
 
@@ -918,18 +946,19 @@ StrHash<SelectResolver::Table> TableModifier::resolveAllTablesForCore(SelectReso
 
 bool TableModifier::isTableAliasUsedForColumn(const TokenPtr &token, const StrHash<SelectResolver::Table> &resolvedTables, const QList<SqliteSelect::Core::SingleSource *> &selSources)
 {
+    QString tokenName = stripObjName(token->value);
     // If we don't have the table token on the list of resolved select tables, we don't consider it as aliased
-    if (!resolvedTables.contains(token->value, Qt::CaseInsensitive))
+    if (!resolvedTables.contains(tokenName, Qt::CaseInsensitive))
     {
         qWarning() << "Table" << token->value << "in table tokens processed by TableModifier, but not in resolved SELECT tables.";
         return false;
     }
 
-    SelectResolver::Table table = resolvedTables.value(token->value, Qt::CaseInsensitive);
+    SelectResolver::Table table = resolvedTables.value(tokenName, Qt::CaseInsensitive);
     if (table.tableAlias.isNull())
         return false;
 
-    if (table.tableAlias.compare(token->value, Qt::CaseInsensitive) != 0)
+    if (table.tableAlias.compare(tokenName, Qt::CaseInsensitive) != 0)
         return false;
 
     // If the table token is mentioned in FROM clause, it's not a subject for aliased usage, cuase it defines alias, not uses it.

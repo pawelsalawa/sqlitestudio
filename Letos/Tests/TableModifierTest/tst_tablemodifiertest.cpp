@@ -34,6 +34,9 @@ class TableModifierTest : public QObject
         void testCase5();
         void testCase6();
         void testCase7();
+        void renameColumnViews_data();
+        void renameColumnViews();
+        void renameColumnConstraints();
 };
 
 TableModifierTest::TableModifierTest()
@@ -225,10 +228,10 @@ void TableModifierTest::testCase5()
      * Table test renamed to newTable and column 'val' renamed to 'newCol'.
      *
      * 1. Disable FK.
-     * 2. Create new (with new name)
-     * 3. Copy data to new
-     * 4. Drop old table.
-     * 5. Drop old view.
+     * 2. Drop old view.
+     * 3. Create new (with new name)
+     * 4. Copy data to new
+     * 5. Drop old table.
      * 6. Recreate view with new column and table.
      * 7. Recreate trigger with all subqueries updated.
      * 8. Enable FK.
@@ -236,10 +239,10 @@ void TableModifierTest::testCase5()
     QVERIFY(sqls.size() == 8);
     int i = 0;
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
+    verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
     verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
-    verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT newCol FROM newTable\\);", sqls[i++]);
     verifyRe("CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 BEGIN SELECT 1; END;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
@@ -261,22 +264,22 @@ void TableModifierTest::testCase6()
      * Table test renamed to newTable and column 'val' removed.
      *
      * 1. Disable FK.
-     * 2. Create new (with new name)
-     * 3. Copy data to new
-     * 4. Drop old table.
-     * 5. Recreate trigger with all subqueries updated.
-     * 6. Drop view.
+     * 2. Drop view.
+     * 3. Create new (with new name)
+     * 4. Copy data to new
+     * 5. Drop old table.
+     * 6. Recreate trigger with all subqueries updated.
      * 7. Recreate view with new table referenced.
      * 8. Enable FK.
      */
     QVERIFY(sqls.size() == 8);
     int i = 0;
     verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
+    verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE TABLE newTable \\(id int, val2 text\\);", sqls[i++]);
     verifyRe("INSERT INTO newTable \\(id, val2\\) SELECT id, val2 FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("CREATE TRIGGER t2 AFTER UPDATE OF Id ON newTable BEGIN SELECT NULL, Val2 FROM newTable; END;", sqls[i++]);
-    verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT Id, NULL FROM newTable\\);", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
@@ -315,6 +318,96 @@ void TableModifierTest::testCase7()
     verifyRe("INSERT INTO newTable \\(col1\\) SELECT col1 FROM abc\\;", sqls[i++]);
     verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
+}
+
+void TableModifierTest::renameColumnViews_data()
+{
+    QTest::addColumn<bool>("legacy");
+    QTest::addColumn<bool>("renameTable");
+    QTest::addColumn<QString>("viewSql");
+    QTest::addColumn<QString>("newColumn");
+    for (bool legacy : {false, true})
+    {
+        for (bool renameTable : {false, true})
+        {
+            QString prefix = QString("legacy-%1-rename-table-%2-").arg(legacy).arg(renameTable);
+            QTest::newRow(qPrintable(prefix + "direct")) << legacy << renameTable << "SELECT val FROM test" << "newCol";
+            QTest::newRow(qPrintable(prefix + "nested")) << legacy << renameTable << "SELECT * FROM (SELECT val FROM test)" << "newCol";
+            QTest::newRow(qPrintable(prefix + "star")) << legacy << renameTable << "SELECT * FROM test" << "newCol";
+            QTest::newRow(qPrintable(prefix + "quoted")) << legacy << renameTable << "SELECT \"val\" FROM \"test\"" << "new column";
+            QTest::newRow(qPrintable(prefix + "quoted-alias")) << legacy << renameTable << "SELECT \"test\".\"val\" FROM \"test\" AS \"test\"" << "new column";
+        }
+    }
+}
+
+void TableModifierTest::renameColumnViews()
+{
+    QFETCH(bool, legacy);
+    QFETCH(bool, renameTable);
+    QFETCH(QString, viewSql);
+    QFETCH(QString, newColumn);
+    auto result = db->exec("INSERT INTO test VALUES (1, 'value', 'other');");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    result = db->exec("CREATE VIEW v1 AS " + viewSql);
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    result = db->exec("CREATE VIEW v2 AS SELECT val FROM v1;");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    result = db->exec("CREATE VIEW v3 AS SELECT val FROM v2;");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    result = db->exec("CREATE TRIGGER vt INSTEAD OF INSERT ON v1 BEGIN SELECT 1; END;");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+
+    TableModifier mod(db, "test");
+    mod.setUseLegacyAlterRename(legacy);
+    createTable->columns[1]->name = newColumn;
+    if (renameTable)
+        createTable->table = "new table";
+    mod.alterTable(createTable);
+    QVERIFY2(mod.getErrors().isEmpty(), qPrintable(mod.getErrors().join('\n')));
+    for (const QString& sql : mod.getGeneratedSqls())
+    {
+        result = db->exec(sql);
+        QVERIFY2(!result->isError(), qPrintable(sql + "\n" + result->getErrorText()));
+    }
+    result = db->exec(QString("SELECT %1 FROM v1;").arg(wrapObjIfNeeded(newColumn)));
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    QCOMPARE(result->getSingleCell().toString(), QString("value"));
+    result = db->exec(QString("SELECT %1 FROM v2;").arg(wrapObjIfNeeded(newColumn)));
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    QCOMPARE(result->getSingleCell().toString(), QString("value"));
+    result = db->exec(QString("SELECT %1 FROM v3;").arg(wrapObjIfNeeded(newColumn)));
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    QCOMPARE(result->getSingleCell().toString(), QString("value"));
+    result = db->exec(QString("INSERT INTO v1 (%1) VALUES ('trigger');").arg(wrapObjIfNeeded(newColumn)));
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+}
+
+void TableModifierTest::renameColumnConstraints()
+{
+    const QString ddl = "CREATE TABLE constrained (val INTEGER CHECK (val > 0), "
+                        "other INTEGER CHECK (other > val), derived AS (val + other), "
+                        "CHECK (val < 100 AND 'val' <> ''), UNIQUE (val, other));";
+    auto result = db->exec(ddl);
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    result = db->exec("INSERT INTO constrained (val, other) VALUES (1, 2);");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    Parser parser;
+    QVERIFY(parser.parse(ddl));
+    auto newTable = parser.getQueries().first().dynamicCast<SqliteCreateTable>();
+    newTable->columns[0]->name = "new value";
+    TableModifier mod(db, "constrained");
+    mod.alterTable(newTable);
+    for (const QString& sql : mod.getGeneratedSqls())
+    {
+        result = db->exec(sql);
+        QVERIFY2(!result->isError(), qPrintable(sql + "\n" + result->getErrorText()));
+    }
+    result = db->exec("SELECT derived FROM constrained;");
+    QVERIFY2(!result->isError(), qPrintable(result->getErrorText()));
+    QCOMPARE(result->getSingleCell().toInt(), 3);
+    QVERIFY(db->exec("INSERT INTO constrained (\"new value\", other) VALUES (0, 2);")->isError());
+    QVERIFY(db->exec("INSERT INTO constrained (\"new value\", other) VALUES (2, 1);")->isError());
+    QVERIFY(db->exec("INSERT INTO constrained (\"new value\", other) VALUES (100, 101);")->isError());
 }
 
 void TableModifierTest::initTestCase()
