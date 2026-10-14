@@ -1067,7 +1067,7 @@
     <name>ConfigDialog</name>
     <message>
       <location filename="../dialogs/configdialog.ui" line="14"/>
-      <location filename="../dialogs/configdialog.ui" line="3244"/>
+      <location filename="../dialogs/configdialog.ui" line="3257"/>
       <source>Configuration</source>
       <translation>구성</translation>
     </message>
@@ -1113,7 +1113,7 @@
       <translation>데이터베이스 목록</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1302"/>
+      <location filename="../dialogs/configdialog.ui" line="1315"/>
       <source>Code assistant</source>
       <translation>코드 어시스턴트</translation>
     </message>
@@ -1124,7 +1124,7 @@
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="148"/>
-      <location filename="../dialogs/configdialog.ui" line="1215"/>
+      <location filename="../dialogs/configdialog.ui" line="1228"/>
       <source>SQL Editor</source>
       <translation>SQL 편집기</translation>
     </message>
@@ -1149,374 +1149,374 @@
       <translation>스크립팅 언어</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="258"/>
+      <location filename="../dialogs/configdialog.ui" line="271"/>
       <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
       <translation>꺼져 있으면 열이 CREATE TABLE 문에 입력된 순서대로 정렬됩니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="261"/>
+      <location filename="../dialogs/configdialog.ui" line="274"/>
       <source>Sort table columns alphabetically</source>
       <translation>테이블 열을 알파벳순으로 정렬</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="297"/>
+      <location filename="../dialogs/configdialog.ui" line="310"/>
       <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
       <translation>&lt;p&gt;추가 레이블은 데이터베이스 목록의 이름 옆에 표시되는 레이블입니다(달리 구성하지 않은 경우 파란색). 이 옵션을 활성화하면 데이터베이스, 잘못된 데이터베이스 및 집계 노드(열 그룹, 인덱스 그룹, 트리거 그룹)에 레이블이 표시됩니다. 더 많은 레이블은 아래 옵션을 참조하세요.&lt;p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="300"/>
+      <location filename="../dialogs/configdialog.ui" line="313"/>
       <source>Display additional labels on the list</source>
       <translation>목록에 추가 레이블 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="331"/>
+      <location filename="../dialogs/configdialog.ui" line="344"/>
       <source>Display labels for regular tables</source>
       <translation>일반 테이블에 레이블 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="341"/>
+      <location filename="../dialogs/configdialog.ui" line="354"/>
       <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
       <translation>가상 테이블에는 &apos;virtual&apos; 레이블이 표시됩니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="344"/>
+      <location filename="../dialogs/configdialog.ui" line="357"/>
       <source>Display labels for virtual tables</source>
       <translation>가상 테이블에 레이블 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="284"/>
+      <location filename="../dialogs/configdialog.ui" line="297"/>
       <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
       <translation>이 옵션이 꺼져 있으면 객체는 sqlite_master 테이블에 나타나는 순서대로 정렬됩니다(즉, 생성된 순서)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="287"/>
+      <location filename="../dialogs/configdialog.ui" line="300"/>
       <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
       <translation>객체(테이블, 인덱스, 트리거 및 뷰)를 알파벳순으로 정렬</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="360"/>
+      <location filename="../dialogs/configdialog.ui" line="373"/>
       <source>Display system tables and indexes on the list</source>
       <translation>목록에 시스템 테이블 및 인덱스 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="383"/>
+      <location filename="../dialogs/configdialog.ui" line="396"/>
       <source>Database dialog window</source>
       <translation>데이터베이스 대화 상자 창</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="389"/>
+      <location filename="../dialogs/configdialog.ui" line="402"/>
       <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
       <translation>&lt;p&gt;새 데이터베이스를 추가할 때 기본적으로 &quot;영구&quot;(구성에 저장됨)로 표시됩니다. 이 옵션을 선택하면 모든 새 데이터베이스가 기본적으로 &quot;영구&quot;가 아니도록 설정됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="392"/>
+      <location filename="../dialogs/configdialog.ui" line="405"/>
       <source>Do not mark database to be &quot;permanent&quot; by default</source>
       <translation>기본적으로 데이터베이스를 &quot;영구&quot;로 표시하지 않음</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="450"/>
+      <location filename="../dialogs/configdialog.ui" line="463"/>
       <source>Data browsing and editing</source>
       <translation>데이터 탐색 및 편집</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="456"/>
       <location filename="../dialogs/configdialog.ui" line="469"/>
+      <location filename="../dialogs/configdialog.ui" line="482"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;구성에 저장되는 테이블 채우기 대화 상자 구성의 최대 개수입니다. 100이면 충분합니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="472"/>
+      <location filename="../dialogs/configdialog.ui" line="485"/>
       <source>Number of memorized table populating configurations</source>
       <translation>기억할 테이블 채우기 구성 수</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="547"/>
+      <location filename="../dialogs/configdialog.ui" line="560"/>
       <source>Use scientific notation for very small real numbers in the grid view</source>
       <translation>그리드 뷰에서 매우 작은 실수에 과학적 표기법 사용</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="586"/>
+      <location filename="../dialogs/configdialog.ui" line="599"/>
       <source>Data column width</source>
       <translation>데이터 열 너비</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="592"/>
+      <location filename="../dialogs/configdialog.ui" line="605"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user enters new value into column and the value is bigger than the current column width, the application will enlarge the column to fit the new value, but not wider than the limit defined in the option above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;사용자가 열에 새 값을 입력하고 그 값이 현재 열 너비보다 크면 애플리케이션은 새 값에 맞게 열을 확장하지만, 위 옵션에 정의된 제한보다 넓게 확장하지는 않습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="595"/>
+      <location filename="../dialogs/configdialog.ui" line="608"/>
       <source>Enlarge column when entering value longer than current width</source>
       <translation>현재 너비보다 긴 값을 입력할 때 열 확장</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="611"/>
+      <location filename="../dialogs/configdialog.ui" line="624"/>
       <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
       <translation>&lt;p&gt;데이터를 그리드 뷰로 읽어들이면 열 너비가 자동으로 조정됩니다. 이 값은 조정을 위한 초기 너비를 제한하지만, 사용자는 이 제한을 넘어 열 크기를 수동으로 조정할 수 있습니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="537"/>
+      <location filename="../dialogs/configdialog.ui" line="550"/>
       <source>Number of data rows per page:</source>
       <translation>페이지당 데이터 행 수:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="570"/>
+      <location filename="../dialogs/configdialog.ui" line="583"/>
       <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
       <translation>&lt;p&gt;이 옵션이 활성화되어 있고 사용자가 데이터 뷰(쿼리 결과, 테이블 데이터, 뷰 데이터)의 셀 위에 마우스 포인터를 올려 두면 셀에 대한 세부 정보가 포함된 툴팁이 표시됩니다. 여기에는 열 데이터 유형, 제약 조건, ROWID 등의 세부 정보가 포함됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="573"/>
+      <location filename="../dialogs/configdialog.ui" line="586"/>
       <source>Show column and row details tooltip in data view</source>
       <translation>데이터 뷰에서 열 및 행 세부 정보 툴팁 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="479"/>
+      <location filename="../dialogs/configdialog.ui" line="492"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation>&lt;p&gt;기존 값이 NULL이었던 셀을 편집하면서 새 값으로 빈 문자열을 입력할 때, 이 옵션은 새 값이 NULL로 유지되어야 하는지(이 옵션 활성화), 아니면 빈 문자열 값으로 덮어써야 하는지(이 옵션 비활성화)를 결정합니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="482"/>
+      <location filename="../dialogs/configdialog.ui" line="495"/>
       <source>Keep NULL value when entering empty value</source>
       <translation>빈 값을 입력할 때 NULL 값 유지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="560"/>
+      <location filename="../dialogs/configdialog.ui" line="573"/>
       <source>Limit number of rows for in case of dozens of columns</source>
       <translation>수십 개의 열이 있는 경우 행 수 제한</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="691"/>
+      <location filename="../dialogs/configdialog.ui" line="704"/>
       <source>Inserting new row in data grid</source>
       <translation>데이터 그리드에 새 행 삽입</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="697"/>
+      <location filename="../dialogs/configdialog.ui" line="710"/>
       <source>Before currently selected row</source>
       <translation>현재 선택한 행 앞</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="713"/>
+      <location filename="../dialogs/configdialog.ui" line="726"/>
       <source>After currently selected row</source>
       <translation>현재 선택한 행 뒤</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="726"/>
+      <location filename="../dialogs/configdialog.ui" line="739"/>
       <source>At the end of data view</source>
       <translation>데이터 뷰의 끝</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="742"/>
+      <location filename="../dialogs/configdialog.ui" line="755"/>
       <source>Table windows</source>
       <translation>테이블 창</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="748"/>
+      <location filename="../dialogs/configdialog.ui" line="761"/>
       <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;활성화하면 테이블 창이 구조 탭 대신 데이터 탭으로 표시됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="751"/>
+      <location filename="../dialogs/configdialog.ui" line="764"/>
       <source>Open Table Windows with the data tab for start</source>
       <translation>테이블 창을 시작 시 데이터 탭으로 열기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="761"/>
+      <location filename="../dialogs/configdialog.ui" line="774"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;활성화하면 모든 테이블 창에서 &quot;Data&quot; 탭이 두 번째가 아니라 첫 번째 탭으로 배치됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="764"/>
+      <location filename="../dialogs/configdialog.ui" line="777"/>
       <source>Place data tab as first tab in a Table Window</source>
       <translation>테이블 창에서 데이터 탭을 첫 번째 탭으로 배치</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="777"/>
+      <location filename="../dialogs/configdialog.ui" line="790"/>
       <source>View windows</source>
       <translation>뷰 창</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="783"/>
+      <location filename="../dialogs/configdialog.ui" line="796"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation>&lt;p&gt;활성화하면 뷰 창이 구조 탭 대신 데이터 탭으로 표시됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="786"/>
+      <location filename="../dialogs/configdialog.ui" line="799"/>
       <source>Open View Windows with the data tab for start</source>
       <translation>뷰 창을 시작 시 데이터 탭으로 열기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="796"/>
+      <location filename="../dialogs/configdialog.ui" line="809"/>
       <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
       <translation>&lt;p&gt;활성화하면 모든 뷰 창에서 &quot;Data&quot; 탭이 두 번째가 아니라 첫 번째 탭으로 배치됩니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="799"/>
+      <location filename="../dialogs/configdialog.ui" line="812"/>
       <source>Place data tab as first tab in a View Window</source>
       <translation>뷰 창에서 데이터 탭을 첫 번째 탭으로 배치</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="843"/>
+      <location filename="../dialogs/configdialog.ui" line="856"/>
       <source>Data types</source>
       <translation>데이터 유형</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="896"/>
+      <location filename="../dialogs/configdialog.ui" line="909"/>
       <source>Available editors:</source>
       <translation>사용 가능한 편집기:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1013"/>
+      <location filename="../dialogs/configdialog.ui" line="1026"/>
       <source>Schema editing</source>
       <translation>스키마 편집</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1025"/>
+      <location filename="../dialogs/configdialog.ui" line="1038"/>
       <source>Number of DDL changes kept in history.</source>
       <translation>기록에 보관할 DDL 변경 사항 수입니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1038"/>
+      <location filename="../dialogs/configdialog.ui" line="1051"/>
       <source>DDL history size:</source>
       <translation>DDL 기록 크기:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1045"/>
+      <location filename="../dialogs/configdialog.ui" line="1058"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation>스키마 변경 사항을 커밋할 때 DDL 미리보기 대화 상자를 표시하지 않음(Don&apos;t)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1343"/>
-      <location filename="../dialogs/configdialog.ui" line="1359"/>
+      <location filename="../dialogs/configdialog.ui" line="1356"/>
+      <location filename="../dialogs/configdialog.ui" line="1372"/>
       <source>Number of queries kept in the history.</source>
       <translation>기록에 보관할 쿼리 수입니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1289"/>
+      <location filename="../dialogs/configdialog.ui" line="1302"/>
       <source>Execute only the query under the cursor</source>
       <translation>커서 아래의 쿼리만 실행</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1375"/>
+      <location filename="../dialogs/configdialog.ui" line="1388"/>
       <source>Number of memorized query parameters</source>
       <translation>기억할 쿼리 매개변수 수</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="630"/>
+      <location filename="../dialogs/configdialog.ui" line="643"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit. This value is also used when enlarging column upon new, longer value entered by the user (see option below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;데이터를 그리드 뷰로 읽어들이면 열 너비가 자동으로 조정됩니다. 이 값은 조정을 위한 초기 너비를 제한하지만, 사용자는 이 제한을 넘어 열 크기를 수동으로 조정할 수 있습니다. 이 값은 사용자가 입력한 새롭고 더 긴 값에 따라 열을 확장할 때도 사용됩니다(아래 옵션 참조).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="633"/>
+      <location filename="../dialogs/configdialog.ui" line="646"/>
       <source>Limit automatic data column width to (in pixels):</source>
       <translation>자동 데이터 열 너비 제한(픽셀):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="640"/>
+      <location filename="../dialogs/configdialog.ui" line="653"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Initial width of data columns will be set to at least show complete name of the column in the header. This can still be overwritten by the initial limit of column width specified in pixels (the setting above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;데이터 열의 초기 너비는 헤더에 열의 전체 이름이 최소한 표시되도록 설정됩니다. 이는 여전히 픽셀 단위로 지정된 초기 열 너비 제한(위 설정)에 의해 덮어써질 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="643"/>
+      <location filename="../dialogs/configdialog.ui" line="656"/>
       <source>Keep at least the width to show complete column name</source>
       <translation>전체 열 이름을 표시할 수 있는 최소 너비 유지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1253"/>
+      <location filename="../dialogs/configdialog.ui" line="1266"/>
       <source>Wrap lines in SQL editor</source>
       <translation>SQL 편집기에서 줄 바꿈</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1276"/>
+      <location filename="../dialogs/configdialog.ui" line="1289"/>
       <source>Highlight current query</source>
       <translation>현재 쿼리 강조 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1058"/>
+      <location filename="../dialogs/configdialog.ui" line="1071"/>
       <source>Updates</source>
       <translation>업데이트</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1064"/>
+      <location filename="../dialogs/configdialog.ui" line="1077"/>
       <source>Automatically check for updates at startup</source>
       <translation>시작 시 자동으로 업데이트 확인</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1077"/>
+      <location filename="../dialogs/configdialog.ui" line="1090"/>
       <source>Session</source>
       <translation>세션</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1083"/>
+      <location filename="../dialogs/configdialog.ui" line="1096"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation>시작 후 마지막 세션(활성 MDI 창) 복원</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1093"/>
+      <location filename="../dialogs/configdialog.ui" line="1106"/>
       <source>Allow multiple instances of the application at the same time</source>
       <translation>애플리케이션의 여러 인스턴스를 동시에 허용</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1106"/>
+      <location filename="../dialogs/configdialog.ui" line="1119"/>
       <source>Status Field</source>
       <translation>상태 필드</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1115"/>
+      <location filename="../dialogs/configdialog.ui" line="1128"/>
       <source>Always open Status panel when new message is printed</source>
       <translation>새 메시지가 출력될 때 항상 상태 패널 열기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1440"/>
+      <location filename="../dialogs/configdialog.ui" line="1453"/>
       <source>Code syntax colors</source>
       <translation>코드 구문 색상</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1626"/>
+      <location filename="../dialogs/configdialog.ui" line="1639"/>
       <source>Keyword foreground</source>
       <translation>키워드 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1446"/>
+      <location filename="../dialogs/configdialog.ui" line="1459"/>
       <source>Regular foreground</source>
       <translation>일반 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1536"/>
+      <location filename="../dialogs/configdialog.ui" line="1549"/>
       <source>String foreground</source>
       <translation>문자열 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1806"/>
+      <location filename="../dialogs/configdialog.ui" line="1819"/>
       <source>Comment foreground</source>
       <translation>주석 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1896"/>
+      <location filename="../dialogs/configdialog.ui" line="1909"/>
       <source>Valid objects foreground</source>
       <translation>유효한 객체 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2207"/>
+      <location filename="../dialogs/configdialog.ui" line="2220"/>
       <source>Current query background</source>
       <translation>현재 쿼리 배경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2076"/>
+      <location filename="../dialogs/configdialog.ui" line="2089"/>
       <source>Bind parameter foreground</source>
       <translation>바인드 매개변수 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2166"/>
+      <location filename="../dialogs/configdialog.ui" line="2179"/>
       <source>Current line background</source>
       <translation>현재 줄 배경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2251"/>
+      <location filename="../dialogs/configdialog.ui" line="2264"/>
       <source>Matched parenthesis background</source>
       <translation>일치하는 괄호 배경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2235"/>
+      <location filename="../dialogs/configdialog.ui" line="2248"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can disable current query highlighting entirely on the General settings page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;일반 설정 페이지에서 현재 쿼리 강조 표시를 완전히 비활성화할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1526,454 +1526,464 @@
       <translation>데이터 렌더러</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="235"/>
+      <location filename="../dialogs/configdialog.ui" line="248"/>
       <source>Expand tables when connected to a database</source>
       <translation>데이터베이스에 연결할 때 테이블 확장</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="370"/>
+      <location filename="../dialogs/configdialog.ui" line="383"/>
       <source>Expand views when connected to a database</source>
       <translation>데이터베이스에 연결할 때 뷰 확장</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="271"/>
+      <location filename="../dialogs/configdialog.ui" line="284"/>
       <source>Expanding a table or view also expands the Columns, Indexes and Triggers nodes to show their contents.</source>
       <translation>테이블 또는 뷰를 확장하면 열, 인덱스 및 트리거 노드도 함께 확장되어 내용을 표시합니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="245"/>
+      <location filename="../dialogs/configdialog.ui" line="258"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, the database schema is accessed using the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; table name.&lt;br/&gt;Older SQLite versions used the &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; name, which is still supported as an alias.&lt;br/&gt;You can switch here to use the legacy name instead.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;기본적으로 데이터베이스 스키마는 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; 테이블 이름을 사용하여 접근합니다.&lt;br/&gt;이전 SQLite 버전에서는 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_master&lt;/span&gt; 이름을 사용했으며, 이는 여전히 별칭으로 지원됩니다.&lt;br/&gt;여기에서 레거시 이름을 대신 사용하도록 전환할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="248"/>
+      <location filename="../dialogs/configdialog.ui" line="261"/>
       <source>Prefer sqlite_master over sqlite_schema table name</source>
       <translation>sqlite_schema 테이블 이름보다 sqlite_master 선호</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="274"/>
+      <location filename="../dialogs/configdialog.ui" line="287"/>
       <source>Expand columns, indexes and triggers together with the table</source>
       <translation>테이블과 함께 열, 인덱스 및 트리거 확장</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="315"/>
+      <location filename="../dialogs/configdialog.ui" line="328"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows data type next to the column when Columns node is expanded.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;열 노드가 확장될 때 열 옆에 데이터 유형을 표시합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="318"/>
+      <location filename="../dialogs/configdialog.ui" line="331"/>
       <source>Display column data types</source>
       <translation>열 데이터 유형 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="328"/>
+      <location filename="../dialogs/configdialog.ui" line="341"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows number of columns, indexes and triggers next to each table name.&lt;/p&gt;&lt;p&gt;Requires loading full schema for all tables. For databases with hundreds or thousands of tables, this can significantly impact performance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;각 테이블 이름 옆에 열, 인덱스 및 트리거 수를 표시합니다.&lt;/p&gt;&lt;p&gt;모든 테이블의 전체 스키마를 로드해야 합니다. 수백 또는 수천 개의 테이블이 있는 데이터베이스에서는 성능에 상당한 영향을 줄 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="357"/>
+      <location filename="../dialogs/configdialog.ui" line="370"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By default, system tables and indexes are hidden from the list.&lt;br/&gt;Enable this option to display internal SQLite objects, such as &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; and auto-generated indexes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;기본적으로 시스템 테이블과 인덱스는 목록에서 숨겨집니다.&lt;br/&gt;이 옵션을 활성화하면 &lt;span style=&quot; font-family:&apos;Courier New&apos;;&quot;&gt;sqlite_schema&lt;/span&gt; 및 자동 생성 인덱스와 같은 내부 SQLite 객체가 표시됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="402"/>
+      <location filename="../dialogs/configdialog.ui" line="415"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, database files will be added without showing the standard database dialog. If opening the database with default options fails (e.g. encrypted database or different driver required), the dialog will be shown so the options can be adjusted. When disabled, the dialog will always be shown.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;활성화하면 표준 데이터베이스 대화 상자를 표시하지 않고 데이터베이스 파일이 추가됩니다. 기본 옵션으로 데이터베이스를 열지 못하면(예: 암호화된 데이터베이스 또는 다른 드라이버 필요) 옵션을 조정할 수 있도록 대화 상자가 표시됩니다. 비활성화하면 대화 상자가 항상 표시됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="405"/>
+      <location filename="../dialogs/configdialog.ui" line="418"/>
       <source>Skip the dialog when possible</source>
       <translation>가능한 경우 대화 상자 건너뛰기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="912"/>
+      <location filename="../dialogs/configdialog.ui" line="925"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define which data editors are available for specific column types in &lt;span style=&quot; font-weight:700;&quot;&gt;Form View&lt;/span&gt; and the &lt;span style=&quot; font-weight:700;&quot;&gt;popup editor dialog&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;양식 뷰&lt;/span&gt; 및 &lt;span style=&quot; font-weight:700;&quot;&gt;팝업 편집기 대화 상자&lt;/span&gt;에서 특정 열 유형에 사용할 수 있는 데이터 편집기를 정의합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="931"/>
+      <location filename="../dialogs/configdialog.ui" line="944"/>
       <source>Preview of editors for this data type (drag to reorder):</source>
       <translation>이 데이터 유형에 대한 편집기 미리보기(끌어서 순서 변경):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="955"/>
+      <location filename="../dialogs/configdialog.ui" line="968"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can define which cell renderers are used for specific data types declared on table columns (case-insensitive). If no renderer is defined for a given type, the default renderer is used.&lt;/p&gt;&lt;p&gt;Optional plugins may provide additional renderers and set their own default mappings for data types, which you can still override here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;테이블 열에 선언된 특정 데이터 유형(대소문자 구분 없음)에 사용할 셀 렌더러를 정의할 수 있습니다. 지정된 유형에 대해 렌더러가 정의되어 있지 않으면 기본 렌더러가 사용됩니다.&lt;/p&gt;&lt;p&gt;선택적 플러그인은 추가 렌더러를 제공하고 데이터 유형에 대한 자체 기본 매핑을 설정할 수 있으며, 여기에서 이를 계속 재정의할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="984"/>
+      <location filename="../dialogs/configdialog.ui" line="997"/>
       <source>Data type</source>
       <translation>데이터 유형</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="989"/>
+      <location filename="../dialogs/configdialog.ui" line="1002"/>
       <source>Renderer</source>
       <translation>렌더러</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1286"/>
+      <location filename="../dialogs/configdialog.ui" line="1299"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When multiple queries are present, executes only the query under the cursor.&lt;br/&gt;When disabled, all queries are executed.&lt;br/&gt;You can also execute selected queries or use shortcuts (%1 for single, %2 for all).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;여러 쿼리가 있는 경우 커서 아래의 쿼리만 실행합니다.&lt;br/&gt;비활성화하면 모든 쿼리가 실행됩니다.&lt;br/&gt;선택한 쿼리를 실행하거나 단축키(단일은 %1, 전체는 %2)를 사용할 수도 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1273"/>
+      <location filename="../dialogs/configdialog.ui" line="1286"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Highlights the query under the cursor - the same query that will be executed when using &lt;span style=&quot; font-style:italic;&quot;&gt;Execute query&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;커서 아래의 쿼리를 강조 표시합니다. 이는 &lt;span style=&quot; font-style:italic;&quot;&gt;쿼리 실행&lt;/span&gt;을 사용할 때 실행될 동일한 쿼리입니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="544"/>
+      <location filename="../dialogs/configdialog.ui" line="557"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, Letos automatically switches to scientific notation for very small real numbers (e.g. &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;).&lt;br/&gt;Decimal notation is used for values whose magnitude allows a readable decimal representation.&lt;/p&gt;&lt;p&gt;When disabled, real numbers are always displayed using decimal notation, even if this results in very long fractional parts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;활성화하면 Letos가 매우 작은 실수(예: &lt;span style=&quot; font-style:italic;&quot;&gt;5.3e-21&lt;/span&gt;)에 대해 자동으로 과학적 표기법으로 전환합니다.&lt;br/&gt;값의 크기가 읽기 쉬운 십진수 표현을 허용하는 경우 십진 표기법이 사용됩니다.&lt;/p&gt;&lt;p&gt;비활성화하면 실수는 매우 긴 소수 부분이 생기더라도 항상 십진 표기법으로 표시됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="524"/>
+      <location filename="../dialogs/configdialog.ui" line="537"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When editing a cell, pressing Enter accepts the value and moves to the same column in the next row.&lt;br/&gt;If disabled, the selection stays on the current cell.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;셀을 편집할 때 Enter를 누르면 값을 승인하고 다음 행의 같은 열로 이동합니다.&lt;br/&gt;비활성화하면 선택 항목이 현재 셀에 유지됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="527"/>
+      <location filename="../dialogs/configdialog.ui" line="540"/>
       <source>After editing, Enter moves to the next row</source>
       <translation>편집 후 Enter로 다음 행으로 이동</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="557"/>
+      <location filename="../dialogs/configdialog.ui" line="570"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If query results contain dozens (or hundreds) of columns, it is more likely that it will exhaust free memory of your computer by loading several gigabytes of data at once. Letos may try to limit number of results displayed on one page in such cases to protect your computer. If you know that you don&apos;t work with big values in database, you can disable this limit and you will always see as many rows as defined per page.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;쿼리 결과에 수십 개(또는 수백 개)의 열이 포함되어 있으면 한 번에 몇 기가바이트의 데이터를 로드하여 컴퓨터의 여유 메모리를 모두 소진할 가능성이 큽니다. 이러한 경우 Letos는 컴퓨터를 보호하기 위해 한 페이지에 표시되는 결과 수를 제한하려고 할 수 있습니다. 데이터베이스에서 큰 값을 다루지 않는다는 것을 알고 있다면(Don&apos;t) 이 제한을 비활성화할 수 있으며, 페이지당 정의된 만큼의 행을 항상 볼 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="492"/>
+      <location filename="../dialogs/configdialog.ui" line="505"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically starts editing the cell in the next row after moving to it with Enter.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter로 다음 행으로 이동한 후 해당 셀 편집을 자동으로 시작합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="495"/>
+      <location filename="../dialogs/configdialog.ui" line="235"/>
+      <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
+      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="238"/>
+      <source>Open database settings on double-click</source>
+      <translation type="unfinished">Open database settings on double-click</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="508"/>
       <source>Start editing after moving to the next row</source>
       <translation>다음 행으로 이동한 후 편집 시작</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="656"/>
+      <location filename="../dialogs/configdialog.ui" line="669"/>
       <source>Column header actions</source>
       <translation>열 헤더 동작</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="662"/>
+      <location filename="../dialogs/configdialog.ui" line="675"/>
       <source>Single-click selects column data; double-click sorts by column</source>
       <translation>한 번 클릭하면 열 데이터 선택, 두 번 클릭하면 열 기준 정렬</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="675"/>
+      <location filename="../dialogs/configdialog.ui" line="688"/>
       <source>Single-click sorts by column; Alt+click selects column data</source>
       <translation>한 번 클릭하면 열 기준 정렬, Alt+클릭하면 열 데이터 선택</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1112"/>
+      <location filename="../dialogs/configdialog.ui" line="1125"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &amp;quot;View&amp;quot; menu.&lt;/p&gt;&lt;p&gt;You can always hide the Status panel with the Esc key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;사용자가 상태 패널을 수동으로 닫으면, 이 옵션은 상태 패널에 새 메시지가 출력될 때 패널이 다시 열리도록 합니다. 비활성화된 경우(It&apos;s) 상태 패널은 사용자가 &amp;quot;보기&amp;quot; 메뉴에서 수동으로만 열 수 있습니다.&lt;/p&gt;&lt;p&gt;Esc 키로 언제든지 상태 패널을 숨길 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1125"/>
+      <location filename="../dialogs/configdialog.ui" line="1138"/>
       <source>Older status messages</source>
       <translation>이전 상태 메시지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1131"/>
+      <location filename="../dialogs/configdialog.ui" line="1144"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Older status messages are kept unchanged.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이전 상태 메시지는 변경되지 않고 유지됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1134"/>
+      <location filename="../dialogs/configdialog.ui" line="1147"/>
       <source>Keep messages</source>
       <translation>메시지 유지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1147"/>
+      <location filename="../dialogs/configdialog.ui" line="1160"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Older status messages remain visible, but are visually dimmed to make recent messages stand out.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이전 상태 메시지는 계속 표시되지만, 최근 메시지가 돋보이도록 시각적으로 흐리게 표시됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1150"/>
+      <location filename="../dialogs/configdialog.ui" line="1163"/>
       <source>Dim older messages</source>
       <translation>이전 메시지 흐리게 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1163"/>
+      <location filename="../dialogs/configdialog.ui" line="1176"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Older status messages are automatically removed from the status field.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이전 상태 메시지는 상태 필드에서 자동으로 제거됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1166"/>
+      <location filename="../dialogs/configdialog.ui" line="1179"/>
       <source>Remove older messages</source>
       <translation>이전 메시지 제거</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1182"/>
+      <location filename="../dialogs/configdialog.ui" line="1195"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Occasionally show a status message with information about supporting the Letos project. These reminders appear infrequently and can be disabled at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Letos 프로젝트 지원에 관한 정보가 담긴 상태 메시지를 가끔 표시합니다. 이러한 알림은 드물게 나타나며 언제든지 비활성화할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1185"/>
+      <location filename="../dialogs/configdialog.ui" line="1198"/>
       <source>Show occasional project support reminders</source>
       <translation>가끔 프로젝트 지원 알림 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1221"/>
-      <location filename="../dialogs/configdialog.ui" line="1237"/>
+      <location filename="../dialogs/configdialog.ui" line="1234"/>
+      <location filename="../dialogs/configdialog.ui" line="1250"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifies the maximum number of decimal places shown for query execution time. Up to 9 digits (nanoseconds) can be configured. Trailing zeros are automatically trimmed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;쿼리 실행 시간에 표시되는 최대 소수 자릿수를 지정합니다. 최대 9자리(나노초)까지 구성할 수 있습니다. 뒤따르는 영은 자동으로 제거됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1224"/>
+      <location filename="../dialogs/configdialog.ui" line="1237"/>
       <source>Execution time precision (decimal places)</source>
       <translation>실행 시간 정밀도(소수 자릿수)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1250"/>
+      <location filename="../dialogs/configdialog.ui" line="1263"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If enabled, lines longer than the editor width will be wrapped, so horizontal scrolling will not be needed.&lt;/p&gt;&lt;p&gt;This option defines the global default, while individual SQL editor windows can override it locally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;활성화하면 편집기 너비보다 긴 줄이 줄바꿈되어 가로 스크롤이 필요하지 않습니다.&lt;/p&gt;&lt;p&gt;이 옵션은 전역 기본값을 정의하며, 개별 SQL 편집기 창에서 로컬로 재정의할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1263"/>
+      <location filename="../dialogs/configdialog.ui" line="1276"/>
       <source>Disable blinking text cursor</source>
       <translation>깜박이는 텍스트 커서 비활성화</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1311"/>
+      <location filename="../dialogs/configdialog.ui" line="1324"/>
       <source>Trigger assistant after typing a dot</source>
       <translation>점을 입력한 후 어시스턴트 실행</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1321"/>
+      <location filename="../dialogs/configdialog.ui" line="1334"/>
       <source>When enabled, invoking code completion in an empty editor shows code snippets first instead of syntax suggestions. Invoking code completion again switches to syntax suggestions (and vice versa).</source>
       <translation>활성화하면 빈 편집기에서 코드 완성을 호출할 때 구문 제안 대신 코드 스니펫이 먼저 표시됩니다. 코드 완성을 다시 호출하면 구문 제안으로 전환됩니다(반대의 경우도 마찬가지).</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1324"/>
+      <location filename="../dialogs/configdialog.ui" line="1337"/>
       <source>Prefer snippets in empty editor</source>
       <translation>빈 편집기에서 스니펫 우선 표시</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1337"/>
+      <location filename="../dialogs/configdialog.ui" line="1350"/>
       <source>History</source>
       <translation>기록</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1346"/>
+      <location filename="../dialogs/configdialog.ui" line="1359"/>
       <source>Query history size:</source>
       <translation>쿼리 기록 크기:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1372"/>
-      <location filename="../dialogs/configdialog.ui" line="1382"/>
+      <location filename="../dialogs/configdialog.ui" line="1385"/>
+      <location filename="../dialogs/configdialog.ui" line="1395"/>
       <source>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, Letos will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</source>
       <translation>&lt;p&gt;기록에 저장할 쿼리 매개변수(:param, @param, $param, ?)의 최대 개수입니다. 같은 이름/위치의 매개변수를 다시 사용하면 Letos가 가장 최근에 기억한 값으로 미리 초기화합니다(그래도 변경할 수 있습니다). 1000이면 충분합니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1716"/>
+      <location filename="../dialogs/configdialog.ui" line="1729"/>
       <source>Number foreground</source>
       <translation>숫자 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1986"/>
+      <location filename="../dialogs/configdialog.ui" line="1999"/>
       <source>BLOB value foreground</source>
       <translation>BLOB 값 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2292"/>
+      <location filename="../dialogs/configdialog.ui" line="2305"/>
       <source>Matched parenthesis foreground</source>
       <translation>일치하는 괄호 전경색</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2400"/>
-      <location filename="../dialogs/configdialog.ui" line="2508"/>
+      <location filename="../dialogs/configdialog.ui" line="2413"/>
+      <location filename="../dialogs/configdialog.ui" line="2521"/>
       <source>Reset to defaults</source>
       <translation>기본값으로 재설정</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2426"/>
+      <location filename="../dialogs/configdialog.ui" line="2439"/>
       <source>Filter shortcuts by name or key combination</source>
       <translation>이름 또는 키 조합으로 바로 가기 필터링</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2470"/>
+      <location filename="../dialogs/configdialog.ui" line="2483"/>
       <source>Action</source>
       <translation>동작</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2475"/>
+      <location filename="../dialogs/configdialog.ui" line="2488"/>
       <source>Key combination</source>
       <translation>키 조합</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2549"/>
-      <location filename="../dialogs/configdialog.ui" line="3234"/>
+      <location filename="../dialogs/configdialog.ui" line="2562"/>
+      <location filename="../dialogs/configdialog.ui" line="3247"/>
       <source>Language</source>
       <translation>언어</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2555"/>
+      <location filename="../dialogs/configdialog.ui" line="2568"/>
       <source>Changing language requires application restart to take effect.</source>
       <translation>언어 변경 사항을 적용하려면 애플리케이션을 다시 시작해야 합니다.</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2575"/>
+      <location filename="../dialogs/configdialog.ui" line="2588"/>
       <source>User interface</source>
       <translation>사용자 인터페이스</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2581"/>
-      <location filename="../dialogs/configdialog.ui" line="2591"/>
+      <location filename="../dialogs/configdialog.ui" line="2594"/>
+      <location filename="../dialogs/configdialog.ui" line="2604"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adjusts the scale of the application interface. Changes take effect after restarting the application.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;애플리케이션 인터페이스의 배율을 조정합니다. 변경 사항은 애플리케이션을 다시 시작한 후 적용됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2584"/>
+      <location filename="../dialogs/configdialog.ui" line="2597"/>
       <source>Interface scale</source>
       <translation>인터페이스 배율</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2601"/>
+      <location filename="../dialogs/configdialog.ui" line="2614"/>
       <source>Toolbar icon size</source>
       <translation>도구 모음 아이콘 크기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2621"/>
+      <location filename="../dialogs/configdialog.ui" line="2634"/>
       <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
       <translation>&lt;p&gt;컴팩트 레이아웃은 UI의 모든 여백과 간격을 최소화하여 더 많은 데이터를 표시할 공간을 만듭니다. 인터페이스의 미관은 약간 떨어지지만 한 번에 더 많은 데이터를 표시할 수 있습니다.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2624"/>
+      <location filename="../dialogs/configdialog.ui" line="2637"/>
       <source>Use compact layout</source>
       <translation>컴팩트 레이아웃 사용</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2640"/>
+      <location filename="../dialogs/configdialog.ui" line="2653"/>
       <source>Icon set</source>
       <translation>아이콘 세트</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2646"/>
+      <location filename="../dialogs/configdialog.ui" line="2659"/>
       <source>License</source>
       <translation>라이선스</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2653"/>
+      <location filename="../dialogs/configdialog.ui" line="2666"/>
       <source>Choose icon set (requires restart)</source>
       <translation>아이콘 세트 선택(다시 시작 필요)</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2725"/>
+      <location filename="../dialogs/configdialog.ui" line="2738"/>
       <source>Description</source>
       <translation>설명</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2735"/>
+      <location filename="../dialogs/configdialog.ui" line="2748"/>
       <source>Author</source>
       <translation>작성자</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2749"/>
+      <location filename="../dialogs/configdialog.ui" line="2762"/>
       <source>URL</source>
       <translation>URL</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2783"/>
+      <location filename="../dialogs/configdialog.ui" line="2796"/>
       <source>Main window dock areas</source>
       <translation>주 창 도킹 영역</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2789"/>
+      <location filename="../dialogs/configdialog.ui" line="2802"/>
       <source>Left and right areas occupy corners</source>
       <translation>왼쪽 및 오른쪽 영역이 모서리를 차지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2805"/>
+      <location filename="../dialogs/configdialog.ui" line="2818"/>
       <source>Top and bottom areas occupy corners</source>
       <translation>위쪽 및 아래쪽 영역이 모서리를 차지</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2598"/>
-      <location filename="../dialogs/configdialog.ui" line="2608"/>
+      <location filename="../dialogs/configdialog.ui" line="2611"/>
+      <location filename="../dialogs/configdialog.ui" line="2621"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Expressed in percentage of default size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;기본 크기의 백분율로 표시됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2958"/>
+      <location filename="../dialogs/configdialog.ui" line="2971"/>
       <source>Hide built-in plugins</source>
       <translation>내장 플러그인 숨기기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2987"/>
+      <location filename="../dialogs/configdialog.ui" line="3000"/>
       <source>Current style:</source>
       <translation>현재 스타일:</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2742"/>
-      <location filename="../dialogs/configdialog.ui" line="3004"/>
+      <location filename="../dialogs/configdialog.ui" line="2755"/>
+      <location filename="../dialogs/configdialog.ui" line="3017"/>
       <source>Preview</source>
       <translation>미리 보기</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2821"/>
+      <location filename="../dialogs/configdialog.ui" line="2834"/>
       <source>Window menu layout</source>
       <translation>창 메뉴 레이아웃</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2827"/>
+      <location filename="../dialogs/configdialog.ui" line="2840"/>
       <source>Separate &quot;Windows&quot; menu</source>
       <translation>별도의 &quot;창&quot; 메뉴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="2840"/>
+      <location filename="../dialogs/configdialog.ui" line="2853"/>
       <source>&quot;Window List&quot; under &quot;View&quot;</source>
       <translation>&quot;보기&quot; 아래의 &quot;창 목록&quot;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3014"/>
+      <location filename="../dialogs/configdialog.ui" line="3027"/>
       <source>Enabled</source>
       <translation>활성화됨</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3190"/>
+      <location filename="../dialogs/configdialog.ui" line="3203"/>
       <source>Disabled</source>
       <translation>비활성화됨</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3239"/>
+      <location filename="../dialogs/configdialog.ui" line="3252"/>
       <source>Active formatter plugin</source>
       <translation>활성 포매터 플러그인</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3277"/>
+      <location filename="../dialogs/configdialog.ui" line="3290"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tip:&lt;/span&gt; In addition to the settings available here, font sizes can also be adjusted dynamically in most interface elements by holding &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; and scrolling the &lt;span style=&quot; font-weight:700;&quot;&gt;mouse wheel&lt;/span&gt; over the element whose font size you want to change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;팁:&lt;/span&gt; 여기에서 사용할 수 있는 설정 외에도, 대부분의 인터페이스 요소에서 &lt;span style=&quot; font-weight:700;&quot;&gt;Ctrl&lt;/span&gt; 키를 누른 상태로 글꼴 크기를 변경하려는 요소 위에서 &lt;span style=&quot; font-weight:700;&quot;&gt;마우스 휠&lt;/span&gt;을 스크롤하여 글꼴 크기를 동적으로 조정할 수 있습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3296"/>
+      <location filename="../dialogs/configdialog.ui" line="3309"/>
       <source>SQL editor font</source>
       <translation>SQL 편집기 글꼴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3312"/>
+      <location filename="../dialogs/configdialog.ui" line="3325"/>
       <source>Database list font</source>
       <translation>데이터베이스 목록 글꼴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3328"/>
+      <location filename="../dialogs/configdialog.ui" line="3341"/>
       <source>Database list additional label font</source>
       <translation>데이터베이스 목록 추가 레이블 글꼴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3344"/>
+      <location filename="../dialogs/configdialog.ui" line="3357"/>
       <source>Data view font</source>
       <translation>데이터 보기 글꼴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="3360"/>
+      <location filename="../dialogs/configdialog.ui" line="3373"/>
       <source>Status field font</source>
       <translation>상태 필드 글꼴</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="1308"/>
+      <location filename="../dialogs/configdialog.ui" line="1321"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If this option is enabled, the code assistant will be triggered in cases, when user types for example &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt; to propose columns of the table. If the option is disabled, user will have to hit the assistant hotkey explicitly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;이 옵션이 활성화되어 있으면 사용자가 예를 들어 테이블의 컬럼을 제안받기 위해 &lt;span style=&quot; font-weight:700;&quot;&gt;tableName.&lt;/span&gt;을 입력하는 경우 코드 도우미가 실행됩니다. 옵션이 비활성화되어 있으면 사용자가 명시적으로 도우미 단축키를 눌러야 합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -4427,7 +4437,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   <context>
     <name>IconManager</name>
     <message>
-      <location filename="../iconmanager.cpp" line="295"/>
+      <location filename="../iconmanager.cpp" line="293"/>
       <source>Mix of icons from various sources, including svgrepo.com and other open-source icon sets.</source>
       <translation>svgrepo.com 및 기타 오픈 소스 아이콘 세트를 포함한 다양한 출처의 아이콘 모음입니다.</translation>
     </message>
@@ -6879,208 +6889,208 @@ find next</source>
   <context>
     <name>SqlEditor</name>
     <message>
-      <location filename="../sqleditor.cpp" line="194"/>
+      <location filename="../sqleditor.cpp" line="195"/>
       <source>Wrap words</source>
       <comment>sql editor</comment>
       <translation>단어 줄 바꿈</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="158"/>
+      <location filename="../sqleditor.cpp" line="159"/>
       <source>Cut</source>
       <comment>sql editor</comment>
       <translation>잘라내기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="159"/>
+      <location filename="../sqleditor.cpp" line="160"/>
       <source>Copy</source>
       <comment>sql editor</comment>
       <translation>복사</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="160"/>
+      <location filename="../sqleditor.cpp" line="161"/>
       <source>Paste</source>
       <comment>sql editor</comment>
       <translation>붙여넣기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="161"/>
+      <location filename="../sqleditor.cpp" line="162"/>
       <source>Delete</source>
       <comment>sql editor</comment>
       <translation>삭제</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="162"/>
+      <location filename="../sqleditor.cpp" line="163"/>
       <source>Select all</source>
       <comment>sql editor</comment>
       <translation>모두 선택</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="163"/>
+      <location filename="../sqleditor.cpp" line="164"/>
       <source>Undo</source>
       <comment>sql editor</comment>
       <translation>실행 취소</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="164"/>
+      <location filename="../sqleditor.cpp" line="165"/>
       <source>Redo</source>
       <comment>sql editor</comment>
       <translation>다시 실행</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="166"/>
+      <location filename="../sqleditor.cpp" line="167"/>
       <source>Complete</source>
       <comment>sql editor</comment>
       <translation>완성</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="167"/>
+      <location filename="../sqleditor.cpp" line="168"/>
       <source>Format SQL</source>
       <comment>sql editor</comment>
       <translation>SQL 서식 지정</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="168"/>
+      <location filename="../sqleditor.cpp" line="169"/>
       <source>Save SQL to file</source>
       <comment>sql editor</comment>
       <translation>SQL을 파일에 저장</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="169"/>
+      <location filename="../sqleditor.cpp" line="170"/>
       <source>Select file to save SQL</source>
       <comment>sql editor</comment>
       <translation>SQL을 저장할 파일 선택</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="170"/>
+      <location filename="../sqleditor.cpp" line="171"/>
       <source>Load SQL from file</source>
       <comment>sql editor</comment>
       <translation>파일에서 SQL 불러오기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="171"/>
+      <location filename="../sqleditor.cpp" line="172"/>
       <source>Delete line</source>
       <comment>sql editor</comment>
       <translation>줄 삭제</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="172"/>
+      <location filename="../sqleditor.cpp" line="173"/>
       <source>Move block down</source>
       <comment>sql editor</comment>
       <translation>블록 아래로 이동</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="173"/>
+      <location filename="../sqleditor.cpp" line="174"/>
       <source>Move block up</source>
       <comment>sql editor</comment>
       <translation>블록 위로 이동</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="174"/>
+      <location filename="../sqleditor.cpp" line="175"/>
       <source>Copy block down</source>
       <comment>sql editor</comment>
       <translation>블록을 아래로 복사</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="175"/>
+      <location filename="../sqleditor.cpp" line="176"/>
       <source>Copy up down</source>
       <comment>sql editor</comment>
       <translation>블록을 위로 복사</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="176"/>
+      <location filename="../sqleditor.cpp" line="177"/>
       <source>Find or replace</source>
       <comment>sql editor</comment>
       <translation>찾기 또는 바꾸기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="177"/>
+      <location filename="../sqleditor.cpp" line="178"/>
       <source>Find next</source>
       <comment>sql editor</comment>
       <translation>다음 찾기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="178"/>
+      <location filename="../sqleditor.cpp" line="179"/>
       <source>Find previous</source>
       <comment>sql editor</comment>
       <translation>이전 찾기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="179"/>
+      <location filename="../sqleditor.cpp" line="180"/>
       <source>Replace</source>
       <comment>sql editor</comment>
       <translation>바꾸기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="180"/>
+      <location filename="../sqleditor.cpp" line="181"/>
       <source>Toggle comment</source>
       <comment>sql editor</comment>
       <translation>주석 전환</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="181"/>
+      <location filename="../sqleditor.cpp" line="182"/>
       <source>Increase font size</source>
       <comment>sql editor</comment>
       <translation>글꼴 크기 늘리기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="182"/>
+      <location filename="../sqleditor.cpp" line="183"/>
       <source>Decrease font size</source>
       <comment>sql editor</comment>
       <translation>글꼴 크기 줄이기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="297"/>
+      <location filename="../sqleditor.cpp" line="298"/>
       <source>Could not open file &apos;%1&apos; for writing: %2</source>
       <translation>쓰기 위해 파일 &apos;%1&apos;을 열 수 없습니다: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="306"/>
+      <location filename="../sqleditor.cpp" line="307"/>
       <source>Saved SQL contents to file: %1</source>
       <translation>SQL 내용을 파일에 저장했습니다: %1</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="562"/>
+      <location filename="../sqleditor.cpp" line="563"/>
       <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
       <translation>구문 완성은 SQL 편집기에 유효한 데이터베이스가 설정된 경우에만 사용할 수 있습니다.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1183"/>
+      <location filename="../sqleditor.cpp" line="1184"/>
       <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
       <translation>SQL 편집기의 내용이 매우 커서 오류 감지와 기존 객체 강조 표시가 일시적으로 비활성화되었습니다.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1212"/>
+      <location filename="../sqleditor.cpp" line="1213"/>
       <source>Save to file</source>
       <translation>파일에 저장</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1227"/>
+      <location filename="../sqleditor.cpp" line="1228"/>
       <source>SQL scripts (*.sql);;All files (*)</source>
       <translation>SQL 스크립트 (*.sql);;모든 파일 (*)</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1228"/>
-      <location filename="../sqleditor.cpp" line="1259"/>
+      <location filename="../sqleditor.cpp" line="1229"/>
+      <location filename="../sqleditor.cpp" line="1260"/>
       <source>Open file</source>
       <translation>파일 열기</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1260"/>
+      <location filename="../sqleditor.cpp" line="1261"/>
       <source>This file is huge (over %1 MB). Are you sure you want to load it into SQL query editor?</source>
       <translation>이 파일은 매우 큽니다(%1 MB 초과). SQL 쿼리 편집기에 불러오시겠습니까?</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1274"/>
+      <location filename="../sqleditor.cpp" line="1275"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>읽기 위해 파일 &apos;%1&apos;을 열 수 없습니다: %2</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1468"/>
+      <location filename="../sqleditor.cpp" line="1469"/>
       <source>Reached the end of document. Hit the find again to restart the search.</source>
       <translation>문서 끝에 도달했습니다. 다시 찾기를 눌러 검색을 다시 시작하십시오.</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="1740"/>
+      <location filename="../sqleditor.cpp" line="1741"/>
       <source>Ctrl+click to open this table or view</source>
       <translation>Ctrl+클릭하여 이 테이블 또는 뷰 열기</translation>
     </message>
