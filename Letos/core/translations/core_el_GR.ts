@@ -537,14 +537,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="181"/>
-      <location filename="../importworker.cpp" line="188"/>
       <source>Error while importing data: %1</source>
       <translation>Σφάλμα κατά την εισαγωγή δεδομένων: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="188"/>
+      <location filename="../importworker.cpp" line="190"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Διακόπηκε.</translation>
@@ -554,37 +552,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Δεν ήταν δυνατή η εισαγωγή της γραμμής δεδομένων με αριθμό %1. Η γραμμή αγνοήθηκε. Λεπτομέρειες προβλήματος: %2</translation>
     </message>
+    <message>
+      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="189"/>
+      <source>Error while importing data row number %1: %2</source>
+      <translation>Σφάλμα κατά την εισαγωγή της γραμμής δεδομένων με αριθμό %1: %2</translation>
+    </message>
   </context>
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="564"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="567"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Δεν είναι δυνατή η φόρτωση του πρόσθετου %1, επειδή βρίσκεται σε διένεξη με το πρόσθετο %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="578"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Δεν είναι δυνατή η φόρτωση του πρόσθετου %1, επειδή η εξάρτησή του δεν φορτώθηκε: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="584"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="587"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Δεν είναι δυνατή η φόρτωση του πρόσθετου %1. Λεπτομέρειες σφάλματος: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="600"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="603"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Δεν είναι δυνατή η φόρτωση του πρόσθετου %1 (σφάλμα κατά την αρχικοποίηση του πρόσθετου).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="761"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="764"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>ελάχ.: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="762"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="765"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>μέγ.: %1</translation>
@@ -857,32 +861,32 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="79"/>
+      <location filename="../common/utils.cpp" line="81"/>
       <source>SQLite database or SQL file</source>
       <translation>Βάση δεδομένων SQLite ή αρχείο SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="81"/>
+      <location filename="../common/utils.cpp" line="83"/>
       <source>SQL files</source>
       <translation>Αρχεία SQL</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="82"/>
+      <location filename="../common/utils.cpp" line="84"/>
       <source>CSV files</source>
       <translation>Αρχεία CSV</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="83"/>
+      <location filename="../common/utils.cpp" line="85"/>
       <source>Text files</source>
       <translation>Αρχεία κειμένου</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="84"/>
+      <location filename="../common/utils.cpp" line="86"/>
       <source>All files</source>
       <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="968"/>
+      <location filename="../common/utils.cpp" line="982"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Δεν ήταν δυνατό το άνοιγμα του αρχείου &apos;%1&apos; για ανάγνωση: %2</translation>
     </message>
@@ -1041,41 +1045,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
       <translation>Συμπλήρωση πινάκων</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="286"/>
+      <location filename="../tablemodifier.cpp" line="302"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Ο πίνακας %1 αναφέρεται στον πίνακα %2, αλλά ο ορισμός του ξένου κλειδιού δεν θα ενημερωθεί για τον νέο ορισμό πίνακα λόγω προβλημάτων κατά την ανάλυση του DDL του πίνακα %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="666"/>
+      <location filename="../tablemodifier.cpp" line="682"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Όλες οι στήλες που ευρετηριάζονται από το ευρετήριο %1 έχουν καταργηθεί. Το ευρετήριο δεν θα δημιουργηθεί ξανά μετά την τροποποίηση του πίνακα.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="710"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Υπάρχει πρόβλημα με τη σωστή επεξεργασία του εναύσματος %1. Ενδέχεται να μην ενημερωθεί πλήρως στη συνέχεια και θα χρειαστεί την προσοχή σας.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="725"/>
+      <location filename="../tablemodifier.cpp" line="741"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Όλες οι στήλες που καλύπτονται από το έναυσμα %1 έχουν καταργηθεί. Το έναυσμα δεν θα δημιουργηθεί ξανά μετά την τροποποίηση του πίνακα.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="757"/>
+      <location filename="../tablemodifier.cpp" line="773"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Δεν είναι δυνατή η ενημέρωση του εναύσματος %1 σύμφωνα με την τροποποίηση του πίνακα %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="776"/>
+      <location filename="../tablemodifier.cpp" line="811"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Δεν είναι δυνατή η ενημέρωση της προβολής %1 σύμφωνα με τις τροποποιήσεις του πίνακα %2.
 Η προβολή θα παραμείνει ως έχει.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="961"/>
-      <location filename="../tablemodifier.cpp" line="985"/>
-      <location filename="../tablemodifier.cpp" line="1004"/>
+      <location filename="../tablemodifier.cpp" line="990"/>
+      <location filename="../tablemodifier.cpp" line="1014"/>
+      <location filename="../tablemodifier.cpp" line="1033"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Υπάρχει πρόβλημα με την ενημέρωση μιας δήλωσης %1 μέσα στο έναυσμα %2. Μία από τις υποδηλώσεις %1 που μπορεί να αναφέρεται στον πίνακα %3 δεν μπορεί να τροποποιηθεί σωστά. Ενδέχεται να είναι απαραίτητη η μη αυτόματη ενημέρωση του εναύσματος.</translation>
     </message>
@@ -1108,28 +1112,28 @@ The view will remain as it is.</source>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="207"/>
       <source>Execution interrupted.</source>
       <translation>Η εκτέλεση διακόπηκε.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="249"/>
       <source>Database is not open.</source>
       <translation>Η βάση δεδομένων δεν είναι ανοιχτή.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="254"/>
+      <location filename="../db/queryexecutor.cpp" line="258"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Μόνο ένα ερώτημα μπορεί να εκτελείται ταυτόχρονα.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="363"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="367"/>
+      <location filename="../db/queryexecutor.cpp" line="612"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Προέκυψε σφάλμα κατά την εκτέλεση του ερωτήματος count(*), επομένως η σελιδοποίηση δεδομένων θα απενεργοποιηθεί. Λεπτομέρειες σφάλματος από τη βάση δεδομένων: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="525"/>
+      <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>Letos was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>Το Letos δεν μπόρεσε να εξαγάγει μεταδεδομένα από το ερώτημα. Τα αποτελέσματα δεν θα είναι επεξεργάσιμα.</translation>
     </message>
