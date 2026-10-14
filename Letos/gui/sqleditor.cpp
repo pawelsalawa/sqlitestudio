@@ -40,6 +40,7 @@
 #include <QMessageBox>
 #include <QStyle>
 #include <QToolTip>
+#include <algorithm>
 
 CFG_KEYS_DEFINE(SqlEditor)
 
@@ -1937,6 +1938,9 @@ QPixmap SqlEditor::getDbItemDragMoveIcon(const QList<DbTreeItem*>& items) const
     if (!hasSqlGenerativeDbTreeItemType(items))
         return QPixmap();
 
+    if (std::all_of(items.begin(), items.end(), [](DbTreeItem* item) {return item->getType() == DbTreeItem::Type::COLUMN;}))
+        return QPixmap();
+
     return ICONS.DATA_SELECT;
 }
 
@@ -1945,7 +1949,7 @@ QPixmap SqlEditor::getDbItemDragCopyIcon(const QList<DbTreeItem*>& items) const
     if (!hasSqlGenerativeDbTreeItemType(items))
         return QPixmap();
 
-    return ICONS.DATA_UPDATE;
+    return ICONS.DATA_SELECT;
 }
 
 QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
@@ -1953,12 +1957,32 @@ QPixmap SqlEditor::getDbItemDragLinkIcon(const QList<DbTreeItem*>& items) const
     if (!hasSqlGenerativeDbTreeItemType(items))
         return QPixmap();
 
-    return ICONS.DATA_INSERT;
+    return ICONS.DATA_UPDATE;
 }
 
-void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action, const QPointF& pos)
+void SqlEditor::handleDbTreeDrop(const QList<DbTreeItem*>& items, Qt::DropAction action, Qt::KeyboardModifiers modifiers, const QPointF& pos)
 {
     QList<DbTreeItem*> onlyParentSelectedItems = items | FILTER(item, {return !items.contains(item->parentDbTreeItem());});
+
+    if (modifiers == Qt::NoModifier &&
+        std::all_of(items.begin(), items.end(), [](DbTreeItem* item) {return item->getType() == DbTreeItem::Type::COLUMN;}))
+    {
+        QStringList columns = items | MAP(item, {return wrapObjIfNeeded(item->text());});
+        setFocus(Qt::MouseFocusReason);
+        insertPlainTextAt(columns.join(", "), pos);
+        return;
+    }
+    else if (modifiers == Qt::ControlModifier)
+    {
+        handleDbTreeSelectDrop(onlyParentSelectedItems, pos);
+        return;
+    }
+    else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
+    {
+        handleDbTreeUpdateDrop(onlyParentSelectedItems, pos);
+        return;
+    }
+
     switch (action)
     {
         case Qt::CopyAction:
@@ -2133,7 +2157,7 @@ void SqlEditor::dropEvent(QDropEvent* e)
             return;
         }
 
-        handleDbTreeDrop(srcItems, e->dropAction(), e->position());
+        handleDbTreeDrop(srcItems, e->dropAction(), e->modifiers(), e->position());
     }
     else if (data->hasFormat(CodeSnippetEditorModel::MIMETYPE))
     {

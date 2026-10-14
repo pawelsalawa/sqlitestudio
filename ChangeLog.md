@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 4.0.4
+- BUGFIX: #5808 Fixed dragging table fields into the SQL Editor to insert comma-separated names, generate SELECT with Ctrl, and generate UPDATE with Ctrl+Shift.
 - CHANGE: #5819 Added an option on the Database list configuration page to expand or collapse connected databases on double-click instead of opening their settings.
 - BUGFIX: #5831 Fixed using `!` and `!=` operators without a whitespace separating it from the value or id.
 - BUGFIX: #5806 Fixed crash when renaming VIEW inline (in Database List).
