@@ -114,7 +114,7 @@ bool DbObjectOrganizer::renameTrigger(Db* db, const QString& oldName, const QStr
 
 bool DbObjectOrganizer::renameView(Db* db, const QString& oldName, const QString& newName)
 {
-    return renameObject(db, SchemaResolver::INDEX, oldName, newName);
+    return renameObject(db, SchemaResolver::VIEW, oldName, newName);
 }
 
 bool DbObjectOrganizer::renameObject(Db* db, SchemaResolver::ObjectType objType, const QString& oldName, const QString& newName)

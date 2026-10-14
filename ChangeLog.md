@@ -3,6 +3,7 @@
 ### 4.0.4
 - CHANGE: #5819 Added an option on the Database list configuration page to expand or collapse connected databases on double-click instead of opening their settings.
 - BUGFIX: #5831 Fixed using `!` and `!=` operators without a whitespace separating it from the value or id.
+- BUGFIX: #5806 Fixed crash when renaming VIEW inline (in Database List).
 
 ### 4.0.3
 - ADDED: #5794 Added glowing effect for entities & arrows being in relation with the selected entity. Can be turned off/on.
