@@ -119,6 +119,7 @@ CFG_UI_CATEGORIES(Ui,
     )
 
     CFG_UI_CATEGORY(DbList,
+        CFG_ENTRY(bool,                    OpenDbSettingsOnDoubleClick, true)
         CFG_ENTRY(bool,                    ExpandTables,                true)
         CFG_ENTRY(bool,                    ExpandViews,                 true)
         CFG_ENTRY(bool,                    ExpandSubNodes,              true)

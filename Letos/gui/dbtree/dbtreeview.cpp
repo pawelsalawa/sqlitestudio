@@ -250,6 +250,12 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
 bool DbTreeView::handleDbDoubleClick(DbTreeItem *item)
 {
     Db* db = item->getDb();
+    if (db->isValid() && db->isOpen() && !CFG_UI.DbList.OpenDbSettingsOnDoubleClick.get())
+    {
+        setExpanded(item->index(), !isExpanded(item->index()));
+        return true;
+    }
+
     if (!db->isValid() || db->isOpen())
     {
         dbTree->editDb(db);

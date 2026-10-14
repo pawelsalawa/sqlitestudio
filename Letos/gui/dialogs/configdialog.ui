@@ -229,6 +229,19 @@
               <string>Database list</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="openDbSettingsOnDoubleClickCheck">
+                <property name="toolTip">
+                 <string>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</string>
+                </property>
+                <property name="text">
+                 <string>Open database settings on double-click</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">DbList.OpenDbSettingsOnDoubleClick</string>
+                </property>
+               </widget>
+              </item>
               <item row="1" column="0">
                <widget class="QCheckBox" name="expandTablesCheck">
                 <property name="text">
