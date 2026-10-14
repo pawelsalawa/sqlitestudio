@@ -134,8 +134,6 @@ bool shouldAllowMultipleSessions()
 
 int main(int argc, char *argv[])
 {
-    qunsetenv("QT_PLUGIN_PATH"); // #4241 ignore user's QT_PLUGIN_PATH, because it can break Letos if it's incompatible Qt path
-
     QCoreApplication::setApplicationName("Letos");
     QCoreApplication::setOrganizationName("letos.org");
     QCoreApplication::setApplicationVersion(LETOS->getVersionString());
