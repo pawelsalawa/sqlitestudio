@@ -43,7 +43,6 @@ void DebugConsole::fatal(const QString &msg)
 
 void DebugConsole::initFormats()
 {
-    dbgFormat.setForeground(Qt::blue);
     wrnFormat.setForeground(Qt::darkRed);
     criFormat.setForeground(Qt::red);
     criFormat.setFontUnderline(true);

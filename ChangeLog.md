@@ -1,6 +1,7 @@
 # ChangeLog
 
 ### 4.0.4
+- BUGFIX: #5810 Fixed unreadable Debug Console text in dark themes by using the theme's text color.
 - BUGFIX: #5814 Fixed queries using implicitly attached databases with views, CTE aliases, forward references and materialization hints, including incorrect results when table names overlap.
 - BUGFIX: #5822 Fixed uninitialized syntax colors and editor highlight backgrounds when starting with the default palette.
 - BUGFIX: #5815 Restored support for the user's QT_PLUGIN_PATH environment variable by reverting the fix for #4241.
