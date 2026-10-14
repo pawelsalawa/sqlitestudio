@@ -136,3 +136,8 @@ translations/*.qm
 .env
 .env.*
 .local/
+
+.ai
+.codex
+.claude
+.copilot
