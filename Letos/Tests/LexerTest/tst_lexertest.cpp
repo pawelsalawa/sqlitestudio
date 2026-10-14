@@ -20,6 +20,7 @@ class LexerTest : public QObject
         void testBlobLiteral();
         void testDollarId();
         void testNotEqualOperator();
+        void testIllegalBang();
         void testNormalizeWhitespaceTokens();
 };
 
@@ -131,6 +132,20 @@ void LexerTest::testNotEqualOperator()
     QCOMPARE(tokens[11]->value, "!=");
     QCOMPARE(tokens[12]->type, Token::INTEGER);
     QCOMPARE(tokens[12]->value, "0");
+}
+
+void LexerTest::testIllegalBang()
+{
+    // A lone "!" is an invalid token; it must not consume the following character.
+    QString sql = "SELECT !x";
+
+    Lexer lex;
+    TokenList tokens = lex.tokenize(sql);
+    QCOMPARE(tokens.size(), 4);
+    QCOMPARE(tokens[2]->type, Token::INVALID);
+    QCOMPARE(tokens[2]->value, "!");
+    QCOMPARE(tokens[3]->type, Token::OTHER);
+    QCOMPARE(tokens[3]->value, "x");
 }
 
 void LexerTest::testNormalizeWhitespaceTokens()

@@ -302,7 +302,7 @@ int lexerGetToken(const QString& z, TokenPtr& token, bool tolerant)
             {
                 token->lemonType = TK3_ILLEGAL;
                 token->type = Token::INVALID;
-                return 2;
+                return 1;
             }
             else
             {
