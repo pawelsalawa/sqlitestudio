@@ -10,10 +10,12 @@ bool ExtendedPalette::styleChanged(QStyle *style, const QString &themeName)
 {
     Q_UNUSED(themeName);
     QPalette stdPalette = style->standardPalette();
-    if (stdPalette == initializedForPalette)
+    // A default QPalette can already match the style before any brushes are initialized.
+    if (initialized && stdPalette == initializedForPalette)
         return false;
 
     initializedForPalette = stdPalette;
+    initialized = true;
     bool isDark = stdPalette.base().color().lightness() < 128;
 
     static const QColor stdStrColor = QColor(Qt::green);

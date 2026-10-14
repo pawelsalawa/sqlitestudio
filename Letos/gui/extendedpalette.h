@@ -33,6 +33,7 @@ class GUI_API_EXPORT ExtendedPalette
         QBrush mdiAreaBaseBrush;
 
         QPalette initializedForPalette;
+        bool initialized = false;
 };
 
 #endif // EXTENDEDPALETTE_H
