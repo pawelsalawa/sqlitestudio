@@ -89,7 +89,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="163"/>
+        <location filename="../main.cpp" line="161"/>
         <source>Select configuration directory</source>
         <translation type="unfinished"></translation>
     </message>
