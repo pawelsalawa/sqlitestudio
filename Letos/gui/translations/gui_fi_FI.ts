@@ -1648,12 +1648,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="235"/>
       <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
-      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+      <translation>Kun tämä on käytössä, yhdistetyn tietokannan kaksoisnapsauttaminen avaa sen asetukset. Kun tämä ei ole käytössä, se sen sijaan laajentaa tai supistaa tietokantapuun. Yhteydettömän tietokannan kaksoisnapsauttaminen muodostaa siihen edelleen yhteyden.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="238"/>
       <source>Open database settings on double-click</source>
-      <translation type="unfinished">Open database settings on double-click</translation>
+      <translation>Avaa tietokannan asetukset kaksoisnapsautuksella</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="508"/>
