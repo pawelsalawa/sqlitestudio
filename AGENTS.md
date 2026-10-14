@@ -56,6 +56,11 @@ Never treat an earlier agent suggestion as a user-approved decision unless appro
 - Keep UI terminology consistent; existing English labels and translations are preferable to newly invented synonyms.
 - Avoid changes that break layouts at different interface scales or in compact mode.
 
+### Configuration/Options/Settings
+- Letos uses custom-made declarative style for defining config options, which can optionally be represented in ConfigDialog by binding them with the `cfg` property.
+- ConfigDialog is bound to declared config entries by ConfigMapper.
+- More complex ConfigDialog controls use explicitly implemented handlers. If such handler is needed, you need to scan ConfigDialog, ConfigMapper to see how to proceed with it.
+
 ## Implementation workflow
 
 1. **Orient:** Read relevant code, tests, instructions, and session history as described below.
