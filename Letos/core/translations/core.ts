@@ -1040,40 +1040,40 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="286"/>
+        <location filename="../tablemodifier.cpp" line="302"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="666"/>
+        <location filename="../tablemodifier.cpp" line="682"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="710"/>
+        <location filename="../tablemodifier.cpp" line="726"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="725"/>
+        <location filename="../tablemodifier.cpp" line="741"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="757"/>
+        <location filename="../tablemodifier.cpp" line="773"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="776"/>
+        <location filename="../tablemodifier.cpp" line="811"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="961"/>
-        <location filename="../tablemodifier.cpp" line="985"/>
-        <location filename="../tablemodifier.cpp" line="1004"/>
+        <location filename="../tablemodifier.cpp" line="990"/>
+        <location filename="../tablemodifier.cpp" line="1014"/>
+        <location filename="../tablemodifier.cpp" line="1033"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation type="unfinished"></translation>
     </message>
