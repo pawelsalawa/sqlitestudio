@@ -1648,12 +1648,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="235"/>
       <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
-      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+      <translation>활성화하면 연결된 데이터베이스를 두 번 클릭할 때 해당 설정이 열립니다. 비활성화하면 대신 데이터베이스 트리를 확장하거나 축소합니다. 연결 해제된 데이터베이스를 두 번 클릭하는 경우에는 여전히 해당 데이터베이스에 연결합니다.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="238"/>
       <source>Open database settings on double-click</source>
-      <translation type="unfinished">Open database settings on double-click</translation>
+      <translation>두 번 클릭 시 데이터베이스 설정 열기</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="508"/>

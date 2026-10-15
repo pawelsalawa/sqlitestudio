@@ -537,14 +537,12 @@ Tabeller, indekser, utløsere og visninger kopiert til database %3 blir værende
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="181"/>
-      <location filename="../importworker.cpp" line="188"/>
       <source>Error while importing data: %1</source>
       <translation>Feil ved import av data: %1</translation>
     </message>
     <message>
       <location filename="../importworker.cpp" line="134"/>
-      <location filename="../importworker.cpp" line="188"/>
+      <location filename="../importworker.cpp" line="190"/>
       <source>Interrupted.</source>
       <comment>import process status update</comment>
       <translation>Avbrutt.</translation>
@@ -554,37 +552,43 @@ Tabeller, indekser, utløsere og visninger kopiert til database %3 blir værende
       <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
       <translation>Kunne ikke importere datarad nummer %1. Raden ble ignorert. Problemdetaljer: %2</translation>
     </message>
+    <message>
+      <location filename="../importworker.cpp" line="181"/>
+      <location filename="../importworker.cpp" line="189"/>
+      <source>Error while importing data row number %1: %2</source>
+      <translation>Feil under import av datarad nummer %1: %2</translation>
+    </message>
   </context>
   <context>
     <name>PluginManagerImpl</name>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="564"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="567"/>
       <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
       <translation>Kan ikke laste Letos&apos; programtillegg %1, fordi det er i konflikt med programtillegg %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="575"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="578"/>
       <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
       <translation>Kan ikke laste programtillegg %1, fordi avhengigheten ikke ble lastet: %2.</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="584"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="587"/>
       <source>Cannot load plugin %1. Error details: %2</source>
       <translation>Kan ikke laste programtillegg %1. Feildetaljer: %2</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="600"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="603"/>
       <source>Cannot load plugin %1 (error while initializing plugin).</source>
       <translation>Kan ikke laste programtillegg %1 (feil under initialisering av programtillegg).</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="761"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="764"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
       <translation>min.: %1</translation>
     </message>
     <message>
-      <location filename="../services/impl/pluginmanagerimpl.cpp" line="762"/>
+      <location filename="../services/impl/pluginmanagerimpl.cpp" line="765"/>
       <source>max: %1</source>
       <comment>plugin dependency version</comment>
       <translation>maks: %1</translation>
@@ -857,32 +861,32 @@ Tabeller, indekser, utløsere og visninger kopiert til database %3 blir værende
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../common/utils.cpp" line="79"/>
+      <location filename="../common/utils.cpp" line="81"/>
       <source>SQLite database or SQL file</source>
       <translation>SQLite-database eller SQL-fil</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="81"/>
+      <location filename="../common/utils.cpp" line="83"/>
       <source>SQL files</source>
       <translation>SQL-filer</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="82"/>
+      <location filename="../common/utils.cpp" line="84"/>
       <source>CSV files</source>
       <translation>CSV-filer</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="83"/>
+      <location filename="../common/utils.cpp" line="85"/>
       <source>Text files</source>
       <translation>Tekstfiler</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="84"/>
+      <location filename="../common/utils.cpp" line="86"/>
       <source>All files</source>
       <translation>Alle filer</translation>
     </message>
     <message>
-      <location filename="../common/utils.cpp" line="968"/>
+      <location filename="../common/utils.cpp" line="982"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation>Kunne ikke åpne filen &apos;%1&apos; for lesing: %2</translation>
     </message>
@@ -1041,41 +1045,41 @@ Tabeller, indekser, utløsere og visninger kopiert til database %3 blir værende
       <translation>Tabellutfylling</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="286"/>
+      <location filename="../tablemodifier.cpp" line="302"/>
       <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
       <translation>Tabell %1 refererer til tabell %2, men fremmednøkkeldefinisjonen blir ikke oppdatert for den nye tabelldefinisjonen på grunn av problemer ved tolking av DDL for tabellen %3.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="666"/>
+      <location filename="../tablemodifier.cpp" line="682"/>
       <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
       <translation>Alle kolonner indeksert av indeksen %1 er borte. Indeksen blir ikke opprettet på nytt etter tabellendringen.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="710"/>
+      <location filename="../tablemodifier.cpp" line="726"/>
       <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
       <translation>Det er et problem med riktig behandling av utløseren %1. Den kan bli ufullstendig oppdatert etterpå og vil kreve din oppmerksomhet.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="725"/>
+      <location filename="../tablemodifier.cpp" line="741"/>
       <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
       <translation>Alle kolonner dekket av utløseren %1 er borte. Utløseren blir ikke opprettet på nytt etter tabellendringen.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="757"/>
+      <location filename="../tablemodifier.cpp" line="773"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation>Kan ikke oppdatere utløser %1 i henhold til endringen av tabell %2.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="776"/>
+      <location filename="../tablemodifier.cpp" line="811"/>
       <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
       <translation>Kan ikke oppdatere visning %1 i henhold til endringene i tabell %2.
 Visningen blir værende som den er.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="961"/>
-      <location filename="../tablemodifier.cpp" line="985"/>
-      <location filename="../tablemodifier.cpp" line="1004"/>
+      <location filename="../tablemodifier.cpp" line="990"/>
+      <location filename="../tablemodifier.cpp" line="1014"/>
+      <location filename="../tablemodifier.cpp" line="1033"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation>Det er et problem med å oppdatere en %1-setning i utløseren %2. En av %1-undersetningene som kan referere til tabell %3, kan ikke endres riktig. Manuell oppdatering av utløseren kan være nødvendig.</translation>
     </message>
@@ -1108,28 +1112,28 @@ Visningen blir værende som den er.</translation>
   <context>
     <name>QueryExecutor</name>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="203"/>
+      <location filename="../db/queryexecutor.cpp" line="207"/>
       <source>Execution interrupted.</source>
       <translation>Kjøring avbrutt.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="245"/>
+      <location filename="../db/queryexecutor.cpp" line="249"/>
       <source>Database is not open.</source>
       <translation>Databasen er ikke åpen.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="254"/>
+      <location filename="../db/queryexecutor.cpp" line="258"/>
       <source>Only one query can be executed simultaneously.</source>
       <translation>Bare én spørring kan kjøres samtidig.</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="363"/>
-      <location filename="../db/queryexecutor.cpp" line="608"/>
+      <location filename="../db/queryexecutor.cpp" line="367"/>
+      <location filename="../db/queryexecutor.cpp" line="612"/>
       <source>An error occurred while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
       <translation>Det oppstod en feil under kjøring av count(*)-spørringen, derfor blir datapaginering deaktivert. Feildetaljer fra databasen: %1</translation>
     </message>
     <message>
-      <location filename="../db/queryexecutor.cpp" line="525"/>
+      <location filename="../db/queryexecutor.cpp" line="529"/>
       <source>Letos was unable to extract metadata from the query. Results won&apos;t be editable.</source>
       <translation>Letos&apos; uttrekking av metadata fra spørringen mislyktes. Resultatene kan ikke redigeres.</translation>
     </message>

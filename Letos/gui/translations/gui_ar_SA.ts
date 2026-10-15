@@ -1648,12 +1648,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="235"/>
       <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
-      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+      <translation>عند التمكين، يؤدي النقر المزدوج على قاعدة بيانات متصلة إلى فتح إعداداتها. عند التعطيل، يؤدي ذلك بدلًا من ذلك إلى توسيع شجرة قاعدة البيانات أو طيّها. ولا يزال النقر المزدوج على قاعدة بيانات غير متصلة يتصل بها.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="238"/>
       <source>Open database settings on double-click</source>
-      <translation type="unfinished">Open database settings on double-click</translation>
+      <translation>فتح إعدادات قاعدة البيانات عند النقر المزدوج</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="508"/>

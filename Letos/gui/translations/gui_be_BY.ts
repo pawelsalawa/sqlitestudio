@@ -1648,12 +1648,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="235"/>
       <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
-      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+      <translation>Калі ўключана, падвойнае пстрыканне па падключанай базе даных адкрывае яе налады. Калі выключана, замест гэтага яно разгортвае або згортвае дрэва базы даных. Падвойнае пстрыканне па адключанай базе даных па-ранейшаму падключае да яе.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="238"/>
       <source>Open database settings on double-click</source>
-      <translation type="unfinished">Open database settings on double-click</translation>
+      <translation>Адкрываць налады базы даных пры падвойным пстрыканні</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="508"/>

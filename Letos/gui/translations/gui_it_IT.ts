@@ -1648,12 +1648,12 @@
     <message>
       <location filename="../dialogs/configdialog.ui" line="235"/>
       <source>When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</source>
-      <translation type="unfinished">When enabled, double-clicking a connected database opens its settings. When disabled, it expands or collapses the database tree instead. Double-clicking a disconnected database still connects to it.</translation>
+      <translation>Quando è abilitata, facendo doppio clic su un database connesso se ne aprono le impostazioni. Quando è disabilitata, invece, espande o comprime l'albero del database. Facendo doppio clic su un database disconnesso ci si connette comunque a esso.</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="238"/>
       <source>Open database settings on double-click</source>
-      <translation type="unfinished">Open database settings on double-click</translation>
+      <translation>Apri impostazioni del database con doppio clic</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="508"/>
