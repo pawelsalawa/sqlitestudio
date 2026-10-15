@@ -30,10 +30,10 @@
 #define SQLITE3MC_VERSION_H_
 
 #define SQLITE3MC_VERSION_MAJOR      2
-#define SQLITE3MC_VERSION_MINOR      3
-#define SQLITE3MC_VERSION_RELEASE    5
+#define SQLITE3MC_VERSION_MINOR      6
+#define SQLITE3MC_VERSION_RELEASE    1
 #define SQLITE3MC_VERSION_SUBRELEASE 0
-#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 2.3.5"
+#define SQLITE3MC_VERSION_STRING     "SQLite3 Multiple Ciphers 2.6.1"
 
 #endif /* SQLITE3MC_VERSION_H_ */
 /*** End of #include "mc_sqlite3mc_version.h" ***/
@@ -192,12 +192,12 @@ extern "C" {
 ** [mc_sqlite3_libversion_number()], [mc_sqlite3_sourceid()],
 ** [sqlite_version()] and [sqlite_source_id()].
 */
-#define SQLITE_VERSION        "3.53.2"
-#define SQLITE_VERSION_NUMBER 3053002
-#define SQLITE_SOURCE_ID      "2026-06-03 19:12:13 d6e03d8c777cfa2d35e3b60d8ec3e0187f3e9f99d8e2ee9cac695fd6fcdf1a24"
-#define SQLITE_SCM_BRANCH     "branch-3.53"
-#define SQLITE_SCM_TAGS       "release version-3.53.2"
-#define SQLITE_SCM_DATETIME   "2026-06-03T19:12:13.350Z"
+#define SQLITE_VERSION        "3.54.0"
+#define SQLITE_VERSION_NUMBER 3054000
+#define SQLITE_SOURCE_ID      "2026-10-09 15:46:58 be8d059e9a49089ab2dce5ed26dd87aaf598fdc5fbe0b107c0dd758464bcd5e3"
+#define SQLITE_SCM_BRANCH     "trunk"
+#define SQLITE_SCM_TAGS       "release major-release version-3.54.0"
+#define SQLITE_SCM_DATETIME   "2026-10-09T15:46:58.543Z"
 
 /*
 ** CAPI3REF: Run-Time Library Version Numbers
@@ -509,7 +509,7 @@ SQLITE_API int mc_sqlite3_exec(
 #define SQLITE_FULL        13   /* Insertion failed because database is full */
 #define SQLITE_CANTOPEN    14   /* Unable to open the database file */
 #define SQLITE_PROTOCOL    15   /* Database lock protocol error */
-#define SQLITE_EMPTY       16   /* Internal use only */
+#define SQLITE_EMPTY       16   /* No content */
 #define SQLITE_SCHEMA      17   /* The database schema changed */
 #define SQLITE_TOOBIG      18   /* String or BLOB exceeds size limit */
 #define SQLITE_CONSTRAINT  19   /* Abort due to constraint violation */
@@ -3006,8 +3006,9 @@ SQLITE_API int mc_sqlite3_is_interrupted(mc_sqlite3*);
 ** These routines are useful during command-line input to determine if the
 ** currently entered text seems to form a complete SQL statement or
 ** if additional input is needed before sending the text into
-** SQLite for parsing.  ^These routines return 1 if the input string
-** appears to be a complete SQL statement.  ^A statement is judged to be
+** SQLite for parsing.  ^The mc_sqlite3_complete(X) and mc_sqlite3_complete16(X)
+** routines return 1 if the input string X appears to be a complete SQL
+** statement.  ^A statement is judged to be
 ** complete if it ends with a semicolon token and is not a prefix of a
 ** well-formed CREATE TRIGGER statement.  ^Semicolons that are embedded within
 ** string literals or quoted identifier names or comments are not
@@ -3015,11 +3016,25 @@ SQLITE_API int mc_sqlite3_is_interrupted(mc_sqlite3*);
 ** embedded) and thus do not count as a statement terminator.  ^Whitespace
 ** and comments that follow the final semicolon are ignored.
 **
-** ^These routines return 0 if the statement is incomplete.  ^If a
-** memory allocation fails, then SQLITE_NOMEM is returned.
+** ^The mc_sqlite3_complete(X) and mc_sqlite3_complete16(X) routines return 0
+** if the statement is incomplete.  ^If a memory allocation fails, then
+** SQLITE_NOMEM is returned.
 **
-** ^These routines do not parse the SQL statements and thus
-** will not detect syntactically incorrect SQL.
+** The [mc_sqlite3_incomplete(X)] routine is similar to [mc_sqlite3_complete(X)]
+** except that mc_sqlite3_incomplete(X) returns SQLITE_OK if the input X is
+** complete, SQLITE_EMPTY if input X consists entirely of whitespace and/or
+** comments, SQLITE_MISUSE if X is a NULL pointer, and some other non-zero
+** value  if X is incomplete.  The non-zero return from
+** mc_sqlite3_incomplete(X) contains additional information about what is
+** needed to complete the input X.  See the header comment on the
+** implemenation of the mc_sqlite3_incomplete() routine for a full description
+** of its non-zero return values.  The mc_sqlite3_incomplete(X) interface
+** is only available for UTF-8 text.
+**
+** ^None of these routines do a full parse the SQL statements and thus
+** will not detect syntactically incorrect SQL.  They only determine if
+** input text has properly terminated comments, string literals, and
+** quoted identifiers, and if the statement ends with a semicolon.
 **
 ** ^(If SQLite has not been initialized using [mc_sqlite3_initialize()] prior
 ** to invoking mc_sqlite3_complete16() then mc_sqlite3_initialize() is invoked
@@ -3027,14 +3042,15 @@ SQLITE_API int mc_sqlite3_is_interrupted(mc_sqlite3*);
 ** then the return value from mc_sqlite3_complete16() will be non-zero
 ** regardless of whether or not the input SQL is complete.)^
 **
-** The input to [mc_sqlite3_complete()] must be a zero-terminated
-** UTF-8 string.
+** The X input to [mc_sqlite3_complete(X)] and [mc_sqlite3_incomplete(X)]
+** must be a zero-terminated UTF-8 string.
 **
 ** The input to [mc_sqlite3_complete16()] must be a zero-terminated
 ** UTF-16 string in native byte order.
 */
 SQLITE_API int mc_sqlite3_complete(const char *sql);
 SQLITE_API int mc_sqlite3_complete16(const void *sql);
+SQLITE_API mc_sqlite3_int64 mc_sqlite3_incomplete(const char *sql);
 
 /*
 ** CAPI3REF: Register A Callback To Handle SQLITE_BUSY Errors
@@ -3447,7 +3463,7 @@ SQLITE_API void mc_sqlite3_randomness(int N, void *P);
 **
 ** ^The first parameter to the authorizer callback is a copy of the third
 ** parameter to the mc_sqlite3_set_authorizer() interface. ^The second parameter
-** to the callback is an integer [SQLITE_COPY | action code] that specifies
+** to the callback is an integer [SQLITE_READ | action code] that specifies
 ** the particular action to be authorized. ^The third through sixth parameters
 ** to the callback are either NULL pointers or zero-terminated strings
 ** that contain additional details about the action to be authorized.
@@ -3490,21 +3506,33 @@ SQLITE_API void mc_sqlite3_randomness(int N, void *P);
 ** previous call.)^  ^Disable the authorizer by installing a NULL callback.
 ** The authorizer is disabled by default.
 **
-** The authorizer callback must not do anything that will modify
+** <h3>Limitations And Caveats</h3><ul>
+**
+** <li>The authorizer callback must not do anything that will modify
 ** the database connection that invoked the authorizer callback.
 ** Note that [mc_sqlite3_prepare_v2()] and [mc_sqlite3_step()] both modify their
 ** database connections for the meaning of "modify" in this paragraph.
 **
-** ^When [mc_sqlite3_prepare_v2()] is used to prepare a statement, the
+** <li>^When [mc_sqlite3_prepare_v2()] is used to prepare a statement, the
 ** statement might be re-prepared during [mc_sqlite3_step()] due to a
 ** schema change.  Hence, the application should ensure that the
 ** correct authorizer callback remains in place during the [mc_sqlite3_step()].
 **
-** ^Note that the authorizer callback is invoked only during
+** <li>^The authorizer callback is invoked only during
 ** [mc_sqlite3_prepare()] or its variants.  Authorization is not
 ** performed during statement evaluation in [mc_sqlite3_step()], unless
 ** as stated in the previous paragraph, mc_sqlite3_step() invokes
 ** mc_sqlite3_prepare_v2() to reprepare a statement after a schema change.
+**
+** <li>Authorizer callbacks for the expressions of a
+** [generated column] are invoked when the schema is parsed (and specifically
+** when the [CREATE TABLE] statement that contains the generated column is
+** parsed) not when the generated column is used in a DML statement.
+** This is deliberate, as one of the purposes of generated columns
+** is to give schema designers the ability to provide gated access
+** to privileged columns and/or functions.
+**
+** </ul>
 */
 SQLITE_API int mc_sqlite3_set_authorizer(
   mc_sqlite3*,
@@ -3545,6 +3573,11 @@ SQLITE_API int mc_sqlite3_set_authorizer(
 ** is the name of the inner-most trigger or view that is responsible for
 ** the access attempt or NULL if this access attempt is directly from
 ** top-level SQL code.
+**
+** The case of strings in the 3rd through the 6th argument to the
+** authorization callback is arbitrary.  Authorization callbacks
+** implementations should use [mc_sqlite3_stricmp()] or similar when
+** doing comparisons against those values.
 */
 /******************************************* 3rd ************ 4th ***********/
 #define SQLITE_CREATE_INDEX          1   /* Index Name      Table Name      */
@@ -3579,8 +3612,13 @@ SQLITE_API int mc_sqlite3_set_authorizer(
 #define SQLITE_DROP_VTABLE          30   /* Table Name      Module Name     */
 #define SQLITE_FUNCTION             31   /* NULL            Function Name   */
 #define SQLITE_SAVEPOINT            32   /* Operation       Savepoint Name  */
-#define SQLITE_COPY                  0   /* No longer used */
 #define SQLITE_RECURSIVE            33   /* NULL            NULL            */
+
+/*
+** Note:  The SQLITE_COPY macro (with value 0) used to be one of the
+** action codes above.  That macro has now been repurposed as a possible
+** value to the 3rd argument to mc_sqlite3_result_str().
+*/
 
 /*
 ** CAPI3REF: Deprecated Tracing And Profiling Functions
@@ -4088,8 +4126,7 @@ SQLITE_API int mc_sqlite3_open_v2(
 **
 ** The mc_sqlite3_uri_int64(F,P,D) routine converts the value of P into a
 ** 64-bit signed integer and returns that integer, or D if P does not
-** exist.  If the value of P is something other than an integer, then
-** zero is returned.
+** exist or if the value of P is something other than an integer.
 **
 ** The mc_sqlite3_uri_key(F,N) returns a pointer to the name (not
 ** the value) of the N-th query parameter for filename F, or a NULL
@@ -4412,7 +4449,8 @@ SQLITE_API int mc_sqlite3_limit(mc_sqlite3*, int id, int newVal);
 ** or in an ORDER BY or GROUP BY clause.</dd>)^
 **
 ** [[SQLITE_LIMIT_EXPR_DEPTH]] ^(<dt>SQLITE_LIMIT_EXPR_DEPTH</dt>
-** <dd>The maximum depth of the parse tree on any expression.</dd>)^
+** <dd>The maximum depth of the parse tree on any expression and
+** the maximum nesting depth for subqueries and VIEWs</dd>)^
 **
 ** [[SQLITE_LIMIT_PARSER_DEPTH]] ^(<dt>SQLITE_LIMIT_PARSER_DEPTH</dt>
 ** <dd>The maximum depth of the LALR(1) parser stack used to analyze
@@ -4443,11 +4481,20 @@ SQLITE_API int mc_sqlite3_limit(mc_sqlite3*, int id, int newVal);
 ** <dd>The maximum index number of any [parameter] in an SQL statement.)^
 **
 ** [[SQLITE_LIMIT_TRIGGER_DEPTH]] ^(<dt>SQLITE_LIMIT_TRIGGER_DEPTH</dt>
-** <dd>The maximum depth of recursion for triggers.</dd>)^
+** <dd>The maximum depth of recursion for triggers, and the maximum
+** nesting depth for separate triggers.</dd>)^
 **
 ** [[SQLITE_LIMIT_WORKER_THREADS]] ^(<dt>SQLITE_LIMIT_WORKER_THREADS</dt>
 ** <dd>The maximum number of auxiliary worker threads that a single
 ** [prepared statement] may start.</dd>)^
+**
+** [[SQLITE_LIMIT_SCHEMA]] ^(<dt>SQLITE_LIMIT_SCHEMA</dt>
+** <dd>The maximum number of objects (tables, indexes, triggers, and views)
+** defined by the database schema.</dd>)^
+**
+** [[SQLITE_LIMIT_TRIGGER_STEPS]] ^(<dt>SQLITE_LIMIT_TRIGGER_STEPS</dt>
+** <dd>The maximum number of SQL statements that can be contained within
+** a single trigger.</dd>)^
 ** </dl>
 */
 #define SQLITE_LIMIT_LENGTH                    0
@@ -4463,6 +4510,8 @@ SQLITE_API int mc_sqlite3_limit(mc_sqlite3*, int id, int newVal);
 #define SQLITE_LIMIT_TRIGGER_DEPTH            10
 #define SQLITE_LIMIT_WORKER_THREADS           11
 #define SQLITE_LIMIT_PARSER_DEPTH             12
+#define SQLITE_LIMIT_SCHEMA                   13
+#define SQLITE_LIMIT_TRIGGER_STEPS            14
 
 /*
 ** CAPI3REF: Prepare Flags
@@ -4574,6 +4623,8 @@ SQLITE_API int mc_sqlite3_limit(mc_sqlite3*, int id, int newVal);
 ** the nul-terminator.
 ** Note that nByte measures the length of the input in bytes, not
 ** characters, even for the UTF-16 interfaces.
+** For the mc_sqlite3_prepare16() and mc_sqlite3_prepare16_v2() interfaces,
+** the nByte value must be even or undefined behavior can result.
 **
 ** ^If pzTail is not NULL then *pzTail is made to point to the first byte
 ** past the end of the first SQL statement in zSql.  These routines only
@@ -5320,7 +5371,7 @@ SQLITE_API const void *mc_sqlite3_column_decltype16(mc_sqlite3_stmt*,int);
 ** [prepared statement].  ^In the "v2" interface,
 ** the more specific error code is returned directly by mc_sqlite3_step().
 **
-** [SQLITE_MISUSE] means that the this routine was called inappropriately.
+** [SQLITE_MISUSE] means that this routine was called inappropriately.
 ** Perhaps it was called on a [prepared statement] that has
 ** already been [mc_sqlite3_finalize | finalized] or on one that had
 ** previously returned [SQLITE_ERROR] or [SQLITE_DONE].  Or it could
@@ -6493,7 +6544,11 @@ typedef void (*mc_sqlite3_destructor_type)(void*);
 **
 ** ^The mc_sqlite3_result_zeroblob(C,N) and mc_sqlite3_result_zeroblob64(C,N)
 ** interfaces set the result of the application-defined function to be
-** a BLOB containing all zero bytes and N bytes in size.
+** a BLOB containing all zero bytes and N bytes in size.  The
+** zeroblob64(C,N) interface returns a [result code], which is normally
+** [SQLITE_OK] but might be some other value if the requested operation
+** could not be complete, for example if insufficient memory is available
+** or if the value of N is out of range.
 **
 ** ^The mc_sqlite3_result_double() interface sets the result from
 ** an application-defined function to be a floating point value specified
@@ -8831,8 +8886,8 @@ SQLITE_API int mc_sqlite3_keyword_check(const char*,int);
 ** <li> ^The mc_sqlite3_str object is created using [mc_sqlite3_str_new()].
 ** <li> ^Text is appended to the mc_sqlite3_str object using various
 ** methods, such as [mc_sqlite3_str_appendf()].
-** <li> ^The mc_sqlite3_str object is destroyed and the string it created
-** is returned using the [mc_sqlite3_str_finish()] interface.
+** <li> The mc_sqlite3_str object is destroyed and the string it created
+** is returned using [mc_sqlite3_str_finish()] or [mc_sqlite3_result_str()].
 ** </ol>
 */
 typedef struct mc_sqlite3_str mc_sqlite3_str;
@@ -8883,6 +8938,40 @@ SQLITE_API mc_sqlite3_str *mc_sqlite3_str_new(mc_sqlite3*);
 */
 SQLITE_API char *mc_sqlite3_str_finish(mc_sqlite3_str*);
 SQLITE_API void mc_sqlite3_str_free(mc_sqlite3_str*);
+
+/*
+** CAPI3REF: Return A Dynamic String From an SQL Function
+**
+** The [mc_sqlite3_result_str(C,S,F)] interface causes the
+** [mc_sqlite3_str|dynamic string] S to become the return value for the
+** application-defined function or virtual table that uses
+** [mc_sqlite3_context] C.  The F flag can be one of [SQLITE_COPY]
+** or [SQLITE_XFER] or [SQLITE_FINISH].
+**
+** If the dynamic string is invalid or incomplete due to an out-of-memory
+** or string-too-large error, then this routine transfers that error
+** over to the SQL function.
+**
+** If the F argument is SQLITE_COPY, then a copy of the dynamic string
+** content is made and the dynamic string object is unchanged.
+** If the F argument is SQLITE_XFER, then ownership of the content
+** in the dynamic is transferred to the SQL function (via a pointer copy
+** rather than a string copy) and the dynamic string is reset to an
+** empty string.  The SQLITE_FINISH value for F works like SQLITE_RESET
+** except that it also invokes the [mc_sqlite3_str_free(S)] destructor
+** on the dynamic string object.
+*/
+SQLITE_API void mc_sqlite3_result_str(mc_sqlite3_context*, mc_sqlite3_str*, int);
+
+/*
+** CAPI3REF: Control Flags For mc_sqlite3_result_str()
+**
+** The following integers can be used as the third "F" argument
+** to [mc_sqlite3_result_str(C,S,F)].
+*/
+#define SQLITE_COPY   0   /* Results copied.  Dynamic string unchanged */
+#define SQLITE_XFER   1   /* Results transfered.  Dynamic string reset */
+#define SQLITE_FINISH 2   /* Like SQLITE_XFER, plus dynamic string freed */
 
 /*
 ** CAPI3REF: Add Content To A Dynamic String
@@ -11249,8 +11338,19 @@ SQLITE_API unsigned char *mc_sqlite3_serialize(
 ** used. The serialized database P is N bytes in size.  M is the size
 ** of the buffer P, which might be larger than N.  If M is larger than
 ** N, and the SQLITE_DESERIALIZE_READONLY bit is not set in F, then
-** SQLite is permitted to add content to the in-memory database as
-** long as the total size does not exceed M bytes.
+** SQLite is permitted to add content to the in-memory database, in
+** page-sized chunks, as long as the total size does not exceed M bytes.
+**
+** The parameter M must be greater than or equal to N.  Ideally, M
+** should have a value which is N+(512&times;K)+20 where K determines how
+** must extra space is available to hold new content as the database
+** grows.  K can be 0 if the database is read-only.
+**
+** If the database content in P is malformed in a malicious way then
+** it is possible that SQLite might try to read a few more than N bytes
+** from P.  If the veracity of the database content P is uncertain,
+** then applications are advised to allocate about 20 extra bytes on
+** the end of the P buffer to avoid a memory error.
 **
 ** If the SQLITE_DESERIALIZE_FREEONCLOSE bit is set in F, then SQLite will
 ** invoke mc_sqlite3_free() on the serialization buffer when the database
@@ -14617,4 +14717,936 @@ SQLITE_API void mc_sqlite3mc_vfs_shutdown();
 /*** End of #include "mc_sqlite3mc_vfs.h" ***/
 
 
+/*
+** Dispatch table support
+*/
+
+#ifdef SQLITE3MC_USE_DISPATCH_TABLE
+
+/*
+** Instead of making the SQLite symbols public dispatch tables can be
+** used. In that case only the pointers to the dispatch tables are
+** made public, hiding all other SQLite symbols. This is useful for
+** modules which want to use an embedded SQLite version without
+** conflicts with other SQLite implementation.
+**
+** The only rule to obey is that such an embedded SQLite instance
+** should not access the same database files as a separate SQLite
+** instance within the same process, because that could lead to
+** database corruption.
+**
+** Define symbol SQLITE3MC_USE_DISPATCH_TABLE to activate the use of
+** dispatch tables.
+**
+** Define symbol SQLITE3MC_API_TABLE_PREFIX to specify your own
+** global symbols for the dispatch tables to avoid name clashes.
+**
+** Example: #define SQLITE3MC_API_TABLE_PREFIX MyApplication
+**
+** The default prefix is "mc_sqlite3mc".
+*/
+
+#ifndef SQLITE3MC_API_TABLE_PREFIX
+#define SQLITE3MC_API_TABLE_PREFIX  mc_sqlite3mc
 #endif
+
+#define SQLITE3MC_CONCAT(A,B) SQLITE3MC_CONCAT_(A,B)
+#define SQLITE3MC_CONCAT_(A,B) A##B
+#define SQLITE3MC_API_TABLE(name) SQLITE3MC_CONCAT(SQLITE3MC_API_TABLE_PREFIX,SQLITE3MC_CONCAT(_,name))
+
+#define SQLITE3MC_API_TABLE_EXT  SQLITE3MC_API_TABLE(api_ext)
+#define SQLITE3MC_API_TABLE_CORE SQLITE3MC_API_TABLE(api_core)
+#define SQLITE3MC_API_TABLE_MC   SQLITE3MC_API_TABLE(api_mc)
+
+/* Define the dispatch table name for mc_sqlite3ext.h */
+#define mc_sqlite3_api SQLITE3MC_API_TABLE_EXT
+
+/* #include "mc_sqlite3ext.h" */
+/*** Begin of #include "mc_sqlite3ext.h" ***/
+/*
+** 2006 June 7
+**
+** The author disclaims copyright to this source code.  In place of
+** a legal notice, here is a blessing:
+**
+**    May you do good and not evil.
+**    May you find forgiveness for yourself and forgive others.
+**    May you share freely, never taking more than you give.
+**
+*************************************************************************
+** This header file defines the SQLite interface for use by
+** shared libraries that want to be imported as extensions into
+** an SQLite instance.  Shared libraries that intend to be loaded
+** as extensions by SQLite should #include this file instead of
+** mc_sqlite3.h.
+*/
+#ifndef SQLITE3EXT_H
+#define SQLITE3EXT_H
+/* #include "mc_sqlite3.h" */
+
+
+/*
+** The following structure holds pointers to all of the SQLite API
+** routines.
+**
+** WARNING:  In order to maintain backwards compatibility, add new
+** interfaces to the end of this structure only.  If you insert new
+** interfaces in the middle of this structure, then older different
+** versions of SQLite will not be able to load each other's shared
+** libraries!
+*/
+struct mc_sqlite3_api_routines {
+  void * (*aggregate_context)(mc_sqlite3_context*,int nBytes);
+  int  (*aggregate_count)(mc_sqlite3_context*);
+  int  (*bind_blob)(mc_sqlite3_stmt*,int,const void*,int n,void(*)(void*));
+  int  (*bind_double)(mc_sqlite3_stmt*,int,double);
+  int  (*bind_int)(mc_sqlite3_stmt*,int,int);
+  int  (*bind_int64)(mc_sqlite3_stmt*,int,sqlite_int64);
+  int  (*bind_null)(mc_sqlite3_stmt*,int);
+  int  (*bind_parameter_count)(mc_sqlite3_stmt*);
+  int  (*bind_parameter_index)(mc_sqlite3_stmt*,const char*zName);
+  const char * (*bind_parameter_name)(mc_sqlite3_stmt*,int);
+  int  (*bind_text)(mc_sqlite3_stmt*,int,const char*,int n,void(*)(void*));
+  int  (*bind_text16)(mc_sqlite3_stmt*,int,const void*,int,void(*)(void*));
+  int  (*bind_value)(mc_sqlite3_stmt*,int,const mc_sqlite3_value*);
+  int  (*busy_handler)(mc_sqlite3*,int(*)(void*,int),void*);
+  int  (*busy_timeout)(mc_sqlite3*,int ms);
+  int  (*changes)(mc_sqlite3*);
+  int  (*close)(mc_sqlite3*);
+  int  (*collation_needed)(mc_sqlite3*,void*,void(*)(void*,mc_sqlite3*,
+                           int eTextRep,const char*));
+  int  (*collation_needed16)(mc_sqlite3*,void*,void(*)(void*,mc_sqlite3*,
+                             int eTextRep,const void*));
+  const void * (*column_blob)(mc_sqlite3_stmt*,int iCol);
+  int  (*column_bytes)(mc_sqlite3_stmt*,int iCol);
+  int  (*column_bytes16)(mc_sqlite3_stmt*,int iCol);
+  int  (*column_count)(mc_sqlite3_stmt*pStmt);
+  const char * (*column_database_name)(mc_sqlite3_stmt*,int);
+  const void * (*column_database_name16)(mc_sqlite3_stmt*,int);
+  const char * (*column_decltype)(mc_sqlite3_stmt*,int i);
+  const void * (*column_decltype16)(mc_sqlite3_stmt*,int);
+  double  (*column_double)(mc_sqlite3_stmt*,int iCol);
+  int  (*column_int)(mc_sqlite3_stmt*,int iCol);
+  sqlite_int64  (*column_int64)(mc_sqlite3_stmt*,int iCol);
+  const char * (*column_name)(mc_sqlite3_stmt*,int);
+  const void * (*column_name16)(mc_sqlite3_stmt*,int);
+  const char * (*column_origin_name)(mc_sqlite3_stmt*,int);
+  const void * (*column_origin_name16)(mc_sqlite3_stmt*,int);
+  const char * (*column_table_name)(mc_sqlite3_stmt*,int);
+  const void * (*column_table_name16)(mc_sqlite3_stmt*,int);
+  const unsigned char * (*column_text)(mc_sqlite3_stmt*,int iCol);
+  const void * (*column_text16)(mc_sqlite3_stmt*,int iCol);
+  int  (*column_type)(mc_sqlite3_stmt*,int iCol);
+  mc_sqlite3_value* (*column_value)(mc_sqlite3_stmt*,int iCol);
+  void * (*commit_hook)(mc_sqlite3*,int(*)(void*),void*);
+  int  (*complete)(const char*sql);
+  int  (*complete16)(const void*sql);
+  int  (*create_collation)(mc_sqlite3*,const char*,int,void*,
+                           int(*)(void*,int,const void*,int,const void*));
+  int  (*create_collation16)(mc_sqlite3*,const void*,int,void*,
+                             int(*)(void*,int,const void*,int,const void*));
+  int  (*create_function)(mc_sqlite3*,const char*,int,int,void*,
+                          void (*xFunc)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                          void (*xStep)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                          void (*xFinal)(mc_sqlite3_context*));
+  int  (*create_function16)(mc_sqlite3*,const void*,int,int,void*,
+                            void (*xFunc)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void (*xStep)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void (*xFinal)(mc_sqlite3_context*));
+  int (*create_module)(mc_sqlite3*,const char*,const mc_sqlite3_module*,void*);
+  int  (*data_count)(mc_sqlite3_stmt*pStmt);
+  mc_sqlite3 * (*db_handle)(mc_sqlite3_stmt*);
+  int (*declare_vtab)(mc_sqlite3*,const char*);
+  int  (*enable_shared_cache)(int);
+  int  (*errcode)(mc_sqlite3*db);
+  const char * (*errmsg)(mc_sqlite3*);
+  const void * (*errmsg16)(mc_sqlite3*);
+  int  (*exec)(mc_sqlite3*,const char*,mc_sqlite3_callback,void*,char**);
+  int  (*expired)(mc_sqlite3_stmt*);
+  int  (*finalize)(mc_sqlite3_stmt*pStmt);
+  void  (*free)(void*);
+  void  (*free_table)(char**result);
+  int  (*get_autocommit)(mc_sqlite3*);
+  void * (*get_auxdata)(mc_sqlite3_context*,int);
+  int  (*get_table)(mc_sqlite3*,const char*,char***,int*,int*,char**);
+  int  (*global_recover)(void);
+  void  (*interruptx)(mc_sqlite3*);
+  sqlite_int64  (*last_insert_rowid)(mc_sqlite3*);
+  const char * (*libversion)(void);
+  int  (*libversion_number)(void);
+  void *(*malloc)(int);
+  char *(SQLITE_CDECL*mprintf)(const char*,...);
+  int  (*open)(const char*,mc_sqlite3**);
+  int  (*open16)(const void*,mc_sqlite3**);
+  int  (*prepare)(mc_sqlite3*,const char*,int,mc_sqlite3_stmt**,const char**);
+  int  (*prepare16)(mc_sqlite3*,const void*,int,mc_sqlite3_stmt**,const void**);
+  void * (*profile)(mc_sqlite3*,void(*)(void*,const char*,sqlite_uint64),void*);
+  void  (*progress_handler)(mc_sqlite3*,int,int(*)(void*),void*);
+  void *(*realloc)(void*,int);
+  int  (*reset)(mc_sqlite3_stmt*pStmt);
+  void  (*result_blob)(mc_sqlite3_context*,const void*,int,void(*)(void*));
+  void  (*result_double)(mc_sqlite3_context*,double);
+  void  (*result_error)(mc_sqlite3_context*,const char*,int);
+  void  (*result_error16)(mc_sqlite3_context*,const void*,int);
+  void  (*result_int)(mc_sqlite3_context*,int);
+  void  (*result_int64)(mc_sqlite3_context*,sqlite_int64);
+  void  (*result_null)(mc_sqlite3_context*);
+  void  (*result_text)(mc_sqlite3_context*,const char*,int,void(*)(void*));
+  void  (*result_text16)(mc_sqlite3_context*,const void*,int,void(*)(void*));
+  void  (*result_text16be)(mc_sqlite3_context*,const void*,int,void(*)(void*));
+  void  (*result_text16le)(mc_sqlite3_context*,const void*,int,void(*)(void*));
+  void  (*result_value)(mc_sqlite3_context*,mc_sqlite3_value*);
+  void *(*rollback_hook)(mc_sqlite3*,void(*)(void*),void*);
+  int  (*set_authorizer)(mc_sqlite3*,int(*)(void*,int,const char*,const char*,
+                         const char*,const char*),void*);
+  void  (*set_auxdata)(mc_sqlite3_context*,int,void*,void (*)(void*));
+  char *(SQLITE_CDECL*xsnprintf)(int,char*,const char*,...);
+  int  (*step)(mc_sqlite3_stmt*);
+  int  (*table_column_metadata)(mc_sqlite3*,const char*,const char*,const char*,
+                                char const**,char const**,int*,int*,int*);
+  void  (*thread_cleanup)(void);
+  int  (*total_changes)(mc_sqlite3*);
+  void * (*trace)(mc_sqlite3*,void(*xTrace)(void*,const char*),void*);
+  int  (*transfer_bindings)(mc_sqlite3_stmt*,mc_sqlite3_stmt*);
+  void * (*update_hook)(mc_sqlite3*,void(*)(void*,int ,char const*,char const*,
+                                         sqlite_int64),void*);
+  void * (*user_data)(mc_sqlite3_context*);
+  const void * (*value_blob)(mc_sqlite3_value*);
+  int  (*value_bytes)(mc_sqlite3_value*);
+  int  (*value_bytes16)(mc_sqlite3_value*);
+  double  (*value_double)(mc_sqlite3_value*);
+  int  (*value_int)(mc_sqlite3_value*);
+  sqlite_int64  (*value_int64)(mc_sqlite3_value*);
+  int  (*value_numeric_type)(mc_sqlite3_value*);
+  const unsigned char * (*value_text)(mc_sqlite3_value*);
+  const void * (*value_text16)(mc_sqlite3_value*);
+  const void * (*value_text16be)(mc_sqlite3_value*);
+  const void * (*value_text16le)(mc_sqlite3_value*);
+  int  (*value_type)(mc_sqlite3_value*);
+  char *(*vmprintf)(const char*,va_list);
+  /* Added ??? */
+  int (*overload_function)(mc_sqlite3*, const char *zFuncName, int nArg);
+  /* Added by 3.3.13 */
+  int (*prepare_v2)(mc_sqlite3*,const char*,int,mc_sqlite3_stmt**,const char**);
+  int (*prepare16_v2)(mc_sqlite3*,const void*,int,mc_sqlite3_stmt**,const void**);
+  int (*clear_bindings)(mc_sqlite3_stmt*);
+  /* Added by 3.4.1 */
+  int (*create_module_v2)(mc_sqlite3*,const char*,const mc_sqlite3_module*,void*,
+                          void (*xDestroy)(void *));
+  /* Added by 3.5.0 */
+  int (*bind_zeroblob)(mc_sqlite3_stmt*,int,int);
+  int (*blob_bytes)(mc_sqlite3_blob*);
+  int (*blob_close)(mc_sqlite3_blob*);
+  int (*blob_open)(mc_sqlite3*,const char*,const char*,const char*,mc_sqlite3_int64,
+                   int,mc_sqlite3_blob**);
+  int (*blob_read)(mc_sqlite3_blob*,void*,int,int);
+  int (*blob_write)(mc_sqlite3_blob*,const void*,int,int);
+  int (*create_collation_v2)(mc_sqlite3*,const char*,int,void*,
+                             int(*)(void*,int,const void*,int,const void*),
+                             void(*)(void*));
+  int (*file_control)(mc_sqlite3*,const char*,int,void*);
+  mc_sqlite3_int64 (*memory_highwater)(int);
+  mc_sqlite3_int64 (*memory_used)(void);
+  mc_sqlite3_mutex *(*mutex_alloc)(int);
+  void (*mutex_enter)(mc_sqlite3_mutex*);
+  void (*mutex_free)(mc_sqlite3_mutex*);
+  void (*mutex_leave)(mc_sqlite3_mutex*);
+  int (*mutex_try)(mc_sqlite3_mutex*);
+  int (*open_v2)(const char*,mc_sqlite3**,int,const char*);
+  int (*release_memory)(int);
+  void (*result_error_nomem)(mc_sqlite3_context*);
+  void (*result_error_toobig)(mc_sqlite3_context*);
+  int (*sleep)(int);
+  void (*soft_heap_limit)(int);
+  mc_sqlite3_vfs *(*vfs_find)(const char*);
+  int (*vfs_register)(mc_sqlite3_vfs*,int);
+  int (*vfs_unregister)(mc_sqlite3_vfs*);
+  int (*xthreadsafe)(void);
+  void (*result_zeroblob)(mc_sqlite3_context*,int);
+  void (*result_error_code)(mc_sqlite3_context*,int);
+  int (SQLITE_CDECL*test_control)(int, ...);
+  void (*randomness)(int,void*);
+  mc_sqlite3 *(*context_db_handle)(mc_sqlite3_context*);
+  int (*extended_result_codes)(mc_sqlite3*,int);
+  int (*limit)(mc_sqlite3*,int,int);
+  mc_sqlite3_stmt *(*next_stmt)(mc_sqlite3*,mc_sqlite3_stmt*);
+  const char *(*sql)(mc_sqlite3_stmt*);
+  int (*status)(int,int*,int*,int);
+  int (*backup_finish)(mc_sqlite3_backup*);
+  mc_sqlite3_backup *(*backup_init)(mc_sqlite3*,const char*,mc_sqlite3*,const char*);
+  int (*backup_pagecount)(mc_sqlite3_backup*);
+  int (*backup_remaining)(mc_sqlite3_backup*);
+  int (*backup_step)(mc_sqlite3_backup*,int);
+  const char *(*compileoption_get)(int);
+  int (*compileoption_used)(const char*);
+  int (*create_function_v2)(mc_sqlite3*,const char*,int,int,void*,
+                            void (*xFunc)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void (*xStep)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void (*xFinal)(mc_sqlite3_context*),
+                            void(*xDestroy)(void*));
+  int (SQLITE_CDECL*db_config)(mc_sqlite3*,int,...);
+  mc_sqlite3_mutex *(*db_mutex)(mc_sqlite3*);
+  int (*db_status)(mc_sqlite3*,int,int*,int*,int);
+  int (*extended_errcode)(mc_sqlite3*);
+  void (SQLITE_CDECL*log)(int,const char*,...);
+  mc_sqlite3_int64 (*soft_heap_limit64)(mc_sqlite3_int64);
+  const char *(*sourceid)(void);
+  int (*stmt_status)(mc_sqlite3_stmt*,int,int);
+  int (*strnicmp)(const char*,const char*,int);
+  int (*unlock_notify)(mc_sqlite3*,void(*)(void**,int),void*);
+  int (*wal_autocheckpoint)(mc_sqlite3*,int);
+  int (*wal_checkpoint)(mc_sqlite3*,const char*);
+  void *(*wal_hook)(mc_sqlite3*,int(*)(void*,mc_sqlite3*,const char*,int),void*);
+  int (*blob_reopen)(mc_sqlite3_blob*,mc_sqlite3_int64);
+  int (SQLITE_CDECL*vtab_config)(mc_sqlite3*,int op,...);
+  int (*vtab_on_conflict)(mc_sqlite3*);
+  /* Version 3.7.16 and later */
+  int (*close_v2)(mc_sqlite3*);
+  const char *(*db_filename)(mc_sqlite3*,const char*);
+  int (*db_readonly)(mc_sqlite3*,const char*);
+  int (*db_release_memory)(mc_sqlite3*);
+  const char *(*errstr)(int);
+  int (*stmt_busy)(mc_sqlite3_stmt*);
+  int (*stmt_readonly)(mc_sqlite3_stmt*);
+  int (*stricmp)(const char*,const char*);
+  int (*uri_boolean)(const char*,const char*,int);
+  mc_sqlite3_int64 (*uri_int64)(const char*,const char*,mc_sqlite3_int64);
+  const char *(*uri_parameter)(const char*,const char*);
+  char *(*xvsnprintf)(int,char*,const char*,va_list);
+  int (*wal_checkpoint_v2)(mc_sqlite3*,const char*,int,int*,int*);
+  /* Version 3.8.7 and later */
+  int (*auto_extension)(void(*)(void));
+  int (*bind_blob64)(mc_sqlite3_stmt*,int,const void*,mc_sqlite3_uint64,
+                     void(*)(void*));
+  int (*bind_text64)(mc_sqlite3_stmt*,int,const char*,mc_sqlite3_uint64,
+                      void(*)(void*),unsigned char);
+  int (*cancel_auto_extension)(void(*)(void));
+  int (*load_extension)(mc_sqlite3*,const char*,const char*,char**);
+  void *(*malloc64)(mc_sqlite3_uint64);
+  mc_sqlite3_uint64 (*msize)(void*);
+  void *(*realloc64)(void*,mc_sqlite3_uint64);
+  void (*reset_auto_extension)(void);
+  void (*result_blob64)(mc_sqlite3_context*,const void*,mc_sqlite3_uint64,
+                        void(*)(void*));
+  void (*result_text64)(mc_sqlite3_context*,const char*,mc_sqlite3_uint64,
+                         void(*)(void*), unsigned char);
+  int (*strglob)(const char*,const char*);
+  /* Version 3.8.11 and later */
+  mc_sqlite3_value *(*value_dup)(const mc_sqlite3_value*);
+  void (*value_free)(mc_sqlite3_value*);
+  int (*result_zeroblob64)(mc_sqlite3_context*,mc_sqlite3_uint64);
+  int (*bind_zeroblob64)(mc_sqlite3_stmt*, int, mc_sqlite3_uint64);
+  /* Version 3.9.0 and later */
+  unsigned int (*value_subtype)(mc_sqlite3_value*);
+  void (*result_subtype)(mc_sqlite3_context*,unsigned int);
+  /* Version 3.10.0 and later */
+  int (*status64)(int,mc_sqlite3_int64*,mc_sqlite3_int64*,int);
+  int (*strlike)(const char*,const char*,unsigned int);
+  int (*db_cacheflush)(mc_sqlite3*);
+  /* Version 3.12.0 and later */
+  int (*system_errno)(mc_sqlite3*);
+  /* Version 3.14.0 and later */
+  int (*trace_v2)(mc_sqlite3*,unsigned,int(*)(unsigned,void*,void*,void*),void*);
+  char *(*expanded_sql)(mc_sqlite3_stmt*);
+  /* Version 3.18.0 and later */
+  void (*set_last_insert_rowid)(mc_sqlite3*,mc_sqlite3_int64);
+  /* Version 3.20.0 and later */
+  int (*prepare_v3)(mc_sqlite3*,const char*,int,unsigned int,
+                    mc_sqlite3_stmt**,const char**);
+  int (*prepare16_v3)(mc_sqlite3*,const void*,int,unsigned int,
+                      mc_sqlite3_stmt**,const void**);
+  int (*bind_pointer)(mc_sqlite3_stmt*,int,void*,const char*,void(*)(void*));
+  void (*result_pointer)(mc_sqlite3_context*,void*,const char*,void(*)(void*));
+  void *(*value_pointer)(mc_sqlite3_value*,const char*);
+  int (*vtab_nochange)(mc_sqlite3_context*);
+  int (*value_nochange)(mc_sqlite3_value*);
+  const char *(*vtab_collation)(mc_sqlite3_index_info*,int);
+  /* Version 3.24.0 and later */
+  int (*keyword_count)(void);
+  int (*keyword_name)(int,const char**,int*);
+  int (*keyword_check)(const char*,int);
+  mc_sqlite3_str *(*str_new)(mc_sqlite3*);
+  char *(*str_finish)(mc_sqlite3_str*);
+  void (SQLITE_CDECL*str_appendf)(mc_sqlite3_str*, const char *zFormat, ...);
+  void (*str_vappendf)(mc_sqlite3_str*, const char *zFormat, va_list);
+  void (*str_append)(mc_sqlite3_str*, const char *zIn, int N);
+  void (*str_appendall)(mc_sqlite3_str*, const char *zIn);
+  void (*str_appendchar)(mc_sqlite3_str*, int N, char C);
+  void (*str_reset)(mc_sqlite3_str*);
+  int (*str_errcode)(mc_sqlite3_str*);
+  int (*str_length)(mc_sqlite3_str*);
+  char *(*str_value)(mc_sqlite3_str*);
+  /* Version 3.25.0 and later */
+  int (*create_window_function)(mc_sqlite3*,const char*,int,int,void*,
+                            void (*xStep)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void (*xFinal)(mc_sqlite3_context*),
+                            void (*xValue)(mc_sqlite3_context*),
+                            void (*xInv)(mc_sqlite3_context*,int,mc_sqlite3_value**),
+                            void(*xDestroy)(void*));
+  /* Version 3.26.0 and later */
+  const char *(*normalized_sql)(mc_sqlite3_stmt*);
+  /* Version 3.28.0 and later */
+  int (*stmt_isexplain)(mc_sqlite3_stmt*);
+  int (*value_frombind)(mc_sqlite3_value*);
+  /* Version 3.30.0 and later */
+  int (*drop_modules)(mc_sqlite3*,const char**);
+  /* Version 3.31.0 and later */
+  mc_sqlite3_int64 (*hard_heap_limit64)(mc_sqlite3_int64);
+  const char *(*uri_key)(const char*,int);
+  const char *(*filename_database)(const char*);
+  const char *(*filename_journal)(const char*);
+  const char *(*filename_wal)(const char*);
+  /* Version 3.32.0 and later */
+  const char *(*create_filename)(const char*,const char*,const char*,
+                           int,const char**);
+  void (*free_filename)(const char*);
+  mc_sqlite3_file *(*database_file_object)(const char*);
+  /* Version 3.34.0 and later */
+  int (*txn_state)(mc_sqlite3*,const char*);
+  /* Version 3.36.1 and later */
+  mc_sqlite3_int64 (*changes64)(mc_sqlite3*);
+  mc_sqlite3_int64 (*total_changes64)(mc_sqlite3*);
+  /* Version 3.37.0 and later */
+  int (*autovacuum_pages)(mc_sqlite3*,
+     unsigned int(*)(void*,const char*,unsigned int,unsigned int,unsigned int),
+     void*, void(*)(void*));
+  /* Version 3.38.0 and later */
+  int (*error_offset)(mc_sqlite3*);
+  int (*vtab_rhs_value)(mc_sqlite3_index_info*,int,mc_sqlite3_value**);
+  int (*vtab_distinct)(mc_sqlite3_index_info*);
+  int (*vtab_in)(mc_sqlite3_index_info*,int,int);
+  int (*vtab_in_first)(mc_sqlite3_value*,mc_sqlite3_value**);
+  int (*vtab_in_next)(mc_sqlite3_value*,mc_sqlite3_value**);
+  /* Version 3.39.0 and later */
+  int (*deserialize)(mc_sqlite3*,const char*,unsigned char*,
+                     mc_sqlite3_int64,mc_sqlite3_int64,unsigned);
+  unsigned char *(*serialize)(mc_sqlite3*,const char *,mc_sqlite3_int64*,
+                              unsigned int);
+  const char *(*db_name)(mc_sqlite3*,int);
+  /* Version 3.40.0 and later */
+  int (*value_encoding)(mc_sqlite3_value*);
+  /* Version 3.41.0 and later */
+  int (*is_interrupted)(mc_sqlite3*);
+  /* Version 3.43.0 and later */
+  int (*stmt_explain)(mc_sqlite3_stmt*,int);
+  /* Version 3.44.0 and later */
+  void *(*get_clientdata)(mc_sqlite3*,const char*);
+  int (*set_clientdata)(mc_sqlite3*, const char*, void*, void(*)(void*));
+  /* Version 3.50.0 and later */
+  int (*setlk_timeout)(mc_sqlite3*,int,int);
+  /* Version 3.51.0 and later */
+  int (*set_errmsg)(mc_sqlite3*,int,const char*);
+  int (*db_status64)(mc_sqlite3*,int,mc_sqlite3_int64*,mc_sqlite3_int64*,int);
+  /* Version 3.52.0 and later */
+  void (*str_truncate)(mc_sqlite3_str*,int);
+  void (*str_free)(mc_sqlite3_str*);
+  int (*carray_bind)(mc_sqlite3_stmt*,int,void*,int,int,void(*)(void*));
+  int (*carray_bind_v2)(mc_sqlite3_stmt*,int,void*,int,int,void(*)(void*),void*);
+  /* Version 3.54.0 and later */
+  mc_sqlite3_int64 (*incomplete)(const char*);
+  void (*result_str)(mc_sqlite3_context*,mc_sqlite3_str*,int);
+};
+
+/*
+** This is the function signature used for all extension entry points.  It
+** is also defined in the file "loadext.c".
+*/
+typedef int (*mc_sqlite3_loadext_entry)(
+  mc_sqlite3 *db,                       /* Handle to the database. */
+  char **pzErrMsg,                   /* Used to set error string on failure. */
+  const mc_sqlite3_api_routines *pThunk /* Extension API function pointers. */
+);
+
+/*
+** The following macros redefine the API routines so that they are
+** redirected through the global mc_sqlite3_api structure.
+**
+** This header file is also used by the loadext.c source file
+** (part of the main SQLite library - not an extension) so that
+** it can get access to the mc_sqlite3_api_routines structure
+** definition.  But the main library does not want to redefine
+** the API.  So the redefinition macros are only valid if the
+** SQLITE_CORE macros is undefined.
+*/
+#if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)
+#define mc_sqlite3_aggregate_context      mc_sqlite3_api->aggregate_context
+#ifndef SQLITE_OMIT_DEPRECATED
+#define mc_sqlite3_aggregate_count        mc_sqlite3_api->aggregate_count
+#endif
+#define mc_sqlite3_bind_blob              mc_sqlite3_api->bind_blob
+#define mc_sqlite3_bind_double            mc_sqlite3_api->bind_double
+#define mc_sqlite3_bind_int               mc_sqlite3_api->bind_int
+#define mc_sqlite3_bind_int64             mc_sqlite3_api->bind_int64
+#define mc_sqlite3_bind_null              mc_sqlite3_api->bind_null
+#define mc_sqlite3_bind_parameter_count   mc_sqlite3_api->bind_parameter_count
+#define mc_sqlite3_bind_parameter_index   mc_sqlite3_api->bind_parameter_index
+#define mc_sqlite3_bind_parameter_name    mc_sqlite3_api->bind_parameter_name
+#define mc_sqlite3_bind_text              mc_sqlite3_api->bind_text
+#define mc_sqlite3_bind_text16            mc_sqlite3_api->bind_text16
+#define mc_sqlite3_bind_value             mc_sqlite3_api->bind_value
+#define mc_sqlite3_busy_handler           mc_sqlite3_api->busy_handler
+#define mc_sqlite3_busy_timeout           mc_sqlite3_api->busy_timeout
+#define mc_sqlite3_changes                mc_sqlite3_api->changes
+#define mc_sqlite3_close                  mc_sqlite3_api->close
+#define mc_sqlite3_collation_needed       mc_sqlite3_api->collation_needed
+#define mc_sqlite3_collation_needed16     mc_sqlite3_api->collation_needed16
+#define mc_sqlite3_column_blob            mc_sqlite3_api->column_blob
+#define mc_sqlite3_column_bytes           mc_sqlite3_api->column_bytes
+#define mc_sqlite3_column_bytes16         mc_sqlite3_api->column_bytes16
+#define mc_sqlite3_column_count           mc_sqlite3_api->column_count
+#define mc_sqlite3_column_database_name   mc_sqlite3_api->column_database_name
+#define mc_sqlite3_column_database_name16 mc_sqlite3_api->column_database_name16
+#define mc_sqlite3_column_decltype        mc_sqlite3_api->column_decltype
+#define mc_sqlite3_column_decltype16      mc_sqlite3_api->column_decltype16
+#define mc_sqlite3_column_double          mc_sqlite3_api->column_double
+#define mc_sqlite3_column_int             mc_sqlite3_api->column_int
+#define mc_sqlite3_column_int64           mc_sqlite3_api->column_int64
+#define mc_sqlite3_column_name            mc_sqlite3_api->column_name
+#define mc_sqlite3_column_name16          mc_sqlite3_api->column_name16
+#define mc_sqlite3_column_origin_name     mc_sqlite3_api->column_origin_name
+#define mc_sqlite3_column_origin_name16   mc_sqlite3_api->column_origin_name16
+#define mc_sqlite3_column_table_name      mc_sqlite3_api->column_table_name
+#define mc_sqlite3_column_table_name16    mc_sqlite3_api->column_table_name16
+#define mc_sqlite3_column_text            mc_sqlite3_api->column_text
+#define mc_sqlite3_column_text16          mc_sqlite3_api->column_text16
+#define mc_sqlite3_column_type            mc_sqlite3_api->column_type
+#define mc_sqlite3_column_value           mc_sqlite3_api->column_value
+#define mc_sqlite3_commit_hook            mc_sqlite3_api->commit_hook
+#define mc_sqlite3_complete               mc_sqlite3_api->complete
+#define mc_sqlite3_complete16             mc_sqlite3_api->complete16
+#define mc_sqlite3_create_collation       mc_sqlite3_api->create_collation
+#define mc_sqlite3_create_collation16     mc_sqlite3_api->create_collation16
+#define mc_sqlite3_create_function        mc_sqlite3_api->create_function
+#define mc_sqlite3_create_function16      mc_sqlite3_api->create_function16
+#define mc_sqlite3_create_module          mc_sqlite3_api->create_module
+#define mc_sqlite3_create_module_v2       mc_sqlite3_api->create_module_v2
+#define mc_sqlite3_data_count             mc_sqlite3_api->data_count
+#define mc_sqlite3_db_handle              mc_sqlite3_api->db_handle
+#define mc_sqlite3_declare_vtab           mc_sqlite3_api->declare_vtab
+#define mc_sqlite3_enable_shared_cache    mc_sqlite3_api->enable_shared_cache
+#define mc_sqlite3_errcode                mc_sqlite3_api->errcode
+#define mc_sqlite3_errmsg                 mc_sqlite3_api->errmsg
+#define mc_sqlite3_errmsg16               mc_sqlite3_api->errmsg16
+#define mc_sqlite3_exec                   mc_sqlite3_api->exec
+#ifndef SQLITE_OMIT_DEPRECATED
+#define mc_sqlite3_expired                mc_sqlite3_api->expired
+#endif
+#define mc_sqlite3_finalize               mc_sqlite3_api->finalize
+#define mc_sqlite3_free                   mc_sqlite3_api->free
+#define mc_sqlite3_free_table             mc_sqlite3_api->free_table
+#define mc_sqlite3_get_autocommit         mc_sqlite3_api->get_autocommit
+#define mc_sqlite3_get_auxdata            mc_sqlite3_api->get_auxdata
+#define mc_sqlite3_get_table              mc_sqlite3_api->get_table
+#ifndef SQLITE_OMIT_DEPRECATED
+#define mc_sqlite3_global_recover         mc_sqlite3_api->global_recover
+#endif
+#define mc_sqlite3_interrupt              mc_sqlite3_api->interruptx
+#define mc_sqlite3_last_insert_rowid      mc_sqlite3_api->last_insert_rowid
+#define mc_sqlite3_libversion             mc_sqlite3_api->libversion
+#define mc_sqlite3_libversion_number      mc_sqlite3_api->libversion_number
+#define mc_sqlite3_malloc                 mc_sqlite3_api->malloc
+#define mc_sqlite3_mprintf                mc_sqlite3_api->mprintf
+#define mc_sqlite3_open                   mc_sqlite3_api->open
+#define mc_sqlite3_open16                 mc_sqlite3_api->open16
+#define mc_sqlite3_prepare                mc_sqlite3_api->prepare
+#define mc_sqlite3_prepare16              mc_sqlite3_api->prepare16
+#define mc_sqlite3_prepare_v2             mc_sqlite3_api->prepare_v2
+#define mc_sqlite3_prepare16_v2           mc_sqlite3_api->prepare16_v2
+#define mc_sqlite3_profile                mc_sqlite3_api->profile
+#define mc_sqlite3_progress_handler       mc_sqlite3_api->progress_handler
+#define mc_sqlite3_realloc                mc_sqlite3_api->realloc
+#define mc_sqlite3_reset                  mc_sqlite3_api->reset
+#define mc_sqlite3_result_blob            mc_sqlite3_api->result_blob
+#define mc_sqlite3_result_double          mc_sqlite3_api->result_double
+#define mc_sqlite3_result_error           mc_sqlite3_api->result_error
+#define mc_sqlite3_result_error16         mc_sqlite3_api->result_error16
+#define mc_sqlite3_result_int             mc_sqlite3_api->result_int
+#define mc_sqlite3_result_int64           mc_sqlite3_api->result_int64
+#define mc_sqlite3_result_null            mc_sqlite3_api->result_null
+#define mc_sqlite3_result_text            mc_sqlite3_api->result_text
+#define mc_sqlite3_result_text16          mc_sqlite3_api->result_text16
+#define mc_sqlite3_result_text16be        mc_sqlite3_api->result_text16be
+#define mc_sqlite3_result_text16le        mc_sqlite3_api->result_text16le
+#define mc_sqlite3_result_value           mc_sqlite3_api->result_value
+#define mc_sqlite3_rollback_hook          mc_sqlite3_api->rollback_hook
+#define mc_sqlite3_set_authorizer         mc_sqlite3_api->set_authorizer
+#define mc_sqlite3_set_auxdata            mc_sqlite3_api->set_auxdata
+#define mc_sqlite3_snprintf               mc_sqlite3_api->xsnprintf
+#define mc_sqlite3_step                   mc_sqlite3_api->step
+#define mc_sqlite3_table_column_metadata  mc_sqlite3_api->table_column_metadata
+#define mc_sqlite3_thread_cleanup         mc_sqlite3_api->thread_cleanup
+#define mc_sqlite3_total_changes          mc_sqlite3_api->total_changes
+#define mc_sqlite3_trace                  mc_sqlite3_api->trace
+#ifndef SQLITE_OMIT_DEPRECATED
+#define mc_sqlite3_transfer_bindings      mc_sqlite3_api->transfer_bindings
+#endif
+#define mc_sqlite3_update_hook            mc_sqlite3_api->update_hook
+#define mc_sqlite3_user_data              mc_sqlite3_api->user_data
+#define mc_sqlite3_value_blob             mc_sqlite3_api->value_blob
+#define mc_sqlite3_value_bytes            mc_sqlite3_api->value_bytes
+#define mc_sqlite3_value_bytes16          mc_sqlite3_api->value_bytes16
+#define mc_sqlite3_value_double           mc_sqlite3_api->value_double
+#define mc_sqlite3_value_int              mc_sqlite3_api->value_int
+#define mc_sqlite3_value_int64            mc_sqlite3_api->value_int64
+#define mc_sqlite3_value_numeric_type     mc_sqlite3_api->value_numeric_type
+#define mc_sqlite3_value_text             mc_sqlite3_api->value_text
+#define mc_sqlite3_value_text16           mc_sqlite3_api->value_text16
+#define mc_sqlite3_value_text16be         mc_sqlite3_api->value_text16be
+#define mc_sqlite3_value_text16le         mc_sqlite3_api->value_text16le
+#define mc_sqlite3_value_type             mc_sqlite3_api->value_type
+#define mc_sqlite3_vmprintf               mc_sqlite3_api->vmprintf
+#define mc_sqlite3_vsnprintf              mc_sqlite3_api->xvsnprintf
+#define mc_sqlite3_overload_function      mc_sqlite3_api->overload_function
+#define mc_sqlite3_prepare_v2             mc_sqlite3_api->prepare_v2
+#define mc_sqlite3_prepare16_v2           mc_sqlite3_api->prepare16_v2
+#define mc_sqlite3_clear_bindings         mc_sqlite3_api->clear_bindings
+#define mc_sqlite3_bind_zeroblob          mc_sqlite3_api->bind_zeroblob
+#define mc_sqlite3_blob_bytes             mc_sqlite3_api->blob_bytes
+#define mc_sqlite3_blob_close             mc_sqlite3_api->blob_close
+#define mc_sqlite3_blob_open              mc_sqlite3_api->blob_open
+#define mc_sqlite3_blob_read              mc_sqlite3_api->blob_read
+#define mc_sqlite3_blob_write             mc_sqlite3_api->blob_write
+#define mc_sqlite3_create_collation_v2    mc_sqlite3_api->create_collation_v2
+#define mc_sqlite3_file_control           mc_sqlite3_api->file_control
+#define mc_sqlite3_memory_highwater       mc_sqlite3_api->memory_highwater
+#define mc_sqlite3_memory_used            mc_sqlite3_api->memory_used
+#define mc_sqlite3_mutex_alloc            mc_sqlite3_api->mutex_alloc
+#define mc_sqlite3_mutex_enter            mc_sqlite3_api->mutex_enter
+#define mc_sqlite3_mutex_free             mc_sqlite3_api->mutex_free
+#define mc_sqlite3_mutex_leave            mc_sqlite3_api->mutex_leave
+#define mc_sqlite3_mutex_try              mc_sqlite3_api->mutex_try
+#define mc_sqlite3_open_v2                mc_sqlite3_api->open_v2
+#define mc_sqlite3_release_memory         mc_sqlite3_api->release_memory
+#define mc_sqlite3_result_error_nomem     mc_sqlite3_api->result_error_nomem
+#define mc_sqlite3_result_error_toobig    mc_sqlite3_api->result_error_toobig
+#define mc_sqlite3_sleep                  mc_sqlite3_api->sleep
+#define mc_sqlite3_soft_heap_limit        mc_sqlite3_api->soft_heap_limit
+#define mc_sqlite3_vfs_find               mc_sqlite3_api->vfs_find
+#define mc_sqlite3_vfs_register           mc_sqlite3_api->vfs_register
+#define mc_sqlite3_vfs_unregister         mc_sqlite3_api->vfs_unregister
+#define mc_sqlite3_threadsafe             mc_sqlite3_api->xthreadsafe
+#define mc_sqlite3_result_zeroblob        mc_sqlite3_api->result_zeroblob
+#define mc_sqlite3_result_error_code      mc_sqlite3_api->result_error_code
+#define mc_sqlite3_test_control           mc_sqlite3_api->test_control
+#define mc_sqlite3_randomness             mc_sqlite3_api->randomness
+#define mc_sqlite3_context_db_handle      mc_sqlite3_api->context_db_handle
+#define mc_sqlite3_extended_result_codes  mc_sqlite3_api->extended_result_codes
+#define mc_sqlite3_limit                  mc_sqlite3_api->limit
+#define mc_sqlite3_next_stmt              mc_sqlite3_api->next_stmt
+#define mc_sqlite3_sql                    mc_sqlite3_api->sql
+#define mc_sqlite3_status                 mc_sqlite3_api->status
+#define mc_sqlite3_backup_finish          mc_sqlite3_api->backup_finish
+#define mc_sqlite3_backup_init            mc_sqlite3_api->backup_init
+#define mc_sqlite3_backup_pagecount       mc_sqlite3_api->backup_pagecount
+#define mc_sqlite3_backup_remaining       mc_sqlite3_api->backup_remaining
+#define mc_sqlite3_backup_step            mc_sqlite3_api->backup_step
+#define mc_sqlite3_compileoption_get      mc_sqlite3_api->compileoption_get
+#define mc_sqlite3_compileoption_used     mc_sqlite3_api->compileoption_used
+#define mc_sqlite3_create_function_v2     mc_sqlite3_api->create_function_v2
+#define mc_sqlite3_db_config              mc_sqlite3_api->db_config
+#define mc_sqlite3_db_mutex               mc_sqlite3_api->db_mutex
+#define mc_sqlite3_db_status              mc_sqlite3_api->db_status
+#define mc_sqlite3_extended_errcode       mc_sqlite3_api->extended_errcode
+#define mc_sqlite3_log                    mc_sqlite3_api->log
+#define mc_sqlite3_soft_heap_limit64      mc_sqlite3_api->soft_heap_limit64
+#define mc_sqlite3_sourceid               mc_sqlite3_api->sourceid
+#define mc_sqlite3_stmt_status            mc_sqlite3_api->stmt_status
+#define mc_sqlite3_strnicmp               mc_sqlite3_api->strnicmp
+#define mc_sqlite3_unlock_notify          mc_sqlite3_api->unlock_notify
+#define mc_sqlite3_wal_autocheckpoint     mc_sqlite3_api->wal_autocheckpoint
+#define mc_sqlite3_wal_checkpoint         mc_sqlite3_api->wal_checkpoint
+#define mc_sqlite3_wal_hook               mc_sqlite3_api->wal_hook
+#define mc_sqlite3_blob_reopen            mc_sqlite3_api->blob_reopen
+#define mc_sqlite3_vtab_config            mc_sqlite3_api->vtab_config
+#define mc_sqlite3_vtab_on_conflict       mc_sqlite3_api->vtab_on_conflict
+/* Version 3.7.16 and later */
+#define mc_sqlite3_close_v2               mc_sqlite3_api->close_v2
+#define mc_sqlite3_db_filename            mc_sqlite3_api->db_filename
+#define mc_sqlite3_db_readonly            mc_sqlite3_api->db_readonly
+#define mc_sqlite3_db_release_memory      mc_sqlite3_api->db_release_memory
+#define mc_sqlite3_errstr                 mc_sqlite3_api->errstr
+#define mc_sqlite3_stmt_busy              mc_sqlite3_api->stmt_busy
+#define mc_sqlite3_stmt_readonly          mc_sqlite3_api->stmt_readonly
+#define mc_sqlite3_stricmp                mc_sqlite3_api->stricmp
+#define mc_sqlite3_uri_boolean            mc_sqlite3_api->uri_boolean
+#define mc_sqlite3_uri_int64              mc_sqlite3_api->uri_int64
+#define mc_sqlite3_uri_parameter          mc_sqlite3_api->uri_parameter
+#define mc_sqlite3_uri_vsnprintf          mc_sqlite3_api->xvsnprintf
+#define mc_sqlite3_wal_checkpoint_v2      mc_sqlite3_api->wal_checkpoint_v2
+/* Version 3.8.7 and later */
+#define mc_sqlite3_auto_extension         mc_sqlite3_api->auto_extension
+#define mc_sqlite3_bind_blob64            mc_sqlite3_api->bind_blob64
+#define mc_sqlite3_bind_text64            mc_sqlite3_api->bind_text64
+#define mc_sqlite3_cancel_auto_extension  mc_sqlite3_api->cancel_auto_extension
+#define mc_sqlite3_load_extension         mc_sqlite3_api->load_extension
+#define mc_sqlite3_malloc64               mc_sqlite3_api->malloc64
+#define mc_sqlite3_msize                  mc_sqlite3_api->msize
+#define mc_sqlite3_realloc64              mc_sqlite3_api->realloc64
+#define mc_sqlite3_reset_auto_extension   mc_sqlite3_api->reset_auto_extension
+#define mc_sqlite3_result_blob64          mc_sqlite3_api->result_blob64
+#define mc_sqlite3_result_text64          mc_sqlite3_api->result_text64
+#define mc_sqlite3_strglob                mc_sqlite3_api->strglob
+/* Version 3.8.11 and later */
+#define mc_sqlite3_value_dup              mc_sqlite3_api->value_dup
+#define mc_sqlite3_value_free             mc_sqlite3_api->value_free
+#define mc_sqlite3_result_zeroblob64      mc_sqlite3_api->result_zeroblob64
+#define mc_sqlite3_bind_zeroblob64        mc_sqlite3_api->bind_zeroblob64
+/* Version 3.9.0 and later */
+#define mc_sqlite3_value_subtype          mc_sqlite3_api->value_subtype
+#define mc_sqlite3_result_subtype         mc_sqlite3_api->result_subtype
+/* Version 3.10.0 and later */
+#define mc_sqlite3_status64               mc_sqlite3_api->status64
+#define mc_sqlite3_strlike                mc_sqlite3_api->strlike
+#define mc_sqlite3_db_cacheflush          mc_sqlite3_api->db_cacheflush
+/* Version 3.12.0 and later */
+#define mc_sqlite3_system_errno           mc_sqlite3_api->system_errno
+/* Version 3.14.0 and later */
+#define mc_sqlite3_trace_v2               mc_sqlite3_api->trace_v2
+#define mc_sqlite3_expanded_sql           mc_sqlite3_api->expanded_sql
+/* Version 3.18.0 and later */
+#define mc_sqlite3_set_last_insert_rowid  mc_sqlite3_api->set_last_insert_rowid
+/* Version 3.20.0 and later */
+#define mc_sqlite3_prepare_v3             mc_sqlite3_api->prepare_v3
+#define mc_sqlite3_prepare16_v3           mc_sqlite3_api->prepare16_v3
+#define mc_sqlite3_bind_pointer           mc_sqlite3_api->bind_pointer
+#define mc_sqlite3_result_pointer         mc_sqlite3_api->result_pointer
+#define mc_sqlite3_value_pointer          mc_sqlite3_api->value_pointer
+/* Version 3.22.0 and later */
+#define mc_sqlite3_vtab_nochange          mc_sqlite3_api->vtab_nochange
+#define mc_sqlite3_value_nochange         mc_sqlite3_api->value_nochange
+#define mc_sqlite3_vtab_collation         mc_sqlite3_api->vtab_collation
+/* Version 3.24.0 and later */
+#define mc_sqlite3_keyword_count          mc_sqlite3_api->keyword_count
+#define mc_sqlite3_keyword_name           mc_sqlite3_api->keyword_name
+#define mc_sqlite3_keyword_check          mc_sqlite3_api->keyword_check
+#define mc_sqlite3_str_new                mc_sqlite3_api->str_new
+#define mc_sqlite3_str_finish             mc_sqlite3_api->str_finish
+#define mc_sqlite3_str_appendf            mc_sqlite3_api->str_appendf
+#define mc_sqlite3_str_vappendf           mc_sqlite3_api->str_vappendf
+#define mc_sqlite3_str_append             mc_sqlite3_api->str_append
+#define mc_sqlite3_str_appendall          mc_sqlite3_api->str_appendall
+#define mc_sqlite3_str_appendchar         mc_sqlite3_api->str_appendchar
+#define mc_sqlite3_str_reset              mc_sqlite3_api->str_reset
+#define mc_sqlite3_str_errcode            mc_sqlite3_api->str_errcode
+#define mc_sqlite3_str_length             mc_sqlite3_api->str_length
+#define mc_sqlite3_str_value              mc_sqlite3_api->str_value
+/* Version 3.25.0 and later */
+#define mc_sqlite3_create_window_function mc_sqlite3_api->create_window_function
+/* Version 3.26.0 and later */
+#define mc_sqlite3_normalized_sql         mc_sqlite3_api->normalized_sql
+/* Version 3.28.0 and later */
+#define mc_sqlite3_stmt_isexplain         mc_sqlite3_api->stmt_isexplain
+#define mc_sqlite3_value_frombind         mc_sqlite3_api->value_frombind
+/* Version 3.30.0 and later */
+#define mc_sqlite3_drop_modules           mc_sqlite3_api->drop_modules
+/* Version 3.31.0 and later */
+#define mc_sqlite3_hard_heap_limit64      mc_sqlite3_api->hard_heap_limit64
+#define mc_sqlite3_uri_key                mc_sqlite3_api->uri_key
+#define mc_sqlite3_filename_database      mc_sqlite3_api->filename_database
+#define mc_sqlite3_filename_journal       mc_sqlite3_api->filename_journal
+#define mc_sqlite3_filename_wal           mc_sqlite3_api->filename_wal
+/* Version 3.32.0 and later */
+#define mc_sqlite3_create_filename        mc_sqlite3_api->create_filename
+#define mc_sqlite3_free_filename          mc_sqlite3_api->free_filename
+#define mc_sqlite3_database_file_object   mc_sqlite3_api->database_file_object
+/* Version 3.34.0 and later */
+#define mc_sqlite3_txn_state              mc_sqlite3_api->txn_state
+/* Version 3.36.1 and later */
+#define mc_sqlite3_changes64              mc_sqlite3_api->changes64
+#define mc_sqlite3_total_changes64        mc_sqlite3_api->total_changes64
+/* Version 3.37.0 and later */
+#define mc_sqlite3_autovacuum_pages       mc_sqlite3_api->autovacuum_pages
+/* Version 3.38.0 and later */
+#define mc_sqlite3_error_offset           mc_sqlite3_api->error_offset
+#define mc_sqlite3_vtab_rhs_value         mc_sqlite3_api->vtab_rhs_value
+#define mc_sqlite3_vtab_distinct          mc_sqlite3_api->vtab_distinct
+#define mc_sqlite3_vtab_in                mc_sqlite3_api->vtab_in
+#define mc_sqlite3_vtab_in_first          mc_sqlite3_api->vtab_in_first
+#define mc_sqlite3_vtab_in_next           mc_sqlite3_api->vtab_in_next
+/* Version 3.39.0 and later */
+#ifndef SQLITE_OMIT_DESERIALIZE
+#define mc_sqlite3_deserialize            mc_sqlite3_api->deserialize
+#define mc_sqlite3_serialize              mc_sqlite3_api->serialize
+#endif
+#define mc_sqlite3_db_name                mc_sqlite3_api->db_name
+/* Version 3.40.0 and later */
+#define mc_sqlite3_value_encoding         mc_sqlite3_api->value_encoding
+/* Version 3.41.0 and later */
+#define mc_sqlite3_is_interrupted         mc_sqlite3_api->is_interrupted
+/* Version 3.43.0 and later */
+#define mc_sqlite3_stmt_explain           mc_sqlite3_api->stmt_explain
+/* Version 3.44.0 and later */
+#define mc_sqlite3_get_clientdata         mc_sqlite3_api->get_clientdata
+#define mc_sqlite3_set_clientdata         mc_sqlite3_api->set_clientdata
+/* Version 3.50.0 and later */
+#define mc_sqlite3_setlk_timeout          mc_sqlite3_api->setlk_timeout
+/* Version 3.51.0 and later */
+#define mc_sqlite3_set_errmsg             mc_sqlite3_api->set_errmsg
+#define mc_sqlite3_db_status64            mc_sqlite3_api->db_status64
+/* Version 3.52.0 and later */
+#define mc_sqlite3_str_truncate           mc_sqlite3_api->str_truncate
+#define mc_sqlite3_str_free               mc_sqlite3_api->str_free
+#define mc_sqlite3_carray_bind            mc_sqlite3_api->carray_bind
+#define mc_sqlite3_carray_bind_v2         mc_sqlite3_api->carray_bind_v2
+/* Version 3.54.0 and later */
+#define mc_sqlite3_incomplete             mc_sqlite3_api->incomplete
+#define mc_sqlite3_result_str             mc_sqlite3_api->result_str
+#endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
+
+#if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)
+  /* This case when the file really is being compiled as a loadable
+  ** extension */
+# define SQLITE_EXTENSION_INIT1     const mc_sqlite3_api_routines *mc_sqlite3_api=0;
+# define SQLITE_EXTENSION_INIT2(v)  mc_sqlite3_api=v;
+# define SQLITE_EXTENSION_INIT3     \
+    extern const mc_sqlite3_api_routines *mc_sqlite3_api;
+#else
+  /* This case when the file is being statically linked into the
+  ** application */
+# define SQLITE_EXTENSION_INIT1     /*no-op*/
+# define SQLITE_EXTENSION_INIT2(v)  (void)v; /* unused parameter */
+# define SQLITE_EXTENSION_INIT3     /*no-op*/
+#endif
+
+#endif /* SQLITE3EXT_H */
+/*** End of #include "mc_sqlite3ext.h" ***/
+
+
+struct mc_sqlite3mc_core_routines {
+  int (*initialize)(void);
+  int (*shutdown)(void);
+  int (*config)(int, ...);
+  int (*enable_load_extension)(mc_sqlite3*, int);
+  int (*memory_alarm)(void(*)(void*, mc_sqlite3_int64, int), void*, mc_sqlite3_int64);
+  int (*mutex_held)(mc_sqlite3_mutex*);
+  int (*mutex_notheld)(mc_sqlite3_mutex*);
+  int (*os_init)(void);
+  int (*os_end)(void);
+  int (*preupdate_blobwrite)(mc_sqlite3*);
+  int (*preupdate_count)(mc_sqlite3*);
+  int (*preupdate_depth)(mc_sqlite3*);
+  void* (*preupdate_hook)(mc_sqlite3*,
+                          void(*xPreUpdate)(void*, mc_sqlite3*, int, char const*, char const*, mc_sqlite3_int64, mc_sqlite3_int64),
+                          void*);
+  int (*preupdate_old)(mc_sqlite3*, int, mc_sqlite3_value**);
+  int (*preupdate_new)(mc_sqlite3*, int, mc_sqlite3_value**);
+
+  int (*snapshot_cmp)(mc_sqlite3_snapshot*, mc_sqlite3_snapshot*);
+  void (*snapshot_free)(mc_sqlite3_snapshot*);
+  int (*snapshot_get)(mc_sqlite3*, const char*, mc_sqlite3_snapshot**);
+  int (*snapshot_open)(mc_sqlite3*, const char*, mc_sqlite3_snapshot*);
+  int (*snapshot_recover)(mc_sqlite3*, const char*);
+
+  int (*stmt_scanstatus)(mc_sqlite3_stmt*, int, int, void*);
+  int (*stmt_scanstatus_v2)(mc_sqlite3_stmt*, int, int, int, void*);
+  void (*stmt_scanstatus_reset)(mc_sqlite3_stmt*);
+
+  int (*win32_set_directory)(unsigned long type, void* zValue);
+  int (*win32_set_directory8)(unsigned long type, const char* zValue);
+  int (*win32_set_directory16)(unsigned long type, const void* zValue);
+};
+
+struct mc_sqlite3mc_api_routines {
+    void (*activate_see)(const char* zPassPhrase);
+    int (*key)(mc_sqlite3* db, const void* pKey, int nKey);
+    int (*key_v2)(mc_sqlite3*, const char* zDbName, const void* pKey, int nKey);
+    int (*rekey)(mc_sqlite3*, const void* pKey, int nKey);
+    int (*rekey_v2)(mc_sqlite3*, const char* zDbName, const void* pKey, int nKey);
+
+    const char* (*mc_version)();
+    int (*mc_cipher_count)();
+    int (*mc_cipher_index)(const char* cipherName);
+    const char* (*mc_cipher_name)(int cipherIndex);
+    int (*mc_cipher_name_copy)(int cipherIndex, char* cipherName, int maxCipherNameSize);
+    int (*mc_config)(mc_sqlite3* db, const char* paramName, int newValue);
+    int (*mc_config_cipher)(mc_sqlite3* db, const char* cipherName, const char* paramName, int newValue);
+    unsigned char* (*mc_codec_data)(mc_sqlite3* db, const char* zDbName, const char* paramName);
+
+    int (*mc_vfs_create)(const char* zVfsReal, int makeDefault);
+    void (*mc_vfs_destroy)(const char* zName);
+    void (*mc_vfs_shutdown)();
+};
+
+typedef struct mc_sqlite3mc_core_routines mc_sqlite3mc_core_routines;
+typedef struct mc_sqlite3mc_api_routines mc_sqlite3mc_api_routines;
+
+#ifndef SQLITE3MC_DISPATCH_API
+#if defined(_WIN32)
+#define SQLITE3MC_DISPATCH_API __declspec(dllexport)
+#else
+#define SQLITE3MC_DISPATCH_API
+#endif
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+SQLITE3MC_DISPATCH_API extern const mc_sqlite3_api_routines*    SQLITE3MC_API_TABLE_EXT;
+SQLITE3MC_DISPATCH_API extern const mc_sqlite3mc_core_routines* SQLITE3MC_API_TABLE_CORE;
+SQLITE3MC_DISPATCH_API extern const mc_sqlite3mc_api_routines*  SQLITE3MC_API_TABLE_MC;
+
+#ifdef __cplusplus
+}  /* End of the 'extern "C"' block */
+#endif
+
+#if !defined(SQLITE_CORE)
+
+/* SQLite core API - not defined in mc_sqlite3ext.h */
+
+#define mc_sqlite3_initialize            SQLITE3MC_API_TABLE_CORE->initialize
+#define mc_sqlite3_shutdown              SQLITE3MC_API_TABLE_CORE->shutdown
+#define mc_sqlite3_config                SQLITE3MC_API_TABLE_CORE->config
+#define mc_sqlite3_enable_load_extension SQLITE3MC_API_TABLE_CORE->enable_load_extension
+#define mc_sqlite3_memory_alarm          SQLITE3MC_API_TABLE_CORE->memory_alarm
+#define mc_sqlite3_mutex_held            SQLITE3MC_API_TABLE_CORE->mutex_held
+#define mc_sqlite3_mutex_notheld         SQLITE3MC_API_TABLE_CORE->mutex_notheld
+#define mc_sqlite3_os_init               SQLITE3MC_API_TABLE_CORE->os_init
+#define mc_sqlite3_os_end                SQLITE3MC_API_TABLE_CORE->os_end
+#define mc_sqlite3_preupdate_blobwrite   SQLITE3MC_API_TABLE_CORE->preupdate_blobwrite
+#define mc_sqlite3_preupdate_count       SQLITE3MC_API_TABLE_CORE->preupdate_count
+#define mc_sqlite3_preupdate_depth       SQLITE3MC_API_TABLE_CORE->preupdate_depth
+#define mc_sqlite3_preupdate_hook        SQLITE3MC_API_TABLE_CORE->preupdate_hook
+#define mc_sqlite3_preupdate_old         SQLITE3MC_API_TABLE_CORE->preupdate_old
+#define mc_sqlite3_preupdate_new         SQLITE3MC_API_TABLE_CORE->preupdate_new
+
+#define mc_sqlite3_snapshot_cmp          SQLITE3MC_API_TABLE_CORE->snapshot_cmp
+#define mc_sqlite3_snapshot_free         SQLITE3MC_API_TABLE_CORE->snapshot_free
+#define mc_sqlite3_snapshot_get          SQLITE3MC_API_TABLE_CORE->snapshot_get
+#define mc_sqlite3_snapshot_open         SQLITE3MC_API_TABLE_CORE->snapshot_open
+#define mc_sqlite3_snapshot_recover      SQLITE3MC_API_TABLE_CORE->snapshot_recover
+
+#define mc_sqlite3_stmt_scanstatus       SQLITE3MC_API_TABLE_CORE->stmt_scanstatus
+#define mc_sqlite3_stmt_scanstatus_v2    SQLITE3MC_API_TABLE_CORE->stmt_scanstatus_v2
+#define mc_sqlite3_stmt_scanstatus_reset SQLITE3MC_API_TABLE_CORE->stmt_scanstatus_reset
+
+#define mc_sqlite3_win32_set_directory   SQLITE3MC_API_TABLE_CORE->win32_set_directory
+#define mc_sqlite3_win32_set_directory8  SQLITE3MC_API_TABLE_CORE->win32_set_directory8
+#define mc_sqlite3_win32_set_directory16 SQLITE3MC_API_TABLE_CORE->win32_set_directory16
+
+/* SQLite3 Multiple Ciphers API */
+
+#define mc_sqlite3_activate_see        SQLITE3MC_API_TABLE_MC->activate_see
+#define mc_sqlite3_key                 SQLITE3MC_API_TABLE_MC->key
+#define mc_sqlite3_key_v2              SQLITE3MC_API_TABLE_MC->key_v2
+#define mc_sqlite3_rekey               SQLITE3MC_API_TABLE_MC->rekey
+#define mc_sqlite3_rekey_v2            SQLITE3MC_API_TABLE_MC->rekey_v2
+
+#define mc_sqlite3mc_version           SQLITE3MC_API_TABLE_MC->mc_version
+#define mc_sqlite3mc_cipher_count      SQLITE3MC_API_TABLE_MC->mc_cipher_count
+#define mc_sqlite3mc_cipher_index      SQLITE3MC_API_TABLE_MC->mc_cipher_index
+#define mc_sqlite3mc_cipher_name       SQLITE3MC_API_TABLE_MC->mc_cipher_name
+#define mc_sqlite3mc_cipher_name_copy  SQLITE3MC_API_TABLE_MC->mc_cipher_name_copy
+#define mc_sqlite3mc_config            SQLITE3MC_API_TABLE_MC->mc_config
+#define mc_sqlite3mc_config_cipher     SQLITE3MC_API_TABLE_MC->mc_config_cipher
+#define mc_sqlite3mc_codec_data        SQLITE3MC_API_TABLE_MC->mc_codec_data
+
+#define mc_sqlite3mc_vfs_create        SQLITE3MC_API_TABLE_MC->mc_vfs_create
+#define mc_sqlite3mc_vfs_destroy       SQLITE3MC_API_TABLE_MC->mc_vfs_destroy
+#define mc_sqlite3mc_vfs_shutdown      SQLITE3MC_API_TABLE_MC->mc_vfs_shutdown
+
+#endif /* !SQLITE_CORE */
+
+#endif /* SQLITE3MC_USE_DISPATCH_TABLE */
+
+#endif /* SQLITE3MC_H_ */

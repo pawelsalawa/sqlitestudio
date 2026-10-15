@@ -1,5 +1,5 @@
 env:
-    SQLITE_VERSION: '3530400'
+    SQLITE_VERSION: '3540000'
     PORTABLE_DIR: output/portable/Letos
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     SIGNPATH_CERT: 'release-signing'

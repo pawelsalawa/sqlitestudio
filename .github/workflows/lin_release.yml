@@ -1,10 +1,10 @@
 env:
+    SQLITE_VERSION: '3540000'
     TCL_VERSION: '8.6'
-    SQLITE_VERSION: '3530400'
     PYTHON_VERSION: '3.13'
-    PORTABLE_DIR: ${{ github.workspace }}/output/portable/Letos
     ICU_VERSION: '73.2'
     ICU_URL: 'https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz'
+    PORTABLE_DIR: ${{ github.workspace }}/output/portable/Letos
     BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 name: Linux release build

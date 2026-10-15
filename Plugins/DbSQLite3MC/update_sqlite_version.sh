@@ -3,8 +3,8 @@ set -u
 
 # For versions:
 # https://github.com/utelle/SQLite3MultipleCiphers/releases
-MC_VER="2.3.5"
-SQLITE_VER="3.53.2"
+MC_VER="2.6.1"
+SQLITE_VER="3.54.0"
 THE_URL="https://github.com/utelle/SQLite3MultipleCiphers/releases/download/v${MC_VER}/sqlite3mc-${MC_VER}-sqlite-${SQLITE_VER}-amalgamation.zip"
 
 FILES=(
