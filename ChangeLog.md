@@ -1,6 +1,8 @@
 # ChangeLog
 
 ### 4.0.4
+- CHANGE: #5819 Added an option on the Database list configuration page to expand or collapse connected databases on double-click instead of opening their settings.
+- CHANGE: SQLite version updated to 3.54.0.
 - BUGFIX: #5816 Include the data row number in import errors for CSV and other import sources.
 - BUGFIX: #5804 Fixed renaming columns used by dependent views, CHECK constraints, generated columns and table keys, and dropping views before rebuilding their tables.
 - BUGFIX: #5810 Fixed unreadable Debug Console text in dark themes by using the theme's text color.
@@ -8,7 +10,6 @@
 - BUGFIX: #5822 Fixed uninitialized syntax colors and editor highlight backgrounds when starting with the default palette.
 - BUGFIX: #5815 Restored support for the user's QT_PLUGIN_PATH environment variable by reverting the fix for #4241.
 - BUGFIX: #5808 Fixed dragging table fields into the SQL Editor to insert comma-separated names, generate SELECT with Ctrl, and generate UPDATE with Ctrl+Shift.
-- CHANGE: #5819 Added an option on the Database list configuration page to expand or collapse connected databases on double-click instead of opening their settings.
 - BUGFIX: #5831 Fixed using `!` and `!=` operators without a whitespace separating it from the value or id.
 - BUGFIX: #5806 Fixed crash when renaming VIEW inline (in Database List).
 
