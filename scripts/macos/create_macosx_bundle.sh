@@ -387,7 +387,24 @@ elif [ "$3" = "dist" ]; then
             abort "Notarization timed out"
         fi
 
-        run xcrun stapler staple "$DMG_FILE"
+        STAPLE_RETRY_DELAYS=(15 30 60 120)
+        STAPLE_ATTEMPT=0
+        while true; do
+            if run xcrun stapler staple --verbose "$DMG_FILE"; then
+                break
+            else
+                STAPLE_STATUS=$?
+            fi
+
+            if [ "$STAPLE_STATUS" -ne 68 ] || [ "$STAPLE_ATTEMPT" -ge "${#STAPLE_RETRY_DELAYS[@]}" ]; then
+                exit "$STAPLE_STATUS"
+            fi
+
+            STAPLE_DELAY="${STAPLE_RETRY_DELAYS[$STAPLE_ATTEMPT]}"
+            echo "Stapling failed with error 68; retrying in $STAPLE_DELAY seconds..."
+            sleep "$STAPLE_DELAY"
+            STAPLE_ATTEMPT=$((STAPLE_ATTEMPT + 1))
+        done
         run xcrun stapler validate "$DMG_FILE"
     fi
 
