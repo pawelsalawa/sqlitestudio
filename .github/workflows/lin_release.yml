@@ -126,8 +126,15 @@ jobs:
                 #ls -l ${{ github.workspace }}/..
                 echo "DIR=$(readlink -f ${{ github.workspace }}/..)" >> $GITHUB_OUTPUT
 
+            - name: Configure Qt installer
+              run: |
+                # Avoid concurrent 7z processes racing to create the Qt installation directory.
+                printf '[aqt]\nconcurrency = 1\n' > "$RUNNER_TEMP/aqt.ini"
+
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
+              env:
+                AQT_CONFIG: ${{ runner.temp }}/aqt.ini
               with:
                 cache: true
                 version: ${{ matrix.QT_VERSION }}
